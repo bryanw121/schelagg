@@ -1,0 +1,41 @@
+name: Refresh schedules
+
+on:
+  schedule:
+    - cron: '13 9 * * *'   # daily ~4:13am Austin time (CDT; 3:13am in winter)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency: scrape
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - run: npm run scrape
+      - name: Commit updated data
+        run: |
+          git config user.name "volley-atx-bot"
+          git config user.email "volley-atx-bot@users.noreply.github.com"
+          git add public/data/schedule.json data/watch.json
+          git diff --cached --quiet || git commit -m "Refresh schedules $(date -u +%F)"
+          git push
+      - name: Open an issue if a source failed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -s scrape-failures.md ]; then
+            gh issue create --title "Schedule scrape: source failed $(date -u +%F)" --body-file scrape-failures.md
+          fi

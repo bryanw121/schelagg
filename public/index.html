@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Volley ATX</title>
+<meta name="description" content="Where to play volleyball in Austin today: open play, training, leagues and live court availability, with sign-up links.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><h1>Volley <span>ATX</span></h1><span class="asof" id="asof">Loading…</span></div>
+    <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
+    <div class="days" role="group" aria-label="Day" id="days"></div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="card" id="glance">
+      <div class="dayhead"><h3 id="calTitle">Day at a glance</h3></div>
+      <div class="key">
+        <span><i style="background:var(--indoor)"></i>Indoor session</span>
+        <span><i style="background:var(--sand)"></i>Sand session</span>
+        <span><i class="hatch"></i>Court booked</span>
+        <span><i style="background:var(--bg);border:1px solid var(--line)"></i>Open to rent</span>
+        <span><i style="background:var(--line)"></i>Closed</span>
+        <span><i style="background:var(--ink);opacity:.55;width:2px"></i>Closing time</span>
+        <span><i style="background:var(--bad);width:2px"></i>Now</span>
+      </div>
+      <div class="gantt" id="cal"><p class="loading">Loading court calendars…</p></div>
+      <div id="calErrors"></div>
+      <p class="note" style="margin:0" id="calNote">Court bookings at High Point, Crossover and Treehouse Gym (home of Roots Volleyball) are club practices, events and private rentals, not public play. Who booked each slot is hidden on their calendars. Treehouse's weekday 8am–4pm blocks are school-hours holds.</p>
+    </section>
+
+    <div>
+      <div class="dayhead">
+        <h2 id="dayTitle">Today</h2>
+        <label class="toggle"><input type="checkbox" id="showAll"> Show ended &amp; unconfirmed</label>
+      </div>
+      <div class="list" id="list"><p class="loading">Loading schedules…</p></div>
+    </div>
+
+    <section class="card" id="courtsCard">
+      <h3 id="courtsTitle">Free public courts</h3>
+      <p class="note" style="margin:0" id="courtsNote"></p>
+      <div class="courts" id="courts"></div>
+    </section>
+
+    <section class="card">
+      <h3>How fresh is this?</h3>
+      <div class="legend">
+        <span><span class="pill fresh">Verified</span> checked within 7 days</span>
+        <span><span class="pill aging">Aging</span> 8–21 days</span>
+        <span><span class="pill stale">Stale</span> over 21 days</span>
+        <span><span class="pill changed">Recheck</span> source changed or couldn't be read</span>
+        <span><span class="pill unverified">Unconfirmed</span> no official time</span>
+        <span><span class="pill expired">Ended</span> season over</span>
+      </div>
+      <p class="note" style="margin:0" id="sourceStatus"></p>
+    </section>
+
+    <footer>Sources: Volleyworld, ACES, ATX Beach, Austin Velocity, Roots Volleyball, Sweatpals, Austin Parks &amp; Recreation. Times change; tap “Source” before you drive out.</footer>
+  </div>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
