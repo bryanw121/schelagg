@@ -26,3 +26,10 @@ test('weekly sessions expand within their season and skip missing start times', 
   ], { from: '2026-10-24', horizonDays: 14 });
   assert.deepEqual(rows.map((r) => r.id), ['w-2026-10-25', 'w-2026-11-01']);
 });
+
+test('all-day facility hours are not listed as sessions', () => {
+  const rows = toVclubRows([
+    { id: 'hours', title: 'Standard Open Play', venue: 'V', days: ['Mon'], start: '07:00', end: '18:00' },
+  ], { from: '2026-10-24', horizonDays: 7 });
+  assert.equal(rows.length, 0);
+});
