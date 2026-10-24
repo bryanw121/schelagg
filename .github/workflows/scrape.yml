@@ -32,6 +32,12 @@ jobs:
           git add public/data/schedule.json data/watch.json
           git diff --cached --quiet || git commit -m "Refresh schedules $(date -u +%F)"
           git push
+      - name: Push sessions to vclub
+        # Skips itself when the secrets aren't configured.
+        env:
+          VCLUB_SUPABASE_URL: ${{ secrets.VCLUB_SUPABASE_URL }}
+          VCLUB_SERVICE_ROLE_KEY: ${{ secrets.VCLUB_SERVICE_ROLE_KEY }}
+        run: node scripts/sync-vclub.mjs
       - name: Open an issue if a source failed
         env:
           GH_TOKEN: ${{ github.token }}

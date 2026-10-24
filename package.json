@@ -8,6 +8,7 @@
     "dev": "node server.js",
     "test": "node --test test/*.test.mjs",
     "scrape": "node scripts/scrape.mjs",
+    "sync:vclub": "node scripts/sync-vclub.mjs",
     "courts": "node scripts/build-courts.mjs",
     "test:skedda": "node scripts/test-skedda.mjs"
   },
