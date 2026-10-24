@@ -8,8 +8,9 @@ import * as volleyworld from './sources/volleyworld.mjs';
 import * as aces from './sources/aces.mjs';
 import * as atxbeach from './sources/atxbeach.mjs';
 import * as velocity from './sources/velocity.mjs';
+import * as reclub from './sources/reclub.mjs';
 
-const SCRAPERS = [volleyworld, aces, atxbeach, velocity];
+const SCRAPERS = [volleyworld, aces, atxbeach, velocity, reclub];
 const OUT = 'public/data/schedule.json';
 const WATCH = 'data/watch.json';
 const HORIZON_DAYS = 14;

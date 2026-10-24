@@ -24,6 +24,12 @@
       "ok": true,
       "checkedAt": "2026-10-24T18:00:00.000Z",
       "note": "seeded by hand before first nightly run"
+    },
+    {
+      "id": "reclub",
+      "ok": true,
+      "checkedAt": "2026-10-24T18:55:00.000Z",
+      "note": "seeded by hand before first nightly run"
     }
   ],
   "sessions": [
@@ -398,6 +404,113 @@
       },
       "source": "https://austinssc.leaguelab.com/leagues?sport=Sand+Volleyball",
       "sourceId": "manual"
+    },
+    {
+      "id": "reclub-2O9PDP",
+      "date": "2026-10-30",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Koi C/B Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "signup": {
+        "url": "https://reclub.co/m/2O9PDP",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/2O9PDP",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-24",
+      "facility": "treehouse"
+    },
+    {
+      "id": "reclub-VONMM8",
+      "date": "2026-10-30",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Qilin B/BB Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "B/BB",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "signup": {
+        "url": "https://reclub.co/m/VONMM8",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/VONMM8",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-24",
+      "facility": "treehouse"
+    },
+    {
+      "id": "reclub-UEY4HO",
+      "date": "2026-10-27",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball.",
+      "signup": {
+        "url": "https://reclub.co/m/UEY4HO",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/UEY4HO",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-24"
+    },
+    {
+      "id": "reclub-1QX0YR",
+      "date": "2026-10-29",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "B/BB · men",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball.",
+      "signup": {
+        "url": "https://reclub.co/m/1QX0YR",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/1QX0YR",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-24"
+    },
+    {
+      "id": "reclub-T908MD",
+      "date": "2026-10-25",
+      "start": "10:00",
+      "end": "13:00",
+      "title": "Austin Lawn Club - Sunday Fun Day!",
+      "venue": "Mueller Lake Park",
+      "city": "Austin",
+      "surface": "grass",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$6",
+      "note": "Hosted by Austin Lawn Club, every Sunday. Bring water and a lawn chair.",
+      "signup": {
+        "url": "https://reclub.co/m/T908MD",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/T908MD",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-24"
     }
   ],
   "publicCourts": {

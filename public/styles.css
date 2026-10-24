@@ -101,6 +101,8 @@ footer{font-size:12px;color:var(--muted)}
 .g-bar{position:absolute;top:3px;bottom:3px;border-radius:3px;background:var(--c);color:#fff;font:600 10.5px/20px var(--mono);padding:0 5px;overflow:hidden;white-space:nowrap;text-decoration:none}
 a.g-bar:hover{filter:brightness(1.12)}
 .g-book{position:absolute;top:3px;bottom:3px;border-radius:2px;background:repeating-linear-gradient(135deg,var(--muted) 0 3px,transparent 3px 6px);opacity:.75;border:1px solid var(--muted)}
+.g-book.open{background:var(--accent);border-color:var(--accent);opacity:1;color:var(--accent-ink);font:700 10.5px/18px var(--mono);text-decoration:none;text-align:center;overflow:hidden;white-space:nowrap}
+.g-book.open:hover{filter:brightness(1.1)}
 .g-closed{position:absolute;top:0;bottom:0;background:var(--line);border-radius:2px}
 .g-close{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);opacity:.55;z-index:1}
 .g-now{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--bad);z-index:2}

@@ -176,17 +176,27 @@ function renderGlance() {
       .map(([a, b]) => `<div class="g-closed" style="left:${pct(a)}%;width:${(pct(b) - pct(a)).toFixed(2)}%" title="Closed"></div>`).join('')
       + `<div class="g-close" style="left:calc(${pct(close)}% - 2px)" title="Closes ${fmtT(hhmm(close))}"></div>`;
     const frees = [];
+    // Public meets held at this facility (e.g. Vex on a privately booked Treehouse court).
+    const meets = sessionsOn(iso, { ignoreSurf: true }).filter((x) => x.facility === f.id && x.start && x.end && !hidden(x.f));
     const lanes = f.courts.map((c) => {
       const blocks = (c.days[iso] || []).map(([s, e]) => [mins(s), mins(e) || 1440]);
       const free = freeWindows(blocks, open, close); frees.push(free);
-      const bl = blocks.map(([s, e]) => `<div class="g-book" style="left:${pct(s)}%;width:${(pct(e) - pct(s)).toFixed(2)}%" title="Booked ${fmtT(hhmm(s))}–${fmtT(hhmm(e))}"></div>`).join('');
+      const bl = blocks.map(([s, e]) => {
+        const st = `left:${pct(s)}%;width:${(pct(e) - pct(s)).toFixed(2)}%`;
+        // A booking whose start and end line up with a public meet is that meet's court.
+        const m = meets.find((x) => Math.abs(mins(x.start) - s) <= 15 && Math.abs(mins(x.end) - e) <= 15);
+        return m
+          ? `<a class="g-book open" href="${esc(m.signup.url)}" target="_blank" rel="noopener" style="${st}" title="${esc(m.title)}: ${fmtT(m.start)}–${fmtT(m.end)}, sign up">Sign up</a>`
+          : `<div class="g-book" style="${st}" title="Booked ${fmtT(hhmm(s))}–${fmtT(hhmm(e))}"></div>`;
+      }).join('');
       const aria = `${blocks.length ? 'booked ' + blocks.map(([s, e]) => `${fmtT(hhmm(s))} to ${fmtT(hhmm(e))}`).join(', ') : 'no bookings'}; ${free.length ? 'open to rent ' + free.map(([a, b]) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))}`).join(', ') : 'no open time'}`;
       return `<div class="g-row"><span class="g-lab">${esc(c.name.replace(/^(HP|CO) /, '').replace('Court #', 'Court '))}</span><div class="g-track" role="img" aria-label="${esc(c.name)}: ${aria}">${closedBlocks}${bl}${nowLine}</div></div>`;
     }).join('');
     const anyFree = union(frees).filter(([a, b]) => b - a >= 30);
     const sum = anyFree.length ? `courts free <b>${anyFree.map(([a, b]) => `${fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}</b>` : `<b class="full">fully booked</b>`;
     const stale = f.venue.stale ? ' · <b class="full">showing last good data</b>' : '';
-    return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · open ${fmtT(h[0])}, closes ${fmtT(hhmm(close))} · ${sum} · no public play${stale} · <a class="book" href="${esc(f.venue.calendar)}" target="_blank" rel="noopener">Book a court ↗</a></small></div>${lanes}`;
+    const pub = meets.length ? meets.map((m) => `<a class="book" href="${esc(m.signup.url)}" target="_blank" rel="noopener">${esc(m.title)} ${fmtT(m.start)}–${fmtT(m.end)} ↗</a>`).join(' · ') : 'no public play';
+    return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · open ${fmtT(h[0])}, closes ${fmtT(hhmm(close))} · ${sum} · ${pub}${stale} · <a class="book" href="${esc(f.venue.calendar)}" target="_blank" rel="noopener">Book a court ↗</a></small></div>${lanes}`;
   }).join('');
 
   if (!courts && !courtsError) html += `<p class="loading">Loading court calendars…</p>`;
@@ -202,7 +212,7 @@ function renderMeta() {
   if (!schedule) return;
   const courtAge = courts ? Math.round((Date.now() - Date.parse(courts.fetchedAt)) / 60000) : null;
   $('asof').textContent = `Schedules ${fmtDate(schedule.generatedAt.slice(0, 10))}${courts ? ` · courts ${clock(courts.fetchedAt)}` : ''}`;
-  $('calNote').textContent = `Court bookings at High Point, Crossover and Treehouse Gym (home of Roots Volleyball) are club practices, events and private rentals, not public play. Who booked each slot is hidden on their calendars. Treehouse's weekday 8am–4pm blocks are school-hours holds.${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh about every 15 minutes.` : ''}`;
+  $('calNote').textContent = `Court bookings at High Point, Crossover and Treehouse Gym (home of Roots Volleyball) are mostly club practices and private rentals. Blue blocks line up with a public Reclub meet, so those courts are open to sign up. Who booked each slot is hidden on their calendars. Treehouse's weekday 8am–4pm blocks are school-hours holds.${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh about every 15 minutes.` : ''}`;
   const bad = schedule.sources.filter((s) => !s.ok);
   $('sourceStatus').textContent = bad.length
     ? `Last nightly check couldn't read: ${bad.map((s) => s.id).join(', ')}. Their sessions show "Couldn't recheck".`

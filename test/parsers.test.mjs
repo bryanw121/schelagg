@@ -119,3 +119,20 @@ Level: Intermediate & Advanced`;
   assert.deepEqual([s[0].start, s[0].end, s[0].startsOn, s[0].validUntil], ['20:00', '24:00', '2026-05-20', '2026-08-14']);
   assert.equal(s[1].level, 'Intermediate & Advanced');
 });
+
+import * as reclub from '../scripts/sources/reclub.mjs';
+
+test('Reclub: Treehouse meet maps to the Treehouse court calendar', () => {
+  const text = `Platform Communities Sports English Roots: Koi C/B Friday Coed Net Volleyball Friday, Oct 30 @ 7:00 PM3 hoursFriday, Oct 30 @ 7:00 PM3 hoursTreehouse Gym (Home of Roots Volleyball)15407 Long Vista Drive Suite 100, Austin, TX 78728, USAsee mapPer Player$12.00FIRST TIME JOINING? Hosted By Brought to you by Vex Volleyball Every Friday · 7:00 PM`;
+  const s = reclub.parseMeet(text, 'https://reclub.co/m/2O9PDP', REF);
+  assert.deepEqual([s.date, s.start, s.end, s.facility, s.price, s.level], ['2026-10-30', '19:00', '22:00', 'treehouse', '$12', 'C/B']);
+  assert.equal(s.venue, 'Roots · Treehouse Gym');
+  assert.equal(s.signup.url, 'https://reclub.co/m/2O9PDP');
+});
+
+test('Reclub: lawn club meet in a park is grass', () => {
+  const text = `English Austin Lawn Club - Sunday Fun Day! Sunday, Oct 25 @ 10:00 AM3 hoursSunday, Oct 25 @ 10:00 AM3 hoursMueller Lake Park1837 1/2 Simond Avenue, Austin, TX 78723, USAsee mapPer Player$6.00 Brought to you byAustin Lawn ClubEvery Sunday · 10:00 AM`;
+  const s = reclub.parseMeet(text, 'https://reclub.co/m/T908MD', REF);
+  assert.deepEqual([s.date, s.start, s.end, s.surface, s.price], ['2026-10-25', '10:00', '13:00', 'grass', '$6']);
+  assert.equal(s.venue, 'Mueller Lake Park');
+});
