@@ -51,7 +51,12 @@ export async function scrape({ browser, ref, options }) {
     for (const p of pages) {
       try {
         await page.goto(p.url, { waitUntil: 'domcontentloaded', timeout: 45000 });
-        sessions.push(parse(await page.locator('main, body').first().innerText(), p, ref));
+        const text = await page.locator('main, body').first().innerText();
+        try { sessions.push(parse(text, p, ref)); } catch (e) {
+          // Say what we got instead (a bot-check page reads very differently from an event page).
+          const title = await page.title().catch(() => '');
+          throw new Error(`${e.message} (page "${title.slice(0, 80)}", ${text.length} chars: "${text.replace(/\s+/g, ' ').slice(0, 120)}")`);
+        }
       } catch (e) { errors.push(e.message); }
     }
   } finally { await page.close(); }
