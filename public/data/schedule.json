@@ -1,37 +1,54 @@
 {
-  "generatedAt": "2026-10-25T18:41:33.290Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-25T19:21:10.984Z",
   "sources": [
     {
       "id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-25T18:40:40.365Z",
+      "checkedAt": "2026-10-25T19:20:14.938Z",
       "error": "No adult sessions found — page layout may have changed",
-      "kept": 6
+      "kept": 5
     },
     {
       "id": "aces",
+      "sport": "volleyball",
+      "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-25T18:41:07.781Z",
+      "checkedAt": "2026-10-25T19:20:44.917Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time; https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time",
       "kept": 2
     },
     {
       "id": "atxbeach",
+      "sport": "volleyball",
+      "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-25T18:41:08.070Z",
+      "checkedAt": "2026-10-25T19:20:45.275Z",
       "count": 2
     },
     {
       "id": "velocity",
+      "sport": "volleyball",
+      "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-25T18:41:09.659Z",
+      "checkedAt": "2026-10-25T19:20:47.097Z",
       "count": 2
     },
     {
       "id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-25T18:41:12.231Z",
-      "count": 5
+      "checkedAt": "2026-10-25T19:20:49.337Z",
+      "count": 5,
+      "warnings": [
+        "reclub-UEY4HO: no venue name",
+        "reclub-1QX0YR: no venue name",
+        "reclub-VONMM8: no venue name",
+        "reclub-2O9PDP: no venue name"
+      ]
     }
   ],
   "sessions": [
@@ -53,7 +70,10 @@
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-25"
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "volleyworld-2026-10-25-17:30-georgetown",
@@ -74,7 +94,10 @@
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-25"
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "volleyworld-2026-10-28-20:30-georgetown",
@@ -94,7 +117,10 @@
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-25"
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "volleyworld-2026-10-29-20:30-georgetown",
@@ -114,7 +140,10 @@
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-25"
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "volleyworld-2026-10-30-19:30-georgetown",
@@ -134,7 +163,10 @@
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-25"
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "aces-2026-10-26-19:30",
@@ -156,7 +188,10 @@
       "source": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
       "sourceId": "aces",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-25"
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "aces-2026-10-28-19:30",
@@ -178,7 +213,10 @@
       "source": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
       "sourceId": "aces",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-25"
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "atxbeach-standard",
@@ -206,6 +244,9 @@
       },
       "source": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "sourceId": "atxbeach",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -229,6 +270,9 @@
       },
       "source": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "sourceId": "atxbeach",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -253,6 +297,9 @@
       },
       "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
       "sourceId": "velocity",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -277,6 +324,9 @@
       },
       "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
       "sourceId": "velocity",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -298,6 +348,9 @@
       },
       "source": "https://reclub.co/m/UEY4HO",
       "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -319,6 +372,9 @@
       },
       "source": "https://reclub.co/m/1QX0YR",
       "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -340,6 +396,9 @@
       },
       "source": "https://reclub.co/m/VONMM8",
       "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -361,6 +420,9 @@
       },
       "source": "https://reclub.co/m/2O9PDP",
       "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -382,6 +444,9 @@
       },
       "source": "https://reclub.co/m/5X380N",
       "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "verifiedAt": "2026-10-25"
     },
     {
@@ -405,7 +470,10 @@
         "label": "RSVP on Sweatpals"
       },
       "source": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-      "sourceId": "manual"
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     },
     {
       "id": "aces-thu-6s-sand",
@@ -428,6 +496,9 @@
       },
       "source": "https://acesintexas.com/thursday-6s-sand-volleyball-league-atx-beach/",
       "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "watchError": "HTTP 403"
     },
     {
@@ -452,6 +523,9 @@
       },
       "source": "https://acesintexas.com/aces-pflugerville-monday-co-ed-indoor-6s-volleyball-league/",
       "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
       "watchError": "HTTP 403"
     },
     {
@@ -477,7 +551,11 @@
         "dropIn": true
       },
       "source": "https://www.planomato.com/en/austin/p/open-play-volleyball-austin",
-      "sourceId": "manual"
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "sourceChanged": "2026-10-25"
     },
     {
       "id": "ssc-crossover-mon-sand",
@@ -500,7 +578,10 @@
         "label": "Register on Austin SSC"
       },
       "source": "https://austinssc.leaguelab.com/leagues?sport=Sand+Volleyball",
-      "sourceId": "manual"
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
     }
   ],
   "publicCourts": {
