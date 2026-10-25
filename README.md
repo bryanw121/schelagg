@@ -26,22 +26,30 @@ If a court calendar can't be read, the last good copy from the live site stays u
 
 ## Workflows
 
-- **Deploy site** (`.github/workflows/pages.yml`): every 15 minutes, on every push, and after each nightly refresh.
+- **Deploy site** (`.github/workflows/pages.yml`): every 15 minutes, on every push, and after each schedule refresh.
   Fetches court calendars, then publishes `public/` to GitHub Pages.
-- **Refresh schedules** (`.github/workflows/scrape.yml`): nightly. Runs tests, scrapes, commits `public/data/schedule.json`.
+- **Refresh schedules** (`.github/workflows/scrape.yml`): hourly, 6am to midnight Austin time. Runs tests, scrapes,
+  commits `public/data/schedule.json`, then pushes upcoming sessions to vteam (`npm run sync:vteam`, needs the
+  `VTEAM_SERVICE_ROLE_KEY` repository secret). A failing source keeps one issue open and comments on it.
+- **Test** (`.github/workflows/test.yml`): tests and script checks on Linux, macOS and Windows.
 
 First-time setup: **Settings → Pages → Source: GitHub Actions**, then run both workflows once from the Actions tab.
 
 ## Run locally
 
+Works the same on macOS, Windows and Linux (Node 20.12+). Use the `npm run` commands below in Terminal, PowerShell
+or cmd; nothing needs bash. For `npm run sync:vteam`, copy `.env.example` to `.env` and fill in the key instead of
+setting variables on the command line.
+
 ```bash
 npm install
 npx playwright install chromium   # only needed for npm run scrape
 npm test                          # recurrence, hours and parser tests
-npm run test:skedda               # checks the court calendars respond to a plain script
+npm run check:skedda              # checks the court calendars respond to a plain script
 npm run courts                    # write public/data/courts.json
 npm run scrape                    # rebuild public/data/schedule.json
 npm run dev                       # http://localhost:5173 (serves a live /api/courts if courts.json is absent)
+npm run sync:vteam                # push upcoming sessions to vteam (reads .env)
 ```
 
 `api/courts.js` + `vercel.json` also let the same repo deploy to Vercel with on-request court data, if you prefer that later.

@@ -3,8 +3,11 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { VENUES, loadVenue } from '../lib/skedda.js';
 import { today } from '../lib/time.js';
+import { repoPath, loadEnv } from '../lib/paths.js';
 
-const OUT = 'public/data/courts.json';
+loadEnv();
+
+const OUT = repoPath('public/data/courts.json');
 const DAYS = 14;
 const from = today();
 // Last good copy: the local file if present, otherwise what the live site is serving.

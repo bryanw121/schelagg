@@ -1,7 +1,7 @@
 // Local dev server: serves public/ and mounts the same API handlers Vercel uses.
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
-import { join, extname, dirname, normalize } from 'node:path';
+import { join, extname, dirname, normalize, relative, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import courts from './api/courts.js';
 
@@ -16,7 +16,8 @@ createServer(async (req, res) => {
   try {
     if (API[path]) return await API[path](req, res);
     const file = normalize(join(PUBLIC, path === '/' ? 'index.html' : path));
-    if (!file.startsWith(PUBLIC)) throw new Error('outside public');
+    const rel = relative(PUBLIC, file);
+    if (rel.startsWith('..') || isAbsolute(rel)) throw new Error('outside public');
     const body = await readFile(file);
     res.writeHead(200, { 'content-type': TYPES[extname(file)] || 'application/octet-stream' });
     res.end(body);

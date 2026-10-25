@@ -1,12 +1,18 @@
 // Push the latest schedule into vteam's `external_sessions` table.
 //
-//   VTEAM_SUPABASE_URL=https://<ref>.supabase.co VTEAM_SERVICE_ROLE_KEY=... node scripts/sync-vteam.mjs
+//   npm run sync:vteam   (macOS, Linux and Windows alike)
+//
+// Reads VTEAM_SUPABASE_URL and VTEAM_SERVICE_ROLE_KEY from the environment or a
+// .env file at the repo root (see .env.example).
 //
 // Upserts every session from today through the next 4 weeks, then deletes
 // future rows this run didn't touch (cancelled or removed at the source).
 // Skips quietly when the env vars aren't set, so forks and local runs still work.
 import { readFile } from 'node:fs/promises';
 import { toVteamRows } from '../lib/vteam-rows.js';
+import { loadEnv, repoPath } from '../lib/paths.js';
+
+loadEnv();
 
 const url = process.env.VTEAM_SUPABASE_URL;
 const key = process.env.VTEAM_SERVICE_ROLE_KEY;
@@ -15,7 +21,7 @@ if (!url || !key) {
   process.exit(0);
 }
 
-const schedule = JSON.parse(await readFile(new URL('../public/data/schedule.json', import.meta.url), 'utf8'));
+const schedule = JSON.parse(await readFile(repoPath('public/data/schedule.json'), 'utf8'));
 const runStartedAt = new Date().toISOString();
 const rows = toVteamRows(schedule.sessions ?? []).map((r) => ({ ...r, updated_at: runStartedAt }));
 

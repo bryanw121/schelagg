@@ -1,5 +1,5 @@
 // One-off check that Skedda serves calendar data to a plain script (no browser).
-// Run from your own terminal: npm run test:skedda
+// Run from your own terminal: npm run check:skedda
 import { VENUES, loadVenue } from '../lib/skedda.js';
 import { today } from '../lib/time.js';
 

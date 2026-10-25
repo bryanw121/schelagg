@@ -1,0 +1,33 @@
+name: Test
+
+# Proves the scripts run on macOS and Windows as well as Linux (where the
+# scheduled scrape runs). Scraping itself isn't repeated here, so the venues
+# only see one scrape per hour.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      # Every entry point must at least parse and resolve its imports on each OS.
+      - name: Syntax-check scripts
+        shell: bash
+        run: for f in scripts/*.mjs scripts/sources/*.mjs server.js; do node --check "$f" || exit 1; done
+      - name: Sync skips cleanly without credentials
+        run: npm run sync:vteam

@@ -6,14 +6,14 @@
   "description": "Austin volleyball schedules (indoor, sand, grass) with live court bookings and sign-up links.",
   "scripts": {
     "dev": "node server.js",
-    "test": "node --test test/*.test.mjs",
+    "test": "node --test",
     "scrape": "node scripts/scrape.mjs",
     "sync:vteam": "node scripts/sync-vteam.mjs",
     "courts": "node scripts/build-courts.mjs",
-    "test:skedda": "node scripts/test-skedda.mjs"
+    "check:skedda": "node scripts/check-skedda.mjs"
   },
   "devDependencies": {
     "playwright": "1.48.2"
   },
-  "engines": { "node": ">=20" }
+  "engines": { "node": ">=20.12" }
 }

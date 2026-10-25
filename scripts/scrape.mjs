@@ -4,6 +4,7 @@ import { readFile, writeFile, appendFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { chromium } from 'playwright';
 import { today, addDays } from '../lib/time.js';
+import { repoPath } from '../lib/paths.js';
 import * as volleyworld from './sources/volleyworld.mjs';
 import * as aces from './sources/aces.mjs';
 import * as atxbeach from './sources/atxbeach.mjs';
@@ -11,15 +12,15 @@ import * as velocity from './sources/velocity.mjs';
 import * as reclub from './sources/reclub.mjs';
 
 const SCRAPERS = [volleyworld, aces, atxbeach, velocity, reclub];
-const OUT = 'public/data/schedule.json';
-const WATCH = 'data/watch.json';
+const OUT = repoPath('public/data/schedule.json');
+const WATCH = repoPath('data/watch.json');
 const HORIZON_DAYS = 14;
 
 const readJson = async (p, fallback) => { try { return JSON.parse(await readFile(p, 'utf8')); } catch { return fallback; } };
 const ref = today();
 const prev = await readJson(OUT, { sessions: [], sources: [] });
-const manual = (await readJson('data/manual.json', { sessions: [] })).sessions;
-const publicCourts = await readJson('data/public-courts.json', null);
+const manual = (await readJson(repoPath('data/manual.json'), { sessions: [] })).sessions;
+const publicCourts = await readJson(repoPath('data/public-courts.json'), null);
 const watch = await readJson(WATCH, {});
 
 const browser = await chromium.launch();
@@ -73,5 +74,5 @@ await writeFile(WATCH, JSON.stringify(watch, null, 2) + '\n');
 const failed = sources.filter((s) => !s.ok);
 const lines = sources.map((s) => `- ${s.ok ? '✅' : '❌'} **${s.id}** ${s.ok ? `${s.count} sessions` : s.error}`);
 if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, `### Schedule scrape ${ref}\n${lines.join('\n')}\n`);
-await writeFile('scrape-failures.md', failed.length ? `Sources that failed on ${ref}:\n\n${lines.filter((l) => l.includes('❌')).join('\n')}\n\nTheir last good sessions are still shown, flagged "Couldn't recheck".` : '');
+await writeFile(repoPath('scrape-failures.md'), failed.length ? `Sources that failed on ${ref}:\n\n${lines.filter((l) => l.includes('❌')).join('\n')}\n\nTheir last good sessions are still shown, flagged "Couldn't recheck".` : '');
 console.log(`wrote ${OUT}: ${sessions.length} sessions, ${failed.length} failed sources`);
