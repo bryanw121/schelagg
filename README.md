@@ -1,4 +1,4 @@
-# Volley ATX
+# Schelagg
 
 Where to play volleyball in Austin: open play, adult training, leagues and Reclub meets, split into indoor / sand / grass,
 plus court availability at High Point, The Crossover and Roots' Treehouse Gym. Every session links to its sign-up.
@@ -10,12 +10,12 @@ Hosted on GitHub Pages. Everything runs on GitHub Actions; no server or extra ac
 | Data | How | How fresh |
 |---|---|---|
 | Court bookings + opening hours (High Point, Crossover, Treehouse) | `scripts/build-courts.mjs` reads their public Skedda calendars | Every ~15 min |
-| Reclub meets (Vex Volleyball, Austin Lawn Club) | Headless browser reads each club's upcoming meets | Nightly |
-| Volleyworld adult sessions | Headless browser reads the Arketa class calendar | Nightly |
-| ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | Nightly |
-| ATX Beach open play | TeamUp membership page | Nightly |
-| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | Nightly |
-| Everything else (Sand Social, Hanovers, leagues) | `data/manual.json`, hand-checked. The nightly job watches each source page and flags it if the page changes | `verifiedAt` age |
+| Reclub meets (Vex Volleyball, Austin Lawn Club) | Headless browser reads each club's upcoming meets | Hourly, 6am–midnight |
+| Volleyworld adult sessions | Headless browser reads the Arketa class calendar | Hourly, 6am–midnight |
+| ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | Hourly, 6am–midnight |
+| ATX Beach open play | TeamUp membership page | Hourly, 6am–midnight |
+| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | Hourly, 6am–midnight |
+| Everything else (Sand Social, Hanovers, leagues) | `data/manual.json`, hand-checked. Each scrape run watches each source page and flags it if the page changes | `verifiedAt` age |
 
 **Private bookings open to sign-ups.** When a court booking on a Skedda calendar starts and ends within 15 minutes of a
 Reclub meet at the same gym, the chart shows that block in blue with a link to sign up. Skedda hides who booked a slot,

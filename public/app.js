@@ -1,4 +1,4 @@
-// Volley ATX front end. Two data sources:
+// Schelagg front end. Two data sources:
 //   data/schedule.json  sessions + public courts, rebuilt nightly by scripts/scrape.mjs
 //   data/courts.json    court bookings + opening hours (Skedda), rebuilt every ~15 min by scripts/build-courts.mjs
 //                       (falls back to the live api/courts endpoint when running server.js or on Vercel)

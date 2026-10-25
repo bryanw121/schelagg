@@ -27,4 +27,4 @@ createServer(async (req, res) => {
     }
     res.writeHead(404).end('Not found');
   }
-}).listen(PORT, () => console.log(`Volley ATX → http://localhost:${PORT}`));
+}).listen(PORT, () => console.log(`Schelagg → http://localhost:${PORT}`));

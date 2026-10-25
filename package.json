@@ -1,5 +1,5 @@
 {
-  "name": "volleyball-atx",
+  "name": "schelagg",
   "version": "0.3.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     "dev": "node server.js",
     "test": "node --test test/*.test.mjs",
     "scrape": "node scripts/scrape.mjs",
-    "sync:vclub": "node scripts/sync-vclub.mjs",
+    "sync:vteam": "node scripts/sync-vteam.mjs",
     "courts": "node scripts/build-courts.mjs",
     "test:skedda": "node scripts/test-skedda.mjs"
   },
