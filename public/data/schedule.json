@@ -1,57 +1,40 @@
 {
-  "generatedAt": "2026-10-24T18:00:00.000Z",
+  "generatedAt": "2026-10-25T18:41:33.290Z",
   "sources": [
     {
       "id": "volleyworld",
-      "ok": true,
-      "checkedAt": "2026-10-24T18:00:00.000Z",
-      "note": "seeded by hand before first nightly run"
+      "ok": false,
+      "checkedAt": "2026-10-25T18:40:40.365Z",
+      "error": "No adult sessions found — page layout may have changed",
+      "kept": 6
     },
     {
       "id": "aces",
-      "ok": true,
-      "checkedAt": "2026-10-24T18:00:00.000Z",
-      "note": "seeded by hand before first nightly run"
+      "ok": false,
+      "checkedAt": "2026-10-25T18:41:07.781Z",
+      "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time; https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time",
+      "kept": 2
     },
     {
       "id": "atxbeach",
       "ok": true,
-      "checkedAt": "2026-10-24T18:00:00.000Z",
-      "note": "seeded by hand before first nightly run"
+      "checkedAt": "2026-10-25T18:41:08.070Z",
+      "count": 2
     },
     {
       "id": "velocity",
       "ok": true,
-      "checkedAt": "2026-10-24T18:00:00.000Z",
-      "note": "seeded by hand before first nightly run"
+      "checkedAt": "2026-10-25T18:41:09.659Z",
+      "count": 2
     },
     {
       "id": "reclub",
       "ok": true,
-      "checkedAt": "2026-10-24T18:55:00.000Z",
-      "note": "seeded by hand before first nightly run"
+      "checkedAt": "2026-10-25T18:41:12.231Z",
+      "count": 5
     }
   ],
   "sessions": [
-    {
-      "id": "volleyworld-2026-10-24-19:30-pflugerville",
-      "date": "2026-10-24",
-      "start": "19:30",
-      "end": "21:00",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Training",
-      "level": "Adults",
-      "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
-        "label": "Book on Volleyworld"
-      },
-      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "sourceId": "volleyworld",
-      "verifiedAt": "2026-10-24"
-    },
     {
       "id": "volleyworld-2026-10-25-19:30-pflugerville",
       "date": "2026-10-25",
@@ -69,7 +52,8 @@
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25"
     },
     {
       "id": "volleyworld-2026-10-25-17:30-georgetown",
@@ -89,7 +73,8 @@
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25"
     },
     {
       "id": "volleyworld-2026-10-28-20:30-georgetown",
@@ -108,7 +93,8 @@
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25"
     },
     {
       "id": "volleyworld-2026-10-29-20:30-georgetown",
@@ -127,7 +113,8 @@
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25"
     },
     {
       "id": "volleyworld-2026-10-30-19:30-georgetown",
@@ -146,7 +133,8 @@
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
       "sourceId": "volleyworld",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25"
     },
     {
       "id": "aces-2026-10-26-19:30",
@@ -167,7 +155,8 @@
       },
       "source": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
       "sourceId": "aces",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25"
     },
     {
       "id": "aces-2026-10-28-19:30",
@@ -188,7 +177,8 @@
       },
       "source": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
       "sourceId": "aces",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25"
     },
     {
       "id": "atxbeach-standard",
@@ -216,7 +206,7 @@
       },
       "source": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "sourceId": "atxbeach",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "atxbeach-friday",
@@ -239,7 +229,7 @@
       },
       "source": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "sourceId": "atxbeach",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "velocity-wed",
@@ -263,7 +253,7 @@
       },
       "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
       "sourceId": "velocity",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "velocity-fri",
@@ -287,7 +277,112 @@
       },
       "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
       "sourceId": "velocity",
-      "verifiedAt": "2026-10-24"
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-UEY4HO",
+      "date": "2026-10-27",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": null,
+      "signup": {
+        "url": "https://reclub.co/m/UEY4HO",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/UEY4HO",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-1QX0YR",
+      "date": "2026-10-29",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
+      "venue": "",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "B/BB",
+      "price": "$12",
+      "note": null,
+      "signup": {
+        "url": "https://reclub.co/m/1QX0YR",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/1QX0YR",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-VONMM8",
+      "date": "2026-10-30",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Qilin B/BB Friday Coed Net Volleyball",
+      "venue": "",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "B/BB",
+      "price": "$12",
+      "note": null,
+      "signup": {
+        "url": "https://reclub.co/m/VONMM8",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/VONMM8",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-2O9PDP",
+      "date": "2026-10-30",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Koi C/B Friday Coed Net Volleyball",
+      "venue": "",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": null,
+      "signup": {
+        "url": "https://reclub.co/m/2O9PDP",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/2O9PDP",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-5X380N",
+      "date": "2026-11-01",
+      "start": "10:00",
+      "end": "13:00",
+      "title": "Austin Lawn Club - Sunday Fun Day!",
+      "venue": "Mueller Lake Park",
+      "city": "Austin",
+      "surface": "grass",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$6",
+      "note": null,
+      "signup": {
+        "url": "https://reclub.co/m/5X380N",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/5X380N",
+      "sourceId": "reclub",
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "atx-sand-social-sun",
@@ -332,7 +427,8 @@
         "label": "Join as free agent"
       },
       "source": "https://acesintexas.com/thursday-6s-sand-volleyball-league-atx-beach/",
-      "sourceId": "manual"
+      "sourceId": "manual",
+      "watchError": "HTTP 403"
     },
     {
       "id": "aces-mon-6s-indoor",
@@ -355,7 +451,8 @@
         "label": "Join league"
       },
       "source": "https://acesintexas.com/aces-pflugerville-monday-co-ed-indoor-6s-volleyball-league/",
-      "sourceId": "manual"
+      "sourceId": "manual",
+      "watchError": "HTTP 403"
     },
     {
       "id": "hanovers-open",
@@ -404,113 +501,6 @@
       },
       "source": "https://austinssc.leaguelab.com/leagues?sport=Sand+Volleyball",
       "sourceId": "manual"
-    },
-    {
-      "id": "reclub-2O9PDP",
-      "date": "2026-10-30",
-      "start": "19:00",
-      "end": "22:00",
-      "title": "Koi C/B Friday Coed Net Volleyball",
-      "venue": "Roots · Treehouse Gym",
-      "city": "N. Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "C/B",
-      "price": "$12",
-      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
-      "signup": {
-        "url": "https://reclub.co/m/2O9PDP",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/2O9PDP",
-      "sourceId": "reclub",
-      "verifiedAt": "2026-10-24",
-      "facility": "treehouse"
-    },
-    {
-      "id": "reclub-VONMM8",
-      "date": "2026-10-30",
-      "start": "19:00",
-      "end": "22:00",
-      "title": "Qilin B/BB Friday Coed Net Volleyball",
-      "venue": "Roots · Treehouse Gym",
-      "city": "N. Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "B/BB",
-      "price": "$12",
-      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
-      "signup": {
-        "url": "https://reclub.co/m/VONMM8",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/VONMM8",
-      "sourceId": "reclub",
-      "verifiedAt": "2026-10-24",
-      "facility": "treehouse"
-    },
-    {
-      "id": "reclub-UEY4HO",
-      "date": "2026-10-27",
-      "start": "20:30",
-      "end": "23:30",
-      "title": "Koi C/B Tuesday Coed Net Volleyball",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "C/B",
-      "price": "$12",
-      "note": "Hosted by Vex Volleyball.",
-      "signup": {
-        "url": "https://reclub.co/m/UEY4HO",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/UEY4HO",
-      "sourceId": "reclub",
-      "verifiedAt": "2026-10-24"
-    },
-    {
-      "id": "reclub-1QX0YR",
-      "date": "2026-10-29",
-      "start": "20:30",
-      "end": "23:30",
-      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "B/BB · men",
-      "price": "$12",
-      "note": "Hosted by Vex Volleyball.",
-      "signup": {
-        "url": "https://reclub.co/m/1QX0YR",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/1QX0YR",
-      "sourceId": "reclub",
-      "verifiedAt": "2026-10-24"
-    },
-    {
-      "id": "reclub-T908MD",
-      "date": "2026-10-25",
-      "start": "10:00",
-      "end": "13:00",
-      "title": "Austin Lawn Club - Sunday Fun Day!",
-      "venue": "Mueller Lake Park",
-      "city": "Austin",
-      "surface": "grass",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$6",
-      "note": "Hosted by Austin Lawn Club, every Sunday. Bring water and a lawn chair.",
-      "signup": {
-        "url": "https://reclub.co/m/T908MD",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/T908MD",
-      "sourceId": "reclub",
-      "verifiedAt": "2026-10-24"
     }
   ],
   "publicCourts": {
