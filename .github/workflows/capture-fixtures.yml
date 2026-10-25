@@ -1,0 +1,28 @@
+name: Capture source fixtures
+
+# Manual: fetches each source's raw API response once (scripts/capture-fixtures.mjs)
+# and pushes them to the `fixtures` branch for writing adapter tests.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/capture-fixtures.mjs
+      - name: Push to the fixtures branch
+        run: |
+          git config user.name "schelagg-bot"
+          git config user.email "schelagg-bot@users.noreply.github.com"
+          git checkout -B fixtures
+          git add -f test/fixtures/sources
+          git commit -m "Source fixtures $(date -u +'%F %H:%MZ')" || exit 0
+          git push -f origin fixtures
