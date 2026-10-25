@@ -62,7 +62,9 @@ database and never writes into one. Instead it publishes a feed, and consumers p
   every session for every sport and region, expanded into dated occurrences for the next 28 days with absolute
   `starts_at` / `ends_at` instants. Top-level fields are the same for every sport (`sport`, `region`, `timezone`,
   `title`, `venue`, `city`, `level`, `price`, `signup_url`, ...); sport-specific details are in `attributes`
-  (volleyball: `surface`, `type`). `feedVersion` changes only for breaking changes.
+  (volleyball: `surface` is `indoor` / `sand` / `grass`, `type` is `Open play` / `Training` / `League` /
+  `Tournament` / `Clinic`; consumers filter on these, so `lib/session.js` flags any other value). `feedVersion` changes
+  only for breaking changes.
 - A session missing from a run is gone at the source, so a consumer that mirrors the feed should delete upcoming
   rows that are no longer in it (that's how cancellations propagate) and treat a feed whose `generatedAt` is many
   hours old as stale.
