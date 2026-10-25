@@ -45,3 +45,13 @@ test('sessions are tagged from their source and malformed ones are dropped', () 
   assert.ok(warnings.some((w) => w.startsWith('dropped b:')));
   assert.ok(warnings.some((w) => w.startsWith('n: no venue')));
 });
+
+test('volleyball sessions are checked against the known surface and type values', () => {
+  const src = { id: 'x', sport: 'volleyball', region: 'austin', timezone: 'America/Chicago' };
+  const s = (extra) => tagSession({ id: 'v', title: 'T', venue: 'V', date: '2026-10-30', start: '19:00', ...extra }, src);
+  const { ok, warnings } = validateSessions([s({ surface: 'sand', type: 'Open play' }), s({ id: 'b', surface: 'beach', type: 'Open play' }), s({ id: 'n', type: 'League' })]);
+  assert.equal(ok.length, 3); // flagged, not dropped
+  assert.ok(warnings.some((w) => w.includes('unknown surface "beach"')));
+  assert.ok(warnings.some((w) => w.startsWith('n:') && w.includes('no surface')));
+  assert.ok(!warnings.some((w) => w.startsWith('v:')));
+});
