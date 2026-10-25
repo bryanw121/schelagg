@@ -1,10 +1,14 @@
 // Parser tests use text copied from each site on Oct 24, 2026.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import * as vw from '../scripts/sources/volleyworld.mjs';
-import * as aces from '../scripts/sources/aces.mjs';
-import * as atx from '../scripts/sources/atxbeach.mjs';
-import * as vel from '../scripts/sources/velocity.mjs';
+import * as vw from '../scripts/adapters/volleyworld.mjs';
+import * as aces from '../scripts/adapters/aces.mjs';
+import * as atx from '../scripts/adapters/atxbeach.mjs';
+import * as vel from '../scripts/adapters/velocity.mjs';
+import { loadSources } from '../lib/registry.js';
+
+// Platform adapters take their venues from config/sources.json; test against the real config.
+const options = (id) => loadSources().sources.find((s) => s.id === id).options;
 
 const REF = '2026-10-24';
 
@@ -85,12 +89,12 @@ Open Play Time: 7:30 PM – 10 PM
 Registration Fees:
 Indoor Pricing (individual): $6.00
 Door Pricing : $10.00`;
-  const s = aces.parse(text, aces.PAGES[0], REF);
+  const s = aces.parse(text, options('aces').pages[0], REF);
   assert.equal(s.date, '2026-10-26');
   assert.equal(s.start, '19:30');
   assert.equal(s.end, '22:00');
   assert.equal(s.price, '$6 online · $10 door');
-  assert.equal(s.signup.url, aces.PAGES[0].url);
+  assert.equal(s.signup.url, options('aces').pages[0].url);
 });
 
 test('ATX Beach: standard and Friday night open play', () => {
@@ -120,11 +124,13 @@ Level: Intermediate & Advanced`;
   assert.equal(s[1].level, 'Intermediate & Advanced');
 });
 
-import * as reclub from '../scripts/sources/reclub.mjs';
+import * as reclub from '../scripts/adapters/reclub.mjs';
+const RECLUB = options('reclub');
+const RECLUB_VENUES = reclub.compileVenues(RECLUB.venues);
 
 test('Reclub: Treehouse meet maps to the Treehouse court calendar', () => {
   const text = `Platform Communities Sports English Roots: Koi C/B Friday Coed Net Volleyball Friday, Oct 30 @ 7:00 PM3 hoursFriday, Oct 30 @ 7:00 PM3 hoursTreehouse Gym (Home of Roots Volleyball)15407 Long Vista Drive Suite 100, Austin, TX 78728, USAsee mapPer Player$12.00FIRST TIME JOINING? Hosted By Brought to you by Vex Volleyball Every Friday · 7:00 PM`;
-  const s = reclub.parseMeet(text, 'https://reclub.co/m/2O9PDP', REF);
+  const s = reclub.parseMeet(text, 'https://reclub.co/m/2O9PDP', REF, RECLUB_VENUES, RECLUB.fallbackVenue);
   assert.deepEqual([s.date, s.start, s.end, s.facility, s.price, s.level], ['2026-10-30', '19:00', '22:00', 'treehouse', '$12', 'C/B']);
   assert.equal(s.venue, 'Roots · Treehouse Gym');
   assert.equal(s.signup.url, 'https://reclub.co/m/2O9PDP');
@@ -132,7 +138,7 @@ test('Reclub: Treehouse meet maps to the Treehouse court calendar', () => {
 
 test('Reclub: lawn club meet in a park is grass', () => {
   const text = `English Austin Lawn Club - Sunday Fun Day! Sunday, Oct 25 @ 10:00 AM3 hoursSunday, Oct 25 @ 10:00 AM3 hoursMueller Lake Park1837 1/2 Simond Avenue, Austin, TX 78723, USAsee mapPer Player$6.00 Brought to you byAustin Lawn ClubEvery Sunday · 10:00 AM`;
-  const s = reclub.parseMeet(text, 'https://reclub.co/m/T908MD', REF);
+  const s = reclub.parseMeet(text, 'https://reclub.co/m/T908MD', REF, RECLUB_VENUES, RECLUB.fallbackVenue);
   assert.deepEqual([s.date, s.start, s.end, s.surface, s.price], ['2026-10-25', '10:00', '13:00', 'grass', '$6']);
   assert.equal(s.venue, 'Mueller Lake Park');
 });

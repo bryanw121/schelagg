@@ -29,5 +29,5 @@ jobs:
       - name: Syntax-check scripts
         shell: bash
         run: for f in scripts/*.mjs scripts/sources/*.mjs server.js; do node --check "$f" || exit 1; done
-      - name: Sync skips cleanly without credentials
-        run: npm run sync:vteam
+      - name: Source config loads and validates
+        run: node -e "import('./lib/registry.js').then((m) => console.log(m.loadSources().sources.map((s) => s.id).join(', ')))"

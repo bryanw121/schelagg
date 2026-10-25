@@ -1,0 +1,99 @@
+{
+  "_doc": "Every scrape source. 'adapter' names a module in scripts/adapters. Platform adapters (reclub, aces) take their venues/pages from 'options'; site-specific adapters know their own URL. sport/region/timezone come from 'defaults' unless a source overrides them. Add a venue on an existing platform by adding an entry here; add a new platform or site by writing an adapter and registering it in lib/registry.js.",
+  "schemaVersion": 2,
+  "defaults": {
+    "sport": "volleyball",
+    "region": "austin",
+    "timezone": "America/Chicago"
+  },
+  "sources": [
+    {
+      "id": "volleyworld",
+      "adapter": "volleyworld"
+    },
+    {
+      "id": "aces",
+      "adapter": "aces",
+      "options": {
+        "pages": [
+          {
+            "url": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
+            "venue": "Volleyworld (Pflugerville)",
+            "city": "Pflugerville"
+          },
+          {
+            "url": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
+            "venue": "Volleyworld (Pflugerville)",
+            "city": "Pflugerville"
+          }
+        ]
+      }
+    },
+    {
+      "id": "atxbeach",
+      "adapter": "atxbeach"
+    },
+    {
+      "id": "velocity",
+      "adapter": "velocity"
+    },
+    {
+      "id": "reclub",
+      "adapter": "reclub",
+      "options": {
+        "clubs": [
+          "https://reclub.co/clubs/@vex_volleyball",
+          "https://reclub.co/clubs/@austin-lawn-club"
+        ],
+        "venues": [
+          {
+            "match": "Treehouse Gym",
+            "venue": "Roots · Treehouse Gym",
+            "city": "N. Austin",
+            "surface": "indoor",
+            "facility": "treehouse"
+          },
+          {
+            "match": "Volleyworld",
+            "venue": "Volleyworld (Pflugerville)",
+            "city": "Pflugerville",
+            "surface": "indoor"
+          },
+          {
+            "match": "Crossover",
+            "venue": "The Crossover",
+            "city": "Cedar Park",
+            "surface": "indoor",
+            "facility": "crossover"
+          },
+          {
+            "match": "High ?Point",
+            "venue": "High Point Center",
+            "city": "Leander",
+            "surface": "indoor",
+            "facility": "highpoint"
+          },
+          {
+            "match": "ATX Beach",
+            "venue": "ATX Beach",
+            "city": "North Austin",
+            "surface": "sand"
+          },
+          {
+            "match": "Park",
+            "venue": null,
+            "city": "Austin",
+            "surface": "grass"
+          }
+        ],
+        "fallbackVenue": {
+          "city": "Austin",
+          "surface": "indoor"
+        }
+      }
+    }
+  ],
+  "manual": {
+    "file": "data/manual.json"
+  }
+}
