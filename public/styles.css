@@ -1,4 +1,6 @@
 /* Layout: scoreboard header + surface tabs, a 7-day strip, a day-at-a-glance timeline, then the session list. */
+/* `hidden` must win over display rules like section.card{display:grid} (app.js hides the free-courts card). */
+[hidden]{display:none!important}
 :root{
   --bg:#f3f5f7; --panel:#ffffff; --ink:#15202b; --muted:#5d6b78; --line:#dde3e9;
   --accent:#1f4fd1; --accent-ink:#ffffff;

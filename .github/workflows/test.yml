@@ -25,9 +25,17 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      # The site e2e (e2e/site.e2e.mjs) drives Chromium against server.js. Linux only: the
+      # browser download is slow on the macOS/Windows runners, and the page is the same everywhere.
+      - name: Install Chromium
+        if: runner.os == 'Linux'
+        run: npx playwright install --with-deps chromium
+      - name: Site e2e
+        if: runner.os == 'Linux'
+        run: npm run test:e2e
       # Every entry point must at least parse and resolve its imports on each OS.
       - name: Syntax-check scripts
         shell: bash
-        run: for f in scripts/*.mjs scripts/adapters/*.mjs lib/*.js api/*.js server.js; do node --check "$f" || exit 1; done
+        run: for f in scripts/*.mjs scripts/adapters/*.mjs lib/*.js api/*.js server.js e2e/*.mjs; do node --check "$f" || exit 1; done
       - name: Source config loads and validates
         run: node -e "import('./lib/registry.js').then((m) => console.log(m.loadSources().sources.map((s) => s.id).join(', ')))"

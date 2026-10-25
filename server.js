@@ -29,4 +29,7 @@ createServer(async (req, res) => {
     }
     res.writeHead(404).end('Not found');
   }
-}).listen(PORT, () => console.log(`Schelagg → http://localhost:${PORT}`));
+}).listen(PORT, function () {
+  // PORT=0 picks a free port (the e2e tests do this); print the one we got.
+  console.log(`Schelagg → http://localhost:${this.address().port}`);
+});

@@ -31,7 +31,8 @@ If a court calendar can't be read, the last good copy from the live site stays u
 - **Refresh schedules** (`.github/workflows/scrape.yml`): hourly, 6am to midnight Austin time. Runs tests, scrapes,
   commits `public/data/schedule.json` and the public feed `public/data/occurrences.json`. A failing source keeps one
   issue open and comments on it.
-- **Test** (`.github/workflows/test.yml`): tests and script checks on Linux, macOS and Windows.
+- **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
+  plus the site e2e in Chromium on Linux.
 
 First-time setup: **Settings → Pages → Source: GitHub Actions**, then run both workflows once from the Actions tab.
 
@@ -44,7 +45,8 @@ or cmd; nothing needs bash. Optional settings go in a `.env` file (copy `.env.ex
 ```bash
 npm install
 npx playwright install chromium   # only needed for npm run scrape (ACES, ATX Beach, Velocity pages)
-npm test                          # recurrence, hours and parser tests
+npm test                          # unit + integration tests (parsers, API handlers, scrape pipeline), all offline
+npm run test:e2e                  # the site in Chromium against server.js, with fixture data (needs playwright's chromium)
 npm run check:skedda              # checks the court calendars respond to a plain script
 npm run courts                    # write public/data/courts.json
 npm run scrape                    # rebuild public/data/schedule.json + occurrences.json
@@ -133,12 +135,13 @@ lib/session.js           the normalized session (schema v2) and its publish chec
 lib/occurrences.js       sessions -> dated occurrences (the public feed)
 lib/skedda.js            Skedda fetch, recurrence expansion, opening hours
 lib/check.js             live re-check of one session (behind api/check.js)
+lib/pipeline.js          runScrape + buildCourts: the scheduled jobs, with injectable paths / fetch / clock
 lib/devalue.js           reads Nuxt's __NUXT_DATA__ payload (Reclub pages)
 lib/http.js              plain GET for API/page adapters
 lib/time.js              time-zone-aware date helpers
 lib/paths.js             repo-anchored paths + .env loading (any OS)
-scripts/build-courts.mjs court calendars -> public/data/courts.json
-scripts/scrape.mjs       hourly job: run every configured source, validate, write schedule + feed
+scripts/build-courts.mjs court calendars -> public/data/courts.json (buildCourts)
+scripts/scrape.mjs       hourly job: run every configured source, validate, write schedule + feed (runScrape)
 scripts/sanitize-fixtures.mjs  strips personal data from captured fixtures (run by capture-fixtures.mjs)
 scripts/adapters/        one module per platform or site
 data/manual.json         hand-checked sessions
@@ -146,7 +149,8 @@ data/public-courts.json  free city courts
 public/                  the site (index.html, app.js, styles.css, data/)
 api/courts.js            live court bookings (Vercel / local dev)
 api/check.js             live re-check of one session (Vercel / local dev)
-test/                    node:test suites
+test/                    node:test suites (npm test); never touch the network: fetch is injected, fixtures in test/fixtures
+e2e/                     Playwright site test (npm run test:e2e)
 ```
 
 ## Adding a venue, sport or region
