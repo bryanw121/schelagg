@@ -343,11 +343,22 @@ test('/api/courts over HTTP: a venue that never loaded is just an error (still 2
   });
 });
 
-test('/api/courts over HTTP: OPTIONS preflight without fetching', async () => {
+test('/api/courts over HTTP: OPTIONS preflight, HEAD without a body, other methods 405', async () => {
   const fetch = skedda();
   await withServer(courtsHandler({ fetch, now: () => NOW }), async (req) => {
     const pre = await req('/api/courts', 'OPTIONS');
     assert.deepEqual([pre.status, pre.text, pre.headers['access-control-allow-origin'], pre.headers['access-control-allow-methods'], pre.headers['access-control-max-age']], [204, '', '*', 'GET', '86400']);
     assert.equal(fetch.calls.length, 0);
+
+    const head = await req('/api/courts', 'HEAD');
+    assert.deepEqual([head.status, head.text, head.headers['cache-control']], [200, '', OK_CACHE]);
+
+    for (const method of ['POST', 'PUT', 'DELETE']) {
+      const r = await req('/api/courts', method);
+      assert.equal(r.status, 405, method);
+      assert.equal(r.headers.allow, 'GET', method);
+      assert.equal(r.headers['access-control-allow-origin'], '*', method);
+      assert.deepEqual(r.json, { error: 'GET only' }, method);
+    }
   });
 });

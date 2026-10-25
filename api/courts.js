@@ -19,6 +19,12 @@ export function createHandler({ venues = VENUES, fetch, now = () => new Date(), 
       res.setHeader('access-control-max-age', '86400');
       return res.end();
     }
+    res.setHeader('content-type', 'application/json; charset=utf-8');
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      res.statusCode = 405;
+      res.setHeader('allow', 'GET');
+      return res.end(JSON.stringify({ error: 'GET only' }));
+    }
     const url = new URL(req.url, 'http://local');
     const days = Math.min(Math.max(Number(url.searchParams.get('days')) || 7, 1), 21);
     const at = now();
@@ -43,10 +49,9 @@ export function createHandler({ venues = VENUES, fetch, now = () => new Date(), 
     }
 
     res.statusCode = 200;
-    res.setHeader('content-type', 'application/json; charset=utf-8');
     // Let Vercel's CDN share the result for a minute, then refresh in the background.
     res.setHeader('cache-control', 'public, s-maxage=60, stale-while-revalidate=120');
-    res.end(JSON.stringify(hit.body));
+    res.end(req.method === 'HEAD' ? undefined : JSON.stringify(hit.body));
   };
 }
 
