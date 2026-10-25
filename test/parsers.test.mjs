@@ -1,84 +1,52 @@
-// Parser tests use text copied from each site on Oct 24, 2026.
+// Parser tests use text copied from each site on Oct 24, 2026, and raw API responses / pages
+// captured by the "Capture source fixtures" workflow on Oct 25, 2026 (test/fixtures/sources, stripped of
+// personal data by scripts/sanitize-fixtures.mjs).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as vw from '../scripts/adapters/volleyworld.mjs';
 import * as aces from '../scripts/adapters/aces.mjs';
 import * as atx from '../scripts/adapters/atxbeach.mjs';
 import * as vel from '../scripts/adapters/velocity.mjs';
+import { readFileSync } from 'node:fs';
 import { loadSources } from '../lib/registry.js';
+import { tagSession, validateSessions } from '../lib/session.js';
+
+const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
+const fixtureJson = (name) => JSON.parse(fixture(name));
+const SRC = { id: 'x', sport: 'volleyball', region: 'austin', timezone: 'America/Chicago' };
 
 // Platform adapters take their venues from config/sources.json; test against the real config.
 const options = (id) => loadSources().sources.find((s) => s.id === id).options;
 
 const REF = '2026-10-24';
 
-test('Volleyworld: keeps adult sessions, drops youth/homeschool, reads cancellations', () => {
-  const text = `October 25 — October 31
-Saturday, Oct 24
+test('Volleyworld: the Arketa API keeps adult sessions, drops youth/homeschool, reads cancellations and spots', () => {
+  const s = vw.parse(fixtureJson('arketa-volleyworld-schedule.json'));
+  assert.equal(s.length, 13);
+  assert.ok(s.every((x) => /adult/i.test(x.title) && !/homeschool/i.test(x.title)));
+  // Same id scheme as the old page-text scraper, so consumers keep their rows.
+  const byId = Object.fromEntries(s.map((x) => [x.id, x]));
+  const gt = byId['volleyworld-2026-10-25-17:30-georgetown'];
+  assert.deepEqual([gt.date, gt.start, gt.end, gt.city, gt.venue, gt.canceled], ['2026-10-25', '17:30', '19:00', 'Georgetown', 'Volleyworld (Georgetown)', true]);
+  const pf = byId['volleyworld-2026-10-25-20:30-pflugerville'];
+  assert.deepEqual([pf.end, pf.canceled, pf.level, pf.type, pf.surface], ['22:00', undefined, 'Adults', 'Training', 'indoor']);
+  assert.deepEqual([byId['volleyworld-2026-10-28-20:30-georgetown'].capacity, byId['volleyworld-2026-10-28-20:30-georgetown'].spotsLeft], [12, 11]);
+  assert.equal(byId['volleyworld-2026-11-01-07:30-pflugerville'].date, '2026-11-01'); // CDT -> CST weekend
+  assert.equal(pf.signup.label, 'Book on Volleyworld');
+  const { ok, warnings } = validateSessions(s.map((x) => tagSession(x, SRC)));
+  assert.equal(ok.length, 13);
+  assert.deepEqual(warnings, []);
+});
 
-07:30 PM CDT • (90 min)
-
-Adult Volleyball Training
-
-Adan
-
-Pflugerville • Pflugerville, TX • PF Court 1
-
-View Details
-Sign Up
-Sunday, Oct 25
-
-10:00 AM CDT • (90 min)
-
-Basecamp Pflugerville
-
-Paty
-
-Pflugerville • Pflugerville, TX • PF Court 1
-
-View Details
-Sign Up
-
-05:30 PM CDT • (90 min)
-
-Adult Volleyball Training
-
-Adan
-
-Georgetown • Georgetown, TX • GT Court 3
-
-Canceled
-Wednesday, Oct 28
-
-10:30 AM CDT • (90 min)
-
-Volleyworld Homeschool Volleyball Training
-
-Paty
-
-Pflugerville • Pflugerville, TX • PF Court 1
-
-View Details
-Sign Up
-
-08:30 PM CDT • (90 min)
-
-Adult Volleyball Training
-
-Adan
-
-Georgetown • Georgetown, TX • GT Court 1
-
-View Details
-Sign Up`;
-  const s = vw.parse(text, REF);
-  assert.equal(s.length, 3);
-  assert.deepEqual(s.map((x) => [x.date, x.start, x.end, x.city, !!x.canceled]), [
-    ['2026-10-24', '19:30', '21:00', 'Pflugerville', false],
-    ['2026-10-25', '17:30', '19:00', 'Georgetown', true],
-    ['2026-10-28', '20:30', '22:00', 'Georgetown', false],
-  ]);
-  assert.equal(s[0].signup.label, 'Book on Volleyworld');
+test('Volleyworld: full and open-gym classes', () => {
+  const base = { start_time: 1793237400, duration: 90, canceled: false, display: 'public', location: { name: 'Pflugerville', city: 'Pflugerville' } };
+  const s = vw.parse({ data: { classes: [
+    { ...base, id: 'a', name: 'Adult Open Gym', hostName: 'Coach', max_capacity: 12, total_booked: 12, isBookable: true },
+    { ...base, id: 'b', name: 'Smashball', max_capacity: 24, total_booked: 0 },
+  ] } });
+  assert.equal(s.length, 1);
+  assert.deepEqual([s[0].type, s[0].full, s[0].spotsLeft, s[0].level], ['Open play', true, 0, 'Adults · Coach']);
+  assert.throws(() => vw.parse({ error: 'nope' }), /data.classes/);
 });
 
 test('ACES: date, time and prices from an open-play page', () => {
@@ -95,6 +63,21 @@ Door Pricing : $10.00`;
   assert.equal(s.end, '22:00');
   assert.equal(s.price, '$6 online · $10 door');
   assert.equal(s.signup.url, options('aces').pages[0].url);
+});
+
+test('ACES: the current page wording ("Time :", "10 PM" without minutes)', () => {
+  const text = 'Open Play Details General Info: Indoor Open Play Start: October 26 Open Play Time : 7:30 PM - 10 PM All members must be 18 years or older to join! ... Registration Fees: Indoor Pricing (individual): $6.00 Door Pricing : $10.00 ...';
+  const s = aces.parse(text, options('aces').pages[0], REF);
+  assert.deepEqual([s.id, s.date, s.start, s.end, s.price], ['aces-2026-10-26-19:30', '2026-10-26', '19:30', '22:00', '$6 online · $10 door']);
+});
+
+test('ACES: other spellings of the same fields', () => {
+  const page = options('aces').pages[1];
+  const a = aces.parse('Wednesday Open Play\nOpen Play Start: Wednesday, Oct. 28\nOpen Play Time: 7:30 to 10:00 p.m.\nIndoor Pricing (individual) : $ 6\nDoor Pricing: $10', page, REF);
+  assert.deepEqual([a.date, a.start, a.end, a.price], ['2026-10-28', '19:30', '22:00', '$6 online · $10 door']);
+  const b = aces.parse('NOVEMBER 2 REGISTER\nOpen Play Time:\u00a07PM\u2013 9:30PM', page, REF);
+  assert.deepEqual([b.date, b.start, b.end, b.price], ['2026-11-02', '19:00', '21:30', null]);
+  assert.throws(() => aces.parse('Open Play Time: TBD', page, REF), /couldn't find date or time/);
 });
 
 test('ATX Beach: standard and Friday night open play', () => {
@@ -128,17 +111,39 @@ import * as reclub from '../scripts/adapters/reclub.mjs';
 const RECLUB = options('reclub');
 const RECLUB_VENUES = reclub.compileVenues(RECLUB.venues);
 
+const parseFixtureMeet = (code) => reclub.parseMeet(fixture(`reclub-meet-${code}.html`), reclub.meetUrl(code), { venues: RECLUB_VENUES, fallback: RECLUB.fallbackVenue });
+
+test('Reclub: club pages link their upcoming meets', () => {
+  assert.deepEqual(reclub.meetLinks(fixture('reclub-club-vex_volleyball.html')), ['UEY4HO', '1QX0YR', 'VONMM8', '2O9PDP']);
+  assert.deepEqual(reclub.meetLinks(fixture('reclub-club-austin-lawn-club.html')), ['5X380N']);
+});
+
 test('Reclub: Treehouse meet maps to the Treehouse court calendar', () => {
-  const text = `Platform Communities Sports English Roots: Koi C/B Friday Coed Net Volleyball Friday, Oct 30 @ 7:00 PM3 hoursFriday, Oct 30 @ 7:00 PM3 hoursTreehouse Gym (Home of Roots Volleyball)15407 Long Vista Drive Suite 100, Austin, TX 78728, USAsee mapPer Player$12.00FIRST TIME JOINING? Hosted By Brought to you by Vex Volleyball Every Friday · 7:00 PM`;
-  const s = reclub.parseMeet(text, 'https://reclub.co/m/2O9PDP', REF, RECLUB_VENUES, RECLUB.fallbackVenue);
-  assert.deepEqual([s.date, s.start, s.end, s.facility, s.price, s.level], ['2026-10-30', '19:00', '22:00', 'treehouse', '$12', 'C/B']);
+  const s = parseFixtureMeet('VONMM8');
+  assert.deepEqual([s.id, s.date, s.start, s.end, s.facility, s.price, s.level], ['reclub-VONMM8', '2026-10-30', '19:00', '22:00', 'treehouse', '$12', 'B/BB']);
   assert.equal(s.venue, 'Roots · Treehouse Gym');
-  assert.equal(s.signup.url, 'https://reclub.co/m/2O9PDP');
+  assert.equal(s.title, 'Qilin B/BB Friday Coed Net Volleyball');
+  assert.equal(s.note, 'Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.');
+  assert.equal(s.signup.url, 'https://reclub.co/m/VONMM8');
+});
+
+test('Reclub: Volleyworld meets get a venue (the old text scraper left it blank)', () => {
+  const tue = parseFixtureMeet('UEY4HO');
+  assert.deepEqual([tue.date, tue.start, tue.end, tue.venue, tue.city, tue.surface, tue.level], ['2026-10-27', '20:30', '23:30', 'Volleyworld (Pflugerville)', 'Pflugerville', 'indoor', 'C/B']);
+  const thu = parseFixtureMeet('1QX0YR');
+  assert.equal(thu.level, 'B/BB · men'); // curly apostrophe in "Men’s"
+  assert.equal(thu.canceled, undefined);
+  const { warnings } = validateSessions([tue, thu].map((x) => tagSession(x, SRC)));
+  assert.deepEqual(warnings, []);
 });
 
 test('Reclub: lawn club meet in a park is grass', () => {
-  const text = `English Austin Lawn Club - Sunday Fun Day! Sunday, Oct 25 @ 10:00 AM3 hoursSunday, Oct 25 @ 10:00 AM3 hoursMueller Lake Park1837 1/2 Simond Avenue, Austin, TX 78723, USAsee mapPer Player$6.00 Brought to you byAustin Lawn ClubEvery Sunday · 10:00 AM`;
-  const s = reclub.parseMeet(text, 'https://reclub.co/m/T908MD', REF, RECLUB_VENUES, RECLUB.fallbackVenue);
-  assert.deepEqual([s.date, s.start, s.end, s.surface, s.price], ['2026-10-25', '10:00', '13:00', 'grass', '$6']);
+  const s = parseFixtureMeet('5X380N');
+  assert.deepEqual([s.date, s.start, s.end, s.surface, s.price, s.capacity], ['2026-11-01', '10:00', '13:00', 'grass', '$6', 16]);
   assert.equal(s.venue, 'Mueller Lake Park');
+  assert.equal(s.note, 'Hosted by Austin Lawn Club, every Sunday.');
+});
+
+test('Reclub: a page without meet data is an error, not a session', () => {
+  assert.throws(() => reclub.parseMeet('<html><body>Not found</body></html>', 'https://reclub.co/m/XXXXXX'), /no meet data/);
 });

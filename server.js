@@ -4,11 +4,12 @@ import { readFile } from 'node:fs/promises';
 import { join, extname, dirname, normalize, relative, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import courts from './api/courts.js';
+import check from './api/check.js';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PUBLIC = join(ROOT, 'public');
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml' };
-const API = { '/api/courts': courts };
+const API = { '/api/courts': courts, '/api/check': check };
 const PORT = process.env.PORT || 5173;
 
 createServer(async (req, res) => {

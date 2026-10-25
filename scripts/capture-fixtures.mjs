@@ -4,6 +4,7 @@
 // reach the venues; prints a status line per source.
 import { mkdir, writeFile } from 'node:fs/promises';
 import { repoPath } from '../lib/paths.js';
+import { sanitizeAll } from './sanitize-fixtures.mjs';
 
 const OUT = repoPath('test/fixtures/sources');
 const UA = 'Mozilla/5.0 (compatible; Schelagg/0.4; +https://github.com/bryanw121/schelagg)';
@@ -39,3 +40,6 @@ for (const club of ['vex_volleyball', 'austin-lawn-club']) {
   const links = [...new Set(body.match(/\/m\/[A-Za-z0-9]{5,8}/g) || [])].slice(0, 3);
   for (const l of links) await grab(`reclub-meet-${l.slice(3)}.html`, `https://reclub.co${l}`);
 }
+
+// The repo is public: strip people (hosts, participants, notes, tokens) before anything is committed.
+await sanitizeAll(OUT);

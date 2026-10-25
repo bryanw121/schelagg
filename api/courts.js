@@ -3,10 +3,18 @@
 import { VENUES, loadVenue } from '../lib/skedda.js';
 import { today } from '../lib/time.js';
 
-const TTL_MS = 5 * 60 * 1000;
+// Booking views want near-live data: refresh at most once a minute (here and at the CDN).
+const TTL_MS = 60 * 1000;
 const cache = new Map(); // key -> { at, body }
 
 export default async function handler(req, res) {
+  res.setHeader('access-control-allow-origin', '*');
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204;
+    res.setHeader('access-control-allow-methods', 'GET');
+    res.setHeader('access-control-max-age', '86400');
+    return res.end();
+  }
   const url = new URL(req.url, 'http://local');
   const days = Math.min(Math.max(Number(url.searchParams.get('days')) || 7, 1), 21);
   const from = today();
@@ -31,7 +39,7 @@ export default async function handler(req, res) {
 
   res.statusCode = 200;
   res.setHeader('content-type', 'application/json; charset=utf-8');
-  // Let Vercel's CDN share the result for 5 minutes, then refresh in the background.
-  res.setHeader('cache-control', 'public, s-maxage=300, stale-while-revalidate=600');
+  // Let Vercel's CDN share the result for a minute, then refresh in the background.
+  res.setHeader('cache-control', 'public, s-maxage=60, stale-while-revalidate=120');
   res.end(JSON.stringify(hit.body));
 }

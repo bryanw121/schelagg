@@ -1,18 +1,35 @@
 // ACES open-play pages. Each page lists the next date, the time range and prices.
-// ACES blocks plain HTTP clients, so these load in the headless browser too.
+// ACES blocks plain HTTP clients (and its WP REST API 403s from GitHub's IPs), so these
+// load in the headless browser. The text varies ("Time:" / "Time :", "10 PM" / "10:00 PM"),
+// so the patterns below are deliberately loose.
 import { resolveMonthDay, to24 } from '../../lib/time.js';
 
 export const id = 'aces';
+export const needsBrowser = true;
 // Pages come from config/sources.json (options.pages: { url, venue, city }).
 
+const MONTH = '(JAN(?:UARY)?|FEB(?:RUARY)?|MAR(?:CH)?|APR(?:IL)?|MAY|JUNE?|JULY?|AUG(?:UST)?|SEP(?:T(?:EMBER)?)?|OCT(?:OBER)?|NOV(?:EMBER)?|DEC(?:EMBER)?)\\.?';
+const CLOCK = '(\\d{1,2}(?::\\d{2})?)\\s*([AP]\\.?\\s*M\\.?)?';
+// Prefer the labelled start date; fall back to the first "MONTH day" on the page (the page heading).
+const START_DATE = new RegExp(`Open\\s*Play\\s*Start\\s*:?\\s*(?:[A-Z]+day,?\\s*)?${MONTH}\\s+(\\d{1,2})\\b`, 'i');
+const ANY_DATE = new RegExp(`\\b${MONTH}\\s+(\\d{1,2})(?:st|nd|rd|th)?\\b`, 'i');
+const TIME = new RegExp(`Open\\s*Play\\s*Time\\s*:?\\s*${CLOCK}\\s*(?:[\\u2013\\u2014-]|to)\\s*${CLOCK}`, 'i');
+const money = (label) => new RegExp(`${label}\\s*:?\\s*\\$\\s*(\\d+(?:\\.\\d{1,2})?)`, 'i');
+
+/** "7:30" + "PM" -> "19:30"; a start without AM/PM borrows the end's ("7:30 - 10 PM"). */
+const clock = (t, ampm, fallback) => to24(`${t} ${(ampm || fallback || '').replace(/[\s.]/g, '')}`);
+
 export function parse(text, page, ref) {
-  const date = text.match(/\b(JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+(\d{1,2})\b/);
-  const time = text.match(/Open Play Time:\s*([\d:]+\s*[AP]M)\s*[–-]\s*([\d:]+\s*[AP]M)/i);
+  const t = String(text).replace(/[   ]/g, ' ');
+  const date = t.match(START_DATE) ?? t.match(ANY_DATE);
+  const time = t.match(TIME);
   if (!date || !time) throw new Error(`${page.url}: couldn't find date or time`);
-  const online = text.match(/Indoor Pricing \(individual\):\s*\$([\d.]+)/i)?.[1];
-  const door = text.match(/Door Pricing\s*:\s*\$([\d.]+)/i)?.[1];
+  const end = clock(time[3], time[4]);
+  const start = clock(time[1], time[2], time[4]);
   const iso = resolveMonthDay(date[1], +date[2], ref);
-  const start = to24(time[1]), end = to24(time[2]);
+  if (!start || !end || !iso) throw new Error(`${page.url}: couldn't read "${time[0]}" / "${date[0]}"`);
+  const online = t.match(money('Indoor\\s*Pricing\\s*\\(\\s*individual\\s*\\)'))?.[1];
+  const door = t.match(money('Door\\s*Pricing'))?.[1];
   return {
     id: `aces-${iso}-${start}`,
     date: iso, start, end,
@@ -40,4 +57,9 @@ export async function scrape({ browser, ref, options }) {
   } finally { await page.close(); }
   if (!sessions.length) throw new Error(errors.join('; ') || 'nothing parsed');
   return { sessions, warnings: errors };
+}
+
+/** No fast source for ACES (its API is blocked from servers), so a live check can't confirm a session. */
+export async function check({ now = new Date() } = {}) {
+  return { status: 'unknown', checkedAt: now.toISOString() };
 }

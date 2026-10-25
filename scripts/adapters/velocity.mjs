@@ -3,6 +3,7 @@
 import { resolveMonthDay } from '../../lib/time.js';
 
 export const id = 'velocity';
+export const needsBrowser = true;
 const URL_ = 'https://www.austinvelocity.com/rentals/adult-volleyball-2';
 
 export function parse(text, ref) {
@@ -35,4 +36,9 @@ export async function scrape({ browser, ref }) {
     await page.goto(URL_, { waitUntil: 'domcontentloaded', timeout: 45000 });
     return { sessions: parse(await page.locator('body').innerText(), ref) };
   } finally { await page.close(); }
+}
+
+/** Weekly hours from a page that only changes by hand; there's nothing faster to re-check. */
+export async function check({ now = new Date() } = {}) {
+  return { status: 'unknown', checkedAt: now.toISOString() };
 }

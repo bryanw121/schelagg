@@ -2,6 +2,7 @@
 import { to24 } from '../../lib/time.js';
 
 export const id = 'atxbeach';
+export const needsBrowser = true;
 const URL_ = 'https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/';
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const span = (a, b) => { const i = DAYS.findIndex((d) => a.startsWith(d)), j = DAYS.findIndex((d) => b.startsWith(d)); return i < 0 || j < 0 ? null : DAYS.slice(i, j + 1); };
@@ -32,4 +33,9 @@ export async function scrape({ browser }) {
     await page.goto(URL_, { waitUntil: 'networkidle', timeout: 45000 });
     return { sessions: parse(await page.locator('body').innerText()) };
   } finally { await page.close(); }
+}
+
+/** Weekly hours from a page that only changes by hand; there's nothing faster to re-check. */
+export async function check({ now = new Date() } = {}) {
+  return { status: 'unknown', checkedAt: now.toISOString() };
 }
