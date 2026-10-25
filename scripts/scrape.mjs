@@ -3,7 +3,6 @@
 // sessions, flagged so the UI shows "Couldn't recheck".
 import { readFile, writeFile, appendFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
-import { chromium } from 'playwright';
 import { today, addDays } from '../lib/time.js';
 import { repoPath } from '../lib/paths.js';
 import { loadSources } from '../lib/registry.js';
@@ -24,7 +23,11 @@ const manual = MANUAL ? (await readJson(repoPath(MANUAL.file), { sessions: [] })
 const publicCourts = await readJson(repoPath('data/public-courts.json'), null);
 const watch = await readJson(WATCH, {});
 
-const browser = await chromium.launch();
+// Only start Chromium when a configured source still needs a browser (adapters declare
+// `needsBrowser`); the API-backed ones (Volleyworld, Reclub) use plain fetch.
+const browser = SOURCES.some((s) => s.adapter.needsBrowser !== false)
+  ? await (await import('playwright')).chromium.launch()
+  : null;
 const sources = [];
 let sessions = [];
 
@@ -32,7 +35,7 @@ for (const s of SOURCES) {
   const checkedAt = new Date().toISOString();
   const srcRef = today(new Date(), s.timezone);
   try {
-    const r = await s.adapter.scrape({ browser, ref: srcRef, options: s.options });
+    const r = await s.adapter.scrape({ browser, ref: srcRef, options: s.options, timezone: s.timezone });
     const { ok, warnings } = validateSessions(r.sessions.map((x) => ({ ...tagSession(x, s), verifiedAt: srcRef })));
     sessions.push(...ok);
     const allWarnings = [...(r.warnings ?? []), ...warnings];
@@ -45,7 +48,7 @@ for (const s of SOURCES) {
     console.log(`FAIL  ${s.id}: ${e.message} (kept ${kept.length} from last run)`);
   }
 }
-await browser.close();
+await browser?.close();
 
 // Hand-checked sessions: watch their source pages and flag them when a page changes.
 for (const m of manual) {
