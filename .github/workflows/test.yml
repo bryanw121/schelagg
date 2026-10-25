@@ -28,6 +28,6 @@ jobs:
       # Every entry point must at least parse and resolve its imports on each OS.
       - name: Syntax-check scripts
         shell: bash
-        run: for f in scripts/*.mjs scripts/sources/*.mjs server.js; do node --check "$f" || exit 1; done
-      - name: Sync skips cleanly without credentials
-        run: npm run sync:vteam
+        run: for f in scripts/*.mjs scripts/adapters/*.mjs lib/*.js server.js; do node --check "$f" || exit 1; done
+      - name: Source config loads and validates
+        run: node -e "import('./lib/registry.js').then((m) => console.log(m.loadSources().sources.map((s) => s.id).join(', ')))"

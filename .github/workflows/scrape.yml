@@ -3,7 +3,7 @@ name: Refresh schedules
 on:
   schedule:
     # Hourly, 6:13am to 12:13am Austin time (CDT; an hour earlier in winter).
-    # vteam hides synced sessions older than 12h, so the overnight gap is safe;
+    # Consumers (e.g. vteam) pull public/data/occurrences.json after each run;
     # hourly runs clear last-minute cancellations within the hour.
     - cron: '13 11-23,0-5 * * *'
   workflow_dispatch:
@@ -32,16 +32,9 @@ jobs:
         run: |
           git config user.name "volley-atx-bot"
           git config user.email "volley-atx-bot@users.noreply.github.com"
-          git add public/data/schedule.json data/watch.json
+          git add public/data/schedule.json public/data/occurrences.json data/watch.json
           git diff --cached --quiet || git commit -m "Refresh schedules $(date -u +'%F %H:%MZ')"
           git pull --rebase --quiet && git push
-      - name: Push sessions to vteam
-        # Skips itself when VTEAM_SERVICE_ROLE_KEY isn't configured. The project
-        # URL is public (it ships in vteam's web bundle), so it isn't a secret.
-        env:
-          VTEAM_SUPABASE_URL: https://rmelsdqgrpfjzqisycdl.supabase.co
-          VTEAM_SERVICE_ROLE_KEY: ${{ secrets.VTEAM_SERVICE_ROLE_KEY }}
-        run: node scripts/sync-vteam.mjs
       - name: Open an issue if a source failed
         env:
           GH_TOKEN: ${{ github.token }}

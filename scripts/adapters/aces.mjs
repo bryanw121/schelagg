@@ -3,10 +3,7 @@
 import { resolveMonthDay, to24 } from '../../lib/time.js';
 
 export const id = 'aces';
-export const PAGES = [
-  { url: 'https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/', venue: 'Volleyworld (Pflugerville)', city: 'Pflugerville' },
-  { url: 'https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/', venue: 'Volleyworld (Pflugerville)', city: 'Pflugerville' },
-];
+// Pages come from config/sources.json (options.pages: { url, venue, city }).
 
 export function parse(text, page, ref) {
   const date = text.match(/\b(JANUARY|FEBRUARY|MARCH|APRIL|MAY|JUNE|JULY|AUGUST|SEPTEMBER|OCTOBER|NOVEMBER|DECEMBER)\s+(\d{1,2})\b/);
@@ -28,11 +25,13 @@ export function parse(text, page, ref) {
   };
 }
 
-export async function scrape({ browser, ref }) {
+export async function scrape({ browser, ref, options }) {
+  const pages = options?.pages ?? [];
+  if (!pages.length) throw new Error('aces: no pages configured');
   const page = await browser.newPage();
   const sessions = [], errors = [];
   try {
-    for (const p of PAGES) {
+    for (const p of pages) {
       try {
         await page.goto(p.url, { waitUntil: 'domcontentloaded', timeout: 45000 });
         sessions.push(parse(await page.locator('main, body').first().innerText(), p, ref));
