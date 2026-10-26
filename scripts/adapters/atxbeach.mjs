@@ -1,5 +1,6 @@
 // ATX Beach open play, from its TeamUp membership page.
 import { to24 } from '../../lib/time.js';
+import { contentHash } from '../../lib/health.js';
 
 export const id = 'atxbeach';
 export const needsBrowser = true;
@@ -27,11 +28,18 @@ export function parse(text) {
   return out;
 }
 
+/**
+ * The lines this adapter depends on: open-play hours and prices. parse() hard-codes some
+ * details (the drop-in price, the check-in note), so lib/health.js flags when these change.
+ */
+export const watchedText = (text) => String(text).split('\n').filter((l) => /open play|\$\s*\d|drop.?in|waiver|check.?in/i.test(l)).join('\n');
+
 export async function scrape({ browser }) {
   const page = await browser.newPage();
   try {
     await page.goto(URL_, { waitUntil: 'networkidle', timeout: 45000 });
-    return { sessions: parse(await page.locator('body').innerText()) };
+    const text = await page.locator('body').innerText();
+    return { sessions: parse(text), contentHash: contentHash(watchedText(text)) };
   } finally { await page.close(); }
 }
 

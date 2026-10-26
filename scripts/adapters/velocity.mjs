@@ -1,6 +1,7 @@
 // Austin Velocity adult open play at The Crossover. Seasonal: we read the posted season dates
 // so the sessions switch on or off by themselves when Velocity updates the page.
 import { resolveMonthDay } from '../../lib/time.js';
+import { contentHash } from '../../lib/health.js';
 
 export const id = 'velocity';
 export const needsBrowser = true;
@@ -30,11 +31,15 @@ export function parse(text, ref) {
   return nights;
 }
 
+/** The lines this adapter depends on (season, nights, times, levels, prices), for lib/health.js. */
+export const watchedText = (text) => String(text).split('\n').filter((l) => /season|open play|time\s*:|level\s*:|\$\s*\d|sign.?up|instagram/i.test(l)).join('\n');
+
 export async function scrape({ browser, ref }) {
   const page = await browser.newPage();
   try {
     await page.goto(URL_, { waitUntil: 'domcontentloaded', timeout: 45000 });
-    return { sessions: parse(await page.locator('body').innerText(), ref) };
+    const text = await page.locator('body').innerText();
+    return { sessions: parse(text, ref), contentHash: contentHash(watchedText(text)) };
   } finally { await page.close(); }
 }
 

@@ -6,9 +6,13 @@
 import { endAfter, localDateTime } from '../../lib/time.js';
 import { nuxtData } from '../../lib/devalue.js';
 import { get } from '../../lib/http.js';
+import { shapeUnion } from '../../lib/health.js';
 
 export const id = 'reclub';
 export const needsBrowser = false;
+/** Meet fields parseMeet() reads. lib/health.js reports any that vanish from Reclub's page data. */
+export const reads = ['name', 'startDatetime', 'endDatetime', 'venue', 'venue.name', 'referenceCode',
+  'feeAmount', 'feeCurrency', 'numPlayers', 'isCancelled', 'isPast'];
 
 const ORIGIN = 'https://reclub.co';
 const CODE = /^[A-Za-z0-9]{4,12}$/;
@@ -83,7 +87,7 @@ export async function scrape({ options, timezone, fetch }) {
   const clubs = options?.clubs ?? [];
   if (!clubs.length) throw new Error('reclub: no clubs configured');
   const { venues, fallback } = opts(options);
-  const sessions = [], warnings = [];
+  const sessions = [], warnings = [], meets = [];
   for (const club of clubs) {
     let codes;
     try {
@@ -97,13 +101,14 @@ export async function scrape({ options, timezone, fetch }) {
         const res = await get(url, { fetch });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = meetData(res.text);
+        if (data?.meet) meets.push(data.meet);
         if (data?.meet?.isPast === true) continue;
         sessions.push(parseMeet(res.text, url, { venues, fallback, timezone }));
       } catch (e) { warnings.push(`${url}: ${e.message}`); }
     }
   }
   if (!sessions.length) throw new Error(warnings.join('; ') || 'No Reclub meets found');
-  return { sessions: [...new Map(sessions.map((s) => [s.id, s])).values()], warnings };
+  return { sessions: [...new Map(sessions.map((s) => [s.id, s])).values()], warnings, shape: shapeUnion(meets) };
 }
 
 export const parseId = (sessionId) => ID.test(sessionId);
