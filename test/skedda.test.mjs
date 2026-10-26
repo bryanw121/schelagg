@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { occurrences, busyBySpace, openingHours, spaceNames, merge } from '../lib/skedda.js';
+import { occurrences, busyBySpace, openingHours, spaceNames, merge, skeddaDayUrl, VENUES } from '../lib/skedda.js';
 import { addDays, dow, to24, resolveMonthDay } from '../lib/time.js';
 
 test('one-off booking only on its date', () => {
@@ -63,4 +63,9 @@ test('time helpers', () => {
   assert.equal(resolveMonthDay('OCTOBER', 26, '2026-10-24'), '2026-10-26');
   assert.equal(resolveMonthDay('Jan', 5, '2026-11-20'), '2027-01-05');
   assert.deepEqual(merge([[60, 120], [100, 200], [300, 400]]), [[60, 200], [300, 400]]);
+});
+
+test('Skedda: per-day booking links use ?viewdate={date}', () => {
+  assert.equal(skeddaDayUrl('https://austinvelocity.skedda.com/booking'), 'https://austinvelocity.skedda.com/booking?viewdate={date}');
+  for (const v of VENUES) assert.match(skeddaDayUrl(v.calendar).replace('{date}', '2026-10-27'), /^https:\/\/[a-z]+\.skedda\.com\/booking\?viewdate=2026-10-27$/);
 });

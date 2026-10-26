@@ -47,7 +47,7 @@ const SCHEDULE = {
 const COURTS = {
   fetchedAt: '2026-10-25T21:55:00.000Z', from: TODAY, days: 7, errors: [],
   venues: [{
-    id: 'treehouse', calendar: 'https://treehousegym.skedda.com/booking', hours: Array(7).fill(['06:00', '23:00']),
+    id: 'treehouse', calendar: 'https://treehousegym.skedda.com/booking', calendarDay: 'https://treehousegym.skedda.com/booking?viewdate={date}', hours: Array(7).fill(['06:00', '23:00']),
     facilities: [{ id: 'treehouse', name: 'Roots · Treehouse Gym', city: 'N. Austin', surface: 'indoor', courts: [
       { name: 'Court #1', days: { [TODAY]: [['19:00', '22:00']] } }, // lines up with reclub-TREE01: open to sign up
       { name: 'Court #2', days: { [TODAY]: [['08:00', '10:00']] } }, // a private booking
@@ -227,6 +227,26 @@ test('site: the day-at-a-glance chart shows sessions, court bookings and courts 
   assert.equal(await page.locator('#cal .g-now').count() > 0, true);
   assert.match(await page.locator('#calNote').textContent(), /Court calendars checked 5 min ago/);
   assert.equal(await page.locator('#calErrors').textContent(), '');
+});
+
+test('site: "Book a court" opens the venue calendar on the day being viewed', async () => {
+  await open();
+  const book = () => page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).locator('a.book', { hasText: 'Book a court' })
+  assert.equal(await book().getAttribute('href'), `https://treehousegym.skedda.com/booking?viewdate=${TODAY}`);
+  await page.locator('#days .day').nth(2).click();
+  const later = await page.locator('#days .day').nth(2).getAttribute('data-iso').catch(() => null);
+  const href = await book().getAttribute('href');
+  assert.match(href, /^https:\/\/treehousegym\.skedda\.com\/booking\?viewdate=\d{4}-\d{2}-\d{2}$/);
+  assert.notEqual(href, `https://treehousegym.skedda.com/booking?viewdate=${TODAY}`);
+  if (later) assert.equal(href, `https://treehousegym.skedda.com/booking?viewdate=${later}`);
+});
+
+test('site: a venue without a per-day link falls back to its calendar', async () => {
+  const venue = { ...COURTS.venues[0] };
+  delete venue.calendarDay;
+  await open({ courts: { ...COURTS, venues: [venue] } });
+  const book = page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).locator('a.book', { hasText: 'Book a court' });
+  assert.equal(await book.getAttribute('href'), 'https://treehousegym.skedda.com/booking');
 });
 
 test('site: court data falls back to /api/courts, and failures say so', async () => {
