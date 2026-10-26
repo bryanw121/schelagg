@@ -12,7 +12,7 @@ export function createHandler({ sources, published, timeoutMs = CHECK_TIMEOUT_MS
   let pub = published ? { at: Infinity, map: published } : null;
   const getSources = () => (cfg ??= loadSources().sources);
   const getPublished = async () => {
-    if (!pub || Date.now() - pub.at > PUBLISHED_TTL_MS) pub = { at: Date.now(), map: await loadPublished() };
+    if (!pub || Date.now() - pub.at > PUBLISHED_TTL_MS) pub = { at: Date.now(), map: await loadPublished({ fetch: fetch ?? globalThis.fetch }) };
     return pub.map;
   };
 
