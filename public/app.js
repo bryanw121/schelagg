@@ -1,5 +1,5 @@
 // Schelagg front end. Two data sources:
-//   data/schedule.json  sessions + public courts, rebuilt nightly by scripts/scrape.mjs
+//   data/schedule.json  sessions + public courts, rebuilt hourly by scripts/scrape.mjs
 //   data/courts.json    court bookings + opening hours (Skedda), rebuilt every ~15 min by scripts/build-courts.mjs
 //                       (falls back to the live api/courts endpoint when running server.js or on Vercel)
 
@@ -30,6 +30,14 @@ function fmtT(t) { if (!t) return 'TBD'; let [h, m] = t.split(':').map(Number); 
 const tick = (t) => { const h = +t.slice(0, 2) % 24; return (h % 12 || 12) + (h >= 12 ? 'p' : 'a'); };
 const pct = (m) => +(((Math.min(Math.max(m, T0), T1) - T0) / (T1 - T0)) * 100).toFixed(2);
 const clock = (iso) => new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago' });
+/** "just now", "12 min ago", "3 hr ago", "on Oct 24": how long ago an ISO time was. */
+function ago(iso) {
+  const m = Math.max(0, Math.floor((Date.now() - Date.parse(iso)) / 60000));
+  if (m < 1) return 'just now';
+  if (m < 60) return `${m} min ago`;
+  if (m < 24 * 60) return `${Math.floor(m / 60)} hr ago`;
+  return `on ${new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/Chicago' })}`;
+}
 
 const NOW = austinNow();
 const WEEK = Array.from({ length: 7 }, (_, i) => addDays(NOW.iso, i));
@@ -213,12 +221,16 @@ function renderGlance() {
 function renderMeta() {
   if (!schedule) return;
   const courtAge = courts ? Math.round((Date.now() - Date.parse(courts.fetchedAt)) / 60000) : null;
-  $('asof').textContent = `Schedules ${fmtDate(schedule.generatedAt.slice(0, 10))}${courts ? ` · courts ${clock(courts.fetchedAt)}` : ''}`;
+  // The older of the two refreshes, so "last updated" never overstates how fresh the page is.
+  const stamps = [schedule.generatedAt, courts?.fetchedAt].filter(Boolean);
+  const oldest = stamps.reduce((a, b) => (Date.parse(a) <= Date.parse(b) ? a : b));
+  $('asof').textContent = `Last updated ${ago(oldest)}`;
+  $('asof').title = `Sessions ${clock(schedule.generatedAt)}${courts ? ` · court calendars ${clock(courts.fetchedAt)}` : ''}`;
   $('calNote').textContent = `Court bookings at High Point, Crossover and Treehouse Gym (home of Roots Volleyball) are mostly club practices and private rentals. Blue blocks line up with a public Reclub meet, so those courts are open to sign up. Who booked each slot is hidden on their calendars. Treehouse's weekday 8am–4pm blocks are school-hours holds.${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh about every 15 minutes.` : ''}`;
   const bad = schedule.sources.filter((s) => !s.ok);
   $('sourceStatus').textContent = bad.length
-    ? `Last nightly check couldn't read: ${bad.map((s) => s.id).join(', ')}. Their sessions show "Couldn't recheck".`
-    : `Last nightly check read all ${schedule.sources.length} scraped sources.`;
+    ? `Last check couldn't read: ${bad.map((s) => s.id).join(', ')}. Their sessions show "Couldn't recheck".`
+    : `Last check read all ${schedule.sources.length} scraped sources.`;
 }
 
 function render() { if (!schedule) return; renderTabs(); renderDays(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }
@@ -228,6 +240,7 @@ document.addEventListener('click', (e) => {
   if (t.dataset.surf) { state.surf = t.dataset.surf; save(); }
   if (t.dataset.di) state.di = +t.dataset.di;
   render();
+setInterval(() => renderMeta(), 60_000); // keep "x min ago" current while the page stays open
 });
 $('showAll').checked = state.showAll;
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });
@@ -240,3 +253,4 @@ catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: $
 try { courts = await getJson('data/courts.json'); }
 catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }
 render();
+setInterval(() => renderMeta(), 60_000); // keep "x min ago" current while the page stays open
