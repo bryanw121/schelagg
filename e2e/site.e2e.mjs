@@ -115,7 +115,9 @@ test('site: today\'s schedule renders in Austin time with freshness labels and s
   await open();
   assert.equal(await page.title(), 'Schelagg');
   assert.equal(await page.locator('#dayTitle').textContent(), 'Today · Sunday, Oct 25');
-  assert.match(await page.locator('#asof').textContent(), /^Schedules Oct 25 · courts 4:55\s?PM$/);
+  // Older of the two refreshes (sessions 4:13pm, courts 4:55pm) against the 5pm clock.
+  assert.equal(await page.locator('#asof').textContent(), 'Last updated 47 min ago');
+  assert.match(await page.locator('#asof').getAttribute('title'), /^Sessions 4:13\s?PM · court calendars 4:55\s?PM$/);
 
   // Sorted by start; canceled and unconfirmed ones hidden by default.
   assert.deepEqual(await titles(), ['Morning Adult Training', 'Afternoon Sand Open Play', 'Evening Indoor Open Gym', 'Sunday Coed Net Volleyball', 'Sunday Sand Social']);
@@ -141,7 +143,7 @@ test('site: today\'s schedule renders in Austin time with freshness labels and s
   assert.equal(await row('Afternoon Sand Open Play').locator('.dropin').textContent(), 'Drop in');
   assert.equal(await row('Afternoon Sand Open Play').locator('a.signup').count(), 0);
 
-  assert.equal(await page.locator('#sourceStatus').textContent(), 'Last nightly check couldn\'t read: reclub. Their sessions show "Couldn\'t recheck".');
+  assert.equal(await page.locator('#sourceStatus').textContent(), 'Last check couldn\'t read: reclub. Their sessions show "Couldn\'t recheck".');
   assert.equal(await page.locator('#courtsTitle').textContent(), 'Free public courts · 2');
 });
 
