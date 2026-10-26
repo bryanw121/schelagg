@@ -1,0 +1,1042 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T02:49:02.137Z",
+  "sources": [
+    {
+      "id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "ok": true,
+      "checkedAt": "2026-10-26T02:48:40.652Z",
+      "count": 14
+    },
+    {
+      "id": "aces",
+      "sport": "volleyball",
+      "region": "austin",
+      "ok": false,
+      "checkedAt": "2026-10-26T02:48:42.526Z",
+      "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
+      "kept": 2
+    },
+    {
+      "id": "atxbeach",
+      "sport": "volleyball",
+      "region": "austin",
+      "ok": true,
+      "checkedAt": "2026-10-26T02:48:42.744Z",
+      "count": 2
+    },
+    {
+      "id": "velocity",
+      "sport": "volleyball",
+      "region": "austin",
+      "ok": true,
+      "checkedAt": "2026-10-26T02:48:44.089Z",
+      "count": 2
+    },
+    {
+      "id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "ok": true,
+      "checkedAt": "2026-10-26T02:48:45.524Z",
+      "count": 5
+    }
+  ],
+  "sessions": [
+    {
+      "id": "volleyworld-2026-10-25-17:30-georgetown",
+      "date": "2026-10-25",
+      "start": "17:30",
+      "end": "19:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "canceled": true,
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "dZaLGjMXtd506ufHImrV",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-10-25-20:30-pflugerville",
+      "date": "2026-10-25",
+      "start": "20:30",
+      "end": "22:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "full": true,
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "UbcZ6lSlGr6p05juFSU5",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-10-27-20:30-georgetown",
+      "date": "2026-10-27",
+      "start": "20:30",
+      "end": "22:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Jesus",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "Ct8jXEbGRG0DpnGv8SBz",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-10-28-20:30-georgetown",
+      "date": "2026-10-28",
+      "start": "20:30",
+      "end": "22:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 11,
+      "classId": "iMXQViiBzIkmDtssBt9e",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-10-30-19:30-georgetown",
+      "date": "2026-10-30",
+      "start": "19:30",
+      "end": "21:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Jesus",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "2zpUe8wQDj8OjOAWVe4I",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-10-31-19:30-pflugerville",
+      "date": "2026-10-31",
+      "start": "19:30",
+      "end": "21:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "syBCUPoKrX4BfJLzJXIH",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-01-07:30-pflugerville",
+      "date": "2026-11-01",
+      "start": "07:30",
+      "end": "09:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "WkSWf0zUNels7Rt9icTo",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-01-20:30-georgetown",
+      "date": "2026-11-01",
+      "start": "20:30",
+      "end": "22:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "i7ciBk6TREpgQqzEoDhW",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-04-20:30-georgetown",
+      "date": "2026-11-04",
+      "start": "20:30",
+      "end": "22:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "RuNoKxQdILikYDtnfMhP",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-05-20:30-georgetown",
+      "date": "2026-11-05",
+      "start": "20:30",
+      "end": "22:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Jesus",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "VBosqUn2EcRVN27NGWQ5",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-06-19:30-georgetown",
+      "date": "2026-11-06",
+      "start": "19:30",
+      "end": "21:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Jesus",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "PWrVHRV21ZpPeJy6Dia6",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-07-19:30-pflugerville",
+      "date": "2026-11-07",
+      "start": "19:30",
+      "end": "21:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "u07j3PtwFOeVm97fuF4t",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-08-07:30-pflugerville",
+      "date": "2026-11-08",
+      "start": "07:30",
+      "end": "09:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "j832pfctCOA0XokNXOfB",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "volleyworld-2026-11-08-20:30-georgetown",
+      "date": "2026-11-08",
+      "start": "20:30",
+      "end": "22:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "RnmaD20Nu0sGZxSU0y2r",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "aces-2026-10-26-19:30",
+      "date": "2026-10-26",
+      "start": "19:30",
+      "end": "22:00",
+      "title": "ACES Indoor Open Play",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels, 18+",
+      "price": "$6 online · $10 door",
+      "note": "1 court (more if signups allow). Winner stays on, games to 21.",
+      "signup": {
+        "url": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
+        "label": "Register on ACES"
+      },
+      "source": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
+      "sourceId": "aces",
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": "aces-2026-10-28-19:30",
+      "date": "2026-10-28",
+      "start": "19:30",
+      "end": "22:00",
+      "title": "ACES Indoor Open Play",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels, 18+",
+      "price": "$6 online · $10 door",
+      "note": "1 court (more if signups allow). Winner stays on, games to 21.",
+      "signup": {
+        "url": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
+        "label": "Register on ACES"
+      },
+      "source": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
+      "sourceId": "aces",
+      "verifiedAt": "2026-10-24",
+      "checkFailed": "2026-10-25",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": "atxbeach-standard",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "start": "07:00",
+      "end": "18:00",
+      "title": "Standard Open Play",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10 drop-in · membership available",
+      "note": "Check in at the Turtle Shack. Waiver required.",
+      "signup": {
+        "url": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
+        "label": "Drop in · or get membership",
+        "dropIn": true
+      },
+      "source": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
+      "sourceId": "atxbeach",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "atxbeach-friday",
+      "days": [
+        "Fri"
+      ],
+      "start": "19:00",
+      "end": "23:00",
+      "title": "Friday Night Open Play & Pizza",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$20",
+      "signup": {
+        "url": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
+        "label": "Drop in · or get membership",
+        "dropIn": true
+      },
+      "source": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
+      "sourceId": "atxbeach",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "velocity-wed",
+      "days": [
+        "Wed"
+      ],
+      "start": "20:00",
+      "end": "24:00",
+      "title": "Austin Velocity Open Play",
+      "venue": "The Crossover",
+      "city": "Cedar Park",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Beginner & Intermediate",
+      "startsOn": "2026-05-20",
+      "validUntil": "2026-08-14",
+      "note": "Updates post on Instagram @austinvelocityadults.",
+      "signup": {
+        "url": "https://www.instagram.com/austinvelocityadults/",
+        "label": "Check Instagram for signup"
+      },
+      "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
+      "sourceId": "velocity",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "velocity-fri",
+      "days": [
+        "Fri"
+      ],
+      "start": "20:00",
+      "end": "24:00",
+      "title": "Austin Velocity Open Play",
+      "venue": "The Crossover",
+      "city": "Cedar Park",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Intermediate & Advanced",
+      "startsOn": "2026-05-20",
+      "validUntil": "2026-08-14",
+      "note": "Updates post on Instagram @austinvelocityadults.",
+      "signup": {
+        "url": "https://www.instagram.com/austinvelocityadults/",
+        "label": "Check Instagram for signup"
+      },
+      "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
+      "sourceId": "velocity",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-UEY4HO",
+      "date": "2026-10-27",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Tuesday.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/UEY4HO",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/UEY4HO",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-1QX0YR",
+      "date": "2026-10-29",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "B/BB · men",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Thursday.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/1QX0YR",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/1QX0YR",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-VONMM8",
+      "date": "2026-10-30",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Qilin B/BB Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "surface": "indoor",
+      "facility": "treehouse",
+      "type": "Open play",
+      "level": "B/BB",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/VONMM8",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/VONMM8",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-2O9PDP",
+      "date": "2026-10-30",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Koi C/B Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "surface": "indoor",
+      "facility": "treehouse",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/2O9PDP",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/2O9PDP",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "reclub-5X380N",
+      "date": "2026-11-01",
+      "start": "10:00",
+      "end": "13:00",
+      "title": "Austin Lawn Club - Sunday Fun Day!",
+      "venue": "Mueller Lake Park",
+      "city": "Austin",
+      "surface": "grass",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$6",
+      "note": "Hosted by Austin Lawn Club, every Sunday.",
+      "capacity": 16,
+      "signup": {
+        "url": "https://reclub.co/m/5X380N",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/5X380N",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-25"
+    },
+    {
+      "id": "atx-sand-social-sun",
+      "days": [
+        "Sun"
+      ],
+      "start": "19:00",
+      "end": "22:00",
+      "title": "ATX Sand Social · Sunday Funday",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "Intermediate to competitive",
+      "price": "$10",
+      "verifiedAt": "2026-10-24",
+      "note": "Weekly RSVP posts on Sweatpals.",
+      "signup": {
+        "url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
+        "label": "RSVP on Sweatpals"
+      },
+      "source": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
+    },
+    {
+      "id": "aces-thu-6s-sand",
+      "days": [
+        "Thu"
+      ],
+      "start": "20:00",
+      "end": "22:00",
+      "title": "ACES Co-Ed Thursday 6s League",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "League",
+      "level": "Rec / Intermediate",
+      "verifiedAt": "2026-10-24",
+      "validUntil": "2026-11-12",
+      "signup": {
+        "url": "https://acesintexas.com/thursday-6s-sand-volleyball-league-atx-beach/",
+        "label": "Join as free agent"
+      },
+      "source": "https://acesintexas.com/thursday-6s-sand-volleyball-league-atx-beach/",
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "watchError": "HTTP 403"
+    },
+    {
+      "id": "aces-mon-6s-indoor",
+      "days": [
+        "Mon"
+      ],
+      "start": null,
+      "end": null,
+      "title": "ACES Monday Indoor 6s League",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "League",
+      "level": "Intermediate / Advanced",
+      "verifiedAt": null,
+      "startsOn": "2026-11-02",
+      "note": "Game times not posted yet.",
+      "signup": {
+        "url": "https://acesintexas.com/aces-pflugerville-monday-co-ed-indoor-6s-volleyball-league/",
+        "label": "Join league"
+      },
+      "source": "https://acesintexas.com/aces-pflugerville-monday-co-ed-indoor-6s-volleyball-league/",
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "watchError": "HTTP 403"
+    },
+    {
+      "id": "hanovers-open",
+      "days": [
+        "Fri",
+        "Sun"
+      ],
+      "start": "18:00",
+      "end": "23:00",
+      "title": "Hanovers Open Play (21+)",
+      "venue": "Hanovers Draught Haus",
+      "city": "Pflugerville",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$5",
+      "verifiedAt": null,
+      "note": "Only source is a third-party listing from August. Call before going.",
+      "signup": {
+        "url": null,
+        "label": "Drop in · $5 at the door",
+        "dropIn": true
+      },
+      "source": "https://www.planomato.com/en/austin/p/open-play-volleyball-austin",
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "sourceChanged": "2026-10-25"
+    },
+    {
+      "id": "ssc-crossover-mon-sand",
+      "days": [
+        "Mon"
+      ],
+      "start": null,
+      "end": null,
+      "title": "Austin SSC Monday Sand 6s",
+      "venue": "The Crossover",
+      "city": "Cedar Park",
+      "surface": "sand",
+      "type": "League",
+      "level": "Recreational, 21+",
+      "price": "$759 team · $109 solo",
+      "verifiedAt": null,
+      "startsOn": "2026-11-02",
+      "signup": {
+        "url": "https://austinssc.leaguelab.com/leagues?sport=Sand+Volleyball",
+        "label": "Register on Austin SSC"
+      },
+      "source": "https://austinssc.leaguelab.com/leagues?sport=Sand+Volleyball",
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago"
+    }
+  ],
+  "publicCourts": {
+    "sourceId": "coa-parks",
+    "note": "Free, first-come. Walter E. Long and Emma Long charge park entry. Krieg courts closed through spring 2027.",
+    "courts": [
+      {
+        "park": "Bailey Neighborhood Park",
+        "address": "1101 W 33rd St",
+        "surface": "sand",
+        "courts": 1,
+        "lights": true
+      },
+      {
+        "park": "Balcones District Park",
+        "address": "12017 Amherst Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Brentwood Neighborhood Park",
+        "address": "6807 Yates Ave",
+        "surface": "sand",
+        "courts": 1,
+        "lights": true
+      },
+      {
+        "park": "Bull Creek District Park",
+        "address": "6713 Lakewood Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Circle C Ranch Metro Park",
+        "address": "6301 W Slaughter Ln",
+        "surface": "sand",
+        "courts": 2,
+        "lights": false
+      },
+      {
+        "park": "Davis/White Northeast Park",
+        "address": "6705 Crystalbrook Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Dick Nichols District Park",
+        "address": "8101 Beckett Rd",
+        "surface": "sand",
+        "courts": 2,
+        "lights": true
+      },
+      {
+        "park": "Dove Springs District Park",
+        "address": "5801 Ainez Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Emma Long Metro Park",
+        "address": "1600 City Park Rd",
+        "surface": "sand",
+        "courts": 4,
+        "lights": false,
+        "fee": true
+      },
+      {
+        "park": "Gillis Neighborhood Park",
+        "address": "2410 Durwood Ave",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Gracywoods Neighborhood Park",
+        "address": "12133 Metric Blvd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Kendra Page Neighborhood Park",
+        "address": "2203 Blue Meadow Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Mary Moore Searight Metro Park",
+        "address": "907 W Slaughter Ln",
+        "surface": "sand",
+        "courts": 2,
+        "lights": false
+      },
+      {
+        "park": "Northwest Recreation Center",
+        "address": "2913 Northland Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Parque Zaragoza",
+        "address": "2611 Webberville Rd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Pastor E.C. Craig Jr. Park",
+        "address": "4800 Copperbend Blvd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Patterson Neighborhood Park",
+        "address": "4201 Brookview Rd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Pease District Park",
+        "address": "1100 Kingsbury St",
+        "surface": "sand",
+        "courts": 3,
+        "lights": false
+      },
+      {
+        "park": "Quail Creek Neighborhood Park",
+        "address": "1101 Mearns Meadow Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Rialto Neighborhood Park",
+        "address": "7025 Rialto Blvd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Krieg Athletic Complex",
+        "address": "425 S Pleasant Valley Rd",
+        "surface": "sand",
+        "courts": 4,
+        "lights": true,
+        "closedUntil": "2027-05-31"
+      },
+      {
+        "park": "Scofield Farms Park",
+        "address": "12901 Scofield Farms Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Silk Oak Neighborhood Park",
+        "address": "3204 Silk Oak Dr",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Springwoods Neighborhood Park",
+        "address": "9207 Anderson Mill Rd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Tanglewood Neighborhood Park",
+        "address": "11409 Rustic Rock Rd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Walter E. Long Metro Park",
+        "address": "6620 Blue Bluff Rd",
+        "surface": "sand",
+        "courts": 2,
+        "lights": false,
+        "fee": true
+      },
+      {
+        "park": "Zilker – Great Lawn",
+        "address": "2100 Barton Springs Rd",
+        "surface": "sand",
+        "courts": 5,
+        "lights": false
+      },
+      {
+        "park": "Zilker – Polo Area",
+        "address": "2501 Barton Springs Rd",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false
+      },
+      {
+        "park": "Commons Ford Ranch Metro Park",
+        "address": "614 N Commons Ford Rd",
+        "surface": "grass",
+        "courts": 2,
+        "lights": false
+      },
+      {
+        "park": "Yates Pocket Park",
+        "address": "6015 Felix Ave",
+        "surface": "grass",
+        "courts": 1,
+        "lights": false
+      }
+    ]
+  }
+}
