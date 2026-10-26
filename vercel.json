@@ -13,6 +13,10 @@
     "api/check.js": {
       "maxDuration": 10,
       "includeFiles": "{config/sources.json,public/data/schedule.json}"
+    },
+    "api/sessions.js": {
+      "maxDuration": 10,
+      "includeFiles": "public/data/occurrences.json"
     }
   },
   "headers": [
