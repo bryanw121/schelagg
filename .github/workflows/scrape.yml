@@ -3,7 +3,7 @@ name: Refresh schedules
 on:
   schedule:
     # Hourly, 6:13am to 12:13am Austin time (CDT; an hour earlier in winter).
-    # Consumers (e.g. vteam) pull public/data/occurrences.json after each run;
+    # Consumers (e.g. vteam) pull data/occurrences.json from GitHub Pages after each run;
     # hourly runs clear last-minute cancellations within the hour.
     - cron: '13 11-23,0-5 * * *'
   workflow_dispatch:
@@ -29,14 +29,16 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm test
+      # The last run's data (for keep-last-good and change detection) is on the data branch.
+      - name: Load the latest data
+        run: scripts/data-branch.sh pull
       - run: npm run scrape
+      # To the data branch, never main: a push to main is a Vercel deployment.
       - name: Commit updated data
         run: |
           git config user.name "volley-atx-bot"
           git config user.email "volley-atx-bot@users.noreply.github.com"
-          git add public/data/schedule.json public/data/occurrences.json data/watch.json data/health.json
-          git diff --cached --quiet || git commit -m "Refresh schedules $(date -u +'%F %H:%MZ')"
-          git pull --rebase --quiet && git push
+          scripts/data-branch.sh push "Refresh schedules $(date -u +'%F %H:%MZ')"
       - name: Open an issue if a source failed, close it when all recover
         env:
           GH_TOKEN: ${{ github.token }}
@@ -109,8 +111,8 @@ jobs:
       - uses: actions/checkout@v4
         if: steps.token.outputs.present == 'true'
         with:
-          ref: main # includes the data the scrape job just committed
-          fetch-depth: 50 # the health baseline from before the change, for verification
+          ref: main
+          fetch-depth: 50
       - uses: actions/setup-node@v4
         if: steps.token.outputs.present == 'true'
         with:
@@ -118,6 +120,10 @@ jobs:
           cache: npm
       - if: steps.token.outputs.present == 'true'
         run: npm ci && npx playwright install --with-deps chromium
+      # The data the scrape job just committed (and its history, for the verification baseline).
+      - name: Load the latest data
+        if: steps.token.outputs.present == 'true'
+        run: git fetch -q --depth=50 origin data && scripts/data-branch.sh pull
       - uses: actions/download-artifact@v4
         if: steps.token.outputs.present == 'true'
         with:

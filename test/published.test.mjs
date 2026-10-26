@@ -34,19 +34,40 @@ test('published schedule: empty when neither copy loads', async () => {
   assert.equal(map.size, 0);
 });
 
-// Vercel skips a build when ignoreCommand exits 0: only for commits that touch nothing but public/data.
-test('vercel ignoreCommand skips data-only commits and builds everything else', { skip: process.platform === 'win32' }, () => {
-  const cmd = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8')).ignoreCommand;
-  const repo = mkdtempSync(join(tmpdir(), 'schelagg-ign-'));
-  const git = (...a) => execFileSync('git', a, { cwd: repo, stdio: 'pipe' });
-  git('init', '-q'); git('config', 'user.email', 't@e.st'); git('config', 'user.name', 't');
-  mkdirSync(join(repo, 'public', 'data'), { recursive: true }); mkdirSync(join(repo, 'api'));
-  writeFileSync(join(repo, 'public', 'data', 'schedule.json'), '1'); writeFileSync(join(repo, 'api', 'check.js'), '1');
-  git('add', '-A'); git('commit', '-qm', 'base');
-  const skips = () => { try { execFileSync('sh', ['-c', cmd], { cwd: repo, stdio: 'pipe' }); return true; } catch { return false; } };
+// Scrape output is pushed to the data branch; Vercel must never deploy it.
+test('vercel never deploys the data branch', () => {
+  const cfg = JSON.parse(readFileSync(new URL('../vercel.json', import.meta.url), 'utf8'));
+  assert.equal(cfg.git?.deploymentEnabled?.data, false);
+  assert.equal(cfg.ignoreCommand, undefined, 'skipped builds still count against the deployment limit; use the data branch instead');
+});
 
-  writeFileSync(join(repo, 'public', 'data', 'schedule.json'), '2'); git('commit', '-qam', 'data');
-  assert.equal(skips(), true, 'data-only commit is skipped');
-  writeFileSync(join(repo, 'api', 'check.js'), '2'); writeFileSync(join(repo, 'public', 'data', 'schedule.json'), '3'); git('commit', '-qam', 'code+data');
-  assert.equal(skips(), false, 'a commit touching code builds');
+// scripts/data-branch.sh: push creates/updates the data branch from the working tree; pull overlays it.
+test('data branch: push then pull round-trips the data files, main untouched', { skip: process.platform === 'win32' }, () => {
+  const script = new URL('../scripts/data-branch.sh', import.meta.url).pathname;
+  const root = mkdtempSync(join(tmpdir(), 'schelagg-data-'));
+  const remote = join(root, 'remote.git');
+  const sh = (cwd, ...a) => execFileSync(a[0], a.slice(1), { cwd, stdio: 'pipe', encoding: 'utf8' });
+  sh(root, 'git', 'init', '-q', '--bare', remote);
+  const a = join(root, 'a');
+  sh(root, 'git', 'clone', '-q', remote, a);
+  for (const [k, v] of [['user.email', 't@e.st'], ['user.name', 't']]) sh(a, 'git', 'config', k, v);
+  mkdirSync(join(a, 'public', 'data'), { recursive: true }); mkdirSync(join(a, 'data'));
+  writeFileSync(join(a, 'public', 'data', 'schedule.json'), 'seed'); writeFileSync(join(a, 'code.js'), 'x');
+  sh(a, 'git', 'add', '-A'); sh(a, 'git', 'commit', '-qm', 'main'); sh(a, 'git', 'push', '-q', 'origin', 'HEAD:main');
+
+  writeFileSync(join(a, 'public', 'data', 'schedule.json'), 'run-1');
+  writeFileSync(join(a, 'data', 'health.json'), '{"ok":1}');
+  sh(a, 'bash', script, 'push', 'Refresh 1');
+  assert.equal(sh(a, 'git', 'show', 'origin/data:public/data/schedule.json'), 'run-1');
+  assert.equal(sh(a, 'git', 'show', 'origin/main:public/data/schedule.json'), 'seed', 'main keeps its seed copy');
+  // An unchanged run makes no commit.
+  sh(a, 'bash', script, 'push', 'Refresh 2');
+  assert.equal(sh(a, 'git', 'log', '--format=%s', 'origin/data').trim(), 'Refresh 1');
+
+  const b = join(root, 'b');
+  sh(root, 'git', 'clone', '-q', '-b', 'main', remote, b);
+  assert.equal(readFileSync(join(b, 'public', 'data', 'schedule.json'), 'utf8'), 'seed');
+  sh(b, 'bash', script, 'pull');
+  assert.equal(readFileSync(join(b, 'public', 'data', 'schedule.json'), 'utf8'), 'run-1');
+  assert.equal(readFileSync(join(b, 'data', 'health.json'), 'utf8'), '{"ok":1}');
 });
