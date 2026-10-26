@@ -3,16 +3,41 @@
 // serverless function; also mounted by server.js for local dev. See README "Live API".
 import { loadSources } from '../lib/registry.js';
 import { CHECK_TIMEOUT_MS, loadPublished, runCheck } from '../lib/check.js';
+import { lazyDb, loadPublishedFromDb, redact } from '../lib/db.js';
 
 const PUBLISHED_TTL_MS = 60 * 1000;
 
-/** Build a handler; tests pass stub sources / published sessions. */
-export function createHandler({ sources, published, timeoutMs = CHECK_TIMEOUT_MS, fetch, now } = {}) {
+/**
+ * Published sessions from Schelagg's database (DATABASE_URL_READONLY), or null to fall back to
+ * the published schedule.json (Pages, then the bundled copy): no database configured, a
+ * database error, or no sessions written yet.
+ */
+async function publishedFromDb(getDb, log) {
+  try {
+    const db = await getDb();
+    if (!db) return null;
+    const map = await loadPublishedFromDb(db);
+    return map.size ? map : null;
+  } catch (e) {
+    log(`api/check: database read failed, using the published schedule: ${redact(e?.message ?? e)}`);
+    return null;
+  }
+}
+
+/**
+ * Build a handler; tests pass stub sources / published sessions, or `db` (a lib/db.js handle;
+ * null for none) to load the published sessions from. Without either, DATABASE_URL_READONLY decides.
+ */
+export function createHandler({ sources, published, db, timeoutMs = CHECK_TIMEOUT_MS, fetch, now, log = console.warn } = {}) {
   let cfg = sources ?? null;
   let pub = published ? { at: Infinity, map: published } : null;
   const getSources = () => (cfg ??= loadSources().sources);
+  const getDb = lazyDb(db);
   const getPublished = async () => {
-    if (!pub || Date.now() - pub.at > PUBLISHED_TTL_MS) pub = { at: Date.now(), map: await loadPublished({ fetch: fetch ?? globalThis.fetch }) };
+    if (!pub || Date.now() - pub.at > PUBLISHED_TTL_MS) {
+      const map = (await publishedFromDb(getDb, log)) ?? await loadPublished({ fetch: fetch ?? globalThis.fetch });
+      pub = { at: Date.now(), map };
+    }
     return pub.map;
   };
 

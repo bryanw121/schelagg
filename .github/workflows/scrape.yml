@@ -32,7 +32,17 @@ jobs:
       # The last run's data (for keep-last-good and change detection) is on the data branch.
       - name: Load the latest data
         run: scripts/data-branch.sh pull
+      # Schelagg's database (Neon). Without the DATABASE_URL secret this is a notice and the
+      # scrape publishes the JSON files only. A database problem never stops the scrape: a
+      # failed migration shows here, and a failed write goes in the source-failed issue.
+      - name: Migrate the database
+        continue-on-error: true
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/db-migrate.mjs
       - run: npm run scrape
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       # To the data branch, never main: a push to main is a Vercel deployment.
       - name: Commit updated data
         run: |
