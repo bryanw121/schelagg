@@ -38,7 +38,7 @@ price the adapter hard-codes. After every scrape, `lib/health.js` compares the r
 | **API data changed shape** | A key the adapter reads (`reads` in Volleyworld and Reclub) gone from the raw data, with the keys that appeared |
 | **Page changed** | The schedule lines ATX Beach and Velocity are read from changed, so details their adapters fill in may be stale |
 | **New warning** | A new validation or adapter warning, such as a Reclub venue missing from `config/sources.json` |
-| **Hand-checked session** | A `data/manual.json` source page that changed or can't be watched, or an entry not verified in 30 days |
+| **Hand-checked session** | A `data/manual.json` source page that changed or can't be watched, an entry not verified in 30 days, or one dropped for malformed data |
 
 New findings go to a **Schedule scrape: source changed** issue (one open issue, with a comment per new batch) and the
 run summary. Each is reported once; when the problem clears it's forgotten, so a recurrence is reported again. Close the

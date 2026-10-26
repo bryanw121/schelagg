@@ -334,6 +334,8 @@ test('scrape pipeline: a source that still scrapes but changed what it sends is 
   const changes1 = readFileSync(ws.paths.changes, 'utf8');
   assert.match(changes1, /^Source changes noticed on 2026-10-25:/);
   assert.match(changes1, /manual-grass-sat: its source page can't be watched \(HTTP 500\)/);
+  // The malformed hand-written entry is dropped from the site, and that's reported too.
+  assert.match(changes1, /\*\*manual\*\* · New warning: dropped manual-bad: needs a date or recurring days/);
   const usual = first.schedule.sources[0].count;
   assert.ok(usual >= 9);
   const health = readJson(ws.paths.health);
