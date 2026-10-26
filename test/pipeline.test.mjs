@@ -83,14 +83,14 @@ const MANUAL_SESSIONS = [
  * The network as the adapters see it. `down` lists hostnames that answer 503; `pages`
  * overrides example.test bodies (the manual watcher).
  */
-function network({ down = new Set(), pages = {} } = {}) {
+function network({ down = new Set(), pages = {}, arketa } = {}) {
   const calls = [];
   const f = async (url) => {
     const u = new URL(String(url));
     calls.push(u.href);
     const res = (body, status = 200) => new Response(body, { status });
     if (down.has(u.hostname)) return res('down', 503);
-    if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return res(fixture('arketa-volleyworld-schedule.json'));
+    if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return res(arketa ?? fixture('arketa-volleyworld-schedule.json'));
     if (u.hostname === 'reclub.co') {
       if (CLUBS[u.pathname]) return res(fixture(CLUBS[u.pathname]));
       const code = u.pathname.match(/^\/m\/(\w+)$/)?.[1];
@@ -115,6 +115,8 @@ function workspace({ prev } = {}) {
     feed: join(dir, 'occurrences.json'),
     watch: join(dir, 'watch.json'),
     failures: join(dir, 'scrape-failures.md'),
+    health: join(dir, 'health.json'),
+    changes: join(dir, 'scrape-changes.md'),
     publicCourts: repoPath('data/public-courts.json'),
     manualFile: (file) => join(dir, file),
   });
@@ -219,7 +221,7 @@ test('scrape pipeline: occurrences.json is the documented feed', async () => {
 test('scrape pipeline: the same inputs give byte-identical output', async () => {
   const a = await scrape();
   const b = await scrape();
-  for (const k of ['out', 'feed', 'watch', 'failures']) {
+  for (const k of ['out', 'feed', 'watch', 'failures', 'health', 'changes']) {
     assert.equal(readFileSync(a.ws.paths[k], 'utf8'), readFileSync(b.ws.paths[k], 'utf8'), k);
   }
 });
@@ -318,6 +320,50 @@ test('scrape pipeline: hand-checked pages are watched and flagged when they chan
   assert.equal(changed.schedule.sessions.find((s) => s.id === 'manual-sand-sun').sourceChanged, REF);
   assert.equal(readJson(ws.paths.watch)['https://example.test/sand'].changedOn, REF);
   assert.notEqual(readJson(ws.paths.watch)['https://example.test/sand'].hash, watch1['https://example.test/sand'].hash);
+});
+
+test('scrape pipeline: a source that still scrapes but changed what it sends is reported once', async () => {
+  const volleyworld = SOURCES.filter((s) => s.id === 'volleyworld');
+  const ws = workspace();
+  const arketa = JSON.parse(fixture('arketa-volleyworld-schedule.json'));
+  const withClasses = (classes) => JSON.stringify({ ...arketa, data: { ...arketa.data, classes } });
+
+  // First run: no baseline yet, so only the hand-checked sessions that need a look.
+  const first = await scrape({ ws, sources: volleyworld });
+  assert.ok(first.fresh.every((f) => f.source === 'manual'));
+  const changes1 = readFileSync(ws.paths.changes, 'utf8');
+  assert.match(changes1, /^Source changes noticed on 2026-10-25:/);
+  assert.match(changes1, /manual-grass-sat: its source page can't be watched \(HTTP 500\)/);
+  // The malformed hand-written entry is dropped from the site, and that's reported too.
+  assert.match(changes1, /\*\*manual\*\* · New warning: dropped manual-bad: needs a date or recurring days/);
+  const usual = first.schedule.sources[0].count;
+  assert.ok(usual >= 9);
+  const health = readJson(ws.paths.health);
+  assert.deepEqual(health.sources.volleyworld.counts, [usual]);
+  assert.ok(health.sources.volleyworld.shape.includes('max_capacity'));
+
+  // Same data again: nothing new to report.
+  const same = await scrape({ ws, sources: volleyworld });
+  assert.equal(same.fresh.length, 0);
+  assert.equal(readFileSync(ws.paths.changes, 'utf8'), '');
+
+  // Arketa renames max_capacity: the scrape still works, but capacity and spots left vanish.
+  const renamed = withClasses(arketa.data.classes.map(({ max_capacity, ...c }) => ({ ...c, capacity_max: max_capacity })));
+  const r = await scrape({ ws, sources: volleyworld, fetch: network({ arketa: renamed }) });
+  assert.equal(r.failed.length, 0);
+  assert.deepEqual(r.fresh.map((f) => f.kind).sort(), ['fields', 'fields', 'shape']);
+  const changes = readFileSync(ws.paths.changes, 'utf8');
+  assert.match(changes, /\*\*volleyworld\*\* · Field disappeared: no session has `capacity` any more/);
+  assert.match(changes, /\*\*volleyworld\*\* · API data changed shape: the raw data no longer has `max_capacity`, which the adapter reads\. New keys: `capacity_max`/);
+
+  // Classes renamed so most fall out of the adult filter: far fewer sessions than usual.
+  const fewer = withClasses(arketa.data.classes.map((c, i) => (i % 6 ? { ...c, name: `Program ${i}` } : c)));
+  const summaryFile = join(ws.dir, 'summary.md');
+  const drop = await scrape({ ws, sources: volleyworld, fetch: network({ arketa: fewer }), summaryFile });
+  assert.ok(drop.schedule.sources[0].count <= usual / 3);
+  assert.ok(drop.fresh.some((f) => f.kind === 'count'));
+  assert.match(readFileSync(ws.paths.changes, 'utf8'), /Fewer sessions than usual: returned \d+ sessions; it usually returns about \d+/);
+  assert.match(readFileSync(summaryFile, 'utf8'), /#### Needs a look/);
 });
 
 // --- buildCourts --------------------------------------------------------------------------

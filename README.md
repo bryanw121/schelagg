@@ -24,13 +24,35 @@ so this is how we tell a rental that's open to the public from one that isn't.
 If a scraper breaks, its last good sessions stay up marked **Couldn't recheck**, and the workflow opens a GitHub issue.
 If a court calendar can't be read, the last good copy from the live site stays up, marked as such.
 
+### Catching source changes
+
+A scraper that throws is the easy case. The harder one is a source that changes and the scrape keeps "working": a class
+gets renamed and drops out of the adult filter, an API field is renamed so capacity quietly disappears, or a page edits the
+price the adapter hard-codes. After every scrape, `lib/health.js` compares the run with the last ones (stored in
+`data/health.json`) and reports:
+
+| Check | Catches |
+|---|---|
+| **Fewer sessions than usual** | A source returning a third or less of its usual count (median of the last 10 runs) |
+| **Field disappeared** | A field most sessions had (`capacity`, `price`, `end`, ...) now missing from all of them |
+| **API data changed shape** | A key the adapter reads (`reads` in Volleyworld and Reclub) gone from the raw data, with the keys that appeared |
+| **Page changed** | The schedule lines ATX Beach and Velocity are read from changed, so details their adapters fill in may be stale |
+| **New warning** | A new validation or adapter warning, such as a Reclub venue missing from `config/sources.json` |
+| **Hand-checked session** | A `data/manual.json` source page that changed or can't be watched, an entry not verified in 30 days, or one dropped for malformed data |
+
+New findings go to a **Schedule scrape: source changed** issue (one open issue, with a comment per new batch) and the
+run summary. Each is reported once; when the problem clears it's forgotten, so a recurrence is reported again. Close the
+issue once you've adjusted the adapter, config or manual data. The **source failed** issue closes itself once every
+source scrapes again.
+
 ## Workflows
 
 - **Deploy site** (`.github/workflows/pages.yml`): every 15 minutes, on every push, and after each schedule refresh.
   Fetches court calendars, then publishes `public/` to GitHub Pages.
 - **Refresh schedules** (`.github/workflows/scrape.yml`): hourly, 6am to midnight Austin time. Runs tests, scrapes,
-  commits `public/data/schedule.json` and the public feed `public/data/occurrences.json`. A failing source keeps one
-  issue open and comments on it.
+  commits `public/data/schedule.json`, the public feed `public/data/occurrences.json` and `data/health.json`. A failing
+  source keeps one issue open and comments on it; a source that changed what it sends gets its own issue (see
+  [Catching source changes](#catching-source-changes)).
 - **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
   plus the site e2e in Chromium on Linux.
 

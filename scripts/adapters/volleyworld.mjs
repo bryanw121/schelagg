@@ -3,9 +3,13 @@
 import { addDays, endAfter, localDateTime } from '../../lib/time.js';
 import { localToIso } from '../../lib/occurrences.js';
 import { get } from '../../lib/http.js';
+import { shapeUnion } from '../../lib/health.js';
 
 export const id = 'volleyworld';
 export const needsBrowser = false;
+/** Arketa class fields parse() reads. lib/health.js reports any that vanish from the API. */
+export const reads = ['name', 'display', 'start_time', 'duration', 'location', 'location.name', 'location.city',
+  'max_capacity', 'total_booked', 'hostName', 'canceled', 'isBookable', 'waitlistLength', 'id'];
 
 const URL_ = 'https://app.arketa.co/iframe/volleyworld/schedule';
 const API = 'https://widget-api-tkaeguucxq-uc.a.run.app/ejkJj0YI8MYhO9if44ItXiKYhrt2/schedule';
@@ -69,9 +73,10 @@ async function fetchRange(from, days, timeZone, http) {
 }
 
 export async function scrape({ ref, timezone = 'America/Chicago', fetch }) {
-  const sessions = parse(await fetchRange(ref, HORIZON_DAYS + 1, timezone, { fetch }), timezone);
+  const json = await fetchRange(ref, HORIZON_DAYS + 1, timezone, { fetch });
+  const sessions = parse(json, timezone);
   if (!sessions.length) throw new Error('No adult sessions in the Arketa schedule — class names may have changed');
-  return { sessions };
+  return { sessions, shape: shapeUnion(json.data.classes) };
 }
 
 /** Pure half of check(): compare one day's classes with the session id (and what we published, if known). */
