@@ -7,6 +7,9 @@
 #   scripts/data-branch.sh push "<msg>"  commit the working tree's data files to origin/data
 set -euo pipefail
 FILES=(public/data/schedule.json public/data/occurrences.json data/watch.json data/health.json)
+# Vercel reads vercel.json from the commit it is about to build, so the data branch carries
+# main's copy: its git.deploymentEnabled turns the data branch off. Pushed, never pulled.
+CONFIG=(vercel.json)
 cmd=${1:-}
 
 case "$cmd" in
@@ -26,7 +29,7 @@ case "$cmd" in
   push)
     msg=${2:?commit message required}
     tmp=$(mktemp -d)
-    for f in "${FILES[@]}"; do [ -f "$f" ] && { mkdir -p "$tmp/$(dirname "$f")"; cp "$f" "$tmp/$f"; }; done
+    for f in "${FILES[@]}" "${CONFIG[@]}"; do [ -f "$f" ] && { mkdir -p "$tmp/$(dirname "$f")"; cp "$f" "$tmp/$f"; }; done
     repo=$(pwd)
     wt=$(mktemp -d)/data
     trap 'cd "$repo"; git worktree remove --force "$wt" >/dev/null 2>&1 || true' EXIT
@@ -37,7 +40,7 @@ case "$cmd" in
     fi
     cp -R "$tmp/." "$wt/"
     cd "$wt"
-    present=(); for f in "${FILES[@]}"; do [ -f "$f" ] && present+=("$f"); done
+    present=(); for f in "${FILES[@]}" "${CONFIG[@]}"; do [ -f "$f" ] && present+=("$f"); done
     [ ${#present[@]} -gt 0 ] || { echo "No data files to push." >&2; exit 1; }
     git add -- "${present[@]}"
     if git diff --cached --quiet; then echo "Data unchanged."; exit 0; fi
