@@ -132,6 +132,8 @@ vteam or its database.
 
 ### Live API
 
+Vercel redeploys only when code changes: a commit that touches nothing but `public/data/` (every scheduled refresh) is skipped (`ignoreCommand` in `vercel.json`), which keeps the account under Vercel's daily deployment limit. So `/api/check` reads the latest published schedule from GitHub Pages (falling back to the copy bundled with the function), not from its own deployment.
+
 Two small JSON endpoints for views that need fresher data than the hourly feed (e.g. a booking screen). They run as
 Vercel functions (`api/*.js`, deployed with `vercel.json`; GitHub Pages only serves the static feed, so the API exists
 once the repo is deployed to Vercel) and locally under `npm run dev`. Both are `GET` only, send
