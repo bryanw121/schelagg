@@ -3,7 +3,8 @@
 Where to play volleyball in Austin: open play, adult training, leagues and Reclub meets, split into indoor / sand / grass,
 plus court availability at High Point, The Crossover and Roots' Treehouse Gym. Every session links to its sign-up.
 
-Hosted on GitHub Pages. Everything runs on GitHub Actions; no server or extra accounts.
+Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional extras are a Postgres database on Neon
+(see [Database (Neon)](#database-neon)) and the Vercel API.
 
 ## How data stays fresh
 
@@ -81,8 +82,9 @@ ran `npm test` and the site e2e.
 
 - **Deploy site** (`.github/workflows/pages.yml`): every 15 minutes, on every push, and after each schedule refresh.
   Fetches court calendars, then publishes `public/` to GitHub Pages.
-- **Refresh schedules** (`.github/workflows/scrape.yml`): hourly, 6am to midnight Austin time. Runs tests, scrapes,
-  commits `public/data/schedule.json`, the public feed `public/data/occurrences.json` and `data/health.json`. A failing
+- **Refresh schedules** (`.github/workflows/scrape.yml`): hourly, 6am to midnight Austin time. Runs tests, migrates
+  the database (skipped without the `DATABASE_URL` secret), scrapes, writes the run to the database, and commits
+  `public/data/schedule.json`, the public feed `public/data/occurrences.json` and `data/health.json`. A failing
   source keeps one issue open and comments on it; a source that changed what it sends gets its own issue (see
   [Catching source changes](#catching-source-changes)).
 - **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
@@ -103,11 +105,12 @@ npm test                          # unit + integration tests (parsers, API handl
 npm run test:e2e                  # the site in Chromium against server.js, with fixture data (needs playwright's chromium)
 npm run check:skedda              # checks the court calendars respond to a plain script
 npm run courts                    # write public/data/courts.json
-npm run scrape                    # rebuild public/data/schedule.json + occurrences.json
-npm run dev                       # http://localhost:5173 (+ live /api/courts and /api/check)
+npm run scrape                    # rebuild public/data/schedule.json + occurrences.json (+ the database, if DATABASE_URL is set)
+npm run db:migrate                # apply db/migrations to DATABASE_URL (does nothing without it)
+npm run dev                       # http://localhost:5173 (+ live /api/courts, /api/check and /api/sessions)
 ```
 
-`api/courts.js`, `api/check.js` + `vercel.json` also let the same repo deploy to Vercel with on-request data (see
+`api/courts.js`, `api/check.js`, `api/sessions.js` + `vercel.json` also let the same repo deploy to Vercel with on-request data (see
 [Live API](#live-api)).
 
 ## Independence and the public feed
@@ -134,9 +137,9 @@ vteam or its database.
 
 Scheduled refreshes push their output (`public/data/schedule.json`, `occurrences.json`, `data/watch.json`, `data/health.json`) to the **`data` branch**, never `main` (`scripts/data-branch.sh`). Vercel deploys `main` only (`git.deploymentEnabled` in `vercel.json` turns the `data` branch off), so a refresh never uses a Vercel deployment: every push Vercel builds counts against its daily limit, even a skipped build. GitHub Pages is built from `main` with the `data` branch laid over it, and `/api/check` reads the latest published schedule from Pages (falling back to the copy bundled with the function). The copies of those files on `main` are only a seed for local development.
 
-Two small JSON endpoints for views that need fresher data than the hourly feed (e.g. a booking screen). They run as
+Small JSON endpoints for views that need fresher data than the hourly feed (e.g. a booking screen) or one window of it. They run as
 Vercel functions (`api/*.js`, deployed with `vercel.json`; GitHub Pages only serves the static feed, so the API exists
-once the repo is deployed to Vercel) and locally under `npm run dev`. Both are `GET` only, send
+once the repo is deployed to Vercel) and locally under `npm run dev`. All are `GET` only, send
 `access-control-allow-origin: *` (an `OPTIONS` preflight gets `204`), and are cached at the CDN for 60 seconds
 (`cache-control: public, s-maxage=60, stale-while-revalidate=120`), so every caller sees data at most a minute or two old.
 
@@ -177,10 +180,83 @@ Reclub fetches that meet's page. Adapters implement it as
 `check({ sessionId, options, timezone, expected, now, fetch, signal }) -> { status, session?, changes?, checkedAt }`,
 where `expected` is the published session (if any) and `signal` aborts at the timeout.
 
+#### `GET /api/sessions?sport=&region=&from=&to=`
+
+Occurrences starting on local dates `from` to `to` (inclusive, `YYYY-MM-DD`, in each row's own time zone), optionally
+for one `sport` / `region` (lowercase slugs). `from` defaults to today (Austin time) and `to` to 28 days after `from`;
+a window may be at most 60 days. Each item is exactly an `occurrences.json` row, in the feed's order:
+
+```jsonc
+// 200 (cache-control: public, max-age=60, s-maxage=60, stale-while-revalidate=120)
+{ "feedVersion": 1, "generatedAt": "...", "from": "2026-10-25", "to": "2026-11-22", "sport": "volleyball", "region": "austin", "occurrences": [ ... ] }
+// 400  { "error": "..." }           bad date or slug, to before from, more than 60 days
+// 503  { "error": "schedule unavailable" }
+```
+
+It reads the database with `DATABASE_URL_READONLY`, so past windows work too (history is kept). Without it, or if the
+database fails or has no run yet, it filters the published `occurrences.json` (Pages, then the copy bundled with the
+function). The `x-schelagg-source` header says which: `db`, `feed` or `bundled`. With `DATABASE_URL_READONLY` set,
+`/api/check` also takes the published sessions from the database, with the same fallbacks as before.
+
 #### `GET /api/courts?days=7`
 
 Live court bookings and opening hours for High Point, The Crossover and Treehouse (Skedda), `days` 1 to 21 from today:
 `{ fetchedAt, from, days, venues: [...], errors: [...] }`. A venue that fails keeps its last good copy marked `stale`.
+
+## Database (Neon)
+
+Schelagg's own Postgres database (on Neon) is the source of truth for what was scraped; the JSON files above are still
+written from the same run and published unchanged, as a compatibility feed, so consumers keep working without
+changes. Until the connection strings below are set, everything here is inert: the scrape writes files only, the
+migration step prints a notice, and the API serves the published files.
+
+**What's stored** (`db/migrations/0001_init.sql`):
+
+| Table | Holds |
+|---|---|
+| `sources` | Every scrape source plus `manual`: sport, region, adapter, `last_ok_at`, `last_error`, `last_checked_at`, `count` |
+| `sessions` | The published sessions (schema v2). Stable fields are columns (`title`, `venue`, `date`, `days`, `start_time`, `signup_url`, `canceled`, ...); sport-specific ones in `attributes` (same split as the feed); the session exactly as `schedule.json` has it in `data`. `first_seen_at`, `last_seen_at`, `updated_at`; `removed_at` once it leaves the schedule (cleared if it returns) |
+| `occurrences` | The feed's dated rows, keyed by occurrence id: `starts_at` / `ends_at`, `local_date`, sport, region, `session_id`, `canceled`, and the full feed object in `data` |
+| `session_changes` | History: `added`, `changed` (with `fields`), `canceled`, `uncanceled`, `removed`, with `before` / `after` |
+| `scrape_runs` | One row per run: start / finish, `generated_at`, `ok`, per-source `summary`, health `findings`, write `stats` |
+
+Each run is written in one transaction (`writeRun` in `lib/db.js`), with the same rules as the files:
+
+- A source that fails keeps its last good sessions and upcoming occurrences; nothing of it is marked removed.
+- A session missing from a source that succeeded gets `removed_at` and a `removed` change, and its upcoming
+  occurrences are deleted (that's a cancellation). A dated session that is simply over expires quietly (`removed_at`,
+  no change entry). Past occurrences are kept as history.
+- Upcoming occurrences (from the run's time) of every source that succeeded are replaced by the run's feed.
+- `changed` ignores bookkeeping and live availability (`verifiedAt`, `checkFailed`, `spotsLeft`, `full`, ...); the
+  row still holds their current values.
+- A run already written (same `generatedAt`) is skipped, so a retry is safe.
+
+A failed database write never fails the scrape: it's logged, added to `scrape-failures.md` (so the **source failed**
+issue reports it) and the step summary, and the JSON feed is published as usual.
+
+**Connection strings** (Neon's pooled connection strings, with `sslmode=require`; never commit them):
+
+| Variable | Where | Role |
+|---|---|---|
+| `DATABASE_URL` | GitHub repository secret, used by the scrape workflow | The owner role: runs migrations and writes each scrape |
+| `DATABASE_URL_READONLY` | Vercel environment variable | `schelagg_reader`: read-only, for `/api/sessions` and `/api/check` |
+
+**Migrations.** `scripts/db-migrate.mjs` (`npm run db:migrate`) applies `db/migrations/NNNN_name.sql` files not yet
+in `schema_migrations`, each in a transaction, then `db/grants.sql`. It runs before every scrape and is idempotent;
+add a new numbered file rather than editing one that has been applied. Without `DATABASE_URL` it exits 0 with a notice.
+
+**Read-only role.** Migrations don't create roles. Once, in the Neon SQL editor as the owner, run
+`create role schelagg_reader with login password '<generate one>';` (in SQL, not the console's Roles page, which
+makes roles members of `neon_superuser`). The next migration run's `db/grants.sql` gives it `SELECT` on the tables
+above (and on tables later migrations add); until the role exists that file does nothing. Build
+`DATABASE_URL_READONLY` from it.
+
+**Setup, once:** create the Neon project and database; add its owner connection string as the `DATABASE_URL`
+repository secret; run **Refresh schedules**; create `schelagg_reader` as above and run it again; set
+`DATABASE_URL_READONLY` in Vercel.
+
+**Independence.** The database is Schelagg's alone. It holds no vteam credentials or data, and vteam has no
+credentials to it: consumers keep reading the published feed (or the public API). Don't connect the two.
 
 ## Layout
 
@@ -192,12 +268,15 @@ lib/occurrences.js       sessions -> dated occurrences (the public feed)
 lib/skedda.js            Skedda fetch, recurrence expansion, opening hours
 lib/check.js             live re-check of one session (behind api/check.js)
 lib/pipeline.js          runScrape + buildCourts: the scheduled jobs, with injectable paths / fetch / clock
+lib/db.js                Postgres storage: connect, migrate, writeRun / persistRun, API reads (see Database)
 lib/devalue.js           reads Nuxt's __NUXT_DATA__ payload (Reclub pages)
 lib/http.js              plain GET for API/page adapters
 lib/time.js              time-zone-aware date helpers
 lib/paths.js             repo-anchored paths + .env loading (any OS)
 scripts/build-courts.mjs court calendars -> public/data/courts.json (buildCourts)
-scripts/scrape.mjs       hourly job: run every configured source, validate, write schedule + feed (runScrape)
+scripts/scrape.mjs       hourly job: run every configured source, validate, write schedule + feed (runScrape) + database
+scripts/db-migrate.mjs   apply db/migrations + db/grants.sql to DATABASE_URL
+db/                      migrations/NNNN_name.sql and grants.sql (the read-only role's SELECT)
 scripts/sanitize-fixtures.mjs  strips personal data from captured fixtures (run by capture-fixtures.mjs)
 scripts/adapters/        one module per platform or site
 data/manual.json         hand-checked sessions
@@ -205,7 +284,9 @@ data/public-courts.json  free city courts
 public/                  the site (index.html, app.js, styles.css, data/)
 api/courts.js            live court bookings (Vercel / local dev)
 api/check.js             live re-check of one session (Vercel / local dev)
-test/                    node:test suites (npm test); never touch the network: fetch is injected, fixtures in test/fixtures
+api/sessions.js          occurrences for a window, from the database or the feed (Vercel / local dev)
+test/                    node:test suites (npm test); never touch the network: fetch is injected, fixtures in test/fixtures;
+                         database tests run real Postgres in-process (PGlite)
 e2e/                     Playwright site test (npm run test:e2e)
 ```
 

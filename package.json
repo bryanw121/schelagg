@@ -10,10 +10,17 @@
     "test:e2e": "node --test e2e/site.e2e.mjs",
     "scrape": "node scripts/scrape.mjs",
     "courts": "node scripts/build-courts.mjs",
-    "check:skedda": "node scripts/check-skedda.mjs"
+    "check:skedda": "node scripts/check-skedda.mjs",
+    "db:migrate": "node scripts/db-migrate.mjs"
+  },
+  "dependencies": {
+    "postgres": "3.4.9"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.9",
     "playwright": "1.48.2"
   },
-  "engines": { "node": ">=20.12" }
+  "engines": {
+    "node": ">=20.12"
+  }
 }
