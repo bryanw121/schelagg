@@ -5,8 +5,18 @@ or more sources changed what they send, and listed the new findings in `scrape-c
 it first). The scrape still published, so the site may be showing wrong or missing sessions now.
 
 Your job: make the smallest correct change that adapts Schelagg to each change, prove it with a
-test, and explain it. A workflow step after you runs `npm test` and opens a pull request with your
-changes for a human to review. You don't commit, push or open the PR yourself.
+test, and explain it. You don't commit, push or open a PR yourself: a workflow step after you does,
+and **merges your change without review** only if every gate passes:
+
+1. You only changed `scripts/adapters/`, `config/sources.json`, `scripts/sanitize-fixtures.mjs`,
+   `test/parsers.test.mjs`, `test/fixtures/` or `README.md`.
+2. `npm test` passes.
+3. The site end-to-end test passes.
+4. A live re-run of the whole scrape with your change shows the reported problems gone and no
+   source newly broken.
+
+Otherwise it opens a pull request for a person. So keep fixes inside the adapter and its tests
+when you can. If the right fix needs shared code (`lib/`), do it anyway: it will just be reviewed.
 
 ## Ground rules
 
@@ -39,6 +49,9 @@ changes for a human to review. You don't commit, push or open the PR yourself.
   list, update `scripts/sanitize-fixtures.mjs` if the field is whitelisted there, and add or
   adjust a parser test in `test/parsers.test.mjs` with the new field name.
 - **Field disappeared**: usually the same as above; find where the value moved in the raw data.
+- **Failing repeatedly**: inspect the source. If the response or page format changed, fix the
+  parser and add a test with the new format. If it's blocked (a 403, a bot check) or down, change
+  nothing and say so: that needs a person.
 - **Fewer sessions than usual**: inspect the source. If classes were renamed or a filter stopped
   matching (for example Volleyworld's `ADULT` pattern), fix the filter and add a test with the
   new name. If the source really has fewer sessions (a holiday week, a season ending), change

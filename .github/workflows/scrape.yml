@@ -19,7 +19,7 @@ jobs:
     # Per job, so an auto-fix still running doesn't hold up the next hour's scrape.
     concurrency: scrape
     outputs:
-      changed: ${{ steps.changes.outputs.changed }}
+      fixable: ${{ steps.changes.outputs.fixable }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -67,23 +67,29 @@ jobs:
             else
               gh issue create --title "Schedule scrape: source changed $(date -u +%F)" --body-file scrape-changes.md --assignee "$GITHUB_REPOSITORY_OWNER"
             fi
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+            # Hand-checked sessions need a person; auto-fix only starts for source findings.
+            if [ "$(jq '[.[] | select(.source != "manual")] | length' scrape-changes.json)" -gt 0 ]; then
+              echo "fixable=true" >> "$GITHUB_OUTPUT"
+            fi
           fi
       - name: Hand the new changes to the auto-fix job
-        if: steps.changes.outputs.changed == 'true'
+        if: steps.changes.outputs.fixable == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: scrape-changes
-          path: scrape-changes.md
+          path: |
+            scrape-changes.md
+            scrape-changes.json
           retention-days: 7
 
-  # Right after a scrape that noticed something new, Claude Code tries to adapt to it and the
-  # result goes up as a pull request for review (never straight to main: a wrong fix would
-  # publish bad schedules). Instructions: .github/autofix-prompt.md. Needs the
-  # CLAUDE_CODE_OAUTH_TOKEN secret (`claude setup-token`); skipped without it.
+  # Right after a scrape that noticed something new in a source, Claude Code tries to adapt to
+  # it (instructions: .github/autofix-prompt.md). .github/autofix-finish.sh then merges the fix
+  # if every gate passes (tests, site e2e, a live re-run of the scrape that shows the problem
+  # gone) and otherwise opens a pull request for review. Needs the CLAUDE_CODE_OAUTH_TOKEN
+  # secret (`claude setup-token`, valid for a year); skipped without it.
   autofix:
     needs: scrape
-    if: needs.scrape.outputs.changed == 'true'
+    if: needs.scrape.outputs.fixable == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     concurrency: autofix
@@ -91,6 +97,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      actions: write # start a fresh scrape after merging a fix
       id-token: write
     steps:
       - name: Check for the Claude token
@@ -103,6 +110,7 @@ jobs:
         if: steps.token.outputs.present == 'true'
         with:
           ref: main # includes the data the scrape job just committed
+          fetch-depth: 50 # the health baseline from before the change, for verification
       - uses: actions/setup-node@v4
         if: steps.token.outputs.present == 'true'
         with:
@@ -115,7 +123,9 @@ jobs:
         with:
           name: scrape-changes
       - name: Claude adapts to the change
+        id: claude
         if: steps.token.outputs.present == 'true'
+        continue-on-error: true
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -124,32 +134,20 @@ jobs:
           claude_args: |
             --max-turns 60
             --allowedTools "Read,Edit,Write,Glob,Grep,WebFetch,Bash(npm test),Bash(node --test:*),Bash(node scripts/inspect-source.mjs:*),Bash(node scripts/sanitize-fixtures.mjs)"
-      - name: Open a pull request, or report why not
-        if: steps.token.outputs.present == 'true'
+      - name: Say so on the issue if Claude couldn't run
+        if: steps.claude.outcome == 'failure'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           issue=$(gh issue list --state open --search 'in:title "Schedule scrape: source changed"' --json number --jq '.[0].number')
-          summary=autofix-summary.md
-          [ -s "$summary" ] || echo "Claude didn't leave a summary; see the workflow run log." > "$summary"
-          echo -e "\n\n---\nAuto-fix run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$summary"
-          git add -- lib scripts config test data/manual.json README.md
-          if git diff --cached --quiet; then
-            [ -n "$issue" ] && gh issue comment "$issue" --body-file "$summary"
-            exit 0
-          fi
-          if ! npm test > test-output.txt 2>&1; then
-            { echo "Auto-fix made changes but \`npm test\` failed, so no pull request was opened."; echo; cat "$summary"; echo; echo '```'; tail -40 test-output.txt; echo '```'; } > failed.md
-            [ -n "$issue" ] && gh issue comment "$issue" --body-file failed.md
-            exit 1
-          fi
-          branch="autofix/$(date -u +%Y%m%d-%H%M)"
-          git config user.name "schelagg-autofix"
-          git config user.email "schelagg-autofix@users.noreply.github.com"
-          git checkout -b "$branch"
-          git commit -q -m "Auto-fix: adapt to source changes${issue:+ (#$issue)}"
-          git push -q origin "$branch"
-          [ -n "$issue" ] && echo -e "\n\nAddresses #$issue." >> "$summary"
-          pr=$(gh pr create --base main --head "$branch" --title "Auto-fix: adapt to source changes$( [ -n "$issue" ] && echo " (#$issue)")" --body-file "$summary" --assignee "$GITHUB_REPOSITORY_OWNER")
-          [ -n "$issue" ] && gh issue comment "$issue" --body "Auto-fix opened $pr for review."
-          echo "::notice::Opened $pr"
+          msg="Auto-fix couldn't run Claude Code: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+
+          If the log shows an authentication error, the CLAUDE_CODE_OAUTH_TOKEN secret has probably expired (it lasts a year). Run \`claude setup-token\` and update the secret in Settings → Secrets and variables → Actions."
+          [ -n "$issue" ] && gh issue comment "$issue" --body "$msg"
+          exit 1
+      - name: Merge the fix if every gate passes, otherwise open a pull request
+        if: steps.claude.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # The committed copy, not the working tree Claude could have edited.
+        run: git show HEAD:.github/autofix-finish.sh > "$RUNNER_TEMP/autofix-finish.sh" && bash "$RUNNER_TEMP/autofix-finish.sh"

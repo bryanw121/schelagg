@@ -13,6 +13,7 @@ import { validateSessions, SCHEMA_VERSION, SPORT_ATTRIBUTES } from '../lib/sessi
 import { FEED_VERSION } from '../lib/occurrences.js';
 import { VENUES } from '../lib/skedda.js';
 import { runScrape, scrapePaths, buildCourts, HORIZON_DAYS, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
+import { judgeFix } from '../lib/health.js';
 
 const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
@@ -117,6 +118,7 @@ function workspace({ prev } = {}) {
     failures: join(dir, 'scrape-failures.md'),
     health: join(dir, 'health.json'),
     changes: join(dir, 'scrape-changes.md'),
+    changesJson: join(dir, 'scrape-changes.json'),
     publicCourts: repoPath('data/public-courts.json'),
     manualFile: (file) => join(dir, file),
   });
@@ -221,7 +223,7 @@ test('scrape pipeline: occurrences.json is the documented feed', async () => {
 test('scrape pipeline: the same inputs give byte-identical output', async () => {
   const a = await scrape();
   const b = await scrape();
-  for (const k of ['out', 'feed', 'watch', 'failures', 'health', 'changes']) {
+  for (const k of ['out', 'feed', 'watch', 'failures', 'health', 'changes', 'changesJson']) {
     assert.equal(readFileSync(a.ws.paths[k], 'utf8'), readFileSync(b.ws.paths[k], 'utf8'), k);
   }
 });
@@ -364,6 +366,36 @@ test('scrape pipeline: a source that still scrapes but changed what it sends is 
   assert.ok(drop.fresh.some((f) => f.kind === 'count'));
   assert.match(readFileSync(ws.paths.changes, 'utf8'), /Fewer sessions than usual: returned \d+ sessions; it usually returns about \d+/);
   assert.match(readFileSync(summaryFile, 'utf8'), /#### Needs a look/);
+});
+
+test('auto-fix verification: a fix is mergeable when a live re-run against the pre-change baseline is clean', async () => {
+  const volleyworld = SOURCES.filter((s) => s.id === 'volleyworld');
+  const ws = workspace();
+  const arketa = JSON.parse(fixture('arketa-volleyworld-schedule.json'));
+  const renamed = JSON.stringify({ ...arketa, data: { classes: arketa.data.classes.map(({ max_capacity, ...c }) => ({ ...c, capacity_max: max_capacity })) } });
+  await scrape({ ws, sources: volleyworld });
+  await scrape({ ws, sources: volleyworld });
+  // Snapshot of health + schedule before the source changed (what the auto-fix job reads from git).
+  const baseline = readJson(ws.paths.health);
+  const baselineSources = readJson(ws.paths.out).sources;
+  const broken = await scrape({ ws, sources: volleyworld, fetch: network({ arketa: renamed }) });
+  const batch = broken.fresh;
+  assert.ok(batch.some((f) => f.kind === 'shape'));
+  assert.deepEqual(readJson(ws.paths.changesJson), JSON.parse(JSON.stringify(batch)));
+
+  // Re-run against the baseline in a fresh workspace, as verify-fix.mjs does.
+  const rerun = async (fetch) => {
+    const v = workspace();
+    writeFileSync(v.paths.health, JSON.stringify(baseline));
+    const r = await scrape({ ws: v, sources: volleyworld, fetch });
+    return judgeFix({ batch, baseline, baselineSources, verify: { sources: r.schedule.sources, findings: r.findings } });
+  };
+  // A fix that reads the new field gives the old data back (here: the source as it was).
+  assert.deepEqual(await rerun(network()), { mergeable: true, reasons: [] });
+  // Code that still can't read it is not mergeable.
+  const notFixed = await rerun(network({ arketa: renamed }));
+  assert.equal(notFixed.mergeable, false);
+  assert.ok(notFixed.reasons.some((r) => /Field disappeared: no session has `capacity`/.test(r)));
 });
 
 // --- buildCourts --------------------------------------------------------------------------

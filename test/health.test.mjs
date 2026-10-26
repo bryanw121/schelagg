@@ -1,7 +1,7 @@
 // lib/health.js: noticing sources that still scrape but changed what they send.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { assessHealth, shapeOf, shapeUnion, fieldCoverage, contentHash, findingsMarkdown, HISTORY } from '../lib/health.js';
+import { assessHealth, shapeOf, shapeUnion, fieldCoverage, contentHash, findingsMarkdown, judgeFix, HISTORY } from '../lib/health.js';
 import * as atx from '../scripts/adapters/atxbeach.mjs';
 import * as vel from '../scripts/adapters/velocity.mjs';
 
@@ -128,11 +128,24 @@ test('a failed run keeps the baseline and what was already reported', () => {
     { results: [ok('vw', 2, { contentHash: 'h1' })] }, { results: [{ id: 'vw', ok: false }] }, { results: [ok('vw', 2, { contentHash: 'h1' })] });
   assert.equal(drop.fresh.length, 1);
   assert.deepEqual(failed.findings, []);
-  assert.deepEqual(failed.health.sources.vw, drop.health.sources.vw);
+  assert.deepEqual(failed.health.sources.vw, { ...drop.health.sources.vw, failStreak: 1 });
   assert.deepEqual(failed.health.reported, ['vw:count']);
   // Still low after it recovers: not reported a second time.
   assert.equal(stillLow.findings.length, 1);
   assert.equal(stillLow.fresh.length, 0);
+});
+
+test('a source failing several scrapes in a row is reported once; one success resets the streak', () => {
+  const fail = { results: [{ id: 'aces', ok: false, error: 'HTTP 403' }] };
+  const [one, two, three, four, back, again] = runs(fail, fail, fail, fail, { results: [ok('aces', 2)] }, fail);
+  assert.deepEqual([one, two].map((r) => r.findings.length), [0, 0]);
+  assert.deepEqual(three.fresh.map((f) => [f.kind, f.key]), [['failing', 'aces:failing']]);
+  assert.match(three.fresh[0].message, /has failed 3 scrapes in a row \(HTTP 403\)/);
+  assert.equal(four.findings.length, 1);
+  assert.equal(four.fresh.length, 0);
+  assert.equal(back.health.sources.aces.failStreak, undefined);
+  assert.deepEqual(back.findings, []);
+  assert.equal(again.health.sources.aces.failStreak, 1);
 });
 
 test('hand-checked sessions: changed pages, unwatchable pages, and stale or missing verification', () => {
@@ -169,4 +182,31 @@ test('page adapters hash only the schedule lines they depend on', () => {
   const v = 'Season Dates: October 1 – December 18, 2026\nWednesday Open Play\nTime: 8PM – Midnight\nLevel: Beginner\nNewsletter signup below';
   assert.notEqual(contentHash(vel.watchedText(v)), contentHash(vel.watchedText(v.replace('Beginner', 'Advanced'))));
   assert.equal(contentHash(' a  b\n'), contentHash('a b'));
+});
+
+test('judgeFix: mergeable only when the fixed source is clean and nothing else broke', () => {
+  const batch = [{ key: 'vw:shape:max_capacity', source: 'vw', kind: 'shape', message: 'gone' }, { key: 'manual:x:unverified', source: 'manual', kind: 'manual', message: 'x' }];
+  const baselineSources = [{ id: 'vw', ok: true }, { id: 'reclub', ok: true }, { id: 'aces', ok: false }];
+  const okSources = [{ id: 'vw', ok: true }, { id: 'reclub', ok: true }, { id: 'aces', ok: false, error: 'HTTP 403' }];
+  const baseline = { reported: ['aces:failing'] };
+
+  // Clean: manual findings and an already-failing source don't block.
+  assert.deepEqual(judgeFix({ batch, baseline, baselineSources, verify: { sources: okSources, findings: [{ key: 'aces:failing', source: 'aces', kind: 'failing', message: 'm' }] } }),
+    { mergeable: true, reasons: [] });
+
+  // The finding is still there.
+  const still = judgeFix({ batch, baseline, baselineSources, verify: { sources: okSources, findings: [{ key: 'vw:field:capacity', source: 'vw', kind: 'fields', message: 'no capacity' }] } });
+  assert.equal(still.mergeable, false);
+  assert.match(still.reasons[0], /vw · Field disappeared: no capacity/);
+
+  // The fixed source fails, or another one that worked breaks.
+  assert.match(judgeFix({ batch, baseline, baselineSources, verify: { sources: [{ id: 'vw', ok: false, error: 'boom' }, ...okSources.slice(1)], findings: [] } }).reasons[0], /vw still fails: boom/);
+  assert.match(judgeFix({ batch, baseline, baselineSources, verify: { sources: [okSources[0], { id: 'reclub', ok: false, error: 'HTTP 500' }, okSources[2]], findings: [] } }).reasons[0], /reclub worked before the change and fails now/);
+
+  // A new problem elsewhere (shared code) blocks too.
+  assert.equal(judgeFix({ batch, baseline, baselineSources, verify: { sources: okSources, findings: [{ key: 'reclub:count', source: 'reclub', kind: 'count', message: 'dropped' }] } }).mergeable, false);
+
+  // Page changes always need a person; a batch with nothing verifiable can't merge.
+  assert.match(judgeFix({ batch: [...batch, { source: 'atx', kind: 'content', key: 'atx:content:h' }], baseline, baselineSources, verify: { sources: okSources, findings: [] } }).reasons[0], /atx: its page changed/);
+  assert.match(judgeFix({ batch: [batch[1]], baseline, baselineSources, verify: { sources: okSources, findings: [] } }).reasons[0], /nothing in this batch can be verified/);
 });
