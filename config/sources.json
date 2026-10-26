@@ -89,6 +89,27 @@
         "fallbackVenue": {
           "city": "Austin",
           "surface": "indoor"
+        },
+        "discover": {
+          "_doc": "Daily discovery of clubs not in clubs (scripts/discover-reclub.mjs). A club qualifies when one of its meets is this sport and is in Reclub community `community` or within radiusKm of center [lat, lng].",
+          "sport": "volleyball",
+          "community": "Austin, TX, USA",
+          "center": [
+            30.2672,
+            -97.7431
+          ],
+          "radiusKm": 60,
+          "queries": [
+            "site:reclub.co volleyball Austin",
+            "site:reclub.co volleyball \"Austin, Tx\"",
+            "site:reclub.co/clubs volleyball Austin",
+            "site:reclub.co Treehouse Gym",
+            "site:reclub.co Volleyworld",
+            "site:reclub.co Crossover Cedar Park volleyball",
+            "site:reclub.co High Point Leander volleyball",
+            "site:reclub.co ATX Beach volleyball",
+            "site:reclub.co volleyball Round Rock OR Pflugerville OR Georgetown"
+          ]
         }
       }
     },

@@ -13,6 +13,7 @@ Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional ext
 |---|---|---|
 | Court bookings + opening hours (High Point, Crossover, Treehouse) | `scripts/build-courts.mjs` reads their public Skedda calendars | Every ~15 min |
 | Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages (server-rendered meet data) | Hourly, 6am–midnight; live via `/api/check` |
+| New Reclub clubs | `scripts/discover-reclub.mjs` searches the web for Reclub meets in the area and opens a pull request per new club (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Daily |
 | Volleyworld adult sessions | Arketa's public schedule API (the JSON its booking widget reads), incl. cancellations and spots left | Hourly, 6am–midnight; live via `/api/check` |
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | Hourly, 6am–midnight |
 | ATX Beach open play | TeamUp membership page | Hourly, 6am–midnight |
@@ -90,10 +91,30 @@ ran `npm test` and the site e2e.
   `public/data/schedule.json`, the public feed `public/data/occurrences.json` and `data/health.json`. A failing
   source keeps one issue open and comments on it; a source that changed what it sends gets its own issue (see
   [Catching source changes](#catching-source-changes)).
+- **Discover Reclub clubs** (`.github/workflows/discover.yml`): daily. Opens a pull request for each new Reclub club
+  running volleyball meets in the area. Needs the `BRAVE_SEARCH_API_KEY` secret.
 - **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
   plus the site e2e in Chromium on Linux.
 
 First-time setup: **Settings → Pages → Source: GitHub Actions**, then run both workflows once from the Actions tab.
+
+### Discovering Reclub clubs
+
+Reclub only lets you browse clubs and meets by sport and location inside its app, so the scraper only reads the clubs
+listed in `options.clubs`. Discovery fills that gap from the outside: `scripts/discover-reclub.mjs` runs the web
+searches in `options.discover.queries` (Brave Search API), collects the reclub.co meet and club pages they turn up, and
+reads each unknown club's meets. A club qualifies when one of its meets is volleyball (`sport`) and is in Reclub's
+`community` (its city grouping, `"Austin, TX, USA"`) or within `radiusKm` of `center`. It reads at most 40 Reclub
+pages a run, a second apart.
+
+Each new club gets a pull request on `discover/reclub-<slug>` that adds it to `options.clubs`. Merge it and the next
+hourly scrape picks the club up (add its venues to `options.venues` if the scrape warns they're missing); close it and
+the club is never suggested again. Pull requests opened with the workflow's token don't start other workflows, so
+tests run on the next push or scrape. Recall is limited to what search engines have indexed, so a brand-new club can
+take a while to show up.
+
+Setup: get a key at https://api.search.brave.com and add it as the `BRAVE_SEARCH_API_KEY` repository secret (or in
+`.env` to run it locally: `node scripts/discover-reclub.mjs` writes `discover-candidates.json`).
 
 ## Run locally
 
@@ -278,6 +299,7 @@ lib/time.js              time-zone-aware date helpers
 lib/paths.js             repo-anchored paths + .env loading (any OS)
 scripts/build-courts.mjs court calendars -> public/data/courts.json (buildCourts)
 scripts/scrape.mjs       hourly job: run every configured source, validate, write schedule + feed (runScrape) + database
+scripts/discover-reclub.mjs  daily search for Reclub clubs not in the config (candidates; --apply <slug>)
 scripts/db-migrate.mjs   apply db/migrations + db/grants.sql to DATABASE_URL
 db/                      migrations/NNNN_name.sql and grants.sql (the read-only role's SELECT)
 scripts/sanitize-fixtures.mjs  strips personal data from captured fixtures (run by capture-fixtures.mjs)

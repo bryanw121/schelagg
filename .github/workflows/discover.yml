@@ -1,0 +1,54 @@
+name: Discover Reclub clubs
+
+# Daily: search the web for Reclub volleyball meets in the area from clubs config/sources.json
+# doesn't list (scripts/discover-reclub.mjs), and open one pull request per new club. Merge to
+# start scraping it; close to skip it for good. Needs the BRAVE_SEARCH_API_KEY secret; without
+# it the run is a notice and does nothing.
+on:
+  schedule:
+    - cron: '41 13 * * *' # 8:41am CDT (7:41am CST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: discover
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Find clubs
+        env:
+          BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+        run: node scripts/discover-reclub.mjs
+      - name: Open a pull request per new club
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "volley-atx-bot"
+          git config user.email "volley-atx-bot@users.noreply.github.com"
+          for slug in $(jq -r '.candidates[].slug' discover-candidates.json); do
+            branch="discover/reclub-$slug"
+            # Any earlier pull request for this club, merged or closed, means it's been decided.
+            if [ -n "$(gh pr list --state all --head "$branch" --json number --jq '.[0].number')" ]; then
+              echo "@$slug already proposed; skipping."
+              continue
+            fi
+            name=$(jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .name' discover-candidates.json)
+            jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .body' discover-candidates.json > "$RUNNER_TEMP/body.md"
+            git checkout -q -B "$branch" "$GITHUB_SHA"
+            node scripts/discover-reclub.mjs --apply "$slug"
+            git commit -qam "Add Reclub club @$slug (found by discovery)"
+            git push -q -f origin "$branch"
+            gh pr create --base main --head "$branch" --title "Add Reclub club: $name (@$slug)" \
+              --body-file "$RUNNER_TEMP/body.md" --assignee "$GITHUB_REPOSITORY_OWNER"
+          done
