@@ -62,9 +62,10 @@ if npm run test:e2e > e2e-output.txt 2>&1; then pass "Site end-to-end test"; els
 #    if nothing above already rules out merging).
 if $mergeable; then
   mkdir -p baseline
-  # The newest commit touching health.json is the run that reported the change; the one before
-  # it is the baseline.
-  base=$(git log --format=%H -n 2 -- data/health.json | sed -n 2p)
+  # The newest data-branch commit touching health.json is the run that reported the change;
+  # the one before it is the baseline. (Scrape output lives on the data branch, not main.)
+  git fetch -q --depth=50 origin data 2>/dev/null || true
+  base=$(git log --format=%H -n 2 origin/data -- data/health.json 2>/dev/null | sed -n 2p)
   if [ -n "$base" ]; then
     git show "$base:data/health.json" > baseline/health.json
     git show "$base:public/data/schedule.json" > baseline/schedule.json

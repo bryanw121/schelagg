@@ -3,7 +3,12 @@
   "framework": null,
   "buildCommand": "",
   "outputDirectory": "public",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- . ':(exclude)public/data'",
+  "git": {
+    "deploymentEnabled": {
+      "data": false,
+      "autofix/**": false
+    }
+  },
   "functions": {
     "api/check.js": {
       "maxDuration": 10,
