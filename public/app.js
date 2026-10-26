@@ -245,12 +245,17 @@ setInterval(() => renderMeta(), 60_000); // keep "x min ago" current while the p
 $('showAll').checked = state.showAll;
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });
 
+// The scrape publishes data files to GitHub Pages only (the data branch); the copy Vercel
+// bundles from main goes stale. So the Vercel-hosted page reads them from Pages (which allows
+// cross-origin reads). Pages itself and local server.js use their own data/ folder.
+const DATA = location.hostname.endsWith('.vercel.app') ? 'https://bryanw121.github.io/schelagg/data/' : 'data/';
+
 async function getJson(url) { const r = await fetch(url, { cache: 'no-cache' }); if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); }
 
 // Schedule first (small, static), then courts: the pre-built file, or the live API when running locally.
-try { schedule = await getJson('data/schedule.json'); render(); }
+try { schedule = await getJson(`${DATA}schedule.json`); render(); }
 catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`; }
-try { courts = await getJson('data/courts.json'); }
+try { courts = await getJson(`${DATA}courts.json`); }
 catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }
 render();
 setInterval(() => renderMeta(), 60_000); // keep "x min ago" current while the page stays open
