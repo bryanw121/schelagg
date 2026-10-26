@@ -53,6 +53,7 @@ test('data branch: push then pull round-trips the data files, main untouched', {
   for (const [k, v] of [['user.email', 't@e.st'], ['user.name', 't']]) sh(a, 'git', 'config', k, v);
   mkdirSync(join(a, 'public', 'data'), { recursive: true }); mkdirSync(join(a, 'data'));
   writeFileSync(join(a, 'public', 'data', 'schedule.json'), 'seed'); writeFileSync(join(a, 'code.js'), 'x');
+  writeFileSync(join(a, 'vercel.json'), '{"git":{"deploymentEnabled":{"data":false}}}');
   sh(a, 'git', 'add', '-A'); sh(a, 'git', 'commit', '-qm', 'main'); sh(a, 'git', 'push', '-q', 'origin', 'HEAD:main');
 
   writeFileSync(join(a, 'public', 'data', 'schedule.json'), 'run-1');
@@ -60,6 +61,9 @@ test('data branch: push then pull round-trips the data files, main untouched', {
   sh(a, 'bash', script, 'push', 'Refresh 1');
   assert.equal(sh(a, 'git', 'show', 'origin/data:public/data/schedule.json'), 'run-1');
   assert.equal(sh(a, 'git', 'show', 'origin/main:public/data/schedule.json'), 'seed', 'main keeps its seed copy');
+  // Vercel reads vercel.json from the commit it builds: the data branch must carry the "don't deploy data" config.
+  assert.equal(JSON.parse(sh(a, 'git', 'show', 'origin/data:vercel.json')).git.deploymentEnabled.data, false);
+  assert.deepEqual(sh(a, 'git', 'ls-tree', '-r', '--name-only', 'origin/data').trim().split('\n').sort(), ['data/health.json', 'public/data/schedule.json', 'vercel.json']);
   // An unchanged run makes no commit.
   sh(a, 'bash', script, 'push', 'Refresh 2');
   assert.equal(sh(a, 'git', 'log', '--format=%s', 'origin/data').trim(), 'Refresh 1');
