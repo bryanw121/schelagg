@@ -39,13 +39,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Runs hourly: keep one open issue per outage instead of one per run.
+          # Runs hourly: keep one open issue per outage instead of one per run. Issues are
+          # assigned to the repo owner, which notifies them even if they don't watch the repo.
           open=$(gh issue list --state open --search 'in:title "Schedule scrape: source failed"' --json number --jq '.[0].number')
           if [ -s scrape-failures.md ]; then
             if [ -n "$open" ]; then
               gh issue comment "$open" --body-file scrape-failures.md
             else
-              gh issue create --title "Schedule scrape: source failed $(date -u +%F)" --body-file scrape-failures.md
+              gh issue create --title "Schedule scrape: source failed $(date -u +%F)" --body-file scrape-failures.md --assignee "$GITHUB_REPOSITORY_OWNER"
             fi
           elif [ -n "$open" ]; then
             gh issue close "$open" --comment "Every source scraped successfully on $(date -u +'%F %H:%MZ')."
@@ -61,6 +62,6 @@ jobs:
             if [ -n "$open" ]; then
               gh issue comment "$open" --body-file scrape-changes.md
             else
-              gh issue create --title "Schedule scrape: source changed $(date -u +%F)" --body-file scrape-changes.md
+              gh issue create --title "Schedule scrape: source changed $(date -u +%F)" --body-file scrape-changes.md --assignee "$GITHUB_REPOSITORY_OWNER"
             fi
           fi
