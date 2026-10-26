@@ -12,12 +12,14 @@ permissions:
   contents: write
   issues: write
 
-concurrency: scrape
-
 jobs:
   scrape:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    # Per job, so an auto-fix still running doesn't hold up the next hour's scrape.
+    concurrency: scrape
+    outputs:
+      changed: ${{ steps.changes.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -52,6 +54,7 @@ jobs:
             gh issue close "$open" --comment "Every source scraped successfully on $(date -u +'%F %H:%MZ')."
           fi
       - name: Open an issue if a source changed what it sends
+        id: changes
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -64,4 +67,89 @@ jobs:
             else
               gh issue create --title "Schedule scrape: source changed $(date -u +%F)" --body-file scrape-changes.md --assignee "$GITHUB_REPOSITORY_OWNER"
             fi
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
+      - name: Hand the new changes to the auto-fix job
+        if: steps.changes.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: scrape-changes
+          path: scrape-changes.md
+          retention-days: 7
+
+  # Right after a scrape that noticed something new, Claude Code tries to adapt to it and the
+  # result goes up as a pull request for review (never straight to main: a wrong fix would
+  # publish bad schedules). Instructions: .github/autofix-prompt.md. Needs the
+  # CLAUDE_CODE_OAUTH_TOKEN secret (`claude setup-token`); skipped without it.
+  autofix:
+    needs: scrape
+    if: needs.scrape.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency: autofix
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      - name: Check for the Claude token
+        id: token
+        env:
+          TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -n "$TOKEN" ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "::notice::CLAUDE_CODE_OAUTH_TOKEN isn't set; skipping auto-fix."; fi
+      - uses: actions/checkout@v4
+        if: steps.token.outputs.present == 'true'
+        with:
+          ref: main # includes the data the scrape job just committed
+      - uses: actions/setup-node@v4
+        if: steps.token.outputs.present == 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - if: steps.token.outputs.present == 'true'
+        run: npm ci && npx playwright install --with-deps chromium
+      - uses: actions/download-artifact@v4
+        if: steps.token.outputs.present == 'true'
+        with:
+          name: scrape-changes
+      - name: Claude adapts to the change
+        if: steps.token.outputs.present == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ github.token }}
+          prompt: Read .github/autofix-prompt.md and follow it. The new findings are in scrape-changes.md.
+          claude_args: |
+            --max-turns 60
+            --allowedTools "Read,Edit,Write,Glob,Grep,WebFetch,Bash(npm test),Bash(node --test:*),Bash(node scripts/inspect-source.mjs:*),Bash(node scripts/sanitize-fixtures.mjs)"
+      - name: Open a pull request, or report why not
+        if: steps.token.outputs.present == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          issue=$(gh issue list --state open --search 'in:title "Schedule scrape: source changed"' --json number --jq '.[0].number')
+          summary=autofix-summary.md
+          [ -s "$summary" ] || echo "Claude didn't leave a summary; see the workflow run log." > "$summary"
+          echo -e "\n\n---\nAuto-fix run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> "$summary"
+          git add -- lib scripts config test data/manual.json README.md
+          if git diff --cached --quiet; then
+            [ -n "$issue" ] && gh issue comment "$issue" --body-file "$summary"
+            exit 0
+          fi
+          if ! npm test > test-output.txt 2>&1; then
+            { echo "Auto-fix made changes but \`npm test\` failed, so no pull request was opened."; echo; cat "$summary"; echo; echo '```'; tail -40 test-output.txt; echo '```'; } > failed.md
+            [ -n "$issue" ] && gh issue comment "$issue" --body-file failed.md
+            exit 1
+          fi
+          branch="autofix/$(date -u +%Y%m%d-%H%M)"
+          git config user.name "schelagg-autofix"
+          git config user.email "schelagg-autofix@users.noreply.github.com"
+          git checkout -b "$branch"
+          git commit -q -m "Auto-fix: adapt to source changes${issue:+ (#$issue)}"
+          git push -q origin "$branch"
+          [ -n "$issue" ] && echo -e "\n\nAddresses #$issue." >> "$summary"
+          pr=$(gh pr create --base main --head "$branch" --title "Auto-fix: adapt to source changes$( [ -n "$issue" ] && echo " (#$issue)")" --body-file "$summary" --assignee "$GITHUB_REPOSITORY_OWNER")
+          [ -n "$issue" ] && gh issue comment "$issue" --body "Auto-fix opened $pr for review."
+          echo "::notice::Opened $pr"

@@ -45,6 +45,21 @@ run summary. Each is reported once; when the problem clears it's forgotten, so a
 issue once you've adjusted the adapter, config or manual data. The **source failed** issue closes itself once every
 source scrapes again.
 
+### Auto-fix
+
+Right after a scrape that reports new changes, the **autofix** job in `.github/workflows/scrape.yml` runs Claude Code
+([claude-code-action](https://github.com/anthropics/claude-code-action)) with the instructions in
+`.github/autofix-prompt.md`. It inspects the changed source (`node scripts/inspect-source.mjs <sourceId>` saves the raw
+responses under the git-ignored `tmp/`), adapts the adapter, config or manual data, and adds a test. If `npm test`
+passes, the job opens a pull request assigned to you and links it from the issue; if there's nothing safe to change, it
+comments on the issue with why. It never pushes to `main`: a wrong fix would publish bad schedules.
+
+Setup (once): run `claude setup-token` locally (uses your Claude Pro/Max subscription, not API billing) and add the
+token as the repository secret `CLAUDE_CODE_OAUTH_TOKEN`. Without it the job is skipped.
+
+Pull requests opened by the job use the workflow's `GITHUB_TOKEN`, which GitHub doesn't let trigger the **Test**
+workflow; the job already ran `npm test`. Push a commit to the branch (or close and reopen the PR) to run the full matrix.
+
 ## Workflows
 
 - **Deploy site** (`.github/workflows/pages.yml`): every 15 minutes, on every push, and after each schedule refresh.
