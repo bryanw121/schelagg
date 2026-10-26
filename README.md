@@ -47,18 +47,35 @@ source scrapes again.
 
 ### Auto-fix
 
-Right after a scrape that reports new changes, the **autofix** job in `.github/workflows/scrape.yml` runs Claude Code
-([claude-code-action](https://github.com/anthropics/claude-code-action)) with the instructions in
-`.github/autofix-prompt.md`. It inspects the changed source (`node scripts/inspect-source.mjs <sourceId>` saves the raw
-responses under the git-ignored `tmp/`), adapts the adapter, config or manual data, and adds a test. If `npm test`
-passes, the job opens a pull request assigned to you and links it from the issue; if there's nothing safe to change, it
-comments on the issue with why. It never pushes to `main`: a wrong fix would publish bad schedules.
+Right after a scrape that reports a new source finding (hand-checked sessions alone don't start it), the **autofix**
+job in `.github/workflows/scrape.yml` runs Claude Code ([claude-code-action](https://github.com/anthropics/claude-code-action))
+with the instructions in `.github/autofix-prompt.md`. It inspects the source (`node scripts/inspect-source.mjs <sourceId>`
+saves the raw responses under the git-ignored `tmp/`), adapts the adapter or config, and adds a test. Then
+`.github/autofix-finish.sh` (always the copy committed on `main`) decides:
 
-Setup (once): run `claude setup-token` locally (uses your Claude Pro/Max subscription, not API billing) and add the
-token as the repository secret `CLAUDE_CODE_OAUTH_TOKEN`. Without it the job is skipped.
+| Result | What happens |
+|---|---|
+| Every gate passes | Merged to `main`, a fresh scrape starts, and the issue gets a comment |
+| A gate fails | A pull request assigned to you, listing which gates failed |
+| `npm test` fails | Nothing is pushed; the failure goes on the issue |
+| No safe change | Claude's reasoning goes on the issue |
 
-Pull requests opened by the job use the workflow's `GITHUB_TOKEN`, which GitHub doesn't let trigger the **Test**
-workflow; the job already ran `npm test`. Push a commit to the branch (or close and reopen the PR) to run the full matrix.
+The gates: only adapters, `config/sources.json`, the fixture sanitizer and parser tests changed; `npm test` passes; the
+site e2e passes; and `scripts/verify-fix.mjs` re-runs the whole scrape live with the fix, against the health baseline
+from before the source changed, and finds the reported problems gone and no source newly broken. Page-changed findings
+(new prices or wording) always go to review.
+
+A source failing 3 scrapes in a row (about 3 hours) also starts it: one failure is usually an outage, several usually a
+changed format.
+
+Setup (once): run `claude setup-token` (uses your Claude Pro/Max subscription, not API billing) and add the token as the
+repository secret `CLAUDE_CODE_OAUTH_TOKEN`. Without it the job is skipped. The token lasts a year; when it expires the
+job comments on the issue saying so. Optionally enable **Settings → Actions → General → Allow GitHub Actions to create
+and approve pull requests** so fixes that need review arrive as pull requests; without it they arrive as a branch with
+a one-click link.
+
+Pull requests opened by the job don't trigger the **Test** workflow (a GitHub rule for `GITHUB_TOKEN`); the job already
+ran `npm test` and the site e2e.
 
 ## Workflows
 
