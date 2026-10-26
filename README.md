@@ -222,7 +222,7 @@ Every source is an entry in `config/sources.json`. Each entry names an `adapter`
   quickly, also export `check()` (see [Live API](#live-api)). The "Capture source fixtures" workflow saves raw
   responses under `test/fixtures/sources/` to test against, run through `scripts/sanitize-fixtures.mjs` first
   (the repo is public: no hosts, participants, notes or tokens; a test fails if an email or phone number slips in).
-- **Court calendars on Skedda**: add it to `VENUES` in `lib/skedda.js`.
+- **Court calendars on Skedda**: add it to `VENUES` in `lib/skedda.js`. Each venue in `courts.json` / `/api/courts` has `calendar` (the booking page) and `calendarDay`, a template with `{date}` (YYYY-MM-DD) that opens the booking page on that day; a platform with no per-day link leaves `calendarDay` out, so consumers fall back to `calendar`.
 - **No machine-readable source**: add it to `data/manual.json` with `verifiedAt` (tagged with the config defaults).
 
 Every session is checked before it's published (`lib/session.js`): malformed ones are dropped and listed as warnings
