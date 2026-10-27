@@ -111,7 +111,7 @@ afterEach(async () => { await context?.close(); context = null; });
 const rows = () => page.locator('#list .row');
 const titles = () => page.locator('#list .row .title').allTextContents();
 const row = (title) => page.locator('#list .row', { has: page.locator('.title', { hasText: title }) });
-const tab = (surf) => page.locator(`#tabs [data-surf="${surf}"]`);
+const tab = (k) => page.locator(`#tabs [data-tab="${k}"]`);
 
 // --- tests --------------------------------------------------------------------------------
 
@@ -186,10 +186,11 @@ test('site: the sport switcher shows each sport on its own, with its own filters
 
   await sport('ice_skating').click();
   assert.equal(new URL(page.url()).searchParams.get('sport'), 'ice_skating');
-  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All3', 'Indoor2', 'Outdoor1']); // surface resets to All
-  assert.equal(await tab('all').getAttribute('aria-pressed'), 'true');
+  // No filter tabs for skating (almost all indoors); an outdoor rink says so on its session.
+  assert.equal(await page.locator('#tabs').isHidden(), true);
   assert.deepEqual(await titles(), ['Public Skating', 'Holiday Rink', 'Adult Skate']);
-  assert.match(await row('Public Skating').locator('.meta').textContent(), /Indoor.*Public skate.*Silver Rink.*\$14/);
+  assert.equal(await row('Public Skating').locator('.meta').textContent(), 'Public skateSilver Rink· $14 · skates $6');
+  assert.equal(await row('Holiday Rink').locator('.meta').textContent(), 'Public skateOutdoor');
   // Volleyball-only parts are hidden: court calendars, their key and note, and the free courts.
   assert.equal(await page.locator('#glance .key').isHidden(), true);
   assert.equal(await page.locator('#calNote').isHidden(), true);
@@ -199,15 +200,13 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   assert.equal(await page.locator('#sourceStatus').textContent(), 'Last check read all 1 scraped ice skating source.');
   assert.match(await page.locator('#footer').textContent(), /DaySmart/);
 
-  await tab('outdoor').click();
-  assert.deepEqual(await titles(), ['Holiday Rink']);
-
   // Remembered on reload; a shared link opens that sport even for a viewer who last chose another.
   await page.reload();
   await rows().first().waitFor();
   assert.equal(await sport('ice_skating').getAttribute('aria-pressed'), 'true');
   await sport('volleyball').click();
   assert.equal(new URL(page.url()).searchParams.get('sport'), null);
+  assert.equal(await page.locator('#tabs').isHidden(), false);
   assert.equal(await tab('all').getAttribute('aria-pressed'), 'true');
   await page.goto(`${origin}/?sport=ice_skating`);
   await rows().first().waitFor();

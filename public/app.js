@@ -3,21 +3,32 @@
 //   data/courts.json    court bookings + opening hours (Skedda), rebuilt every ~15 min by scripts/build-courts.mjs
 //                       (falls back to the live api/courts endpoint when running server.js or on Vercel)
 
-// Each sport's sub-filters (surfaces), the glance chart's heading, and whether it has court calendars.
+// Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
+// colors; none for a sport that doesn't need them), the glance chart's heading, and whether it has
+// court calendars. Volleyball splits by surface. Skating has no tabs: nearly all of it is indoors,
+// and the few holiday outdoor rinks are labelled on the session instead.
 const SPORTS = {
   volleyball: {
     label: 'Volleyball', group: 'Open play &amp; training', courts: true, noun: 'sessions',
-    surf: { indoor: { label: 'Indoor', c: 'var(--indoor)' }, sand: { label: 'Sand', c: 'var(--sand)' }, grass: { label: 'Grass', c: 'var(--grass)' } },
+    by: 'surface',
+    tabs: { indoor: { label: 'Indoor', c: 'var(--indoor)' }, sand: { label: 'Sand', c: 'var(--sand)' }, grass: { label: 'Grass', c: 'var(--grass)' } },
     footer: 'Sources: Volleyworld, ACES, ATX Beach, Austin Velocity, Roots Volleyball, Reclub (Vex Volleyball, Austin Lawn Club), Sweatpals, Austin Parks &amp; Recreation. Times change; tap “Source” before you drive out.',
   },
   ice_skating: {
     label: 'Ice skating', group: 'Public skate', courts: false, noun: 'public skate sessions',
-    surf: { indoor: { label: 'Indoor', c: 'var(--rink)' }, outdoor: { label: 'Outdoor', c: 'var(--outdoor)' } },
+    by: null, tabs: {}, color: 'var(--rink)',
     footer: 'Sources: Chaparral Ice and Ice &amp; Field at The Crossover (their DaySmart calendars, rechecked hourly), City of Bee Cave, Four Seasons Austin. Rinks close for hockey and events; tap “Source” before you drive out.',
   },
 };
 const sportOf = (x) => (SPORTS[x.sport] ? x.sport : 'volleyball');
-const surfOf = (x) => SPORTS[sportOf(x)].surf[x.surface] ?? { label: x.surface || 'Other', c: 'var(--muted)' };
+const byOf = (x) => SPORTS[sportOf(x)].by;
+/** How a session is labelled and colored: its tab (e.g. Sand), or for a sport without tabs its type in the sport's color. */
+function tabOf(x) {
+  const sp = SPORTS[sportOf(x)];
+  if (!sp.by) return { label: x.type || sp.label, c: sp.color };
+  return sp.tabs[x[sp.by]] ?? { label: x[sp.by] || 'Other', c: 'var(--muted)' };
+}
+const cap = (t) => String(t).charAt(0).toUpperCase() + String(t).slice(1);
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const DAY_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const T0 = 6 * 60, T1 = 24 * 60;
@@ -57,17 +68,18 @@ const NOW = austinNow();
 const WEEK = Array.from({ length: 7 }, (_, i) => addDays(NOW.iso, i));
 
 let schedule = null, courts = null, courtsError = null;
-let state = { sport: 'volleyball', surf: 'all', di: 0, showAll: false };
+let state = { sport: 'volleyball', tab: 'all', di: 0, showAll: false };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (SPORTS[s.sport]) state.sport = s.sport;
-  if (s.surf && SPORTS[state.sport].surf[s.surf]) state.surf = s.surf;
+  const tab = s.tab ?? s.surf; // `surf` from before skating
+  if (tab && SPORTS[state.sport].tabs[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
 } catch {}
 // A shared link (?sport=ice_skating) wins over the remembered sport.
 const urlSport = new URLSearchParams(location.search).get('sport');
-if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.surf = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ sport: state.sport, surf: state.surf, showAll: state.showAll })); } catch {} };
+if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ sport: state.sport, tab: state.tab, showAll: state.showAll })); } catch {} };
 /** Keep ?sport= in the address bar so the view can be shared (volleyball is the bare URL). */
 function syncUrl() {
   const u = new URL(location.href);
@@ -89,12 +101,12 @@ function freshness(x, iso) {
   return { k: 'stale', l: `Stale · ${age}d` };
 }
 const hidden = (f) => !state.showAll && (f.k === 'expired' || f.k === 'unverified' || f.k === 'canceled');
-const matchSurf = (x) => state.surf === 'all' || x.surface === state.surf;
+const matchTab = (x) => state.tab === 'all' || !byOf(x) || x[byOf(x)] === state.tab;
 
-function sessionsOn(iso, { ignoreSurf = false } = {}) {
+function sessionsOn(iso, { ignoreTab = false } = {}) {
   const dn = DAYS[dowOf(iso)];
   return (schedule?.sessions || [])
-    .filter((x) => sportOf(x) === state.sport && (ignoreSurf || matchSurf(x)) && (x.date ? x.date === iso : (x.days || []).includes(dn)))
+    .filter((x) => sportOf(x) === state.sport && (ignoreTab || matchTab(x)) && (x.date ? x.date === iso : (x.days || []).includes(dn)))
     .map((x) => ({ ...x, f: freshness(x, iso) }));
 }
 
@@ -115,21 +127,24 @@ function renderSports() {
 }
 
 function renderTabs() {
-  const opts = [['all', 'All', null], ...Object.entries(SPORTS[state.sport].surf).map(([k, v]) => [k, v.label, v.c])];
+  const sp = SPORTS[state.sport];
+  $('tabs').hidden = !sp.by;
+  if (!sp.by) { $('tabs').innerHTML = ''; return; }
+  const opts = [['all', 'All', null], ...Object.entries(sp.tabs).map(([k, v]) => [k, v.label, v.c])];
   $('tabs').innerHTML = opts.map(([k, l, c]) => {
-    const n = sessionsOn(NOW.iso, { ignoreSurf: true }).filter((x) => (k === 'all' || x.surface === k) && !hidden(x.f)).length;
-    return `<button class="tab" aria-pressed="${state.surf === k}" data-surf="${k}" ${c ? `style="--c:${c}"` : ''}>${c ? '<span class="dot"></span>' : ''}${l}<span class="n">${n || ''}</span></button>`;
+    const n = sessionsOn(NOW.iso, { ignoreTab: true }).filter((x) => (k === 'all' || x[sp.by] === k) && !hidden(x.f)).length;
+    return `<button class="tab" aria-pressed="${state.tab === k}" data-tab="${esc(k)}" ${c ? `style="--c:${c}"` : ''}>${c ? '<span class="dot"></span>' : ''}${l}<span class="n">${n || ''}</span></button>`;
   }).join('');
 }
 
 function renderDays() {
   $('days').innerHTML = WEEK.map((iso, i) => {
     const list = sessionsOn(iso).filter((x) => !hidden(x.f));
-    const surfs = [...new Set(list.map((x) => x.surface))];
+    const kinds = [...new Map(list.map((x) => [tabOf(x).c, tabOf(x)])).values()];
     const d = dowOf(iso);
     return `<button class="day" aria-pressed="${state.di === i}" data-di="${i}" aria-label="${DAY_LONG[d]} ${+iso.slice(8)}, ${list.length} sessions">
       <span class="dn">${i === 0 ? 'Today' : DAYS[d]}</span><span class="dd">${+iso.slice(8)}</span>
-      <span class="pips">${surfs.map((s) => `<span class="pip" style="background:${surfOf({ sport: state.sport, surface: s }).c}"></span>`).join('')}</span></button>`;
+      <span class="pips">${kinds.map((k) => `<span class="pip" style="background:${k.c}"></span>`).join('')}</span></button>`;
   }).join('');
 }
 
@@ -149,7 +164,7 @@ function renderList() {
       <div class="body">
         <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? 'Happening now' : x.f.l}</span></div>
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}</div>
-        <div class="meta"><span class="chip surf" style="--c:${surfOf(x).c}">${surfOf(x).label}</span><span class="chip">${esc(x.type)}</span>${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}</div>
+        <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}</div>
         ${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}
         <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a></div>
       </div></div>`;
@@ -158,9 +173,9 @@ function renderList() {
   const hiddenN = all.length - shown.length;
   if (!shown.length) {
     const sp = SPORTS[state.sport];
-    const label = state.surf === 'all' ? '' : sp.surf[state.surf].label.toLowerCase() + ' ';
+    const label = state.tab === 'all' || !sp.tabs[state.tab] ? '' : sp.tabs[state.tab].label.toLowerCase() + ' ';
     const hint = !sp.courts ? 'Rinks post public skate a week or two ahead; check another day.'
-      : state.surf === 'grass' ? 'Grass has no scheduled play in Austin. Use the free courts below.' : 'Courts open to rent are in the chart above, free public courts below.';
+      : state.tab === 'grass' ? 'Grass has no scheduled play in Austin. Use the free courts below.' : 'Courts open to rent are in the chart above, free public courts below.';
     html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
   } else if (hiddenN) html += `<div class="empty">${hiddenN} ended, canceled or unconfirmed session${hiddenN > 1 ? 's' : ''} hidden.</div>`;
   $('list').innerHTML = html;
@@ -168,8 +183,8 @@ function renderList() {
 
 function renderPublicCourts() {
   const pc = schedule?.publicCourts;
-  const list = (pc?.courts || []).filter((c) => (state.surf === 'all' ? true : c.surface === state.surf));
-  $('courtsCard').hidden = !SPORTS[state.sport].courts || state.surf === 'indoor' || !list.length;
+  const list = (pc?.courts || []).filter((c) => (state.tab === 'all' ? true : c.surface === state.tab));
+  $('courtsCard').hidden = !SPORTS[state.sport].courts || state.tab === 'indoor' || !list.length;
   $('courtsTitle').textContent = `Free public courts · ${list.length}`;
   $('courtsNote').textContent = `${pc?.note || ''} 💡 = lit.`;
   $('courts').innerHTML = list.map((c) => {
@@ -205,7 +220,7 @@ function renderGlance() {
     html += `<div class="g-group">${SPORTS[state.sport].group}<small>tap a bar for details</small></div>`;
     html += sess.map((x) => {
       const l = pct(mins(x.start)), w = +(pct(mins(x.end)) - l).toFixed(2);
-      const style = `--c:${surfOf(x).c};left:${l}%;width:${w}%`;
+      const style = `--c:${tabOf(x).c};left:${l}%;width:${w}%`;
       const label = `${fmtT(x.start)}–${fmtT(x.end)}`;
       const bar = x.signup?.url
         ? `<a class="g-bar" href="${esc(x.signup.url)}" target="_blank" rel="noopener" title="${esc(x.signup.label || 'Sign up')}" style="${style}">${label}</a>`
@@ -216,7 +231,7 @@ function renderGlance() {
   }
 
   // Court calendars (Skedda) are volleyball courts; other sports have none yet.
-  const facs = !SPORTS[state.sport].courts ? [] : (courts?.venues || []).flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.surf === 'all' || f.surface === state.surf);
+  const facs = !SPORTS[state.sport].courts ? [] : (courts?.venues || []).flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
   html += facs.map((f) => {
     const h = f.venue.hours?.[dow];
     if (!h) return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · closed today</small></div>`;
@@ -226,7 +241,7 @@ function renderGlance() {
       + `<div class="g-close" style="left:calc(${pct(close)}% - 2px)" title="Closes ${fmtT(hhmm(close))}"></div>`;
     const frees = [];
     // Public meets held at this facility (e.g. Vex on a privately booked Treehouse court).
-    const meets = sessionsOn(iso, { ignoreSurf: true }).filter((x) => x.facility === f.id && x.start && x.end && !hidden(x.f));
+    const meets = sessionsOn(iso, { ignoreTab: true }).filter((x) => x.facility === f.id && x.start && x.end && !hidden(x.f));
     const lanes = f.courts.map((c) => {
       const blocks = (c.days[iso] || []).map(([s, e]) => [mins(s), mins(e) || 1440]);
       const free = freeWindows(blocks, open, close); frees.push(free);
@@ -280,9 +295,9 @@ function renderMeta() {
 function render() { if (!schedule) return; syncUrl(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }
 
 document.addEventListener('click', (e) => {
-  const t = e.target.closest('[data-sport],[data-surf],[data-di]'); if (!t) return;
-  if (t.dataset.sport) { state.sport = t.dataset.sport; state.surf = 'all'; save(); }
-  if (t.dataset.surf) { state.surf = t.dataset.surf; save(); }
+  const t = e.target.closest('[data-sport],[data-tab],[data-di]'); if (!t) return;
+  if (t.dataset.sport) { state.sport = t.dataset.sport; state.tab = 'all'; save(); }
+  if (t.dataset.tab) { state.tab = t.dataset.tab; save(); }
   if (t.dataset.di) state.di = +t.dataset.di;
   render();
 });
