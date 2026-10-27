@@ -36,6 +36,9 @@ const SESSIONS = [
   { ...base, id: 'aces-moved', sourceId: 'aces', date: TOMORROW, start: '20:00', end: '22:00', title: 'ACES Monday Open Play', venue: 'Volleyworld (Pflugerville)', city: 'Pflugerville', surface: 'indoor', type: 'Open play', status: 'rescheduled', previousStart: `${TOMORROW} 19:30`, alsoOn: [{ sourceId: 'reclub', id: 'reclub-DUP', title: 'ACES Monday', signup: { url: `${SIGNUP}/reclub-dup` } }], signup: { url: `${SIGNUP}/aces`, label: 'Sign up' }, source: `${SIGNUP}/aces` },
   { ...base, id: 'vw-monday', sourceId: 'volleyworld', date: TOMORROW, start: '19:30', end: '21:00', title: 'Monday Night Training', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Training', signup: { url: `${SIGNUP}/monday`, label: 'Book on Volleyworld' }, source: `${SIGNUP}/monday` },
 ];
+// Areas as lib/consolidate.js stamps them from config/venues.json (the plaza rink isn't in the registry).
+const AREA_OF = { 'Volleyworld (Georgetown)': 'georgetown', 'Volleyworld (Pflugerville)': 'pflugerville', 'ATX Beach': 'north-austin', 'Roots · Treehouse Gym': 'north-austin', 'Example Ice Rink': 'cedar-park-leander' };
+for (const x of SESSIONS) if (AREA_OF[x.venue]) x.area = AREA_OF[x.venue];
 const SCHEDULE = {
   schemaVersion: 2,
   generatedAt: '2026-10-25T21:13:00.000Z',
@@ -45,6 +48,11 @@ const SCHEDULE = {
     { id: 'rink', name: 'Example Ice Rink', sport: 'ice_skating', region: 'austin', ok: true, count: 2, checkedAt: '2026-10-25T21:12:40.000Z' },
   ],
   sessions: SESSIONS,
+  areas: [
+    { id: 'central-austin', name: 'Central Austin' }, { id: 'north-austin', name: 'North Austin' },
+    { id: 'cedar-park-leander', name: 'Cedar Park / Leander' }, { id: 'pflugerville', name: 'Pflugerville' }, { id: 'georgetown', name: 'Georgetown' },
+  ],
+  venues: [{ id: 'treehouse', name: 'Roots · Treehouse Gym', city: 'N. Austin', area: 'north-austin' }],
   publicCourts: { note: 'Free, first come first served.', courts: [
     { park: 'Lakeside Park', surface: 'sand', courts: 2, lights: true },
     { park: 'Riverside Field', surface: 'grass', courts: 1 },
@@ -54,7 +62,7 @@ const COURTS = {
   fetchedAt: '2026-10-25T21:55:00.000Z', from: TODAY, days: 7, errors: [],
   venues: [{
     id: 'treehouse', calendar: 'https://treehousegym.skedda.com/booking', calendarDay: 'https://treehousegym.skedda.com/booking?viewdate={date}', hours: Array(7).fill(['06:00', '23:00']),
-    facilities: [{ id: 'treehouse', name: 'Roots · Treehouse Gym', city: 'N. Austin', surface: 'indoor', courts: [
+    facilities: [{ id: 'treehouse', venueId: 'treehouse', name: 'Roots · Treehouse Gym', city: 'N. Austin', surface: 'indoor', courts: [
       { name: 'Court #1', days: { [TODAY]: [['19:00', '22:00']] } }, // lines up with reclub-TREE01: open to sign up
       { name: 'Court #2', days: { [TODAY]: [['08:00', '10:00']] } }, // a private booking
     ] }],
@@ -294,6 +302,52 @@ test('site: the day picker switches to other days of the week', async () => {
   await days.nth(2).click();
   assert.equal(await rows().count(), 0);
   assert.match(await page.locator('#list .empty').textContent(), /^No confirmed sessions\./);
+});
+
+test('site: the area picker filters sessions and court lanes, offers the rest, and is remembered', async () => {
+  await open();
+  assert.equal(await page.locator('#areaLabel').textContent(), 'All areas');
+  assert.equal(await page.locator('#areaPanel').isHidden(), true);
+  await page.locator('#areaBtn').click();
+  assert.equal(await page.locator('#areaBtn').getAttribute('aria-expanded'), 'true');
+  const opts = page.locator('#areaPanel .area-opt');
+  assert.deepEqual(await opts.locator('span').allTextContents(), ['Central Austin', 'North Austin', 'Cedar Park / Leander', 'Pflugerville', 'Georgetown']);
+  // Volleyball sessions from today through the end of next week, per area (hidden ones not counted).
+  assert.equal(await opts.nth(0).locator('small').textContent(), 'none posted');
+  assert.match(await opts.nth(4).locator('small').textContent(), /^\d+ through Nov 7$/);
+
+  // Georgetown only: today's list, the day pips and the court lanes follow it.
+  await page.locator('#areaPanel [data-area="georgetown"]').check();
+  assert.equal(await page.locator('#areaLabel').textContent(), 'Georgetown');
+  assert.match(await page.locator('#areaBtn').getAttribute('class'), /\bon\b/);
+  assert.equal(await page.locator('#areaClear').isVisible(), true);
+  assert.deepEqual(await titles(), ['Morning Adult Training']);
+  assert.match(await page.locator('#list .more-areas').textContent(), /^4 more in other areas · show all$/);
+  assert.equal(await page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).count(), 0, 'North Austin court lane hidden');
+  assert.equal(await tab('all').locator('.n').textContent(), '1');
+
+  // Two areas.
+  await page.locator('#areaPanel [data-area="north-austin"]').check();
+  assert.equal(await page.locator('#areaLabel').textContent(), '2 areas');
+  assert.deepEqual(await titles(), ['Morning Adult Training', 'Afternoon Sand Open Play', 'Sunday Coed Net Volleyball', 'Sunday Sand Social']);
+  assert.equal(await page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).count(), 1);
+
+  // Remembered across a reload; "show all" clears it.
+  await page.reload();
+  await rows().first().waitFor();
+  assert.equal(await page.locator('#areaLabel').textContent(), '2 areas');
+  await page.locator('#list .more-areas').click();
+  assert.equal(await page.locator('#areaLabel').textContent(), 'All areas');
+  assert.equal(await rows().count(), 5);
+  assert.equal(await page.locator('#list .more-areas').count(), 0);
+
+  // An area with nothing today says so instead of looking broken, and still offers the rest.
+  await page.locator('#areaBtn').click();
+  await page.locator('#areaPanel [data-area="central-austin"]').check();
+  assert.match(await page.locator('#list .empty').textContent(), /^No confirmed sessions in Central Austin today\./);
+  assert.match(await page.locator('#list .more-areas').textContent(), /^5 more in other areas/);
+  await page.locator('#areaClear').click();
+  assert.equal(await rows().count(), 5);
 });
 
 test('site: the strip is a Sun–Sat calendar week; swipe or the arrows show next week', async () => {

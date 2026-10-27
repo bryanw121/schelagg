@@ -24,6 +24,14 @@
       </div>
       <button type="button" class="wk-arrow" id="nextWeek" aria-label="Next week">›</button>
     </div>
+    <div class="area-row">
+      <button type="button" class="area-btn" id="areaBtn" aria-expanded="false" aria-controls="areaPanel">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
+        <span id="areaLabel">All areas</span>
+      </button>
+      <button type="button" class="area-clear" id="areaClear" hidden>Clear</button>
+    </div>
+    <div class="area-panel" id="areaPanel" role="group" aria-label="Areas" hidden></div>
   </div>
 </header>
 

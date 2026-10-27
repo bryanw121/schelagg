@@ -1,10 +1,37 @@
 {
-  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates come from OSM.",
+  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). `area` is one of `areas` (the site's area filter); every venue needs one. External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates come from OSM.",
+  "areas": [
+    {
+      "id": "central-austin",
+      "name": "Central Austin"
+    },
+    {
+      "id": "north-austin",
+      "name": "North Austin"
+    },
+    {
+      "id": "cedar-park-leander",
+      "name": "Cedar Park / Leander"
+    },
+    {
+      "id": "pflugerville",
+      "name": "Pflugerville"
+    },
+    {
+      "id": "georgetown",
+      "name": "Georgetown"
+    },
+    {
+      "id": "bee-cave",
+      "name": "Bee Cave"
+    }
+  ],
   "venues": [
     {
       "id": "volleyworld-georgetown",
       "name": "Volleyworld (Georgetown)",
       "city": "Georgetown",
+      "area": "georgetown",
       "aliases": [
         "Volleyworld Georgetown"
       ],
@@ -17,6 +44,7 @@
       "id": "volleyworld-pflugerville",
       "name": "Volleyworld (Pflugerville)",
       "city": "Pflugerville",
+      "area": "pflugerville",
       "aliases": [
         "Volleyworld Pflugerville"
       ],
@@ -29,6 +57,7 @@
       "id": "atx-beach",
       "name": "ATX Beach",
       "city": "North Austin",
+      "area": "north-austin",
       "aliases": [
         "ATX Beach Volleyball"
       ],
@@ -41,6 +70,7 @@
       "id": "crossover",
       "name": "The Crossover",
       "city": "Cedar Park",
+      "area": "cedar-park-leander",
       "aliases": [
         "Crossover",
         "The Crossover Cedar Park"
@@ -55,6 +85,7 @@
       "id": "crossover-ice",
       "name": "Ice & Field at The Crossover",
       "city": "Cedar Park",
+      "area": "cedar-park-leander",
       "parent": "crossover",
       "aliases": [
         "Ice and Field at The Crossover",
@@ -70,6 +101,7 @@
       "id": "high-point",
       "name": "High Point Center",
       "city": "Leander",
+      "area": "cedar-park-leander",
       "aliases": [
         "HighPoint",
         "High Point"
@@ -84,6 +116,7 @@
       "id": "treehouse",
       "name": "Roots · Treehouse Gym",
       "city": "N. Austin",
+      "area": "north-austin",
       "aliases": [
         "Treehouse Gym",
         "Treehouse Gym (Home of Roots Volleyball)",
@@ -99,6 +132,7 @@
       "id": "mueller-lake-park",
       "name": "Mueller Lake Park",
       "city": "Austin",
+      "area": "central-austin",
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
@@ -109,6 +143,7 @@
       "id": "hanovers",
       "name": "Hanovers Draught Haus",
       "city": "Pflugerville",
+      "area": "pflugerville",
       "aliases": [
         "Hanovers"
       ],
@@ -121,6 +156,7 @@
       "id": "chaparral-northcross",
       "name": "Chaparral Ice",
       "city": "N. Austin (Northcross)",
+      "area": "north-austin",
       "aliases": [
         "Chaparral Ice Northcross",
         "Chaparral Ice Center"
@@ -134,6 +170,7 @@
       "id": "bee-cave-on-ice",
       "name": "Bee Cave on Ice",
       "city": "Bee Cave",
+      "area": "bee-cave",
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
@@ -144,6 +181,7 @@
       "id": "four-seasons-austin",
       "name": "Four Seasons Hotel",
       "city": "Downtown",
+      "area": "central-austin",
       "aliases": [
         "Four Seasons Austin",
         "Four Seasons Hotel Austin"
