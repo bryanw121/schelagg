@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyClub, discover, distanceKm, isoWeek, reclubOptions, judgeMeet, knownSlugs, prBody, queriesForRun, readUrls, reclubLinks } from '../scripts/discover-reclub.mjs';
+import { applyClub, budgetFor, discover, distanceKm, intervalDays, judgeMeet, knownSlugs, nextState, planQueries, prBody, readResults, reclubLinks, reclubOptions, seedsFromVenues } from '../scripts/discover-reclub.mjs';
 import { meetData } from '../scripts/adapters/reclub.mjs';
 import { loadSources } from '../lib/registry.js';
 
@@ -92,34 +92,104 @@ test('applyClub adds a club to the config once and rejects bad slugs', () => {
   assert.throws(() => applyClub(text, 'x; rm -rf /'), RangeError);
 });
 
-test('readUrls takes a JSON array of URLs (or { url } objects) and ignores anything else', () => {
-  assert.deepEqual(readUrls('["https://reclub.co/m/NEW001", {"url": "https://reclub.co/clubs/@x"}, 3, "javascript:alert(1)", null]'),
-    ['https://reclub.co/m/NEW001', 'https://reclub.co/clubs/@x']);
-  assert.deepEqual(readUrls('not json'), []);
-  assert.deepEqual(readUrls('{"urls": []}'), []);
-});
 
-test('queriesForRun: a fixed budget per run, rotating through every query over the weeks', () => {
-  const all = Array.from({ length: 25 }, (_, i) => `q${i}`);
-  assert.deepEqual(queriesForRun(all.slice(0, 4), 10, 7), ['q0', 'q1', 'q2', 'q3']); // under budget: all of them
-  assert.deepEqual(queriesForRun(all, 10, 0), all.slice(0, 10));
-  assert.deepEqual(queriesForRun(all, 10, 1), all.slice(10, 20));
-  assert.deepEqual(queriesForRun(all, 10, 2), [...all.slice(20), ...all.slice(0, 5)]); // wraps around
-  const seen = new Set([0, 1, 2].flatMap((w) => queriesForRun(all, 10, w)));
-  assert.equal(seen.size, 25, 'three runs cover every query');
-  assert.equal(isoWeek(new Date('2026-10-28T12:00:00Z')), 44);
-  assert.equal(isoWeek(new Date('2027-01-01T12:00:00Z')), 53);
-});
 
-test('discover searches only the batch it is given', async () => {
-  const asked = [];
-  const search = async (q) => { asked.push(q); return []; };
-  await discover({ options, search, fetch: fakeFetch, delayMs: 0, queries: ['only this'] });
-  assert.deepEqual(asked, ['only this']);
-});
 
 test('reclubOptions finds the Reclub source in loaded sources (adapter resolved to its module)', () => {
   const opts = reclubOptions(loadSources().sources);
   assert.ok(opts.discover.queries.length >= 5);
-  assert.equal(opts.discover.maxQueriesPerRun, 10);
+  assert.deepEqual([budgetFor(opts.discover, 'brave'), budgetFor(opts.discover, 'claude')], [100, 20]);
+});
+
+test('readResults keeps which query found what; a plain array has no query; junk is ignored', () => {
+  const r = readResults('{"q1": ["https://reclub.co/m/NEW001", {"url": "https://reclub.co/clubs/@x"}, "javascript:alert(1)"], "q2": []}');
+  assert.deepEqual([...r.byQuery], [['q1', ['https://reclub.co/m/NEW001', 'https://reclub.co/clubs/@x']], ['q2', []]]);
+  assert.deepEqual(readResults('["https://reclub.co/m/A1B2C3", 3]'), { byQuery: new Map(), extra: ['https://reclub.co/m/A1B2C3'] });
+  assert.deepEqual(readResults('not json'), { byQuery: new Map(), extra: [] });
+});
+
+test('planQueries: new first, productive weekly, quiet ones back off to 2/4/8 weeks, capped by budget', () => {
+  assert.deepEqual([0, 1, 2, 3, 9].map(intervalDays), [7, 14, 28, 56, 56]);
+  const today = '2026-11-04';
+  const state = { queries: {
+    found: { lastRun: '2026-10-28', empty: 0, lastFound: '2026-10-28' },  // 7 days ago, wait 7: due
+    quiet1: { lastRun: '2026-10-28', empty: 1 },                          // 7 days ago, wait 14: not due
+    quiet2: { lastRun: '2026-10-07', empty: 2 },                          // 28 days ago, wait 28: due
+    dead: { lastRun: '2026-09-16', empty: 5 },                            // 49 days ago, wait 56: not due
+    late: { lastRun: '2026-10-14', empty: 0 },                            // 21 days ago, wait 7: 3x overdue
+  } };
+  const all = ['found', 'quiet1', 'quiet2', 'dead', 'late', 'brand-new'];
+  const p = planQueries({ queries: all, state, today, budget: 10 });
+  assert.deepEqual(p.batch, ['found', 'brand-new', 'late', 'quiet2']); // proven, new, then most overdue
+  assert.deepEqual([p.due, p.total], [4, 6]);
+  // Budget 2: the proven query keeps its weekly slot; one slot is kept for new / overdue.
+  assert.deepEqual(planQueries({ queries: all, state, today, budget: 2 }).batch, ['found', 'brand-new']);
+  assert.deepEqual(planQueries({ queries: ['x', 'y'], state: {}, today, budget: 1 }).batch, ['x']);
+});
+
+test('planQueries keeps productive queries weekly however long the list gets', () => {
+  // 50 queries: 10 keep finding clubs, 40 have found nothing for 3+ runs. Simulate 16 weeks at budget 20.
+  const all = Array.from({ length: 50 }, (_, i) => `q${i}`);
+  const productive = new Set(all.slice(0, 10));
+  let state = {};
+  const ran = Object.fromEntries(all.map((q) => [q, []]));
+  for (let w = 0; w < 16; w++) {
+    const today = new Date(Date.UTC(2026, 10, 4 + 7 * w)).toISOString().slice(0, 10);
+    const { batch } = planQueries({ queries: all, state, today, budget: 20 });
+    for (const q of batch) ran[q].push(w);
+    const credited = batch.filter((q) => productive.has(q));
+    state = nextState(state, { queries: all, batch, today, result: { credited, candidates: [], rejected: [], failedQueries: [] } });
+  }
+  // Once a query has found something, it runs every week from then on, even while new ones queue.
+  for (const q of productive) {
+    const first = ran[q][0];
+    assert.deepEqual(ran[q], Array.from({ length: 16 - first }, (_, i) => i + first), q);
+    assert.ok(first <= 2, `${q} first ran in week ${first}`); // 50 new queries at 20 a run: all start within 3 weeks
+  }
+  // Quiet ones still come round at least every 8 weeks.
+  for (const q of all.slice(10)) {
+    const gaps = ran[q].slice(1).map((w, i) => w - ran[q][i]);
+    assert.ok(Math.max(...gaps) <= 8, `${q}: ${ran[q]}`);
+  }
+});
+
+test('nextState: credit resets the wait, failures stay due, removed queries dropped, clubs and meets remembered', () => {
+  const state = { queries: { a: { lastRun: '2026-10-21', empty: 2 }, b: { lastRun: '2026-10-21', empty: 0 }, gone: { lastRun: '2026-10-01', empty: 0 } },
+    skipped: { old: { on: '2026-01-01', reason: 'x' }, recent: { on: '2026-10-01', reason: 'y' } } };
+  const result = { credited: ['a'], failedQueries: ['c'], candidates: [{ slug: 'New_Club' }], rejected: [{ club: 'Pickle', reason: 'sport is pickleball' }], meets: { M1: 'new_club' } };
+  const s = nextState(state, { queries: ['a', 'b', 'c'], batch: ['a', 'b', 'c'], result, today: '2026-10-28' });
+  assert.deepEqual(s.queries, { a: { lastRun: '2026-10-28', empty: 0, lastFound: '2026-10-28' }, b: { lastRun: '2026-10-28', empty: 1 } });
+  assert.deepEqual(s.clubs, { new_club: '2026-10-28' });
+  assert.deepEqual(Object.keys(s.skipped), ['recent', 'pickle']); // 'old' expired after 180 days
+  assert.deepEqual(s.meets, { M1: 'new_club' });
+});
+
+test('discover: credits the queries that found each club, skips what the state already knows, reads seed clubs', async () => {
+  const byQuery = {
+    'q-meet': ['https://reclub.co/m/NEW001'],
+    'q-club': ['https://reclub.co/clubs/@club_only'],
+    'q-known': ['https://reclub.co/m/VEX001', 'https://reclub.co/m/DAL001'],
+    'q-empty': [],
+  };
+  const calls = [];
+  const fetch = async (url, init) => { calls.push(String(url)); return fakeFetch(url, init); };
+  const r = await discover({ options, search: async (q) => byQuery[q], fetch, delayMs: 0, queries: Object.keys(byQuery), seedClubs: ['seed_club'] });
+  assert.deepEqual(r.candidates.map((c) => [c.slug, c.queries]), [['north_austin_vb', ['q-meet']], ['club_only', ['q-club']]]);
+  assert.deepEqual(r.credited, ['q-meet', 'q-club']);
+  assert.ok(calls.includes('https://reclub.co/clubs/@seed_club')); // checked without a search (404 here: a warning)
+  assert.deepEqual(r.meets, { NEW001: 'north_austin_vb', CLB001: 'club_only', VEX001: 'vex_volleyball', DAL001: 'dallas_vb' });
+
+  // Next run with that state: the same results cost no Reclub pages at all.
+  const state = nextState({}, { queries: Object.keys(byQuery), batch: Object.keys(byQuery), result: r, today: '2026-10-28' });
+  calls.length = 0;
+  const again = await discover({ options, search: async (q) => byQuery[q], fetch, delayMs: 0, queries: Object.keys(byQuery), state });
+  assert.deepEqual([again.candidates.length, again.credited, calls], [0, [], []]);
+});
+
+test('seedsFromVenues: Reclub clubs that discovered venues link to', () => {
+  assert.deepEqual(seedsFromVenues([
+    { id: 'a', schedule: { surface: 'platform:reclub', platform: 'reclub', company: 'gym_club' } },
+    { id: 'b', schedule: { surface: 'platform:daysmart', platform: 'daysmart', company: 'rink' } },
+    { id: 'c' },
+  ]), ['gym_club']);
 });

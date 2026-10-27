@@ -7,12 +7,17 @@
 // its meets is volleyball and is either in the configured community or within radiusKm of the
 // center. Settings live in the reclub source's options.discover in config/sources.json.
 //
-//   node scripts/discover-reclub.mjs                 write discover-candidates.json (needs BRAVE_SEARCH_API_KEY)
-//   node scripts/discover-reclub.mjs --urls <file>   same, from search results gathered elsewhere (a JSON array of
-//                                                    URLs; the workflow has Claude run the searches when there's no key)
-//   node scripts/discover-reclub.mjs --apply <slug>  add https://reclub.co/clubs/@<slug> to config/sources.json
+//   node scripts/discover-reclub.mjs                    plan, search with Brave (BRAVE_SEARCH_API_KEY), write candidates
+//   node scripts/discover-reclub.mjs --plan             write this run's queries to discover-queries.json (for Claude)
+//   node scripts/discover-reclub.mjs --results <file>   same as the first, from results Claude gathered
+//                                                       ({ "<query>": [urls] }) for the planned queries
+//   node scripts/discover-reclub.mjs --apply <slug>     add https://reclub.co/clubs/@<slug> to config/sources.json
 //
-// The "Discover Reclub clubs" workflow runs this daily and opens one pull request per new club.
+// discover-state.json (kept on the discover-state branch between runs) remembers each query's last
+// run and whether it found anything, clubs already proposed or skipped, and which club each meet
+// belongs to. Queries that keep finding nothing run less often (planQueries); see README.
+//
+// The "Discover Reclub clubs" workflow runs this weekly and opens one pull request per new club.
 // Search comes from BRAVE_SEARCH_API_KEY if set, otherwise from Claude (CLAUDE_CODE_OAUTH_TOKEN)
 // running the queries with web search; with neither it prints a notice and finds nothing.
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -77,84 +82,178 @@ export async function braveSearch(query, { key, fetch: f = globalThis.fetch, cou
 const pause = (ms) => (ms > 0 ? new Promise((r) => setTimeout(r, ms)) : null);
 
 /**
- * Search, then read candidate meet pages. `search(query)` returns URLs; `fetch` is injected in tests.
- * Reads at most `maxPages` Reclub pages per run, `delayMs` apart, so a run stays a light touch.
+ * Search, then read candidate pages. `search(query)` returns URLs; `fetch` is injected in tests.
+ *
+ * What it already knows it doesn't read again (`state`, kept between runs): clubs already
+ * proposed or skipped, and which club each meet code belongs to, so a meet of a known club found
+ * by search costs nothing. Reads at most `maxPages` Reclub pages per run, `delayMs` apart.
+ *
+ * Every link remembers which queries returned it, so each candidate lists the queries that found
+ * it (`credited`): that's what decides how often each query runs (planQueries / nextState).
+ * `extraUrls` are results without a query; `seedClubs` are club slugs found some other way
+ * (a venue's website linking to its Reclub club, from venue discovery).
  */
-export async function discover({ options, search, fetch, maxPages = 40, meetsPerClub = 3, delayMs = 1000, queries }) {
+export async function discover({
+  options, search, fetch, maxPages = 40, meetsPerClub = 3, delayMs = 1000,
+  queries, extraUrls = [], seedClubs = [], state = {},
+}) {
   const d = options?.discover ?? {};
-  const known = knownSlugs(options?.clubs);
-  const warnings = [], urls = [];
-  for (const q of queries ?? d.queries ?? []) {
-    try { urls.push(...await search(q)); } catch (e) { warnings.push(`search "${q}": ${e.message}`); }
+  const configured = knownSlugs(options?.clubs);
+  const decided = new Set([...Object.keys(state.clubs ?? {}), ...Object.keys(state.skipped ?? {})].map((x) => x.toLowerCase()));
+  const settled = (slug) => configured.has(slug.toLowerCase()) || decided.has(slug.toLowerCase());
+  const meetClub = { ...(state.meets ?? {}) };
+  const warnings = [], failedQueries = [];
+  const origin = new Map(); // 'meet:<code>' | 'club:<slug>' -> Set of queries that returned it
+  const note = (key, from) => { if (!origin.has(key)) origin.set(key, new Set()); for (const q of from) origin.get(key).add(q); };
+  const add = (urls, from) => { const l = reclubLinks(urls); for (const m of l.meets) note(`meet:${m}`, from); for (const c of l.clubs) note(`club:${c}`, from); return l; };
+
+  const list = queries ?? d.queries ?? [];
+  let links = 0;
+  for (const q of list) {
+    try { const l = add(await search(q), [q]); links += l.meets.length + l.clubs.length; }
+    catch (e) { warnings.push(`search "${q}": ${e.message}`); failedQueries.push(q); }
   }
-  const links = reclubLinks(urls);
-  const queue = [...links.meets];
+  links += [...reclubLinks(extraUrls).meets, ...reclubLinks(extraUrls).clubs].length;
+  add(extraUrls, []);
+  for (const slug of seedClubs) if (SLUG.test(slug)) note(`club:${slug}`, ['venues']);
+
   let pages = 0;
   const read = async (url) => {
-    if (pages++ >= maxPages) return null;
-    if (pages > 1) await pause(delayMs);
+    if (pages >= maxPages) return null;
+    if (pages++ > 0) await pause(delayMs);
     const res = await get(url, { fetch });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.text;
   };
-  // Club pages from search: a few of each unknown club's meets.
-  for (const slug of links.clubs.filter((s) => !known.has(s.toLowerCase()))) {
+  // Club pages: a few meets of each club we haven't decided on yet.
+  const clubKeys = [...origin.keys()].filter((k) => k.startsWith('club:'));
+  for (const key of clubKeys) {
+    const slug = key.slice(5);
+    if (settled(slug)) continue;
     try {
       const html = await read(clubUrl(slug));
-      if (html != null) queue.push(...meetLinks(html).slice(0, meetsPerClub));
+      if (html == null) break;
+      for (const code of meetLinks(html).slice(0, meetsPerClub)) { note(`meet:${code}`, origin.get(key)); meetClub[code] = slug; }
     } catch (e) { warnings.push(`${clubUrl(slug)}: ${e.message}`); }
   }
   const candidates = new Map(), rejected = [];
-  for (const code of [...new Set(queue)]) {
+  let stopped = false;
+  for (const [key, from] of origin) {
+    if (!key.startsWith('meet:')) continue;
+    const code = key.slice(5);
+    if (meetClub[code] && settled(meetClub[code])) continue; // a known club's meet: nothing to learn
     const url = meetUrl(code);
     let data;
     try {
       const html = await read(url);
-      if (html == null) { warnings.push(`stopped after ${maxPages} pages`); break; }
+      if (html == null) { stopped = true; break; }
       data = meetData(html);
     } catch (e) { warnings.push(`${url}: ${e.message}`); continue; }
     const slug = data?.group?.slug;
-    if (!slug || !SLUG.test(slug) || known.has(slug.toLowerCase())) continue;
+    if (!slug || !SLUG.test(slug)) continue;
+    meetClub[code] = slug;
+    if (settled(slug)) continue;
     const verdict = judgeMeet(data, d);
-    if (!verdict.ok) { rejected.push({ url, club: slug, reason: verdict.reason }); continue; }
-    const c = candidates.get(slug) ?? { slug, name: data.group.name?.trim() || slug, url: clubUrl(slug), reason: verdict.reason, meets: [] };
+    if (!verdict.ok) { if (!candidates.has(slug)) rejected.push({ url, club: slug, reason: verdict.reason }); continue; }
+    const c = candidates.get(slug) ?? { slug, name: data.group.name?.trim() || slug, url: clubUrl(slug), reason: verdict.reason, meets: [], queries: [] };
     c.meets.push({ url, name: String(data.meet.name ?? '').trim(), venue: data.meet.venue?.name ?? null });
+    c.queries = [...new Set([...c.queries, ...from])];
     candidates.set(slug, c);
   }
-  return { candidates: [...candidates.values()], rejected, warnings, searched: (queries ?? d.queries ?? []).length, urls: links.meets.length + links.clubs.length, pagesRead: Math.min(pages, maxPages) };
+  if (stopped) warnings.push(`stopped after ${maxPages} pages`);
+  // A club with a matching meet isn't "rejected" because another of its meets didn't match.
+  const kept = rejected.filter((r) => !candidates.has(r.club));
+  const found = [...candidates.values()];
+  return {
+    candidates: found, rejected: kept, warnings, failedQueries,
+    credited: [...new Set(found.flatMap((c) => c.queries))].filter((q) => q !== 'venues'),
+    searched: list.length, urls: links, pagesRead: pages, meets: meetClub,
+  };
 }
 
+// --- scheduling: which queries run this time ---------------------------------------------------
+
+/** Days a query waits before running again, by how many runs in a row found nothing new. */
+export const BACKOFF_DAYS = [7, 14, 28, 56];
+export const intervalDays = (empty = 0) => BACKOFF_DAYS[Math.min(Math.max(empty, 0), BACKOFF_DAYS.length - 1)];
+const daysBetween = (a, b) => Math.round((Date.parse(`${b}T00:00:00Z`) - Date.parse(`${a}T00:00:00Z`)) / 864e5);
+
 /**
- * This run's share of the queries: at most `max` (options.discover.maxQueriesPerRun, default 10),
- * rotating through the whole list run by run (`run` = week number in the workflow). Adding sports
- * or cities makes the list longer, so each query comes round less often; the cost of a run
- * (searches, and Claude usage when Claude searches) stays the same.
+ * This run's queries, up to `budget`. Order: queries that found a new club last time (so a proven
+ * query never skips a week), then new queries (a sport or city just added), then the rest by how
+ * overdue they are. A query that found nothing waits twice as long each time (2, 4, then 8 weeks).
+ * A quarter of the budget is kept for new and overdue queries when any are due, so a long list of
+ * productive queries can't starve them either.
  */
-export function queriesForRun(all = [], max = 10, run = 0) {
-  if (all.length <= max) return [...all];
-  const start = ((run * max) % all.length + all.length) % all.length;
-  return Array.from({ length: max }, (_, i) => all[(start + i) % all.length]);
+export function planQueries({ queries = [], state = {}, today, budget = 20 }) {
+  const proven = [], fresh = [], overdue = [];
+  queries.forEach((text, i) => {
+    const s = state.queries?.[text];
+    if (!s?.lastRun) { fresh.push({ text, i }); return; }
+    const interval = intervalDays(s.empty);
+    const age = daysBetween(s.lastRun, today);
+    if (age < interval) return;
+    if ((s.empty ?? 0) === 0 && s.lastFound) proven.push({ text, i, score: age / interval });
+    else overdue.push({ text, i, score: age / interval });
+  });
+  const byScore = (a, b) => b.score - a.score || a.i - b.i;
+  proven.sort(byScore); overdue.sort(byScore);
+  const others = [...fresh, ...overdue];
+  const reserve = others.length ? Math.min(others.length, Math.ceil(budget / 4)) : 0;
+  const take = Math.min(proven.length, budget - reserve);
+  const batch = [...proven.slice(0, take), ...others.slice(0, budget - take)].map((x) => x.text);
+  return { batch, due: proven.length + others.length, total: queries.length, budget };
 }
 
 /**
- * The Reclub source's options from loaded sources. loadSources() resolves `adapter` to the adapter
+ * State after a run: each query that ran gets lastRun (and its wait reset when it found a new club;
+ * a query whose search failed is left as it was, so it's still due); proposed clubs are remembered
+ * so they aren't read again; skipped clubs are re-checked after `skipDays`; the meet -> club map
+ * keeps the newest `maxMeets` entries. Queries no longer configured are dropped.
+ */
+export function nextState(state = {}, { queries = [], batch = [], result, today, maxMeets = 2000, skipDays = 180 }) {
+  const credited = new Set(result.credited ?? []);
+  const failed = new Set(result.failedQueries ?? []);
+  const q = {};
+  for (const text of queries) if (state.queries?.[text]) q[text] = { ...state.queries[text] };
+  for (const text of batch) {
+    if (failed.has(text)) continue;
+    const s = q[text] ?? {};
+    q[text] = credited.has(text)
+      ? { lastRun: today, empty: 0, lastFound: today }
+      : { ...s, lastRun: today, empty: (s.empty ?? 0) + 1 };
+  }
+  const clubs = { ...(state.clubs ?? {}) };
+  for (const c of result.candidates ?? []) clubs[c.slug.toLowerCase()] ??= today;
+  const skipped = {};
+  for (const [slug, v] of Object.entries(state.skipped ?? {})) if (daysBetween(v.on, today) < skipDays) skipped[slug] = v;
+  for (const r of result.rejected ?? []) skipped[r.club.toLowerCase()] ??= { on: today, reason: r.reason };
+  const entries = Object.entries(result.meets ?? state.meets ?? {});
+  return { queries: q, clubs, skipped, meets: Object.fromEntries(entries.slice(-maxMeets)) };
+}
+
+/** Reclub club slugs that discovered venues link to (config/venues.json schedule.platform 'reclub'). */
+export const seedsFromVenues = (venues = []) => [...new Set(venues
+  .filter((v) => v.schedule?.platform === 'reclub' && v.schedule.company)
+  .map((v) => v.schedule.company))];
+
+/**
+ * The reclub source's options from loaded sources. loadSources() resolves `adapter` to the adapter
  * module, so match on its id (comparing to the string 'reclub' never matches).
  */
 export const reclubOptions = (sources) => sources.find((s) => s.adapter?.id === 'reclub' || s.adapter === 'reclub')?.options;
 
-/** ISO week number of a date (1-53): the rotation index for weekly runs. */
-export function isoWeek(date = new Date()) {
-  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - day);
-  return Math.ceil(((d - Date.UTC(d.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7);
-}
-
-/** URLs from a search-results file: a JSON array of strings (or of { url }), anything else ignored. */
-export function readUrls(text) {
-  let list;
-  try { list = JSON.parse(text); } catch { return []; }
-  return (Array.isArray(list) ? list : []).map((x) => (typeof x === 'string' ? x : x?.url)).filter((u) => typeof u === 'string' && /^https?:\/\//.test(u));
+/**
+ * Search results gathered elsewhere (Claude's web search): { "<query>": [urls] } keeps which
+ * query found what; a plain array of URLs is accepted without that. Non-URLs are ignored.
+ */
+export function readResults(text) {
+  const urlsOf = (list) => (Array.isArray(list) ? list : []).map((x) => (typeof x === 'string' ? x : x?.url)).filter((u) => typeof u === 'string' && /^https?:\/\//.test(u));
+  let data;
+  try { data = JSON.parse(text); } catch { return { byQuery: new Map(), extra: [] }; }
+  if (Array.isArray(data)) return { byQuery: new Map(), extra: urlsOf(data) };
+  if (!data || typeof data !== 'object') return { byQuery: new Map(), extra: [] };
+  return { byQuery: new Map(Object.entries(data).map(([q, list]) => [q, urlsOf(list)])), extra: [] };
 }
 
 /** Pull request body for one candidate. */
@@ -186,6 +285,21 @@ export function applyClub(text, slug) {
   return `${JSON.stringify(cfg, null, 2)}\n`;
 }
 
+const STATE = () => repoPath('discover-state.json');
+const BATCH = () => repoPath('discover-queries.json');
+const readJson = (p, fallback) => { try { return JSON.parse(readFileSync(p, 'utf8')); } catch { return fallback; } };
+const todayUtc = () => new Date().toISOString().slice(0, 10);
+
+/** Queries per run: a bigger budget when searches are cheap (Brave), a smaller one when Claude runs them. */
+export const budgetFor = (discoverOptions = {}, via) => discoverOptions.budget?.[via] ?? { brave: 100, claude: 20 }[via] ?? 20;
+
+/** More queries due than the budget allows means quiet queries start waiting past 8 weeks: say so. */
+function warnIfOverBudget(plan) {
+  if (plan.due <= plan.budget) return;
+  console.log(`::warning::Reclub discovery: ${plan.due} queries are due but the budget is ${plan.budget}, so ${plan.due - plan.budget} wait another week. `
+    + 'Add the BRAVE_SEARCH_API_KEY secret (budget 100, about 1,000 free searches a month) or raise options.discover.budget.');
+}
+
 async function main(args) {
   const config = repoPath('config/sources.json');
   if (args[0] === '--apply') {
@@ -195,34 +309,47 @@ async function main(args) {
   }
   loadEnv();
   const opts = reclubOptions(loadSources().sources);
-  const batch = queriesForRun(opts?.discover?.queries, opts?.discover?.maxQueriesPerRun ?? 10, isoWeek());
-  if (args[0] === '--queries') {
-    // The workflow hands this run's batch to Claude, so Claude never sees more than the budget.
-    writeFileSync(args[1], `${JSON.stringify(batch, null, 2)}\n`);
-    console.log(`::notice::Reclub discovery: ${batch.length} of ${opts?.discover?.queries?.length ?? 0} queries this run`);
+  const all = opts?.discover?.queries ?? [];
+  const state = readJson(STATE(), {});
+  const key = process.env.BRAVE_SEARCH_API_KEY;
+  const via = args[0] === '--results' || args[0] === '--plan' ? 'claude' : 'brave';
+  const today = todayUtc();
+
+  if (args[0] === '--plan') {
+    // The workflow hands this batch to Claude, so Claude never sees more than the budget.
+    const plan = planQueries({ queries: all, state, today, budget: budgetFor(opts?.discover, 'claude') });
+    writeFileSync(BATCH(), `${JSON.stringify(plan.batch, null, 2)}\n`);
+    console.log(`::notice::Reclub discovery: ${plan.batch.length} queries this run (${plan.due} due of ${plan.total}, budget ${plan.budget})`);
+    warnIfOverBudget(plan);
     return;
   }
+
   const out = repoPath('discover-candidates.json');
-  const key = process.env.BRAVE_SEARCH_API_KEY;
-  const urlsFile = args[0] === '--urls' ? args[1] : null;
-  let search;
-  if (urlsFile) {
-    // Results gathered outside (Claude's web search): hand them all over once, on the first query.
-    const urls = readUrls(readFileSync(urlsFile, 'utf8'));
-    let given = false;
-    search = async () => (given ? [] : (given = true, urls));
+  let search, batch, extraUrls = [];
+  if (args[0] === '--results') {
+    const { byQuery, extra } = readResults(readFileSync(args[1], 'utf8'));
+    batch = readJson(BATCH(), [...byQuery.keys()]);
+    // A query Claude didn't report on counts as not searched (it stays due), not as "found nothing".
+    search = async (q) => { if (!byQuery.has(q)) throw new Error('no results from Claude'); return byQuery.get(q); };
+    extraUrls = extra;
   } else if (key) {
+    const plan = planQueries({ queries: all, state, today, budget: budgetFor(opts?.discover, via) });
+    batch = plan.batch;
+    warnIfOverBudget(plan);
     search = (q) => braveSearch(q, { key });
   } else {
-    console.log('::notice::No BRAVE_SEARCH_API_KEY and no --urls file; skipping Reclub club discovery.');
+    console.log('::notice::No BRAVE_SEARCH_API_KEY and no --results file; skipping Reclub club discovery.');
     writeFileSync(out, `${JSON.stringify({ candidates: [] }, null, 2)}\n`);
     return;
   }
-  const result = await discover({ options: opts, search, queries: batch });
-  result.candidates = result.candidates.map((c) => ({ ...c, body: prBody(c) }));
-  writeFileSync(out, `${JSON.stringify(result, null, 2)}\n`);
-  console.log(`::notice::Reclub discovery: searched ${result.searched} queries, got ${result.urls} reclub.co links, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
-  for (const c of result.candidates) console.log(`New club: ${c.name} (@${c.slug}), ${c.reason}`);
+  let seedClubs = [];
+  try { seedClubs = seedsFromVenues(JSON.parse(readFileSync(repoPath('config/venues.json'), 'utf8')).venues); } catch { /* no venues file */ }
+  const result = await discover({ options: opts, search, queries: batch, extraUrls, seedClubs, state });
+  writeFileSync(STATE(), `${JSON.stringify(nextState(state, { queries: all, batch, result, today }), null, 2)}\n`);
+  const body = { ...result, meets: undefined, candidates: result.candidates.map((c) => ({ ...c, body: prBody(c) })) };
+  writeFileSync(out, `${JSON.stringify(body, null, 2)}\n`);
+  console.log(`::notice::Reclub discovery (${via}): searched ${result.searched} of ${all.length} queries, got ${result.urls} reclub.co links, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
+  for (const c of result.candidates) console.log(`New club: ${c.name} (@${c.slug}), ${c.reason}; found by ${c.queries.join(' | ')}`);
   for (const r of result.rejected) console.log(`Skipped @${r.club}: ${r.reason}`);
   for (const w of result.warnings) console.log(`::warning::${w}`);
 }
