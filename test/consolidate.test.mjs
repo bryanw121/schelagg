@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { loadVenues, resolveVenues, markMoves, dedupe, sameSession, titleSimilarity } from '../lib/consolidate.js';
+import { loadVenues, loadVenueConfig, resolveVenues, markMoves, dedupe, sameSession, titleSimilarity } from '../lib/consolidate.js';
 import { toIcs, fold, escapeText } from '../lib/ics.js';
 import { toOccurrences } from '../lib/occurrences.js';
 
@@ -29,7 +29,26 @@ test('resolveVenues: names and aliases match ignoring case and punctuation; unkn
     { id: 'd', sourceId: 'reclub', venue: 'Pease Park', venueId: 'stale' },
   ], VENUES);
   assert.deepEqual(sessions.map((s) => s.venueId), ['treehouse', 'crossover', undefined, undefined]);
+  assert.deepEqual(sessions.map((s) => s.area), ['north-austin', 'cedar-park-leander', undefined, undefined]);
   assert.deepEqual([...unknown], [['reclub', ['Pease Park']]]);
+});
+
+test('areas: every venue is in a known area, so the site can filter by it', () => {
+  const { areas, venues } = loadVenueConfig();
+  const ids = new Set(areas.map((a) => a.id));
+  assert.ok(areas.length >= 2);
+  const missing = venues.filter((v) => !ids.has(v.area)).map((v) => v.id);
+  assert.deepEqual(missing, [], `pick an area in config/venues.json for: ${missing.join(', ')}`);
+  // Each area holds at least one venue (an empty one would be a filter that never matches).
+  for (const a of areas) assert.ok(venues.some((v) => v.area === a.id), `${a.id} has no venues`);
+
+  const dir = mkdtempSync(join(tmpdir(), 'areas-'));
+  const cfg = (body) => { const f = join(dir, 'v.json'); writeFileSync(f, JSON.stringify(body)); return () => loadVenueConfig(f); };
+  assert.throws(cfg({ areas: [{ id: 'north', name: 'North' }], venues: [{ id: 'a1', name: 'x', area: 'south' }] }), /a1 has unknown area "south"/);
+  assert.throws(cfg({ areas: [{ id: 'north', name: 'North' }, { id: 'north', name: 'N' }], venues: [] }), /duplicate area/);
+  // A venue discovery just added, with no area yet, still loads (the test above flags it instead).
+  assert.equal(cfg({ areas: [{ id: 'north', name: 'North' }], venues: [{ id: 'a1', name: 'x' }] })().venues.length, 1);
+  rmSync(dir, { recursive: true, force: true });
 });
 
 test('markMoves: a moved dated session keeps its id, is rescheduled, and remembers the original time until it moves back', () => {

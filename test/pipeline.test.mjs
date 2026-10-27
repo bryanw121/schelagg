@@ -193,6 +193,11 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.ok(schedule.sessions.every((s) => ['scheduled', 'cancelled', 'rescheduled'].includes(s.status)), 'status');
   assert.equal(byId['volleyworld-2026-10-25-17:30-georgetown'].status, 'cancelled');
   assert.ok(schedule.venues.some((v) => v.id === 'crossover-ice' && v.parent === 'crossover'));
+  // Areas for the site's filter: the list, each venue's area, and every session at a known venue.
+  assert.deepEqual(schedule.areas.map((a) => a.id), ['central-austin', 'north-austin', 'cedar-park-leander', 'pflugerville', 'georgetown', 'bee-cave']);
+  assert.equal(schedule.venues.find((v) => v.id === 'treehouse').area, 'north-austin');
+  for (const x of schedule.sessions.filter((x) => x.venueId)) assert.ok(schedule.areas.some((a) => a.id === x.area), `${x.id} has area ${x.area}`);
+  assert.equal(schedule.sessions.find((x) => x.sourceId === 'volleyworld' && /georgetown/.test(x.id)).area, 'georgetown');
   // A place not in config/venues.json is a warning (manual sessions report through the health check).
   assert.ok(r.logs.some((l) => /warn  manual: venue "Zilker Park" isn't in config\/venues\.json/.test(l)));
   // Calendar files per sport, next to the feed.

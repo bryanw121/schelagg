@@ -76,18 +76,19 @@ const TOMORROW = addDays(NOW.iso, 1);
 const POSTED_AHEAD = 7;
 
 let schedule = null, courts = null, courtsError = null;
-let state = { sport: 'volleyball', tab: 'all', di: TODAY_I, showAll: false };
+let state = { sport: 'volleyball', tab: 'all', di: TODAY_I, showAll: false, areas: [], areaPanel: false };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (SPORTS[s.sport]) state.sport = s.sport;
   const tab = s.tab ?? s.surf; // `surf` from before skating
   if (tab && SPORTS[state.sport].tabs[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
+  if (Array.isArray(s.areas)) state.areas = s.areas.filter((a) => typeof a === 'string');
 } catch {}
 // A shared link (?sport=ice_skating) wins over the remembered sport.
 const urlSport = new URLSearchParams(location.search).get('sport');
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ sport: state.sport, tab: state.tab, showAll: state.showAll })); } catch {} };
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ sport: state.sport, tab: state.tab, showAll: state.showAll, areas: state.areas })); } catch {} };
 /** Keep ?sport= in the address bar so the view can be shared (volleyball is the bare URL). */
 function syncUrl() {
   const u = new URL(location.href);
@@ -110,11 +111,14 @@ function freshness(x, iso) {
 }
 const hidden = (f) => !state.showAll && (f.k === 'expired' || f.k === 'unverified' || f.k === 'canceled');
 const matchTab = (x) => state.tab === 'all' || !byOf(x) || x[byOf(x)] === state.tab;
+// Area filter (config/venues.json areas): none picked shows everything. A session whose venue
+// isn't in the registry has no area, so it only shows with no filter.
+const matchArea = (x) => !state.areas.length || state.areas.includes(x.area);
 
-function sessionsOn(iso, { ignoreTab = false } = {}) {
+function sessionsOn(iso, { ignoreTab = false, ignoreArea = false } = {}) {
   const dn = DAYS[dowOf(iso)];
   return (schedule?.sessions || [])
-    .filter((x) => sportOf(x) === state.sport && (ignoreTab || matchTab(x)) && (x.date ? x.date === iso : (x.days || []).includes(dn)))
+    .filter((x) => sportOf(x) === state.sport && (ignoreTab || matchTab(x)) && (ignoreArea || matchArea(x)) && (x.date ? x.date === iso : (x.days || []).includes(dn)))
     .map((x) => ({ ...x, f: freshness(x, iso) }));
 }
 
@@ -192,6 +196,28 @@ function renderDays() {
   }).join('');
 }
 
+/** The area filter: its button label, and the checklist with sessions per area from today on. */
+function renderAreas() {
+  const areas = schedule?.areas || [];
+  $('areaBtn').parentElement.hidden = areas.length < 2;
+  // Forget areas the data no longer has (renamed in config/venues.json).
+  state.areas = state.areas.filter((a) => areas.some((x) => x.id === a));
+  const names = state.areas.map((a) => areas.find((x) => x.id === a).name);
+  $('areaLabel').textContent = !names.length ? 'All areas' : names.length === 1 ? names[0] : `${names.length} areas`;
+  $('areaBtn').classList.toggle('on', names.length > 0);
+  $('areaBtn').setAttribute('aria-expanded', String(state.areaPanel));
+  $('areaClear').hidden = !names.length;
+  $('areaPanel').hidden = !state.areaPanel;
+  if (!state.areaPanel) return;
+  const counts = {};
+  for (const iso of WEEK.slice(TODAY_I)) {
+    for (const x of sessionsOn(iso, { ignoreArea: true }).filter((x) => !hidden(x.f))) counts[x.area] = (counts[x.area] || 0) + 1;
+  }
+  $('areaPanel').innerHTML = areas.map((a) => `<label class="area-opt"><input type="checkbox" data-area="${esc(a.id)}" ${state.areas.includes(a.id) ? 'checked' : ''}>
+    <span>${esc(a.name)}</span><small>${counts[a.id] ? `${counts[a.id]} through ${fmtDate(WEEK.at(-1))}` : 'none posted'}</small></label>`).join('')
+    + '<p class="note">Your choice is remembered on this device.</p>';
+}
+
 /** Move the strip a week back (-1) or forward (1), keeping the weekday. */
 function goWeek(delta) {
   const di = moveWeek({ di: state.di, delta, today: TODAY_I, weeks: CAL.weeks });
@@ -226,14 +252,18 @@ function renderList() {
   }
   if (!nowPlaced && shown.length) html += nowLabel;
   const hiddenN = all.length - shown.length;
+  // Sessions this day in areas the filter leaves out: offer them instead of an empty-looking day.
+  const otherAreas = state.areas.length ? sessionsOn(iso, { ignoreArea: true }).filter((x) => !matchArea(x) && !hidden(x.f)).length : 0;
+  const more = otherAreas ? `<button type="button" class="more-areas" data-clear-areas>${otherAreas} more in other areas · show all</button>` : '';
   if (!shown.length) {
     const sp = SPORTS[state.sport];
     const label = state.tab === 'all' || !sp.tabs[state.tab] ? '' : sp.tabs[state.tab].label.toLowerCase() + ' ';
     const hint = !sp.courts ? 'Rinks post public skate a week or two ahead; check another day.'
       : state.tab === 'grass' ? 'Grass has no scheduled play in Austin. Use the free courts below.' : 'Courts open to rent are in the chart above, free public courts below.';
-    html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
+    const where = state.areas.length ? ` in ${$('areaLabel').textContent.replace(/^(\d+) areas$/, 'your $1 areas')}` : '';
+    html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${where}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
   } else if (hiddenN) html += `<div class="empty">${hiddenN} ended, canceled or unconfirmed session${hiddenN > 1 ? 's' : ''} hidden.</div>`;
-  $('list').innerHTML = early + html;
+  $('list').innerHTML = early + html + more;
 }
 
 function renderPublicCourts() {
@@ -316,7 +346,9 @@ function renderGlance() {
   }
 
   // Court calendars (Skedda) are volleyball courts; other sports have none yet.
-  const facs = !SPORTS[state.sport].courts ? [] : (courts?.venues || []).flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
+  const facs = !SPORTS[state.sport].courts ? [] : (courts?.venues || []).flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab)
+    // Court lanes follow the area filter too (a facility's venueId -> its venue's area; unknown ones stay).
+    .filter((f) => { const area = (schedule.venues || []).find((v) => v.id === f.venueId)?.area; return !area || matchArea({ area }); });
   html += facs.map((f) => {
     const h = f.venue.hours?.[dow];
     if (!h) return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · closed today</small></div>`;
@@ -378,7 +410,7 @@ function renderMeta() {
   renderSourceList();
 }
 
-function render() { if (!schedule) return; syncUrl(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }
+function render() { if (!schedule) return; syncUrl(); renderSports(); renderTabs(); renderDays(); renderAreas(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }
 
 document.addEventListener('click', (e) => {
   const t = e.target.closest('[data-sport],[data-tab],[data-di]'); if (!t) return;
@@ -386,6 +418,15 @@ document.addEventListener('click', (e) => {
   if (t.dataset.tab) { state.tab = t.dataset.tab; save(); }
   if (t.dataset.di) state.di = +t.dataset.di;
   render();
+});
+$('areaBtn').addEventListener('click', () => { state.areaPanel = !state.areaPanel; render(); });
+const clearAreas = () => { state.areas = []; save(); render(); };
+$('areaClear').addEventListener('click', clearAreas);
+$('list').addEventListener('click', (e) => { if (e.target.closest('[data-clear-areas]')) clearAreas(); });
+$('areaPanel').addEventListener('change', (e) => {
+  const a = e.target.dataset.area; if (!a) return;
+  state.areas = e.target.checked ? [...new Set([...state.areas, a])] : state.areas.filter((x) => x !== a);
+  save(); render();
 });
 $('prevWeek').addEventListener('click', () => goWeek(-1));
 $('nextWeek').addEventListener('click', () => goWeek(1));
