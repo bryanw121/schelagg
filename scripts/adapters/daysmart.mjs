@@ -16,6 +16,9 @@
 //                Events on other resources are skipped (and counted in a warning), so a company that
 //                also runs another building doesn't land under the wrong venue.
 //   venue, city, surface, price, signup { url, label }, source (calendar link), note
+//                signup.url may hold {date} (the session's YYYY-MM-DD) and {eventType} (its event
+//                type id), so the link opens the rink's calendar on that day, filtered to that
+//                kind of session: .../calendar?location=1&start={date}&end={date}&event_type={eventType}
 import { endAfter } from '../../lib/time.js';
 import { get } from '../../lib/http.js';
 import { shapeUnion } from '../../lib/health.js';
@@ -47,6 +50,9 @@ export function eventsUrl(company, from, to, page = 1) {
   return `${API}?${q}`;
 }
 
+/** Fill a link template's {date} and {eventType} for one session. */
+export const fillLink = (url, { date, eventType }) => String(url).replaceAll('{date}', date).replaceAll('{eventType}', encodeURIComponent(eventType));
+
 /** JSON:API event records (one or more pages' `data`) -> { sessions, skipped } (skipped: public sessions on unlisted rinks). */
 export function parseEvents(records, options = {}) {
   const { company, eventTypes = {}, resources, venue, city, surface = 'indoor', price, signup, source, note } = options;
@@ -76,7 +82,7 @@ export function parseEvents(records, options = {}) {
       price: price ?? null,
       capacity,
       note: note ?? null,
-      signup: signup ?? (source ? { url: source, label: 'Check the rink calendar' } : undefined),
+      signup: signup ? { ...signup, url: fillLink(signup.url, { date: s[1], eventType: String(a.event_type_id) }) } : (source ? { url: source, label: 'Check the rink calendar' } : undefined),
       source: source ?? `https://apps.daysmartrecreation.com/dash/x/#/online/${company}/calendar`,
     });
   }

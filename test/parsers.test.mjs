@@ -33,6 +33,10 @@ test('Volleyworld: the Arketa API keeps adult sessions, drops youth/homeschool, 
   assert.deepEqual([byId['volleyworld-2026-10-28-20:30-georgetown'].capacity, byId['volleyworld-2026-10-28-20:30-georgetown'].spotsLeft], [12, 11]);
   assert.equal(byId['volleyworld-2026-11-01-07:30-pflugerville'].date, '2026-11-01'); // CDT -> CST weekend
   assert.equal(pf.signup.label, 'Book on Volleyworld');
+  // Each class links to its own checkout page (that class's date, time and price), not the schedule.
+  assert.match(pf.signup.url, /^https:\/\/app\.arketa\.co\/volleyworld\/checkout\/[A-Za-z0-9]+$/);
+  assert.notEqual(pf.signup.url, gt.signup.url);
+  assert.equal(pf.source, 'https://app.arketa.co/iframe/volleyworld/schedule');
   const { ok, warnings } = validateSessions(s.map((x) => tagSession(x, SRC)));
   assert.equal(ok.length, 13);
   assert.deepEqual(warnings, []);
