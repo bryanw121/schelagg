@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyClub, discover, distanceKm, judgeMeet, knownSlugs, prBody, readUrls, reclubLinks } from '../scripts/discover-reclub.mjs';
+import { applyClub, discover, distanceKm, isoWeek, reclubOptions, judgeMeet, knownSlugs, prBody, queriesForRun, readUrls, reclubLinks } from '../scripts/discover-reclub.mjs';
 import { meetData } from '../scripts/adapters/reclub.mjs';
 import { loadSources } from '../lib/registry.js';
 
@@ -97,4 +97,29 @@ test('readUrls takes a JSON array of URLs (or { url } objects) and ignores anyth
     ['https://reclub.co/m/NEW001', 'https://reclub.co/clubs/@x']);
   assert.deepEqual(readUrls('not json'), []);
   assert.deepEqual(readUrls('{"urls": []}'), []);
+});
+
+test('queriesForRun: a fixed budget per run, rotating through every query over the weeks', () => {
+  const all = Array.from({ length: 25 }, (_, i) => `q${i}`);
+  assert.deepEqual(queriesForRun(all.slice(0, 4), 10, 7), ['q0', 'q1', 'q2', 'q3']); // under budget: all of them
+  assert.deepEqual(queriesForRun(all, 10, 0), all.slice(0, 10));
+  assert.deepEqual(queriesForRun(all, 10, 1), all.slice(10, 20));
+  assert.deepEqual(queriesForRun(all, 10, 2), [...all.slice(20), ...all.slice(0, 5)]); // wraps around
+  const seen = new Set([0, 1, 2].flatMap((w) => queriesForRun(all, 10, w)));
+  assert.equal(seen.size, 25, 'three runs cover every query');
+  assert.equal(isoWeek(new Date('2026-10-28T12:00:00Z')), 44);
+  assert.equal(isoWeek(new Date('2027-01-01T12:00:00Z')), 53);
+});
+
+test('discover searches only the batch it is given', async () => {
+  const asked = [];
+  const search = async (q) => { asked.push(q); return []; };
+  await discover({ options, search, fetch: fakeFetch, delayMs: 0, queries: ['only this'] });
+  assert.deepEqual(asked, ['only this']);
+});
+
+test('reclubOptions finds the Reclub source in loaded sources (adapter resolved to its module)', () => {
+  const opts = reclubOptions(loadSources().sources);
+  assert.ok(opts.discover.queries.length >= 5);
+  assert.equal(opts.discover.maxQueriesPerRun, 10);
 });
