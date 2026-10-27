@@ -109,8 +109,9 @@ export async function discover({
 
   const list = queries ?? d.queries ?? [];
   let links = 0;
+  const perQuery = {};
   for (const q of list) {
-    try { const l = add(await search(q), [q]); links += l.meets.length + l.clubs.length; }
+    try { const l = add(await search(q), [q]); links += l.meets.length + l.clubs.length; perQuery[q] = l.meets.length + l.clubs.length; }
     catch (e) { warnings.push(`search "${q}": ${e.message}`); failedQueries.push(q); }
   }
   links += [...reclubLinks(extraUrls).meets, ...reclubLinks(extraUrls).clubs].length;
@@ -167,7 +168,7 @@ export async function discover({
   return {
     candidates: found, rejected: kept, warnings, failedQueries,
     credited: [...new Set(found.flatMap((c) => c.queries))].filter((q) => q !== 'venues'),
-    searched: list.length, urls: links, pagesRead: pages, meets: meetClub,
+    searched: list.length, urls: links, perQuery, pagesRead: pages, meets: meetClub,
   };
 }
 
@@ -349,6 +350,7 @@ async function main(args) {
   const body = { ...result, meets: undefined, candidates: result.candidates.map((c) => ({ ...c, body: prBody(c) })) };
   writeFileSync(out, `${JSON.stringify(body, null, 2)}\n`);
   console.log(`::notice::Reclub discovery (${via}): searched ${result.searched} of ${all.length} queries, got ${result.urls} reclub.co links, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
+  console.log(`::notice::Links per query: ${Object.entries(result.perQuery).map(([q, n]) => `${n} ← ${q}`).join(' · ') || 'none'}`);
   for (const c of result.candidates) console.log(`New club: ${c.name} (@${c.slug}), ${c.reason}; found by ${c.queries.join(' | ')}`);
   for (const r of result.rejected) console.log(`Skipped @${r.club}: ${r.reason}`);
   for (const w of result.warnings) console.log(`::warning::${w}`);
