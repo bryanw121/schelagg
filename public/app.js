@@ -7,6 +7,8 @@
 // colors; none for a sport that doesn't need them), the glance chart's heading, and whether it has
 // court calendars. Volleyball splits by surface. Skating has no tabs: nearly all of it is indoors,
 // and the few holiday outdoor rinks are labelled on the session instead.
+import { calendar, weekOf, moveWeek, swipeDirection } from './week.js';
+
 const SPORTS = {
   volleyball: {
     label: 'Volleyball', group: 'Open play &amp; training', courts: true, noun: 'sessions',
@@ -65,10 +67,16 @@ function ago(iso) {
 }
 
 const NOW = austinNow();
-const WEEK = Array.from({ length: 7 }, (_, i) => addDays(NOW.iso, i));
+// Two calendar weeks, Sunday to Saturday, starting with the current one (public/week.js).
+const CAL = calendar(NOW.iso);
+const WEEK = CAL.days;
+const TODAY_I = CAL.today;
+const TOMORROW = addDays(NOW.iso, 1);
+// Reclub clubs post meets about a week ahead, so days past that may still fill in.
+const POSTED_AHEAD = 7;
 
 let schedule = null, courts = null, courtsError = null;
-let state = { sport: 'volleyball', tab: 'all', di: 0, showAll: false };
+let state = { sport: 'volleyball', tab: 'all', di: TODAY_I, showAll: false };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (SPORTS[s.sport]) state.sport = s.sport;
@@ -168,19 +176,36 @@ function renderTabs() {
 }
 
 function renderDays() {
-  $('days').innerHTML = WEEK.map((iso, i) => {
-    const list = sessionsOn(iso).filter((x) => !hidden(x.f));
+  const week = weekOf(state.di), first = week * 7;
+  $('weekLabel').textContent = week === weekOf(TODAY_I) ? 'This week' : 'Next week';
+  $('weekRange').textContent = `${fmtDate(WEEK[first])} – ${fmtDate(WEEK[first + 6])}`;
+  $('prevWeek').disabled = week === 0;
+  $('nextWeek').disabled = week === CAL.weeks - 1;
+  $('weekDots').innerHTML = Array.from({ length: CAL.weeks }, (_, w) => `<span class="${w === week ? 'on' : ''}"></span>`).join('');
+  $('days').innerHTML = WEEK.slice(first, first + 7).map((iso, j) => {
+    const i = first + j, d = dowOf(iso), past = i < TODAY_I;
+    const list = past ? [] : sessionsOn(iso).filter((x) => !hidden(x.f));
     const kinds = [...new Map(list.map((x) => [tabOf(x).c, tabOf(x)])).values()];
-    const d = dowOf(iso);
-    return `<button class="day" aria-pressed="${state.di === i}" data-di="${i}" aria-label="${DAY_LONG[d]} ${+iso.slice(8)}, ${list.length} sessions">
-      <span class="dn">${i === 0 ? 'Today' : DAYS[d]}</span><span class="dd">${+iso.slice(8)}</span>
+    return `<button class="day${past ? ' past' : ''}${i === TODAY_I ? ' today' : ''}" aria-pressed="${state.di === i}" data-di="${i}" ${past ? 'disabled ' : ''}aria-label="${DAY_LONG[d]} ${+iso.slice(8)}${past ? ', past' : `, ${list.length} sessions`}">
+      <span class="dn">${i === TODAY_I ? 'Today' : DAYS[d]}</span><span class="dd">${+iso.slice(8)}</span>
       <span class="pips">${kinds.map((k) => `<span class="pip" style="background:${k.c}"></span>`).join('')}</span></button>`;
   }).join('');
 }
 
+/** Move the strip a week back (-1) or forward (1), keeping the weekday. */
+function goWeek(delta) {
+  const di = moveWeek({ di: state.di, delta, today: TODAY_I, weeks: CAL.weeks });
+  if (di == null) return;
+  state.di = di;
+  render();
+}
+
 function renderList() {
-  const iso = WEEK[state.di], isToday = state.di === 0;
-  $('dayTitle').textContent = (isToday ? 'Today · ' : state.di === 1 ? 'Tomorrow · ' : '') + fmtDate(iso, { weekday: 'long', month: 'short', day: 'numeric' });
+  const iso = WEEK[state.di], isToday = iso === NOW.iso;
+  $('dayTitle').textContent = (isToday ? 'Today · ' : iso === TOMORROW ? 'Tomorrow · ' : '') + fmtDate(iso, { weekday: 'long', month: 'short', day: 'numeric' });
+  // Far enough out that Reclub meets may not be posted yet (volleyball only: rinks post weeks ahead).
+  const early = state.sport === 'volleyball' && state.di - TODAY_I >= POSTED_AHEAD
+    ? '<p class="ahead">Reclub clubs usually post meets about a week ahead, so more open play may show up for this day.</p>' : '';
   const all = sessionsOn(iso).sort((a, b) => (a.start || '99').localeCompare(b.start || '99'));
   const shown = all.filter((x) => !hidden(x.f));
   const nowLabel = `<div class="now">Now · ${fmtT(hhmm(NOW.minutes))}</div>`;
@@ -208,7 +233,7 @@ function renderList() {
       : state.tab === 'grass' ? 'Grass has no scheduled play in Austin. Use the free courts below.' : 'Courts open to rent are in the chart above, free public courts below.';
     html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
   } else if (hiddenN) html += `<div class="empty">${hiddenN} ended, canceled or unconfirmed session${hiddenN > 1 ? 's' : ''} hidden.</div>`;
-  $('list').innerHTML = html;
+  $('list').innerHTML = early + html;
 }
 
 function renderPublicCourts() {
@@ -279,7 +304,7 @@ function glanceRows(sess, nowLine) {
 }
 
 function renderGlance() {
-  const iso = WEEK[state.di], isToday = state.di === 0, dow = dowOf(iso);
+  const iso = WEEK[state.di], isToday = iso === NOW.iso, dow = dowOf(iso);
   $('calTitle').textContent = `Day at a glance · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
   const nowLine = isToday && NOW.minutes >= T0 ? `<div class="g-now" style="left:${pct(NOW.minutes)}%"></div>` : '';
   let html = axisRow();
@@ -362,6 +387,20 @@ document.addEventListener('click', (e) => {
   if (t.dataset.di) state.di = +t.dataset.di;
   render();
 });
+$('prevWeek').addEventListener('click', () => goWeek(-1));
+$('nextWeek').addEventListener('click', () => goWeek(1));
+// Swipe the strip sideways to change weeks; vertical drags still scroll the page.
+let swipe = null, swiped = false;
+$('week').addEventListener('pointerdown', (e) => { swipe = { x: e.clientX, y: e.clientY }; swiped = false; });
+$('week').addEventListener('pointerup', (e) => {
+  if (!swipe) return;
+  const dir = swipeDirection(e.clientX - swipe.x, e.clientY - swipe.y);
+  swipe = null;
+  if (dir) { swiped = true; goWeek(-dir); }
+});
+$('week').addEventListener('pointercancel', () => { swipe = null; });
+// A swipe that ends on a day button shouldn't also select that day.
+$('week').addEventListener('click', (e) => { if (swiped) { swiped = false; e.stopPropagation(); e.preventDefault(); } }, true);
 $('showAll').checked = state.showAll;
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });
 
@@ -376,6 +415,6 @@ async function getJson(url) { const r = await fetch(url, { cache: 'no-cache' });
 try { schedule = await getJson(`${DATA}schedule.json`); render(); }
 catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`; }
 try { courts = await getJson(`${DATA}courts.json`); }
-catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }
+catch { try { courts = await getJson(`api/courts?days=${WEEK.length - TODAY_I}`); } catch (e) { courtsError = e.message; } }
 render();
 setInterval(() => renderMeta(), 60_000); // keep "x min ago" current while the page stays open

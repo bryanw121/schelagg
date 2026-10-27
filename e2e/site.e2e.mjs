@@ -85,10 +85,10 @@ after(async () => {
 });
 
 /** A fresh page (own localStorage) with data answered by `data` and the clock fixed. */
-async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' } } = {}) {
+async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, clock = CLOCK } = {}) {
   context = await browser.newContext({ timezoneId: 'America/Los_Angeles', locale: 'en-US' }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
-  await page.clock.setFixedTime(CLOCK);
+  await page.clock.setFixedTime(clock);
   apiCalls = [];
   await page.route('**/*', (route) => {
     const u = new URL(route.request().url());
@@ -296,6 +296,50 @@ test('site: the day picker switches to other days of the week', async () => {
   assert.match(await page.locator('#list .empty').textContent(), /^No confirmed sessions\./);
 });
 
+test('site: the strip is a Sun–Sat calendar week; swipe or the arrows show next week', async () => {
+  // Tuesday: Sunday and Monday are in the strip but past.
+  await open({ clock: new Date('2026-10-27T22:00:00Z') });
+  const days = page.locator('#days .day');
+  assert.deepEqual(await page.locator('#days .day .dn').allTextContents(), ['Sun', 'Mon', 'Today', 'Wed', 'Thu', 'Fri', 'Sat']);
+  assert.deepEqual(await page.locator('#days .day .dd').allTextContents(), ['25', '26', '27', '28', '29', '30', '31']);
+  assert.equal(await page.locator('#weekLabel').textContent(), 'This week');
+  assert.equal(await page.locator('#weekRange').textContent(), 'Oct 25 – Oct 31');
+  assert.equal(await days.nth(2).getAttribute('aria-pressed'), 'true');
+  assert.equal(await days.nth(0).isDisabled(), true);
+  assert.equal(await days.nth(1).getAttribute('aria-label'), 'Monday 26, past');
+  assert.equal(await page.locator('#prevWeek').isDisabled(), true);
+  assert.equal(await page.locator('#dayTitle').textContent(), 'Today · Tuesday, Oct 27');
+
+  // Next week keeps the weekday (Tuesday -> Tuesday Nov 3); the Reclub note shows past a week out.
+  await page.locator('#nextWeek').click();
+  assert.equal(await page.locator('#weekLabel').textContent(), 'Next week');
+  assert.equal(await page.locator('#weekRange').textContent(), 'Nov 1 – Nov 7');
+  assert.deepEqual(await page.locator('#days .day .dn').allTextContents(), ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
+  assert.equal(await page.locator('#nextWeek').isDisabled(), true);
+  assert.equal(await page.locator('#dayTitle').textContent(), 'Tuesday, Nov 3');
+  assert.match(await page.locator('#list .ahead').textContent(), /Reclub clubs usually post meets about a week ahead/);
+  await days.nth(0).click();
+  assert.equal(await page.locator('#dayTitle').textContent(), 'Sunday, Nov 1');
+  assert.ok((await titles()).includes('Sunday Sand Social'), 'weekly sessions repeat into next week');
+
+  // Swipe right goes back; a swipe doesn't also pick the day it ends on.
+  const box = await page.locator('#week').boundingBox();
+  const y = box.y + box.height / 2;
+  await page.mouse.move(box.x + 60, y);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 200, y, { steps: 5 });
+  await page.mouse.up();
+  assert.equal(await page.locator('#weekLabel').textContent(), 'This week');
+  assert.equal(await page.locator('#dayTitle').textContent(), 'Today · Tuesday, Oct 27', 'Sunday next week -> back to today, not a past day');
+  // And swipe left goes forward again.
+  await page.mouse.move(box.x + 200, y);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 60, y, { steps: 5 });
+  await page.mouse.up();
+  assert.equal(await page.locator('#weekLabel').textContent(), 'Next week');
+  assert.equal(await page.locator('#list .ahead').count(), 1);
+});
+
 test('site: "Show ended & unconfirmed" reveals canceled and unconfirmed sessions without sign-up links', async () => {
   await open();
   await page.locator('#showAll').check();
@@ -360,7 +404,7 @@ test('site: court data falls back to /api/courts, and failures say so', async ()
   // No pre-built courts.json: the page asks the live API.
   await open({ courts: null, apiCourts: { status: 200, body: { ...COURTS, errors: [{ venue: 'velocity', calendar: 'https://austinvelocity.skedda.com/booking', message: 'HTTP 503' }] } } });
   await page.locator('#cal a.g-book.open').waitFor();
-  assert.deepEqual(apiCalls, ['/api/courts?days=7']);
+  assert.deepEqual(apiCalls, ['/api/courts?days=14']); // today through the end of next week (Sunday: 14 days)
   assert.match(await page.locator('#calErrors').textContent(), /Couldn't load some court calendars right now · open velocity calendar ↗/);
   await context.close();
 
