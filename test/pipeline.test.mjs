@@ -19,7 +19,16 @@ const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, imp
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
 const REF = '2026-10-25';
 const { sources: SOURCES, manual: MANUAL } = loadSources();
-const ADAPTER_IDS = ['volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub'];
+const ADAPTER_IDS = ['volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field'];
+const SPORT_OF = { 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating' }; // everything else: volleyball
+const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
+// DaySmart's events API for the rink sources: one page per company (paging is covered in daysmart.test.mjs).
+const daysmartEvents = (fixture, company) => {
+  if (company === 'iceandfield') return fixture('daysmart-iceandfield-events.json');
+  const pages = [1, 2].map((n) => JSON.parse(fixture(`daysmart-chaparralice-events-p${n}.json`)));
+  return JSON.stringify({ data: pages.flatMap((p) => p.data), meta: { page: { 'current-page': 1, 'last-page': 1 } } });
+};
+
 
 const realFetch = globalThis.fetch;
 before(() => { globalThis.fetch = () => { throw new Error('no network in tests: inject a fetch'); }; });
@@ -97,6 +106,7 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
       const code = u.pathname.match(/^\/m\/(\w+)$/)?.[1];
       return MEETS[code] ? res(fixture(MEETS[code])) : res('Not found', 404); // 2O9PDP has no fixture
     }
+    if (u.hostname === 'apps.daysmartrecreation.com') return res(daysmartEvents(fixture, u.searchParams.get('company')));
     if (u.hostname === 'example.test') {
       if (u.pathname === '/broken') return res('oops', 500);
       return res(pages[u.pathname] ?? '<html><body><h1>Sunday Sand Social</h1><p>7pm, $10</p><script>var t=1</script></body></html>');
@@ -148,7 +158,7 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.deepEqual(schedule.sources.map((s) => s.id), ADAPTER_IDS);
   for (const s of schedule.sources) {
     assert.equal(s.ok, true, `${s.id}: ${s.error}`);
-    assert.deepEqual([s.sport, s.region, s.checkedAt], ['volleyball', 'austin', NOW.toISOString()], s.id);
+    assert.deepEqual([s.sport, s.region, s.checkedAt], [sportOf(s.id), 'austin', NOW.toISOString()], s.id);
     assert.ok(s.count > 0, s.id);
     assert.equal(s.count, schedule.sessions.filter((x) => x.sourceId === s.id).length, s.id);
   }
@@ -160,7 +170,7 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.equal(new Set(ids).size, ids.length, 'unique session ids');
   assert.equal(validateSessions(schedule.sessions).ok.length, schedule.sessions.length);
   for (const s of schedule.sessions) {
-    assert.deepEqual([s.sport, s.region, s.timezone], ['volleyball', 'austin', 'America/Chicago'], s.id);
+    assert.deepEqual([s.sport, s.region, s.timezone], [sportOf(s.sourceId), 'austin', 'America/Chicago'], s.id);
     assert.ok([...ADAPTER_IDS, 'manual'].includes(s.sourceId), s.id);
     if (s.date) assert.ok(s.date >= REF && s.date <= '2026-11-08', `${s.id} inside the ${HORIZON_DAYS}-day horizon`);
     if (s.sourceId !== 'manual') assert.equal(s.verifiedAt, REF, s.id);
@@ -171,6 +181,8 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.equal(byId['reclub-VONMM8'].facility, 'treehouse');
   assert.equal(byId['aces-2026-10-26-19:30'].price, '$6 online · $10 door');
   assert.deepEqual(byId['manual-sand-sun'].sourceId, 'manual');
+  assert.deepEqual([byId['daysmart-iceandfield-10378'].sport, byId['daysmart-iceandfield-10378'].rink], ['ice_skating', 'Silver Rink']);
+  assert.equal(byId['daysmart-chaparralice-345508'].title, 'Public Skate');
   // The malformed hand-checked session is dropped, not published.
   assert.equal(byId['manual-bad'], undefined);
   assert.ok(r.logs.some((l) => /dropped manual-bad: needs a date or recurring days/.test(l)));
@@ -197,7 +209,7 @@ test('scrape pipeline: occurrences.json is the documented feed', async () => {
   const until = new Date(NOW.getTime() + (FEED_HORIZON_DAYS + 1) * 864e5).toISOString();
   for (const o of feed.occurrences) {
     assert.deepEqual(Object.keys(o), KEYS, o.id);
-    assert.deepEqual([o.sport, o.region, o.timezone], ['volleyball', 'austin', 'America/Chicago'], o.id);
+    assert.deepEqual([o.sport, o.region, o.timezone], [sportOf(o.source_id), 'austin', 'America/Chicago'], o.id);
     const s = sessions.get(o.session_id);
     assert.ok(s, `${o.id} comes from a published session`);
     assert.equal(o.source_id, s.sourceId, o.id);
@@ -208,7 +220,7 @@ test('scrape pipeline: occurrences.json is the documented feed', async () => {
     assert.ok(o.starts_at >= '2026-10-25T05:00:00.000Z' && o.starts_at < until, `${o.id} inside the feed horizon`);
     if (o.ends_at) assert.ok(o.ends_at > o.starts_at, o.id);
     assert.equal(typeof o.canceled, 'boolean', o.id);
-    for (const [k, allowed] of Object.entries(SPORT_ATTRIBUTES.volleyball)) assert.ok(allowed.includes(o.attributes[k]), `${o.id} ${k}`);
+    for (const [k, allowed] of Object.entries(SPORT_ATTRIBUTES[o.sport])) assert.ok(allowed.includes(o.attributes[k]), `${o.id} ${k}`);
   }
   // Sessions without a start time (league before game times) stay out of the feed.
   assert.ok(sessions.has('manual-league-tbd'));
@@ -286,7 +298,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'reclub']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'reclub', 'chaparral-ice', 'ice-and-field']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));

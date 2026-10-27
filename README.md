@@ -2,6 +2,7 @@
 
 Where to play volleyball in Austin: open play, adult training, leagues and Reclub meets, split into indoor / sand / grass,
 plus court availability at High Point, The Crossover and Roots' Treehouse Gym. Every session links to its sign-up.
+Also public ice skating (the site's sport switcher; `?sport=ice_skating` links straight to it).
 
 Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional extras are a Postgres database on Neon
 (see [Database (Neon)](#database-neon)) and the Vercel API.
@@ -16,6 +17,8 @@ Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional ext
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | Hourly, 6am–midnight |
 | ATX Beach open play | TeamUp membership page | Hourly, 6am–midnight |
 | Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | Hourly, 6am–midnight |
+| Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs` reads each rink's public DaySmart events API, keeping only published public/adult skate event types on the listed rinks | Hourly, 6am–midnight |
+| Ice skating: Bee Cave on Ice, Four Seasons Ice Rodeo (seasonal outdoor) | `data/manual.json`: posted hours for the season, page watched for changes | `verifiedAt` age |
 | Everything else (Sand Social, Hanovers, leagues) | `data/manual.json`, hand-checked. Each scrape run watches each source page and flags it if the page changes | `verifiedAt` age |
 
 **Private bookings open to sign-ups.** When a court booking on a Skedda calendar starts and ends within 15 minutes of a
@@ -305,6 +308,9 @@ Every source is an entry in `config/sources.json`. Each entry names an `adapter`
   quickly, also export `check()` (see [Live API](#live-api)). The "Capture source fixtures" workflow saves raw
   responses under `test/fixtures/sources/` to test against, run through `scripts/sanitize-fixtures.mjs` first
   (the repo is public: no hosts, participants, notes or tokens; a test fails if an email or phone number slips in).
+- **A rink on DaySmart Recreation**: add a `daysmart` source with its `company` code, the `eventTypes` to keep
+  (`/dash/jsonapi/api/v1/event-types?company=<code>` lists them) and the `resources` (rink sheets) to read. The raw
+  API also returns private rentals; only `publish: true` events of listed types are kept.
 - **Court calendars on Skedda**: add it to `VENUES` in `lib/skedda.js`. Each venue in `courts.json` / `/api/courts` has `calendar` (the booking page) and `calendarDay`, a template with `{date}` (YYYY-MM-DD) that opens the booking page on that day; a platform with no per-day link leaves `calendarDay` out, so consumers fall back to `calendar`.
 - **No machine-readable source**: add it to `data/manual.json` with `verifiedAt` (tagged with the config defaults).
 

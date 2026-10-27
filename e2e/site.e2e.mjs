@@ -29,6 +29,9 @@ const SESSIONS = [
   { ...base, id: 'reclub-TREE01', sourceId: 'reclub', date: TODAY, start: '19:00', end: '22:00', title: 'Sunday Coed Net Volleyball', venue: 'Roots · Treehouse Gym', city: 'N. Austin', surface: 'indoor', type: 'Open play', facility: 'treehouse', checkFailed: TODAY, signup: { url: `${SIGNUP}/reclub`, label: 'Sign up on Reclub' }, source: `${SIGNUP}/reclub` },
   { ...base, id: 'manual-sand-sun', sourceId: 'manual', days: ['Sun'], start: '19:00', end: '22:00', title: 'Sunday Sand Social', venue: 'ATX Beach', city: 'North Austin', surface: 'sand', type: 'Open play', verifiedAt: '2026-10-20', sourceChanged: TODAY, signup: { url: `${SIGNUP}/social`, label: 'RSVP' }, source: `${SIGNUP}/social` },
   { ...base, id: 'manual-league', sourceId: 'manual', days: ['Sun'], start: null, end: null, title: 'Sunday Indoor League', venue: 'Volleyworld (Pflugerville)', city: 'Pflugerville', surface: 'indoor', type: 'League', source: `${SIGNUP}/league` },
+  { ...base, sport: 'ice_skating', id: 'rink-public', sourceId: 'rink', date: TODAY, start: '14:00', end: '16:00', title: 'Public Skating', venue: 'Example Ice Rink', city: 'Cedar Park', surface: 'indoor', type: 'Public skate', rink: 'Silver Rink', price: '$14 · skates $6', signup: { url: `${SIGNUP}/rink`, label: 'Public skating info' }, source: `${SIGNUP}/rink` },
+  { ...base, sport: 'ice_skating', id: 'rink-adult', sourceId: 'rink', date: TODAY, start: '19:30', end: '21:00', title: 'Adult Skate', venue: 'Example Ice Rink', city: 'Cedar Park', surface: 'indoor', type: 'Adult skate', rink: 'Gold Rink', signup: { url: `${SIGNUP}/rink-adult`, label: 'Rink calendar' }, source: `${SIGNUP}/rink-adult` },
+  { ...base, sport: 'ice_skating', id: 'pop-up', sourceId: 'manual', days: ['Sun'], start: '18:00', end: '21:00', title: 'Holiday Rink', venue: 'Example Plaza Rink', city: 'Downtown', surface: 'outdoor', type: 'Public skate', signup: { url: `${SIGNUP}/pop-up`, label: 'Timed tickets' }, source: `${SIGNUP}/pop-up` },
   { ...base, id: 'vw-monday', sourceId: 'volleyworld', date: TOMORROW, start: '19:30', end: '21:00', title: 'Monday Night Training', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Training', signup: { url: `${SIGNUP}/monday`, label: 'Book on Volleyworld' }, source: `${SIGNUP}/monday` },
 ];
 const SCHEDULE = {
@@ -37,6 +40,7 @@ const SCHEDULE = {
   sources: [
     { id: 'volleyworld', sport: 'volleyball', region: 'austin', ok: true, count: 4 },
     { id: 'reclub', sport: 'volleyball', region: 'austin', ok: false, error: 'HTTP 503', kept: 1 },
+    { id: 'rink', sport: 'ice_skating', region: 'austin', ok: true, count: 2 },
   ],
   sessions: SESSIONS,
   publicCourts: { note: 'Free, first come first served.', courts: [
@@ -170,6 +174,44 @@ test('site: surface tabs filter the list, show counts and are remembered across 
   await tab('grass').click();
   assert.equal(await rows().count(), 0);
   assert.match(await page.locator('#list .empty').textContent(), /No confirmed grass sessions today\..*Grass has no scheduled play in Austin/);
+});
+
+test('site: the sport switcher shows each sport on its own, with its own filters, and is shareable', async () => {
+  await open();
+  const sport = (k) => page.locator(`#sports [data-sport="${k}"]`);
+  assert.deepEqual(await page.locator('#sports .tab').allTextContents(), ['Volleyball', 'Ice skating']);
+  assert.equal(await sport('volleyball').getAttribute('aria-pressed'), 'true');
+  assert.ok(!(await titles()).includes('Public Skating')); // other sports stay out of the volleyball list
+  await tab('sand').click();
+
+  await sport('ice_skating').click();
+  assert.equal(new URL(page.url()).searchParams.get('sport'), 'ice_skating');
+  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All3', 'Indoor2', 'Outdoor1']); // surface resets to All
+  assert.equal(await tab('all').getAttribute('aria-pressed'), 'true');
+  assert.deepEqual(await titles(), ['Public Skating', 'Holiday Rink', 'Adult Skate']);
+  assert.match(await row('Public Skating').locator('.meta').textContent(), /Indoor.*Public skate.*Silver Rink.*\$14/);
+  // Volleyball-only parts are hidden: court calendars, their key and note, and the free courts.
+  assert.equal(await page.locator('#glance .key').isHidden(), true);
+  assert.equal(await page.locator('#calNote').isHidden(), true);
+  assert.equal(await page.locator('#courtsCard').isHidden(), true);
+  assert.equal(await page.locator('#cal .g-group').first().textContent(), 'Public skatetap a bar for details');
+  assert.equal(await page.locator('#cal .g-group').count(), 1);
+  assert.equal(await page.locator('#sourceStatus').textContent(), 'Last check read all 1 scraped ice skating source.');
+  assert.match(await page.locator('#footer').textContent(), /DaySmart/);
+
+  await tab('outdoor').click();
+  assert.deepEqual(await titles(), ['Holiday Rink']);
+
+  // Remembered on reload; a shared link opens that sport even for a viewer who last chose another.
+  await page.reload();
+  await rows().first().waitFor();
+  assert.equal(await sport('ice_skating').getAttribute('aria-pressed'), 'true');
+  await sport('volleyball').click();
+  assert.equal(new URL(page.url()).searchParams.get('sport'), null);
+  assert.equal(await tab('all').getAttribute('aria-pressed'), 'true');
+  await page.goto(`${origin}/?sport=ice_skating`);
+  await rows().first().waitFor();
+  assert.deepEqual(await titles(), ['Public Skating', 'Holiday Rink', 'Adult Skate']);
 });
 
 test('site: the day picker switches to other days of the week', async () => {
