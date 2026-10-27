@@ -149,7 +149,8 @@ take a while to show up.
 
 **Cost stays flat as sports and cities are added.** Each run uses at most `maxQueriesPerRun` (10) of the queries,
 rotating through the whole list week by week; a longer list means each query comes round less often, not a bigger
-run. Claude only ever sees that batch (`--queries discover-queries.json`) and has at most 15 turns.
+run. Claude only ever sees that batch (`--queries discover-queries.json`), runs the searches in parallel, and has at most
+25 turns.
 
 Search: with the `BRAVE_SEARCH_API_KEY` secret (https://api.search.brave.com) the script calls Brave itself. Without it,
 the workflow has Claude Code run the queries with its web search, using the `CLAUDE_CODE_OAUTH_TOKEN` secret the auto-fix
