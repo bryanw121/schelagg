@@ -16,11 +16,13 @@
 // The "Discover venues" workflow runs it weekly per sport and opens one pull request per sport.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-import { get, USER_AGENT } from '../lib/http.js';
+import { get } from '../lib/http.js';
 import { loadEnv, repoPath } from '../lib/paths.js';
 import { loadVenues, venueIndex } from '../lib/consolidate.js';
 
-const OVERPASS = 'https://overpass-api.de/api/interpreter';
+// Public Overpass instances, tried in order until one answers (the main one can refuse a client).
+export const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
+const OVERPASS_UA = 'Schelagg/0.4 (schedule aggregator; +https://github.com/bryanw121/schelagg)';
 const PLACES = 'https://places.googleapis.com/v1/places:searchText';
 const SCHEDULE_WORDS = /schedule|calendar|open[- ]?play|public[- ]?skat|drop[- ]?in|book|reserve|sessions|hours/i;
 const norm = (s) => String(s ?? '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
@@ -60,6 +62,24 @@ export function parseOverpass(json) {
   // One entry per OSM object, and per name+place (a rink mapped as both a building and an area).
   const seen = new Set();
   return out.filter((v) => { const k = `${norm(v.name)}@${v.lat.toFixed(3)},${v.lng.toFixed(3)}`; if (seen.has(k) || seen.has(v.osm)) return false; seen.add(k); seen.add(v.osm); return true; });
+}
+
+/** Run an Overpass query (POSTed as a form), trying each public instance until one answers. */
+export async function overpass(query, { fetch: f = globalThis.fetch, endpoints = OVERPASS } = {}) {
+  const errors = [];
+  for (const url of endpoints) {
+    try {
+      const res = await f(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/x-www-form-urlencoded', accept: '*/*', 'user-agent': OVERPASS_UA },
+        body: new URLSearchParams({ data: query }).toString(),
+        signal: AbortSignal.timeout(120000),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return JSON.parse(await res.text());
+    } catch (e) { errors.push(`${new URL(url).hostname} ${e.message}`); }
+  }
+  throw new Error(errors.join(', '));
 }
 
 /** Google Places Text Search (New): place ids, names and websites for one query. Only ids are kept long-term. */
@@ -192,15 +212,7 @@ export async function discover({ sport, region, discovery, platforms, venues, fe
   let osm = [];
   try {
     const q = overpassQuery(sp.osm, reg.center, reg.radiusKm);
-    // Overpass wants the query POSTed as a form, and an Accept it can serve.
-    const res = await (fetch ?? globalThis.fetch)(OVERPASS, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded', accept: 'application/json', 'user-agent': USER_AGENT },
-      body: new URLSearchParams({ data: q }).toString(),
-      signal: AbortSignal.timeout(120000),
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    osm = parseOverpass(JSON.parse(await res.text()));
+    osm = parseOverpass(await overpass(q, { fetch }));
   } catch (e) { warnings.push(`OpenStreetMap: ${e.message}`); }
   const googlePlaces = [];
   if (google && sp.google) {

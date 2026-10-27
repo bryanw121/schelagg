@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import {
-  overpassQuery, parseOverpass, pageLinks, detectPlatforms, classifySchedule, matchVenues, mergePlaces,
+  overpassQuery, overpass, parseOverpass, pageLinks, detectPlatforms, classifySchedule, matchVenues, mergePlaces,
   discover, reportMarkdown, applyToVenues, loadDiscovery, loadPlatforms, slug, enrichments,
 } from '../scripts/discover.mjs';
 import { loadVenues } from '../lib/consolidate.js';
@@ -26,7 +26,7 @@ const PAGES = {
 };
 const fetch = async (url, init) => {
   const u = String(url);
-  if (u.startsWith('https://overpass-api.de/')) {
+  if (u.includes('/api/interpreter')) {
     assert.equal(init?.method, 'POST');
     assert.match(String(init.body), /^data=%5Bout%3Ajson%5D/);
     return new Response(JSON.stringify(OVERPASS));
@@ -99,11 +99,18 @@ test('discover: a full run for ice skating, its report, and applying it to the v
   await assert.rejects(discover({ sport: 'curling', region: 'austin', discovery: DISCOVERY, platforms: PLATFORMS, venues: VENUES, fetch }), /unknown sport/);
 });
 
+test('overpass: falls back to the next instance when one refuses', async () => {
+  const calls = [];
+  const f = async (url) => { calls.push(new URL(url).hostname); return calls.length === 1 ? new Response('no', { status: 406 }) : new Response('{"elements":[]}'); };
+  assert.deepEqual(await overpass('[out:json];', { fetch: f }), { elements: [] });
+  assert.deepEqual(calls, ['overpass-api.de', 'overpass.private.coffee']);
+});
+
 test('discover: OpenStreetMap down is a warning, not a crash', async () => {
   const down = async () => new Response('busy', { status: 504 });
   const r = await discover({ sport: 'pickleball', region: 'austin', discovery: DISCOVERY, platforms: PLATFORMS, venues: VENUES, fetch: down });
   assert.deepEqual([r.counts.osm, r.candidates.length], [0, 0]);
-  assert.deepEqual(r.warnings, ['OpenStreetMap: HTTP 504']);
+  assert.deepEqual(r.warnings, ['OpenStreetMap: overpass-api.de HTTP 504, overpass.private.coffee HTTP 504, overpass.kumi.systems HTTP 504']);
   const text = readFileSync(new URL('../config/venues.json', import.meta.url), 'utf8');
   assert.equal(applyToVenues(text, r), text, 'nothing found: config untouched');
   assert.equal(JSON.stringify(JSON.parse(text), null, 2) + '\n', text, 'venues.json is kept in the format applyToVenues writes');
