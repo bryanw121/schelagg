@@ -16,11 +16,13 @@
 // The "Discover venues" workflow runs it weekly per sport and opens one pull request per sport.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-import { get, USER_AGENT } from '../lib/http.js';
+import { get } from '../lib/http.js';
 import { loadEnv, repoPath } from '../lib/paths.js';
 import { loadVenues, venueIndex } from '../lib/consolidate.js';
 
-const OVERPASS = 'https://overpass-api.de/api/interpreter';
+// Public Overpass instances, tried in order until one answers (the main one can refuse a client).
+export const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
+const OVERPASS_UA = 'Schelagg/0.4 (schedule aggregator; +https://github.com/bryanw121/schelagg)';
 const PLACES = 'https://places.googleapis.com/v1/places:searchText';
 const SCHEDULE_WORDS = /schedule|calendar|open[- ]?play|public[- ]?skat|drop[- ]?in|book|reserve|sessions|hours/i;
 const norm = (s) => String(s ?? '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
@@ -29,10 +31,16 @@ export const slug = (s) => norm(s).replace(/ /g, '-').slice(0, 60).replace(/-+$/
 export const loadDiscovery = (path = repoPath('config/discovery.json')) => JSON.parse(readFileSync(path, 'utf8'));
 export const loadPlatforms = (path = repoPath('config/platforms.json')) => JSON.parse(readFileSync(path, 'utf8')).platforms;
 
-/** The Overpass QL for a sport's selectors around a point. */
-export function overpassQuery(selectors, [lat, lng], radiusKm) {
-  const around = `(around:${Math.round(radiusKm * 1000)},${lat},${lng})`;
-  return `[out:json][timeout:90];(${selectors.map((s) => `${s}${around};`).join('')});out tags center;`;
+/** The box (south, west, north, east) around a point, radiusKm each way. */
+export function bbox([lat, lng], radiusKm) {
+  const dLat = radiusKm / 111.32, dLng = radiusKm / (111.32 * Math.cos((lat * Math.PI) / 180));
+  const r = (x) => +x.toFixed(4);
+  return [r(lat - dLat), r(lng - dLng), r(lat + dLat), r(lng + dLng)];
+}
+
+/** The Overpass QL for a sport's selectors in the box around a point (a global bbox is far cheaper than around:). */
+export function overpassQuery(selectors, center, radiusKm) {
+  return `[out:json][timeout:90][bbox:${bbox(center, radiusKm).join(',')}];(${selectors.map((s) => `${s};`).join('')});out tags center;`;
 }
 
 /** Overpass JSON -> venues: { name, osm, lat, lng, website, city, indoor, lit, courts, access, openingHours, sports }. */
@@ -60,6 +68,24 @@ export function parseOverpass(json) {
   // One entry per OSM object, and per name+place (a rink mapped as both a building and an area).
   const seen = new Set();
   return out.filter((v) => { const k = `${norm(v.name)}@${v.lat.toFixed(3)},${v.lng.toFixed(3)}`; if (seen.has(k) || seen.has(v.osm)) return false; seen.add(k); seen.add(v.osm); return true; });
+}
+
+/** Run an Overpass query (POSTed as a form), trying each public instance until one answers. */
+export async function overpass(query, { fetch: f = globalThis.fetch, endpoints = OVERPASS } = {}) {
+  const errors = [];
+  for (const url of endpoints) {
+    try {
+      const res = await f(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/x-www-form-urlencoded', accept: '*/*', 'user-agent': OVERPASS_UA },
+        body: new URLSearchParams({ data: query }).toString(),
+        signal: AbortSignal.timeout(120000),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return JSON.parse(await res.text());
+    } catch (e) { errors.push(`${new URL(url).hostname} ${e.message}`); }
+  }
+  throw new Error(errors.join(', '));
 }
 
 /** Google Places Text Search (New): place ids, names and websites for one query. Only ids are kept long-term. */
@@ -192,15 +218,7 @@ export async function discover({ sport, region, discovery, platforms, venues, fe
   let osm = [];
   try {
     const q = overpassQuery(sp.osm, reg.center, reg.radiusKm);
-    // Overpass wants the query POSTed as a form, and an Accept it can serve.
-    const res = await (fetch ?? globalThis.fetch)(OVERPASS, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded', accept: 'application/json', 'user-agent': USER_AGENT },
-      body: new URLSearchParams({ data: q }).toString(),
-      signal: AbortSignal.timeout(120000),
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    osm = parseOverpass(JSON.parse(await res.text()));
+    osm = parseOverpass(await overpass(q, { fetch }));
   } catch (e) { warnings.push(`OpenStreetMap: ${e.message}`); }
   const googlePlaces = [];
   if (google && sp.google) {
