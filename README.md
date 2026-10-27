@@ -92,7 +92,8 @@ ran `npm test` and the site e2e.
   source keeps one issue open and comments on it; a source that changed what it sends gets its own issue (see
   [Catching source changes](#catching-source-changes)).
 - **Discover Reclub clubs** (`.github/workflows/discover.yml`): daily. Opens a pull request for each new Reclub club
-  running volleyball meets in the area. Needs the `BRAVE_SEARCH_API_KEY` secret.
+  running volleyball meets in the area. Searches with Brave (`BRAVE_SEARCH_API_KEY`) or, without it, Claude Code
+  (`CLAUDE_CODE_OAUTH_TOKEN`).
 - **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
   plus the site e2e in Chromium on Linux.
 
@@ -113,8 +114,11 @@ the club is never suggested again. Pull requests opened with the workflow's toke
 tests run on the next push or scrape. Recall is limited to what search engines have indexed, so a brand-new club can
 take a while to show up.
 
-Setup: get a key at https://api.search.brave.com and add it as the `BRAVE_SEARCH_API_KEY` repository secret (or in
-`.env` to run it locally: `node scripts/discover-reclub.mjs` writes `discover-candidates.json`).
+Search: with the `BRAVE_SEARCH_API_KEY` secret (https://api.search.brave.com) the script calls Brave itself. Without it,
+the workflow has Claude Code run the queries with its web search, using the `CLAUDE_CODE_OAUTH_TOKEN` secret the auto-fix
+job already has, and passes the reclub.co URLs it found to `node scripts/discover-reclub.mjs --urls discover-urls.json`.
+Claude only lists URLs; the script reads the pages and decides. Locally, put the key in `.env` and run
+`node scripts/discover-reclub.mjs` (writes `discover-candidates.json`).
 
 ## Run locally
 

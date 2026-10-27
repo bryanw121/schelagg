@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyClub, discover, distanceKm, judgeMeet, knownSlugs, prBody, reclubLinks } from '../scripts/discover-reclub.mjs';
+import { applyClub, discover, distanceKm, judgeMeet, knownSlugs, prBody, readUrls, reclubLinks } from '../scripts/discover-reclub.mjs';
 import { meetData } from '../scripts/adapters/reclub.mjs';
 import { loadSources } from '../lib/registry.js';
 
@@ -90,4 +90,11 @@ test('applyClub adds a club to the config once and rejects bad slugs', () => {
   assert.equal(applyClub(next, 'North_Austin_VB'), next);
   assert.equal(applyClub(text, 'vex_volleyball'), text);
   assert.throws(() => applyClub(text, 'x; rm -rf /'), RangeError);
+});
+
+test('readUrls takes a JSON array of URLs (or { url } objects) and ignores anything else', () => {
+  assert.deepEqual(readUrls('["https://reclub.co/m/NEW001", {"url": "https://reclub.co/clubs/@x"}, 3, "javascript:alert(1)", null]'),
+    ['https://reclub.co/m/NEW001', 'https://reclub.co/clubs/@x']);
+  assert.deepEqual(readUrls('not json'), []);
+  assert.deepEqual(readUrls('{"urls": []}'), []);
 });

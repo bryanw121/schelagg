@@ -8,10 +8,13 @@
 // center. Settings live in the reclub source's options.discover in config/sources.json.
 //
 //   node scripts/discover-reclub.mjs                 write discover-candidates.json (needs BRAVE_SEARCH_API_KEY)
+//   node scripts/discover-reclub.mjs --urls <file>   same, from search results gathered elsewhere (a JSON array of
+//                                                    URLs; the workflow has Claude run the searches when there's no key)
 //   node scripts/discover-reclub.mjs --apply <slug>  add https://reclub.co/clubs/@<slug> to config/sources.json
 //
 // The "Discover Reclub clubs" workflow runs this daily and opens one pull request per new club.
-// Without BRAVE_SEARCH_API_KEY it prints a notice and finds nothing.
+// Search comes from BRAVE_SEARCH_API_KEY if set, otherwise from Claude (CLAUDE_CODE_OAUTH_TOKEN)
+// running the queries with web search; with neither it prints a notice and finds nothing.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { get } from '../lib/http.js';
@@ -121,6 +124,13 @@ export async function discover({ options, search, fetch, maxPages = 40, meetsPer
   return { candidates: [...candidates.values()], rejected, warnings, searched: (d.queries ?? []).length, pagesRead: Math.min(pages, maxPages) };
 }
 
+/** URLs from a search-results file: a JSON array of strings (or of { url }), anything else ignored. */
+export function readUrls(text) {
+  let list;
+  try { list = JSON.parse(text); } catch { return []; }
+  return (Array.isArray(list) ? list : []).map((x) => (typeof x === 'string' ? x : x?.url)).filter((u) => typeof u === 'string' && /^https?:\/\//.test(u));
+}
+
 /** Pull request body for one candidate. */
 export function prBody(c) {
   return [
@@ -160,13 +170,22 @@ async function main(args) {
   loadEnv();
   const out = repoPath('discover-candidates.json');
   const key = process.env.BRAVE_SEARCH_API_KEY;
-  if (!key) {
-    console.log('::notice::BRAVE_SEARCH_API_KEY isn\'t set; skipping Reclub club discovery.');
+  const urlsFile = args[0] === '--urls' ? args[1] : null;
+  let search;
+  if (urlsFile) {
+    // Results gathered outside (Claude's web search): hand them all over once, on the first query.
+    const urls = readUrls(readFileSync(urlsFile, 'utf8'));
+    let given = false;
+    search = async () => (given ? [] : (given = true, urls));
+  } else if (key) {
+    search = (q) => braveSearch(q, { key });
+  } else {
+    console.log('::notice::No BRAVE_SEARCH_API_KEY and no --urls file; skipping Reclub club discovery.');
     writeFileSync(out, `${JSON.stringify({ candidates: [] }, null, 2)}\n`);
     return;
   }
   const options = loadSources().sources.find((s) => s.adapter === 'reclub')?.options;
-  const result = await discover({ options, search: (q) => braveSearch(q, { key }) });
+  const result = await discover({ options, search });
   result.candidates = result.candidates.map((c) => ({ ...c, body: prBody(c) }));
   writeFileSync(out, `${JSON.stringify(result, null, 2)}\n`);
   console.log(`Searched ${result.searched} queries, read ${result.pagesRead} Reclub pages.`);
