@@ -6,7 +6,8 @@
   "git": {
     "deploymentEnabled": {
       "data": false,
-      "autofix/**": false
+      "autofix/**": false,
+      "discover-state": false
     }
   },
   "functions": {

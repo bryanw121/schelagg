@@ -147,14 +147,29 @@ the club is never suggested again. Pull requests opened with the workflow's toke
 tests run on the next push or scrape. Recall is limited to what search engines have indexed, so a brand-new club can
 take a while to show up.
 
-**Cost stays flat as sports and cities are added.** Each run uses at most `maxQueriesPerRun` (10) of the queries,
-rotating through the whole list week by week; a longer list means each query comes round less often, not a bigger
-run. Claude only ever sees that batch (`--queries discover-queries.json`), runs the searches in parallel, and has at most
-25 turns.
+**How often each query runs (cost stays bounded as sports and cities are added).** `discover-state.json`, kept on
+the `discover-state` branch, remembers each query's last run and whether it found a new club:
+
+| Query's recent history | Runs again after |
+|---|---|
+| New (a sport or city just added) | this run, ahead of everything else |
+| Found a new club last time | 1 week |
+| 1 / 2 / 3+ runs in a row with nothing new | 2 / 4 / 8 weeks |
+
+Each run takes the due queries up to `budget` (`brave: 100`, `claude: 20` per run): queries that found a club last
+time first (so they never skip a week), then new ones, then the most overdue, with a quarter of the budget kept for new
+and overdue ones. In simulation, 50 queries with 10 productive at budget 20 keep the productive ones weekly and the
+rest within 8 weeks, at about 17 searches a run. Past roughly 60 queries a budget of 20 can't keep up (quiet ones would
+wait longer than 8 weeks); the run then warns, and the fix is the Brave key (about 1,000 free searches a month). The state also
+remembers clubs already proposed or skipped and which club each meet belongs to, so those pages aren't read again, and
+club links found on discovered venues' websites (`config/venues.json`, schedule platform `reclub`) are checked
+without any search. When Claude searches it runs on Haiku, sees only the planned batch, and reports results per query;
+a query it didn't report on stays due instead of counting as empty.
 
 Search: with the `BRAVE_SEARCH_API_KEY` secret (https://api.search.brave.com) the script calls Brave itself. Without it,
 the workflow has Claude Code run the queries with its web search, using the `CLAUDE_CODE_OAUTH_TOKEN` secret the auto-fix
-job already has, and passes the reclub.co URLs it found to `node scripts/discover-reclub.mjs --urls discover-urls.json`.
+job already has, and passes the reclub.co URLs it found for each query to
+`node scripts/discover-reclub.mjs --results discover-urls.json`.
 Claude only lists URLs; the script reads the pages and decides. Locally, put the key in `.env` and run
 `node scripts/discover-reclub.mjs` (writes `discover-candidates.json`).
 
