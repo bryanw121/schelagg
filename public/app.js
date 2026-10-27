@@ -118,6 +118,27 @@ function signupHtml(x) {
   return s.label ? `<span class="dropin">${esc(s.label)}</span>` : '';
 }
 
+// A rescheduled session says where it was ("Moved from Fri 7pm"); see lib/consolidate.js.
+function movedHtml(x) {
+  if (x.status !== 'rescheduled' || !x.previousStart) return '';
+  const [d, t] = x.previousStart.split(' ');
+  const when = d === x.date ? fmtT(t) : `${DAYS[dowOf(d)]} ${fmtDate(d)}, ${fmtT(t)}`;
+  return `<div class="moved">Moved from ${esc(when)}</div>`;
+}
+const sourceName = (id) => schedule?.sources?.find((s) => s.id === id)?.name ?? (id === 'manual' ? 'hand-checked' : id);
+// The same session listed by other sources (merged into this card): a link to each.
+const alsoOnHtml = (x) => (x.alsoOn || []).map((a) => `<a class="src also" href="${esc(a.signup?.url || a.source || '#')}" target="_blank" rel="noopener">Also on ${esc(sourceName(a.sourceId))} ↗</a>`).join('');
+
+/** Each source for this sport: name, ok or not, how long ago it was checked, sessions found. */
+function renderSourceList() {
+  const list = (schedule?.sources || []).filter((s) => (s.sport || 'volleyball') === state.sport);
+  $('sourceList').innerHTML = list.map((s) => `<li class="${s.ok ? 'ok' : 'bad'}"><b>${esc(s.name || s.id)}</b>
+    <span>${s.ok ? '✓' : '⚠'} ${s.checkedAt ? `checked ${ago(s.checkedAt)}` : ''}${s.ok ? ` · ${s.count} session${s.count === 1 ? '' : 's'}` : ` · couldn't read, showing last good copy`}</span></li>`).join('');
+  // Calendar subscription for this sport (public/data/<sport>.ics, rebuilt every scrape).
+  const ics = new URL(`${DATA}${state.sport}.ics`, location.href);
+  $('subscribe').innerHTML = `📅 <a href="${esc(ics.href.replace(/^https?:/, 'webcal:'))}">Subscribe in your calendar</a> to see ${esc(SPORTS[state.sport].label.toLowerCase())} here, updated hourly · <a href="${esc(ics.href)}" download>.ics file</a>`;
+}
+
 // ---------- render ----------
 function renderSports() {
   const today = (schedule?.sessions || []).filter((x) => !x.date || x.date >= NOW.iso);
@@ -165,8 +186,8 @@ function renderList() {
         <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? 'Happening now' : x.f.l}</span></div>
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}</div>
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}</div>
-        ${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}
-        <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a></div>
+        ${movedHtml(x)}${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}
+        <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a>${alsoOnHtml(x)}</div>
       </div></div>`;
   }
   if (!nowPlaced && shown.length) html += nowLabel;
@@ -254,7 +275,7 @@ function renderGlance() {
           : `<div class="g-book" style="${st}" title="Booked ${fmtT(hhmm(s))}–${fmtT(hhmm(e))}"></div>`;
       }).join('');
       const aria = `${blocks.length ? 'booked ' + blocks.map(([s, e]) => `${fmtT(hhmm(s))} to ${fmtT(hhmm(e))}`).join(', ') : 'no bookings'}; ${free.length ? 'open to rent ' + free.map(([a, b]) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))}`).join(', ') : 'no open time'}`;
-      return `<div class="g-row"><span class="g-lab">${esc(c.name.replace(/^(HP|CO) /, '').replace('Court #', 'Court '))}</span><div class="g-track" role="img" aria-label="${esc(c.name)}: ${aria}">${closedBlocks}${bl}${nowLine}</div></div>`;
+      return `<div class="g-row"><span class="g-lab">${esc(c.name.replace(/^(HP|CO) /, '').replace('Court #', 'Court '))}</span><div class="g-track lane" role="img" aria-label="${esc(c.name)}: ${aria}">${closedBlocks}${bl}${nowLine}</div></div>`;
     }).join('');
     const anyFree = union(frees).filter(([a, b]) => b - a >= 30);
     const sum = anyFree.length ? `courts free <b>${anyFree.map(([a, b]) => `${fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}</b>` : `<b class="full">fully booked</b>`;
@@ -290,6 +311,7 @@ function renderMeta() {
     ? `Last check couldn't read: ${bad.map((s) => s.id).join(', ')}. Their sessions show "Couldn't recheck".`
     : `Last check read all ${mine.length} scraped ${SPORTS[state.sport].label.toLowerCase()} source${mine.length === 1 ? '' : 's'}.`;
   $('footer').innerHTML = SPORTS[state.sport].footer;
+  renderSourceList();
 }
 
 function render() { if (!schedule) return; syncUrl(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }

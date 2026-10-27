@@ -187,6 +187,20 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.equal(byId['manual-bad'], undefined);
   assert.ok(r.logs.some((l) => /dropped manual-bad: needs a date or recurring days/.test(l)));
 
+  // Consolidation: canonical venues on known places, every session has a status, venues listed.
+  assert.equal(byId['reclub-VONMM8'].venueId, 'treehouse');
+  assert.equal(byId['daysmart-chaparralice-345508'].venueId, 'chaparral-northcross');
+  assert.ok(schedule.sessions.every((s) => ['scheduled', 'cancelled', 'rescheduled'].includes(s.status)), 'status');
+  assert.equal(byId['volleyworld-2026-10-25-17:30-georgetown'].status, 'cancelled');
+  assert.ok(schedule.venues.some((v) => v.id === 'crossover-ice' && v.parent === 'crossover'));
+  // A place not in config/venues.json is a warning (manual sessions report through the health check).
+  assert.ok(r.logs.some((l) => /warn  manual: venue "Zilker Park" isn't in config\/venues\.json/.test(l)));
+  // Calendar files per sport, next to the feed.
+  const ics = readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8');
+  assert.match(ics, /X-WR-CALNAME:Schelagg · Austin public skating/);
+  assert.match(ics, /UID:daysmart-chaparralice-345508@schelagg/);
+  assert.match(readFileSync(join(r.ws.dir, 'volleyball.ics'), 'utf8'), /UID:reclub-VONMM8@schelagg/);
+
   // One Chromium for all the browser sources, closed at the end.
   assert.deepEqual([r.browser.launched, r.browser.closed], [1, 1]);
   assert.equal(r.failed.length, 0);
@@ -205,7 +219,8 @@ test('scrape pipeline: occurrences.json is the documented feed', async () => {
   const sorted = [...feed.occurrences].sort((a, b) => a.starts_at.localeCompare(b.starts_at) || a.id.localeCompare(b.id));
   assert.deepEqual(ids, sorted.map((o) => o.id), 'sorted by start');
   const KEYS = ['id', 'session_id', 'source_id', 'sport', 'region', 'timezone', 'title', 'venue', 'city', 'level', 'price',
-    'starts_at', 'ends_at', 'signup_url', 'signup_label', 'note', 'canceled', 'verified_at', 'attributes'];
+    'starts_at', 'ends_at', 'signup_url', 'signup_label', 'note', 'canceled', 'verified_at', 'attributes',
+    'venue_id', 'status', 'previous_starts_at'];
   const until = new Date(NOW.getTime() + (FEED_HORIZON_DAYS + 1) * 864e5).toISOString();
   for (const o of feed.occurrences) {
     assert.deepEqual(Object.keys(o), KEYS, o.id);
@@ -220,6 +235,7 @@ test('scrape pipeline: occurrences.json is the documented feed', async () => {
     assert.ok(o.starts_at >= '2026-10-25T05:00:00.000Z' && o.starts_at < until, `${o.id} inside the feed horizon`);
     if (o.ends_at) assert.ok(o.ends_at > o.starts_at, o.id);
     assert.equal(typeof o.canceled, 'boolean', o.id);
+    assert.equal(o.status, o.canceled ? 'cancelled' : 'scheduled', o.id);
     for (const [k, allowed] of Object.entries(SPORT_ATTRIBUTES[o.sport])) assert.ok(allowed.includes(o.attributes[k]), `${o.id} ${k}`);
   }
   // Sessions without a start time (league before game times) stay out of the feed.
