@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-10-27T20:14:24.205Z",
+  "generatedAt": "2026-10-27T21:14:30.773Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1165,6 +1165,36 @@
       "previous_starts_at": null
     },
     {
+      "id": "volleyworld-2026-11-03-20:30-georgetown",
+      "session_id": "volleyworld-2026-11-03-20:30-georgetown",
+      "source_id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Jesus - Open Gym",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "level": "Adults · Jesus",
+      "price": null,
+      "starts_at": "2026-11-04T02:30:00.000Z",
+      "ends_at": "2026-11-04T05:30:00.000Z",
+      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "signup_label": "Book on Volleyworld",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-10-27",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 48,
+        "spotsLeft": 48,
+        "classId": "L0Rl9zvxdYyzDDqMx8Yu"
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "daysmart-chaparralice-346673",
       "session_id": "daysmart-chaparralice-346673",
       "source_id": "chaparral-ice",
@@ -2099,6 +2129,36 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "volleyworld-2026-11-10-20:30-georgetown",
+      "session_id": "volleyworld-2026-11-10-20:30-georgetown",
+      "source_id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Jesus - Open Gym",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "level": "Adults · Jesus",
+      "price": null,
+      "starts_at": "2026-11-11T02:30:00.000Z",
+      "ends_at": "2026-11-11T05:30:00.000Z",
+      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "signup_label": "Book on Volleyworld",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-10-27",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 48,
+        "spotsLeft": 48,
+        "classId": "k7gVDZTPZ1A234Wo0FFq"
+      },
+      "venue_id": "volleyworld-georgetown",
       "status": "scheduled",
       "previous_starts_at": null
     },

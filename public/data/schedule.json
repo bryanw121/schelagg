@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-27T20:14:24.205Z",
+  "generatedAt": "2026-10-27T21:14:30.773Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,8 +8,8 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T20:13:46.228Z",
-      "count": 12
+      "checkedAt": "2026-10-27T21:13:53.258Z",
+      "count": 14
     },
     {
       "id": "aces",
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-27T20:13:50.863Z",
+      "checkedAt": "2026-10-27T21:13:55.689Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 1
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T20:13:51.078Z",
+      "checkedAt": "2026-10-27T21:13:56.033Z",
       "count": 2
     },
     {
@@ -36,7 +36,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T20:13:52.499Z",
+      "checkedAt": "2026-10-27T21:13:57.722Z",
       "count": 2
     },
     {
@@ -45,7 +45,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T20:13:54.279Z",
+      "checkedAt": "2026-10-27T21:14:00.027Z",
       "count": 5
     },
     {
@@ -54,7 +54,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T20:14:07.012Z",
+      "checkedAt": "2026-10-27T21:14:12.221Z",
       "count": 32
     },
     {
@@ -63,7 +63,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T20:14:12.574Z",
+      "checkedAt": "2026-10-27T21:14:18.062Z",
       "count": 14
     }
   ],
@@ -231,6 +231,33 @@
       "status": "scheduled"
     },
     {
+      "id": "volleyworld-2026-11-03-20:30-georgetown",
+      "date": "2026-11-03",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Jesus - Open Gym",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Adults · Jesus",
+      "capacity": 48,
+      "spotsLeft": 48,
+      "classId": "L0Rl9zvxdYyzDDqMx8Yu",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
+    },
+    {
       "id": "volleyworld-2026-11-04-20:30-georgetown",
       "date": "2026-11-04",
       "start": "20:30",
@@ -379,6 +406,33 @@
       "capacity": 12,
       "spotsLeft": 12,
       "classId": "RnmaD20Nu0sGZxSU0y2r",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
+    },
+    {
+      "id": "volleyworld-2026-11-10-20:30-georgetown",
+      "date": "2026-11-10",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Jesus - Open Gym",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Adults · Jesus",
+      "capacity": 48,
+      "spotsLeft": 48,
+      "classId": "k7gVDZTPZ1A234Wo0FFq",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
         "label": "Book on Volleyworld"
