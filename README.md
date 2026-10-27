@@ -104,7 +104,7 @@ ran `npm test` and the site e2e.
   `public/data/schedule.json`, the public feed `public/data/occurrences.json` and `data/health.json`. A failing
   source keeps one issue open and comments on it; a source that changed what it sends gets its own issue (see
   [Catching source changes](#catching-source-changes)).
-- **Discover Reclub clubs** (`.github/workflows/discover.yml`): daily. Opens a pull request for each new Reclub club
+- **Discover Reclub clubs** (`.github/workflows/discover.yml`): weekly (Wednesdays). Opens a pull request for each new Reclub club
   running volleyball meets in the area. Searches with Brave (`BRAVE_SEARCH_API_KEY`) or, without it, Claude Code
   (`CLAUDE_CODE_OAUTH_TOKEN`).
 - **Discover venues** (`.github/workflows/discover-venues.yml`): weekly. One pull request per sport with new venues
