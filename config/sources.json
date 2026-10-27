@@ -96,7 +96,7 @@
           "surface": "indoor"
         },
         "discover": {
-          "_doc": "Daily discovery of clubs not in clubs (scripts/discover-reclub.mjs). A club qualifies when one of its meets is this sport and is in Reclub community `community` or within radiusKm of center [lat, lng].",
+          "_doc": "Daily discovery of clubs not in clubs (scripts/discover-reclub.mjs). A club qualifies when one of its meets is this sport and is in Reclub community `community` or within radiusKm of center [lat, lng]. Each run uses at most maxQueriesPerRun queries, rotating through the list week by week, so adding sports or cities doesn't raise the cost of a run.",
           "sport": "volleyball",
           "community": "Austin, TX, USA",
           "center": [
@@ -114,7 +114,8 @@
             "site:reclub.co High Point Leander volleyball",
             "site:reclub.co ATX Beach volleyball",
             "site:reclub.co volleyball Round Rock OR Pflugerville OR Georgetown"
-          ]
+          ],
+          "maxQueriesPerRun": 10
         }
       }
     },

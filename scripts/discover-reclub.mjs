@@ -80,11 +80,11 @@ const pause = (ms) => (ms > 0 ? new Promise((r) => setTimeout(r, ms)) : null);
  * Search, then read candidate meet pages. `search(query)` returns URLs; `fetch` is injected in tests.
  * Reads at most `maxPages` Reclub pages per run, `delayMs` apart, so a run stays a light touch.
  */
-export async function discover({ options, search, fetch, maxPages = 40, meetsPerClub = 3, delayMs = 1000 }) {
+export async function discover({ options, search, fetch, maxPages = 40, meetsPerClub = 3, delayMs = 1000, queries }) {
   const d = options?.discover ?? {};
   const known = knownSlugs(options?.clubs);
   const warnings = [], urls = [];
-  for (const q of d.queries ?? []) {
+  for (const q of queries ?? d.queries ?? []) {
     try { urls.push(...await search(q)); } catch (e) { warnings.push(`search "${q}": ${e.message}`); }
   }
   const links = reclubLinks(urls);
@@ -122,6 +122,32 @@ export async function discover({ options, search, fetch, maxPages = 40, meetsPer
     candidates.set(slug, c);
   }
   return { candidates: [...candidates.values()], rejected, warnings, searched: (d.queries ?? []).length, pagesRead: Math.min(pages, maxPages) };
+}
+
+/**
+ * This run's share of the queries: at most `max` (options.discover.maxQueriesPerRun, default 10),
+ * rotating through the whole list run by run (`run` = week number in the workflow). Adding sports
+ * or cities makes the list longer, so each query comes round less often; the cost of a run
+ * (searches, and Claude usage when Claude searches) stays the same.
+ */
+export function queriesForRun(all = [], max = 10, run = 0) {
+  if (all.length <= max) return [...all];
+  const start = ((run * max) % all.length + all.length) % all.length;
+  return Array.from({ length: max }, (_, i) => all[(start + i) % all.length]);
+}
+
+/**
+ * The Reclub source's options from loaded sources. loadSources() resolves `adapter` to the adapter
+ * module, so match on its id (comparing to the string 'reclub' never matches).
+ */
+export const reclubOptions = (sources) => sources.find((s) => s.adapter?.id === 'reclub' || s.adapter === 'reclub')?.options;
+
+/** ISO week number of a date (1-53): the rotation index for weekly runs. */
+export function isoWeek(date = new Date()) {
+  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+  const day = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - day);
+  return Math.ceil(((d - Date.UTC(d.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7);
 }
 
 /** URLs from a search-results file: a JSON array of strings (or of { url }), anything else ignored. */
@@ -168,6 +194,14 @@ async function main(args) {
     return;
   }
   loadEnv();
+  const opts = reclubOptions(loadSources().sources);
+  const batch = queriesForRun(opts?.discover?.queries, opts?.discover?.maxQueriesPerRun ?? 10, isoWeek());
+  if (args[0] === '--queries') {
+    // The workflow hands this run's batch to Claude, so Claude never sees more than the budget.
+    writeFileSync(args[1], `${JSON.stringify(batch, null, 2)}\n`);
+    console.log(`::notice::Reclub discovery: ${batch.length} of ${opts?.discover?.queries?.length ?? 0} queries this run`);
+    return;
+  }
   const out = repoPath('discover-candidates.json');
   const key = process.env.BRAVE_SEARCH_API_KEY;
   const urlsFile = args[0] === '--urls' ? args[1] : null;
@@ -184,8 +218,7 @@ async function main(args) {
     writeFileSync(out, `${JSON.stringify({ candidates: [] }, null, 2)}\n`);
     return;
   }
-  const options = loadSources().sources.find((s) => s.adapter === 'reclub')?.options;
-  const result = await discover({ options, search });
+  const result = await discover({ options: opts, search, queries: batch });
   result.candidates = result.candidates.map((c) => ({ ...c, body: prBody(c) }));
   writeFileSync(out, `${JSON.stringify(result, null, 2)}\n`);
   console.log(`Searched ${result.searched} queries, read ${result.pagesRead} Reclub pages.`);
