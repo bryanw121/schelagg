@@ -1,133 +1,8 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-10-27T04:41:27.483Z",
+  "generatedAt": "2026-10-27T06:58:13.709Z",
   "horizonDays": 28,
   "occurrences": [
-    {
-      "id": "daysmart-chaparralice-345359",
-      "session_id": "daysmart-chaparralice-345359",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Adult Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-10-26T14:00:00.000Z",
-      "ends_at": "2026-10-26T15:00:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-10-26",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Adult skate",
-        "rink": "Northcross Rink"
-      }
-    },
-    {
-      "id": "daysmart-chaparralice-345505",
-      "session_id": "daysmart-chaparralice-345505",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-10-26T15:00:00.000Z",
-      "ends_at": "2026-10-26T17:00:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-10-26",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Northcross Rink"
-      }
-    },
-    {
-      "id": "daysmart-iceandfield-10378",
-      "session_id": "daysmart-iceandfield-10378",
-      "source_id": "ice-and-field",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skating",
-      "venue": "Ice & Field at The Crossover",
-      "city": "Cedar Park",
-      "level": null,
-      "price": "$14 · skates $6",
-      "starts_at": "2026-10-26T18:00:00.000Z",
-      "ends_at": "2026-10-26T20:00:00.000Z",
-      "signup_url": "https://iceandfield.com/public-skating/",
-      "signup_label": "Public skating info",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-10-26",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Silver Rink",
-        "capacity": 250
-      }
-    },
-    {
-      "id": "daysmart-chaparralice-345506",
-      "session_id": "daysmart-chaparralice-345506",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-10-26T19:45:00.000Z",
-      "ends_at": "2026-10-26T22:00:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-10-26",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Northcross Rink"
-      }
-    },
-    {
-      "id": "aces-2026-10-26-19:30",
-      "session_id": "aces-2026-10-26-19:30",
-      "source_id": "aces",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "ACES Indoor Open Play",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "level": "All levels, 18+",
-      "price": "$6 online · $10 door",
-      "starts_at": "2026-10-27T00:30:00.000Z",
-      "ends_at": "2026-10-27T03:00:00.000Z",
-      "signup_url": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
-      "signup_label": "Register on ACES",
-      "note": "1 court (more if signups allow). Winner stays on, games to 21.",
-      "canceled": false,
-      "verified_at": "2026-10-24",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      }
-    },
     {
       "id": "daysmart-chaparralice-345508",
       "session_id": "daysmart-chaparralice-345508",
@@ -146,12 +21,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10379",
@@ -171,13 +49,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345507",
@@ -197,12 +78,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "reclub-UEY4HO",
@@ -222,12 +106,15 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Tuesday.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
         "capacity": 36
-      }
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-10-27-20:30-georgetown",
@@ -247,14 +134,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "Ct8jXEbGRG0DpnGv8SBz"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345360",
@@ -274,12 +164,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345509",
@@ -299,12 +192,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10380",
@@ -324,13 +220,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345510",
@@ -350,12 +249,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "aces-2026-10-28-19:30",
@@ -379,7 +281,10 @@
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
-      }
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-10-28-20:30-georgetown",
@@ -399,14 +304,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "iMXQViiBzIkmDtssBt9e"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345512",
@@ -426,12 +334,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10381",
@@ -451,13 +362,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345511",
@@ -477,12 +391,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "aces-thu-6s-sand-2026-10-29",
@@ -506,7 +423,10 @@
       "attributes": {
         "surface": "sand",
         "type": "League"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "reclub-1QX0YR",
@@ -526,12 +446,15 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Thursday.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
         "capacity": 36
-      }
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345361",
@@ -551,12 +474,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345513",
@@ -576,12 +502,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345514",
@@ -601,12 +530,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-10-30",
@@ -626,11 +558,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atxbeach-friday-2026-10-30",
@@ -650,11 +585,14 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "reclub-2O9PDP",
@@ -674,12 +612,15 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
         "capacity": 36
-      }
+      },
+      "venue_id": "treehouse",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "reclub-VONMM8",
@@ -699,12 +640,15 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
         "capacity": 36
-      }
+      },
+      "venue_id": "treehouse",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-10-30-19:30-georgetown",
@@ -724,14 +668,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "2zpUe8wQDj8OjOAWVe4I"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-345515",
@@ -751,12 +698,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-2380",
@@ -776,13 +726,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-10-31-19:30-pflugerville",
@@ -802,14 +755,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 11,
         "classId": "syBCUPoKrX4BfJLzJXIH"
-      }
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-01-07:30-pflugerville",
@@ -829,14 +785,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "WkSWf0zUNels7Rt9icTo"
-      }
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "reclub-5X380N",
@@ -856,12 +815,15 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Austin Lawn Club, every Sunday.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "grass",
         "type": "Open play",
         "capacity": 16
-      }
+      },
+      "venue_id": "mueller-lake-park",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346687",
@@ -881,12 +843,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-2381",
@@ -906,13 +871,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-11-01",
@@ -932,11 +900,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atx-sand-social-sun-2026-11-01",
@@ -960,7 +931,10 @@
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-01-20:30-georgetown",
@@ -980,14 +954,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "i7ciBk6TREpgQqzEoDhW"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346672",
@@ -1007,12 +984,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346688",
@@ -1032,12 +1012,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10382",
@@ -1057,13 +1040,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346689",
@@ -1083,12 +1069,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346691",
@@ -1108,12 +1097,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10383",
@@ -1133,13 +1125,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346690",
@@ -1159,12 +1154,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346673",
@@ -1184,12 +1182,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346692",
@@ -1209,12 +1210,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10384",
@@ -1234,13 +1238,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346693",
@@ -1260,12 +1267,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-04-20:30-georgetown",
@@ -1285,14 +1295,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "RuNoKxQdILikYDtnfMhP"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346695",
@@ -1312,12 +1325,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10385",
@@ -1337,13 +1353,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346694",
@@ -1363,12 +1382,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "aces-thu-6s-sand-2026-11-05",
@@ -1392,7 +1414,10 @@
       "attributes": {
         "surface": "sand",
         "type": "League"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-05-20:30-georgetown",
@@ -1412,14 +1437,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "VBosqUn2EcRVN27NGWQ5"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346674",
@@ -1439,12 +1467,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346696",
@@ -1464,12 +1495,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10386",
@@ -1489,13 +1523,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346697",
@@ -1515,12 +1552,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-11-06",
@@ -1540,11 +1580,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atxbeach-friday-2026-11-06",
@@ -1564,11 +1607,14 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-06-19:30-georgetown",
@@ -1588,14 +1634,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "PWrVHRV21ZpPeJy6Dia6"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346698",
@@ -1615,12 +1664,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-2382",
@@ -1640,13 +1692,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-07-19:30-pflugerville",
@@ -1666,14 +1721,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "u07j3PtwFOeVm97fuF4t"
-      }
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-08-07:30-pflugerville",
@@ -1693,14 +1751,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "j832pfctCOA0XokNXOfB"
-      }
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346699",
@@ -1720,12 +1781,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-2383",
@@ -1745,13 +1809,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-11-08",
@@ -1771,11 +1838,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atx-sand-social-sun-2026-11-08",
@@ -1799,7 +1869,10 @@
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "volleyworld-2026-11-08-20:30-georgetown",
@@ -1819,14 +1892,17 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
         "spotsLeft": 12,
         "classId": "RnmaD20Nu0sGZxSU0y2r"
-      }
+      },
+      "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346675",
@@ -1846,12 +1922,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346700",
@@ -1871,12 +1950,15 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-iceandfield-10387",
@@ -1896,13 +1978,16 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Silver Rink",
         "capacity": 250
-      }
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "daysmart-chaparralice-346701",
@@ -1922,12 +2007,100 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
         "rink": "Northcross Rink"
-      }
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-chaparralice-346703",
+      "session_id": "daysmart-chaparralice-346703",
+      "source_id": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "level": null,
+      "price": null,
+      "starts_at": "2026-11-10T15:45:00.000Z",
+      "ends_at": "2026-11-10T18:00:00.000Z",
+      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "signup_label": "Rink calendar",
+      "note": "No reservation needed. Skate rental at the rink.",
+      "canceled": false,
+      "verified_at": "2026-10-27",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Northcross Rink"
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-iceandfield-10388",
+      "session_id": "daysmart-iceandfield-10388",
+      "source_id": "ice-and-field",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skating",
+      "venue": "Ice & Field at The Crossover",
+      "city": "Cedar Park",
+      "level": null,
+      "price": "$14 · skates $6",
+      "starts_at": "2026-11-10T19:00:00.000Z",
+      "ends_at": "2026-11-10T21:15:00.000Z",
+      "signup_url": "https://iceandfield.com/public-skating/",
+      "signup_label": "Public skating info",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-10-27",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Silver Rink",
+        "capacity": 250
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-chaparralice-346702",
+      "session_id": "daysmart-chaparralice-346702",
+      "source_id": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "level": null,
+      "price": null,
+      "starts_at": "2026-11-10T20:45:00.000Z",
+      "ends_at": "2026-11-10T23:15:00.000Z",
+      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "signup_label": "Rink calendar",
+      "note": "No reservation needed. Skate rental at the rink.",
+      "canceled": false,
+      "verified_at": "2026-10-27",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Northcross Rink"
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "aces-thu-6s-sand-2026-11-12",
@@ -1951,7 +2124,10 @@
       "attributes": {
         "surface": "sand",
         "type": "League"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-11-13",
@@ -1971,11 +2147,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atxbeach-friday-2026-11-13",
@@ -1995,11 +2174,14 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-11-15",
@@ -2019,11 +2201,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atx-sand-social-sun-2026-11-15",
@@ -2047,7 +2232,10 @@
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "beecave-on-ice-mwth-2026-11-16",
@@ -2071,7 +2259,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "beecave-on-ice-tue-2026-11-17",
@@ -2095,7 +2286,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "beecave-on-ice-mwth-2026-11-18",
@@ -2119,7 +2313,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "beecave-on-ice-mwth-2026-11-19",
@@ -2143,7 +2340,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "four-seasons-ice-rodeo-2026-11-20",
@@ -2167,7 +2367,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-11-20",
@@ -2187,11 +2390,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atxbeach-friday-2026-11-20",
@@ -2211,11 +2417,14 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "four-seasons-ice-rodeo-2026-11-21",
@@ -2239,7 +2448,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "four-seasons-ice-rodeo-2026-11-22",
@@ -2263,7 +2475,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "hanovers-open-2026-11-22",
@@ -2283,11 +2498,14 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-26",
+      "verified_at": "2026-10-27",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "atx-sand-social-sun-2026-11-22",
@@ -2311,7 +2529,10 @@
       "attributes": {
         "surface": "sand",
         "type": "Open play"
-      }
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "beecave-on-ice-mwth-2026-11-23",
@@ -2335,7 +2556,10 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
     },
     {
       "id": "four-seasons-ice-rodeo-2026-11-23",
@@ -2359,7 +2583,64 @@
       "attributes": {
         "surface": "outdoor",
         "type": "Public skate"
-      }
+      },
+      "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "beecave-on-ice-tue-2026-11-24",
+      "session_id": "beecave-on-ice-tue",
+      "source_id": "manual",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Bee Cave on Ice · community night",
+      "venue": "Bee Cave on Ice",
+      "city": "Bee Cave",
+      "level": null,
+      "price": "$11 + tax · skates incl.",
+      "starts_at": "2026-11-24T21:00:00.000Z",
+      "ends_at": "2026-11-25T03:00:00.000Z",
+      "signup_url": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
+      "signup_label": "Tickets & hours",
+      "note": "Seasonal outdoor rink. Hourly sessions with 50 minutes on the ice; holiday hours 10am–7pm.",
+      "canceled": false,
+      "verified_at": "2026-10-26",
+      "attributes": {
+        "surface": "outdoor",
+        "type": "Public skate"
+      },
+      "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "four-seasons-ice-rodeo-2026-11-24",
+      "session_id": "four-seasons-ice-rodeo",
+      "source_id": "manual",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Four Seasons Ice Rodeo",
+      "venue": "Four Seasons Hotel",
+      "city": "Downtown",
+      "level": null,
+      "price": "Timed tickets",
+      "starts_at": "2026-11-24T22:00:00.000Z",
+      "ends_at": "2026-11-25T03:00:00.000Z",
+      "signup_url": "https://fourseasonsaustin.ticketspice.com/ice-rodeo-26-27",
+      "signup_label": "Timed tickets",
+      "note": "Seasonal outdoor rink at the hotel. Session length and prices are on the ticket page.",
+      "canceled": false,
+      "verified_at": "2026-10-26",
+      "attributes": {
+        "surface": "outdoor",
+        "type": "Public skate"
+      },
+      "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
     }
   ]
 }

@@ -1,62 +1,69 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-27T04:41:27.483Z",
+  "generatedAt": "2026-10-27T06:58:13.709Z",
   "sources": [
     {
       "id": "volleyworld",
+      "name": "Volleyworld",
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T04:40:46.404Z",
+      "checkedAt": "2026-10-27T06:57:38.533Z",
       "count": 12
     },
     {
       "id": "aces",
+      "name": "ACES",
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-27T04:40:49.414Z",
+      "checkedAt": "2026-10-27T06:57:39.551Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 2
     },
     {
       "id": "atxbeach",
+      "name": "ATX Beach",
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T04:40:49.849Z",
+      "checkedAt": "2026-10-27T06:57:39.894Z",
       "count": 2
     },
     {
       "id": "velocity",
+      "name": "Austin Velocity",
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T04:40:51.705Z",
+      "checkedAt": "2026-10-27T06:57:41.710Z",
       "count": 2
     },
     {
       "id": "reclub",
+      "name": "Reclub",
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T04:40:58.700Z",
+      "checkedAt": "2026-10-27T06:57:44.036Z",
       "count": 5
     },
     {
       "id": "chaparral-ice",
+      "name": "Chaparral Ice",
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T04:41:10.423Z",
-      "count": 33
+      "checkedAt": "2026-10-27T06:57:57.617Z",
+      "count": 32
     },
     {
       "id": "ice-and-field",
+      "name": "Ice & Field",
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T04:41:15.566Z",
+      "checkedAt": "2026-10-27T06:58:02.818Z",
       "count": 14
     }
   ],
@@ -84,7 +91,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-10-28-20:30-georgetown",
@@ -109,7 +118,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-10-30-19:30-georgetown",
@@ -134,7 +145,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-10-31-19:30-pflugerville",
@@ -159,7 +172,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-01-07:30-pflugerville",
@@ -184,7 +199,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-01-20:30-georgetown",
@@ -209,7 +226,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-04-20:30-georgetown",
@@ -234,7 +253,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-05-20:30-georgetown",
@@ -259,7 +280,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-06-19:30-georgetown",
@@ -284,7 +307,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-07-19:30-pflugerville",
@@ -309,7 +334,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-08-07:30-pflugerville",
@@ -334,7 +361,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-08-20:30-georgetown",
@@ -359,32 +388,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
-    },
-    {
-      "id": "aces-2026-10-26-19:30",
-      "date": "2026-10-26",
-      "start": "19:30",
-      "end": "22:00",
-      "title": "ACES Indoor Open Play",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "All levels, 18+",
-      "price": "$6 online · $10 door",
-      "note": "1 court (more if signups allow). Winner stays on, games to 21.",
-      "signup": {
-        "url": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
-        "label": "Register on ACES"
-      },
-      "source": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
-      "sourceId": "aces",
-      "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-26",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
     },
     {
       "id": "aces-2026-10-28-19:30",
@@ -406,10 +412,12 @@
       "source": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
       "sourceId": "aces",
       "verifiedAt": "2026-10-24",
-      "checkFailed": "2026-10-26",
+      "checkFailed": "2026-10-27",
       "sport": "volleyball",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "atxbeach-standard",
@@ -440,7 +448,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "atx-beach",
+      "status": "scheduled"
     },
     {
       "id": "atxbeach-friday",
@@ -466,7 +476,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "atx-beach",
+      "status": "scheduled"
     },
     {
       "id": "velocity-wed",
@@ -493,7 +505,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover",
+      "status": "scheduled"
     },
     {
       "id": "velocity-fri",
@@ -520,7 +534,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover",
+      "status": "scheduled"
     },
     {
       "id": "reclub-UEY4HO",
@@ -545,7 +561,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "reclub-1QX0YR",
@@ -570,7 +588,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "reclub-VONMM8",
@@ -596,7 +616,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "treehouse",
+      "status": "scheduled"
     },
     {
       "id": "reclub-2O9PDP",
@@ -622,7 +644,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "treehouse",
+      "status": "scheduled"
     },
     {
       "id": "reclub-5X380N",
@@ -647,79 +671,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
-    },
-    {
-      "id": "daysmart-chaparralice-345359",
-      "date": "2026-10-26",
-      "start": "09:00",
-      "end": "10:00",
-      "title": "Adult Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "surface": "indoor",
-      "type": "Adult skate",
-      "rink": "Northcross Rink",
-      "price": null,
-      "note": "No reservation needed. Skate rental at the rink.",
-      "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
-      },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "sourceId": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
-    },
-    {
-      "id": "daysmart-chaparralice-345505",
-      "date": "2026-10-26",
-      "start": "10:00",
-      "end": "12:00",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "surface": "indoor",
-      "type": "Public skate",
-      "rink": "Northcross Rink",
-      "price": null,
-      "note": "No reservation needed. Skate rental at the rink.",
-      "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
-      },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "sourceId": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
-    },
-    {
-      "id": "daysmart-chaparralice-345506",
-      "date": "2026-10-26",
-      "start": "14:45",
-      "end": "17:00",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "surface": "indoor",
-      "type": "Public skate",
-      "rink": "Northcross Rink",
-      "price": null,
-      "note": "No reservation needed. Skate rental at the rink.",
-      "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
-      },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "sourceId": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "mueller-lake-park",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345508",
@@ -743,7 +697,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345507",
@@ -767,7 +723,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345360",
@@ -791,7 +749,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345509",
@@ -815,7 +775,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345510",
@@ -839,7 +801,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345512",
@@ -863,7 +827,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345511",
@@ -887,7 +853,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345361",
@@ -911,7 +879,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345513",
@@ -935,7 +905,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345514",
@@ -959,7 +931,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-345515",
@@ -983,7 +957,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346687",
@@ -1007,7 +983,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346672",
@@ -1031,7 +1009,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346688",
@@ -1055,7 +1035,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346689",
@@ -1079,7 +1061,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346691",
@@ -1103,7 +1087,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346690",
@@ -1127,7 +1113,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346673",
@@ -1151,7 +1139,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346692",
@@ -1175,7 +1165,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346693",
@@ -1199,7 +1191,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346695",
@@ -1223,7 +1217,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346694",
@@ -1247,7 +1243,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346674",
@@ -1271,7 +1269,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346696",
@@ -1295,7 +1295,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346697",
@@ -1319,7 +1321,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346698",
@@ -1343,7 +1347,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346699",
@@ -1367,7 +1373,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346675",
@@ -1391,7 +1399,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346700",
@@ -1415,7 +1425,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346701",
@@ -1439,32 +1451,61 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
-      "id": "daysmart-iceandfield-10378",
-      "date": "2026-10-26",
-      "start": "13:00",
-      "end": "15:00",
-      "title": "Public Skating",
-      "venue": "Ice & Field at The Crossover",
-      "city": "Cedar Park",
+      "id": "daysmart-chaparralice-346703",
+      "date": "2026-11-10",
+      "start": "09:45",
+      "end": "12:00",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
       "surface": "indoor",
       "type": "Public skate",
-      "rink": "Silver Rink",
-      "price": "$14 · skates $6",
-      "capacity": 250,
-      "note": null,
+      "rink": "Northcross Rink",
+      "price": null,
+      "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://iceandfield.com/public-skating/",
-        "label": "Public skating info"
+        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+        "label": "Rink calendar"
       },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/iceandfield/calendar?location=1",
-      "sourceId": "ice-and-field",
+      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "sourceId": "chaparral-ice",
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
+    },
+    {
+      "id": "daysmart-chaparralice-346702",
+      "date": "2026-11-10",
+      "start": "14:45",
+      "end": "17:15",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "surface": "indoor",
+      "type": "Public skate",
+      "rink": "Northcross Rink",
+      "price": null,
+      "note": "No reservation needed. Skate rental at the rink.",
+      "signup": {
+        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+        "label": "Rink calendar"
+      },
+      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "sourceId": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-27",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10379",
@@ -1489,7 +1530,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10380",
@@ -1514,7 +1557,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10381",
@@ -1539,7 +1584,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-2380",
@@ -1564,7 +1611,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-2381",
@@ -1589,7 +1638,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10382",
@@ -1614,7 +1665,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10383",
@@ -1639,7 +1692,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10384",
@@ -1664,7 +1719,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10385",
@@ -1689,7 +1746,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10386",
@@ -1714,7 +1773,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-2382",
@@ -1739,7 +1800,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-2383",
@@ -1764,7 +1827,9 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-iceandfield-10387",
@@ -1789,7 +1854,36 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-26"
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
+    },
+    {
+      "id": "daysmart-iceandfield-10388",
+      "date": "2026-11-10",
+      "start": "13:00",
+      "end": "15:15",
+      "title": "Public Skating",
+      "venue": "Ice & Field at The Crossover",
+      "city": "Cedar Park",
+      "surface": "indoor",
+      "type": "Public skate",
+      "rink": "Silver Rink",
+      "price": "$14 · skates $6",
+      "capacity": 250,
+      "note": null,
+      "signup": {
+        "url": "https://iceandfield.com/public-skating/",
+        "label": "Public skating info"
+      },
+      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/iceandfield/calendar?location=1",
+      "sourceId": "ice-and-field",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-27",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
     },
     {
       "id": "atx-sand-social-sun",
@@ -1815,7 +1909,9 @@
       "sourceId": "manual",
       "sport": "volleyball",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "atx-beach",
+      "status": "scheduled"
     },
     {
       "id": "aces-thu-6s-sand",
@@ -1841,7 +1937,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 403"
+      "watchError": "HTTP 403",
+      "venueId": "atx-beach",
+      "status": "scheduled"
     },
     {
       "id": "aces-mon-6s-indoor",
@@ -1868,7 +1966,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 403"
+      "watchError": "HTTP 403",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
     },
     {
       "id": "hanovers-open",
@@ -1897,7 +1997,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-25"
+      "sourceChanged": "2026-10-25",
+      "venueId": "hanovers",
+      "status": "scheduled"
     },
     {
       "id": "ssc-crossover-mon-sand",
@@ -1924,7 +2026,9 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-26"
+      "sourceChanged": "2026-10-26",
+      "venueId": "crossover",
+      "status": "scheduled"
     },
     {
       "id": "beecave-on-ice-mwth",
@@ -1953,7 +2057,9 @@
       "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
       "sourceId": "manual",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "bee-cave-on-ice",
+      "status": "scheduled"
     },
     {
       "id": "beecave-on-ice-tue",
@@ -1980,7 +2086,9 @@
       "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
       "sourceId": "manual",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "bee-cave-on-ice",
+      "status": "scheduled"
     },
     {
       "id": "beecave-on-ice-fri",
@@ -2007,7 +2115,9 @@
       "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
       "sourceId": "manual",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "bee-cave-on-ice",
+      "status": "scheduled"
     },
     {
       "id": "beecave-on-ice-sat",
@@ -2034,7 +2144,9 @@
       "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
       "sourceId": "manual",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "bee-cave-on-ice",
+      "status": "scheduled"
     },
     {
       "id": "beecave-on-ice-sun",
@@ -2061,7 +2173,9 @@
       "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
       "sourceId": "manual",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "bee-cave-on-ice",
+      "status": "scheduled"
     },
     {
       "id": "four-seasons-ice-rodeo",
@@ -2094,7 +2208,9 @@
       "source": "https://www.fourseasons.com/austin/seasonal/winter/",
       "sourceId": "manual",
       "region": "austin",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "venueId": "four-seasons-austin",
+      "status": "scheduled"
     }
   ],
   "publicCourts": {
@@ -2315,5 +2431,68 @@
         "lights": false
       }
     ]
-  }
+  },
+  "venues": [
+    {
+      "id": "volleyworld-georgetown",
+      "name": "Volleyworld (Georgetown)",
+      "city": "Georgetown"
+    },
+    {
+      "id": "volleyworld-pflugerville",
+      "name": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville"
+    },
+    {
+      "id": "atx-beach",
+      "name": "ATX Beach",
+      "city": "North Austin"
+    },
+    {
+      "id": "crossover",
+      "name": "The Crossover",
+      "city": "Cedar Park"
+    },
+    {
+      "id": "crossover-ice",
+      "name": "Ice & Field at The Crossover",
+      "city": "Cedar Park",
+      "parent": "crossover"
+    },
+    {
+      "id": "high-point",
+      "name": "High Point Center",
+      "city": "Leander"
+    },
+    {
+      "id": "treehouse",
+      "name": "Roots · Treehouse Gym",
+      "city": "N. Austin"
+    },
+    {
+      "id": "mueller-lake-park",
+      "name": "Mueller Lake Park",
+      "city": "Austin"
+    },
+    {
+      "id": "hanovers",
+      "name": "Hanovers Draught Haus",
+      "city": "Pflugerville"
+    },
+    {
+      "id": "chaparral-northcross",
+      "name": "Chaparral Ice",
+      "city": "N. Austin (Northcross)"
+    },
+    {
+      "id": "bee-cave-on-ice",
+      "name": "Bee Cave on Ice",
+      "city": "Bee Cave"
+    },
+    {
+      "id": "four-seasons-austin",
+      "name": "Four Seasons Hotel",
+      "city": "Downtown"
+    }
+  ]
 }
