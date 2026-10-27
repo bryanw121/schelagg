@@ -51,7 +51,9 @@ price the adapter hard-codes. After every scrape, `lib/health.js` compares the r
 
 | Check | Catches |
 |---|---|
+| **Broken** | A source failing in a way an outage doesn't explain (a response that doesn't parse, a parser error, a missing data array), reported on the first failure |
 | **Fewer sessions than usual** | A source returning a third or less of its usual count (median of the last 10 runs) |
+| **More sessions than usual** | A source returning 3× or more its usual count (a filter stopped excluding youth classes, duplicates) |
 | **Field disappeared** | A field most sessions had (`capacity`, `price`, `end`, ...) now missing from all of them |
 | **API data changed shape** | A key the adapter reads (`reads` in Volleyworld and Reclub) gone from the raw data, with the keys that appeared |
 | **Page changed** | The schedule lines ATX Beach and Velocity are read from changed, so details their adapters fill in may be stale |
@@ -78,13 +80,17 @@ saves the raw responses under the git-ignored `tmp/`), adapts the adapter or con
 | `npm test` fails | Nothing is pushed; the failure goes on the issue |
 | No safe change | Claude's reasoning goes on the issue |
 
-The gates: only adapters, `config/sources.json`, the fixture sanitizer and parser tests changed; `npm test` passes; the
-site e2e passes; and `scripts/verify-fix.mjs` re-runs the whole scrape live with the fix, against the health baseline
-from before the source changed, and finds the reported problems gone and no source newly broken. Page-changed findings
-(new prices or wording) always go to review.
+The gates: only adapters, `config/sources.json`, the fixture sanitizer and parser tests changed; existing parser tests
+and fixtures are untouched (a fix may only add tests and new fixture files, so it can't pass by rewriting what a test
+expects); `npm test` passes; the site e2e passes; and `scripts/verify-fix.mjs` re-runs the whole scrape live with the
+fix, against the health baseline from before the source changed, and finds the reported problems gone, no source newly
+broken, and the sessions that exist before and after keeping their ids, dates, times, venues and surfaces (one real
+reschedule per source is allowed). Page-changed findings (new prices or wording) always go to review.
 
-A source failing 3 scrapes in a row (about 3 hours) also starts it: one failure is usually an outage, several usually a
-changed format.
+Failures are split by cause (`classifyError` in `lib/health.js`). A **format** failure (the source answered, but not in
+a shape the adapter understands) starts the auto-fix on that same run. A **transient** one (network errors, timeouts,
+5xx, 429, 401/403 blocks) waits for 3 failed scrapes in a row (about 3 hours), since it's usually an outage that an
+adapter change can't fix.
 
 Setup (once): run `claude setup-token` (uses your Claude Pro/Max subscription, not API billing) and add the token as the
 repository secret `CLAUDE_CODE_OAUTH_TOKEN`. Without it the job is skipped. The token lasts a year; when it expires the

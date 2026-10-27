@@ -13,7 +13,7 @@ import { validateSessions, SCHEMA_VERSION, SPORT_ATTRIBUTES } from '../lib/sessi
 import { FEED_VERSION } from '../lib/occurrences.js';
 import { VENUES } from '../lib/skedda.js';
 import { runScrape, scrapePaths, buildCourts, HORIZON_DAYS, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
-import { judgeFix } from '../lib/health.js';
+import { judgeFix, compareSessions } from '../lib/health.js';
 
 const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
@@ -424,6 +424,63 @@ test('auto-fix verification: a fix is mergeable when a live re-run against the p
   const notFixed = await rerun(network({ arketa: renamed }));
   assert.equal(notFixed.mergeable, false);
   assert.ok(notFixed.reasons.some((r) => /Field disappeared: no session has `capacity`/.test(r)));
+});
+
+test('scrape pipeline: a source whose format changed is reported on the first failure; an outage waits for the streak', async () => {
+  const volleyworld = SOURCES.filter((s) => s.id === 'volleyworld');
+  const ws = workspace();
+  await scrape({ ws, sources: volleyworld });
+  // Arketa down: one 503 is an outage, so nothing is reported yet.
+  const down = await scrape({ ws, sources: volleyworld, fetch: network({ down: new Set(['widget-api-tkaeguucxq-uc.a.run.app']) }) });
+  assert.equal(down.failed.length, 1);
+  assert.ok(!down.fresh.some((f) => f.source === 'volleyworld'));
+  // Arketa answers, but with a different envelope: reported at once so the auto-fix starts now.
+  const moved = JSON.stringify({ result: JSON.parse(fixture('arketa-volleyworld-schedule.json')).data });
+  const r = await scrape({ ws, sources: volleyworld, fetch: network({ arketa: moved }) });
+  assert.deepEqual(r.fresh.filter((f) => f.source === 'volleyworld').map((f) => f.key), ['volleyworld:broken']);
+  assert.match(readFileSync(ws.paths.changes, 'utf8'), /\*\*volleyworld\*\* · Broken: failed in a way an outage doesn't explain \(Arketa response has no data\.classes\)/);
+  // Its last good sessions are still published.
+  assert.ok(r.schedule.sessions.some((s) => s.sourceId === 'volleyworld' && s.checkFailed));
+  // Reported once, and cleared when the source scrapes again.
+  const again = await scrape({ ws, sources: volleyworld, fetch: network({ arketa: moved }) });
+  assert.ok(!again.fresh.some((f) => f.source === 'volleyworld'));
+  const back = await scrape({ ws, sources: volleyworld });
+  assert.ok(!back.findings.some((f) => f.source === 'volleyworld'));
+});
+
+test('scrape pipeline: far more sessions than usual is reported as a spike', async () => {
+  const volleyworld = SOURCES.filter((s) => s.id === 'volleyworld');
+  const ws = workspace();
+  const arketa = JSON.parse(fixture('arketa-volleyworld-schedule.json'));
+  await scrape({ ws, sources: volleyworld });
+  // The adult filter "breaks": every class is now named like an adult one (distinct start times so none collapse).
+  const classes = arketa.data.classes;
+  const extra = Array.from({ length: 4 }, (_, k) => classes.map((c) => ({ ...c, id: `${c.id}-${k}`, start_time: c.start_time + (k + 1) * 600 }))).flat();
+  const many = JSON.stringify({ ...arketa, data: { ...arketa.data, classes: [...classes, ...extra] } });
+  const r = await scrape({ ws, sources: volleyworld, fetch: network({ arketa: many }) });
+  assert.ok(r.fresh.some((f) => f.key === 'volleyworld:spike'));
+  assert.match(readFileSync(ws.paths.changes, 'utf8'), /More sessions than usual: returned \d+ sessions; it usually returns about \d+/);
+});
+
+test('auto-fix verification: a fix that brings the counts back but changes the values is caught', async () => {
+  const volleyworld = SOURCES.filter((s) => s.id === 'volleyworld');
+  const ws = workspace();
+  const arketa = JSON.parse(fixture('arketa-volleyworld-schedule.json'));
+  const withClasses = (f) => JSON.stringify({ ...arketa, data: { ...arketa.data, classes: arketa.data.classes.map(f) } });
+  await scrape({ ws, sources: volleyworld });
+  const before = readJson(ws.paths.out).sessions;
+  const broken = await scrape({ ws, sources: volleyworld, fetch: network({ arketa: withClasses(({ max_capacity, ...c }) => ({ ...c, capacity_max: max_capacity })) }) });
+  const batch = broken.fresh;
+  const rerun = async (arketaBody) => (await scrape({ ws: workspace(), sources: volleyworld, fetch: network({ arketa: arketaBody }) })).schedule.sessions;
+
+  // The right fix: same sessions, same values.
+  assert.deepEqual(compareSessions({ before, after: await rerun(), batch, ref: REF }), []);
+  // A "fix" that misreads the duration: every end time moves, though counts and fields look fine.
+  const longer = compareSessions({ before, after: await rerun(withClasses((c) => ({ ...c, duration: c.duration + 30 }))), batch, ref: REF });
+  assert.match(longer[0], /^volleyworld: \d+ sessions that exist before and after the fix changed date\/days\/start\/end\/venue\/surface values, e\.g\. volleyworld-.* \(end: "\d\d:\d\d" -> "\d\d:\d\d"\)/);
+  // A "fix" that reads the start in the wrong zone: every id moves, so the old sessions are gone.
+  const shifted = compareSessions({ before, after: await rerun(withClasses((c) => ({ ...c, start_time: c.start_time + 3600 }))), batch, ref: REF });
+  assert.ok(shifted.some((r) => /^volleyworld: \d+ of \d+ upcoming sessions from before the change are gone after the fix/.test(r)));
 });
 
 // --- buildCourts --------------------------------------------------------------------------

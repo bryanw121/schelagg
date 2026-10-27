@@ -10,10 +10,17 @@ and **merges your change without review** only if every gate passes:
 
 1. You only changed `scripts/adapters/`, `config/sources.json`, `scripts/sanitize-fixtures.mjs`,
    `test/parsers.test.mjs`, `test/fixtures/` or `README.md`.
+   - **Tests only grow.** Add new tests and new fixture files (e.g. `<name>-<YYYY-MM-DD>.json`);
+     don't edit or delete existing assertions or overwrite existing fixtures. The old fixtures
+     are the source's previous format, so keep them passing: read a renamed field with a
+     fallback to the old name (`c.new_name ?? c.old_name`), which also survives the source
+     rolling back. If the fix truly can't keep an old test passing, change it anyway; it
+     will just be reviewed.
 2. `npm test` passes.
 3. The site end-to-end test passes.
-4. A live re-run of the whole scrape with your change shows the reported problems gone and no
-   source newly broken.
+4. A live re-run of the whole scrape with your change shows the reported problems gone, no
+   source newly broken, and sessions that existed before the change keeping their ids, dates,
+   times, venues and surfaces.
 
 Otherwise it opens a pull request for a person. So keep fixes inside the adapter and its tests
 when you can. If the right fix needs shared code (`lib/`), do it anyway: it will just be reviewed.
@@ -49,6 +56,13 @@ when you can. If the right fix needs shared code (`lib/`), do it anyway: it will
   list, update `scripts/sanitize-fixtures.mjs` if the field is whitelisted there, and add or
   adjust a parser test in `test/parsers.test.mjs` with the new field name.
 - **Field disappeared**: usually the same as above; find where the value moved in the raw data.
+- **Broken** (the scrape threw something an outage doesn't explain, on this run): the same as
+  failing repeatedly below, but it's reported at once. Confirm with `inspect-source` that the
+  format really changed; if the source was just briefly down or served a bot check, change
+  nothing and say so.
+- **More sessions than usual**: inspect the source. Usually a filter stopped excluding
+  something (youth, homeschool or private classes renamed) or sessions are duplicated. Tighten
+  the filter and add a test. If the source really added sessions, change nothing and say so.
 - **Failing repeatedly**: inspect the source. If the response or page format changed, fix the
   parser and add a test with the new format. If it's blocked (a 403, a bot check) or down, change
   nothing and say so: that needs a person.

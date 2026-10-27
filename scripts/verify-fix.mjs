@@ -1,6 +1,7 @@
 // Decide whether an auto-fix can merge without review: run the full scrape live with the fixed
 // code, against the health baseline from before the source changed, and check that the findings
-// the fix was made for are gone and nothing else broke (lib/health.js judgeFix).
+// the fix was made for are gone, nothing else broke (lib/health.js judgeFix), and sessions that
+// exist before and after kept their dates, times and venues (compareSessions).
 //
 //   node scripts/verify-fix.mjs <baselineDir> <batch.json> [out.json]
 //
@@ -13,7 +14,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { loadSources } from '../lib/registry.js';
 import { runScrape, scrapePaths } from '../lib/pipeline.js';
-import { judgeFix } from '../lib/health.js';
+import { judgeFix, compareSessions } from '../lib/health.js';
+import { today } from '../lib/time.js';
 import { repoPath } from '../lib/paths.js';
 
 const [baseDir, batchFile, outFile = 'verify-result.json'] = process.argv.slice(2);
@@ -42,8 +44,12 @@ if (!baseline) {
   });
   const { sources, manual } = loadSources();
   const r = await runScrape({ sources, manual, paths });
+  const judged = judgeFix({ batch, baseline, baselineSources: baselineSchedule.sources ?? [], verify: { sources: r.out.sources, findings: r.findings } });
+  // Values, not just counts: sessions that exist before and after must keep their times and places.
+  const drift = compareSessions({ before: baselineSchedule.sessions ?? [], after: r.out.sessions, batch, ref: today() });
   verdict = {
-    ...judgeFix({ batch, baseline, baselineSources: baselineSchedule.sources ?? [], verify: { sources: r.out.sources, findings: r.findings } }),
+    mergeable: judged.mergeable && !drift.length,
+    reasons: [...judged.reasons, ...drift],
     sources: r.out.sources.map(({ id, ok, count, error }) => ({ id, ok, count, error })),
   };
 }

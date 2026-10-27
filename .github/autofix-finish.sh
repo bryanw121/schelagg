@@ -10,11 +10,12 @@
 # Gates for merging without review:
 #   1. Only adapters, config/sources.json, the fixture sanitizer, parser tests and fixtures
 #      changed. Anything else (shared code, the gates themselves, manual data) gets reviewed.
+#   1b. Existing parser tests and fixtures are unchanged: the fix only adds to them.
 #   2. npm test (unit + integration) passes.
 #   3. The site end-to-end test passes.
 #   4. A live re-run of the scrape with the fix, against the health baseline from before the
-#      source changed, shows the reported problems gone and nothing newly broken
-#      (scripts/verify-fix.mjs).
+#      source changed, shows the reported problems gone, nothing newly broken, and sessions
+#      that exist before and after keeping their dates, times and venues (scripts/verify-fix.mjs).
 #
 # The workflow runs this file as committed on main, never the working-tree copy Claude could edit.
 set -uo pipefail
@@ -44,6 +45,19 @@ if [ -n "$outside" ]; then
   fail "Changes outside adapters, config and parser tests need a review: $(tr '\n' ' ' <<< "$outside")"
 else
   pass "Only adapters, config and parser tests changed"
+fi
+
+# 1b. Tests only grow. A fix may add parser tests and new fixture files, but rewriting what an
+#     existing test expects (or the fixture it reads) could make a wrong fix pass its own tests.
+removed=$(git diff --cached -U0 -- test/parsers.test.mjs | grep -E '^-[^-]' || true)
+fixtures=$(git diff --cached --name-status -- test/fixtures/ | grep -Ev '^A' | cut -f2- | tr '\n' ' ' || true)
+if [ -n "$removed" ] || [ -n "$fixtures" ]; then
+  why=""
+  [ -n "$removed" ] && why="changed or removed $(grep -c . <<< "$removed") existing line(s) in test/parsers.test.mjs"
+  [ -n "$fixtures" ] && why="${why:+$why; }changed or removed existing fixtures: $fixtures"
+  fail "Existing tests must keep passing unchanged: $why"
+else
+  pass "Existing tests and fixtures unchanged (only additions)"
 fi
 
 # 2. Unit + integration tests: a fix that fails them goes nowhere.
