@@ -16,7 +16,7 @@
 // The "Discover venues" workflow runs it weekly per sport and opens one pull request per sport.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
-import { get } from '../lib/http.js';
+import { get, USER_AGENT } from '../lib/http.js';
 import { loadEnv, repoPath } from '../lib/paths.js';
 import { loadVenues, venueIndex } from '../lib/consolidate.js';
 
@@ -192,9 +192,15 @@ export async function discover({ sport, region, discovery, platforms, venues, fe
   let osm = [];
   try {
     const q = overpassQuery(sp.osm, reg.center, reg.radiusKm);
-    const res = await get(`${OVERPASS}?data=${encodeURIComponent(q)}`, { fetch, timeoutMs: 120000 });
+    // Overpass wants the query POSTed as a form, and an Accept it can serve.
+    const res = await (fetch ?? globalThis.fetch)(OVERPASS, {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded', accept: 'application/json', 'user-agent': USER_AGENT },
+      body: new URLSearchParams({ data: q }).toString(),
+      signal: AbortSignal.timeout(120000),
+    });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    osm = parseOverpass(JSON.parse(res.text));
+    osm = parseOverpass(JSON.parse(await res.text()));
   } catch (e) { warnings.push(`OpenStreetMap: ${e.message}`); }
   const googlePlaces = [];
   if (google && sp.google) {
@@ -241,8 +247,9 @@ export function reportMarkdown(r) {
   ].filter((l) => l !== '').join('\n');
 }
 
-/** New venues and fills applied to the venues config text. */
+/** New venues and fills applied to the venues config text (unchanged text when there's nothing to apply). */
 export function applyToVenues(text, r) {
+  if (!r.enrich.length && !r.candidates.length) return text;
   const cfg = JSON.parse(text);
   for (const e of r.enrich) {
     const v = cfg.venues.find((x) => x.id === e.id);
