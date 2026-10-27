@@ -1,0 +1,63 @@
+name: Scrape clock
+
+# GitHub's own cron drops most hourly runs when it's busy (Oct 26–27, 2026: about 4 of 19
+# scheduled scrapes ran, so the site went 7+ hours without a refresh). This job keeps the time
+# itself: it starts "Refresh schedules" at :13 past every hour from 6am to 12:13am Austin time,
+# sleeping in between, and just before GitHub's 6-hour job limit it starts its own next run, so
+# the clock runs continuously. Times are worked out in America/Chicago, so DST needs no edits.
+#
+# workflow_dispatch from GITHUB_TOKEN is allowed to start workflows, so this needs no extra
+# token or outside service. Public repos don't pay for Actions minutes, so the sleeping costs
+# nothing. To stop the clock, cancel its running job (a cancelled run doesn't start the next).
+on:
+  # Restarts the clock if the chain ever breaks. These are as unreliable as any GitHub cron,
+  # but only one of them has to fire.
+  schedule:
+    - cron: '41 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+
+# One clock at a time. A restart that fires while the clock is running waits; when the running
+# clock starts its successor, that replaces the waiting one, so there is never a second chain.
+concurrency:
+  group: scrape-clock
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Start the scrape every hour
+        run: |
+          stop=$(( $(date +%s) + 5 * 3600 + 30 * 60 ))
+          while :; do
+            now=$(date +%s)
+            next=$(( (now / 3600 + 1) * 3600 + 13 * 60 ))   # :13 past the next hour
+            [ $(( now % 3600 )) -lt $(( 13 * 60 )) ] && next=$(( next - 3600 ))
+            [ "$next" -ge "$stop" ] && break
+            sleep $(( next - now ))
+
+            hour=$(TZ=America/Chicago date +%-H)
+            if [ "$hour" -lt 6 ] && [ "$hour" -ne 0 ]; then
+              echo "$(TZ=America/Chicago date +%H:%M) Austin time: overnight, no scrape."
+              continue
+            fi
+            # Skip if a scrape started in the last 40 minutes (GitHub's cron, a manual run, an
+            # auto-fix re-run), so sources aren't hit twice in an hour.
+            last=$(gh run list --workflow scrape.yml --limit 1 --json createdAt --jq '.[0].createdAt // empty')
+            if [ -n "$last" ] && [ $(( $(date +%s) - $(date -d "$last" +%s) )) -lt 2400 ]; then
+              echo "$(TZ=America/Chicago date +%H:%M) Austin time: a scrape started at $last, skipping."
+              continue
+            fi
+            echo "$(TZ=America/Chicago date +%H:%M) Austin time: starting the scrape."
+            gh workflow run scrape.yml --ref main || echo "::warning::Couldn't start the scrape."
+          done
+      - name: Start the next clock run
+        if: success() || failure()
+        run: gh workflow run scrape-clock.yml --ref main
