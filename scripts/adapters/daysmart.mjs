@@ -109,3 +109,37 @@ export async function scrape({ ref, options, fetch, delayMs }) {
   const warnings = skipped ? [`${skipped} public session${skipped > 1 ? 's' : ''} on rinks not listed in options.resources`] : [];
   return { sessions, warnings, shape: shapeUnion(records.filter((r) => r?.attributes?.publish === true).map((r) => r.attributes)) };
 }
+
+const ID = /^daysmart-([a-z0-9]{2,40})-(\d{1,12})$/;
+export const parseId = (sessionId) => ID.test(sessionId);
+
+const FIELDS = ['date', 'start', 'end', 'venue'];
+const diff = (a, b) => (a ? FIELDS.filter((k) => a[k] != null && b[k] != null && a[k] !== b[k]) : []);
+
+/**
+ * Pure half of check(): one day's events (the same public list the scrape reads) -> status.
+ * An event that's gone from the day, unpublished, or no longer a kept type is 'gone'.
+ */
+export function checkDay(records, sessionId, { options, expected } = {}) {
+  const [, company, eventId] = sessionId.match(ID) ?? [];
+  if (!company) throw new RangeError(`not a DaySmart session id: ${sessionId}`);
+  if (company !== options?.company) throw new RangeError(`${sessionId} isn't from ${options?.company}`);
+  const record = records.find((r) => String(r?.id) === eventId);
+  if (!record) return { status: 'gone' };
+  const session = parseEvents([record], options).sessions[0];
+  if (!session) return { status: 'gone' };
+  const changes = diff(expected, session);
+  return changes.length ? { status: 'changed', session, changes } : { status: 'scheduled', session };
+}
+
+/** Live re-check of one session: read that day's events (one page) and look for it. */
+export async function check({ sessionId, options, expected, now = new Date(), fetch, signal }) {
+  if (!parseId(sessionId)) throw new RangeError(`not a DaySmart session id: ${sessionId}`);
+  // The id doesn't carry a date, so this needs the published session to know which day to read.
+  if (!expected?.date) return { status: 'unknown', checkedAt: now.toISOString() };
+  const res = await get(eventsUrl(options.company, expected.date, expected.date), { fetch, signal, timeoutMs: 4000, headers: { accept: 'application/vnd.api+json' } });
+  if (!res.ok) throw new Error(`DaySmart HTTP ${res.status}`);
+  const data = JSON.parse(res.text)?.data;
+  if (!Array.isArray(data)) throw new Error('DaySmart: no data array');
+  return { ...checkDay(data, sessionId, { options, expected }), checkedAt: now.toISOString() };
+}
