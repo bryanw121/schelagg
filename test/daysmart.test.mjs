@@ -76,3 +76,27 @@ test('scrape reads every page with the date filter, then reports shape; errors a
   const none = async () => new Response(JSON.stringify({ data: [], meta: { page: { 'last-page': 1 } } }));
   await assert.rejects(daysmart.scrape({ ref: '2026-10-26', options: src('chaparral-ice').options, fetch: none }), /no matching public sessions/);
 });
+
+test('check: scheduled, changed or gone against that day\'s events; needs the published date', async () => {
+  const s = src('ice-and-field');
+  const day = records('daysmart-iceandfield-events.json').filter((r) => r.attributes.start.startsWith('2026-10-27'));
+  const { sessions } = daysmart.parseEvents(day, s.options);
+  const expected = sessions[0];
+  assert.equal(expected.id, 'daysmart-iceandfield-10379');
+  assert.equal(daysmart.checkDay(day, expected.id, { options: s.options, expected }).status, 'scheduled');
+  const moved = day.map((r) => (r.id === '10379' ? { ...r, attributes: { ...r.attributes, start: '2026-10-27T13:30:00' } } : r));
+  assert.deepEqual(daysmart.checkDay(moved, expected.id, { options: s.options, expected }).changes, ['start']);
+  const hidden = day.map((r) => (r.id === '10379' ? { ...r, attributes: { ...r.attributes, publish: false } } : r));
+  assert.equal(daysmart.checkDay(hidden, expected.id, { options: s.options, expected }).status, 'gone');
+  assert.equal(daysmart.checkDay(day.filter((r) => r.id !== '10379'), expected.id, { options: s.options, expected }).status, 'gone');
+  assert.throws(() => daysmart.checkDay(day, 'daysmart-chaparralice-10379', { options: s.options }), RangeError);
+  assert.equal(daysmart.parseId('daysmart-iceandfield-10379'), true);
+  assert.equal(daysmart.parseId('daysmart-../x-1'), false);
+
+  let asked;
+  const fetch = async (url) => { asked = new URL(url); return new Response(JSON.stringify({ data: day })); };
+  const r = await daysmart.check({ sessionId: expected.id, options: s.options, expected, now: new Date('2026-10-27T12:00:00Z'), fetch });
+  assert.deepEqual([r.status, r.checkedAt], ['scheduled', '2026-10-27T12:00:00.000Z']);
+  assert.deepEqual([asked.searchParams.get('filter[start__gte]'), asked.searchParams.get('filter[start__lte]')], ['2026-10-27', '2026-10-27T23:59:59']);
+  assert.equal((await daysmart.check({ sessionId: expected.id, options: s.options, expected: null, fetch })).status, 'unknown');
+});
