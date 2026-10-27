@@ -1,7 +1,7 @@
 // lib/health.js: noticing sources that still scrape but changed what they send.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { assessHealth, shapeOf, shapeUnion, fieldCoverage, contentHash, findingsMarkdown, judgeFix, HISTORY } from '../lib/health.js';
+import { assessHealth, shapeOf, shapeUnion, fieldCoverage, contentHash, findingsMarkdown, judgeFix, classifyError, compareSessions, HISTORY } from '../lib/health.js';
 import * as atx from '../scripts/adapters/atxbeach.mjs';
 import * as vel from '../scripts/adapters/velocity.mjs';
 
@@ -209,4 +209,70 @@ test('judgeFix: mergeable only when the fixed source is clean and nothing else b
   // Page changes always need a person; a batch with nothing verifiable can't merge.
   assert.match(judgeFix({ batch: [...batch, { source: 'atx', kind: 'content', key: 'atx:content:h' }], baseline, baselineSources, verify: { sources: okSources, findings: [] } }).reasons[0], /atx: its page changed/);
   assert.match(judgeFix({ batch: [batch[1]], baseline, baselineSources, verify: { sources: okSources, findings: [] } }).reasons[0], /nothing in this batch can be verified/);
+});
+
+test('classifyError: outages wait for the streak, format changes are reported at once', () => {
+  const err = (message, extra = {}) => Object.assign(new Error(message), extra);
+  for (const e of [
+    err('Arketa API HTTP 503'), err('Reclub HTTP 429'), err('x booking page HTTP 403'), err('DaySmart HTTP 408'),
+    err('fetch failed', { cause: { code: 'ECONNRESET' } }), err('getaddrinfo', { code: 'ENOTFOUND' }),
+    err('The operation was aborted due to timeout', { name: 'TimeoutError' }), err('net::ERR_NAME_NOT_RESOLVED at https://x.test'),
+    err('page.goto: Timeout 30000ms exceeded'),
+  ]) assert.equal(classifyError(e), 'transient', e.message);
+  for (const e of [
+    err('Arketa response has no data.classes'), err('Arketa API returned non-JSON'), new SyntaxError('Unexpected token < in JSON'),
+    new TypeError("Cannot read properties of undefined (reading 'map')"), err('https://x.test/m/1: meet has no start time'),
+    err('DaySmart x HTTP 404'), err('No adult sessions in the Arketa schedule — class names may have changed'),
+  ]) assert.equal(classifyError(e), 'format', e.message);
+});
+
+test('a format failure is reported on the first run, once; an outage is not', () => {
+  const broken = { results: [{ id: 'vw', ok: false, error: 'Arketa response has no data.classes', errorKind: 'format' }] };
+  const outage = { results: [{ id: 'vw', ok: false, error: 'HTTP 503', errorKind: 'transient' }] };
+  const [, down, first, second, back] = runs({ results: [ok('vw', 10)] }, outage, broken, broken, { results: [ok('vw', 10)] });
+  assert.deepEqual(down.findings, []);
+  assert.deepEqual(first.fresh.map((f) => [f.kind, f.key]), [['broken', 'vw:broken']]);
+  assert.equal(second.fresh.length, 0);
+  assert.deepEqual(back.findings, []);
+});
+
+test('far more sessions than usual is a spike; small sources are not judged', () => {
+  const [, , spike] = runs({ results: [ok('vw', 10)] }, { results: [ok('vw', 10)] }, { results: [ok('vw', 30)] });
+  assert.deepEqual(spike.fresh.map((f) => f.key), ['vw:spike']);
+  assert.match(spike.fresh[0].message, /returned 30 sessions; it usually returns about 10/);
+  const [, notQuite] = runs({ results: [ok('vw', 10)] }, { results: [ok('vw', 29)] });
+  assert.deepEqual(notQuite.findings, []);
+  const [, small] = runs({ results: [ok('atx', 2)] }, { results: [ok('atx', 9)] });
+  assert.deepEqual(small.findings, []);
+});
+
+test('judgeFix: a broken source must scrape again, and a new spike blocks the merge', () => {
+  const batch = [{ key: 'vw:broken', source: 'vw', kind: 'broken', message: 'x' }];
+  const baselineSources = [{ id: 'vw', ok: true }];
+  assert.deepEqual(judgeFix({ batch, baseline: {}, baselineSources, verify: { sources: [{ id: 'vw', ok: true }], findings: [] } }), { mergeable: true, reasons: [] });
+  assert.match(judgeFix({ batch, baseline: {}, baselineSources, verify: { sources: [{ id: 'vw', ok: false, error: 'still' }], findings: [] } }).reasons[0], /vw still fails/);
+  const spiked = judgeFix({ batch, baseline: {}, baselineSources, verify: { sources: [{ id: 'vw', ok: true }], findings: [{ key: 'vw:spike', source: 'vw', kind: 'spike', message: 'returned 40' }] } });
+  assert.match(spiked.reasons[0], /vw · More sessions than usual: returned 40/);
+});
+
+test('compareSessions: values must hold across a fix, with room for one real reschedule', () => {
+  const s = (i, extra = {}) => ({ id: `vw-${i}`, sourceId: 'vw', date: '2026-10-26', start: '19:00', end: '21:00', venue: 'Gym', surface: 'indoor', ...extra });
+  const before = [s(1), s(2), s(3), s(4), s(5, { date: '2026-10-20' }), { ...s(6), sourceId: 'other' }];
+  const batch = [{ key: 'vw:shape:max_capacity', source: 'vw', kind: 'shape' }];
+  const args = (after, b = batch) => ({ before, after, batch: b, ref: '2026-10-25' });
+  assert.deepEqual(compareSessions(args(before)), []);
+  // One session rescheduled between runs is fine; two is a pattern.
+  assert.deepEqual(compareSessions(args([s(1, { start: '20:00' }), s(2), s(3), s(4)])), []);
+  const two = compareSessions(args([s(1, { start: '20:00' }), s(2, { venue: 'Elsewhere' }), s(3), s(4)]));
+  assert.equal(two.length, 1);
+  assert.match(two[0], /^vw: 2 sessions .* vw-1 \(start: "19:00" -> "20:00"\); vw-2 \(venue: "Gym" -> "Elsewhere"\)/);
+  // A field the batch reported as gone may change (it's what the fix restores).
+  const endFixed = [s(1, { end: null }), s(2, { end: null }), s(3), s(4)];
+  assert.equal(compareSessions(args(endFixed)).length, 1);
+  assert.deepEqual(compareSessions(args(endFixed, [...batch, { key: 'vw:field:end', source: 'vw', kind: 'fields' }])), []);
+  // Most upcoming sessions gone (ids rebuilt differently); past ones and other sources don't count.
+  assert.match(compareSessions(args([s(1)]))[0], /^vw: 3 of 4 upcoming sessions from before the change are gone/);
+  assert.deepEqual(compareSessions(args([s(1), s(2), s(3)])), []);
+  // Sources the batch wasn't about aren't judged here.
+  assert.deepEqual(compareSessions({ before, after: [], batch: [{ key: 'manual:x', source: 'manual', kind: 'manual' }], ref: '2026-10-25' }), []);
 });
