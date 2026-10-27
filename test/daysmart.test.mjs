@@ -39,6 +39,8 @@ test('Chaparral: dated descriptions fall back to the type title; rinks not liste
   ]);
   assert.equal(skipped, 1); // the public skate on resource 3 (another building)
   assert.match(sessions[0].signup.url, /online\/chaparralice\/calendar/);
+  // The DaySmart feed has no prices; both rinks' come from config (their public skating pages).
+  assert.ok(sessions.every((x) => x.price === '$14 · skates $6'));
 });
 
 test('DaySmart sessions pass the publish checks and expand into the feed as ice_skating', () => {
