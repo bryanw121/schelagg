@@ -239,6 +239,45 @@ function axisRow() {
   return `<div class="g-row g-axis" aria-hidden="true"><span class="g-lab">Time</span><div class="g-track">${ticks.map((t, i) => `<span class="${i === 0 ? 'first' : i === ticks.length - 1 ? 'last' : ''}" style="left:${pct(mins(t))}%">${tick(t)}</span>`).join('')}</div></div>`;
 }
 
+/**
+ * Session rows for the glance chart: one row per place (venue + rink), every session there as a
+ * bar on it. Sessions at the same place that overlap (two courts at once) get extra lanes under
+ * the first, so bars never cover each other.
+ */
+function glanceRows(sess, nowLine) {
+  const groups = new Map();
+  for (const x of sess) {
+    const key = `${x.venueId || x.venue}|${x.rink || ''}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(x);
+  }
+  let html = '';
+  for (const list of groups.values()) {
+    const lanes = [];
+    for (const x of list) { // already sorted by start
+      const lane = lanes.find((l) => mins(l[l.length - 1].end) <= mins(x.start));
+      if (lane) lane.push(x); else lanes.push([x]);
+    }
+    const first = list[0];
+    const sub = first.rink || (list.length === 1 ? first.title : `${list.length} sessions`);
+    lanes.forEach((lane, i) => {
+      const bars = lane.map((x) => {
+        const l = pct(mins(x.start)), w = +(pct(mins(x.end)) - l).toFixed(2);
+        const style = `--c:${tabOf(x).c};left:${l}%;width:${w}%`;
+        const label = `${fmtT(x.start)}–${fmtT(x.end)}`;
+        const tip = `${x.title} · ${label}${x.signup?.label ? ` · ${x.signup.label}` : ''}`;
+        return x.signup?.url
+          ? `<a class="g-bar" href="${esc(x.signup.url)}" target="_blank" rel="noopener" title="${esc(tip)}" style="${style}">${label}</a>`
+          : `<div class="g-bar" title="${esc(tip)}" style="${style}">${label}</div>`;
+      }).join('');
+      const aria = `${first.venue}: ${lane.map((x) => `${x.title} ${fmtT(x.start)} to ${fmtT(x.end)}`).join(', ')}`;
+      const lab = i === 0 ? `<span class="g-lab" title="${esc(first.venue)}">${esc(first.venue)}<small>${esc(sub)}</small></span>` : '<span class="g-lab" aria-hidden="true"></span>';
+      html += `<div class="g-row">${lab}<div class="g-track" role="img" aria-label="${esc(aria)}">${bars}${nowLine}</div></div>`;
+    });
+  }
+  return html;
+}
+
 function renderGlance() {
   const iso = WEEK[state.di], isToday = state.di === 0, dow = dowOf(iso);
   $('calTitle').textContent = `Day at a glance · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
@@ -248,16 +287,7 @@ function renderGlance() {
   const sess = sessionsOn(iso).filter((x) => !hidden(x.f) && x.start && x.end).sort((a, b) => a.start.localeCompare(b.start));
   if (sess.length) {
     html += `<div class="g-group">${SPORTS[state.sport].group}<small>tap a bar for details</small></div>`;
-    html += sess.map((x) => {
-      const l = pct(mins(x.start)), w = +(pct(mins(x.end)) - l).toFixed(2);
-      const style = `--c:${tabOf(x).c};left:${l}%;width:${w}%`;
-      const label = `${fmtT(x.start)}–${fmtT(x.end)}`;
-      const bar = x.signup?.url
-        ? `<a class="g-bar" href="${esc(x.signup.url)}" target="_blank" rel="noopener" title="${esc(x.signup.label || 'Sign up')}" style="${style}">${label}</a>`
-        : `<div class="g-bar" title="${esc(x.signup?.label || '')}" style="${style}">${label}</div>`;
-      return `<div class="g-row"><span class="g-lab" title="${esc(x.title)} · ${esc(x.venue)}">${esc(x.venue)}<small>${esc(x.rink || x.title)}</small></span>
-        <div class="g-track" role="img" aria-label="${esc(x.title)} at ${esc(x.venue)}, ${label}">${bar}${nowLine}</div></div>`;
-    }).join('');
+    html += glanceRows(sess, nowLine);
   }
 
   // Court calendars (Skedda) are volleyball courts; other sports have none yet.

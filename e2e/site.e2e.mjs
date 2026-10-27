@@ -30,6 +30,7 @@ const SESSIONS = [
   { ...base, id: 'manual-sand-sun', sourceId: 'manual', days: ['Sun'], start: '19:00', end: '22:00', title: 'Sunday Sand Social', venue: 'ATX Beach', city: 'North Austin', surface: 'sand', type: 'Open play', verifiedAt: '2026-10-20', sourceChanged: TODAY, signup: { url: `${SIGNUP}/social`, label: 'RSVP' }, source: `${SIGNUP}/social` },
   { ...base, id: 'manual-league', sourceId: 'manual', days: ['Sun'], start: null, end: null, title: 'Sunday Indoor League', venue: 'Volleyworld (Pflugerville)', city: 'Pflugerville', surface: 'indoor', type: 'League', source: `${SIGNUP}/league` },
   { ...base, sport: 'ice_skating', id: 'rink-public', sourceId: 'rink', date: TODAY, start: '14:00', end: '16:00', title: 'Public Skating', venue: 'Example Ice Rink', city: 'Cedar Park', surface: 'indoor', type: 'Public skate', rink: 'Silver Rink', price: '$14 · skates $6', signup: { url: `${SIGNUP}/rink`, label: 'Public skating info' }, source: `${SIGNUP}/rink` },
+  { ...base, sport: 'ice_skating', id: 'rink-late', sourceId: 'rink', date: TODAY, start: '16:30', end: '17:30', title: 'Evening Session', venue: 'Example Ice Rink', city: 'Cedar Park', surface: 'indoor', type: 'Public skate', rink: 'Silver Rink', signup: { url: `${SIGNUP}/rink-late`, label: 'Public skating info' }, source: `${SIGNUP}/rink-late` },
   { ...base, sport: 'ice_skating', id: 'rink-adult', sourceId: 'rink', date: TODAY, start: '19:30', end: '21:00', title: 'Adult Skate', venue: 'Example Ice Rink', city: 'Cedar Park', surface: 'indoor', type: 'Adult skate', rink: 'Gold Rink', signup: { url: `${SIGNUP}/rink-adult`, label: 'Rink calendar' }, source: `${SIGNUP}/rink-adult` },
   { ...base, sport: 'ice_skating', id: 'pop-up', sourceId: 'manual', days: ['Sun'], start: '18:00', end: '21:00', title: 'Holiday Rink', venue: 'Example Plaza Rink', city: 'Downtown', surface: 'outdoor', type: 'Public skate', signup: { url: `${SIGNUP}/pop-up`, label: 'Timed tickets' }, source: `${SIGNUP}/pop-up` },
   { ...base, id: 'aces-moved', sourceId: 'aces', date: TOMORROW, start: '20:00', end: '22:00', title: 'ACES Monday Open Play', venue: 'Volleyworld (Pflugerville)', city: 'Pflugerville', surface: 'indoor', type: 'Open play', status: 'rescheduled', previousStart: `${TOMORROW} 19:30`, alsoOn: [{ sourceId: 'reclub', id: 'reclub-DUP', title: 'ACES Monday', signup: { url: `${SIGNUP}/reclub-dup` } }], signup: { url: `${SIGNUP}/aces`, label: 'Sign up' }, source: `${SIGNUP}/aces` },
@@ -189,7 +190,7 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   assert.equal(new URL(page.url()).searchParams.get('sport'), 'ice_skating');
   // No filter tabs for skating (almost all indoors); an outdoor rink says so on its session.
   assert.equal(await page.locator('#tabs').isHidden(), true);
-  assert.deepEqual(await titles(), ['Public Skating', 'Holiday Rink', 'Adult Skate']);
+  assert.deepEqual(await titles(), ['Public Skating', 'Evening Session', 'Holiday Rink', 'Adult Skate']);
   assert.equal(await row('Public Skating').locator('.meta').textContent(), 'Public skateSilver Rink· $14 · skates $6');
   assert.equal(await row('Holiday Rink').locator('.meta').textContent(), 'Public skateOutdoor');
   // Volleyball-only parts are hidden: court calendars, their key and note, and the free courts.
@@ -198,6 +199,11 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   assert.equal(await page.locator('#courtsCard').isHidden(), true);
   assert.equal(await page.locator('#cal .g-group').first().textContent(), 'Public skatetap a bar for details');
   assert.equal(await page.locator('#cal .g-group').count(), 1);
+  // One row per rink: both Silver Rink sessions sit on the same row.
+  const labels = await page.locator('#cal .g-row:not(.g-axis) .g-lab').allTextContents();
+  assert.deepEqual(labels, ['Example Ice RinkSilver Rink', 'Example Plaza RinkHoliday Rink', 'Example Ice RinkGold Rink']);
+  const silver = page.locator('#cal .g-row', { has: page.locator('.g-lab', { hasText: 'Silver Rink' }) });
+  assert.deepEqual(await silver.locator('.g-bar').allTextContents(), ['2pm–4pm', '4:30pm–5:30pm']);
   assert.equal(await page.locator('#sourceStatus').textContent(), 'Last check read all 1 scraped ice skating source.');
   assert.match(await page.locator('#footer').textContent(), /DaySmart/);
 
@@ -211,7 +217,7 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   assert.equal(await tab('all').getAttribute('aria-pressed'), 'true');
   await page.goto(`${origin}/?sport=ice_skating`);
   await rows().first().waitFor();
-  assert.deepEqual(await titles(), ['Public Skating', 'Holiday Rink', 'Adult Skate']);
+  assert.deepEqual(await titles(), ['Public Skating', 'Evening Session', 'Holiday Rink', 'Adult Skate']);
 });
 
 test('site: freshness per source, calendar subscription, moved sessions and other listings', async () => {
@@ -243,6 +249,21 @@ test('site: spots left and capacity come from the source and say so', async () =
   assert.equal(await row('Morning Adult Training').locator('.cap').count(), 0); // no data: nothing guessed
   await page.locator('#sports [data-sport="ice_skating"]').click();
   assert.equal(await row('Public Skating').locator('.cap').count(), 0);
+});
+
+test('site: overlapping sessions at one place get a second lane instead of covering each other', async () => {
+  const sessions = [
+    { ...base, id: 'a', sourceId: 'volleyworld', date: TODAY, start: '18:00', end: '20:00', title: 'Court A', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/a` }, source: `${SIGNUP}/a` },
+    { ...base, id: 'b', sourceId: 'volleyworld', date: TODAY, start: '19:00', end: '21:00', title: 'Court B', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/b` }, source: `${SIGNUP}/b` },
+    { ...base, id: 'c', sourceId: 'volleyworld', date: TODAY, start: '21:00', end: '22:00', title: 'Late', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/c` }, source: `${SIGNUP}/c` },
+  ];
+  await open({ schedule: { ...SCHEDULE, sessions } });
+  const rowsInChart = page.locator('#cal .g-row:not(.g-axis)').filter({ has: page.locator('.g-bar') });
+  assert.equal(await rowsInChart.count(), 2); // A then Late on the first lane, B on a second
+  assert.deepEqual(await rowsInChart.nth(0).locator('.g-bar').allTextContents(), ['6pm–8pm', '9pm–10pm']);
+  assert.deepEqual(await rowsInChart.nth(1).locator('.g-bar').allTextContents(), ['7pm–9pm']);
+  assert.equal(await rowsInChart.nth(0).locator('.g-lab').textContent(), 'Volleyworld (Georgetown)3 sessions');
+  assert.equal(await rowsInChart.nth(1).locator('.g-lab').textContent(), '');
 });
 
 test('site: court lanes tint open time and show closed time in solid gray', async () => {
@@ -297,8 +318,8 @@ test('site: "Show ended & unconfirmed" reveals canceled and unconfirmed sessions
 test('site: the day-at-a-glance chart shows sessions, court bookings and courts open for a meet', async () => {
   await open();
   const bars = page.locator('#cal a.g-bar');
-  assert.deepEqual(await bars.allTextContents(), ['9am–11am', '4pm–6pm', '6pm–8pm', '7pm–10pm', '7pm–10pm']);
-  assert.equal(await bars.nth(2).getAttribute('href'), `${SIGNUP}/evening`);
+  assert.deepEqual(await bars.allTextContents(), ['9am–11am', '4pm–6pm', '7pm–10pm', '6pm–8pm', '7pm–10pm']); // one row per place: ATX Beach's two sessions share a row
+  assert.equal(await bars.nth(3).getAttribute('href'), `${SIGNUP}/evening`);
 
   const group = page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' });
   const text = await group.textContent();
