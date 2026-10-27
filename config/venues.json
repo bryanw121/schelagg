@@ -1,0 +1,17 @@
+{
+  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates come from OSM.",
+  "venues": [
+    { "id": "volleyworld-georgetown", "name": "Volleyworld (Georgetown)", "city": "Georgetown", "aliases": ["Volleyworld Georgetown"], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "volleyworld-pflugerville", "name": "Volleyworld (Pflugerville)", "city": "Pflugerville", "aliases": ["Volleyworld Pflugerville"], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "atx-beach", "name": "ATX Beach", "city": "North Austin", "aliases": ["ATX Beach Volleyball"], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "crossover", "name": "The Crossover", "city": "Cedar Park", "aliases": ["Crossover", "The Crossover Cedar Park"], "skeddaFacility": "crossover", "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "crossover-ice", "name": "Ice & Field at The Crossover", "city": "Cedar Park", "parent": "crossover", "aliases": ["Ice and Field at The Crossover", "Ice & Field", "OnIce at The Crossover"], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "high-point", "name": "High Point Center", "city": "Leander", "aliases": ["HighPoint", "High Point"], "skeddaFacility": "highpoint", "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "treehouse", "name": "Roots · Treehouse Gym", "city": "N. Austin", "aliases": ["Treehouse Gym", "Treehouse Gym (Home of Roots Volleyball)", "Roots Volleyball"], "skeddaFacility": "treehouse", "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "mueller-lake-park", "name": "Mueller Lake Park", "city": "Austin", "aliases": [], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "hanovers", "name": "Hanovers Draught Haus", "city": "Pflugerville", "aliases": ["Hanovers"], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "chaparral-northcross", "name": "Chaparral Ice", "city": "N. Austin (Northcross)", "aliases": ["Chaparral Ice Northcross", "Chaparral Ice Center"], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "bee-cave-on-ice", "name": "Bee Cave on Ice", "city": "Bee Cave", "aliases": [], "osm": null, "googlePlaceId": null, "lat": null, "lng": null },
+    { "id": "four-seasons-austin", "name": "Four Seasons Hotel", "city": "Downtown", "aliases": ["Four Seasons Austin", "Four Seasons Hotel Austin"], "osm": null, "googlePlaceId": null, "lat": null, "lng": null }
+  ]
+}

@@ -9,10 +9,12 @@
   "sources": [
     {
       "id": "volleyworld",
+      "name": "Volleyworld",
       "adapter": "volleyworld"
     },
     {
       "id": "aces",
+      "name": "ACES",
       "adapter": "aces",
       "options": {
         "pages": [
@@ -31,14 +33,17 @@
     },
     {
       "id": "atxbeach",
+      "name": "ATX Beach",
       "adapter": "atxbeach"
     },
     {
       "id": "velocity",
+      "name": "Austin Velocity",
       "adapter": "velocity"
     },
     {
       "id": "reclub",
+      "name": "Reclub",
       "adapter": "reclub",
       "options": {
         "clubs": [
@@ -115,6 +120,7 @@
     },
     {
       "id": "chaparral-ice",
+      "name": "Chaparral Ice",
       "adapter": "daysmart",
       "sport": "ice_skating",
       "options": {
@@ -145,6 +151,7 @@
     },
     {
       "id": "ice-and-field",
+      "name": "Ice & Field",
       "adapter": "daysmart",
       "sport": "ice_skating",
       "options": {

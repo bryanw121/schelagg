@@ -6,7 +6,7 @@
 #   scripts/data-branch.sh pull          overlay the latest data from origin/data onto the working tree
 #   scripts/data-branch.sh push "<msg>"  commit the working tree's data files to origin/data
 set -euo pipefail
-FILES=(public/data/schedule.json public/data/occurrences.json data/watch.json data/health.json)
+FILES=(public/data/schedule.json public/data/occurrences.json public/data/volleyball.ics public/data/ice_skating.ics data/watch.json data/health.json)
 # Vercel reads vercel.json from the commit it is about to build, so the data branch carries
 # main's copy: its git.deploymentEnabled turns the data branch off. Pushed, never pulled.
 CONFIG=(vercel.json)

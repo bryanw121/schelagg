@@ -29,6 +29,19 @@ so this is how we tell a rental that's open to the public from one that isn't.
 If a scraper breaks, its last good sessions stay up marked **Couldn't recheck**, and the workflow opens a GitHub issue.
 If a court calendar can't be read, the last good copy from the live site stays up, marked as such.
 
+### Consolidating sources
+
+After validation, `lib/consolidate.js` (#20):
+
+- **Venues.** Each session's venue name is matched to `config/venues.json` by name or alias, ignoring case and
+  punctuation, and gets a `venueId`. A name that isn't listed becomes a source warning, so it shows up in the
+  "source changed" issue; add it as a venue or an alias.
+- **Moves.** A dated session whose date or start changed since the last run keeps its id and becomes `rescheduled`,
+  with `previousStart`, until it's over or moves back. The site shows "Moved from 7:30pm".
+- **Duplicates.** The same session from two sources (same sport, venue and date, start within 15 minutes, similar
+  title) shows once. The first source in config order keeps it and links the other ("Also on Reclub"), filling in
+  fields it lacks (`fieldSources` says which). `schedule.json`'s `merged` lists what was merged.
+
 ### Catching source changes
 
 A scraper that throws is the easy case. The harder one is a source that changes and the scrape keeps "working": a class
@@ -153,6 +166,11 @@ database and never writes into one. Instead it publishes a feed, and consumers p
   (volleyball: `surface` is `indoor` / `sand` / `grass`, `type` is `Open play` / `Training` / `League` /
   `Tournament` / `Clinic`; consumers filter on these, so `lib/session.js` flags any other value; where the source
   says, also `capacity`, `spotsLeft`, `full`, `waitlist`). `feedVersion` changes only for breaking changes.
+- Also on each occurrence (added without a version bump, new keys only): `venue_id` (canonical venue from
+  `config/venues.json`, or null), `status` (`scheduled` / `cancelled` / `rescheduled`, OpenActive's vocabulary) and
+  `previous_starts_at` (where a rescheduled session was). `canceled` stays for existing consumers.
+- **`public/data/<sport>.ics`** (`volleyball.ics`, `ice_skating.ics`): the same occurrences as calendar subscriptions.
+  Cancelled sessions stay in with `STATUS:CANCELLED` and every occurrence keeps its UID, so a move shows as a move.
 - A session missing from a run is gone at the source, so a consumer that mirrors the feed should delete upcoming
   rows that are no longer in it (that's how cancellations propagate) and treat a feed whose `generatedAt` is many
   hours old as stale.
@@ -289,7 +307,10 @@ credentials to it: consumers keep reading the published feed (or the public API)
 ## Layout
 
 ```
-config/sources.json      every scrape source: adapter, sport, region, time zone, platform options
+config/sources.json      every scrape source: adapter, display name, sport, region, time zone, platform options
+config/venues.json       canonical venues: id, name, city, aliases, parent, external ids (#20)
+lib/consolidate.js       venues, moves (status / previousStart) and cross-source dedup
+lib/ics.js               per-sport calendar files from the feed
 lib/registry.js          loads + validates the config; maps adapter names to scripts/adapters/
 lib/session.js           the normalized session (schema v2) and its publish checks
 lib/occurrences.js       sessions -> dated occurrences (the public feed)

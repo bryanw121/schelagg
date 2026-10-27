@@ -32,15 +32,16 @@ const SESSIONS = [
   { ...base, sport: 'ice_skating', id: 'rink-public', sourceId: 'rink', date: TODAY, start: '14:00', end: '16:00', title: 'Public Skating', venue: 'Example Ice Rink', city: 'Cedar Park', surface: 'indoor', type: 'Public skate', rink: 'Silver Rink', price: '$14 · skates $6', signup: { url: `${SIGNUP}/rink`, label: 'Public skating info' }, source: `${SIGNUP}/rink` },
   { ...base, sport: 'ice_skating', id: 'rink-adult', sourceId: 'rink', date: TODAY, start: '19:30', end: '21:00', title: 'Adult Skate', venue: 'Example Ice Rink', city: 'Cedar Park', surface: 'indoor', type: 'Adult skate', rink: 'Gold Rink', signup: { url: `${SIGNUP}/rink-adult`, label: 'Rink calendar' }, source: `${SIGNUP}/rink-adult` },
   { ...base, sport: 'ice_skating', id: 'pop-up', sourceId: 'manual', days: ['Sun'], start: '18:00', end: '21:00', title: 'Holiday Rink', venue: 'Example Plaza Rink', city: 'Downtown', surface: 'outdoor', type: 'Public skate', signup: { url: `${SIGNUP}/pop-up`, label: 'Timed tickets' }, source: `${SIGNUP}/pop-up` },
+  { ...base, id: 'aces-moved', sourceId: 'aces', date: TOMORROW, start: '20:00', end: '22:00', title: 'ACES Monday Open Play', venue: 'Volleyworld (Pflugerville)', city: 'Pflugerville', surface: 'indoor', type: 'Open play', status: 'rescheduled', previousStart: `${TOMORROW} 19:30`, alsoOn: [{ sourceId: 'reclub', id: 'reclub-DUP', title: 'ACES Monday', signup: { url: `${SIGNUP}/reclub-dup` } }], signup: { url: `${SIGNUP}/aces`, label: 'Sign up' }, source: `${SIGNUP}/aces` },
   { ...base, id: 'vw-monday', sourceId: 'volleyworld', date: TOMORROW, start: '19:30', end: '21:00', title: 'Monday Night Training', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Training', signup: { url: `${SIGNUP}/monday`, label: 'Book on Volleyworld' }, source: `${SIGNUP}/monday` },
 ];
 const SCHEDULE = {
   schemaVersion: 2,
   generatedAt: '2026-10-25T21:13:00.000Z',
   sources: [
-    { id: 'volleyworld', sport: 'volleyball', region: 'austin', ok: true, count: 4 },
-    { id: 'reclub', sport: 'volleyball', region: 'austin', ok: false, error: 'HTTP 503', kept: 1 },
-    { id: 'rink', sport: 'ice_skating', region: 'austin', ok: true, count: 2 },
+    { id: 'volleyworld', name: 'Volleyworld', sport: 'volleyball', region: 'austin', ok: true, count: 4, checkedAt: '2026-10-25T21:12:00.000Z' },
+    { id: 'reclub', name: 'Reclub', sport: 'volleyball', region: 'austin', ok: false, error: 'HTTP 503', kept: 1, checkedAt: '2026-10-25T21:12:30.000Z' },
+    { id: 'rink', name: 'Example Ice Rink', sport: 'ice_skating', region: 'austin', ok: true, count: 2, checkedAt: '2026-10-25T21:12:40.000Z' },
   ],
   sessions: SESSIONS,
   publicCourts: { note: 'Free, first come first served.', courts: [
@@ -213,17 +214,49 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   assert.deepEqual(await titles(), ['Public Skating', 'Holiday Rink', 'Adult Skate']);
 });
 
+test('site: freshness per source, calendar subscription, moved sessions and other listings', async () => {
+  await open();
+  assert.deepEqual(await page.locator('#sourceList li').allTextContents().then((t) => t.map((x) => x.replace(/\s+/g, ' ').trim())), [
+    'Volleyworld ✓ checked 48 min ago · 4 sessions',
+    'Reclub ⚠ checked 47 min ago · couldn\'t read, showing last good copy',
+  ]);
+  const sub = page.locator('#subscribe a').first();
+  assert.equal(await sub.getAttribute('href'), `${origin.replace('http:', 'webcal:')}/data/volleyball.ics`);
+  assert.equal(await page.locator('#subscribe a[download]').getAttribute('href'), `${origin}/data/volleyball.ics`);
+
+  await page.locator('#days [data-di="1"]').click();
+  const moved = row('ACES Monday Open Play');
+  assert.equal(await moved.locator('.moved').textContent(), 'Moved from 7:30pm');
+  assert.equal(await moved.locator('a.also').textContent(), 'Also on Reclub ↗');
+  assert.equal(await moved.locator('a.also').getAttribute('href'), `${SIGNUP}/reclub-dup`);
+
+  await page.locator('#sports [data-sport="ice_skating"]').click();
+  assert.deepEqual(await page.locator('#sourceList li b').allTextContents(), ['Example Ice Rink']);
+  assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /\/data\/ice_skating\.ics$/);
+});
+
+test('site: court lanes tint open time and show closed time in solid gray', async () => {
+  await open();
+  const lane = page.locator('#cal .g-track.lane').first();
+  await lane.waitFor();
+  const bg = await lane.evaluate((el) => getComputedStyle(el).backgroundColor);
+  const closed = await page.locator('#cal .g-closed').first().evaluate((el) => getComputedStyle(el).backgroundColor);
+  assert.notEqual(bg, closed);
+  // Session rows aren't tinted as "open to rent".
+  assert.equal(await page.locator('#cal .g-bar').first().locator('xpath=..').getAttribute('class'), 'g-track');
+});
+
 test('site: the day picker switches to other days of the week', async () => {
   await open();
   const days = page.locator('#days .day');
   assert.equal(await days.count(), 7);
   assert.deepEqual(await page.locator('#days .day .dn').allTextContents(), ['Today', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
-  assert.equal(await days.nth(1).getAttribute('aria-label'), 'Monday 26, 1 sessions');
+  assert.equal(await days.nth(1).getAttribute('aria-label'), 'Monday 26, 2 sessions');
 
   await days.nth(1).click();
   assert.equal(await days.nth(1).getAttribute('aria-pressed'), 'true');
   assert.equal(await page.locator('#dayTitle').textContent(), 'Tomorrow · Monday, Oct 26');
-  assert.deepEqual(await titles(), ['Monday Night Training']);
+  assert.deepEqual(await titles(), ['Monday Night Training', 'ACES Monday Open Play']);
   assert.equal(await page.locator('#list .now').count(), 0, 'no "Now" marker on other days');
   assert.match(await page.locator('#calTitle').textContent(), /Day at a glance · Mon, Oct 26/);
 

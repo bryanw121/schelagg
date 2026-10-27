@@ -5,6 +5,7 @@
   --bg:#f3f5f7; --panel:#ffffff; --ink:#15202b; --muted:#5d6b78; --line:#dde3e9;
   --accent:#1f4fd1; --accent-ink:#ffffff;
   --indoor:#b8641c; --sand:#a8862a; --grass:#2f7d4a; --rink:#1f6fa8;
+  --open:#ddf3e4; --closed:#a3adb8;
   --ok:#1d7f49; --warn:#a66a00; --bad:#b3362c; --changed:#6b3fb5; --dim:#7b8794;
   --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
   --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -14,11 +15,13 @@
   --bg:#0f151b; --panel:#17202a; --ink:#e8edf2; --muted:#93a1ae; --line:#26323e;
   --accent:#7aa2ff; --accent-ink:#0b1220;
   --indoor:#e39a55; --sand:#d8b85a; --grass:#5cbf80; --rink:#6fb6ea;
+  --open:#173a27; --closed:#46525f;
   --ok:#4cc483; --warn:#e0a83a; --bad:#ef7b70; --changed:#b294f0; --dim:#7f8d9a; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f151b; --panel:#17202a; --ink:#e8edf2; --muted:#93a1ae; --line:#26323e;
   --accent:#7aa2ff; --accent-ink:#0b1220;
   --indoor:#e39a55; --sand:#d8b85a; --grass:#5cbf80; --rink:#6fb6ea;
+  --open:#173a27; --closed:#46525f;
   --ok:#4cc483; --warn:#e0a83a; --bad:#ef7b70; --changed:#b294f0; --dim:#7f8d9a; color-scheme:dark}
 
 *{box-sizing:border-box}
@@ -103,12 +106,14 @@ footer{font-size:12px;color:var(--muted)}
 .g-lab small{display:block;color:var(--muted);font-size:11px}
 .g-track{position:relative;height:26px;border-radius:4px;background:
   repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/18)),var(--bg)}
+/* A court lane: time it's open to rent is tinted green, closed time is solid gray (.g-closed), bookings hatched. */
+.g-track.lane{background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/18)),var(--open)}
 .g-bar{position:absolute;top:3px;bottom:3px;border-radius:3px;background:var(--c);color:#fff;font:600 10.5px/20px var(--mono);padding:0 5px;overflow:hidden;white-space:nowrap;text-decoration:none}
 a.g-bar:hover{filter:brightness(1.12)}
 .g-book{position:absolute;top:3px;bottom:3px;border-radius:2px;background:repeating-linear-gradient(135deg,var(--muted) 0 3px,transparent 3px 6px);opacity:.75;border:1px solid var(--muted)}
 .g-book.open{background:var(--accent);border-color:var(--accent);opacity:1;color:var(--accent-ink);font:700 10.5px/18px var(--mono);text-decoration:none;text-align:center;overflow:hidden;white-space:nowrap}
 .g-book.open:hover{filter:brightness(1.1)}
-.g-closed{position:absolute;top:0;bottom:0;background:var(--line);border-radius:2px}
+.g-closed{position:absolute;top:0;bottom:0;background:var(--closed);border-radius:2px}
 .g-close{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);opacity:.55;z-index:1}
 .g-now{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--bad);z-index:2}
 .g-axis .g-track{background:none;height:18px}
@@ -122,3 +127,12 @@ a.g-bar:hover{filter:brightness(1.12)}
 .book{font:600 12px var(--body);color:var(--accent);text-decoration:none}
 @media (max-width:440px){.row{grid-template-columns:70px 1fr}.tab{font-size:14px}}
 @media (prefers-reduced-motion:no-preference){.row{transition:opacity .15s}}
+
+/* Per-source freshness list and calendar link in "How fresh is this?" */
+.srcs{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:13px}
+.srcs li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:3px 0}
+.srcs li span{color:var(--muted);font:500 12px var(--mono);text-align:right}
+.srcs li.bad span{color:var(--bad)}
+.moved{font:600 12px var(--mono);color:var(--changed);margin-top:2px}
+a.src.also{color:var(--muted)}
+#subscribe a{color:var(--accent);font-weight:600}
