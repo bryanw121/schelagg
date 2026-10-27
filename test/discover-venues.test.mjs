@@ -28,15 +28,15 @@ const fetch = async (url, init) => {
   const u = String(url);
   if (u.includes('/api/interpreter')) {
     assert.equal(init?.method, 'POST');
-    assert.match(String(init.body), /^data=%5Bout%3Ajson%5D/);
+    assert.match(String(init.body), /^data=%5Bout%3Ajson%5D%5Btimeout%3A90%5D%5Bbbox%3A/);
     return new Response(JSON.stringify(OVERPASS));
   }
   return PAGES[u] ? new Response(PAGES[u]) : new Response('not found', { status: 404 });
 };
 
-test('overpassQuery puts each selector around the center', () => {
+test('overpassQuery asks for each selector inside the box around the center', () => {
   assert.equal(overpassQuery(['nwr["leisure"="ice_rink"]'], [30.2672, -97.7431], 60),
-    '[out:json][timeout:90];(nwr["leisure"="ice_rink"](around:60000,30.2672,-97.7431););out tags center;');
+    '[out:json][timeout:90][bbox:29.7282,-98.3672,30.8062,-97.119];(nwr["leisure"="ice_rink"];);out tags center;');
 });
 
 test('parseOverpass: named places with attributes; unnamed and duplicate places dropped', () => {

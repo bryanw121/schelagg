@@ -31,10 +31,16 @@ export const slug = (s) => norm(s).replace(/ /g, '-').slice(0, 60).replace(/-+$/
 export const loadDiscovery = (path = repoPath('config/discovery.json')) => JSON.parse(readFileSync(path, 'utf8'));
 export const loadPlatforms = (path = repoPath('config/platforms.json')) => JSON.parse(readFileSync(path, 'utf8')).platforms;
 
-/** The Overpass QL for a sport's selectors around a point. */
-export function overpassQuery(selectors, [lat, lng], radiusKm) {
-  const around = `(around:${Math.round(radiusKm * 1000)},${lat},${lng})`;
-  return `[out:json][timeout:90];(${selectors.map((s) => `${s}${around};`).join('')});out tags center;`;
+/** The box (south, west, north, east) around a point, radiusKm each way. */
+export function bbox([lat, lng], radiusKm) {
+  const dLat = radiusKm / 111.32, dLng = radiusKm / (111.32 * Math.cos((lat * Math.PI) / 180));
+  const r = (x) => +x.toFixed(4);
+  return [r(lat - dLat), r(lng - dLng), r(lat + dLat), r(lng + dLng)];
+}
+
+/** The Overpass QL for a sport's selectors in the box around a point (a global bbox is far cheaper than around:). */
+export function overpassQuery(selectors, center, radiusKm) {
+  return `[out:json][timeout:90][bbox:${bbox(center, radiusKm).join(',')}];(${selectors.map((s) => `${s};`).join('')});out tags center;`;
 }
 
 /** Overpass JSON -> venues: { name, osm, lat, lng, website, city, indoor, lit, courts, access, openingHours, sports }. */
