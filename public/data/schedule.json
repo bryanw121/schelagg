@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-27T21:19:54.235Z",
+  "generatedAt": "2026-10-27T22:14:17.360Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,8 +8,8 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T21:19:18.241Z",
-      "count": 14
+      "checkedAt": "2026-10-27T22:13:40.871Z",
+      "count": 13
     },
     {
       "id": "aces",
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-27T21:19:18.999Z",
+      "checkedAt": "2026-10-27T22:13:41.580Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 1
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T21:19:19.315Z",
+      "checkedAt": "2026-10-27T22:13:42.081Z",
       "count": 2
     },
     {
@@ -36,7 +36,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T21:19:20.935Z",
+      "checkedAt": "2026-10-27T22:13:43.609Z",
       "count": 2
     },
     {
@@ -45,7 +45,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T21:19:22.404Z",
+      "checkedAt": "2026-10-27T22:13:44.623Z",
       "count": 5
     },
     {
@@ -54,7 +54,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T21:19:35.588Z",
+      "checkedAt": "2026-10-27T22:13:58.078Z",
       "count": 32
     },
     {
@@ -63,7 +63,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-27T21:19:41.461Z",
+      "checkedAt": "2026-10-27T22:14:03.777Z",
       "count": 14
     }
   ],
@@ -123,18 +123,18 @@
       "status": "scheduled"
     },
     {
-      "id": "volleyworld-2026-10-30-19:30-georgetown",
+      "id": "volleyworld-2026-10-30-20:30-georgetown",
       "date": "2026-10-30",
-      "start": "19:30",
-      "end": "21:00",
-      "title": "Adult Volleyball Training",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Jesus - Open Gym",
       "venue": "Volleyworld (Georgetown)",
       "city": "Georgetown",
       "surface": "indoor",
-      "type": "Training",
+      "type": "Open play",
       "level": "Adults · Jesus",
-      "capacity": 12,
-      "spotsLeft": 12,
+      "capacity": 48,
+      "spotsLeft": 48,
       "classId": "2zpUe8wQDj8OjOAWVe4I",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -285,45 +285,18 @@
       "status": "scheduled"
     },
     {
-      "id": "volleyworld-2026-11-05-20:30-georgetown",
-      "date": "2026-11-05",
-      "start": "20:30",
-      "end": "22:00",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Georgetown)",
-      "city": "Georgetown",
-      "surface": "indoor",
-      "type": "Training",
-      "level": "Adults · Jesus",
-      "capacity": 12,
-      "spotsLeft": 12,
-      "classId": "VBosqUn2EcRVN27NGWQ5",
-      "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
-        "label": "Book on Volleyworld"
-      },
-      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "sourceId": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-27",
-      "venueId": "volleyworld-georgetown",
-      "status": "scheduled"
-    },
-    {
-      "id": "volleyworld-2026-11-06-19:30-georgetown",
+      "id": "volleyworld-2026-11-06-20:30-georgetown",
       "date": "2026-11-06",
-      "start": "19:30",
-      "end": "21:00",
-      "title": "Adult Volleyball Training",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Jesus - Open Gym",
       "venue": "Volleyworld (Georgetown)",
       "city": "Georgetown",
       "surface": "indoor",
-      "type": "Training",
+      "type": "Open play",
       "level": "Adults · Jesus",
-      "capacity": 12,
-      "spotsLeft": 12,
+      "capacity": 48,
+      "spotsLeft": 48,
       "classId": "PWrVHRV21ZpPeJy6Dia6",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
