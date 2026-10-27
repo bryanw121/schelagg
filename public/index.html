@@ -15,7 +15,15 @@
     <div class="brand"><h1>Schel<span>agg</span></h1><span class="asof" id="asof">Loading…</span></div>
     <div class="tabs sports" role="group" aria-label="Sport" id="sports"></div>
     <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
-    <div class="days" role="group" aria-label="Day" id="days"></div>
+    <div class="weekbar">
+      <button type="button" class="wk-arrow" id="prevWeek" aria-label="Previous week">‹</button>
+      <div class="week" id="week">
+        <div class="wk-head"><span id="weekLabel">This week</span><span id="weekRange"></span></div>
+        <div class="days" role="group" aria-label="Day" id="days"></div>
+        <div class="wk-dots" aria-hidden="true" id="weekDots"></div>
+      </div>
+      <button type="button" class="wk-arrow" id="nextWeek" aria-label="Next week">›</button>
+    </div>
   </div>
 </header>
 
