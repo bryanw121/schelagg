@@ -38,7 +38,10 @@ test('Chaparral: dated descriptions fall back to the type title; rinks not liste
     ['daysmart-chaparralice-345990', '2026-10-28', '19:30', '21:00', 'Adult Skate', 'Adult skate', 'Northcross Rink'],
   ]);
   assert.equal(skipped, 1); // the public skate on resource 3 (another building)
-  assert.match(sessions[0].signup.url, /online\/chaparralice\/calendar/);
+  // The rink calendar opens on the session's day, filtered to its event type (6 Public Skate, 13 Adult Skate).
+  assert.equal(sessions[0].signup.url, 'https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-10-27&end=2026-10-27&event_type=6');
+  assert.equal(sessions.find((x) => x.type === 'Adult skate').signup.url, 'https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-10-28&end=2026-10-28&event_type=13');
+  assert.equal(sessions[0].signup.label, 'Rink calendar for this day');
 });
 
 test('DaySmart sessions pass the publish checks and expand into the feed as ice_skating', () => {

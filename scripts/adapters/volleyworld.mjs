@@ -12,6 +12,7 @@ export const reads = ['name', 'display', 'start_time', 'duration', 'location', '
   'max_capacity', 'total_booked', 'hostName', 'canceled', 'isBookable', 'waitlistLength', 'id'];
 
 const URL_ = 'https://app.arketa.co/iframe/volleyworld/schedule';
+const CHECKOUT = 'https://app.arketa.co/volleyworld/checkout/';
 const API = 'https://widget-api-tkaeguucxq-uc.a.run.app/ejkJj0YI8MYhO9if44ItXiKYhrt2/schedule';
 const HEADERS = { accept: 'application/json', origin: 'https://app.arketa.co', referer: 'https://app.arketa.co/' };
 const HORIZON_DAYS = 14;
@@ -51,7 +52,9 @@ export function parse(json, timeZone = 'America/Chicago') {
       spotsLeft: spotsLeft ?? undefined,
       waitlist: c.waitlistLength > 0 ? c.waitlistLength : undefined,
       classId: c.id || undefined,
-      signup: { url: URL_, label: 'Book on Volleyworld' },
+      // Arketa's own share link for one class: its checkout page, showing that class's day,
+      // time and price. Falls back to the schedule (which always opens on today) without an id.
+      signup: { url: c.id ? `${CHECKOUT}${encodeURIComponent(c.id)}` : URL_, label: 'Book on Volleyworld' },
       source: URL_,
     };
     // Two classes in the same slot: keep the bookable one.

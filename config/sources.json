@@ -147,8 +147,8 @@
         "surface": "indoor",
         "note": "No reservation needed. Skate rental at the rink.",
         "signup": {
-          "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-          "label": "Rink calendar"
+          "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start={date}&end={date}&event_type={eventType}",
+          "label": "Rink calendar for this day"
         },
         "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1"
       }
