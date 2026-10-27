@@ -1,0 +1,20 @@
+{
+  "_doc": "Booking and schedule platforms, recognised by where a venue's website links, embeds or loads scripts from (scripts/discover.mjs). `adapter` names an adapter in scripts/adapters that can read it; `company` is a regex whose first group is the venue's account on the platform. Verify a new pattern against a live page before relying on it.",
+  "platforms": [
+    { "id": "daysmart", "label": "DaySmart Recreation", "hosts": ["apps.daysmartrecreation.com", "dashplatform.com"], "adapter": "daysmart", "company": "/online/([a-z0-9_-]+)" },
+    { "id": "skedda", "label": "Skedda", "hosts": ["skedda.com"], "company": "//([a-z0-9-]+)\\.skedda\\.com" },
+    { "id": "reclub", "label": "Reclub", "hosts": ["reclub.co"], "adapter": "reclub", "company": "/clubs/@([A-Za-z0-9_.-]+)" },
+    { "id": "arketa", "label": "Arketa", "hosts": ["arketa.co"], "company": "/iframe/([a-z0-9_-]+)" },
+    { "id": "courtreserve", "label": "CourtReserve", "hosts": ["courtreserve.com"], "loginOnly": true },
+    { "id": "playbypoint", "label": "PlayByPoint", "hosts": ["playbypoint.com"], "loginOnly": true },
+    { "id": "podplay", "label": "PodPlay", "hosts": ["podplay.app"], "loginOnly": true },
+    { "id": "playtomic", "label": "Playtomic", "hosts": ["playtomic.io", "playtomic.com"], "loginOnly": true },
+    { "id": "mindbody", "label": "Mindbody", "hosts": ["mindbodyonline.com", "mindbody.io"] },
+    { "id": "activenet", "label": "ActiveNet", "hosts": ["activecommunities.com"] },
+    { "id": "teamup", "label": "TeamUp", "hosts": ["goteamup.com"] },
+    { "id": "ticketspice", "label": "TicketSpice", "hosts": ["ticketspice.com"], "ticketsOnly": true },
+    { "id": "eventbrite", "label": "Eventbrite", "hosts": ["eventbrite.com"], "ticketsOnly": true },
+    { "id": "google-calendar", "label": "Google Calendar", "hosts": ["calendar.google.com"] },
+    { "id": "ics", "label": "iCalendar feed", "patterns": ["\\.ics(\\?|$)", "^webcal:"] }
+  ]
+}

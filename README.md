@@ -107,10 +107,30 @@ ran `npm test` and the site e2e.
 - **Discover Reclub clubs** (`.github/workflows/discover.yml`): daily. Opens a pull request for each new Reclub club
   running volleyball meets in the area. Searches with Brave (`BRAVE_SEARCH_API_KEY`) or, without it, Claude Code
   (`CLAUDE_CODE_OAUTH_TOKEN`).
+- **Discover venues** (`.github/workflows/discover-venues.yml`): weekly. One pull request per sport with new venues
+  from OpenStreetMap (and Google Places with `GOOGLE_PLACES_API_KEY`) and where each publishes its schedule.
 - **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
   plus the site e2e in Chromium on Linux.
 
 First-time setup: **Settings → Pages → Source: GitHub Actions**, then run both workflows once from the Actions tab.
+
+### Discovering venues for any sport
+
+`node scripts/discover.mjs <sport> [region] [--apply]` (#21) takes a sport from `config/discovery.json` and:
+
+1. **Finds venues** in OpenStreetMap through Overpass (free, storable, with coordinates). When `GOOGLE_PLACES_API_KEY`
+   is set it also runs Google Places Text Search, keeping only place ids (Google's terms); there's no Google type for
+   pickleball or volleyball, so those use text queries.
+2. **Matches them** to `config/venues.json` by OSM id, Google place id or name. New ones are candidates, and known
+   ones get missing coordinates or ids filled in (never overwritten).
+3. **Classifies the schedule** of each new venue from its website: the homepage plus up to 3 schedule-looking links
+   on the same site, matched against `config/platforms.json`. The result is a `schedule.surface`:
+   `platform:daysmart` (with the account, e.g. `chaparralice`, ready for a `daysmart` source), `login_only`
+   (CourtReserve, PodPlay…: link out), `tickets_only`, `website` or `unknown`.
+
+The **Discover venues** workflow runs it weekly for every sport and keeps one pull request per sport
+(`discover/venues-<sport>`) with a table of what it found. Merge to add the venues; delete lines from the branch to
+drop some; add a name or OSM id to the sport's `ignore` list to never see it again.
 
 ### Discovering Reclub clubs
 
@@ -309,6 +329,9 @@ credentials to it: consumers keep reading the published feed (or the public API)
 ```
 config/sources.json      every scrape source: adapter, display name, sport, region, time zone, platform options
 config/venues.json       canonical venues: id, name, city, aliases, parent, external ids (#20)
+config/discovery.json    sport discovery: regions, OSM selectors and Google queries per sport (#21)
+config/platforms.json    booking/schedule platform fingerprints (hosts, account pattern, adapter)
+scripts/discover.mjs     sport + region -> venues and their schedule surfaces (review PR per sport)
 lib/consolidate.js       venues, moves (status / previousStart) and cross-source dedup
 lib/ics.js               per-sport calendar files from the feed
 lib/registry.js          loads + validates the config; maps adapter names to scripts/adapters/

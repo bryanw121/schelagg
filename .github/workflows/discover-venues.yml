@@ -1,0 +1,56 @@
+name: Discover venues
+
+# Weekly (and on demand): for each sport, find venues around Austin in OpenStreetMap (and Google
+# Places when GOOGLE_PLACES_API_KEY is set), classify where each publishes its schedule, and keep
+# one pull request per sport (discover/venues-<sport>) that adds the new venues to
+# config/venues.json and fills gaps on known ones. See scripts/discover.mjs and #21.
+on:
+  schedule:
+    - cron: '27 14 * * 1' # Mondays, 9:27am CDT
+  workflow_dispatch:
+    inputs:
+      sport:
+        description: Sport (blank for all)
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: discover-venues
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Discover and propose
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          ONLY: ${{ inputs.sport }}
+        run: |
+          git config user.name "volley-atx-bot"
+          git config user.email "volley-atx-bot@users.noreply.github.com"
+          sports=$(jq -r '.sports | keys[]' config/discovery.json)
+          [ -n "$ONLY" ] && sports="$ONLY"
+          for sport in $sports; do
+            git checkout -q -B "discover/venues-$sport" "$GITHUB_SHA"
+            node scripts/discover.mjs "$sport" austin --apply || { echo "::warning::$sport discovery failed"; continue; }
+            if git diff --quiet -- config/venues.json; then echo "$sport: nothing new"; continue; fi
+            git commit -qm "Discovered $sport venues" -- config/venues.json
+            git push -q -f origin "discover/venues-$sport"
+            open=$(gh pr list --state open --head "discover/venues-$sport" --json number --jq '.[0].number')
+            if [ -n "$open" ]; then
+              gh pr edit "$open" --body-file "discovered-$sport.md"
+            else
+              gh pr create --base main --head "discover/venues-$sport" --title "Discovered $sport venues around Austin" \
+                --body-file "discovered-$sport.md" --assignee "$GITHUB_REPOSITORY_OWNER"
+            fi
+          done

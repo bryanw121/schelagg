@@ -1,0 +1,23 @@
+{
+  "_doc": "Sport discovery (#21, scripts/discover.mjs <sport> <region>). For a sport and a region it finds venues in OpenStreetMap (and Google Places when GOOGLE_PLACES_API_KEY is set, place ids only), works out where each publishes its schedule from its website (config/platforms.json), and proposes the new venues as one pull request per sport. `ignore` lists OSM ids or names to never propose again.",
+  "regions": {
+    "austin": { "center": [30.2672, -97.7431], "radiusKm": 60, "timezone": "America/Chicago" }
+  },
+  "sports": {
+    "ice_skating": {
+      "osm": ["nwr[\"leisure\"=\"ice_rink\"]", "nwr[\"sport\"~\"(^|;)(ice_skating|ice_hockey)(;|$)\"][\"leisure\"~\"^(sports_centre|stadium|ice_rink)$\"]"],
+      "google": { "includedType": "ice_skating_rink", "queries": ["ice skating rink", "public ice skating"] },
+      "ignore": []
+    },
+    "pickleball": {
+      "osm": ["nwr[\"sport\"~\"(^|;)pickleball(;|$)\"]"],
+      "google": { "queries": ["pickleball courts", "indoor pickleball", "pickleball club"] },
+      "ignore": []
+    },
+    "volleyball": {
+      "osm": ["nwr[\"sport\"~\"(^|;)(volleyball|beachvolleyball)(;|$)\"]"],
+      "google": { "queries": ["volleyball open gym", "sand volleyball courts", "indoor volleyball"] },
+      "ignore": []
+    }
+  }
+}

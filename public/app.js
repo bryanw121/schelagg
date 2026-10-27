@@ -125,6 +125,15 @@ function movedHtml(x) {
   const when = d === x.date ? fmtT(t) : `${DAYS[dowOf(d)]} ${fmtDate(d)}, ${fmtT(t)}`;
   return `<div class="moved">Moved from ${esc(when)}</div>`;
 }
+// How full it is, only from what the source itself says (#21 busyness v1): spots left out of the
+// cap, full / waitlist, or just the cap. Labelled with the source and checked at the last scrape.
+function capacityHtml(x) {
+  const from = `from ${sourceName(x.fieldSources?.spotsLeft ?? x.sourceId)} at the last check`;
+  if (x.full) return `<span class="cap full" title="${esc(from)}">· Full${x.waitlist ? ` · ${esc(x.waitlist)} on waitlist` : ''}</span>`;
+  if (Number.isFinite(x.spotsLeft) && x.capacity) return `<span class="cap" title="${esc(from)}">· ${x.spotsLeft} of ${x.capacity} spots left</span>`;
+  if (x.capacity) return `<span class="cap" title="${esc(from)}">· up to ${x.capacity}</span>`;
+  return '';
+}
 const sourceName = (id) => schedule?.sources?.find((s) => s.id === id)?.name ?? (id === 'manual' ? 'hand-checked' : id);
 // The same session listed by other sources (merged into this card): a link to each.
 const alsoOnHtml = (x) => (x.alsoOn || []).map((a) => `<a class="src also" href="${esc(a.signup?.url || a.source || '#')}" target="_blank" rel="noopener">Also on ${esc(sourceName(a.sourceId))} ↗</a>`).join('');
@@ -185,7 +194,7 @@ function renderList() {
       <div class="body">
         <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? 'Happening now' : x.f.l}</span></div>
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}</div>
-        <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}</div>
+        <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
         ${movedHtml(x)}${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}
         <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a>${alsoOnHtml(x)}</div>
       </div></div>`;
