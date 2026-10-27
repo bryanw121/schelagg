@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 16
+      "failStreak": 17
     },
     "atxbeach": {
       "counts": [
@@ -200,6 +200,7 @@
         "feeCurrency",
         "feeType",
         "flags",
+        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -298,6 +299,7 @@
         32,
         32,
         32,
+        32,
         32
       ],
       "sessions": 32,
@@ -356,6 +358,7 @@
     },
     "ice-and-field": {
       "counts": [
+        14,
         14,
         14,
         14,
@@ -428,7 +431,7 @@
         5,
         5,
         5,
-        5,
+        11,
         11,
         11,
         11,
