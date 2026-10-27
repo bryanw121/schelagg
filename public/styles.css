@@ -136,3 +136,4 @@ a.g-bar:hover{filter:brightness(1.12)}
 .moved{font:600 12px var(--mono);color:var(--changed);margin-top:2px}
 a.src.also{color:var(--muted)}
 #subscribe a{color:var(--accent);font-weight:600}
+.cap{color:var(--muted)}.cap.full{color:var(--bad);font-weight:600}
