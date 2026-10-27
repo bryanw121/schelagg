@@ -121,7 +121,7 @@ export async function discover({ options, search, fetch, maxPages = 40, meetsPer
     c.meets.push({ url, name: String(data.meet.name ?? '').trim(), venue: data.meet.venue?.name ?? null });
     candidates.set(slug, c);
   }
-  return { candidates: [...candidates.values()], rejected, warnings, searched: (d.queries ?? []).length, pagesRead: Math.min(pages, maxPages) };
+  return { candidates: [...candidates.values()], rejected, warnings, searched: (queries ?? d.queries ?? []).length, urls: links.meets.length + links.clubs.length, pagesRead: Math.min(pages, maxPages) };
 }
 
 /**
@@ -221,7 +221,7 @@ async function main(args) {
   const result = await discover({ options: opts, search, queries: batch });
   result.candidates = result.candidates.map((c) => ({ ...c, body: prBody(c) }));
   writeFileSync(out, `${JSON.stringify(result, null, 2)}\n`);
-  console.log(`Searched ${result.searched} queries, read ${result.pagesRead} Reclub pages.`);
+  console.log(`::notice::Reclub discovery: searched ${result.searched} queries, got ${result.urls} reclub.co links, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
   for (const c of result.candidates) console.log(`New club: ${c.name} (@${c.slug}), ${c.reason}`);
   for (const r of result.rejected) console.log(`Skipped @${r.club}: ${r.reason}`);
   for (const w of result.warnings) console.log(`::warning::${w}`);
