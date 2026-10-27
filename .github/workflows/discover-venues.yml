@@ -43,14 +43,20 @@ jobs:
           for sport in $sports; do
             git checkout -q -B "discover/venues-$sport" "$GITHUB_SHA"
             node scripts/discover.mjs "$sport" austin --apply || { echo "::warning::$sport discovery failed"; continue; }
-            if git diff --quiet -- config/venues.json; then echo "$sport: nothing new"; continue; fi
+            open=$(gh pr list --state open --head "discover/venues-$sport" --json number --jq '.[0].number' || true)
+            if git diff --quiet -- config/venues.json; then
+              echo "$sport: nothing new"
+              # No open review and nothing to propose: drop a leftover branch.
+              [ -z "$open" ] && git push -q origin --delete "discover/venues-$sport" 2>/dev/null || true
+              continue
+            fi
             git commit -qm "Discovered $sport venues" -- config/venues.json
             git push -q -f origin "discover/venues-$sport"
-            open=$(gh pr list --state open --head "discover/venues-$sport" --json number --jq '.[0].number')
             if [ -n "$open" ]; then
-              gh pr edit "$open" --body-file "discovered-$sport.md"
+              out=$(gh pr edit "$open" --body-file "discovered-$sport.md" 2>&1) || echo "::error::$sport: gh pr edit failed: $out"
             else
-              gh pr create --base main --head "discover/venues-$sport" --title "Discovered $sport venues around Austin" \
-                --body-file "discovered-$sport.md" --assignee "$GITHUB_REPOSITORY_OWNER"
+              out=$(gh pr create --base main --head "discover/venues-$sport" --title "Discovered $sport venues around Austin" \
+                --body-file "discovered-$sport.md" --assignee "$GITHUB_REPOSITORY_OWNER" 2>&1) || { echo "::error::$sport: gh pr create failed: $out"; failed=1; }
             fi
           done
+          exit ${failed:-0}

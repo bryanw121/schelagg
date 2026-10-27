@@ -24,9 +24,13 @@ const PAGES = {
   'https://frosty.test/public-skating': '<iframe src="https://apps.daysmartrecreation.com/dash/x/#/online/frostyice/calendar?location=1"></iframe>',
   'https://example.test/chaparral': '<a href="https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar">Calendar</a>',
 };
-const fetch = async (url) => {
+const fetch = async (url, init) => {
   const u = String(url);
-  if (u.startsWith('https://overpass-api.de/')) return new Response(JSON.stringify(OVERPASS));
+  if (u.startsWith('https://overpass-api.de/')) {
+    assert.equal(init?.method, 'POST');
+    assert.match(String(init.body), /^data=%5Bout%3Ajson%5D/);
+    return new Response(JSON.stringify(OVERPASS));
+  }
   return PAGES[u] ? new Response(PAGES[u]) : new Response('not found', { status: 404 });
 };
 
@@ -100,4 +104,7 @@ test('discover: OpenStreetMap down is a warning, not a crash', async () => {
   const r = await discover({ sport: 'pickleball', region: 'austin', discovery: DISCOVERY, platforms: PLATFORMS, venues: VENUES, fetch: down });
   assert.deepEqual([r.counts.osm, r.candidates.length], [0, 0]);
   assert.deepEqual(r.warnings, ['OpenStreetMap: HTTP 504']);
+  const text = readFileSync(new URL('../config/venues.json', import.meta.url), 'utf8');
+  assert.equal(applyToVenues(text, r), text, 'nothing found: config untouched');
+  assert.equal(JSON.stringify(JSON.parse(text), null, 2) + '\n', text, 'venues.json is kept in the format applyToVenues writes');
 });
