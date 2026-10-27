@@ -7,7 +7,7 @@
         14,
         14,
         14,
-        14,
+        12,
         12,
         12,
         12,
@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 10
+      "failStreak": 11
     },
     "atxbeach": {
       "counts": [
@@ -291,6 +291,128 @@
         "venueId"
       ]
     },
+    "chaparral-ice": {
+      "counts": [
+        33
+      ],
+      "sessions": 33,
+      "coverage": {
+        "end": 1,
+        "price": 0,
+        "level": 0,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      },
+      "shape": [
+        "best_description",
+        "booking_id",
+        "create_d",
+        "create_u",
+        "created_user_type",
+        "customer_id",
+        "desc",
+        "description",
+        "end",
+        "end_gmt",
+        "event_start_time",
+        "event_type_id",
+        "has_gender_locker_rooms",
+        "home_score",
+        "hteam_id",
+        "includes_setup_time",
+        "includes_takedown_time",
+        "is_overtime",
+        "last_modified_user_type",
+        "last_resource_id",
+        "league_id",
+        "locker_room_type",
+        "mod_d",
+        "mod_u",
+        "notice",
+        "outcome",
+        "parent_event_id",
+        "publish",
+        "register_capacity",
+        "repeat_id",
+        "resource_area_id",
+        "resource_id",
+        "start",
+        "start_date",
+        "start_gmt",
+        "sub_type",
+        "visiting_score",
+        "vteam_id"
+      ]
+    },
+    "ice-and-field": {
+      "counts": [
+        14
+      ],
+      "sessions": 14,
+      "coverage": {
+        "end": 1,
+        "price": 1,
+        "level": 0,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 1,
+        "spotsLeft": 0,
+        "signup": 1
+      },
+      "shape": [
+        "best_description",
+        "best_description.has_afternoon_events",
+        "best_description.has_evening_events",
+        "best_description.has_morning_events",
+        "best_description.league_id",
+        "best_description.open_teams",
+        "best_description.team_count",
+        "booking_id",
+        "create_d",
+        "create_u",
+        "created_user_type",
+        "customer_id",
+        "desc",
+        "description",
+        "end",
+        "end_gmt",
+        "event_start_time",
+        "event_type_id",
+        "has_gender_locker_rooms",
+        "home_score",
+        "hteam_id",
+        "includes_setup_time",
+        "includes_takedown_time",
+        "is_overtime",
+        "last_modified_user_type",
+        "last_resource_id",
+        "league_id",
+        "locker_room_type",
+        "mod_d",
+        "mod_u",
+        "notice",
+        "outcome",
+        "parent_event_id",
+        "publish",
+        "register_capacity",
+        "repeat_id",
+        "resource_area_id",
+        "resource_id",
+        "start",
+        "start_date",
+        "start_gmt",
+        "sub_type",
+        "visiting_score",
+        "vteam_id"
+      ]
+    },
     "manual": {
       "counts": [
         5,
@@ -302,13 +424,13 @@
         5,
         5,
         5,
-        5
+        11
       ],
-      "sessions": 5,
+      "sessions": 11,
       "coverage": {
-        "end": 0.6,
-        "price": 0.6,
-        "level": 1,
+        "end": 0.82,
+        "price": 0.82,
+        "level": 0.45,
         "venue": 1,
         "city": 1,
         "surface": 1,
