@@ -48,7 +48,7 @@
         "venues": [
           {
             "match": "Treehouse Gym",
-            "venue": "Roots · Treehouse Gym",
+            "venue": "Roots \u00b7 Treehouse Gym",
             "city": "N. Austin",
             "surface": "indoor",
             "facility": "treehouse"
@@ -90,6 +90,69 @@
           "city": "Austin",
           "surface": "indoor"
         }
+      }
+    },
+    {
+      "id": "chaparral-ice",
+      "adapter": "daysmart",
+      "sport": "ice_skating",
+      "options": {
+        "company": "chaparralice",
+        "eventTypes": {
+          "6": {
+            "title": "Public Skate",
+            "type": "Public skate"
+          },
+          "13": {
+            "title": "Adult Skate",
+            "type": "Adult skate"
+          }
+        },
+        "resources": {
+          "1": "Northcross Rink"
+        },
+        "venue": "Chaparral Ice",
+        "city": "N. Austin (Northcross)",
+        "surface": "indoor",
+        "note": "No reservation needed. Skate rental at the rink.",
+        "signup": {
+          "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+          "label": "Rink calendar"
+        },
+        "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1"
+      }
+    },
+    {
+      "id": "ice-and-field",
+      "adapter": "daysmart",
+      "sport": "ice_skating",
+      "options": {
+        "company": "iceandfield",
+        "eventTypes": {
+          "10": {
+            "title": "Public Skating",
+            "type": "Public skate",
+            "useDescription": true
+          },
+          "25": {
+            "title": "Themed Public Skating",
+            "type": "Public skate",
+            "useDescription": true
+          }
+        },
+        "resources": {
+          "1": "Gold Rink",
+          "2": "Silver Rink"
+        },
+        "venue": "Ice & Field at The Crossover",
+        "city": "Cedar Park",
+        "surface": "indoor",
+        "price": "$14 \u00b7 skates $6",
+        "signup": {
+          "url": "https://iceandfield.com/public-skating/",
+          "label": "Public skating info"
+        },
+        "source": "https://apps.daysmartrecreation.com/dash/x/#/online/iceandfield/calendar?location=1"
       }
     }
   ],

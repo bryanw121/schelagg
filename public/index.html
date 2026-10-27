@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Schelagg</title>
-<meta name="description" content="Where to play volleyball in Austin today: open play, training, leagues and live court availability, with sign-up links.">
+<meta name="description" content="Where to play in Austin today: volleyball open play, training, leagues and live court availability, plus public ice skating, with sign-up links.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
@@ -13,6 +13,7 @@
 <header>
   <div class="wrap">
     <div class="brand"><h1>Schel<span>agg</span></h1><span class="asof" id="asof">Loading…</span></div>
+    <div class="tabs sports" role="group" aria-label="Sport" id="sports"></div>
     <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
     <div class="days" role="group" aria-label="Day" id="days"></div>
   </div>
@@ -64,7 +65,7 @@
       <p class="note" style="margin:0" id="sourceStatus"></p>
     </section>
 
-    <footer>Sources: Volleyworld, ACES, ATX Beach, Austin Velocity, Roots Volleyball, Reclub (Vex Volleyball, Austin Lawn Club), Sweatpals, Austin Parks &amp; Recreation. Times change; tap “Source” before you drive out.</footer>
+    <footer id="footer">Sources: Volleyworld, ACES, ATX Beach, Austin Velocity, Roots Volleyball, Reclub (Vex Volleyball, Austin Lawn Club), Sweatpals, Austin Parks &amp; Recreation. Times change; tap “Source” before you drive out.</footer>
   </div>
 </main>
 <script type="module" src="app.js"></script>

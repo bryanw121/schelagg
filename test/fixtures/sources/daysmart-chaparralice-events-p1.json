@@ -1,0 +1,79 @@
+{
+ "data": [
+  {
+   "type": "events",
+   "id": "342254",
+   "attributes": {
+    "start": "2026-10-27T06:30:00",
+    "end": "2026-10-27T08:00:00",
+    "event_type_id": "r",
+    "resource_id": 1,
+    "publish": false,
+    "desc": "",
+    "register_capacity": 0
+   }
+  },
+  {
+   "type": "events",
+   "id": "346891",
+   "attributes": {
+    "start": "2026-10-27T08:15:00",
+    "end": "2026-10-27T09:15:00",
+    "event_type_id": "r",
+    "resource_id": 1,
+    "publish": false,
+    "desc": "",
+    "register_capacity": 0
+   }
+  },
+  {
+   "type": "events",
+   "id": "345508",
+   "attributes": {
+    "start": "2026-10-27T09:45:00",
+    "end": "2026-10-27T12:00:00",
+    "event_type_id": "6",
+    "resource_id": 1,
+    "publish": true,
+    "desc": "Public Skate 10/27/26 9:45am-12:00pm",
+    "register_capacity": 0
+   }
+  },
+  {
+   "type": "events",
+   "id": "345334",
+   "attributes": {
+    "start": "2026-10-27T12:15:00",
+    "end": "2026-10-27T13:30:00",
+    "event_type_id": "9",
+    "resource_id": 1,
+    "publish": true,
+    "desc": "Adult Drop-in Player 10/27/26 12:15pm",
+    "register_capacity": 0
+   }
+  },
+  {
+   "type": "events",
+   "id": "345347",
+   "attributes": {
+    "start": "2026-10-27T12:15:00",
+    "end": "2026-10-27T13:30:00",
+    "event_type_id": "9",
+    "resource_id": 1,
+    "publish": true,
+    "desc": "Adult Drop-in Goalie 10/27/26 12:15pm",
+    "register_capacity": 0
+   }
+  }
+ ],
+ "meta": {
+  "page": {
+   "current-page": 1,
+   "per-page": 100,
+   "from": 1,
+   "to": 5,
+   "total": 7,
+   "last-page": 2
+  }
+ }
+}

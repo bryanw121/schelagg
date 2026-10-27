@@ -1,0 +1,40 @@
+{
+ "data": [
+  {
+   "type": "events",
+   "id": "345990",
+   "attributes": {
+    "start": "2026-10-28T19:30:00",
+    "end": "2026-10-28T21:00:00",
+    "event_type_id": "13",
+    "resource_id": 1,
+    "publish": true,
+    "desc": "Adult Skate 10/28/26 7:30pm",
+    "register_capacity": 0
+   }
+  },
+  {
+   "type": "events",
+   "id": "345991",
+   "attributes": {
+    "start": "2026-10-31T14:00:00",
+    "end": "2026-10-31T16:00:00",
+    "event_type_id": "6",
+    "resource_id": 3,
+    "publish": true,
+    "desc": "Public Skate 10/31/26 2:00pm",
+    "register_capacity": 0
+   }
+  }
+ ],
+ "meta": {
+  "page": {
+   "current-page": 2,
+   "per-page": 100,
+   "from": 1,
+   "to": 2,
+   "total": 7,
+   "last-page": 2
+  }
+ }
+}
