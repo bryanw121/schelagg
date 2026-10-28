@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-10-28T18:14:32.419Z",
+  "generatedAt": "2026-10-28T19:14:36.912Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -282,6 +282,36 @@
         "type": "League"
       },
       "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "volleyworld-2026-10-29-20:00-pflugerville",
+      "session_id": "volleyworld-2026-10-29-20:00-pflugerville",
+      "source_id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "level": "Adults · Adan",
+      "price": null,
+      "starts_at": "2026-10-30T01:00:00.000Z",
+      "ends_at": "2026-10-30T02:30:00.000Z",
+      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "signup_label": "Book on Volleyworld",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-10-28",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Training",
+        "capacity": 12,
+        "spotsLeft": 12,
+        "classId": "fURKzLIAgRO2Y45Sh9zE"
+      },
+      "venue_id": "volleyworld-pflugerville",
       "status": "scheduled",
       "previous_starts_at": null
     },
