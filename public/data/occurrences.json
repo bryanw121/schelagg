@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-10-28T02:14:59.497Z",
+  "generatedAt": "2026-10-28T03:14:25.361Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1162,6 +1162,34 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-L61EMK",
+      "session_id": "reclub-L61EMK",
+      "source_id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "level": "C/B",
+      "price": "$12",
+      "starts_at": "2026-11-04T02:30:00.000Z",
+      "ends_at": "2026-11-04T05:30:00.000Z",
+      "signup_url": "https://reclub.co/m/L61EMK",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Vex Volleyball, every Tuesday.",
+      "canceled": false,
+      "verified_at": "2026-10-27",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 36
+      },
+      "venue_id": "volleyworld-pflugerville",
       "status": "scheduled",
       "previous_starts_at": null
     },
