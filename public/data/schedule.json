@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T19:14:36.912Z",
+  "generatedAt": "2026-10-28T20:14:40.499Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,7 +8,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-28T19:13:56.003Z",
+      "checkedAt": "2026-10-28T20:13:53.183Z",
       "count": 14
     },
     {
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-28T19:13:57.468Z",
+      "checkedAt": "2026-10-28T20:14:00.475Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 1
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-28T19:13:58.079Z",
+      "checkedAt": "2026-10-28T20:14:00.681Z",
       "count": 2
     },
     {
@@ -36,7 +36,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-28T19:13:59.877Z",
+      "checkedAt": "2026-10-28T20:14:02.237Z",
       "count": 2
     },
     {
@@ -45,7 +45,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-28T19:14:05.210Z",
+      "checkedAt": "2026-10-28T20:14:07.411Z",
       "count": 5
     },
     {
@@ -54,7 +54,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-28T19:14:18.297Z",
+      "checkedAt": "2026-10-28T20:14:21.350Z",
       "count": 33
     },
     {
@@ -63,24 +63,24 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-28T19:14:23.906Z",
+      "checkedAt": "2026-10-28T20:14:27.295Z",
       "count": 14
     }
   ],
   "sessions": [
     {
-      "id": "volleyworld-2026-10-28-20:30-georgetown",
+      "id": "volleyworld-2026-10-28-20:30-pflugerville",
       "date": "2026-10-28",
       "start": "20:30",
       "end": "22:00",
       "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Georgetown)",
-      "city": "Georgetown",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
       "surface": "indoor",
       "type": "Training",
       "level": "Adults · Adan",
       "capacity": 12,
-      "spotsLeft": 12,
+      "spotsLeft": 11,
       "classId": "iMXQViiBzIkmDtssBt9e",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -92,7 +92,7 @@
       "region": "austin",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-10-28",
-      "venueId": "volleyworld-georgetown",
+      "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
     {
