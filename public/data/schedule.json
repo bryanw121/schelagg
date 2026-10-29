@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-29T01:14:26.641Z",
+  "generatedAt": "2026-10-29T01:48:43.484Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,7 +8,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T01:13:47.786Z",
+      "checkedAt": "2026-10-29T01:48:04.921Z",
       "count": 14
     },
     {
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-29T01:13:50.692Z",
+      "checkedAt": "2026-10-29T01:48:07.051Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 1
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T01:13:51.013Z",
+      "checkedAt": "2026-10-29T01:48:07.399Z",
       "count": 2
     },
     {
@@ -36,7 +36,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T01:13:52.376Z",
+      "checkedAt": "2026-10-29T01:48:09.212Z",
       "count": 2
     },
     {
@@ -45,7 +45,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T01:13:53.694Z",
+      "checkedAt": "2026-10-29T01:48:10.767Z",
       "count": 5
     },
     {
@@ -54,7 +54,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T01:14:06.521Z",
+      "checkedAt": "2026-10-29T01:48:23.477Z",
       "count": 33
     },
     {
@@ -63,7 +63,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T01:14:12.351Z",
+      "checkedAt": "2026-10-29T01:48:28.965Z",
       "count": 14
     }
   ],
@@ -79,6 +79,7 @@
       "surface": "indoor",
       "type": "Training",
       "level": "Adults · Adan",
+      "full": true,
       "capacity": 12,
       "spotsLeft": 9,
       "classId": "iMXQViiBzIkmDtssBt9e",
