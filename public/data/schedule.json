@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-29T14:14:41.033Z",
+  "generatedAt": "2026-10-29T15:14:33.861Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,7 +8,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T14:13:58.744Z",
+      "checkedAt": "2026-10-29T15:13:50.427Z",
       "count": 13
     },
     {
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-29T14:14:01.365Z",
+      "checkedAt": "2026-10-29T15:13:51.925Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 0
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T14:14:01.744Z",
+      "checkedAt": "2026-10-29T15:13:52.266Z",
       "count": 2
     },
     {
@@ -36,7 +36,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T14:14:04.026Z",
+      "checkedAt": "2026-10-29T15:13:53.730Z",
       "count": 2
     },
     {
@@ -45,7 +45,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T14:14:09.632Z",
+      "checkedAt": "2026-10-29T15:13:58.241Z",
       "count": 5
     },
     {
@@ -54,7 +54,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T14:14:23.551Z",
+      "checkedAt": "2026-10-29T15:14:14.622Z",
       "count": 32
     },
     {
@@ -63,7 +63,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-29T14:14:28.473Z",
+      "checkedAt": "2026-10-29T15:14:20.572Z",
       "count": 14
     }
   ],
@@ -2059,7 +2059,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-28",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -2089,7 +2089,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-28",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -2119,7 +2119,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-28",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -2149,7 +2149,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-28",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -2179,7 +2179,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-28",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
