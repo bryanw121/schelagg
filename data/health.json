@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 81
+      "failStreak": 82
     },
     "atxbeach": {
       "counts": [
@@ -141,7 +141,8 @@
         "spotsLeft": 0,
         "signup": 1
       },
-      "contentHash": "b1759aec2c755ca9"
+      "contentHash": "b1759aec2c755ca9",
+      "failStreak": 1
     },
     "reclub": {
       "counts": [
@@ -236,6 +237,7 @@
         "scheduleId",
         "scheduleReference",
         "slots",
+        "slots[]",
         "sport",
         "sport.avgGameDuration",
         "sport.competitionType",

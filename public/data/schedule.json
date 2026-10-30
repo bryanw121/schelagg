@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-30T20:14:29.082Z",
+  "generatedAt": "2026-10-30T21:14:35.968Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,7 +8,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-30T20:13:49.314Z",
+      "checkedAt": "2026-10-30T21:13:59.169Z",
       "count": 12
     },
     {
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-30T20:13:50.576Z",
+      "checkedAt": "2026-10-30T21:14:01.790Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 0
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-30T20:13:50.961Z",
+      "checkedAt": "2026-10-30T21:14:02.292Z",
       "count": 2
     },
     {
@@ -35,9 +35,10 @@
       "name": "Austin Velocity",
       "sport": "volleyball",
       "region": "austin",
-      "ok": true,
-      "checkedAt": "2026-10-30T20:13:52.555Z",
-      "count": 2
+      "ok": false,
+      "checkedAt": "2026-10-30T21:14:04.011Z",
+      "error": "Season dates not found on Velocity adult page",
+      "kept": 2
     },
     {
       "id": "reclub",
@@ -45,7 +46,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-30T20:13:59.064Z",
+      "checkedAt": "2026-10-30T21:14:06.675Z",
       "count": 5
     },
     {
@@ -54,7 +55,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-30T20:14:09.442Z",
+      "checkedAt": "2026-10-30T21:14:16.736Z",
       "count": 33
     },
     {
@@ -63,7 +64,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-30T20:14:15.674Z",
+      "checkedAt": "2026-10-30T21:14:22.413Z",
       "count": 14
     }
   ],
@@ -481,6 +482,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-10-30",
       "venueId": "crossover",
+      "checkFailed": "2026-10-30",
       "status": "scheduled"
     },
     {
@@ -510,6 +512,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-10-30",
       "venueId": "crossover",
+      "checkFailed": "2026-10-30",
       "status": "scheduled"
     },
     {
@@ -526,7 +529,7 @@
       "level": "B/BB",
       "price": "$12",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
-      "capacity": 36,
+      "capacity": 24,
       "signup": {
         "url": "https://reclub.co/m/VONMM8",
         "label": "Sign up on Reclub"
@@ -554,7 +557,7 @@
       "level": "C/B",
       "price": "$12",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
-      "capacity": 36,
+      "capacity": 18,
       "signup": {
         "url": "https://reclub.co/m/2O9PDP",
         "label": "Sign up on Reclub"
