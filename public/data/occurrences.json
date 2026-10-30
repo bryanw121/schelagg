@@ -1,179 +1,8 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-10-30T04:14:41.099Z",
+  "generatedAt": "2026-10-30T05:14:43.753Z",
   "horizonDays": 28,
   "occurrences": [
-    {
-      "id": "daysmart-chaparralice-345512",
-      "session_id": "daysmart-chaparralice-345512",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-10-29T13:45:00.000Z",
-      "ends_at": "2026-10-29T15:45:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-10-29",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Northcross Rink"
-      },
-      "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "daysmart-iceandfield-10381",
-      "session_id": "daysmart-iceandfield-10381",
-      "source_id": "ice-and-field",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skating",
-      "venue": "Ice & Field at The Crossover",
-      "city": "Cedar Park",
-      "level": null,
-      "price": "$14 · skates $6",
-      "starts_at": "2026-10-29T17:30:00.000Z",
-      "ends_at": "2026-10-29T20:00:00.000Z",
-      "signup_url": "https://iceandfield.com/public-skating/",
-      "signup_label": "Public skating info",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-10-29",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Silver Rink",
-        "capacity": 250
-      },
-      "venue_id": "crossover-ice",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "daysmart-chaparralice-345511",
-      "session_id": "daysmart-chaparralice-345511",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-10-29T19:45:00.000Z",
-      "ends_at": "2026-10-29T22:00:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-10-29",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Northcross Rink"
-      },
-      "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "volleyworld-2026-10-29-19:30-pflugerville",
-      "session_id": "volleyworld-2026-10-29-19:30-pflugerville",
-      "source_id": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "level": "Adults · Thayna",
-      "price": null,
-      "starts_at": "2026-10-30T00:30:00.000Z",
-      "ends_at": "2026-10-30T01:30:00.000Z",
-      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "signup_label": "Book on Volleyworld",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-10-29",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Training",
-        "full": true,
-        "capacity": 12,
-        "spotsLeft": 11,
-        "classId": "fURKzLIAgRO2Y45Sh9zE"
-      },
-      "venue_id": "volleyworld-pflugerville",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "aces-thu-6s-sand-2026-10-29",
-      "session_id": "aces-thu-6s-sand",
-      "source_id": "manual",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "ACES Co-Ed Thursday 6s League",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "level": "Rec / Intermediate",
-      "price": null,
-      "starts_at": "2026-10-30T01:00:00.000Z",
-      "ends_at": "2026-10-30T03:00:00.000Z",
-      "signup_url": "https://acesintexas.com/thursday-6s-sand-volleyball-league-atx-beach/",
-      "signup_label": "Join as free agent",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-10-24",
-      "attributes": {
-        "surface": "sand",
-        "type": "League"
-      },
-      "venue_id": "atx-beach",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-1QX0YR",
-      "session_id": "reclub-1QX0YR",
-      "source_id": "reclub",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "level": "B/BB · men",
-      "price": "$12",
-      "starts_at": "2026-10-30T01:30:00.000Z",
-      "ends_at": "2026-10-30T04:30:00.000Z",
-      "signup_url": "https://reclub.co/m/1QX0YR",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Vex Volleyball, every Thursday.",
-      "canceled": false,
-      "verified_at": "2026-10-29",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play",
-        "capacity": 36
-      },
-      "venue_id": "volleyworld-pflugerville",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
     {
       "id": "daysmart-chaparralice-345361",
       "session_id": "daysmart-chaparralice-345361",
@@ -192,7 +21,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -220,7 +49,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -248,7 +77,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -276,7 +105,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -303,7 +132,7 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -330,7 +159,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -358,7 +187,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -386,7 +215,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -416,7 +245,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -444,7 +273,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -473,7 +302,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": true,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -503,7 +332,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Austin Lawn Club, every Sunday.",
       "canceled": true,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "grass",
         "type": "Open play",
@@ -531,7 +360,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -559,7 +388,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -588,7 +417,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -642,7 +471,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -672,7 +501,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -700,7 +529,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -728,7 +557,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -757,7 +586,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -785,7 +614,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -813,7 +642,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -842,7 +671,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -870,7 +699,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Tuesday.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -898,7 +727,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -928,7 +757,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -956,7 +785,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -984,7 +813,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1013,7 +842,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1041,7 +870,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -1071,7 +900,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1099,7 +928,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1128,7 +957,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1183,7 +1012,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Thursday.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -1211,7 +1040,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -1239,7 +1068,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1267,7 +1096,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1296,7 +1125,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1324,7 +1153,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -1351,7 +1180,7 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -1378,7 +1207,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -1408,7 +1237,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1436,7 +1265,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1465,7 +1294,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -1495,7 +1324,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -1525,7 +1354,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1553,7 +1382,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1582,7 +1411,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -1636,7 +1465,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -1666,7 +1495,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -1694,7 +1523,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1722,7 +1551,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1751,7 +1580,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1779,7 +1608,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1807,7 +1636,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1836,7 +1665,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1864,7 +1693,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -1894,7 +1723,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -1922,7 +1751,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1950,7 +1779,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1979,7 +1808,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -2007,7 +1836,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -2037,7 +1866,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -2065,7 +1894,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -2094,7 +1923,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -2132,6 +1961,119 @@
       "previous_starts_at": null
     },
     {
+      "id": "daysmart-chaparralice-346677",
+      "session_id": "daysmart-chaparralice-346677",
+      "source_id": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Adult Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "level": null,
+      "price": null,
+      "starts_at": "2026-11-13T15:00:00.000Z",
+      "ends_at": "2026-11-13T16:00:00.000Z",
+      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "signup_label": "Rink calendar",
+      "note": "No reservation needed. Skate rental at the rink.",
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Adult skate",
+        "rink": "Northcross Rink"
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-chaparralice-346708",
+      "session_id": "daysmart-chaparralice-346708",
+      "source_id": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "level": null,
+      "price": null,
+      "starts_at": "2026-11-13T16:00:00.000Z",
+      "ends_at": "2026-11-13T18:00:00.000Z",
+      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "signup_label": "Rink calendar",
+      "note": "No reservation needed. Skate rental at the rink.",
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Northcross Rink"
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-iceandfield-10391",
+      "session_id": "daysmart-iceandfield-10391",
+      "source_id": "ice-and-field",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skating",
+      "venue": "Ice & Field at The Crossover",
+      "city": "Cedar Park",
+      "level": null,
+      "price": "$14 · skates $6",
+      "starts_at": "2026-11-13T19:00:00.000Z",
+      "ends_at": "2026-11-13T21:00:00.000Z",
+      "signup_url": "https://iceandfield.com/public-skating/",
+      "signup_label": "Public skating info",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Silver Rink",
+        "capacity": 250
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-chaparralice-346709",
+      "session_id": "daysmart-chaparralice-346709",
+      "source_id": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "level": null,
+      "price": null,
+      "starts_at": "2026-11-13T20:45:00.000Z",
+      "ends_at": "2026-11-13T23:00:00.000Z",
+      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "signup_label": "Rink calendar",
+      "note": "No reservation needed. Skate rental at the rink.",
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Northcross Rink"
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "hanovers-open-2026-11-13",
       "session_id": "hanovers-open",
       "source_id": "manual",
@@ -2149,7 +2091,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -2176,12 +2118,42 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
       },
       "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "volleyworld-2026-11-13-20:30-georgetown",
+      "session_id": "volleyworld-2026-11-13-20:30-georgetown",
+      "source_id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Jesus - Adult Training including Open Gym",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "level": "Adults · Jesus",
+      "price": null,
+      "starts_at": "2026-11-14T02:30:00.000Z",
+      "ends_at": "2026-11-14T03:30:00.000Z",
+      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "signup_label": "Book on Volleyworld",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 12,
+        "spotsLeft": 12,
+        "classId": "1ZMld3tCstpKmrSMBvPj"
+      },
+      "venue_id": "volleyworld-georgetown",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2203,7 +2175,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -2392,7 +2364,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -2419,7 +2391,7 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -2500,7 +2472,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-10-29",
+      "verified_at": "2026-10-30",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -2749,6 +2721,87 @@
         "type": "Public skate"
       },
       "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "four-seasons-ice-rodeo-2026-11-27",
+      "session_id": "four-seasons-ice-rodeo",
+      "source_id": "manual",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Four Seasons Ice Rodeo",
+      "venue": "Four Seasons Hotel",
+      "city": "Downtown",
+      "level": null,
+      "price": "Timed tickets",
+      "starts_at": "2026-11-27T22:00:00.000Z",
+      "ends_at": "2026-11-28T03:00:00.000Z",
+      "signup_url": "https://fourseasonsaustin.ticketspice.com/ice-rodeo-26-27",
+      "signup_label": "Timed tickets",
+      "note": "Seasonal outdoor rink at the hotel. Session length and prices are on the ticket page.",
+      "canceled": false,
+      "verified_at": "2026-10-26",
+      "attributes": {
+        "surface": "outdoor",
+        "type": "Public skate"
+      },
+      "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "hanovers-open-2026-11-27",
+      "session_id": "hanovers-open",
+      "source_id": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Hanovers Open Play (21+)",
+      "venue": "Hanovers Draught Haus",
+      "city": "Pflugerville",
+      "level": "All levels",
+      "price": "$5",
+      "starts_at": "2026-11-28T00:00:00.000Z",
+      "ends_at": "2026-11-28T05:00:00.000Z",
+      "signup_url": "https://www.planomato.com/en/austin/p/open-play-volleyball-austin",
+      "signup_label": "Drop in · $5 at the door",
+      "note": "Only source is a third-party listing from August. Call before going.",
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "hanovers",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "atxbeach-friday-2026-11-27",
+      "session_id": "atxbeach-friday",
+      "source_id": "atxbeach",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Friday Night Open Play & Pizza",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "level": "All levels",
+      "price": "$20",
+      "starts_at": "2026-11-28T01:00:00.000Z",
+      "ends_at": "2026-11-28T05:00:00.000Z",
+      "signup_url": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
+      "signup_label": "Drop in · or get membership",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "atx-beach",
       "status": "scheduled",
       "previous_starts_at": null
     }
