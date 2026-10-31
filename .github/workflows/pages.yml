@@ -1,7 +1,7 @@
 name: Deploy site
 
 # Rebuilds the court calendars and publishes the site to GitHub Pages: on every push to main
-# and right after each schedule refresh (every 15 minutes in the day, hourly overnight, see
+# and right after each schedule refresh (every 30 minutes in the day, hourly overnight, see
 # scrape-clock.yml). No schedule of its own: it would only duplicate the refresh's deploy. The site is main's code
 # with the latest scrape output from the data branch laid over it.
 on:
