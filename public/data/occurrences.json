@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-10-31T00:14:12.398Z",
+  "generatedAt": "2026-10-31T01:14:25.092Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1186,6 +1186,62 @@
         "type": "Open play"
       },
       "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-32FAFL",
+      "session_id": "reclub-32FAFL",
+      "source_id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Qilin B/BB Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "level": "B/BB",
+      "price": "$12",
+      "starts_at": "2026-11-07T01:00:00.000Z",
+      "ends_at": "2026-11-07T04:00:00.000Z",
+      "signup_url": "https://reclub.co/m/32FAFL",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 36
+      },
+      "venue_id": "treehouse",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-3WDMON",
+      "session_id": "reclub-3WDMON",
+      "source_id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Koi C/B Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "level": "C/B",
+      "price": "$12",
+      "starts_at": "2026-11-07T01:00:00.000Z",
+      "ends_at": "2026-11-07T04:00:00.000Z",
+      "signup_url": "https://reclub.co/m/3WDMON",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "canceled": false,
+      "verified_at": "2026-10-30",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 36
+      },
+      "venue_id": "treehouse",
       "status": "scheduled",
       "previous_starts_at": null
     },

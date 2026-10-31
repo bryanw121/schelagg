@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T00:14:12.398Z",
+  "generatedAt": "2026-10-31T01:14:25.092Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,7 +8,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T00:13:37.600Z",
+      "checkedAt": "2026-10-31T01:13:48.536Z",
       "count": 12
     },
     {
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-31T00:13:38.966Z",
+      "checkedAt": "2026-10-31T01:13:49.272Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 0
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T00:13:39.440Z",
+      "checkedAt": "2026-10-31T01:13:49.674Z",
       "count": 2
     },
     {
@@ -36,7 +36,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-31T00:13:41.178Z",
+      "checkedAt": "2026-10-31T01:13:51.373Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -46,8 +46,8 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T00:13:42.171Z",
-      "count": 5
+      "checkedAt": "2026-10-31T01:13:52.512Z",
+      "count": 7
     },
     {
       "id": "chaparral-ice",
@@ -55,7 +55,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T00:13:52.745Z",
+      "checkedAt": "2026-10-31T01:14:05.996Z",
       "count": 33
     },
     {
@@ -64,7 +64,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T00:13:58.707Z",
+      "checkedAt": "2026-10-31T01:14:12.446Z",
       "count": 14
     }
   ],
@@ -623,6 +623,62 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-10-30",
       "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-3WDMON",
+      "date": "2026-11-06",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Koi C/B Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "surface": "indoor",
+      "facility": "treehouse",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/3WDMON",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/3WDMON",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-30",
+      "venueId": "treehouse",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-32FAFL",
+      "date": "2026-11-06",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Qilin B/BB Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "surface": "indoor",
+      "facility": "treehouse",
+      "type": "Open play",
+      "level": "B/BB",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/32FAFL",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/32FAFL",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-10-30",
+      "venueId": "treehouse",
       "status": "scheduled"
     },
     {
