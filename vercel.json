@@ -22,9 +22,6 @@
     "api/courts.js": {
       "maxDuration": 10,
       "includeFiles": "config/regions/**"
-    },
-    "api/aces-probe.js": {
-      "maxDuration": 10
     }
   },
   "headers": [
