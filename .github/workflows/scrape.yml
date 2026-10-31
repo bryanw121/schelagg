@@ -2,13 +2,11 @@ name: Refresh schedules
 
 on:
   schedule:
-    # Hourly, 6:13am to 12:13am Austin time (CDT; an hour earlier in winter).
-    # Consumers (e.g. vteam) pull data/occurrences.json from GitHub Pages after each run;
-    # hourly runs clear last-minute cancellations within the hour.
-    # GitHub drops most of these when it's busy, so .github/workflows/scrape-clock.yml starts
-    # this workflow every hour itself; this schedule is only a backup (the clock skips an hour
-    # when a scrape already started in it).
-    - cron: '13 11-23,0-5 * * *'
+    # Backup only. .github/workflows/scrape-clock.yml starts the real schedule (every 15 minutes
+    # from 9am to midnight Austin time, hourly overnight), because GitHub drops many cron runs.
+    # This hourly cron covers the clock being down; the clock skips a slot a scrape just ran in.
+    # Consumers (e.g. vteam) pull data/occurrences.json from GitHub Pages after each run.
+    - cron: '13 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -56,12 +54,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Runs hourly: keep one open issue per outage instead of one per run. Issues are
-          # assigned to the repo owner, which notifies them even if they don't watch the repo.
+          # Runs every 15 minutes: keep one open issue per outage instead of one per run, and only
+          # comment when the failures change (a new source failing, or a different error), not on
+          # every run of the same outage. Issues are assigned to the repo owner, which notifies them.
           open=$(gh issue list --state open --search 'in:title "Schedule scrape: source failed"' --json number --jq '.[0].number')
           if [ -s scrape-failures.md ]; then
             if [ -n "$open" ]; then
-              gh issue comment "$open" --body-file scrape-failures.md
+              last=$(gh issue view "$open" --json body,comments --jq '(.comments | last | .body) // .body')
+              if [ "$last" = "$(cat scrape-failures.md)" ]; then
+                echo "Same failures as the last report on #$open; not commenting."
+              else
+                gh issue comment "$open" --body-file scrape-failures.md
+              fi
             else
               gh issue create --title "Schedule scrape: source failed $(date -u +%F)" --body-file scrape-failures.md --assignee "$GITHUB_REPOSITORY_OWNER"
             fi
