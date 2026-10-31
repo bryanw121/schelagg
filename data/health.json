@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 103
+      "failStreak": 104
     },
     "atxbeach": {
       "counts": [
@@ -142,7 +142,7 @@
         "signup": 1
       },
       "contentHash": "b1759aec2c755ca9",
-      "failStreak": 22
+      "failStreak": 23
     },
     "reclub": {
       "counts": [
@@ -430,13 +430,13 @@
         11,
         11,
         11,
-        11
+        13
       ],
-      "sessions": 11,
+      "sessions": 13,
       "coverage": {
-        "end": 0.82,
-        "price": 0.82,
-        "level": 0.45,
+        "end": 0.85,
+        "price": 0.85,
+        "level": 0.54,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -452,6 +452,8 @@
     "aces:failing",
     "manual:aces-mon-6s-indoor:unverified",
     "manual:aces-mon-6s-indoor:watch",
+    "manual:aces-open-mon:watch",
+    "manual:aces-open-wed:watch",
     "manual:aces-thu-6s-sand:watch",
     "manual:beecave-on-ice-fri:changed:2026-10-28",
     "manual:beecave-on-ice-mwth:changed:2026-10-28",

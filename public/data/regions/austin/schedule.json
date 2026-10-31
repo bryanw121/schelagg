@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T18:43:41.157Z",
+  "generatedAt": "2026-10-31T19:12:28.689Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T18:43:29.330Z",
+      "checkedAt": "2026-10-31T19:12:02.732Z",
       "count": 12
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-10-31T18:43:29.332Z",
+      "checkedAt": "2026-10-31T19:12:02.735Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 0
     },
@@ -45,7 +45,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-10-31T18:43:29.334Z",
+      "checkedAt": "2026-10-31T19:12:02.738Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -56,7 +56,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-10-31T17:58:09.110Z",
+      "checkedAt": "2026-10-31T19:12:02.739Z",
       "count": 5
     },
     {
@@ -66,7 +66,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T18:43:29.334Z",
+      "checkedAt": "2026-10-31T19:12:02.740Z",
       "count": 31
     },
     {
@@ -76,7 +76,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T18:43:29.335Z",
+      "checkedAt": "2026-10-31T19:12:02.740Z",
       "count": 15
     }
   ],
@@ -1902,6 +1902,64 @@
       "region": "austin",
       "timezone": "America/Chicago",
       "venueId": "atx-beach",
+      "status": "scheduled"
+    },
+    {
+      "id": "aces-open-mon",
+      "days": [
+        "Mon"
+      ],
+      "start": "19:30",
+      "end": "22:00",
+      "title": "ACES Indoor Open Play",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels, 18+",
+      "price": "$6 online · $10 door",
+      "verifiedAt": "2026-10-24",
+      "note": "1 court (more if signups allow). Winner stays on, games to 21. Entered by hand: ACES's site blocks our checker, so confirm on ACES before you go.",
+      "signup": {
+        "url": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
+        "label": "Register on ACES"
+      },
+      "source": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "watchError": "HTTP 403",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
+      "id": "aces-open-wed",
+      "days": [
+        "Wed"
+      ],
+      "start": "19:30",
+      "end": "22:00",
+      "title": "ACES Indoor Open Play",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels, 18+",
+      "price": "$6 online · $10 door",
+      "verifiedAt": "2026-10-24",
+      "note": "1 court (more if signups allow). Winner stays on, games to 21. Entered by hand: ACES's site blocks our checker, so confirm on ACES before you go.",
+      "signup": {
+        "url": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
+        "label": "Register on ACES"
+      },
+      "source": "https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/",
+      "sourceId": "manual",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "watchError": "HTTP 403",
+      "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
     {
