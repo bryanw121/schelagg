@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T01:14:25.092Z",
+  "generatedAt": "2026-10-31T01:36:39.873Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -8,7 +8,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T01:13:48.536Z",
+      "checkedAt": "2026-10-31T01:36:03.637Z",
       "count": 12
     },
     {
@@ -17,7 +17,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-31T01:13:49.272Z",
+      "checkedAt": "2026-10-31T01:36:04.501Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 0
     },
@@ -27,7 +27,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T01:13:49.674Z",
+      "checkedAt": "2026-10-31T01:36:04.974Z",
       "count": 2
     },
     {
@@ -36,7 +36,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": false,
-      "checkedAt": "2026-10-31T01:13:51.373Z",
+      "checkedAt": "2026-10-31T01:36:06.676Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -46,7 +46,7 @@
       "sport": "volleyball",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T01:13:52.512Z",
+      "checkedAt": "2026-10-31T01:36:07.742Z",
       "count": 7
     },
     {
@@ -55,7 +55,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T01:14:05.996Z",
+      "checkedAt": "2026-10-31T01:36:21.541Z",
       "count": 33
     },
     {
@@ -64,7 +64,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "ok": true,
-      "checkedAt": "2026-10-31T01:14:12.446Z",
+      "checkedAt": "2026-10-31T01:36:27.207Z",
       "count": 14
     }
   ],
@@ -80,6 +80,7 @@
       "surface": "indoor",
       "type": "Open play",
       "level": "Adults · Jesus",
+      "full": true,
       "capacity": 48,
       "spotsLeft": 46,
       "classId": "2zpUe8wQDj8OjOAWVe4I",
