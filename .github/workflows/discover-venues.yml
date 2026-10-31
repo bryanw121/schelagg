@@ -3,7 +3,7 @@ name: Discover venues
 # Weekly (and on demand): for each sport, find venues around Austin in OpenStreetMap (and Google
 # Places when GOOGLE_PLACES_API_KEY is set), classify where each publishes its schedule, and keep
 # one pull request per sport (discover/venues-<sport>) that adds the new venues to
-# config/venues.json and fills gaps on known ones. See scripts/discover.mjs and #21.
+# the region's venues.json (config/regions/<id>/venues.json) and fills gaps on known ones. See scripts/discover.mjs and #21.
 on:
   schedule:
     - cron: '27 14 * * 1' # Mondays, 9:27am CDT
@@ -40,23 +40,29 @@ jobs:
           git config user.email "volley-atx-bot@users.noreply.github.com"
           sports=$(jq -r '.sports | keys[]' config/discovery.json)
           [ -n "$ONLY" ] && sports="$ONLY"
-          for sport in $sports; do
-            git checkout -q -B "discover/venues-$sport" "$GITHUB_SHA"
-            node scripts/discover.mjs "$sport" austin --apply || { echo "::warning::$sport discovery failed"; continue; }
-            open=$(gh pr list --state open --head "discover/venues-$sport" --json number --jq '.[0].number' || true)
-            if git diff --quiet -- config/venues.json; then
-              echo "$sport: nothing new"
-              # No open review and nothing to propose: drop a leftover branch.
-              [ -z "$open" ] && git push -q origin --delete "discover/venues-$sport" 2>/dev/null || true
-              continue
-            fi
-            git commit -qm "Discovered $sport venues" -- config/venues.json
-            git push -q -f origin "discover/venues-$sport"
-            if [ -n "$open" ]; then
-              out=$(gh pr edit "$open" --body-file "discovered-$sport.md" 2>&1) || echo "::error::$sport: gh pr edit failed: $out"
-            else
-              out=$(gh pr create --base main --head "discover/venues-$sport" --title "Discovered $sport venues around Austin" \
-                --body-file "discovered-$sport.md" --assignee "$GITHUB_REPOSITORY_OWNER" 2>&1) || { echo "::error::$sport: gh pr create failed: $out"; failed=1; }
-            fi
+          # Every region (config/regions/<id>/) × every sport: one review pull request each.
+          for region in $(ls config/regions); do
+            [ -f "config/regions/$region/region.json" ] || continue
+            name=$(jq -r '.name // .id' "config/regions/$region/region.json")
+            for sport in $sports; do
+              branch="discover/venues-$region-$sport"
+              git checkout -q -B "$branch" "$GITHUB_SHA"
+              node scripts/discover.mjs "$sport" "$region" --apply || { echo "::warning::$region/$sport discovery failed"; continue; }
+              open=$(gh pr list --state open --head "$branch" --json number --jq '.[0].number' || true)
+              if git diff --quiet -- config/regions; then
+                echo "$region/$sport: nothing new"
+                # No open review and nothing to propose: drop a leftover branch.
+                [ -z "$open" ] && git push -q origin --delete "$branch" 2>/dev/null || true
+                continue
+              fi
+              git commit -qm "Discovered $sport venues in $name" -- config/regions
+              git push -q -f origin "$branch"
+              if [ -n "$open" ]; then
+                out=$(gh pr edit "$open" --body-file "discovered-$sport.md" 2>&1) || echo "::error::$region/$sport: gh pr edit failed: $out"
+              else
+                out=$(gh pr create --base main --head "$branch" --title "Discovered $sport venues around $name" \
+                  --body-file "discovered-$sport.md" --assignee "$GITHUB_REPOSITORY_OWNER" 2>&1) || { echo "::error::$region/$sport: gh pr create failed: $out"; failed=1; }
+              fi
+            done
           done
           exit ${failed:-0}

@@ -1,21 +1,21 @@
 {
-  "_doc": "Every scrape source. 'adapter' names a module in scripts/adapters. Platform adapters (reclub, aces) take their venues/pages from 'options'; site-specific adapters know their own URL. sport/region/timezone come from 'defaults' unless a source overrides them. Add a venue on an existing platform by adding an entry here; add a new platform or site by writing an adapter and registering it in lib/registry.js.",
+  "_doc": "Sources for this region. 'adapter' names a module in scripts/adapters; platform adapters (reclub, aces, daysmart) take their venues/pages from 'options'. region and timezone come from region.json; sport from 'defaults' unless a source sets its own. 'cadence' is how often a source is scraped (30m, 1h, 6h, 1d; default 30m): the scrape clock ticks every 30 minutes by day and hourly overnight, and each tick runs only the sources that are due. Add a venue on an existing platform here; a new platform needs an adapter in scripts/adapters and a line in lib/registry.js.",
   "schemaVersion": 2,
   "defaults": {
-    "sport": "volleyball",
-    "region": "austin",
-    "timezone": "America/Chicago"
+    "sport": "volleyball"
   },
   "sources": [
     {
       "id": "volleyworld",
       "name": "Volleyworld",
-      "adapter": "volleyworld"
+      "adapter": "volleyworld",
+      "cadence": "30m"
     },
     {
       "id": "aces",
       "name": "ACES",
       "adapter": "aces",
+      "cadence": "1h",
       "options": {
         "pages": [
           {
@@ -34,17 +34,20 @@
     {
       "id": "atxbeach",
       "name": "ATX Beach",
-      "adapter": "atxbeach"
+      "adapter": "atxbeach",
+      "cadence": "6h"
     },
     {
       "id": "velocity",
       "name": "Austin Velocity",
-      "adapter": "velocity"
+      "adapter": "velocity",
+      "cadence": "1d"
     },
     {
       "id": "reclub",
       "name": "Reclub",
       "adapter": "reclub",
+      "cadence": "1h",
       "options": {
         "clubs": [
           "https://reclub.co/clubs/@vex_volleyball",
@@ -53,7 +56,7 @@
         "venues": [
           {
             "match": "Treehouse Gym",
-            "venue": "Roots \u00b7 Treehouse Gym",
+            "venue": "Roots · Treehouse Gym",
             "city": "N. Austin",
             "surface": "indoor",
             "facility": "treehouse"
@@ -126,6 +129,7 @@
       "id": "chaparral-ice",
       "name": "Chaparral Ice",
       "adapter": "daysmart",
+      "cadence": "30m",
       "sport": "ice_skating",
       "options": {
         "company": "chaparralice",
@@ -157,6 +161,7 @@
       "id": "ice-and-field",
       "name": "Ice & Field",
       "adapter": "daysmart",
+      "cadence": "30m",
       "sport": "ice_skating",
       "options": {
         "company": "iceandfield",
@@ -179,7 +184,7 @@
         "venue": "Ice & Field at The Crossover",
         "city": "Cedar Park",
         "surface": "indoor",
-        "price": "$14 \u00b7 skates $6",
+        "price": "$14 · skates $6",
         "signup": {
           "url": "https://iceandfield.com/public-skating/",
           "label": "Public skating info"
@@ -189,6 +194,7 @@
     }
   ],
   "manual": {
-    "file": "data/manual.json"
+    "file": "manual.json",
+    "cadence": "1d"
   }
 }

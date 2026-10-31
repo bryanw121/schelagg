@@ -91,7 +91,7 @@ test('discover: a full run for ice skating, its report, and applying it to the v
   assert.match(md, /\| Frosty Rink \| outdoor \| platform:daysmart: DaySmart Recreation \(`frostyice`\)/);
   assert.match(md, /Readable now:\*\* Frosty Rink \(daysmart\)/);
   assert.match(md, /Filled in on known venues:\*\* `chaparral-northcross` \(osm, lat, lng, website\)/);
-  const text = readFileSync(new URL('../config/venues.json', import.meta.url), 'utf8');
+  const text = readFileSync(new URL('../config/regions/austin/venues.json', import.meta.url), 'utf8');
   const next = JSON.parse(applyToVenues(text, r));
   assert.equal(next.venues.length, VENUES.length + 3);
   assert.equal(next.venues.find((v) => v.id === 'chaparral-northcross').osm, 'way/11');
@@ -111,7 +111,7 @@ test('discover: OpenStreetMap down is a warning, not a crash', async () => {
   const r = await discover({ sport: 'pickleball', region: 'austin', discovery: DISCOVERY, platforms: PLATFORMS, venues: VENUES, fetch: down });
   assert.deepEqual([r.counts.osm, r.candidates.length], [0, 0]);
   assert.deepEqual(r.warnings, ['OpenStreetMap: overpass-api.de HTTP 504, overpass.private.coffee HTTP 504, overpass.kumi.systems HTTP 504']);
-  const text = readFileSync(new URL('../config/venues.json', import.meta.url), 'utf8');
+  const text = readFileSync(new URL('../config/regions/austin/venues.json', import.meta.url), 'utf8');
   assert.equal(applyToVenues(text, r), text, 'nothing found: config untouched');
   assert.equal(JSON.stringify(JSON.parse(text), null, 2) + '\n', text, 'venues.json is kept in the format applyToVenues writes');
 });

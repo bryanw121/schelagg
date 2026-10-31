@@ -83,7 +83,7 @@ test('discover stops at maxPages and reports search failures', async () => {
 });
 
 test('applyClub adds a club to the config once and rejects bad slugs', () => {
-  const text = readFileSync(new URL('../config/sources.json', import.meta.url), 'utf8');
+  const text = readFileSync(new URL('../config/regions/austin/sources.json', import.meta.url), 'utf8');
   const next = applyClub(text, 'north_austin_vb');
   const clubs = JSON.parse(next).sources.find((s) => s.id === 'reclub').options.clubs;
   assert.equal(clubs.at(-1), 'https://reclub.co/clubs/@north_austin_vb');

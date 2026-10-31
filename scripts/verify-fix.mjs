@@ -40,8 +40,9 @@ if (!baseline) {
     health: join(dir, 'health.json'), failures: join(dir, 'failures.md'), changes: join(dir, 'changes.md'),
     changesJson: join(dir, 'changes.json'),
   });
-  const { sources, manual } = loadSources();
-  const r = await runScrape({ sources, manual, paths });
+  const { sources, manuals } = loadSources();
+  // Every source, whatever its cadence: the point is to see whether the fix clears the findings.
+  const r = await runScrape({ sources, manuals, paths, force: true });
   verdict = {
     ...judgeFix({ batch, baseline, baselineSources: baselineSchedule.sources ?? [], verify: { sources: r.out.sources, findings: r.findings } }),
     sources: r.out.sources.map(({ id, ok, count, error }) => ({ id, ok, count, error })),

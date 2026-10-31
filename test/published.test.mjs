@@ -74,4 +74,17 @@ test('data branch: push then pull round-trips the data files, main untouched', {
   sh(b, 'bash', script, 'pull');
   assert.equal(readFileSync(join(b, 'public', 'data', 'schedule.json'), 'utf8'), 'run-1');
   assert.equal(readFileSync(join(b, 'data', 'health.json'), 'utf8'), '{"ok":1}');
+
+  // Region folders and the index travel too, even ones that only exist on the data branch;
+  // courts.json (built by the deploy) never does.
+  mkdirSync(join(a, 'public', 'data', 'regions', 'austin'), { recursive: true });
+  writeFileSync(join(a, 'public', 'data', 'regions', 'austin', 'schedule.json'), 'austin-1');
+  writeFileSync(join(a, 'public', 'data', 'index.json'), '{"regions":[]}');
+  writeFileSync(join(a, 'public', 'data', 'courts.json'), 'built by deploy');
+  sh(a, 'bash', script, 'push', 'Refresh 3');
+  const tree = sh(a, 'git', 'ls-tree', '-r', '--name-only', 'origin/data').trim().split('\n');
+  assert.ok(tree.includes('public/data/regions/austin/schedule.json') && tree.includes('public/data/index.json'), tree.join(', '));
+  assert.ok(!tree.includes('public/data/courts.json'));
+  sh(b, 'bash', script, 'pull');
+  assert.equal(readFileSync(join(b, 'public', 'data', 'regions', 'austin', 'schedule.json'), 'utf8'), 'austin-1');
 });

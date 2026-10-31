@@ -9,18 +9,25 @@ Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional ext
 
 ## How data stays fresh
 
-| Data | How | How fresh |
+The scrape clock ticks every 30 minutes from 8am to 10pm Austin time and hourly overnight (one clock for every region). Each tick scrapes only the
+sources that are **due**: every source has a `cadence` in its region's `sources.json`, and a source runs when its
+cadence has passed since its last good check (or it failed, or it's new). Sources that aren't due keep their last
+sessions and status untouched.
+
+| Data (Austin) | How | Cadence |
 |---|---|---|
-| Court bookings + opening hours (High Point, Crossover, Treehouse) | `scripts/build-courts.mjs` reads their public Skedda calendars | With each refresh (every 30 min 8am–10pm, hourly overnight) |
-| Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages (server-rendered meet data) | Every 30 min 8am–10pm, hourly overnight; live via `/api/check` |
-| New Reclub clubs | `scripts/discover-reclub.mjs` searches the web for Reclub meets in the area and opens a pull request per new club (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Daily |
-| Volleyworld adult sessions | Arketa's public schedule API (the JSON its booking widget reads), incl. cancellations and spots left | Every 30 min 8am–10pm, hourly overnight; live via `/api/check` |
-| ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | Every 30 min 8am–10pm, hourly overnight |
-| ATX Beach open play | TeamUp membership page | Every 30 min 8am–10pm, hourly overnight |
-| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | Every 30 min 8am–10pm, hourly overnight |
-| Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs` reads each rink's public DaySmart events API, keeping only published public/adult skate event types on the listed rinks | Every 30 min 8am–10pm, hourly overnight |
-| Ice skating: Bee Cave on Ice, Four Seasons Ice Rodeo (seasonal outdoor) | `data/manual.json`: posted hours for the season, page watched for changes | `verifiedAt` age |
-| Everything else (Sand Social, Hanovers, leagues) | `data/manual.json`, hand-checked. Each scrape run watches each source page and flags it if the page changes | `verifiedAt` age |
+| Court bookings + opening hours (High Point, Crossover, Treehouse) | `scripts/build-courts.mjs` reads their public Skedda calendars | With each refresh |
+| Volleyworld adult sessions | Arketa's public schedule API, incl. cancellations and spots left | 30m; live via `/api/check` |
+| Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs`: each rink's public DaySmart events API, published public/adult skate types only | 30m; live via `/api/check` |
+| Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages | 1h; live via `/api/check` |
+| ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
+| ATX Beach open play | TeamUp membership page | 6h |
+| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
+| Hand-checked sessions (Sand Social, Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
+| New Reclub clubs | `scripts/discover-reclub.mjs` (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Weekly |
+
+A tick with no browser source due skips installing Chromium. Requests to one host are queued and spaced (300 ms apart in
+the workflow, `lib/http.js`), however many regions and sources share that host; up to 6 sources run at once.
 
 **Private bookings open to sign-ups.** When a court booking on a Skedda calendar starts and ends within 15 minutes of a
 Reclub meet at the same gym, the chart shows that block in blue with a link to sign up. Skedda hides who booked a slot,
@@ -33,7 +40,7 @@ If a court calendar can't be read, the last good copy from the live site stays u
 
 After validation, `lib/consolidate.js` (#20):
 
-- **Venues.** Each session's venue name is matched to `config/venues.json` by name or alias, ignoring case and
+- **Venues.** Each session's venue name is matched to its region's `venues.json` (`config/regions/<id>/`) by name or alias, ignoring case and
   punctuation, and gets a `venueId`. A name that isn't listed becomes a source warning, so it shows up in the
   "source changed" issue; add it as a venue or an alias.
 - **Moves.** A dated session whose date or start changed since the last run keeps its id and becomes `rescheduled`,
@@ -55,8 +62,8 @@ price the adapter hard-codes. After every scrape, `lib/health.js` compares the r
 | **Field disappeared** | A field most sessions had (`capacity`, `price`, `end`, ...) now missing from all of them |
 | **API data changed shape** | A key the adapter reads (`reads` in Volleyworld and Reclub) gone from the raw data, with the keys that appeared |
 | **Page changed** | The schedule lines ATX Beach and Velocity are read from changed, so details their adapters fill in may be stale |
-| **New warning** | A new validation or adapter warning, such as a Reclub venue missing from `config/sources.json` |
-| **Hand-checked session** | A `data/manual.json` source page that changed or can't be watched, an entry not verified in 30 days, or one dropped for malformed data |
+| **New warning** | A new validation or adapter warning, such as a Reclub venue missing from the region's `sources.json` |
+| **Hand-checked session** | A `manual.json` source page that changed or can't be watched, an entry not verified in 30 days, or one dropped for malformed data |
 
 New findings go to a **Schedule scrape: source changed** issue (one open issue, with a comment per new batch) and the
 run summary. Each is reported once; when the problem clears it's forgotten, so a recurrence is reported again. Close the
@@ -78,7 +85,7 @@ saves the raw responses under the git-ignored `tmp/`), adapts the adapter or con
 | `npm test` fails | Nothing is pushed; the failure goes on the issue |
 | No safe change | Claude's reasoning goes on the issue |
 
-The gates: only adapters, `config/sources.json`, the fixture sanitizer and parser tests changed; `npm test` passes; the
+The gates: only adapters, region config (`config/regions/*/`), the fixture sanitizer and parser tests changed; `npm test` passes; the
 site e2e passes; and `scripts/verify-fix.mjs` re-runs the whole scrape live with the fix, against the health baseline
 from before the source changed, and finds the reported problems gone and no source newly broken. Page-changed findings
 (new prices or wording) always go to review.
@@ -103,10 +110,13 @@ ran `npm test` and the site e2e.
 - **Deploy site** (`.github/workflows/pages.yml`): after each schedule refresh and on every push to main. Fetches court
   calendars, then publishes `public/` to GitHub Pages. Vercel is not involved (the data branch has deployments off).
 - **Refresh schedules** (`.github/workflows/scrape.yml`): started by the scrape clock (its own hourly cron is only a
-  backup). Runs tests, migrates
+  backup). Plans which sources are due, installs Chromium only if one of them needs it, migrates
   the database (skipped without the `DATABASE_URL` secret), scrapes, writes the run to the database, and commits
-  `public/data/schedule.json`, the public feed `public/data/occurrences.json` and `data/health.json`. A failing
-  source keeps one issue open and comments only when the failures change; a source that changed what it sends gets its own issue (see
+  the combined `public/data/schedule.json`, the public feed `public/data/occurrences.json`, `public/data/index.json`, one
+  folder per region (`public/data/regions/<id>/`: `schedule.json`, `occurrences.json`, `<sport>.ics`) and
+  `data/health.json`. **Run it with "all" checked** (workflow_dispatch) to scrape every source regardless of cadence. Failing
+  sources keep one issue open per region ("Schedule scrape: source failed in <region>"), commented on only when the
+  failures change; a failed database write gets its own issue; a source that changed what it sends gets its own issue (see
   [Catching source changes](#catching-source-changes)).
 - **Discover Reclub clubs** (`.github/workflows/discover.yml`): weekly (Wednesdays). Opens a pull request for each new Reclub club
   running volleyball meets in the area. Searches with Brave (`BRAVE_SEARCH_API_KEY`) or, without it, Claude Code
@@ -125,7 +135,7 @@ First-time setup: **Settings → Pages → Source: GitHub Actions**, then run bo
 1. **Finds venues** in OpenStreetMap through Overpass (free, storable, with coordinates). When `GOOGLE_PLACES_API_KEY`
    is set it also runs Google Places Text Search, keeping only place ids (Google's terms); there's no Google type for
    pickleball or volleyball, so those use text queries.
-2. **Matches them** to `config/venues.json` by OSM id, Google place id or name. New ones are candidates, and known
+2. **Matches them** to every region's `venues.json` by OSM id, Google place id or name. New ones are candidates, and known
    ones get missing coordinates or ids filled in (never overwritten).
 3. **Classifies the schedule** of each new venue from its website: the homepage plus up to 3 schedule-looking links
    on the same site, matched against `config/platforms.json`. The result is a `schedule.surface`:
@@ -166,7 +176,7 @@ and overdue ones. In simulation, 50 queries with 10 productive at budget 20 keep
 rest within 8 weeks, at about 17 searches a run. Past roughly 60 queries a budget of 20 can't keep up (quiet ones would
 wait longer than 8 weeks); the run then warns, and the fix is the Brave key (about 1,000 free searches a month). The state also
 remembers clubs already proposed or skipped and which club each meet belongs to, so those pages aren't read again, and
-club links found on discovered venues' websites (`config/venues.json`, schedule platform `reclub`) are checked
+club links found on discovered venues' websites (`venues.json`, schedule platform `reclub`) are checked
 without any search. When Claude searches it runs on Haiku, sees only the planned batch, and reports results per query;
 a query it didn't report on stays due instead of counting as empty.
 
@@ -211,7 +221,7 @@ database and never writes into one. Instead it publishes a feed, and consumers p
   `Tournament` / `Clinic`; consumers filter on these, so `lib/session.js` flags any other value; where the source
   says, also `capacity`, `spotsLeft`, `full`, `waitlist`). `feedVersion` changes only for breaking changes.
 - Also on each occurrence (added without a version bump, new keys only): `venue_id` (canonical venue from
-  `config/venues.json`, or null), `status` (`scheduled` / `cancelled` / `rescheduled`, OpenActive's vocabulary) and
+  the region's `venues.json`, or null), `status` (`scheduled` / `cancelled` / `rescheduled`, OpenActive's vocabulary) and
   `previous_starts_at` (where a rescheduled session was). `canceled` stays for existing consumers.
 - **`public/data/<sport>.ics`** (`volleyball.ics`, `ice_skating.ics`): the same occurrences as calendar subscriptions.
   Cancelled sessions stay in with `STATUS:CANCELLED` and every occurrence keeps its UID, so a move shows as a move.
@@ -351,8 +361,9 @@ credentials to it: consumers keep reading the published feed (or the public API)
 ## Layout
 
 ```
-config/sources.json      every scrape source: adapter, display name, sport, region, time zone, platform options
-config/venues.json       canonical venues: id, name, city, aliases, parent, external ids (#20)
+config/regions/<id>/     one folder per city: region.json, sources.json, venues.json, manual.json,
+                         public-courts.json, courts.json (see Adding a city, venue or sport)
+lib/regions.js           loads the region folders
 config/discovery.json    sport discovery: regions, OSM selectors and Google queries per sport (#21)
 config/platforms.json    booking/schedule platform fingerprints (hosts, account pattern, adapter)
 scripts/discover.mjs     sport + region -> venues and their schedule surfaces (review PR per sport)
@@ -376,8 +387,6 @@ scripts/db-migrate.mjs   apply db/migrations + db/grants.sql to DATABASE_URL
 db/                      migrations/NNNN_name.sql and grants.sql (the read-only role's SELECT)
 scripts/sanitize-fixtures.mjs  strips personal data from captured fixtures (run by capture-fixtures.mjs)
 scripts/adapters/        one module per platform or site
-data/manual.json         hand-checked sessions
-data/public-courts.json  free city courts
 public/                  the site (index.html, app.js, styles.css, data/)
 api/courts.js            live court bookings (Vercel / local dev)
 api/check.js             live re-check of one session (Vercel / local dev)
@@ -387,27 +396,46 @@ test/                    node:test suites (npm test); never touch the network: f
 e2e/                     Playwright site test (npm run test:e2e)
 ```
 
-## Adding a venue, sport or region
+## Adding a city, venue or sport
 
-Every source is an entry in `config/sources.json`. Each entry names an `adapter` and gets its `sport`, `region` and
-`timezone` from `defaults` unless it sets its own, so another sport or city is just entries with different values.
+Each city is a folder, `config/regions/<id>/` (`lib/regions.js`):
 
-- **On a platform we already read** (another Reclub club, another ACES page): add it to that source's `options` in
-  `config/sources.json`. No code.
+| File | What |
+|---|---|
+| `region.json` | `id`, `name`, `timezone` (IANA), `center` [lat, lng], `radiusKm` (discovery searches this area) |
+| `sources.json` | what to scrape: `defaults.sport`, then `sources` (each with `id`, `name`, `adapter`, `cadence`, `options`) and `manual` |
+| `venues.json` | canonical venues (name, aliases, external ids) that sessions are matched to |
+| `manual.json` | hand-checked sessions |
+| `public-courts.json` | free public courts (optional) |
+| `courts.json` | Skedda court calendars (optional), with an optional `note` per venue shown under the chart |
+
+Sources get their `region` and `timezone` from `region.json`. Source and venue ids must be unique across all regions
+(the scrape checks). The site loads `data/index.json` and then only the chosen region's folder
+(`data/regions/<id>/`); with more than one region it shows a city menu (and a "nearest" button), and `?region=<id>`
+links to one.
+
+- **A new city**: copy `config/regions/austin/` to `config/regions/<id>/`, set `region.json`, and empty the lists. Run
+  the **Discover venues** workflow to fill `venues.json` (one pull request per sport); add sources for venues on
+  platforms we already read. The scrape, feed, calendars and site pick the folder up with no code change.
+- **On a platform we already read** (another Reclub club, another ACES page, another DaySmart rink): add it to the
+  region's `sources.json`. No code.
 - **A new platform or site**: add `scripts/adapters/<name>.mjs` exporting `scrape({ browser, ref, options, timezone })`
   (plus a pure `parse` you can test with a captured response), register it in `ADAPTERS` in `lib/registry.js`, and add
   a config entry. Platform adapters should take venue details from `options` so one adapter serves many venues. Prefer
   a public API or server-rendered data over the headless browser, and export `needsBrowser = false` when you don't
-  need it: the hourly scrape only starts Chromium if some source does. If the source can answer for one session
+  need it: a tick only installs and starts Chromium if a due source needs it. If the source can answer for one session
   quickly, also export `check()` (see [Live API](#live-api)). The "Capture source fixtures" workflow saves raw
   responses under `test/fixtures/sources/` to test against, run through `scripts/sanitize-fixtures.mjs` first
   (the repo is public: no hosts, participants, notes or tokens; a test fails if an email or phone number slips in).
 - **A rink on DaySmart Recreation**: add a `daysmart` source with its `company` code, the `eventTypes` to keep
   (`/dash/jsonapi/api/v1/event-types?company=<code>` lists them) and the `resources` (rink sheets) to read. The raw
   API also returns private rentals; only `publish: true` events of listed types are kept.
-- **Court calendars on Skedda**: add it to `VENUES` in `lib/skedda.js`. Each venue in `courts.json` / `/api/courts` has `calendar` (the booking page) and `calendarDay`, a template with `{date}` (YYYY-MM-DD) that opens the booking page on that day; a platform with no per-day link leaves `calendarDay` out, so consumers fall back to `calendar`.
-- **No machine-readable source**: add it to `data/manual.json` with `verifiedAt` (tagged with the config defaults).
+- **Court calendars on Skedda**: add the booking site to the region's `courts.json`. Each venue in `courts.json` /
+  `/api/courts` has `region`, `calendar` (the booking page) and `calendarDay`, a template with `{date}` (YYYY-MM-DD) that
+  opens the booking page on that day; a platform with no per-day link leaves `calendarDay` out.
+- **No machine-readable source**: add it to the region's `manual.json` with `verifiedAt`.
+- **A new sport**: sessions carry `sport`; add its labels and filters to `SPORTS` in `public/app.js` and its allowed
+  attribute values to `SPORT_ATTRIBUTES` in `lib/session.js`.
 
 Every session is checked before it's published (`lib/session.js`): malformed ones are dropped and listed as warnings
-on their source. The site (`public/app.js`) is still volleyball-shaped (surface filters); add a sport filter there
-when a second sport goes live.
+on their source.
