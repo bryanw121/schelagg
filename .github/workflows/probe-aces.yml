@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          {
+          set +e; {
             curl -s -A "Mozilla/5.0 Chrome/130" -o ical.ics https://www.meetup.com/acesintexas/events/ical/
             wc -c ical.ics; grep -c VEVENT ical.ics; head -c 600 ical.ics; echo
             curl -s -A "Mozilla/5.0 Chrome/130" -o ev.html https://www.meetup.com/acesintexas/events/
