@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T18:13:35.293Z",
+  "generatedAt": "2026-10-31T18:43:41.157Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T17:58:09.106Z",
+      "checkedAt": "2026-10-31T18:43:29.330Z",
       "count": 12
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-10-31T18:13:30.451Z",
+      "checkedAt": "2026-10-31T18:43:29.332Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 0
     },
@@ -40,7 +40,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-10-31T18:13:30.452Z",
+      "checkedAt": "2026-10-31T18:43:29.334Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -61,7 +61,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T17:58:09.110Z",
+      "checkedAt": "2026-10-31T18:43:29.334Z",
       "count": 31
     },
     {
@@ -71,7 +71,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T17:58:09.779Z",
+      "checkedAt": "2026-10-31T18:43:29.335Z",
       "count": 15
     }
   ],
