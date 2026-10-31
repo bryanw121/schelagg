@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 88
+      "failStreak": 89
     },
     "atxbeach": {
       "counts": [
@@ -142,7 +142,7 @@
         "signup": 1
       },
       "contentHash": "b1759aec2c755ca9",
-      "failStreak": 7
+      "failStreak": 8
     },
     "reclub": {
       "counts": [
@@ -153,11 +153,11 @@
         5,
         5,
         5,
-        5,
         7,
-        7
+        7,
+        5
       ],
-      "sessions": 7,
+      "sessions": 5,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -188,7 +188,6 @@
         "feeCurrency",
         "feeType",
         "flags",
-        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -237,7 +236,6 @@
         "scheduleId",
         "scheduleReference",
         "slots",
-        "slots[]",
         "sport",
         "sport.avgGameDuration",
         "sport.competitionType",
