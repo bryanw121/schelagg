@@ -8,8 +8,8 @@ name: Refresh home-only sources
 # If the computer is off, at most one run waits (the concurrency group drops older pending
 # runs) and the main refresh marks the source "Couldn't recheck" once the result is 3h old.
 on:
-  schedule:
-    - cron: '23 * * * *' # hourly, ahead of the :43 refresh
+  # No home runner is set up yet, so no schedule: a scheduled run would wait in the queue.
+  # Once one is, add back:  schedule: [{ cron: '23 * * * *' }]  (hourly, ahead of the :43 refresh)
   workflow_dispatch:
 
 permissions:
