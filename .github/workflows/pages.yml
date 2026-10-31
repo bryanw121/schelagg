@@ -1,16 +1,16 @@
 name: Deploy site
 
-# Rebuilds the court calendars and publishes the site to GitHub Pages: on every push to main
-# and right after each schedule refresh (every 30 minutes in the day, hourly overnight, see
-# scrape-clock.yml). No schedule of its own: it would only duplicate the refresh's deploy. The site is main's code
-# with the latest scrape output from the data branch laid over it.
+# Rebuilds the court calendars and publishes the site to GitHub Pages: on every push to main and
+# after each schedule refresh, which starts this with workflow_dispatch (scrape.yml, "Deploy the
+# site"). Not workflow_run: GitHub doesn't fire it for refreshes the scrape clock started with the
+# workflow token, which is most of them. The safety cron covers a refresh whose dispatch failed.
+# The site is main's code with the latest scrape output from the data branch laid over it.
 on:
   push:
     branches: [main]
-  workflow_run:
-    workflows: [Refresh schedules]
-    types: [completed]
   workflow_dispatch:
+  schedule:
+    - cron: '7 */2 * * *' # every 2 hours, in case a dispatch was missed
 
 permissions:
   contents: read
