@@ -6,11 +6,9 @@ jobs:
     steps:
       - run: |
           {
-            U=https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/
-            echo "runner ip: $(curl -s https://api.ipify.org)"
-            for ua in "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" "curl/8"; do
-              echo "== UA: $ua"; curl -s -D - -o body.html -A "$ua" -H "Accept: text/html" -H "Accept-Language: en-US" "$U" | head -25; head -c 400 body.html; echo; done
-            for p in / /robots.txt /wp-json/ /feed/ ; do printf "%s %s\n" "$(curl -s -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 Chrome/130' https://acesintexas.com$p)" "$p"; done
-            echo "== dns"; getent hosts acesintexas.com; curl -s "https://ipinfo.io/$(getent hosts acesintexas.com | awk '{print $1}' | head -1)/json"
+            curl -s -A "Mozilla/5.0 Chrome/130" -o ical.ics -w "ical %{http_code}\n" https://www.meetup.com/acesintexas/events/ical/
+            grep -E "^(SUMMARY|DTSTART|LOCATION)" ical.ics | head -60
+            curl -s -A "Mozilla/5.0 Chrome/130" -o ev.html -w "events page %{http_code}\n" https://www.meetup.com/acesintexas/events/
+            grep -oiE "open play[^\"<]{0,80}" ev.html | sort | uniq -c | head
           } > out.txt 2>&1
           python3 -c "import sys;t=open('out.txt').read().replace('%','%25').replace('\r','').replace('\n','%0A');[print('::warning title=p%d::'%i+t[j:j+3500]) for i,j in enumerate(range(0,len(t),3500))]"
