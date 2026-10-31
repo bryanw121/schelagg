@@ -31,6 +31,10 @@ case "$cmd" in
           git show "origin/data:$f" > "$f"
         fi
       done
+      # The home runner's results (lib/offsite.js): read here, never pushed by this script, so a
+      # refresh can't overwrite a newer result the home runner committed meanwhile.
+      while IFS= read -r f; do mkdir -p "$(dirname "$f")"; git show "origin/data:$f" > "$f"; done \
+        < <(git ls-tree -r --name-only origin/data -- data/offsite 2>/dev/null || true)
       echo "Overlaid data from origin/data ($(git rev-parse --short origin/data))."
     else
       echo "No data branch yet; using the seed copy on this checkout."

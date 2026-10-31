@@ -102,6 +102,29 @@ a one-click link.
 Pull requests opened by the job don't trigger the **Test** workflow (a GitHub rule for `GITHUB_TOKEN`); the job already
 ran `npm test` and the site e2e.
 
+### Home runner (sites that block cloud servers)
+
+Some sites refuse every cloud provider's servers. ACES sits behind Cloudflare, which returns
+403 to GitHub's runners and to Vercel alike (#53). A source with `"runsAt": "home"` in its
+region's `sources.json` is scraped by `scrape-home.yml` on a self-hosted runner on a home
+computer instead. That job writes `data/offsite/<id>.json` to the data branch; the regular
+refresh reads it (`lib/offsite.js`) rather than fetching, so validation, keep-last-good and
+failure issues work as usual. If the computer is off for over 3h (or 3 cadences), the source
+shows "Couldn't recheck" with its last sessions.
+
+Setup, once, on the home computer (Windows, macOS or Linux):
+
+1. Repo **Settings → Actions → General → Fork pull request workflows**: choose **Require
+   approval for all external contributors**. This repo is public; without it, a stranger's pull
+   request could run code on your computer.
+2. **Settings → Actions → Runners → New self-hosted runner**, pick the computer's OS, and run
+   the commands it shows. When `config` asks for labels, enter `schelagg-home`. On Windows,
+   answer **Y** to running it as a service, so it starts with the computer.
+3. Run **Refresh home-only sources** from the Actions tab once to check it. The next regular
+   refresh publishes the result.
+
+The computer needs to be awake: set it not to sleep while plugged in.
+
 ## Workflows
 
 - **Scrape clock** (`.github/workflows/scrape-clock.yml`): starts **Refresh schedules** every 30 minutes from 8am to
