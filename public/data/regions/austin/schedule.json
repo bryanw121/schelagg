@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T19:12:28.689Z",
+  "generatedAt": "2026-10-31T19:24:01.240Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -24,8 +24,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-10-31T19:12:02.735Z",
-      "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
+      "checkedAt": "2026-10-31T19:23:58.606Z",
+      "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
     {
@@ -45,7 +45,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-10-31T19:12:02.738Z",
+      "checkedAt": "2026-10-31T19:23:58.607Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
