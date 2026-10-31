@@ -16,12 +16,16 @@ import { loadEnv, repoPath } from '../lib/paths.js';
 import { ADAPTERS, loadSources } from '../lib/registry.js';
 import { planSources, runScrape, scrapePaths } from '../lib/pipeline.js';
 import { persistRun } from '../lib/db.js';
+import { withOffsite } from '../lib/offsite.js';
 
 loadEnv();
 
 const args = process.argv.slice(2);
 const force = args.includes('--all');
-const { sources, manuals } = loadSources();
+// Sources marked "runsAt": "home" are read from the home runner's result, not fetched (lib/offsite.js).
+const loaded = loadSources();
+const sources = withOffsite(loaded.sources);
+const { manuals } = loaded;
 
 if (args.includes('--plan')) {
   let prev = {};

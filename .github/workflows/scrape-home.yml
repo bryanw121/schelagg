@@ -1,0 +1,38 @@
+name: Refresh home-only sources
+
+# Some sites (ACES) block every cloud provider's servers, so their sources ("runsAt": "home" in
+# config/regions/<id>/sources.json) are scraped here, on a self-hosted runner on a home computer
+# (setup: README "Home runner"). The result goes to data/offsite/<id>.json on the data branch;
+# the next regular refresh (scrape.yml) reads it and publishes it (lib/offsite.js).
+#
+# If the computer is off, at most one run waits (the concurrency group drops older pending
+# runs) and the main refresh marks the source "Couldn't recheck" once the result is 3h old.
+on:
+  schedule:
+    - cron: '23 * * * *' # hourly, ahead of the :43 refresh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape-home
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    # Only this repo's own schedule/dispatch can land here; fork PRs never run on the home runner.
+    if: github.repository == 'bryanw121/schelagg'
+    runs-on: [self-hosted, schelagg-home]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install chromium
+      - run: node scripts/scrape-home.mjs
+      - run: node scripts/push-offsite.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

@@ -29,7 +29,9 @@
             "city": "Pflugerville"
           }
         ]
-      }
+      },
+      "runsAt": "home",
+      "_runsAt": "ACES's site (Cloudflare) blocks GitHub and Vercel, so a home computer scrapes it: lib/offsite.js, .github/workflows/scrape-home.yml"
     },
     {
       "id": "atxbeach",
