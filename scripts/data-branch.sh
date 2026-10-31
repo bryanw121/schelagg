@@ -24,7 +24,7 @@ cmd=${1:-}
 case "$cmd" in
   pull)
     if git fetch -q origin data 2>/dev/null; then
-      mapfile -t FILES < <(data_files)
+      FILES=(); while IFS= read -r f; do FILES+=("$f"); done < <(data_files) # (no mapfile: macOS ships bash 3.2)
       for f in "${FILES[@]}"; do
         if git cat-file -e "origin/data:$f" 2>/dev/null; then
           mkdir -p "$(dirname "$f")"
@@ -39,7 +39,7 @@ case "$cmd" in
   push)
     msg=${2:?commit message required}
     git fetch -q origin data 2>/dev/null || true
-    mapfile -t FILES < <(data_files)
+    FILES=(); while IFS= read -r f; do FILES+=("$f"); done < <(data_files) # (no mapfile: macOS ships bash 3.2)
     tmp=$(mktemp -d)
     for f in "${FILES[@]}" "${CONFIG[@]}"; do [ -f "$f" ] && { mkdir -p "$tmp/$(dirname "$f")"; cp "$f" "$tmp/$f"; }; done
     repo=$(pwd)
