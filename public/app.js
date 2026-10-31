@@ -1,7 +1,10 @@
-// Schelagg front end. Two data sources:
-//   data/schedule.json  sessions + public courts, rebuilt hourly by scripts/scrape.mjs
-//   data/courts.json    court bookings + opening hours (Skedda), rebuilt every ~15 min by scripts/build-courts.mjs
-//                       (falls back to the live api/courts endpoint when running server.js or on Vercel)
+// Schelagg front end. Data, all rebuilt by the scrape (every 30 minutes by day, hourly overnight):
+//   data/index.json                     the regions (cities): id, name, time zone, center, sports
+//   data/regions/<id>/schedule.json     one region's sessions, sources and free courts
+//   data/regions/<id>/<sport>.ics       its calendar subscriptions
+//   data/courts.json                    court bookings + opening hours (Skedda), every region, built on deploy
+//                                       (falls back to the live api/courts endpoint when running server.js or on Vercel)
+// A visitor loads one region. Times are shown in the region's own time zone, wherever the viewer is.
 
 // Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
 // colors; none for a sport that doesn't need them), the glance chart's heading, and whether it has
@@ -12,12 +15,12 @@ const SPORTS = {
     label: 'Volleyball', group: 'Open play &amp; training', courts: true, noun: 'sessions',
     by: 'surface',
     tabs: { indoor: { label: 'Indoor', c: 'var(--indoor)' }, sand: { label: 'Sand', c: 'var(--sand)' }, grass: { label: 'Grass', c: 'var(--grass)' } },
-    footer: 'Sources: Volleyworld, ACES, ATX Beach, Austin Velocity, Roots Volleyball, Reclub (Vex Volleyball, Austin Lawn Club), Sweatpals, Austin Parks &amp; Recreation. Times change; tap “Source” before you drive out.',
+    footer: 'Times change; tap “Source” before you drive out.',
   },
   ice_skating: {
     label: 'Ice skating', group: 'Public skate', courts: false, noun: 'public skate sessions',
     by: null, tabs: {}, color: 'var(--rink)',
-    footer: 'Sources: Chaparral Ice and Ice &amp; Field at The Crossover (their DaySmart calendars, rechecked hourly), City of Bee Cave, Four Seasons Austin. Rinks close for hockey and events; tap “Source” before you drive out.',
+    footer: 'Rinks close for hockey and events; tap “Source” before you drive out.',
   },
 };
 const sportOf = (x) => (SPORTS[x.sport] ? x.sport : 'volleyball');
@@ -39,9 +42,11 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 // A venue's booking calendar opened on `iso` (YYYY-MM-DD) when its platform supports it.
 const calendarOn = (venue, iso) => (venue.calendarDay && iso ? venue.calendarDay.replace('{date}', iso) : venue.calendar);
 
-// "Now" in Austin, regardless of the viewer's own timezone.
-function austinNow() {
-  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+// The region's time zone (set from data/index.json); everything date- and time-like uses it.
+let TZ = 'America/Chicago';
+// "Now" in the region, regardless of the viewer's own time zone.
+function regionNow() {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
     .formatToParts(new Date()).map((p) => [p.type, p.value]));
   return { iso: `${parts.year}-${parts.month}-${parts.day}`, minutes: +parts.hour * 60 + +parts.minute };
 }
@@ -54,35 +59,43 @@ const hhmm = (m) => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
 function fmtT(t) { if (!t) return 'TBD'; let [h, m] = t.split(':').map(Number); h %= 24; const ap = h >= 12 ? 'pm' : 'am'; return `${h % 12 || 12}${m ? ':' + pad(m) : ''}${ap}`; }
 const tick = (t) => { const h = +t.slice(0, 2) % 24; return (h % 12 || 12) + (h >= 12 ? 'p' : 'a'); };
 const pct = (m) => +(((Math.min(Math.max(m, T0), T1) - T0) / (T1 - T0)) * 100).toFixed(2);
-const clock = (iso) => new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Chicago' });
+const clock = (iso) => new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ });
 /** "just now", "12 min ago", "3 hr ago", "on Oct 24": how long ago an ISO time was. */
 function ago(iso) {
   const m = Math.max(0, Math.floor((Date.now() - Date.parse(iso)) / 60000));
   if (m < 1) return 'just now';
   if (m < 60) return `${m} min ago`;
   if (m < 24 * 60) return `${Math.floor(m / 60)} hr ago`;
-  return `on ${new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/Chicago' })}`;
+  return `on ${new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: TZ })}`;
 }
 
-const NOW = austinNow();
-const WEEK = Array.from({ length: 7 }, (_, i) => addDays(NOW.iso, i));
+let NOW = regionNow();
+let WEEK = [];
+const setClock = () => { NOW = regionNow(); WEEK = Array.from({ length: 7 }, (_, i) => addDays(NOW.iso, i)); };
+setClock();
 
-let schedule = null, courts = null, courtsError = null;
-let state = { sport: 'volleyball', tab: 'all', di: 0, showAll: false };
+let index = null, region = null, schedule = null, courts = null, courtsError = null;
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
+  if (typeof s.region === 'string') state.region = s.region;
   if (SPORTS[s.sport]) state.sport = s.sport;
   const tab = s.tab ?? s.surf; // `surf` from before skating
   if (tab && SPORTS[state.sport].tabs[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
 } catch {}
-// A shared link (?sport=ice_skating) wins over the remembered sport.
-const urlSport = new URLSearchParams(location.search).get('sport');
+// A shared link (?region=austin&sport=ice_skating) wins over what was remembered.
+const params = new URLSearchParams(location.search);
+const urlRegion = params.get('region');
+if (urlRegion) state.region = urlRegion;
+const urlSport = params.get('sport');
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ sport: state.sport, tab: state.tab, showAll: state.showAll })); } catch {} };
-/** Keep ?sport= in the address bar so the view can be shared (volleyball is the bare URL). */
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll })); } catch {} };
+/** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
   const u = new URL(location.href);
+  const single = (index?.regions?.length ?? 1) <= 1;
+  if (single || !state.region) u.searchParams.delete('region'); else u.searchParams.set('region', state.region);
   if (state.sport === 'volleyball') u.searchParams.delete('sport'); else u.searchParams.set('sport', state.sport);
   if (u.href !== location.href) history.replaceState(null, '', u);
 }
@@ -144,15 +157,29 @@ function renderSourceList() {
   $('sourceList').innerHTML = list.map((s) => `<li class="${s.ok ? 'ok' : 'bad'}"><b>${esc(s.name || s.id)}</b>
     <span>${s.ok ? '✓' : '⚠'} ${s.checkedAt ? `checked ${ago(s.checkedAt)}` : ''}${s.ok ? ` · ${s.count} session${s.count === 1 ? '' : 's'}` : ` · couldn't read, showing last good copy`}</span></li>`).join('');
   // Calendar subscription for this sport (public/data/<sport>.ics, rebuilt every scrape).
-  const ics = new URL(`${DATA}${state.sport}.ics`, location.href);
+  const ics = new URL(`${regionData()}${state.sport}.ics`, location.href);
   $('subscribe').innerHTML = `📅 <a href="${esc(ics.href.replace(/^https?:/, 'webcal:'))}">Subscribe in your calendar</a> to see ${esc(SPORTS[state.sport].label.toLowerCase())} here, updated hourly · <a href="${esc(ics.href)}" download>.ics file</a>`;
 }
 
 // ---------- render ----------
+/** The region picker: a plain label with one region, a menu (plus "nearest to me") with more. */
+function renderRegion() {
+  const list = index?.regions ?? [];
+  const many = list.length > 1;
+  $('regionName').hidden = many;
+  $('regionName').textContent = region?.name ?? '';
+  $('regionPick').hidden = !many;
+  $('nearest').hidden = !many || !('geolocation' in navigator);
+  if (many) {
+    $('regionPick').innerHTML = list.map((r) => `<option value="${esc(r.id)}" ${r.id === region?.id ? 'selected' : ''}>${esc(r.name)}</option>`).join('');
+  }
+}
+
 function renderSports() {
   const today = (schedule?.sessions || []).filter((x) => !x.date || x.date >= NOW.iso);
+  const offered = new Set(region?.sports ?? []);
   $('sports').innerHTML = Object.entries(SPORTS)
-    .filter(([k]) => k === state.sport || today.some((x) => sportOf(x) === k))
+    .filter(([k]) => k === state.sport || offered.has(k) || today.some((x) => sportOf(x) === k))
     .map(([k, sp]) => `<button class="tab sport" aria-pressed="${state.sport === k}" data-sport="${k}">${sp.label}</button>`).join('');
 }
 
@@ -205,7 +232,7 @@ function renderList() {
     const sp = SPORTS[state.sport];
     const label = state.tab === 'all' || !sp.tabs[state.tab] ? '' : sp.tabs[state.tab].label.toLowerCase() + ' ';
     const hint = !sp.courts ? 'Rinks post public skate a week or two ahead; check another day.'
-      : state.tab === 'grass' ? 'Grass has no scheduled play in Austin. Use the free courts below.' : 'Courts open to rent are in the chart above, free public courts below.';
+      : state.tab === 'grass' ? `Grass has no scheduled play${region ? ` in ${esc(region.name.split(',')[0])}` : ''}. Use the free courts below.` : 'Courts open to rent are in the chart above, free public courts below.';
     html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
   } else if (hiddenN) html += `<div class="empty">${hiddenN} ended, canceled or unconfirmed session${hiddenN > 1 ? 's' : ''} hidden.</div>`;
   $('list').innerHTML = html;
@@ -290,8 +317,8 @@ function renderGlance() {
     html += glanceRows(sess, nowLine);
   }
 
-  // Court calendars (Skedda) are volleyball courts; other sports have none yet.
-  const facs = !SPORTS[state.sport].courts ? [] : (courts?.venues || []).flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
+  // Court calendars (Skedda) are volleyball courts; other sports have none yet. Only this region's.
+  const facs = !SPORTS[state.sport].courts ? [] : regionCourts().flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
   html += facs.map((f) => {
     const h = f.venue.hours?.[dow];
     if (!h) return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · closed today</small></div>`;
@@ -343,17 +370,38 @@ function renderMeta() {
   const oldest = stamps.reduce((a, b) => (Date.parse(a) <= Date.parse(b) ? a : b));
   $('asof').textContent = `Last updated ${ago(oldest)}`;
   $('asof').title = `Sessions ${clock(schedule.generatedAt)}${courts ? ` · court calendars ${clock(courts.fetchedAt)}` : ''}`;
-  $('calNote').textContent = `Court bookings at High Point, Crossover and Treehouse Gym (home of Roots Volleyball) are mostly club practices and private rentals. Blue blocks line up with a public Reclub meet, so those courts are open to sign up. Who booked each slot is hidden on their calendars. Treehouse's weekday 8am–4pm blocks are school-hours holds.${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh about every 15 minutes.` : ''}`;
+  const places = regionCourts().flatMap((v) => v.facilities.map((f) => f.name));
+  const notes = regionCourts().map((v) => v.note).filter(Boolean);
+  $('calNote').textContent = places.length
+    ? `Court bookings at ${list(places)} are mostly club practices and private rentals. Blue blocks line up with a public Reclub meet, so those courts are open to sign up. Who booked each slot is hidden on their calendars.${notes.length ? ` ${notes.join(' ')}` : ''}${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh with each schedule update.` : ''}`
+    : '';
   const mine = schedule.sources.filter((s) => (s.sport || 'volleyball') === state.sport);
   const bad = mine.filter((s) => !s.ok);
   $('sourceStatus').textContent = bad.length
     ? `Last check couldn't read: ${bad.map((s) => s.id).join(', ')}. Their sessions show "Couldn't recheck".`
     : `Last check read all ${mine.length} scraped ${SPORTS[state.sport].label.toLowerCase()} source${mine.length === 1 ? '' : 's'}.`;
-  $('footer').innerHTML = SPORTS[state.sport].footer;
+  const names = mine.map((s) => s.name || s.id);
+  const handChecked = (schedule.sessions || []).some((x) => x.sourceId === 'manual' && sportOf(x) === state.sport);
+  $('footer').innerHTML = `${names.length || handChecked ? `Sources: ${esc(list([...names, ...(handChecked ? ['hand-checked pages'] : [])]))}. ` : ''}${SPORTS[state.sport].footer}`;
   renderSourceList();
 }
 
-function render() { if (!schedule) return; syncUrl(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }
+/** "a, b and c" */
+function list(items) { return items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`; }
+/** This region's court calendars. With no region known (data from before regions) or a court with no region, show it. */
+const regionCourts = () => (courts?.venues || []).filter((v) => !region || !v.region || v.region === region.id);
+
+function render() { if (!schedule) return; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }
+
+$('regionPick').addEventListener('change', (e) => chooseRegion(e.target.value));
+$('nearest').addEventListener('click', () => {
+  navigator.geolocation.getCurrentPosition((pos) => {
+    const here = [pos.coords.latitude, pos.coords.longitude];
+    const d = (c) => (c[0] - here[0]) ** 2 + ((c[1] - here[1]) * Math.cos((here[0] * Math.PI) / 180)) ** 2;
+    const best = [...(index?.regions ?? [])].filter((r) => r.center).sort((a, b) => d(a.center) - d(b.center))[0];
+    if (best) chooseRegion(best.id);
+  }, () => {}, { maximumAge: 3600e3, timeout: 10e3 });
+});
 
 document.addEventListener('click', (e) => {
   const t = e.target.closest('[data-sport],[data-tab],[data-di]'); if (!t) return;
@@ -371,10 +419,37 @@ $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checke
 const DATA = location.hostname.endsWith('.vercel.app') ? 'https://bryanw121.github.io/schelagg/data/' : 'data/';
 
 async function getJson(url) { const r = await fetch(url, { cache: 'no-cache' }); if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); }
+/** Where this region's files are; data/ itself when there's no index (data published before regions). */
+const regionData = () => (index && region ? `${DATA}regions/${region.id}/` : DATA);
 
-// Schedule first (small, static), then courts: the pre-built file, or the live API when running locally.
-try { schedule = await getJson(`${DATA}schedule.json`); render(); }
-catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`; }
+/** Switch to a region: its time zone, its schedule, a sport it has. */
+async function chooseRegion(id) {
+  region = index?.regions?.find((r) => r.id === id) ?? index?.regions?.[0] ?? null;
+  state.region = region?.id ?? null;
+  TZ = region?.timezone ?? TZ;
+  setClock();
+  state.di = 0;
+  try {
+    schedule = await getJson(`${regionData()}schedule.json`);
+  } catch (e) {
+    schedule = null;
+    $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`;
+    return;
+  }
+  if (region?.sports?.length && !region.sports.includes(state.sport)) { state.sport = region.sports[0]; state.tab = 'all'; }
+  save();
+  render();
+}
+
+// The regions first, then the chosen region's schedule, then court calendars: the pre-built
+// file, or the live API when running locally. Without an index (data published before regions
+// existed) the combined data/schedule.json is the one region.
+try { index = await getJson(`${DATA}index.json`); } catch { index = null; }
+if (index?.regions?.length) await chooseRegion(state.region);
+else {
+  try { schedule = await getJson(`${DATA}schedule.json`); render(); }
+  catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`; }
+}
 try { courts = await getJson(`${DATA}courts.json`); }
 catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }
 render();

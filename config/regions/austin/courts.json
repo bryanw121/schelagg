@@ -1,0 +1,67 @@
+{
+  "_doc": "Court calendars on Skedda for this region (lib/skedda.js reads them every refresh). Each venue is a Skedda booking site; facilities group its spaces (courts) by place, with surface for the volleyball filter.",
+  "venues": [
+    {
+      "id": "velocity",
+      "host": "austinvelocity.skedda.com",
+      "calendar": "https://austinvelocity.skedda.com/booking",
+      "facilities": [
+        {
+          "id": "highpoint",
+          "name": "High Point Center",
+          "city": "Leander",
+          "surface": "indoor",
+          "spaces": [
+            "HP Court 1",
+            "HP Court 2"
+          ]
+        },
+        {
+          "id": "highpoint-fields",
+          "name": "High Point fields",
+          "city": "Leander · $50/hr",
+          "surface": "grass",
+          "spaces": [
+            "HP Upper Field",
+            "HP Lower Field"
+          ]
+        },
+        {
+          "id": "crossover",
+          "name": "The Crossover",
+          "city": "Cedar Park",
+          "surface": "indoor",
+          "spaces": [
+            "CO Court 1",
+            "CO Court 2",
+            "CO Court 3",
+            "CO Court 4",
+            "CO Court 5"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "treehouse",
+      "host": "treehousegym.skedda.com",
+      "calendar": "https://treehousegym.skedda.com/booking",
+      "facilities": [
+        {
+          "id": "treehouse",
+          "name": "Roots · Treehouse Gym",
+          "city": "N. Austin (Long Vista Dr)",
+          "surface": "indoor",
+          "spaces": [
+            "Court #1",
+            "Court #2",
+            "Court #3",
+            "Court #4",
+            "Court #5",
+            "Half Court"
+          ]
+        }
+      ],
+      "note": "Treehouse's weekday 8am–4pm blocks are school-hours holds."
+    }
+  ]
+}

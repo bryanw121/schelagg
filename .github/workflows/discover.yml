@@ -1,7 +1,7 @@
 name: Discover Reclub clubs
 
-# Weekly: search the web for Reclub volleyball meets in the area from clubs config/sources.json
-# doesn't list (scripts/discover-reclub.mjs), and open one pull request per new club. Merge to
+# Weekly: search the web for Reclub volleyball meets in the area from clubs the region's
+# sources.json doesn't list (scripts/discover-reclub.mjs), and open one pull request per new club. Merge to
 # start scraping it; close to skip it for good. Which queries run is planned from the last runs
 # (discover-state.json on the discover-state branch): productive queries weekly, quiet ones less
 # often, new ones first, at most budget.brave / budget.claude per run. Search uses the BRAVE_SEARCH_API_KEY secret if

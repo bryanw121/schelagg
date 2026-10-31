@@ -8,6 +8,11 @@ on:
     # Consumers (e.g. vteam) pull data/occurrences.json from GitHub Pages after each run.
     - cron: '13 * * * *'
   workflow_dispatch:
+    inputs:
+      all:
+        description: Scrape every source now, whatever its cadence
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -28,11 +33,18 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: npm test
-      # The last run's data (for keep-last-good and change detection) is on the data branch.
+      # The last run's data (keep-last-good, change detection, and when each source last ran)
+      # is on the data branch. Tests run on pushes (test.yml), not on every refresh.
       - name: Load the latest data
         run: scripts/data-branch.sh pull
+      # Which sources are due (each has a cadence in its region's sources.json), and whether any
+      # of them needs Chromium, so a tick of API-only sources skips the browser install.
+      - name: Plan this run
+        id: plan
+        run: node scripts/scrape.mjs --plan ${{ inputs.all && '--all' || '' }}
+      - name: Install Chromium
+        if: steps.plan.outputs.browser == 'true'
+        run: npx playwright install --with-deps chromium
       # Schelagg's database (Neon). Without the DATABASE_URL secret this is a notice and the
       # scrape publishes the JSON files only. A database problem never stops the scrape: a
       # failed migration shows here, and a failed write goes in the source-failed issue.
@@ -41,37 +53,45 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: node scripts/db-migrate.mjs
-      - run: npm run scrape
+      - run: npm run scrape -- ${{ inputs.all && '--all' || '' }}
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          # Requests to one host are queued and spaced this far apart (lib/http.js).
+          SCHELAGG_HOST_GAP_MS: 300
       # To the data branch, never main: a push to main is a Vercel deployment.
       - name: Commit updated data
         run: |
           git config user.name "volley-atx-bot"
           git config user.email "volley-atx-bot@users.noreply.github.com"
           scripts/data-branch.sh push "Refresh schedules $(date -u +'%F %H:%MZ')"
-      - name: Open an issue if a source failed, close it when all recover
+      - name: Open an issue per region if a source failed, close it when all recover
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Runs every 30 minutes: keep one open issue per outage instead of one per run, and only
-          # comment when the failures change (a new source failing, or a different error), not on
-          # every run of the same outage. Issues are assigned to the repo owner, which notifies them.
-          open=$(gh issue list --state open --search 'in:title "Schedule scrape: source failed"' --json number --jq '.[0].number')
-          if [ -s scrape-failures.md ]; then
-            if [ -n "$open" ]; then
-              last=$(gh issue view "$open" --json body,comments --jq '(.comments | last | .body) // .body')
-              if [ "$last" = "$(cat scrape-failures.md)" ]; then
-                echo "Same failures as the last report on #$open; not commenting."
+          # One issue per region (scrape-failures/<region>.md), plus one for a failed database write
+          # (scrape-failures/database.md). Runs every 30 minutes, so an issue is commented on only
+          # when its failures change, not on every run of the same outage. Issues are assigned to
+          # the repo owner, which notifies them.
+          for f in scrape-failures/*.md; do
+            [ -e "$f" ] || continue
+            key=$(basename "$f" .md)
+            if [ "$key" = database ]; then title="Schedule scrape: database write failed"; else title="Schedule scrape: source failed in $key"; fi
+            open=$(gh issue list --state open --search "in:title \"$title\"" --json number,title --jq "[.[] | select(.title | startswith(\"$title\"))][0].number // empty")
+            if [ -s "$f" ]; then
+              if [ -n "$open" ]; then
+                last=$(gh issue view "$open" --json body,comments --jq '(.comments | last | .body) // .body')
+                if [ "$last" = "$(cat "$f")" ]; then
+                  echo "$key: same failures as the last report on #$open; not commenting."
+                else
+                  gh issue comment "$open" --body-file "$f"
+                fi
               else
-                gh issue comment "$open" --body-file scrape-failures.md
+                gh issue create --title "$title $(date -u +%F)" --body-file "$f" --assignee "$GITHUB_REPOSITORY_OWNER"
               fi
-            else
-              gh issue create --title "Schedule scrape: source failed $(date -u +%F)" --body-file scrape-failures.md --assignee "$GITHUB_REPOSITORY_OWNER"
+            elif [ -n "$open" ]; then
+              gh issue close "$open" --comment "Every source in $key scraped successfully on $(date -u +'%F %H:%MZ')."
             fi
-          elif [ -n "$open" ]; then
-            gh issue close "$open" --comment "Every source scraped successfully on $(date -u +'%F %H:%MZ')."
-          fi
+          done
       - name: Open an issue if a source changed what it sends
         id: changes
         env:

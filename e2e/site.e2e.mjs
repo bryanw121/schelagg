@@ -53,7 +53,7 @@ const SCHEDULE = {
 const COURTS = {
   fetchedAt: '2026-10-25T21:55:00.000Z', from: TODAY, days: 7, errors: [],
   venues: [{
-    id: 'treehouse', calendar: 'https://treehousegym.skedda.com/booking', calendarDay: 'https://treehousegym.skedda.com/booking?viewdate={date}', hours: Array(7).fill(['06:00', '23:00']),
+    id: 'treehouse', region: 'austin', calendar: 'https://treehousegym.skedda.com/booking', calendarDay: 'https://treehousegym.skedda.com/booking?viewdate={date}', hours: Array(7).fill(['06:00', '23:00']),
     facilities: [{ id: 'treehouse', name: 'Roots · Treehouse Gym', city: 'N. Austin', surface: 'indoor', courts: [
       { name: 'Court #1', days: { [TODAY]: [['19:00', '22:00']] } }, // lines up with reclub-TREE01: open to sign up
       { name: 'Court #2', days: { [TODAY]: [['08:00', '10:00']] } }, // a private booking
@@ -85,7 +85,7 @@ after(async () => {
 });
 
 /** A fresh page (own localStorage) with data answered by `data` and the clock fixed. */
-async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' } } = {}) {
+async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, url = '/' } = {}) {
   context = await browser.newContext({ timezoneId: 'America/Los_Angeles', locale: 'en-US' }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
   await page.clock.setFixedTime(CLOCK);
@@ -99,11 +99,15 @@ async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status
       if (u.pathname === '/api/courts') return json(apiCourts.body, apiCourts.status);
       return json({ id: u.searchParams.get('session'), status: 'changed', changes: ['start'] }); // any live check
     }
+    // Without `index` there's no data/index.json: the page uses the combined schedule (data from before regions).
+    if (u.pathname === '/data/index.json') return index ? json(index) : route.fulfill({ status: 404, body: 'Not found' });
+    const reg = u.pathname.match(/^\/data\/regions\/([a-z-]+)\/schedule\.json$/);
+    if (reg) return regions[reg[1]] ? json(regions[reg[1]]) : route.fulfill({ status: 404, body: 'Not found' });
     if (u.pathname === '/data/schedule.json') return schedule ? json(schedule) : json('{"error":"nope"}', 500);
     if (u.pathname === '/data/courts.json') return courts ? json(courts) : route.fulfill({ status: 404, body: 'Not found' });
     return route.continue(); // index.html, app.js, styles.css from server.js
   });
-  await page.goto(`${origin}/`);
+  await page.goto(`${origin}${url}`);
   await page.locator('#list .row, #list .error, #list .empty').first().waitFor();
 }
 
@@ -175,7 +179,7 @@ test('site: surface tabs filter the list, show counts and are remembered across 
 
   await tab('grass').click();
   assert.equal(await rows().count(), 0);
-  assert.match(await page.locator('#list .empty').textContent(), /No confirmed grass sessions today\..*Grass has no scheduled play in Austin/);
+  assert.match(await page.locator('#list .empty').textContent(), /No confirmed grass sessions today\..*Grass has no scheduled play/);
 });
 
 test('site: the sport switcher shows each sport on its own, with its own filters, and is shareable', async () => {
@@ -205,7 +209,8 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   const silver = page.locator('#cal .g-row', { has: page.locator('.g-lab', { hasText: 'Silver Rink' }) });
   assert.deepEqual(await silver.locator('.g-bar').allTextContents(), ['2pm–4pm', '4:30pm–5:30pm']);
   assert.equal(await page.locator('#sourceStatus').textContent(), 'Last check read all 1 scraped ice skating source.');
-  assert.match(await page.locator('#footer').textContent(), /DaySmart/);
+  // The footer lists this sport's sources by name.
+  assert.equal(await page.locator('#footer').textContent(), 'Sources: Example Ice Rink and hand-checked pages. Rinks close for hockey and events; tap “Source” before you drive out.');
 
   // Remembered on reload; a shared link opens that sport even for a viewer who last chose another.
   await page.reload();
@@ -275,6 +280,53 @@ test('site: court lanes tint open time and show closed time in solid gray', asyn
   assert.notEqual(bg, closed);
   // Session rows aren't tinted as "open to rent".
   assert.equal(await page.locator('#cal .g-bar').first().locator('xpath=..').getAttribute('class'), 'g-track');
+});
+
+test('site: regions: one city at a time, in its own time zone, with a picker, a shareable link and its own courts', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [
+    { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball', 'ice_skating'] },
+    { id: 'denver', name: 'Denver, CO', timezone: 'America/Denver', center: [39.74, -104.99], sports: ['ice_skating'] },
+  ] };
+  const denver = {
+    schemaVersion: 2, generatedAt: SCHEDULE.generatedAt, region: { id: 'denver', name: 'Denver, CO', timezone: 'America/Denver' },
+    sources: [{ id: 'den-rink', name: 'Denver Rink', sport: 'ice_skating', region: 'denver', ok: true, count: 1, checkedAt: '2026-10-25T21:12:00.000Z' }],
+    sessions: [{ ...base, region: 'denver', timezone: 'America/Denver', sport: 'ice_skating', id: 'den-1', sourceId: 'den-rink', date: TODAY, start: '17:00', end: '18:00', title: 'Mile High Skate', venue: 'Denver Rink', city: 'Denver', surface: 'indoor', type: 'Public skate', signup: { url: `${SIGNUP}/den`, label: 'Info' }, source: `${SIGNUP}/den` }],
+    publicCourts: null, venues: [],
+  };
+  const austin = { ...SCHEDULE, region: { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' } };
+  await open({ index: INDEX, regions: { austin, denver } });
+  // Austin first (the first region), with its courts and a city menu.
+  assert.equal(await page.locator('#regionPick').isVisible(), true);
+  assert.deepEqual(await page.locator('#regionPick option').allTextContents(), ['Austin, TX', 'Denver, CO']);
+  assert.equal(await page.locator('#list .now').textContent(), 'Now · 5pm'); // Austin time
+  assert.ok((await page.locator('#cal .g-group').allTextContents()).some((t) => t.startsWith('Roots · Treehouse Gym')));
+
+  await page.locator('#regionPick').selectOption('denver');
+  await page.locator('#list .row .title', { hasText: 'Mile High Skate' }).waitFor();
+  // Denver only has skating; its time zone is an hour behind; Austin's courts aren't shown.
+  assert.deepEqual(await page.locator('#sports .tab').allTextContents(), ['Ice skating']);
+  assert.equal(await page.locator('#list .now').textContent(), 'Now · 4pm');
+  assert.equal(new URL(page.url()).searchParams.get('region'), 'denver');
+  assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /\/data\/regions\/denver\/ice_skating\.ics$/);
+  assert.equal(await page.locator('#cal .g-group', { hasText: 'Treehouse' }).count(), 0);
+  assert.equal(await page.locator('#footer').textContent(), 'Sources: Denver Rink. Rinks close for hockey and events; tap “Source” before you drive out.');
+
+  // Remembered, and a shared link opens that city.
+  await page.reload();
+  await page.locator('#list .row .title', { hasText: 'Mile High Skate' }).waitFor();
+  await context.close();
+  await open({ index: INDEX, regions: { austin, denver }, url: '/?region=denver&sport=ice_skating' });
+  assert.equal(await page.locator('#regionPick').inputValue(), 'denver');
+  assert.deepEqual(await titles(), ['Mile High Skate']);
+});
+
+test('site: with one region the city is a plain label, not a menu', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball', 'ice_skating'] }] };
+  await open({ index: INDEX, regions: { austin: { ...SCHEDULE, region: { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' } } } });
+  assert.equal(await page.locator('#regionPick').isHidden(), true);
+  assert.equal(await page.locator('#regionName').textContent(), 'Austin, TX');
+  assert.equal(new URL(page.url()).searchParams.get('region'), null);
+  assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /\/data\/regions\/austin\/volleyball\.ics$/);
 });
 
 test('site: the day picker switches to other days of the week', async () => {

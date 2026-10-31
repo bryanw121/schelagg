@@ -8,7 +8,7 @@
 #   otherwise            -> a pull request for review, with the gate results
 #
 # Gates for merging without review:
-#   1. Only adapters, config/sources.json, the fixture sanitizer, parser tests and fixtures
+#   1. Only adapters, region config (config/regions/*/sources.json), the fixture sanitizer, parser tests and fixtures
 #      changed. Anything else (shared code, the gates themselves, manual data) gets reviewed.
 #   2. npm test (unit + integration) passes.
 #   3. The site end-to-end test passes.
@@ -25,7 +25,7 @@ run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 summary=autofix-summary.md
 [ -s "$summary" ] || echo "Claude didn't leave a summary; see the run log." > "$summary"
 
-git add -A -- lib scripts config test data/manual.json README.md
+git add -A -- lib scripts config test README.md
 if git diff --cached --quiet; then
   { cat "$summary"; echo; echo "---"; echo "No code change. Auto-fix run: $run_url"; } > note.md
   comment note.md

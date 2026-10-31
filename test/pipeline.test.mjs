@@ -136,10 +136,11 @@ function workspace({ prev } = {}) {
   return { dir, paths };
 }
 
-async function scrape({ ws = workspace(), fetch = network(), browser = fakeBrowser(), sources = SOURCES, now = NOW, summaryFile } = {}) {
+// force: every source runs whatever its cadence (the cadence itself is tested on its own below).
+async function scrape({ ws = workspace(), fetch = network(), browser = fakeBrowser(), sources = SOURCES, now = NOW, summaryFile, force = true } = {}) {
   const logs = [];
   const result = await runScrape({
-    sources, manual: { ...MANUAL, file: 'manual.json' }, paths: ws.paths, fetch,
+    sources, manual: { ...MANUAL, file: 'manual.json' }, paths: ws.paths, fetch, force,
     launchBrowser: browser.launch, now: () => new Date(now), log: (l) => logs.push(l), summaryFile,
   });
   return { ...result, ws, fetch, browser, logs, schedule: readJson(ws.paths.out), occurrences: readJson(ws.paths.feed) };
@@ -152,7 +153,8 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   const { schedule } = r;
   assert.equal(schedule.schemaVersion, SCHEMA_VERSION);
   assert.equal(schedule.generatedAt, NOW.toISOString());
-  assert.deepEqual(schedule.publicCourts, readJson(repoPath('data/public-courts.json')));
+  const courts = readJson(repoPath('config/regions/austin/public-courts.json'));
+  assert.deepEqual(schedule.publicCourts, { ...courts, courts: courts.courts.map((c) => ({ ...c, region: 'austin' })) });
 
   // One status per configured source, in config order, all ok.
   assert.deepEqual(schedule.sources.map((s) => s.id), ADAPTER_IDS);
@@ -193,8 +195,8 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.ok(schedule.sessions.every((s) => ['scheduled', 'cancelled', 'rescheduled'].includes(s.status)), 'status');
   assert.equal(byId['volleyworld-2026-10-25-17:30-georgetown'].status, 'cancelled');
   assert.ok(schedule.venues.some((v) => v.id === 'crossover-ice' && v.parent === 'crossover'));
-  // A place not in config/venues.json is a warning (manual sessions report through the health check).
-  assert.ok(r.logs.some((l) => /warn  manual: venue "Zilker Park" isn't in config\/venues\.json/.test(l)));
+  // A place not in its region's venues.json is a warning (manual sessions report through the health check).
+  assert.ok(r.logs.some((l) => /warn  manual: venue "Zilker Park" isn't in its region's venues\.json/.test(l)));
   // Calendar files per sport, next to the feed.
   const ics = readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8');
   assert.match(ics, /X-WR-CALNAME:Schelagg · Austin public skating/);
@@ -330,7 +332,9 @@ test('scrape pipeline: hand-checked pages are watched and flagged when they chan
   const ws = workspace();
   const first = await scrape({ ws, sources: apiOnly });
   const watch1 = readJson(ws.paths.watch);
-  assert.deepEqual(Object.keys(watch1), ['https://example.test/sand']);
+  // Every watched page is remembered with when it was checked; one that can't be read keeps its error.
+  assert.deepEqual(Object.keys(watch1).sort(), ['https://example.test/broken', 'https://example.test/sand']);
+  assert.deepEqual([watch1['https://example.test/broken'].error, watch1['https://example.test/sand'].checkedAt], ['HTTP 500', NOW.toISOString()]);
   assert.equal(watch1['https://example.test/sand'].changedOn, null);
   assert.match(watch1['https://example.test/sand'].hash, /^[0-9a-f]{16}$/);
   const m1 = Object.fromEntries(first.schedule.sessions.filter((s) => s.sourceId === 'manual').map((s) => [s.id, s]));

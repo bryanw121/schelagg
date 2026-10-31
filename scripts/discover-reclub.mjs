@@ -1,17 +1,17 @@
-// Finds Reclub clubs running volleyball meets in the area that config/sources.json doesn't list yet.
+// Finds Reclub clubs running volleyball meets in the area that the region's sources.json doesn't list yet.
 //
 // Reclub only offers discovery inside its app, so candidates come from a web search API: results
 // that point at reclub.co meet pages (/m/<code>) or club pages (/clubs/@<slug>). Each candidate
 // meet page is read once: its data names the club, the sport, Reclub's community (its city
 // grouping, e.g. "Austin, TX, USA") and the venue's coordinates. A club is a candidate when one of
 // its meets is volleyball and is either in the configured community or within radiusKm of the
-// center. Settings live in the reclub source's options.discover in config/sources.json.
+// center. Settings live in the reclub source's options.discover (config/regions/<id>/sources.json).
 //
 //   node scripts/discover-reclub.mjs                    plan, search with Brave (BRAVE_SEARCH_API_KEY), write candidates
 //   node scripts/discover-reclub.mjs --plan             write this run's queries to discover-queries.json (for Claude)
 //   node scripts/discover-reclub.mjs --results <file>   same as the first, from results Claude gathered
 //                                                       ({ "<query>": [urls] }) for the planned queries
-//   node scripts/discover-reclub.mjs --apply <slug>     add https://reclub.co/clubs/@<slug> to config/sources.json
+//   node scripts/discover-reclub.mjs --apply <slug>     add https://reclub.co/clubs/@<slug> to the Reclub source's sources.json
 //
 // discover-state.json (kept on the discover-state branch between runs) remembers each query's last
 // run and whether it found anything, clubs already proposed or skipped, and which club each meet
@@ -25,6 +25,8 @@ import { pathToFileURL } from 'node:url';
 import { get } from '../lib/http.js';
 import { loadEnv, repoPath } from '../lib/paths.js';
 import { loadSources } from '../lib/registry.js';
+import { regionFile } from '../lib/regions.js';
+import { loadVenues } from '../lib/consolidate.js';
 import { meetData, meetLinks, meetUrl } from './adapters/reclub.mjs';
 
 export const SLUG = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$/;
@@ -233,7 +235,7 @@ export function nextState(state = {}, { queries = [], batch = [], result, today,
   return { queries: q, clubs, skipped, meets: Object.fromEntries(entries.slice(-maxMeets)) };
 }
 
-/** Reclub club slugs that discovered venues link to (config/venues.json schedule.platform 'reclub'). */
+/** Reclub club slugs that discovered venues link to (venues.json schedule.platform 'reclub'). */
 export const seedsFromVenues = (venues = []) => [...new Set(venues
   .filter((v) => v.schedule?.platform === 'reclub' && v.schedule.company)
   .map((v) => v.schedule.company))];
@@ -267,7 +269,7 @@ export function prBody(c) {
     'Meets seen:',
     ...c.meets.map((m) => `- [${m.name || 'meet'}](${m.url})${m.venue ? ` at ${m.venue}` : ''}`),
     '',
-    'Merging adds the club to `options.clubs` in `config/sources.json`, so the next hourly scrape picks up its meets.',
+    'Merging adds the club to `options.clubs` in the region\'s `sources.json`, so the next scrape picks up its meets.',
     'If its venues aren\'t in `options.venues`, the scrape reports a "Reclub venue missing" warning to fill in.',
     'Close this pull request to skip the club; discovery won\'t suggest it again.',
   ].join('\n');
@@ -302,10 +304,12 @@ function warnIfOverBudget(plan) {
 }
 
 async function main(args) {
-  const config = repoPath('config/sources.json');
+  // The region whose sources.json holds the Reclub source.
+  const reclubSource = loadSources().sources.find((s) => s.adapter?.id === 'reclub');
+  const config = regionFile(reclubSource?.region ?? 'austin', 'sources.json');
   if (args[0] === '--apply') {
     writeFileSync(config, applyClub(readFileSync(config, 'utf8'), args[1] ?? ''));
-    console.log(`Added ${clubUrl(args[1])} to config/sources.json`);
+    console.log(`Added ${clubUrl(args[1])} to ${config}`);
     return;
   }
   loadEnv();
@@ -344,7 +348,7 @@ async function main(args) {
     return;
   }
   let seedClubs = [];
-  try { seedClubs = seedsFromVenues(JSON.parse(readFileSync(repoPath('config/venues.json'), 'utf8')).venues); } catch { /* no venues file */ }
+  try { seedClubs = seedsFromVenues(loadVenues()); } catch { /* no venues */ }
   const result = await discover({ options: opts, search, queries: batch, extraUrls, seedClubs, state });
   writeFileSync(STATE(), `${JSON.stringify(nextState(state, { queries: all, batch, result, today }), null, 2)}\n`);
   const body = { ...result, meets: undefined, candidates: result.candidates.map((c) => ({ ...c, body: prBody(c) })) };

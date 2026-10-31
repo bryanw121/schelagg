@@ -6,7 +6,16 @@
 #   scripts/data-branch.sh pull          overlay the latest data from origin/data onto the working tree
 #   scripts/data-branch.sh push "<msg>"  commit the working tree's data files to origin/data
 set -euo pipefail
-FILES=(public/data/schedule.json public/data/occurrences.json public/data/volleyball.ics public/data/ice_skating.ics data/watch.json data/health.json)
+# Every file the scrape writes under public/data (combined feed, per-sport calendars, index.json and
+# one folder per region) except courts.json, which the deploy builds fresh; plus the run state.
+# Listed after fetching, so files that only exist on the data branch are included.
+data_files() {
+  # (|| true: before the first push there's no data branch, and under pipefail that would end the list)
+  { find public/data -type f 2>/dev/null || true; git ls-tree -r --name-only origin/data -- public/data 2>/dev/null || true; } \
+    | { grep -v '/courts\.json$' || true; } | sort -u
+  echo data/watch.json
+  echo data/health.json
+}
 # Vercel reads vercel.json from the commit it is about to build, so the data branch carries
 # main's copy: its git.deploymentEnabled turns the data branch off. Pushed, never pulled.
 CONFIG=(vercel.json)
@@ -15,6 +24,7 @@ cmd=${1:-}
 case "$cmd" in
   pull)
     if git fetch -q origin data 2>/dev/null; then
+      mapfile -t FILES < <(data_files)
       for f in "${FILES[@]}"; do
         if git cat-file -e "origin/data:$f" 2>/dev/null; then
           mkdir -p "$(dirname "$f")"
@@ -28,6 +38,8 @@ case "$cmd" in
     ;;
   push)
     msg=${2:?commit message required}
+    git fetch -q origin data 2>/dev/null || true
+    mapfile -t FILES < <(data_files)
     tmp=$(mktemp -d)
     for f in "${FILES[@]}" "${CONFIG[@]}"; do [ -f "$f" ] && { mkdir -p "$tmp/$(dirname "$f")"; cp "$f" "$tmp/$f"; }; done
     repo=$(pwd)

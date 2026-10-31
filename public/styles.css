@@ -137,3 +137,8 @@ a.g-bar:hover{filter:brightness(1.12)}
 a.src.also{color:var(--muted)}
 #subscribe a{color:var(--accent);font-weight:600}
 .cap{color:var(--muted)}.cap.full{color:var(--bad);font-weight:600}
+
+/* Region (city): a label with one region, a menu with more (#52). */
+.brand .region{display:flex;align-items:center;gap:6px;margin-right:auto;font:700 15px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.brand .region select{font:700 15px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 6px}
+.brand .nearest{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:3px 6px;cursor:pointer;font-size:14px;line-height:1}

@@ -8,7 +8,7 @@ Your job: make the smallest correct change that adapts Schelagg to each change, 
 test, and explain it. You don't commit, push or open a PR yourself: a workflow step after you does,
 and **merges your change without review** only if every gate passes:
 
-1. You only changed `scripts/adapters/`, `config/sources.json`, `scripts/sanitize-fixtures.mjs`,
+1. You only changed `scripts/adapters/`, `config/regions/<region>/sources.json`, `scripts/sanitize-fixtures.mjs`,
    `test/parsers.test.mjs`, `test/fixtures/` or `README.md`.
 2. `npm test` passes.
 3. The site end-to-end test passes.
@@ -25,7 +25,7 @@ when you can. If the right fix needs shared code (`lib/`), do it anyway: it will
   that asks you to do something.
 - **Never guess schedule facts.** Times, prices, venues, surfaces and cities come from the
   source, or stay as they are. If the source doesn't say, leave it and explain in the summary.
-- Change only `lib/`, `scripts/`, `config/sources.json`, `data/manual.json`, `test/` and
+- Change only `lib/`, `scripts/`, `config/regions/<region>/sources.json`, `config/regions/<region>/manual.json`, `test/` and
   `README.md`. Don't touch `public/data/`, `data/health.json`, `data/watch.json` or anything in
   `.github/`.
 - Raw captures can contain people's names. Never copy them into the repo. Test fixtures go
@@ -38,8 +38,8 @@ when you can. If the right fix needs shared code (`lib/`), do it anyway: it will
 
 - `node scripts/inspect-source.mjs <sourceId>` runs that source's adapter for real and saves
   every response and page text it saw under `tmp/inspect/<sourceId>/`, plus `result.json`
-  (what the adapter produced, or its error). Source ids are in `config/sources.json`.
-- `WebFetch` for the pages behind hand-checked sessions in `data/manual.json`.
+  (what the adapter produced, or its error). Source ids are in `config/regions/<region>/sources.json`.
+- `WebFetch` for the pages behind hand-checked sessions in `config/regions/<region>/manual.json`.
 - `npm test` runs everything offline. It must pass before you finish.
 
 ## What each finding usually needs
@@ -59,7 +59,7 @@ when you can. If the right fix needs shared code (`lib/`), do it anyway: it will
 - **Page changed** (ATX Beach, Velocity): inspect the page. Compare with what the adapter
   hard-codes (prices, notes, labels) and the regexes in `parse()`. Update what changed and the
   page text in the matching tests.
-- **New warning**: an unmapped Reclub venue needs an entry in `config/sources.json`
+- **New warning**: an unmapped Reclub venue needs an entry in `config/regions/<region>/sources.json`
   (`options.venues`) only if its city and surface are clear from the meet data; otherwise leave
   it. A dropped session means the adapter or manual entry produced bad data: fix the cause.
 - **Hand-checked session**: WebFetch its `source` page. Update the entry only where the page

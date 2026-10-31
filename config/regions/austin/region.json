@@ -1,0 +1,11 @@
+{
+  "_doc": "One region: where it is and its time zone. Every file in this folder belongs to it: sources.json (what to scrape), venues.json (canonical venues), manual.json (hand-checked sessions), public-courts.json (free courts), courts.json (Skedda court calendars). Add a city by copying this folder (see README, Adding a city).",
+  "id": "austin",
+  "name": "Austin, TX",
+  "timezone": "America/Chicago",
+  "center": [
+    30.2672,
+    -97.7431
+  ],
+  "radiusKm": 60
+}

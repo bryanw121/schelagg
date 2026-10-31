@@ -2,12 +2,12 @@
 // each one publishes its schedule, and writes what it found for review.
 //
 //   node scripts/discover.mjs <sport> <region>            write discovered-<sport>.json + .md
-//   node scripts/discover.mjs <sport> <region> --apply    also add the new venues to config/venues.json
+//   node scripts/discover.mjs <sport> <region> --apply    also add the new venues to config/regions/<region>/venues.json
 //
 // 1. Venues: OpenStreetMap via Overpass (free, storable, has coordinates), plus Google Places
 //    Text Search when GOOGLE_PLACES_API_KEY is set (asked for place ids, names and websites only;
 //    only the place id is stored, per Google's terms).
-// 2. Each venue is matched to config/venues.json (OSM id, Google place id, or name); new ones are
+// 2. Each venue is matched to the venues of every region (config/regions/<id>/venues.json) (OSM id, Google place id, or name); new ones are
 //    candidates, known ones may get coordinates / ids filled in.
 // 3. Schedule surface: the venue's website is fetched (homepage plus up to 3 schedule-looking
 //    links on the same site) and matched against config/platforms.json, e.g. a DaySmart calendar
@@ -19,6 +19,9 @@ import { pathToFileURL } from 'node:url';
 import { get } from '../lib/http.js';
 import { loadEnv, repoPath } from '../lib/paths.js';
 import { loadVenues, venueIndex } from '../lib/consolidate.js';
+import { loadRegions, regionFile } from '../lib/regions.js';
+
+const regionsById = () => Object.fromEntries(loadRegions().map((r) => [r.info.id, r.info]));
 
 // Public Overpass instances, tried in order until one answers (the main one can refuse a client).
 export const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
@@ -184,7 +187,7 @@ export function mergePlaces(osm, google) {
   return out;
 }
 
-/** A config/venues.json entry for a new place. */
+/** A venues.json entry for a new place. */
 export function venueEntry(p, sport, schedule) {
   return {
     id: slug(p.name), name: p.name, city: p.city ?? null, aliases: [],
@@ -210,7 +213,8 @@ export function enrichments(known, venues) {
 
 /** The whole run for one sport and region. `google` is null without a key. */
 export async function discover({ sport, region, discovery, platforms, venues, fetch, google = null, classify = true, delayMs = 500 }) {
-  const reg = discovery.regions[region];
+  // The region's center and radius come from config/regions/<id>/region.json (or `discovery.regions` in tests).
+  const reg = discovery.regions?.[region] ?? regionsById()[region];
   const sp = discovery.sports[sport];
   if (!reg) throw new Error(`unknown region "${region}"`);
   if (!sp) throw new Error(`unknown sport "${sport}"`);
@@ -257,11 +261,11 @@ export function reportMarkdown(r) {
     '',
     r.candidates.length ? '| Venue | Place | Schedule | Website | Source |\n|---|---|---|---|---|\n' + r.candidates.map(row).join('\n') : '_No new venues._',
     '',
-    readable.length ? `**Readable now:** ${readable.map((c) => `${c.place.name} (${c.schedule.platforms.find((p) => p.adapter).adapter})`).join(', ')}. Add a source in \`config/sources.json\` for each to start scraping.` : '',
+    readable.length ? `**Readable now:** ${readable.map((c) => `${c.place.name} (${c.schedule.platforms.find((p) => p.adapter).adapter})`).join(', ')}. Add a source in \`config/regions/${r.region}/sources.json\` for each to start scraping.` : '',
     r.enrich.length ? `**Filled in on known venues:** ${r.enrich.map((e) => `\`${e.id}\` (${Object.keys(e.fields).join(', ')})`).join(', ')}.` : '',
     r.warnings.length ? `**Warnings:** ${r.warnings.join('; ')}` : '',
     '',
-    'Merging adds these to `config/venues.json`. Delete any you don\'t want from this branch first; to never see one again, add its name or OSM id to `ignore` for this sport in `config/discovery.json`.',
+    `Merging adds these to \`config/regions/${r.region}/venues.json\`.` + ' Delete any you don\'t want from this branch first; to never see one again, add its name or OSM id to `ignore` for this sport in `config/discovery.json`.',
   ].filter((l) => l !== '').join('\n');
 }
 
@@ -292,7 +296,7 @@ async function main([sport, region = 'austin', flag]) {
   for (const w of r.warnings) console.log(`::warning::${w}`);
   console.log(`::notice::${sport}: ${r.counts.osm} OSM places, ${r.counts.new} new venues`);
   if (flag === '--apply') {
-    const p = repoPath('config/venues.json');
+    const p = regionFile(region, 'venues.json');
     writeFileSync(p, applyToVenues(readFileSync(p, 'utf8'), r));
   }
 }

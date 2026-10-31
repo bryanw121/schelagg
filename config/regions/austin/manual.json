@@ -1,0 +1,268 @@
+{
+  "_readme": "Sessions no scraper covers. When you re-check one, update verifiedAt. The nightly job watches each source page and flags the session if the page changes.",
+  "sessions": [
+    {
+      "id": "atx-sand-social-sun",
+      "days": [
+        "Sun"
+      ],
+      "start": "19:00",
+      "end": "22:00",
+      "title": "ATX Sand Social · Sunday Funday",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "Intermediate to competitive",
+      "price": "$10",
+      "verifiedAt": "2026-10-24",
+      "note": "Weekly RSVP posts on Sweatpals.",
+      "signup": {
+        "url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
+        "label": "RSVP on Sweatpals"
+      },
+      "source": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18"
+    },
+    {
+      "id": "aces-thu-6s-sand",
+      "days": [
+        "Thu"
+      ],
+      "start": "20:00",
+      "end": "22:00",
+      "title": "ACES Co-Ed Thursday 6s League",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "League",
+      "level": "Rec / Intermediate",
+      "verifiedAt": "2026-10-24",
+      "validUntil": "2026-11-12",
+      "signup": {
+        "url": "https://acesintexas.com/thursday-6s-sand-volleyball-league-atx-beach/",
+        "label": "Join as free agent"
+      },
+      "source": "https://acesintexas.com/thursday-6s-sand-volleyball-league-atx-beach/"
+    },
+    {
+      "id": "aces-mon-6s-indoor",
+      "days": [
+        "Mon"
+      ],
+      "start": null,
+      "end": null,
+      "title": "ACES Monday Indoor 6s League",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "League",
+      "level": "Intermediate / Advanced",
+      "verifiedAt": null,
+      "startsOn": "2026-11-02",
+      "note": "Game times not posted yet.",
+      "signup": {
+        "url": "https://acesintexas.com/aces-pflugerville-monday-co-ed-indoor-6s-volleyball-league/",
+        "label": "Join league"
+      },
+      "source": "https://acesintexas.com/aces-pflugerville-monday-co-ed-indoor-6s-volleyball-league/"
+    },
+    {
+      "id": "hanovers-open",
+      "days": [
+        "Fri",
+        "Sun"
+      ],
+      "start": "18:00",
+      "end": "23:00",
+      "title": "Hanovers Open Play (21+)",
+      "venue": "Hanovers Draught Haus",
+      "city": "Pflugerville",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$5",
+      "verifiedAt": null,
+      "note": "Only source is a third-party listing from August. Call before going.",
+      "signup": {
+        "url": null,
+        "label": "Drop in · $5 at the door",
+        "dropIn": true
+      },
+      "source": "https://www.planomato.com/en/austin/p/open-play-volleyball-austin"
+    },
+    {
+      "id": "ssc-crossover-mon-sand",
+      "days": [
+        "Mon"
+      ],
+      "start": null,
+      "end": null,
+      "title": "Austin SSC Monday Sand 6s",
+      "venue": "The Crossover",
+      "city": "Cedar Park",
+      "surface": "sand",
+      "type": "League",
+      "level": "Recreational, 21+",
+      "price": "$759 team · $109 solo",
+      "verifiedAt": null,
+      "startsOn": "2026-11-02",
+      "signup": {
+        "url": "https://austinssc.leaguelab.com/leagues?sport=Sand+Volleyball",
+        "label": "Register on Austin SSC"
+      },
+      "source": "https://austinssc.leaguelab.com/leagues?sport=Sand+Volleyball"
+    },
+    {
+      "id": "beecave-on-ice-mwth",
+      "sport": "ice_skating",
+      "days": [
+        "Mon",
+        "Wed",
+        "Thu"
+      ],
+      "start": "15:00",
+      "end": "21:00",
+      "title": "Bee Cave on Ice · hourly sessions",
+      "venue": "Bee Cave on Ice",
+      "city": "Bee Cave",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "price": "$16 + tax · skates incl.",
+      "startsOn": "2026-11-13",
+      "validUntil": "2027-01-18",
+      "verifiedAt": "2026-10-26",
+      "note": "Seasonal outdoor rink. Hourly sessions with 50 minutes on the ice; holiday hours 10am–7pm.",
+      "signup": {
+        "url": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
+        "label": "Tickets & hours"
+      },
+      "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php"
+    },
+    {
+      "id": "beecave-on-ice-tue",
+      "sport": "ice_skating",
+      "days": [
+        "Tue"
+      ],
+      "start": "15:00",
+      "end": "21:00",
+      "title": "Bee Cave on Ice · community night",
+      "venue": "Bee Cave on Ice",
+      "city": "Bee Cave",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "price": "$11 + tax · skates incl.",
+      "startsOn": "2026-11-13",
+      "validUntil": "2027-01-18",
+      "verifiedAt": "2026-10-26",
+      "note": "Seasonal outdoor rink. Hourly sessions with 50 minutes on the ice; holiday hours 10am–7pm.",
+      "signup": {
+        "url": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
+        "label": "Tickets & hours"
+      },
+      "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php"
+    },
+    {
+      "id": "beecave-on-ice-fri",
+      "sport": "ice_skating",
+      "days": [
+        "Fri"
+      ],
+      "start": "12:00",
+      "end": "22:00",
+      "title": "Bee Cave on Ice · hourly sessions",
+      "venue": "Bee Cave on Ice",
+      "city": "Bee Cave",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "price": "$16 + tax · skates incl.",
+      "startsOn": "2026-11-13",
+      "validUntil": "2027-01-18",
+      "verifiedAt": "2026-10-26",
+      "note": "Seasonal outdoor rink. Hourly sessions with 50 minutes on the ice; holiday hours 10am–7pm.",
+      "signup": {
+        "url": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
+        "label": "Tickets & hours"
+      },
+      "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php"
+    },
+    {
+      "id": "beecave-on-ice-sat",
+      "sport": "ice_skating",
+      "days": [
+        "Sat"
+      ],
+      "start": "10:00",
+      "end": "22:00",
+      "title": "Bee Cave on Ice · hourly sessions",
+      "venue": "Bee Cave on Ice",
+      "city": "Bee Cave",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "price": "$16 + tax · skates incl.",
+      "startsOn": "2026-11-13",
+      "validUntil": "2027-01-18",
+      "verifiedAt": "2026-10-26",
+      "note": "Seasonal outdoor rink. Hourly sessions with 50 minutes on the ice; holiday hours 10am–7pm.",
+      "signup": {
+        "url": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
+        "label": "Tickets & hours"
+      },
+      "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php"
+    },
+    {
+      "id": "beecave-on-ice-sun",
+      "sport": "ice_skating",
+      "days": [
+        "Sun"
+      ],
+      "start": "10:00",
+      "end": "19:00",
+      "title": "Bee Cave on Ice · hourly sessions",
+      "venue": "Bee Cave on Ice",
+      "city": "Bee Cave",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "price": "$16 + tax · skates incl.",
+      "startsOn": "2026-11-13",
+      "validUntil": "2027-01-18",
+      "verifiedAt": "2026-10-26",
+      "note": "Seasonal outdoor rink. Hourly sessions with 50 minutes on the ice; holiday hours 10am–7pm.",
+      "signup": {
+        "url": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
+        "label": "Tickets & hours"
+      },
+      "source": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php"
+    },
+    {
+      "id": "four-seasons-ice-rodeo",
+      "sport": "ice_skating",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "start": "16:00",
+      "end": "21:00",
+      "title": "Four Seasons Ice Rodeo",
+      "venue": "Four Seasons Hotel",
+      "city": "Downtown",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "price": "Timed tickets",
+      "startsOn": "2026-11-20",
+      "validUntil": "2027-01-03",
+      "verifiedAt": "2026-10-26",
+      "note": "Seasonal outdoor rink at the hotel. Session length and prices are on the ticket page.",
+      "signup": {
+        "url": "https://fourseasonsaustin.ticketspice.com/ice-rodeo-26-27",
+        "label": "Timed tickets"
+      },
+      "source": "https://www.fourseasons.com/austin/seasonal/winter/"
+    }
+  ]
+}
