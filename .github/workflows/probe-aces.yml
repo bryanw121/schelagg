@@ -6,9 +6,10 @@ jobs:
     steps:
       - run: |
           {
-            curl -s -A "Mozilla/5.0 Chrome/130" -o ical.ics -w "ical %{http_code}\n" https://www.meetup.com/acesintexas/events/ical/
-            grep -E "^(SUMMARY|DTSTART|LOCATION)" ical.ics | head -60
-            curl -s -A "Mozilla/5.0 Chrome/130" -o ev.html -w "events page %{http_code}\n" https://www.meetup.com/acesintexas/events/
-            grep -oiE "open play[^\"<]{0,80}" ev.html | sort | uniq -c | head
+            curl -s -A "Mozilla/5.0 Chrome/130" -o ical.ics https://www.meetup.com/acesintexas/events/ical/
+            wc -c ical.ics; grep -c VEVENT ical.ics; head -c 600 ical.ics; echo
+            curl -s -A "Mozilla/5.0 Chrome/130" -o ev.html https://www.meetup.com/acesintexas/events/
+            wc -c ev.html; grep -oE '"title":"[^"]{3,90}"' ev.html | sort | uniq -c | head -30
+            grep -oE '"dateTime":"[^"]+"' ev.html | head -10
           } > out.txt 2>&1
           python3 -c "import sys;t=open('out.txt').read().replace('%','%25').replace('\r','').replace('\n','%0A');[print('::warning title=p%d::'%i+t[j:j+3500]) for i,j in enumerate(range(0,len(t),3500))]"
