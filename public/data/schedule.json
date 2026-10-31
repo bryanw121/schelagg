@@ -1,14 +1,15 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T17:44:15.793Z",
+  "generatedAt": "2026-10-31T17:58:27.527Z",
   "sources": [
     {
       "id": "volleyworld",
       "name": "Volleyworld",
       "sport": "volleyball",
       "region": "austin",
+      "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T17:43:36.718Z",
+      "checkedAt": "2026-10-31T17:58:09.106Z",
       "count": 12
     },
     {
@@ -16,8 +17,9 @@
       "name": "ACES",
       "sport": "volleyball",
       "region": "austin",
+      "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-10-31T17:43:38.106Z",
+      "checkedAt": "2026-10-31T17:58:09.107Z",
       "error": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\"); https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pflugerville/: couldn't find date or time (page \"Error 403 Forbidden\", 13 chars: \"403 Forbidden\")",
       "kept": 0
     },
@@ -26,8 +28,9 @@
       "name": "ATX Beach",
       "sport": "volleyball",
       "region": "austin",
+      "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-10-31T17:43:38.944Z",
+      "checkedAt": "2026-10-31T17:58:09.109Z",
       "count": 2
     },
     {
@@ -35,8 +38,9 @@
       "name": "Austin Velocity",
       "sport": "volleyball",
       "region": "austin",
+      "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-10-31T17:43:40.541Z",
+      "checkedAt": "2026-10-31T17:58:09.109Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -45,8 +49,9 @@
       "name": "Reclub",
       "sport": "volleyball",
       "region": "austin",
+      "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-10-31T17:43:45.365Z",
+      "checkedAt": "2026-10-31T17:58:09.110Z",
       "count": 5
     },
     {
@@ -54,8 +59,9 @@
       "name": "Chaparral Ice",
       "sport": "ice_skating",
       "region": "austin",
+      "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T17:43:56.179Z",
+      "checkedAt": "2026-10-31T17:58:09.110Z",
       "count": 31
     },
     {
@@ -63,8 +69,9 @@
       "name": "Ice & Field",
       "sport": "ice_skating",
       "region": "austin",
+      "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-10-31T17:44:01.612Z",
+      "checkedAt": "2026-10-31T17:58:09.779Z",
       "count": 15
     }
   ],
@@ -2207,56 +2214,64 @@
         "address": "1101 W 33rd St",
         "surface": "sand",
         "courts": 1,
-        "lights": true
+        "lights": true,
+        "region": "austin"
       },
       {
         "park": "Balcones District Park",
         "address": "12017 Amherst Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Brentwood Neighborhood Park",
         "address": "6807 Yates Ave",
         "surface": "sand",
         "courts": 1,
-        "lights": true
+        "lights": true,
+        "region": "austin"
       },
       {
         "park": "Bull Creek District Park",
         "address": "6713 Lakewood Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Circle C Ranch Metro Park",
         "address": "6301 W Slaughter Ln",
         "surface": "sand",
         "courts": 2,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Davis/White Northeast Park",
         "address": "6705 Crystalbrook Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Dick Nichols District Park",
         "address": "8101 Beckett Rd",
         "surface": "sand",
         "courts": 2,
-        "lights": true
+        "lights": true,
+        "region": "austin"
       },
       {
         "park": "Dove Springs District Park",
         "address": "5801 Ainez Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Emma Long Metro Park",
@@ -2264,84 +2279,96 @@
         "surface": "sand",
         "courts": 4,
         "lights": false,
-        "fee": true
+        "fee": true,
+        "region": "austin"
       },
       {
         "park": "Gillis Neighborhood Park",
         "address": "2410 Durwood Ave",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Gracywoods Neighborhood Park",
         "address": "12133 Metric Blvd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Kendra Page Neighborhood Park",
         "address": "2203 Blue Meadow Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Mary Moore Searight Metro Park",
         "address": "907 W Slaughter Ln",
         "surface": "sand",
         "courts": 2,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Northwest Recreation Center",
         "address": "2913 Northland Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Parque Zaragoza",
         "address": "2611 Webberville Rd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Pastor E.C. Craig Jr. Park",
         "address": "4800 Copperbend Blvd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Patterson Neighborhood Park",
         "address": "4201 Brookview Rd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Pease District Park",
         "address": "1100 Kingsbury St",
         "surface": "sand",
         "courts": 3,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Quail Creek Neighborhood Park",
         "address": "1101 Mearns Meadow Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Rialto Neighborhood Park",
         "address": "7025 Rialto Blvd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Krieg Athletic Complex",
@@ -2349,35 +2376,40 @@
         "surface": "sand",
         "courts": 4,
         "lights": true,
-        "closedUntil": "2027-05-31"
+        "closedUntil": "2027-05-31",
+        "region": "austin"
       },
       {
         "park": "Scofield Farms Park",
         "address": "12901 Scofield Farms Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Silk Oak Neighborhood Park",
         "address": "3204 Silk Oak Dr",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Springwoods Neighborhood Park",
         "address": "9207 Anderson Mill Rd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Tanglewood Neighborhood Park",
         "address": "11409 Rustic Rock Rd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Walter E. Long Metro Park",
@@ -2385,35 +2417,40 @@
         "surface": "sand",
         "courts": 2,
         "lights": false,
-        "fee": true
+        "fee": true,
+        "region": "austin"
       },
       {
         "park": "Zilker – Great Lawn",
         "address": "2100 Barton Springs Rd",
         "surface": "sand",
         "courts": 5,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Zilker – Polo Area",
         "address": "2501 Barton Springs Rd",
         "surface": "sand",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Commons Ford Ranch Metro Park",
         "address": "614 N Commons Ford Rd",
         "surface": "grass",
         "courts": 2,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       },
       {
         "park": "Yates Pocket Park",
         "address": "6015 Felix Ave",
         "surface": "grass",
         "courts": 1,
-        "lights": false
+        "lights": false,
+        "region": "austin"
       }
     ]
   },
@@ -2421,63 +2458,75 @@
     {
       "id": "volleyworld-georgetown",
       "name": "Volleyworld (Georgetown)",
-      "city": "Georgetown"
+      "city": "Georgetown",
+      "region": "austin"
     },
     {
       "id": "volleyworld-pflugerville",
       "name": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville"
+      "city": "Pflugerville",
+      "region": "austin"
     },
     {
       "id": "atx-beach",
       "name": "ATX Beach",
-      "city": "North Austin"
+      "city": "North Austin",
+      "region": "austin"
     },
     {
       "id": "crossover",
       "name": "The Crossover",
-      "city": "Cedar Park"
+      "city": "Cedar Park",
+      "region": "austin"
     },
     {
       "id": "crossover-ice",
       "name": "Ice & Field at The Crossover",
       "city": "Cedar Park",
-      "parent": "crossover"
+      "parent": "crossover",
+      "region": "austin"
     },
     {
       "id": "high-point",
       "name": "High Point Center",
-      "city": "Leander"
+      "city": "Leander",
+      "region": "austin"
     },
     {
       "id": "treehouse",
       "name": "Roots · Treehouse Gym",
-      "city": "N. Austin"
+      "city": "N. Austin",
+      "region": "austin"
     },
     {
       "id": "mueller-lake-park",
       "name": "Mueller Lake Park",
-      "city": "Austin"
+      "city": "Austin",
+      "region": "austin"
     },
     {
       "id": "hanovers",
       "name": "Hanovers Draught Haus",
-      "city": "Pflugerville"
+      "city": "Pflugerville",
+      "region": "austin"
     },
     {
       "id": "chaparral-northcross",
       "name": "Chaparral Ice",
-      "city": "N. Austin (Northcross)"
+      "city": "N. Austin (Northcross)",
+      "region": "austin"
     },
     {
       "id": "bee-cave-on-ice",
       "name": "Bee Cave on Ice",
-      "city": "Bee Cave"
+      "city": "Bee Cave",
+      "region": "austin"
     },
     {
       "id": "four-seasons-austin",
       "name": "Four Seasons Hotel",
-      "city": "Downtown"
+      "city": "Downtown",
+      "region": "austin"
     }
   ]
 }
