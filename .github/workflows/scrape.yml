@@ -2,8 +2,8 @@ name: Refresh schedules
 
 on:
   schedule:
-    # Backup only. .github/workflows/scrape-clock.yml starts the real schedule (every 15 minutes
-    # from 9am to midnight Austin time, hourly overnight), because GitHub drops many cron runs.
+    # Backup only. .github/workflows/scrape-clock.yml starts the real schedule (every 30 minutes
+    # from 8am to 10pm Austin time, hourly overnight), because GitHub drops many cron runs.
     # This hourly cron covers the clock being down; the clock skips a slot a scrape just ran in.
     # Consumers (e.g. vteam) pull data/occurrences.json from GitHub Pages after each run.
     - cron: '13 * * * *'
@@ -54,7 +54,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Runs every 15 minutes: keep one open issue per outage instead of one per run, and only
+          # Runs every 30 minutes: keep one open issue per outage instead of one per run, and only
           # comment when the failures change (a new source failing, or a different error), not on
           # every run of the same outage. Issues are assigned to the repo owner, which notifies them.
           open=$(gh issue list --state open --search 'in:title "Schedule scrape: source failed"' --json number --jq '.[0].number')

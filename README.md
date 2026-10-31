@@ -11,14 +11,14 @@ Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional ext
 
 | Data | How | How fresh |
 |---|---|---|
-| Court bookings + opening hours (High Point, Crossover, Treehouse) | `scripts/build-courts.mjs` reads their public Skedda calendars | With each refresh (every 15 min 9am–midnight, hourly overnight) |
-| Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages (server-rendered meet data) | Every 15 min 9am–midnight, hourly overnight; live via `/api/check` |
+| Court bookings + opening hours (High Point, Crossover, Treehouse) | `scripts/build-courts.mjs` reads their public Skedda calendars | With each refresh (every 30 min 8am–10pm, hourly overnight) |
+| Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages (server-rendered meet data) | Every 30 min 8am–10pm, hourly overnight; live via `/api/check` |
 | New Reclub clubs | `scripts/discover-reclub.mjs` searches the web for Reclub meets in the area and opens a pull request per new club (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Daily |
-| Volleyworld adult sessions | Arketa's public schedule API (the JSON its booking widget reads), incl. cancellations and spots left | Every 15 min 9am–midnight, hourly overnight; live via `/api/check` |
-| ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | Every 15 min 9am–midnight, hourly overnight |
-| ATX Beach open play | TeamUp membership page | Every 15 min 9am–midnight, hourly overnight |
-| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | Every 15 min 9am–midnight, hourly overnight |
-| Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs` reads each rink's public DaySmart events API, keeping only published public/adult skate event types on the listed rinks | Every 15 min 9am–midnight, hourly overnight |
+| Volleyworld adult sessions | Arketa's public schedule API (the JSON its booking widget reads), incl. cancellations and spots left | Every 30 min 8am–10pm, hourly overnight; live via `/api/check` |
+| ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | Every 30 min 8am–10pm, hourly overnight |
+| ATX Beach open play | TeamUp membership page | Every 30 min 8am–10pm, hourly overnight |
+| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | Every 30 min 8am–10pm, hourly overnight |
+| Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs` reads each rink's public DaySmart events API, keeping only published public/adult skate event types on the listed rinks | Every 30 min 8am–10pm, hourly overnight |
 | Ice skating: Bee Cave on Ice, Four Seasons Ice Rodeo (seasonal outdoor) | `data/manual.json`: posted hours for the season, page watched for changes | `verifiedAt` age |
 | Everything else (Sand Social, Hanovers, leagues) | `data/manual.json`, hand-checked. Each scrape run watches each source page and flags it if the page changes | `verifiedAt` age |
 
@@ -97,8 +97,8 @@ ran `npm test` and the site e2e.
 
 ## Workflows
 
-- **Scrape clock** (`.github/workflows/scrape-clock.yml`): starts **Refresh schedules** every 15 minutes from 9am to
-  midnight Austin time and hourly from midnight to 9am (a long-running job that sleeps between ticks, because GitHub's
+- **Scrape clock** (`.github/workflows/scrape-clock.yml`): starts **Refresh schedules** every 30 minutes from 8am to
+  10pm Austin time and hourly from 10pm to 8am (a long-running job that sleeps between ticks, because GitHub's
   own cron drops many runs). It restarts itself every ~5.5 hours; a cron every 3 hours restarts it if the chain breaks.
 - **Deploy site** (`.github/workflows/pages.yml`): after each schedule refresh and on every push to main. Fetches court
   calendars, then publishes `public/` to GitHub Pages. Vercel is not involved (the data branch has deployments off).
