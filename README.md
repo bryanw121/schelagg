@@ -20,10 +20,11 @@ sessions and status untouched.
 | Volleyworld adult sessions | Arketa's public schedule API, incl. cancellations and spots left | 30m; live via `/api/check` |
 | Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs`: each rink's public DaySmart events API, published public/adult skate types only | 30m; live via `/api/check` |
 | Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages | 1h; live via `/api/check` |
+| Sweatpals hosts (ATX Beach lunch open play, ATX Sand Social, Let's Volley ATX) | `scripts/adapters/sweatpals.mjs`: each host's public page, whose `__NEXT_DATA__` lists its upcoming events with exact times, address and prices; volleyball events only (per-host `include`) | 1h |
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
 | ATX Beach open play | TeamUp membership page | 6h |
 | Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
-| Hand-checked sessions (Sand Social, Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
+| Hand-checked sessions (Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
 | New Reclub clubs | `scripts/discover-reclub.mjs` (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Weekly |
 
 A tick with no browser source due skips installing Chromium. Requests to one host are queued and spaced (300 ms apart in
@@ -440,8 +441,8 @@ links to one.
 - **A new city**: copy `config/regions/austin/` to `config/regions/<id>/`, set `region.json`, and empty the lists. Run
   the **Discover venues** workflow to fill `venues.json` (one pull request per sport); add sources for venues on
   platforms we already read. The scrape, feed, calendars and site pick the folder up with no code change.
-- **On a platform we already read** (another Reclub club, another ACES page, another DaySmart rink): add it to the
-  region's `sources.json`. No code.
+- **On a platform we already read** (another Reclub club, another ACES page, another DaySmart rink, another Sweatpals
+  host): add it to the region's `sources.json`. No code.
 - **A new platform or site**: add `scripts/adapters/<name>.mjs` exporting `scrape({ browser, ref, options, timezone })`
   (plus a pure `parse` you can test with a captured response), register it in `ADAPTERS` in `lib/registry.js`, and add
   a config entry. Platform adapters should take venue details from `options` so one adapter serves many venues. Prefer
