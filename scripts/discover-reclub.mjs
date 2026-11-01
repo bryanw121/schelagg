@@ -1,7 +1,9 @@
 // Finds Reclub clubs running volleyball meets in the area that the region's sources.json doesn't list yet.
 //
-// Reclub only offers discovery inside its app, so candidates come from a web search API: results
-// that point at reclub.co meet pages (/m/<code>) or club pages (/clubs/@<slug>). Each candidate
+// Candidates come from two places. Reclub's public community pages (reclub.co/communities/<country>/
+// <state>/<city>) list the clubs based in each city: options.discover.communities names the ones
+// to read, which costs a page each and no search at all. A web search API adds clubs those pages
+// miss: results that point at reclub.co meet pages (/m/<code>) or club pages (/clubs/@<slug>). Each candidate
 // meet page is read once: its data names the club, the sport, Reclub's community (its city
 // grouping, e.g. "Austin, TX, USA") and the venue's coordinates. A club is a candidate when one of
 // its meets is volleyball and is either in the configured community or within radiusKm of the
@@ -94,10 +96,15 @@ const pause = (ms) => (ms > 0 ? new Promise((r) => setTimeout(r, ms)) : null);
  * it (`credited`): that's what decides how often each query runs (planQueries / nextState).
  * `extraUrls` are results without a query; `seedClubs` are club slugs found some other way
  * (a venue's website linking to its Reclub club, from venue discovery).
+ *
+ * Community pages (options.discover.communities) are read first, in order, and add up to
+ * `communityClubsPerRun` clubs not yet decided, so a page listing dozens of far-away clubs (a
+ * state page) is worked through over a few runs instead of using the whole page budget on club
+ * pages. Clubs found this way are credited to "communities", not to a query.
  */
 export async function discover({
   options, search, fetch, maxPages = 40, meetsPerClub = 3, delayMs = 1000,
-  queries, extraUrls = [], seedClubs = [], state = {},
+  queries, extraUrls = [], seedClubs = [], state = {}, communities, communityClubsPerRun,
 }) {
   const d = options?.discover ?? {};
   const configured = knownSlugs(options?.clubs);
@@ -128,6 +135,23 @@ export async function discover({
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.text;
   };
+  // Community pages: the clubs based in each listed city (no search).
+  const communityPages = (communities ?? d.communities ?? []).filter((u) => COMMUNITY_PAGE.test(u));
+  let fromCommunities = 0;
+  const perRun = communityClubsPerRun ?? d.communityClubsPerRun ?? 10;
+  for (const url of communityPages) {
+    if (fromCommunities >= perRun) break;
+    try {
+      const html = await read(url);
+      if (html == null) break;
+      for (const slug of communityClubs(html)) {
+        if (fromCommunities >= perRun) break;
+        if (settled(slug) || origin.has(`club:${slug}`)) continue;
+        note(`club:${slug}`, ['communities']);
+        fromCommunities++;
+      }
+    } catch (e) { warnings.push(`${url}: ${e.message}`); }
+  }
   // Club pages: a few meets of each club we haven't decided on yet.
   const clubKeys = [...origin.keys()].filter((k) => k.startsWith('club:'));
   for (const key of clubKeys) {
@@ -169,8 +193,8 @@ export async function discover({
   const found = [...candidates.values()];
   return {
     candidates: found, rejected: kept, warnings, failedQueries,
-    credited: [...new Set(found.flatMap((c) => c.queries))].filter((q) => q !== 'venues'),
-    searched: list.length, urls: links, perQuery, pagesRead: pages, meets: meetClub,
+    credited: [...new Set(found.flatMap((c) => c.queries))].filter((q) => q !== 'venues' && q !== 'communities'),
+    searched: list.length, urls: links, perQuery, pagesRead: pages, meets: meetClub, fromCommunities, communityPages: communityPages.length,
   };
 }
 
@@ -234,6 +258,10 @@ export function nextState(state = {}, { queries = [], batch = [], result, today,
   const entries = Object.entries(result.meets ?? state.meets ?? {});
   return { queries: q, clubs, skipped, meets: Object.fromEntries(entries.slice(-maxMeets)) };
 }
+
+/** Club slugs a Reclub community page links to (/clubs/@<slug>), in page order. */
+export const communityClubs = (html) => [...new Set([...String(html).matchAll(/href=["'](?:https?:\/\/reclub\.co)?\/clubs\/@([A-Za-z0-9_.-]+)["'?#/]/g)].map((m) => m[1]))].filter((x) => SLUG.test(x));
+export const COMMUNITY_PAGE = /^https:\/\/reclub\.co\/communities\/[a-z0-9/-]+$/;
 
 /** Reclub club slugs that discovered venues link to (venues.json schedule.platform 'reclub'). */
 export const seedsFromVenues = (venues = []) => [...new Set(venues
@@ -342,6 +370,11 @@ async function main(args) {
     batch = plan.batch;
     warnIfOverBudget(plan);
     search = (q) => braveSearch(q, { key });
+  } else if (opts?.discover?.communities?.length) {
+    // No search: community pages alone.
+    console.log('::notice::No BRAVE_SEARCH_API_KEY and no --results file: reading Reclub community pages only.');
+    batch = [];
+    search = async () => [];
   } else {
     console.log('::notice::No BRAVE_SEARCH_API_KEY and no --results file; skipping Reclub club discovery.');
     writeFileSync(out, `${JSON.stringify({ candidates: [] }, null, 2)}\n`);
@@ -353,7 +386,7 @@ async function main(args) {
   writeFileSync(STATE(), `${JSON.stringify(nextState(state, { queries: all, batch, result, today }), null, 2)}\n`);
   const body = { ...result, meets: undefined, candidates: result.candidates.map((c) => ({ ...c, body: prBody(c) })) };
   writeFileSync(out, `${JSON.stringify(body, null, 2)}\n`);
-  console.log(`::notice::Reclub discovery (${via}): searched ${result.searched} of ${all.length} queries, got ${result.urls} reclub.co links, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
+  console.log(`::notice::Reclub discovery (${via}): searched ${result.searched} of ${all.length} queries, got ${result.urls} reclub.co links, ${result.fromCommunities} clubs to check from ${result.communityPages} community pages, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
   console.log(`::notice::Links per query: ${Object.entries(result.perQuery).map(([q, n]) => `${n} ← ${q}`).join(' · ') || 'none'}`);
   for (const c of result.candidates) console.log(`New club: ${c.name} (@${c.slug}), ${c.reason}; found by ${c.queries.join(' | ')}`);
   for (const r of result.rejected) console.log(`Skipped @${r.club}: ${r.reason}`);
