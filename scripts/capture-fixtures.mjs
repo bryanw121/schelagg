@@ -47,12 +47,22 @@ async function grab(name, url, init = {}) {
 }
 
 
-// Reclub public navigation: communities / sports pages that might list clubs by city
-await grab('reclub-home', 'https://reclub.co/');
-await grab('reclub-robots', 'https://reclub.co/robots.txt');
-await grab('reclub-sitemap', 'https://reclub.co/sitemap.xml');
-await grab('reclub-communities', 'https://reclub.co/communities');
-await grab('reclub-sports', 'https://reclub.co/sports');
-await grab('reclub-sports-volleyball', 'https://reclub.co/sports/volleyball');
-await grab('reclub-club-vex', 'https://reclub.co/clubs/@vex_volleyball');
-await grab('playbook-programs2', 'https://acesintexas.playbookapi.com/programs/');
+
+const us = await grab('reclub-communities-us', 'https://reclub.co/communities/us');
+const next = (us.relLinks || []).map((l) => l.slice(6, -1)).filter((l) => /^\/communities\/us\/./.test(l));
+console.log('us links', next.length, next.slice(0, 80).join(' '));
+for (const l of next.filter((l) => /tx|texas|austin/i.test(l)).slice(0, 4)) {
+  const r = await grab(`reclub${l.replace(/\//g, '-')}`, `https://reclub.co${l}`);
+  const deeper = (r.relLinks || []).map((x) => x.slice(6, -1)).filter((x) => /austin/i.test(x));
+  for (const d of deeper.slice(0, 3)) await grab(`reclub${d.replace(/\//g, '-')}`, `https://reclub.co${d}`);
+}
+try {
+  const res = await fetch('https://reclub.co/__sitemap__/en-US.xml', { headers: { 'user-agent': UA }, signal: AbortSignal.timeout(60000) });
+  const body = await res.text();
+  const locs = body.match(/<loc>[^<]+<\/loc>/g) || [];
+  const kinds = {};
+  for (const l of locs) { const k = (l.match(/reclub\.co\/(?:[a-z]{2}(?:-[A-Z]{2})?\/)?([^/<]+)/) || [])[1] || '?'; kinds[k] = (kinds[k] || 0) + 1; }
+  const austin = locs.filter((l) => /austin|atx|texas|tx\b/i.test(l)).slice(0, 100);
+  await writeFile(`${OUT}/reclub-sitemap-en.json`, JSON.stringify({ status: res.status, length: body.length, count: locs.length, kinds, sample: locs.slice(0, 40), austin }, null, 1));
+  console.log('sitemap', res.status, locs.length);
+} catch (e) { console.log('sitemap ERR', e.message); }
