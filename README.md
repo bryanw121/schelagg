@@ -171,10 +171,14 @@ drop some; add a name or OSM id to the sport's `ignore` list to never see it aga
 
 ### Discovering Reclub clubs
 
-Reclub only lets you browse clubs and meets by sport and location inside its app, so the scraper only reads the clubs
-listed in `options.clubs`. Discovery fills that gap from the outside: `scripts/discover-reclub.mjs` runs the web
-searches in `options.discover.queries` (Brave Search API), collects the reclub.co meet and club pages they turn up, and
-reads each unknown club's meets. A club qualifies when one of its meets is volleyball (`sport`) and is in Reclub's
+The scraper only reads the clubs listed in `options.clubs`. Discovery fills that gap: `scripts/discover-reclub.mjs`
+first reads Reclub's public community pages listed in `options.discover.communities`
+(`https://reclub.co/communities/us/texas/austin` and nearby cities, then the Texas page), which list the clubs based in
+each city. That costs one page per city and no search, so it doesn't get more expensive as clubs are added. At most
+`communityClubsPerRun` (10) undecided clubs are taken from them per run, nearest cities first, so a long state page is
+worked through over a few weeks. Then it runs the web searches in `options.discover.queries` (Brave Search API) for
+clubs the community pages miss (clubs filed under another city), collects the reclub.co meet and club pages they turn
+up, and reads each unknown club's meets. A club qualifies when one of its meets is volleyball (`sport`) and is in Reclub's
 `community` (its city grouping, `"Austin, TX, USA"`) or within `radiusKm` of `center`. It reads at most 40 Reclub
 pages a run, a second apart.
 
