@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-01T18:54:36.162Z",
+  "generatedAt": "2026-11-01T19:13:40.988Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-01T18:43:25.628Z",
+      "checkedAt": "2026-11-01T19:13:27.707Z",
       "count": 13
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-01T18:54:33.661Z",
+      "checkedAt": "2026-11-01T19:13:27.713Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -40,7 +40,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-01T18:54:33.665Z",
+      "checkedAt": "2026-11-01T19:13:27.713Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -51,8 +51,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-01T18:13:47.353Z",
-      "count": 6
+      "checkedAt": "2026-11-01T19:13:27.714Z",
+      "count": 5
     },
     {
       "id": "chaparral-ice",
@@ -61,7 +61,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-01T18:43:25.630Z",
+      "checkedAt": "2026-11-01T19:13:27.716Z",
       "count": 31
     },
     {
@@ -71,7 +71,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-01T18:43:25.631Z",
+      "checkedAt": "2026-11-01T19:13:27.717Z",
       "count": 15
     }
   ],
@@ -657,34 +657,6 @@
       "verifiedAt": "2026-11-01",
       "venueId": "treehouse",
       "status": "scheduled"
-    },
-    {
-      "id": "reclub-5X380N",
-      "date": "2026-11-01",
-      "start": "10:00",
-      "end": "13:00",
-      "title": "Austin Lawn Club - Sunday Fun Day!",
-      "venue": "Mueller Lake Park",
-      "city": "Austin",
-      "surface": "grass",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$6",
-      "note": "Hosted by Austin Lawn Club, every Sunday.",
-      "canceled": true,
-      "capacity": 16,
-      "signup": {
-        "url": "https://reclub.co/m/5X380N",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/5X380N",
-      "sourceId": "reclub",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-01",
-      "venueId": "mueller-lake-park",
-      "status": "cancelled"
     },
     {
       "id": "reclub-8FLID5",
