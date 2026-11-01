@@ -372,6 +372,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
       const data = [1, 2].flatMap((n) => JSON.parse(fixture(`daysmart-chaparralice-events-p${n}.json`)).data);
       return new Response(JSON.stringify({ data, meta: { page: { 'last-page': 1 } } }));
     }
+    if (u.hostname === 'sweatpals.com') return new Response(fixture(`sweatpals-host-${u.pathname.split('/').pop()}.html`));
     if (u.hostname === 'reclub.co') {
       if (CLUBS[u.pathname]) return new Response(fixture(CLUBS[u.pathname]));
       const code = u.pathname.match(/^\/m\/(\w+)$/)?.[1];
@@ -384,12 +385,12 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
     out: join(dir, 'schedule.json'), feed: join(dir, 'occurrences.json'), watch: join(dir, 'watch.json'),
     failures: join(dir, 'scrape-failures.md'), health: join(dir, 'health.json'), changes: join(dir, 'c.md'), changesJson: join(dir, 'c.json'),
   });
-  const apiOnly = loadSources().sources.filter((s) => s.adapter.needsBrowser === false); // volleyworld, reclub and the two rinks
+  const apiOnly = loadSources().sources.filter((s) => s.adapter.needsBrowser === false); // volleyworld, reclub, sweatpals and the two rinks
   const result = await runScrape({ sources: apiOnly, paths, fetch: network, now: () => NOW, log: () => {}, launchBrowser: async () => { throw new Error('no browser'); } });
 
   await withDb(async (db) => {
     const logs = [];
-    const r = await persistRun({ url: 'pglite://test', result, startedAt: NOW, failuresFile: paths.failures, adapters: { volleyworld: 'volleyworld', reclub: 'reclub', 'chaparral-ice': 'daysmart', 'ice-and-field': 'daysmart' }, open: async () => ({ ...db, end: async () => {} }), log: (l) => logs.push(l) });
+    const r = await persistRun({ url: 'pglite://test', result, startedAt: NOW, failuresFile: paths.failures, adapters: { volleyworld: 'volleyworld', reclub: 'reclub', sweatpals: 'sweatpals', 'chaparral-ice': 'daysmart', 'ice-and-field': 'daysmart' }, open: async () => ({ ...db, end: async () => {} }), log: (l) => logs.push(l) });
     assert.equal(r.ok, true, r.error);
     assert.match(logs[0], /^db    run 1: \d+ sessions/);
     assert.equal(readFileSync(paths.failures, 'utf8'), '', 'nothing to report');

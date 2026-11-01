@@ -128,6 +128,28 @@
       }
     },
     {
+      "id": "sweatpals",
+      "name": "Sweatpals",
+      "adapter": "sweatpals",
+      "cadence": "1h",
+      "options": {
+        "_doc": "Sweatpals hosts that post Austin volleyball (scripts/adapters/sweatpals.mjs). Each host page lists its upcoming events; an event is kept when its name or sport type matches `include` (a host's own `include` wins, e.g. \".\" for a host whose events are all volleyball). Venues are matched on the event's address.",
+        "hosts": [
+          { "slug": "ATXBeach" },
+          { "slug": "atxsandsocial", "include": "." },
+          { "slug": "letsvolleyatx" }
+        ],
+        "include": "volley|🏐",
+        "venues": [
+          { "match": "11000 Middle Fiskville", "venue": "ATX Beach", "city": "North Austin", "surface": "sand" },
+          { "match": "Mueller Lake Park", "venue": "Mueller Lake Park", "city": "Austin", "surface": "grass" },
+          { "match": "Bailey (Neighborhood )?Park|1101 W 33rd", "venue": "Bailey Park", "city": "Central Austin", "surface": "grass" },
+          { "match": "Park", "venue": null, "city": "Austin", "surface": "grass" }
+        ],
+        "fallbackVenue": { "city": "Austin", "surface": null }
+      }
+    },
+    {
       "id": "chaparral-ice",
       "name": "Chaparral Ice",
       "adapter": "daysmart",
