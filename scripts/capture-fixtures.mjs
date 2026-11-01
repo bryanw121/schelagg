@@ -33,6 +33,8 @@ async function grab(name, url, init = {}) {
       out.nextFlight = [...body.matchAll(/self\.__next_f\.push\(\[1,"([\s\S]*?)"\]\)/g)].map((m) => m[1]).join('').length || undefined;
       out.apiUrls = [...new Set(body.match(/https?:\/\/[A-Za-z0-9.-]+\/(?:api|v\d|graphql|wp-json)[^"'\s<>\\)]*/g) || [])].slice(0, 60);
       out.scripts = [...new Set(body.match(/<script[^>]+src="([^"]+)"/g) || [])].slice(0, 30);
+      out.relLinks = [...new Set(body.match(/href="(\/[^"]{1,120})"/g) || [])].slice(0, 200);
+      out.quotedPaths = [...new Set(body.match(/['"](\/(?:programs|api|communities|sports|clubs|explore)[^'"\s]{0,100})['"]/g) || [])].slice(0, 200);
       out.meetCodes = [...new Set(body.match(/\/m\/[A-Za-z0-9]{5,8}\b/g) || [])].slice(0, 20);
       out.iframes = [...new Set(body.match(/<iframe[^>]+src="([^"]+)"/g) || [])];
       out.links = [...new Set(body.match(/href="(https?:\/\/[^"]+)"/g) || [])].filter((l) => /acuity|sweatpals|reclub|playbook|ics|calendar|schedule|register|book/i.test(l)).slice(0, 80);
@@ -44,38 +46,13 @@ async function grab(name, url, init = {}) {
   return out;
 }
 
-// Austin Velocity (WordPress) + Acuity Scheduling
-await grab('velocity-page', 'https://www.austinvelocity.com/rentals/adult-volleyball-2');
-await grab('velocity-pricing-page', 'https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym');
-await grab('velocity-wp-pages', 'https://www.austinvelocity.com/wp-json/wp/v2/pages?slug=adult-volleyball-2,fall-winter-adult-open-gym&_fields=id,slug,modified,link,title,content');
-await grab('velocity-robots', 'https://www.austinvelocity.com/robots.txt');
-await grab('velocity-highpoint-search', 'https://www.austinvelocity.com/wp-json/wp/v2/search?search=open%20gym&per_page=20');
-await grab('acuity-schedule-page', 'https://app.acuityscheduling.com/schedule.php?owner=19750684&appointmentType=99989782');
-await grab('acuity-classes', 'https://app.acuityscheduling.com/api/scheduling/v1/availability/classes?owner=19750684&appointmentTypeIds[]=99989782&startDate=2026-11-01&endDate=2027-01-31&timezone=America%2FChicago&includeUnavailable=true');
-await grab('acuity-dates', 'https://app.acuityscheduling.com/api/scheduling/v1/availability/dates?owner=19750684&appointmentTypeId=99989782&month=2026-11&timezone=America%2FChicago');
-await grab('acuity-types', 'https://app.acuityscheduling.com/api/scheduling/v1/appointment-types?owner=19750684');
-await grab('acuity-robots', 'https://app.acuityscheduling.com/robots.txt');
-await grab('acuity-catalog', 'https://app.acuityscheduling.com/schedule.php?owner=19750684');
 
-// Sweatpals (hosts with Austin volleyball)
-await grab('sweatpals-robots', 'https://sweatpals.com/robots.txt');
-await grab('sweatpals-host-atxbeach', 'https://sweatpals.com/host/ATXBeach');
-await grab('sweatpals-host-letsvolleyatx', 'https://sweatpals.com/host/letsvolleyatx');
-await grab('sweatpals-host-letsvolleyatx-schedule', 'https://sweatpals.com/host/letsvolleyatx/schedule');
-await grab('sweatpals-event-friday-lunch', 'https://sweatpals.com/event/friday-lunch-open-play/2026-11-06');
-await grab('sweatpals-event-sand-socials', 'https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play');
-await grab('sweatpals-event-rise-volley', 'https://sweatpals.com/event/rise-volley-sunday-drills-open-play-morning-series-4d6003/2026-11-08');
-await grab('sweatpals-discover-austin', 'https://sweatpals.com/s/austin/volleyball');
-
-// ACES on Playbook, and its WordPress API
-await grab('playbook-season-48903', 'https://acesintexas.playbookapi.com/programs/more_info/season/48903');
-await grab('playbook-root', 'https://acesintexas.playbookapi.com/');
-await grab('playbook-programs', 'https://acesintexas.playbookapi.com/programs/');
-await grab('playbook-robots', 'https://acesintexas.playbookapi.com/robots.txt');
-await grab('aces-wp-api', 'https://acesintexas.com/wp-json/wp/v2/pages?slug=wednesday-indoor-open-plays-volleyworld-pflugerville&_fields=id,slug,modified,content');
-
-// Reclub club found by search but not by discovery
-const club = await grab('reclub-club-capital-city-volleyball', 'https://reclub.co/clubs/@capital-city-volleyball');
-for (const code of [...new Set(club.meetCodes || [])].slice(0, 3)) {
-  await grab(`reclub-meet-${code.slice(3)}`, `https://reclub.co${code}`);
-}
+// Reclub public navigation: communities / sports pages that might list clubs by city
+await grab('reclub-home', 'https://reclub.co/');
+await grab('reclub-robots', 'https://reclub.co/robots.txt');
+await grab('reclub-sitemap', 'https://reclub.co/sitemap.xml');
+await grab('reclub-communities', 'https://reclub.co/communities');
+await grab('reclub-sports', 'https://reclub.co/sports');
+await grab('reclub-sports-volleyball', 'https://reclub.co/sports/volleyball');
+await grab('reclub-club-vex', 'https://reclub.co/clubs/@vex_volleyball');
+await grab('playbook-programs2', 'https://acesintexas.playbookapi.com/programs/');
