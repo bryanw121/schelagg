@@ -22,7 +22,7 @@ sessions and status untouched.
 | Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages | 1h; live via `/api/check` |
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
 | ATX Beach open play | TeamUp membership page | 6h |
-| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
+| Austin Velocity adult open gym (The Crossover) | Their adult page and the season page it links to, through WordPress's public REST API (no browser): each listed date within 14 days, else the season's weekly window, so it switches itself on/off | 1d |
 | Hand-checked sessions (Sand Social, Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
 | New Reclub clubs | `scripts/discover-reclub.mjs` (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Weekly |
 
@@ -218,7 +218,7 @@ or cmd; nothing needs bash. Optional settings go in a `.env` file (copy `.env.ex
 
 ```bash
 npm install
-npx playwright install chromium   # only needed for npm run scrape (ACES, ATX Beach, Velocity pages)
+npx playwright install chromium   # only needed for npm run scrape (ACES, ATX Beach pages)
 npm test                          # unit + integration tests (parsers, API handlers, scrape pipeline), all offline
 npm run test:e2e                  # the site in Chromium against server.js, with fixture data (needs playwright's chromium)
 npm run check:skedda              # checks the court calendars respond to a plain script
