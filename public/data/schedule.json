@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-01T15:13:45.141Z",
+  "generatedAt": "2026-11-01T15:43:40.335Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-01T15:13:30.930Z",
+      "checkedAt": "2026-11-01T15:43:29.235Z",
       "count": 13
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-01T15:13:30.932Z",
+      "checkedAt": "2026-11-01T15:43:29.237Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -40,7 +40,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-01T15:13:30.932Z",
+      "checkedAt": "2026-11-01T15:43:29.237Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -61,7 +61,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-01T15:13:30.935Z",
+      "checkedAt": "2026-11-01T15:43:29.238Z",
       "count": 31
     },
     {
@@ -71,7 +71,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-01T15:13:30.936Z",
+      "checkedAt": "2026-11-01T15:43:29.238Z",
       "count": 15
     }
   ],
