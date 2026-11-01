@@ -35,6 +35,9 @@ for (const slug of ['ptx-monday-indoor-open-plays-volleyworld-pflugerville', 'we
   await grab(`aces-${slug}.json`, `https://acesintexas.com/wp-json/wp/v2/pages?slug=${slug}&_fields=id,slug,modified,link,title,content`);
 }
 
+// Austin Velocity: its adult pages through WordPress's REST API (the hub page and the season page it links to).
+await grab('velocity-wp-pages.json', 'https://www.austinvelocity.com/wp-json/wp/v2/pages?slug=adult-volleyball-2,fall-winter-adult-open-gym&_fields=id,slug,modified,link,title,content');
+
 for (const club of ['vex_volleyball', 'austin-lawn-club']) {
   const { body } = await grab(`reclub-club-${club}.html`, `https://reclub.co/clubs/@${club}`);
   const links = [...new Set(body.match(/\/m\/[A-Za-z0-9]{5,8}/g) || [])].slice(0, 3);

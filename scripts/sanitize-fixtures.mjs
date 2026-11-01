@@ -106,6 +106,21 @@ export function sanitizeReclubClub(html) {
   return `<!doctype html>\n<html><head><meta charset="utf-8"></head><body>\n${codes.map((c) => `<a href="/m/${c}">${c}</a>`).join('\n')}\n</body></html>\n`;
 }
 
+// --- WordPress REST pages (Austin Velocity) -------------------------------------------------
+
+/**
+ * A WordPress `wp/v2/pages` response -> the page facts an adapter reads (slug, title, content),
+ * with emails, phone numbers and chat invite links scrubbed out of the content.
+ */
+export function sanitizeWpPages(json) {
+  const pages = Array.isArray(json) ? json : [];
+  return pages.map((p) => ({
+    id: p.id, slug: p.slug, modified: p.modified, link: p.link,
+    title: { rendered: scrubText(p.title?.rendered ?? '') },
+    content: { rendered: scrubText(p.content?.rendered ?? '').replace(/https?:\/\/(?:web\.)?groupme\.com\/join_group\/[^"'\s<]+/g, 'https://groupme.com/join_group/redacted') },
+  }));
+}
+
 // --- anything else --------------------------------------------------------------------------
 
 /** Last-resort scrub for free text (e.g. ACES WordPress pages): emails and phone numbers. */
@@ -118,6 +133,7 @@ export function sanitize(name, text) {
   if (name.startsWith('arketa-')) return JSON.stringify(sanitizeArketa(JSON.parse(text)), null, 1) + '\n';
   if (name.startsWith('reclub-meet-')) return sanitizeReclubMeet(text);
   if (name.startsWith('reclub-club-')) return sanitizeReclubClub(text);
+  if (name.endsWith('-wp-pages.json')) return JSON.stringify(sanitizeWpPages(JSON.parse(text)), null, 1) + '\n';
   return scrubText(text);
 }
 

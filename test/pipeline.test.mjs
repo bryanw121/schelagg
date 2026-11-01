@@ -19,6 +19,8 @@ const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, imp
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
 const REF = '2026-10-25';
 const { sources: SOURCES, manual: MANUAL } = loadSources();
+// Velocity's WordPress REST API: the captured pages, filtered to the slugs asked for.
+const velocityPages = (u) => JSON.stringify(JSON.parse(fixture('velocity-wp-pages.json')).filter((p) => (u.searchParams.get('slug') ?? '').split(',').includes(p.slug)));
 const ADAPTER_IDS = ['volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field'];
 const SPORT_OF = { 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating' }; // everything else: volleyball
 const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
@@ -49,8 +51,6 @@ const PAGE_TEXT = {
     'Wednesday Open Play\nOpen Play Start: Wednesday, Oct. 28\nOpen Play Time: 7:30 to 10:00 p.m.\nIndoor Pricing (individual) : $ 6\nDoor Pricing: $10',
   'https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/':
     'Standard Open Play is 7 AM-6 PM Monday thru Friday.\nIncludes access to $20 Friday Night Open Play & Pizza from 7 PM-11 PM, plus any other Special Open Play Sessions announced.',
-  'https://www.austinvelocity.com/rentals/adult-volleyball-2':
-    'Adult Open Play Volleyball\nSeason Dates: October 1 – December 18, 2026\nWednesday Open Play\nTime: 8PM – Midnight\nLevel: Beginner & Intermediate\nFriday Open Play\nTime: 8PM – Midnight\nLevel: Intermediate & Advanced',
 };
 
 /** Enough of Playwright's Browser for the adapters: newPage().goto/locator/innerText/title/close. */
@@ -107,6 +107,7 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
       return MEETS[code] ? res(fixture(MEETS[code])) : res('Not found', 404); // 2O9PDP has no fixture
     }
     if (u.hostname === 'apps.daysmartrecreation.com') return res(daysmartEvents(fixture, u.searchParams.get('company')));
+    if (u.hostname === 'www.austinvelocity.com') return res(velocityPages(u));
     if (u.hostname === 'example.test') {
       if (u.pathname === '/broken') return res('oops', 500);
       return res(pages[u.pathname] ?? '<html><body><h1>Sunday Sand Social</h1><p>7pm, $10</p><script>var t=1</script></body></html>');
@@ -246,8 +247,8 @@ test('scrape pipeline: occurrences.json is the documented feed', async () => {
   // Weekly sessions expand to each matching date: Sundays from Oct 25 through Nov 22.
   assert.deepEqual(feed.occurrences.filter((o) => o.session_id === 'manual-sand-sun').map((o) => o.id),
     ['2026-10-25', '2026-11-01', '2026-11-08', '2026-11-15', '2026-11-22'].map((d) => `manual-sand-sun-${d}`));
-  // Velocity's season ends Dec 18, so its Wednesday/Friday nights are in the feed.
-  assert.ok(feed.occurrences.some((o) => o.source_id === 'velocity'));
+  // Velocity's Sunday season starts Nov 15, beyond the 14-day schedule, so it's a weekly window for now: Nov 15 and 22.
+  assert.deepEqual(feed.occurrences.filter((o) => o.source_id === 'velocity').map((o) => o.id), ['velocity-sun-2026-11-15', 'velocity-sun-2026-11-22']);
 });
 
 test('scrape pipeline: the same inputs give byte-identical output', async () => {
@@ -316,7 +317,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'reclub', 'chaparral-ice', 'ice-and-field']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));
