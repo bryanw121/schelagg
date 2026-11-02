@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T02:43:13.471Z",
+  "generatedAt": "2026-11-02T03:13:27.213Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T02:28:27.756Z",
+      "checkedAt": "2026-11-02T03:13:13.895Z",
       "count": 13
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-02T02:43:12.292Z",
+      "checkedAt": "2026-11-02T03:13:13.897Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -50,7 +50,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-02T01:55:50.716Z",
+      "checkedAt": "2026-11-02T03:13:13.897Z",
       "count": 5
     },
     {
@@ -60,7 +60,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T02:28:27.758Z",
+      "checkedAt": "2026-11-02T03:13:13.897Z",
       "count": 31
     },
     {
@@ -70,7 +70,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T02:28:27.758Z",
+      "checkedAt": "2026-11-02T03:13:13.898Z",
       "count": 15
     }
   ],
@@ -86,6 +86,7 @@
       "surface": "indoor",
       "type": "Training",
       "level": "Adults · Adan",
+      "full": true,
       "capacity": 12,
       "spotsLeft": 12,
       "classId": "i7ciBk6TREpgQqzEoDhW",
