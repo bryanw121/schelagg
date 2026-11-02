@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T16:43:36.987Z",
+  "generatedAt": "2026-11-02T17:13:48.572Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -13,9 +13,10 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "30m",
-      "ok": true,
-      "checkedAt": "2026-11-02T16:43:22.683Z",
-      "count": 12
+      "ok": false,
+      "checkedAt": "2026-11-02T17:13:17.312Z",
+      "error": "The operation was aborted due to timeout",
+      "kept": 12
     },
     {
       "id": "aces",
@@ -24,7 +25,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-02T16:43:22.684Z",
+      "checkedAt": "2026-11-02T17:13:17.313Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -55,7 +56,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-02T16:13:15.474Z",
+      "checkedAt": "2026-11-02T17:13:17.313Z",
       "count": 5
     },
     {
@@ -65,7 +66,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T16:43:22.685Z",
+      "checkedAt": "2026-11-02T17:13:17.313Z",
       "count": 33
     },
     {
@@ -75,7 +76,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T16:43:22.685Z",
+      "checkedAt": "2026-11-02T17:13:17.313Z",
       "count": 15
     }
   ],
@@ -105,6 +106,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -132,6 +134,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -159,6 +162,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -186,6 +190,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-pflugerville",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -213,6 +218,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-pflugerville",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -240,6 +246,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -267,6 +274,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -294,6 +302,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -321,6 +330,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -348,6 +358,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-pflugerville",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -375,6 +386,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-pflugerville",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
@@ -402,6 +414,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-02",
       "venueId": "volleyworld-georgetown",
+      "checkFailed": "2026-11-02",
       "status": "scheduled"
     },
     {
