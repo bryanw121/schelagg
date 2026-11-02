@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 159
+      "failStreak": 160
     },
     "atxbeach": {
       "counts": [
@@ -126,29 +126,28 @@
         2,
         2,
         2,
-        2
+        8
       ],
-      "sessions": 2,
+      "sessions": 8,
       "coverage": {
         "end": 1,
-        "price": 0,
+        "price": 1,
         "level": 1,
         "venue": 1,
         "city": 1,
         "surface": 1,
         "type": 1,
-        "capacity": 0,
+        "capacity": 1,
         "spotsLeft": 0,
         "signup": 1
       },
-      "contentHash": "b1759aec2c755ca9",
-      "failStreak": 78
+      "contentHash": "aac23a55d895318e"
     },
     "reclub": {
       "counts": [
+        6,
+        6,
         5,
-        6,
-        6,
         5,
         5,
         5,
@@ -465,6 +464,6 @@
     "manual:hanovers-open:unverified",
     "manual:ssc-crossover-mon-sand:changed:2026-11-01",
     "manual:ssc-crossover-mon-sand:unverified",
-    "velocity:failing"
+    "velocity:content:aac23a55d895318e"
   ]
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T01:43:42.601Z",
+  "generatedAt": "2026-11-02T01:56:08.597Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T01:43:31.376Z",
+      "checkedAt": "2026-11-02T01:55:50.710Z",
       "count": 13
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-02T01:43:31.378Z",
+      "checkedAt": "2026-11-02T01:55:50.714Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -30,7 +30,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-02T00:13:35.411Z",
+      "checkedAt": "2026-11-02T01:55:50.714Z",
       "count": 2
     },
     {
@@ -39,10 +39,9 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "1d",
-      "ok": false,
-      "checkedAt": "2026-11-02T01:43:31.379Z",
-      "error": "Season dates not found on Velocity adult page",
-      "kept": 2
+      "ok": true,
+      "checkedAt": "2026-11-02T01:55:50.716Z",
+      "count": 8
     },
     {
       "id": "reclub",
@@ -51,7 +50,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-02T01:13:26.092Z",
+      "checkedAt": "2026-11-02T01:55:50.716Z",
       "count": 5
     },
     {
@@ -61,7 +60,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T01:43:31.380Z",
+      "checkedAt": "2026-11-02T01:55:50.719Z",
       "count": 31
     },
     {
@@ -71,7 +70,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T01:43:31.380Z",
+      "checkedAt": "2026-11-02T01:55:50.746Z",
       "count": 15
     }
   ],
@@ -489,63 +488,30 @@
       "status": "scheduled"
     },
     {
-      "id": "velocity-wed",
-      "days": [
-        "Wed"
-      ],
-      "start": "20:00",
-      "end": "24:00",
-      "title": "Austin Velocity Open Play",
+      "start": "17:00",
+      "end": "20:00",
+      "title": "Austin Velocity Adult Open Gym",
       "venue": "The Crossover",
       "city": "Cedar Park",
       "surface": "indoor",
       "type": "Open play",
-      "level": "Beginner & Intermediate",
-      "startsOn": "2026-05-20",
-      "validUntil": "2026-08-14",
-      "note": "Updates post on Instagram @austinvelocityadults.",
+      "level": "Ages 17+ · competitive, self-called",
+      "price": "$10 online · $12 door",
+      "capacity": 42,
+      "note": "Season pass or drop in. Updates post on Instagram @austinvelocityadults.",
       "signup": {
-        "url": "https://www.instagram.com/austinvelocityadults/",
-        "label": "Check Instagram for signup"
+        "url": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
+        "label": "Book on Austin Velocity"
       },
-      "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
+      "source": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
+      "id": "velocity-2026-11-15",
+      "date": "2026-11-15",
       "sourceId": "velocity",
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-30",
+      "verifiedAt": "2026-11-01",
       "venueId": "crossover",
-      "checkFailed": "2026-11-01",
-      "status": "scheduled"
-    },
-    {
-      "id": "velocity-fri",
-      "days": [
-        "Fri"
-      ],
-      "start": "20:00",
-      "end": "24:00",
-      "title": "Austin Velocity Open Play",
-      "venue": "The Crossover",
-      "city": "Cedar Park",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "Intermediate & Advanced",
-      "startsOn": "2026-05-20",
-      "validUntil": "2026-08-14",
-      "note": "Updates post on Instagram @austinvelocityadults.",
-      "signup": {
-        "url": "https://www.instagram.com/austinvelocityadults/",
-        "label": "Check Instagram for signup"
-      },
-      "source": "https://www.austinvelocity.com/rentals/adult-volleyball-2",
-      "sourceId": "velocity",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-10-30",
-      "venueId": "crossover",
-      "checkFailed": "2026-11-01",
       "status": "scheduled"
     },
     {
