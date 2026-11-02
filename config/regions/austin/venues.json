@@ -152,6 +152,98 @@
       "googlePlaceId": null,
       "lat": null,
       "lng": null
+    },
+    {
+      "id": "pickleball-courts-sun-city",
+      "name": "Pickleball Courts Sun City",
+      "city": "Georgetown",
+      "aliases": [],
+      "sports": [
+        "pickleball"
+      ],
+      "osm": "node/12026567769",
+      "googlePlaceId": null,
+      "lat": 30.730933,
+      "lng": -97.770105,
+      "website": null,
+      "indoor": true,
+      "schedule": {
+        "surface": "unknown"
+      }
+    },
+    {
+      "id": "the-picklr-austin-oak-hill",
+      "name": "The Picklr Austin Oak Hill",
+      "city": "Austin",
+      "aliases": [],
+      "sports": [
+        "pickleball"
+      ],
+      "osm": "node/13981094813",
+      "googlePlaceId": null,
+      "lat": 30.234947,
+      "lng": -97.878578,
+      "website": "https://thepicklr.com/location/oakhill/",
+      "schedule": {
+        "surface": "website"
+      }
+    },
+    {
+      "id": "austin-tennis-center",
+      "name": "Austin Tennis Center",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "pickleball"
+      ],
+      "osm": "way/1164871073",
+      "googlePlaceId": null,
+      "lat": 30.312618,
+      "lng": -97.63844,
+      "website": "https://www.playatctennis.com/pages/index.cfm?siteid=21588",
+      "indoor": true,
+      "schedule": {
+        "surface": "website"
+      }
+    },
+    {
+      "id": "austin-pickle-ranch",
+      "name": "Austin Pickle Ranch",
+      "city": "Austin",
+      "aliases": [],
+      "sports": [
+        "pickleball"
+      ],
+      "osm": "way/1271658860",
+      "googlePlaceId": null,
+      "lat": 30.276272,
+      "lng": -97.765952,
+      "website": "https://www.austinpickleranch.com/",
+      "indoor": true,
+      "access": "fee",
+      "schedule": {
+        "surface": "login_only",
+        "platform": "podplay",
+        "url": "https://austinpickleranch.podplay.app/book"
+      }
+    },
+    {
+      "id": "pickleball-courts",
+      "name": "Pickleball Courts",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "pickleball"
+      ],
+      "osm": "way/1537473376",
+      "googlePlaceId": null,
+      "lat": 30.600963,
+      "lng": -97.771753,
+      "website": null,
+      "indoor": false,
+      "schedule": {
+        "surface": "unknown"
+      }
     }
   ]
 }
