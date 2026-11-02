@@ -152,6 +152,173 @@
       "googlePlaceId": null,
       "lat": null,
       "lng": null
+    },
+    {
+      "id": "zilker-park-sand-vollyball-courts",
+      "name": "Zilker Park Sand Vollyball Courts",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/37749182",
+      "googlePlaceId": null,
+      "lat": 30.268806,
+      "lng": -97.76845,
+      "website": null,
+      "indoor": false,
+      "schedule": {
+        "surface": "unknown"
+      }
+    },
+    {
+      "id": "austin-sports-center",
+      "name": "Austin Sports Center",
+      "city": "Austin",
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/188591602",
+      "googlePlaceId": null,
+      "lat": 30.226981,
+      "lng": -97.755855,
+      "website": "https://www.austinsportscenter.com",
+      "indoor": true,
+      "access": "fee",
+      "schedule": {
+        "surface": "website"
+      }
+    },
+    {
+      "id": "westlake-athletic-community-center-wacc",
+      "name": "Westlake Athletic & Community Center (WACC)",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/383350251",
+      "googlePlaceId": null,
+      "lat": 30.278153,
+      "lng": -97.817488,
+      "website": "https://www.wacctexas.com/",
+      "indoor": true,
+      "schedule": {
+        "surface": "website"
+      }
+    },
+    {
+      "id": "falcon-pointe-sand-volleyball-court",
+      "name": "Falcon Pointe Sand Volleyball Court",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/726342996",
+      "googlePlaceId": null,
+      "lat": 30.464838,
+      "lng": -97.582227,
+      "website": null,
+      "indoor": false,
+      "access": "yes",
+      "schedule": {
+        "surface": "unknown"
+      }
+    },
+    {
+      "id": "volente-beach-resort-waterpark",
+      "name": "Volente Beach Resort & Waterpark",
+      "city": "Leander",
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/866487882",
+      "googlePlaceId": null,
+      "lat": 30.441403,
+      "lng": -97.912908,
+      "website": "https://volentebeach.com",
+      "schedule": {
+        "surface": "website"
+      }
+    },
+    {
+      "id": "moontower-beach-volleyball-court",
+      "name": "Moontower Beach Volleyball Court",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/906953608",
+      "googlePlaceId": null,
+      "lat": 30.169768,
+      "lng": -97.826611,
+      "website": null,
+      "indoor": false,
+      "schedule": {
+        "surface": "unknown"
+      }
+    },
+    {
+      "id": "sand-volleyball",
+      "name": "Sand Volleyball",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/919609007",
+      "googlePlaceId": null,
+      "lat": 30.492864,
+      "lng": -97.807434,
+      "website": null,
+      "indoor": false,
+      "lit": false,
+      "schedule": {
+        "surface": "unknown"
+      }
+    },
+    {
+      "id": "sand-volleyball-way-919609009",
+      "name": "Sand Volleyball",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/919609009",
+      "googlePlaceId": null,
+      "lat": 30.493084,
+      "lng": -97.807961,
+      "website": null,
+      "indoor": false,
+      "lit": false,
+      "schedule": {
+        "surface": "unknown"
+      }
+    },
+    {
+      "id": "balkan-cafe-s-beach-volleyball-court",
+      "name": "Balkan Cafe's Beach Volleyball Court",
+      "city": null,
+      "aliases": [],
+      "sports": [
+        "volleyball"
+      ],
+      "osm": "way/929008891",
+      "googlePlaceId": null,
+      "lat": 30.388175,
+      "lng": -97.684403,
+      "website": null,
+      "indoor": false,
+      "lit": true,
+      "access": "customers",
+      "schedule": {
+        "surface": "unknown"
+      }
     }
   ]
 }
