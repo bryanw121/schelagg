@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T00:44:00.843Z",
+  "generatedAt": "2026-11-02T01:13:41.095Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T00:43:49.064Z",
+      "checkedAt": "2026-11-02T01:13:26.089Z",
       "count": 13
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-02T00:43:49.069Z",
+      "checkedAt": "2026-11-02T01:13:26.091Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -45,7 +45,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-02T00:43:49.069Z",
+      "checkedAt": "2026-11-02T01:13:26.091Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -56,7 +56,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-02T00:13:35.414Z",
+      "checkedAt": "2026-11-02T01:13:26.092Z",
       "count": 5
     },
     {
@@ -66,7 +66,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T00:43:49.070Z",
+      "checkedAt": "2026-11-02T01:13:26.092Z",
       "count": 31
     },
     {
@@ -76,7 +76,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T00:43:49.070Z",
+      "checkedAt": "2026-11-02T01:13:26.092Z",
       "count": 15
     }
   ],
