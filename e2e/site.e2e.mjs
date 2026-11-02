@@ -85,10 +85,10 @@ after(async () => {
 });
 
 /** A fresh page (own localStorage) with data answered by `data` and the clock fixed. */
-async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, url = '/' } = {}) {
-  context = await browser.newContext({ timezoneId: 'America/Los_Angeles', locale: 'en-US' }); // viewer elsewhere: the page still shows Austin time
+async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK } = {}) {
+  context = await browser.newContext({ timezoneId, locale: 'en-US' }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
-  await page.clock.setFixedTime(CLOCK);
+  await page.clock.setFixedTime(clock);
   apiCalls = [];
   await page.route('**/*', (route) => {
     const u = new URL(route.request().url());
@@ -327,6 +327,21 @@ test('site: with one region the city is a plain label, not a menu', async () => 
   assert.equal(await page.locator('#regionName').textContent(), 'Austin, TX');
   assert.equal(new URL(page.url()).searchParams.get('region'), null);
   assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /\/data\/regions\/austin\/volleyball\.ics$/);
+});
+
+test('site: a viewer a day ahead (Tokyo) still gets Austin\'s today and its sessions', async () => {
+  // 5pm Sunday in Austin is already 7am Monday in Tokyo.
+  await open({ timezoneId: 'Asia/Tokyo' });
+  assert.equal(await page.locator('#dayTitle').textContent(), 'Today · Sunday, Oct 25');
+  assert.ok((await titles()).includes('Sunday Sand Social'));
+  assert.ok(!(await titles()).includes('Monday Night Training'));
+});
+
+test('site: on the night clocks go back, 7:30pm CST is still Sunday Nov 1 in Austin', async () => {
+  // 01:30Z on Nov 2 is 7:30pm CST (UTC−6) on Nov 1; with last week's −5 it would read 8:30pm.
+  await open({ clock: new Date('2026-11-02T01:30:00Z'), timezoneId: 'UTC' });
+  assert.equal(await page.locator('#dayTitle').textContent(), 'Today · Sunday, Nov 1');
+  assert.ok((await titles()).includes('Sunday Sand Social')); // weekly, 7–10pm: still on
 });
 
 test('site: the day picker switches to other days of the week', async () => {
