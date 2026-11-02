@@ -119,7 +119,76 @@ const titles = () => page.locator('#list .row .title').allTextContents();
 const row = (title) => page.locator('#list .row', { has: page.locator('.title', { hasText: title }) });
 const tab = (k) => page.locator(`#tabs [data-tab="${k}"]`);
 
+const PICKLE_SCHEDULE = { ...SCHEDULE, venues: [{ id: 'rec', name: 'Example Rec Center', address: '123 Main St, Suite A & B, Austin, TX 78701' }], sessions: [
+  ...SESSIONS,
+  { ...base, sport: 'pickleball', id: 'pickle-indoor', sourceId: 'manual', venueId: 'rec', venue: 'Example Rec Center', city: 'Austin',
+    title: 'Indoor pickleball', type: 'Open play', surface: 'indoor', days: ['Sun'], start: '10:00', end: '12:00',
+    startsOn: TODAY, validUntil: TODAY, source: `${SIGNUP}/pickle`, signup: { url: `${SIGNUP}/pickle`, label: 'Venue details' } },
+  { ...base, sport: 'pickleball', id: 'pickle-outdoor', sourceId: 'manual', venue: 'Example Park', city: 'Austin',
+    title: 'Outdoor pickleball', type: 'Open play', surface: 'outdoor', date: TODAY, start: '16:00', end: '18:00', source: `${SIGNUP}/pickle-park` },
+] };
+
+test('site: pickleball deep link, filters, directions and copy address keep sports separate', async () => {
+  await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball' });
+  assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']);
+  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All2', 'Indoor1', 'Outdoor1']);
+  assert.equal(await page.locator('#courtsCard').isHidden(), true);
+  assert.equal(await page.locator('#cal .g-group', { hasText: 'Treehouse' }).count(), 0);
+  assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /pickleball\.ics$/);
+  assert.match(await page.locator('#sourceStatus').textContent(), /hand-checked/);
+  const indoor = row('Indoor pickleball');
+  const google = new URL(await indoor.getByRole('link', { name: 'Google Maps' }).getAttribute('href'));
+  assert.equal(google.searchParams.get('destination'), 'Example Rec Center, 123 Main St, Suite A & B, Austin, TX 78701');
+  const apple = new URL(await indoor.getByRole('link', { name: 'Apple Maps' }).getAttribute('href'));
+  assert.equal(apple.searchParams.get('destination'), google.searchParams.get('destination'));
+  assert.equal(await row('Outdoor pickleball').locator('.location').count(), 0, 'no guessed address');
+  await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async (text) => { window.copiedAddress = text; } } }));
+  await indoor.getByRole('button', { name: 'Copy address' }).click();
+  await indoor.getByRole('status').filter({ hasText: 'Address copied' }).waitFor();
+  assert.equal(await page.evaluate(() => window.copiedAddress), '123 Main St, Suite A & B, Austin, TX 78701');
+  await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('denied'); }; });
+  await indoor.getByRole('button', { name: 'Copy address' }).click();
+  await indoor.getByRole('status').filter({ hasText: 'Could not copy' }).waitFor();
+  await tab('outdoor').click();
+  assert.deepEqual(await titles(), ['Outdoor pickleball']);
+  await page.reload();
+  await row('Outdoor pickleball').waitFor();
+  assert.equal(await tab('outdoor').getAttribute('aria-pressed'), 'true');
+  await page.locator('#days .day').nth(1).click();
+  assert.match(await page.locator('#list .empty').textContent(), /No confirmed outdoor open-play sessions/);
+  assert.doesNotMatch(await page.locator('#list .empty').textContent(), /Rinks|Courts open to rent/);
+  await page.locator('[data-sport="volleyball"]').click();
+  assert.ok(!(await titles()).some((t) => t.includes('pickleball')));
+});
+
+test('site: bounded pickleball recurrence disappears after the review date', async () => {
+  await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball', clock: new Date('2026-11-01T18:00:00Z') });
+  assert.equal(await rows().count(), 0);
+  assert.match(await page.locator('#list .empty').textContent(), /open-play sessions/);
+});
+
 // --- tests --------------------------------------------------------------------------------
+
+test('site: external pickleball calendars are separate from sessions and source warnings remain visible', async () => {
+  const schedule = { ...PICKLE_SCHEDULE,
+    sources: [...SCHEDULE.sources, { id: 'city', name: 'City pickleball', sport: 'pickleball', ok: true, count: 2,
+      checkedAt: CLOCK.toISOString(), warnings: ['Example venue: source block changed; withheld until reviewed'] }],
+    sessions: PICKLE_SCHEDULE.sessions.map((s) => s.sport === 'pickleball' ? { ...s, sourceId: 'city', scheduleBasis: 'published_recurring_hours' } : s),
+    venues: [...PICKLE_SCHEDULE.venues, { id: 'club', name: 'Example Club', city: 'Austin', address: '456 Main St, Austin, TX 78701',
+      calendarLink: { sport: 'pickleball', url: `${SIGNUP}/club`, note: 'Check skill eligibility and registration.' } }],
+  };
+  await open({ schedule, url: '/?sport=pickleball' });
+  assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']);
+  assert.equal(await row('Indoor pickleball').locator('.pill').textContent(), 'Hours checked today');
+  assert.equal(await row('Outdoor pickleball').locator('.pill').textContent(), 'Scheduled now');
+  assert.equal(await page.locator('#venueCalendarsCard').isVisible(), true);
+  assert.equal(await page.locator('#venueCalendars a', { hasText: 'View venue calendar' }).getAttribute('href'), `${SIGNUP}/club`);
+  assert.match(await page.locator('#sourceList').textContent(), /withheld until reviewed/);
+  await page.setViewportSize({ width: 375, height: 812 });
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'mobile page fits viewport');
+  await page.locator('[data-sport="volleyball"]').click();
+  assert.equal(await page.locator('#venueCalendarsCard').isHidden(), true);
+});
 
 test('site: today\'s schedule renders in Austin time with freshness labels and sign-up links', async () => {
   await open();

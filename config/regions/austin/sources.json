@@ -193,6 +193,57 @@
         },
         "source": "https://apps.daysmartrecreation.com/dash/x/#/online/iceandfield/calendar?location=1"
       }
+    },
+    {
+      "id": "austin-city-pickleball",
+      "name": "Austin Parks pickleball",
+      "adapter": "austin-pickleball",
+      "sport": "pickleball",
+      "cadence": "1d",
+      "options": {
+        "horizonDays": 7,
+        "reviewedThrough": "2026-11-30",
+        "excludeDates": [
+          "2026-11-11",
+          "2026-11-26",
+          "2026-11-27"
+        ],
+        "_review": "Checked Nov 2, 2026. This is an editorial review deadline, not a season. Official city holidays withheld pending venue confirmation: https://www.austintexas.gov/human-resources/official-city-holidays . Hashes are of normalized venue blocks; re-review source and venue pages before updating.",
+        "venues": [
+          {
+            "id": "austin-alamo-rec",
+            "venue": "Alamo Recreation Center",
+            "surface": "outdoor",
+            "url": "https://www.austintexas.gov/parks/alamo-recreation-center",
+            "reviewedHash": "8e44511ba38e2645",
+            "note": "Covered outdoor pavilion with temporary court markers."
+          },
+          {
+            "id": "austin-dottie-jordan-rec",
+            "venue": "Dottie Jordan Recreation Center",
+            "surface": "outdoor",
+            "url": "https://www.austintexas.gov/parks/dottie-jordan-recreation-center",
+            "reviewedHash": "9f2393e995460d11",
+            "note": "Outdoor tennis courts. Equipment checkout ends at 6pm, before play ends."
+          },
+          {
+            "id": "austin-montopolis-rec",
+            "venue": "Montopolis Recreation and Community Center",
+            "surface": "indoor",
+            "url": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center",
+            "reviewedHash": "b63201240856684f",
+            "note": "Two pickleball courts in the multi-purpose gym."
+          },
+          {
+            "id": "austin-northwest-rec",
+            "venue": "Northwest Recreation Center",
+            "surface": "indoor",
+            "url": "https://www.austintexas.gov/parks/locations/northwest-recreation-center",
+            "reviewedHash": "9f40bd6b20727a98",
+            "note": "Three pickleball courts in the multi-purpose gym."
+          }
+        ]
+      }
     }
   ],
   "manual": {

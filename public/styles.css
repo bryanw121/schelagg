@@ -25,6 +25,11 @@
   --ok:#4cc483; --warn:#e0a83a; --bad:#ef7b70; --changed:#b294f0; --dim:#7f8d9a; color-scheme:dark}
 
 *{box-sizing:border-box}
+.location{color:var(--muted);font-size:13px;margin:4px 0 8px;overflow-wrap:anywhere}
+.copy-address{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:underline}
+.copy-status{font-size:12px}
+.venue-calendar{padding:12px 0;border-top:1px solid var(--line)}
+.venue-calendar:first-child{border-top:0}
 html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--body);margin:0}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}

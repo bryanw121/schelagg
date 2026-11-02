@@ -19,8 +19,8 @@ const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, imp
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
 const REF = '2026-10-25';
 const { sources: SOURCES, manual: MANUAL } = loadSources();
-const ADAPTER_IDS = ['volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field'];
-const SPORT_OF = { 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating' }; // everything else: volleyball
+const ADAPTER_IDS = ['volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball'];
+const SPORT_OF = { 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball' }; // everything else: volleyball
 const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
 // DaySmart's events API for the rink sources: one page per company (paging is covered in daysmart.test.mjs).
 const daysmartEvents = (fixture, company) => {
@@ -107,6 +107,7 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
       return MEETS[code] ? res(fixture(MEETS[code])) : res('Not found', 404); // 2O9PDP has no fixture
     }
     if (u.hostname === 'apps.daysmartrecreation.com') return res(daysmartEvents(fixture, u.searchParams.get('company')));
+    if (u.hostname === 'www.austintexas.gov') return res(fixture('austin-pickleball.html'));
     if (u.hostname === 'example.test') {
       if (u.pathname === '/broken') return res('oops', 500);
       return res(pages[u.pathname] ?? '<html><body><h1>Sunday Sand Social</h1><p>7pm, $10</p><script>var t=1</script></body></html>');
@@ -316,7 +317,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'reclub', 'chaparral-ice', 'ice-and-field']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));

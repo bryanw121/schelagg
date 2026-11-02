@@ -3,6 +3,20 @@
 Where to play volleyball in Austin: open play, adult training, leagues and Reclub meets, split into indoor / sand / grass,
 plus court availability at High Point, The Crossover and Roots' Treehouse Gym. Every session links to its sign-up.
 Also public ice skating (the site's sport switcher; `?sport=ice_skating` links straight to it).
+Austin pickleball open play is available at `?sport=pickleball`, with indoor/outdoor filters,
+venue addresses, Google/Apple directions and copy-address controls.
+
+### Austin pickleball pilot
+
+The city adapter checks four reviewed recreation centers daily: Alamo, Dottie Jordan,
+Montopolis and Northwest. It generates seven days of dated sessions from published open-play
+programs, not court rentals, park opening hours or live capacity. Changed venue blocks are
+withheld until reviewed. See [source review](docs/austin-pickleball.md).
+The pilot has a November 30, 2026 editorial review deadline and excludes official city holidays
+pending venue confirmation. Successful fetches never extend the review deadline. Club calendar
+links for Austin Pickle Ranch and Eastside are shown separately from actual sessions.
+The ordinary scrape publishes pickleball in the regional index, occurrence feed and `.ics` calendar.
+No new API key or database migration is required. Courts remain volleyball-only in this pilot.
 
 Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional extras are a Postgres database on Neon
 (see [Database (Neon)](#database-neon)) and the Vercel API.
@@ -23,6 +37,7 @@ sessions and status untouched.
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
 | ATX Beach open play | TeamUp membership page | 6h |
 | Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
+| Austin city pickleball | Reviewed recreation-center blocks on the city's public page; bounded dated sessions and holiday holds | 1d |
 | Hand-checked sessions (Sand Social, Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
 | New Reclub clubs | `scripts/discover-reclub.mjs` (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Weekly |
 

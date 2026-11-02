@@ -366,6 +366,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
   const network = async (url) => {
     const u = new URL(String(url));
     if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return new Response(fixture('arketa-volleyworld-schedule.json'));
+    if (u.hostname === 'www.austintexas.gov') return new Response(fixture('austin-pickleball.html'));
     if (u.hostname === 'apps.daysmartrecreation.com') {
       // One page per company here; paging is covered in daysmart.test.mjs.
       if (u.searchParams.get('company') === 'iceandfield') return new Response(fixture('daysmart-iceandfield-events.json'));
@@ -399,7 +400,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
     const published = await loadPublishedFromDb(db);
     assert.deepEqual(new Map(schedule.sessions.map((s) => [s.id, s])), published);
     // Each sport's query returns exactly that sport's part of the feed.
-    for (const sport of ['volleyball', 'ice_skating']) {
+    for (const sport of ['volleyball', 'ice_skating', 'pickleball']) {
       const q = await queryOccurrences(db, { sport, region: 'austin', from: '2026-10-25', to: '2026-11-30' });
       assert.ok(q.occurrences.length > 0, sport);
       assert.deepEqual(q.occurrences, feed.occurrences.filter((o) => o.sport === sport), sport);

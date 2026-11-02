@@ -2,6 +2,88 @@
   "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates come from OSM.",
   "venues": [
     {
+      "id": "austin-pickle-ranch",
+      "name": "Austin Pickle Ranch",
+      "city": "Austin",
+      "address": "11000 Middle Fiskville Rd, Building B, Austin, TX 78753",
+      "addressSource": "https://austinpickleranch.com/",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://austinpickleranch.podplay.app/community/events?level=Casual&tag=Open+Play",
+        "note": "Open play varies by skill level. Check registration, rating requirements and prices on the venue calendar; availability is not tracked here."
+      }
+    },
+    {
+      "id": "austin-eastside-paddle",
+      "name": "Eastside Paddle Club",
+      "city": "Austin",
+      "address": "979 Springdale Rd, Suite 120, Austin, TX 78702",
+      "addressSource": "https://eastsidepaddleclub.com/openplay",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://espc.podplay.app/community/events",
+        "note": "Open play includes skill and rating restrictions. Registration requires an account; check the venue calendar for session times and remaining spots."
+      }
+    },
+    {
+      "id": "austin-alamo-rec",
+      "name": "Alamo Recreation Center",
+      "address": "2100 Alamo St, Austin, TX 78722",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "addressSource": "https://www.austintexas.gov/parks/alamo-recreation-center"
+    },
+    {
+      "id": "austin-dottie-jordan-rec",
+      "name": "Dottie Jordan Recreation Center",
+      "address": "2803 Loyola Lane, Austin, TX 78723",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "addressSource": "https://www.austintexas.gov/parks/dottie-jordan-recreation-center"
+    },
+    {
+      "id": "austin-montopolis-rec",
+      "name": "Montopolis Recreation and Community Center",
+      "address": "1200 Montopolis Dr, Austin, TX 78741",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "addressSource": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center"
+    },
+    {
+      "id": "austin-northwest-rec",
+      "name": "Northwest Recreation Center",
+      "address": "2913 Northland Dr, Austin, TX 78757",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "addressSource": "https://www.austintexas.gov/parks/locations/northwest-recreation-center"
+    },
+    {
       "id": "volleyworld-georgetown",
       "name": "Volleyworld (Georgetown)",
       "city": "Georgetown",

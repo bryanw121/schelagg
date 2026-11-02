@@ -21,6 +21,14 @@ const SPORTS = {
     label: 'Ice skating', group: 'Public skate', courts: false, noun: 'public skate sessions',
     by: null, tabs: {}, color: 'var(--rink)',
     footer: 'Rinks close for hockey and events; tap “Source” before you drive out.',
+    empty: 'Rinks post public skate a week or two ahead; check another day.',
+  },
+  pickleball: {
+    label: 'Pickleball', group: 'Open play', courts: false, noun: 'open-play sessions',
+    by: 'surface',
+    tabs: { indoor: { label: 'Indoor', c: 'var(--indoor)' }, outdoor: { label: 'Outdoor', c: 'var(--grass)' } },
+    footer: 'Published recurring hours; confirm changes, holidays and access with the venue before you go.',
+    empty: 'Try another day or surface. Only source-checked open play is listed; court rentals and general park hours are not scheduled sessions.',
   },
 };
 const sportOf = (x) => (SPORTS[x.sport] ? x.sport : 'volleyball');
@@ -109,7 +117,9 @@ function freshness(x, iso) {
   if (x.checkFailed) return { k: 'changed', l: "Couldn't recheck" };
   if (x.sourceChanged) return { k: 'changed', l: 'Source changed' };
   const age = Math.max(0, Math.round((dateObj(NOW.iso) - dateObj(x.verifiedAt)) / 864e5));
-  if (age <= 7) return { k: 'fresh', l: age === 0 ? 'Verified today' : `Verified ${age}d ago` };
+  if (age <= 7) return { k: 'fresh', l: x.scheduleBasis === 'published_recurring_hours'
+    ? (age === 0 ? 'Hours checked today' : `Hours checked ${age}d ago`)
+    : (age === 0 ? 'Verified today' : `Verified ${age}d ago`) };
   if (age <= 21) return { k: 'aging', l: `Verified ${age}d ago` };
   return { k: 'stale', l: `Stale · ${age}d` };
 }
@@ -129,6 +139,17 @@ function signupHtml(x) {
   if (s.url && !s.dropIn) return `<a class="signup" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label || 'Sign up')} ↗</a>`;
   if (s.url) return `<span class="dropin">${esc(s.label || 'Drop in')}</span><a class="src" href="${esc(s.url)}" target="_blank" rel="noopener">Details ↗</a>`;
   return s.label ? `<span class="dropin">${esc(s.label)}</span>` : '';
+}
+
+function locationHtml(x) {
+  const venue = schedule?.venues?.find((v) => v.id === x.venueId);
+  if (!venue?.address) return '';
+  const destination = encodeURIComponent(`${venue.name}, ${venue.address}`);
+  return `<div class="location"><div>${esc(venue.address)}</div><div class="actions">
+    <a class="src" href="https://www.google.com/maps/dir/?api=1&amp;destination=${destination}" target="_blank" rel="noopener">Google Maps ↗</a>
+    <a class="src" href="https://maps.apple.com/directions?destination=${destination}&amp;mode=driving" target="_blank" rel="noopener">Apple Maps ↗</a>
+    <button class="src copy-address" type="button" data-address="${esc(venue.address)}">Copy address</button>
+    <span class="copy-status" role="status"></span></div></div>`;
 }
 
 // A rescheduled session says where it was ("Moved from Fri 7pm"); see lib/consolidate.js.
@@ -155,7 +176,8 @@ const alsoOnHtml = (x) => (x.alsoOn || []).map((a) => `<a class="src also" href=
 function renderSourceList() {
   const list = (schedule?.sources || []).filter((s) => (s.sport || 'volleyball') === state.sport);
   $('sourceList').innerHTML = list.map((s) => `<li class="${s.ok ? 'ok' : 'bad'}"><b>${esc(s.name || s.id)}</b>
-    <span>${s.ok ? '✓' : '⚠'} ${s.checkedAt ? `checked ${ago(s.checkedAt)}` : ''}${s.ok ? ` · ${s.count} session${s.count === 1 ? '' : 's'}` : ` · couldn't read, showing last good copy`}</span></li>`).join('');
+    <span>${s.ok ? '✓' : '⚠'} ${s.checkedAt ? `checked ${ago(s.checkedAt)}` : ''}${s.ok ? ` · ${s.count} session${s.count === 1 ? '' : 's'}` : ` · couldn't read, showing last good copy`}</span>
+    ${(s.warnings || []).map((w) => `<div class="note">${esc(w)}</div>`).join('')}</li>`).join('');
   // Calendar subscription for this sport (public/data/<sport>.ics, rebuilt every scrape).
   const ics = new URL(`${regionData()}${state.sport}.ics`, location.href);
   $('subscribe').innerHTML = `📅 <a href="${esc(ics.href.replace(/^https?:/, 'webcal:'))}">Subscribe in your calendar</a> to see ${esc(SPORTS[state.sport].label.toLowerCase())} here, updated hourly · <a href="${esc(ics.href)}" download>.ics file</a>`;
@@ -219,8 +241,9 @@ function renderList() {
     html += `<div class="row ${['expired', 'unverified', 'canceled'].includes(x.f.k) ? 'dim' : ''} ${past ? 'past' : ''}">
       <div class="time">${fmtT(x.start)}<small>${x.end ? 'to ' + fmtT(x.end) : ''}</small></div>
       <div class="body">
-        <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? 'Happening now' : x.f.l}</span></div>
+        <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? (x.scheduleBasis === 'published_recurring_hours' ? 'Scheduled now' : 'Happening now') : x.f.l}</span></div>
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}</div>
+        ${locationHtml(x)}
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
         ${movedHtml(x)}${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}
         <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a>${alsoOnHtml(x)}</div>
@@ -231,16 +254,26 @@ function renderList() {
   if (!shown.length) {
     const sp = SPORTS[state.sport];
     const label = state.tab === 'all' || !sp.tabs[state.tab] ? '' : sp.tabs[state.tab].label.toLowerCase() + ' ';
-    const hint = !sp.courts ? 'Rinks post public skate a week or two ahead; check another day.'
+    const hint = !sp.courts ? sp.empty
       : state.tab === 'grass' ? `Grass has no scheduled play${region ? ` in ${esc(region.name.split(',')[0])}` : ''}. Use the free courts below.` : 'Courts open to rent are in the chart above, free public courts below.';
     html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
   } else if (hiddenN) html += `<div class="empty">${hiddenN} ended, canceled or unconfirmed session${hiddenN > 1 ? 's' : ''} hidden.</div>`;
   $('list').innerHTML = html;
 }
 
+function renderVenueCalendars() {
+  const venues = (schedule?.venues || []).filter((v) => v.calendarLink?.sport === state.sport && /^https?:\/\//.test(v.calendarLink.url));
+  $('venueCalendarsCard').hidden = !venues.length;
+  $('venueCalendars').innerHTML = venues.map((v) => `<div class="venue-calendar">
+    <b>${esc(v.name)}</b> · ${esc(v.city)}${locationHtml({ venueId: v.id })}
+    <p class="note">${esc(v.calendarLink.note)}</p>
+    <a class="src" href="${esc(v.calendarLink.url)}" target="_blank" rel="noopener">View venue calendar ↗</a>
+  </div>`).join('');
+}
+
 function renderPublicCourts() {
   const pc = schedule?.publicCourts;
-  const list = (pc?.courts || []).filter((c) => (state.tab === 'all' ? true : c.surface === state.tab));
+  const list = (pc?.courts || []).filter((c) => (c.sport || 'volleyball') === state.sport && (state.tab === 'all' ? true : c.surface === state.tab));
   $('courtsCard').hidden = !SPORTS[state.sport].courts || state.tab === 'indoor' || !list.length;
   $('courtsTitle').textContent = `Free public courts · ${list.length}`;
   $('courtsNote').textContent = `${pc?.note || ''} 💡 = lit.`;
@@ -379,7 +412,8 @@ function renderMeta() {
   const bad = mine.filter((s) => !s.ok);
   $('sourceStatus').textContent = bad.length
     ? `Last check couldn't read: ${bad.map((s) => s.id).join(', ')}. Their sessions show "Couldn't recheck".`
-    : `Last check read all ${mine.length} scraped ${SPORTS[state.sport].label.toLowerCase()} source${mine.length === 1 ? '' : 's'}.`;
+    : mine.length ? `Last check read all ${mine.length} scraped ${SPORTS[state.sport].label.toLowerCase()} source${mine.length === 1 ? '' : 's'}.`
+    : 'Schedules are hand-checked against published pages; live availability is not tracked.';
   const names = mine.map((s) => s.name || s.id);
   const handChecked = (schedule.sessions || []).some((x) => x.sourceId === 'manual' && sportOf(x) === state.sport);
   $('footer').innerHTML = `${names.length || handChecked ? `Sources: ${esc(list([...names, ...(handChecked ? ['hand-checked pages'] : [])]))}. ` : ''}${SPORTS[state.sport].footer}`;
@@ -389,9 +423,9 @@ function renderMeta() {
 /** "a, b and c" */
 function list(items) { return items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`; }
 /** This region's court calendars. With no region known (data from before regions) or a court with no region, show it. */
-const regionCourts = () => (courts?.venues || []).filter((v) => !region || !v.region || v.region === region.id);
+const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
-function render() { if (!schedule) return; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderPublicCourts(); renderMeta(); }
+function render() { if (!schedule) return; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); }
 
 $('regionPick').addEventListener('change', (e) => chooseRegion(e.target.value));
 $('nearest').addEventListener('click', () => {
@@ -403,7 +437,18 @@ $('nearest').addEventListener('click', () => {
   }, () => {}, { maximumAge: 3600e3, timeout: 10e3 });
 });
 
-document.addEventListener('click', (e) => {
+document.addEventListener('click', async (e) => {
+  const copy = e.target.closest('[data-address]');
+  if (copy) {
+    const status = copy.parentElement.querySelector('.copy-status');
+    try {
+      await navigator.clipboard.writeText(copy.dataset.address);
+      status.textContent = 'Address copied';
+    } catch {
+      status.textContent = 'Could not copy. Select the address above to copy it manually.';
+    }
+    return;
+  }
   const t = e.target.closest('[data-sport],[data-tab],[data-di]'); if (!t) return;
   if (t.dataset.sport) { state.sport = t.dataset.sport; state.tab = 'all'; save(); }
   if (t.dataset.tab) { state.tab = t.dataset.tab; save(); }
