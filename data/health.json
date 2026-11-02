@@ -10,7 +10,7 @@
         13,
         13,
         13,
-        13,
+        12,
         12
       ],
       "sessions": 12,
@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 168
+      "failStreak": 169
     },
     "atxbeach": {
       "counts": [
@@ -153,10 +153,10 @@
         5,
         5,
         5,
-        5,
-        2
+        2,
+        5
       ],
-      "sessions": 2,
+      "sessions": 5,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -209,6 +209,9 @@
         "participants[]",
         "participants[].createdAt",
         "participants[].externalReference",
+        "participants[].externalReference.gender",
+        "participants[].externalReference.level",
+        "participants[].externalReference.name",
         "participants[].id",
         "participants[].isCoach",
         "participants[].isHost",
@@ -285,7 +288,7 @@
         31,
         31,
         31,
-        31,
+        33,
         33
       ],
       "sessions": 33,
@@ -461,9 +464,6 @@
     "manual:hanovers-open:unverified",
     "manual:ssc-crossover-mon-sand:changed:2026-11-01",
     "manual:ssc-crossover-mon-sand:unverified",
-    "reclub:warning:https://reclub.co/m/32FAFL: HTTP 500",
-    "reclub:warning:https://reclub.co/m/GHBHX9: HTTP 500",
-    "reclub:warning:https://reclub.co/m/L61EMK: HTTP 500",
     "velocity:content:aac23a55d895318e"
   ]
 }

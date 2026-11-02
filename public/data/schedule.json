@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T06:14:00.771Z",
+  "generatedAt": "2026-11-02T07:13:28.172Z",
   "sources": [
     {
       "id": "volleyworld",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T06:13:15.126Z",
+      "checkedAt": "2026-11-02T07:13:15.530Z",
       "count": 12
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-02T06:13:15.127Z",
+      "checkedAt": "2026-11-02T07:13:15.531Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -50,13 +50,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-02T06:13:15.127Z",
-      "count": 2,
-      "warnings": [
-        "https://reclub.co/m/L61EMK: HTTP 500",
-        "https://reclub.co/m/GHBHX9: HTTP 500",
-        "https://reclub.co/m/32FAFL: HTTP 500"
-      ]
+      "checkedAt": "2026-11-02T07:13:15.531Z",
+      "count": 5
     },
     {
       "id": "chaparral-ice",
@@ -65,7 +60,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T06:13:15.127Z",
+      "checkedAt": "2026-11-02T07:13:15.532Z",
       "count": 33
     },
     {
@@ -75,7 +70,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T06:13:15.127Z",
+      "checkedAt": "2026-11-02T07:13:15.532Z",
       "count": 15
     }
   ],
@@ -493,6 +488,60 @@
       "status": "scheduled"
     },
     {
+      "id": "reclub-L61EMK",
+      "date": "2026-11-03",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Tuesday.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/L61EMK",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/L61EMK",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-GHBHX9",
+      "date": "2026-11-05",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "B/BB · men",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Thursday.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/GHBHX9",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/GHBHX9",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
       "id": "reclub-3WDMON",
       "date": "2026-11-06",
       "start": "19:00",
@@ -512,6 +561,34 @@
         "label": "Sign up on Reclub"
       },
       "source": "https://reclub.co/m/3WDMON",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "treehouse",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-32FAFL",
+      "date": "2026-11-06",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Qilin B/BB Friday Coed Net Volleyball",
+      "venue": "Roots · Treehouse Gym",
+      "city": "N. Austin",
+      "surface": "indoor",
+      "facility": "treehouse",
+      "type": "Open play",
+      "level": "B/BB",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/32FAFL",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/32FAFL",
       "sourceId": "reclub",
       "sport": "volleyball",
       "region": "austin",
