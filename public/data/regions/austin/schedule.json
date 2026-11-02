@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-02T15:43:46.995Z",
+  "generatedAt": "2026-11-02T16:13:29.492Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T15:43:36.193Z",
+      "checkedAt": "2026-11-02T16:13:15.473Z",
       "count": 12
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-02T15:43:36.194Z",
+      "checkedAt": "2026-11-02T16:13:15.474Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -55,7 +55,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-02T15:13:16.422Z",
+      "checkedAt": "2026-11-02T16:13:15.474Z",
       "count": 5
     },
     {
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T15:43:36.194Z",
+      "checkedAt": "2026-11-02T16:13:15.475Z",
       "count": 33
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-02T15:43:36.195Z",
+      "checkedAt": "2026-11-02T16:13:15.475Z",
       "count": 15
     }
   ],
