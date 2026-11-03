@@ -1,5 +1,41 @@
 {
   "sources": {
+    "austin-club-openplay": {
+      "counts": [
+        183
+      ],
+      "sessions": 183,
+      "coverage": {
+        "end": 1,
+        "price": 1,
+        "level": 0.71,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      }
+    },
+    "holy-pickle": {
+      "counts": [
+        6
+      ],
+      "sessions": 6,
+      "coverage": {
+        "end": 1,
+        "price": 1,
+        "level": 0,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      }
+    },
     "volleyworld": {
       "counts": [
         12,
@@ -85,7 +121,7 @@
       ]
     },
     "aces": {
-      "failStreak": 202
+      "failStreak": 203
     },
     "atxbeach": {
       "counts": [
@@ -124,7 +160,7 @@
         2,
         2,
         2,
-        2,
+        8,
         8,
         8
       ],
@@ -420,12 +456,13 @@
     },
     "austin-city-pickleball": {
       "counts": [
+        6,
         6
       ],
       "sessions": 6,
       "coverage": {
         "end": 1,
-        "price": 0,
+        "price": 1,
         "level": 0,
         "venue": 1,
         "city": 1,
