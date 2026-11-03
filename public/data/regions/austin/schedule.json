@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-03T01:43:26.103Z",
+  "generatedAt": "2026-11-03T01:55:00.017Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T01:43:14.791Z",
+      "checkedAt": "2026-11-03T01:54:42.539Z",
       "count": 12
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-03T01:43:14.792Z",
+      "checkedAt": "2026-11-03T01:54:42.540Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -35,7 +35,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-02T20:13:27.914Z",
+      "checkedAt": "2026-11-03T01:54:42.540Z",
       "count": 2
     },
     {
@@ -45,7 +45,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-02T01:55:50.716Z",
+      "checkedAt": "2026-11-03T01:54:42.541Z",
       "count": 8
     },
     {
@@ -55,7 +55,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-03T01:13:15.157Z",
+      "checkedAt": "2026-11-03T01:54:42.542Z",
       "count": 5
     },
     {
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T01:43:14.792Z",
+      "checkedAt": "2026-11-03T01:54:42.542Z",
       "count": 33
     },
     {
@@ -75,8 +75,18 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T01:43:14.793Z",
+      "checkedAt": "2026-11-03T01:54:42.568Z",
       "count": 15
+    },
+    {
+      "id": "austin-city-pickleball",
+      "name": "Austin Parks pickleball",
+      "sport": "pickleball",
+      "region": "austin",
+      "cadence": "1d",
+      "ok": true,
+      "checkedAt": "2026-11-03T01:54:43.611Z",
+      "count": 6
     }
   ],
   "sessions": [
@@ -488,7 +498,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-01",
+      "verifiedAt": "2026-11-02",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -1893,6 +1903,162 @@
       "status": "scheduled"
     },
     {
+      "id": "pickleball-austin-alamo-rec-0-2026-11-05",
+      "sport": "pickleball",
+      "date": "2026-11-05",
+      "start": "16:00",
+      "end": "20:00",
+      "title": "Alamo Recreation Center · Pickleball open play",
+      "venue": "Alamo Recreation Center",
+      "city": "Austin",
+      "surface": "outdoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "note": "Covered outdoor pavilion with temporary court markers. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/alamo-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "austin-alamo-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-dottie-jordan-rec-0-2026-11-05",
+      "sport": "pickleball",
+      "date": "2026-11-05",
+      "start": "16:00",
+      "end": "19:00",
+      "title": "Dottie Jordan Recreation Center · Pickleball open play",
+      "venue": "Dottie Jordan Recreation Center",
+      "city": "Austin",
+      "surface": "outdoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "note": "Outdoor tennis courts. Equipment checkout ends at 6pm, before play ends. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/dottie-jordan-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "austin-dottie-jordan-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-montopolis-rec-0-2026-11-02",
+      "sport": "pickleball",
+      "date": "2026-11-02",
+      "start": "18:00",
+      "end": "21:00",
+      "title": "Montopolis Recreation and Community Center · Pickleball open play",
+      "venue": "Montopolis Recreation and Community Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "austin-montopolis-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-montopolis-rec-1-2026-11-07",
+      "sport": "pickleball",
+      "date": "2026-11-07",
+      "start": "10:00",
+      "end": "12:00",
+      "title": "Montopolis Recreation and Community Center · Pickleball open play",
+      "venue": "Montopolis Recreation and Community Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "austin-montopolis-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-northwest-rec-0-2026-11-02",
+      "sport": "pickleball",
+      "date": "2026-11-02",
+      "start": "10:30",
+      "end": "13:30",
+      "title": "Northwest Recreation Center · Pickleball open play",
+      "venue": "Northwest Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "note": "Three pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/northwest-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "austin-northwest-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-northwest-rec-0-2026-11-04",
+      "sport": "pickleball",
+      "date": "2026-11-04",
+      "start": "10:30",
+      "end": "13:30",
+      "title": "Northwest Recreation Center · Pickleball open play",
+      "venue": "Northwest Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "note": "Three pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/northwest-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-02",
+      "venueId": "austin-northwest-rec",
+      "status": "scheduled"
+    },
+    {
       "id": "atx-sand-social-sun",
       "days": [
         "Sun"
@@ -2091,7 +2257,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-01",
+      "sourceChanged": "2026-11-02",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -2534,6 +2700,58 @@
     ]
   },
   "venues": [
+    {
+      "id": "austin-pickle-ranch",
+      "name": "Austin Pickle Ranch",
+      "city": "Austin",
+      "address": "11000 Middle Fiskville Rd, Building B, Austin, TX 78753",
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://austinpickleranch.podplay.app/community/events?level=Casual&tag=Open+Play",
+        "note": "Open play varies by skill level. Check registration, rating requirements and prices on the venue calendar; availability is not tracked here."
+      },
+      "region": "austin"
+    },
+    {
+      "id": "austin-eastside-paddle",
+      "name": "Eastside Paddle Club",
+      "city": "Austin",
+      "address": "979 Springdale Rd, Suite 120, Austin, TX 78702",
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://espc.podplay.app/community/events",
+        "note": "Open play includes skill and rating restrictions. Registration requires an account; check the venue calendar for session times and remaining spots."
+      },
+      "region": "austin"
+    },
+    {
+      "id": "austin-alamo-rec",
+      "name": "Alamo Recreation Center",
+      "city": "Austin",
+      "address": "2100 Alamo St, Austin, TX 78722",
+      "region": "austin"
+    },
+    {
+      "id": "austin-dottie-jordan-rec",
+      "name": "Dottie Jordan Recreation Center",
+      "city": "Austin",
+      "address": "2803 Loyola Lane, Austin, TX 78723",
+      "region": "austin"
+    },
+    {
+      "id": "austin-montopolis-rec",
+      "name": "Montopolis Recreation and Community Center",
+      "city": "Austin",
+      "address": "1200 Montopolis Dr, Austin, TX 78741",
+      "region": "austin"
+    },
+    {
+      "id": "austin-northwest-rec",
+      "name": "Northwest Recreation Center",
+      "city": "Austin",
+      "address": "2913 Northland Dr, Austin, TX 78757",
+      "region": "austin"
+    },
     {
       "id": "volleyworld-georgetown",
       "name": "Volleyworld (Georgetown)",

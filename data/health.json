@@ -85,7 +85,7 @@
       ]
     },
     "aces": {
-      "failStreak": 201
+      "failStreak": 202
     },
     "atxbeach": {
       "counts": [
@@ -125,7 +125,7 @@
         2,
         2,
         2,
-        2,
+        8,
         8
       ],
       "sessions": 8,
@@ -418,6 +418,25 @@
         "vteam_id"
       ]
     },
+    "austin-city-pickleball": {
+      "counts": [
+        6
+      ],
+      "sessions": 6,
+      "coverage": {
+        "end": 1,
+        "price": 0,
+        "level": 0,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      },
+      "contentHash": "8dbc28a0da7cfdf6"
+    },
     "manual": {
       "counts": [
         13,
@@ -462,8 +481,7 @@
     "manual:four-seasons-ice-rodeo:changed:2026-10-31",
     "manual:hanovers-open:changed:2026-10-25",
     "manual:hanovers-open:unverified",
-    "manual:ssc-crossover-mon-sand:changed:2026-11-01",
-    "manual:ssc-crossover-mon-sand:unverified",
-    "velocity:content:aac23a55d895318e"
+    "manual:ssc-crossover-mon-sand:changed:2026-11-02",
+    "manual:ssc-crossover-mon-sand:unverified"
   ]
 }
