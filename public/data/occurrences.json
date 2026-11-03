@@ -1,290 +1,8 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-03T05:13:28.329Z",
+  "generatedAt": "2026-11-03T06:13:25.460Z",
   "horizonDays": 28,
   "occurrences": [
-    {
-      "id": "daysmart-chaparralice-346672",
-      "session_id": "daysmart-chaparralice-346672",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Adult Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-11-02T15:00:00.000Z",
-      "ends_at": "2026-11-02T16:00:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Adult skate",
-        "rink": "Northcross Rink"
-      },
-      "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "daysmart-chaparralice-346688",
-      "session_id": "daysmart-chaparralice-346688",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-11-02T16:00:00.000Z",
-      "ends_at": "2026-11-02T18:00:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Northcross Rink"
-      },
-      "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "pickleball-austin-northwest-rec-0-2026-11-02",
-      "session_id": "pickleball-austin-northwest-rec-0-2026-11-02",
-      "source_id": "austin-city-pickleball",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Northwest Recreation Center · Pickleball open play",
-      "venue": "Northwest Recreation Center",
-      "city": "Austin",
-      "level": null,
-      "price": "Price not published — confirm with venue",
-      "starts_at": "2026-11-02T16:30:00.000Z",
-      "ends_at": "2026-11-02T19:30:00.000Z",
-      "signup_url": "https://www.austintexas.gov/parks/locations/northwest-recreation-center",
-      "signup_label": "Venue details",
-      "note": "Three pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play",
-        "scheduleBasis": "published_recurring_hours",
-        "reviewBy": "2026-11-30"
-      },
-      "venue_id": "austin-northwest-rec",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "daysmart-iceandfield-10382",
-      "session_id": "daysmart-iceandfield-10382",
-      "source_id": "ice-and-field",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skating",
-      "venue": "Ice & Field at The Crossover",
-      "city": "Cedar Park",
-      "level": null,
-      "price": "$14 · skates $6",
-      "starts_at": "2026-11-02T19:00:00.000Z",
-      "ends_at": "2026-11-02T21:00:00.000Z",
-      "signup_url": "https://iceandfield.com/public-skating/",
-      "signup_label": "Public skating info",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Silver Rink",
-        "capacity": 250
-      },
-      "venue_id": "crossover-ice",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "daysmart-chaparralice-346689",
-      "session_id": "daysmart-chaparralice-346689",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-11-02T20:45:00.000Z",
-      "ends_at": "2026-11-02T23:00:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Northcross Rink"
-      },
-      "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "pickleball-austin-montopolis-rec-0-2026-11-02",
-      "session_id": "pickleball-austin-montopolis-rec-0-2026-11-02",
-      "source_id": "austin-city-pickleball",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Montopolis Recreation and Community Center · Pickleball open play",
-      "venue": "Montopolis Recreation and Community Center",
-      "city": "Austin",
-      "level": null,
-      "price": "Price not published — confirm with venue",
-      "starts_at": "2026-11-03T00:00:00.000Z",
-      "ends_at": "2026-11-03T03:00:00.000Z",
-      "signup_url": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center",
-      "signup_label": "Venue details",
-      "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play",
-        "scheduleBasis": "published_recurring_hours",
-        "reviewBy": "2026-11-30"
-      },
-      "venue_id": "austin-montopolis-rec",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "aces-open-mon-2026-11-02",
-      "session_id": "aces-open-mon",
-      "source_id": "manual",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "ACES Indoor Open Play",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "level": "All levels, 18+",
-      "price": "$6 online · $10 door",
-      "starts_at": "2026-11-03T01:30:00.000Z",
-      "ends_at": "2026-11-03T04:00:00.000Z",
-      "signup_url": "https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pflugerville/",
-      "signup_label": "Register on ACES",
-      "note": "1 court (more if signups allow). Winner stays on, games to 21. Entered by hand: ACES's site blocks our checker, so confirm on ACES before you go.",
-      "canceled": false,
-      "verified_at": "2026-10-24",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "volleyworld-pflugerville",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bba3-6b78-7776-99d7-4a676b476889",
-      "session_id": "openplay-austin-pickle-ranch-01a0bba3-6b78-7776-99d7-4a676b476889",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-03T03:00:00.000Z",
-      "ends_at": "2026-11-03T05:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a0bba3-6b78-7776-99d7-4a676b476889",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bbc4-10fb-7333-b52b-4df2df75fc64",
-      "session_id": "openplay-austin-pickle-ranch-01a0bbc4-10fb-7333-b52b-4df2df75fc64",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-03T03:00:00.000Z",
-      "ends_at": "2026-11-03T05:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a0bbc4-10fb-7333-b52b-4df2df75fc64",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bbd1-2c7c-7333-b556-77938b39903a",
-      "session_id": "openplay-austin-pickle-ranch-01a0bbd1-2c7c-7333-b556-77938b39903a",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-03T03:00:00.000Z",
-      "ends_at": "2026-11-03T05:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a0bbd1-2c7c-7333-b556-77938b39903a",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-02",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
     {
       "id": "openplay-eastside-paddle-club-01a178f6-a723-755d-956b-1c3b31278f6c",
       "session_id": "openplay-eastside-paddle-club-01a178f6-a723-755d-956b-1c3b31278f6c",
@@ -303,7 +21,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -331,7 +49,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -359,7 +77,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -387,7 +105,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -415,7 +133,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -443,7 +161,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -471,7 +189,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -499,7 +217,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -527,7 +245,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -555,7 +273,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -583,7 +301,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -611,7 +329,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -639,7 +357,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -667,7 +385,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -695,7 +413,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -723,7 +441,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -752,7 +470,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -780,7 +498,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -808,7 +526,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -836,7 +554,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -864,7 +582,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -892,7 +610,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -920,7 +638,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -948,7 +666,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -976,7 +694,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1004,7 +722,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1032,7 +750,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1060,7 +778,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1088,7 +806,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1116,7 +834,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1144,7 +862,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1172,7 +890,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1200,7 +918,7 @@
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play"
@@ -1227,7 +945,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1255,7 +973,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1283,7 +1001,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1311,7 +1029,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1339,7 +1057,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1367,7 +1085,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1395,7 +1113,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Tuesday.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -1423,7 +1141,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -1453,7 +1171,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1481,7 +1199,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1509,7 +1227,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1537,7 +1255,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1565,7 +1283,7 @@
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play"
@@ -1592,7 +1310,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1620,7 +1338,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1648,7 +1366,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1676,7 +1394,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1704,7 +1422,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -1732,7 +1450,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1760,7 +1478,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1788,7 +1506,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -1816,7 +1534,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1844,7 +1562,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1872,7 +1590,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1900,7 +1618,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1928,7 +1646,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -1956,7 +1674,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2013,7 +1731,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2041,7 +1759,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2069,7 +1787,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2097,7 +1815,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -2126,7 +1844,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2154,7 +1872,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2182,7 +1900,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2210,7 +1928,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2238,7 +1956,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2266,7 +1984,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2294,7 +2012,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -2322,7 +2040,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2350,7 +2068,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2378,7 +2096,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2406,7 +2124,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2434,7 +2152,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2462,7 +2180,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2490,7 +2208,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2518,7 +2236,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2546,7 +2264,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2574,7 +2292,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2602,7 +2320,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2630,7 +2348,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2658,7 +2376,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2686,7 +2404,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2714,7 +2432,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2769,7 +2487,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2797,7 +2515,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2825,7 +2543,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -2855,7 +2573,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2883,7 +2601,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2911,7 +2629,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2939,7 +2657,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2967,7 +2685,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -2995,7 +2713,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3023,7 +2741,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3051,7 +2769,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3079,7 +2797,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -3107,7 +2825,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3135,7 +2853,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3163,7 +2881,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3191,7 +2909,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3219,7 +2937,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3247,7 +2965,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3275,7 +2993,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3303,7 +3021,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3331,7 +3049,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3359,7 +3077,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -3388,7 +3106,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3416,7 +3134,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3444,7 +3162,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3472,7 +3190,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3500,7 +3218,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3528,7 +3246,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3556,7 +3274,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -3584,7 +3302,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3612,7 +3330,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3698,7 +3416,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3726,7 +3444,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3754,7 +3472,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3782,7 +3500,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3810,7 +3528,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3865,7 +3583,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3893,7 +3611,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Thursday.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -3921,7 +3639,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -3949,7 +3667,7 @@
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play"
@@ -3976,7 +3694,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4004,7 +3722,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -4032,7 +3750,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -4060,7 +3778,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4088,7 +3806,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4116,7 +3834,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4144,7 +3862,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -4173,7 +3891,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4201,7 +3919,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4229,7 +3947,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -4257,7 +3975,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4285,7 +4003,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4313,7 +4031,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -4367,7 +4085,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -4395,7 +4113,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -4423,7 +4141,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -4453,7 +4171,7 @@
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play"
@@ -4480,7 +4198,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4508,7 +4226,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4565,7 +4283,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4593,7 +4311,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4621,7 +4339,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -4649,7 +4367,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -4678,7 +4396,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4706,7 +4424,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4734,7 +4452,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -4764,7 +4482,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -4794,7 +4512,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4822,7 +4540,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4850,7 +4568,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4878,7 +4596,7 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Austin Lawn Club, every Sunday.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "grass",
         "type": "Open play",
@@ -4906,7 +4624,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -4934,7 +4652,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -4962,7 +4680,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -4991,7 +4709,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5019,7 +4737,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5047,7 +4765,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -5074,7 +4792,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5129,7 +4847,7 @@
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play"
@@ -5156,7 +4874,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -5186,7 +4904,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5214,7 +4932,7 @@
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play"
@@ -5241,7 +4959,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5269,7 +4987,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5297,7 +5015,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -5325,7 +5043,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5353,7 +5071,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -5381,7 +5099,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5409,7 +5127,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5437,7 +5155,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -5466,7 +5184,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5494,7 +5212,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -5522,7 +5240,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5550,7 +5268,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5578,7 +5296,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5606,7 +5324,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5634,7 +5352,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5689,7 +5407,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5717,7 +5435,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5745,7 +5463,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5773,7 +5491,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -5801,7 +5519,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5829,7 +5547,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5857,7 +5575,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -5886,7 +5604,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5914,7 +5632,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -5942,7 +5660,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5970,7 +5688,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -5998,7 +5716,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6026,13 +5744,40 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-768b7a5d-1082-412a-8386-eaf50e98b43e",
+      "session_id": "opencourt-768b7a5d-1082-412a-8386-eaf50e98b43e",
+      "source_id": "holy-pickle",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Holy Pickle · Open Play",
+      "venue": "Holy Pickle",
+      "city": "Austin",
+      "level": null,
+      "price": "$10 / person (nonmember)",
+      "starts_at": "2026-11-11T01:00:00.000Z",
+      "ends_at": "2026-11-11T03:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/768b7a5d-1082-412a-8386-eaf50e98b43e",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-03",
+      "attributes": {
+        "surface": "outdoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-holy-pickle",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6054,7 +5799,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6082,7 +5827,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6110,7 +5855,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -6140,7 +5885,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6168,7 +5913,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -6196,7 +5941,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6224,7 +5969,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6253,7 +5998,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6281,7 +6026,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6309,7 +6054,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6337,7 +6082,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6365,7 +6110,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6393,7 +6138,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6421,7 +6166,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6476,7 +6221,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6504,7 +6249,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6532,7 +6277,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -6562,7 +6307,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6590,7 +6335,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6618,7 +6363,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6646,7 +6391,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6675,7 +6420,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6703,7 +6448,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6731,7 +6476,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6759,7 +6504,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6787,7 +6532,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6815,7 +6560,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6870,7 +6615,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -6898,7 +6643,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -6926,7 +6671,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6954,7 +6699,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -6983,7 +6728,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7011,7 +6756,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -7039,7 +6784,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -7067,7 +6812,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -7095,7 +6840,7 @@
       "signup_label": "Book with venue",
       "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "unspecified",
         "type": "Open play",
@@ -7123,7 +6868,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -7177,7 +6922,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -7207,7 +6952,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7235,7 +6980,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7264,7 +7009,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -7294,7 +7039,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -7324,7 +7069,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7352,7 +7097,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7409,7 +7154,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -7463,7 +7208,7 @@
       "signup_label": "Book on Volleyworld",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
@@ -7493,7 +7238,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Adult skate",
@@ -7521,7 +7266,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7549,7 +7294,7 @@
       "signup_label": "Public skating info",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7578,7 +7323,7 @@
       "signup_label": "Rink calendar",
       "note": "No reservation needed. Skate rental at the rink.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "indoor",
         "type": "Public skate",
@@ -7643,6 +7388,91 @@
       "previous_starts_at": null
     },
     {
+      "id": "daysmart-chaparralice-346715",
+      "session_id": "daysmart-chaparralice-346715",
+      "source_id": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "level": null,
+      "price": null,
+      "starts_at": "2026-11-17T15:45:00.000Z",
+      "ends_at": "2026-11-17T18:00:00.000Z",
+      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "signup_label": "Rink calendar",
+      "note": "No reservation needed. Skate rental at the rink.",
+      "canceled": false,
+      "verified_at": "2026-11-03",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Northcross Rink"
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-iceandfield-10393",
+      "session_id": "daysmart-iceandfield-10393",
+      "source_id": "ice-and-field",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skating",
+      "venue": "Ice & Field at The Crossover",
+      "city": "Cedar Park",
+      "level": null,
+      "price": "$14 · skates $6",
+      "starts_at": "2026-11-17T19:00:00.000Z",
+      "ends_at": "2026-11-17T21:15:00.000Z",
+      "signup_url": "https://iceandfield.com/public-skating/",
+      "signup_label": "Public skating info",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-11-03",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Silver Rink",
+        "capacity": 250
+      },
+      "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "daysmart-chaparralice-346714",
+      "session_id": "daysmart-chaparralice-346714",
+      "source_id": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "level": null,
+      "price": null,
+      "starts_at": "2026-11-17T20:45:00.000Z",
+      "ends_at": "2026-11-17T23:15:00.000Z",
+      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "signup_label": "Rink calendar",
+      "note": "No reservation needed. Skate rental at the rink.",
+      "canceled": false,
+      "verified_at": "2026-11-03",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Public skate",
+        "rink": "Northcross Rink"
+      },
+      "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "beecave-on-ice-tue-2026-11-17",
       "session_id": "beecave-on-ice-tue",
       "source_id": "manual",
@@ -7666,6 +7496,36 @@
         "type": "Public skate"
       },
       "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "volleyworld-2026-11-17-20:30-georgetown",
+      "session_id": "volleyworld-2026-11-17-20:30-georgetown",
+      "source_id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Jesus - Adult Training including Open Gym",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "level": "Adults · Jesus",
+      "price": null,
+      "starts_at": "2026-11-18T02:30:00.000Z",
+      "ends_at": "2026-11-18T03:30:00.000Z",
+      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "signup_label": "Book on Volleyworld",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-11-03",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 12,
+        "spotsLeft": 12,
+        "classId": "XhR0FmxMPPd7pl5d4Hz1"
+      },
+      "venue_id": "volleyworld-georgetown",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7795,7 +7655,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -7903,7 +7763,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -8254,7 +8114,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -8362,7 +8222,7 @@
       "signup_label": "Drop in · $5 at the door",
       "note": "Only source is a third-party listing from August. Call before going.",
       "canceled": false,
-      "verified_at": "2026-11-02",
+      "verified_at": "2026-11-03",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -8476,6 +8336,60 @@
         "type": "Open play"
       },
       "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "beecave-on-ice-tue-2026-12-01",
+      "session_id": "beecave-on-ice-tue",
+      "source_id": "manual",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Bee Cave on Ice · community night",
+      "venue": "Bee Cave on Ice",
+      "city": "Bee Cave",
+      "level": null,
+      "price": "$11 + tax · skates incl.",
+      "starts_at": "2026-12-01T21:00:00.000Z",
+      "ends_at": "2026-12-02T03:00:00.000Z",
+      "signup_url": "https://www.beecavetexas.gov/residents/events/bee_cave_on_ice/index.php",
+      "signup_label": "Tickets & hours",
+      "note": "Seasonal outdoor rink. Hourly sessions with 50 minutes on the ice; holiday hours 10am–7pm.",
+      "canceled": false,
+      "verified_at": "2026-10-26",
+      "attributes": {
+        "surface": "outdoor",
+        "type": "Public skate"
+      },
+      "venue_id": "bee-cave-on-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "four-seasons-ice-rodeo-2026-12-01",
+      "session_id": "four-seasons-ice-rodeo",
+      "source_id": "manual",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Four Seasons Ice Rodeo",
+      "venue": "Four Seasons Hotel",
+      "city": "Downtown",
+      "level": null,
+      "price": "Timed tickets",
+      "starts_at": "2026-12-01T22:00:00.000Z",
+      "ends_at": "2026-12-02T03:00:00.000Z",
+      "signup_url": "https://fourseasonsaustin.ticketspice.com/ice-rodeo-26-27",
+      "signup_label": "Timed tickets",
+      "note": "Seasonal outdoor rink at the hotel. Session length and prices are on the ticket page.",
+      "canceled": false,
+      "verified_at": "2026-10-26",
+      "attributes": {
+        "surface": "outdoor",
+        "type": "Public skate"
+      },
+      "venue_id": "four-seasons-austin",
       "status": "scheduled",
       "previous_starts_at": null
     }
