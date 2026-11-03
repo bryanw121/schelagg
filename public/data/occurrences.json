@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-03T21:43:33.349Z",
+  "generatedAt": "2026-11-03T22:13:47.716Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -57,33 +57,6 @@
         "capacity": 250
       },
       "venue_id": "crossover-ice",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "opencourt-81d5c95a-6891-485c-8b08-120e9408e21b",
-      "session_id": "opencourt-81d5c95a-6891-485c-8b08-120e9408e21b",
-      "source_id": "austin-picklehaus",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Austin PickleHaus · Unrestricted Open Play (MID DAY)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "level": null,
-      "price": "$8 / person (nonmember)",
-      "starts_at": "2026-11-03T19:00:00.000Z",
-      "ends_at": "2026-11-03T22:00:00.000Z",
-      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/81d5c95a-6891-485c-8b08-120e9408e21b",
-      "signup_label": "View event & book",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "canceled": false,
-      "verified_at": "2026-11-03",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1222,6 +1195,33 @@
       "starts_at": "2026-11-04T13:00:00.000Z",
       "ends_at": "2026-11-04T15:00:00.000Z",
       "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/2bcbc899-9772-4d93-96a9-f4c75842ec13",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-03",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-6eb45a5a-f4cd-489d-b842-9ada26418291",
+      "session_id": "opencourt-6eb45a5a-f4cd-489d-b842-9ada26418291",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Open Play Level 3 (7AM-9AM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "3.6–6 recommended",
+      "price": "$8 / person (nonmember)",
+      "starts_at": "2026-11-04T13:00:00.000Z",
+      "ends_at": "2026-11-04T15:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/6eb45a5a-f4cd-489d-b842-9ada26418291",
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
