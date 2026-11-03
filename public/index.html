@@ -18,6 +18,7 @@
       <span class="asof" id="asof">Loading…</span>
     </div>
     <div class="tabs sports" role="group" aria-label="Sport" id="sports"></div>
+    <div class="tabs" role="group" aria-label="Calendar type" id="calendarModes"></div>
     <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
     <div class="days" role="group" aria-label="Day" id="days"></div>
   </div>
@@ -28,8 +29,6 @@
     <section class="card" id="glance">
       <div class="dayhead"><h3 id="calTitle">Day at a glance</h3></div>
       <div class="key">
-        <span><i style="background:var(--indoor)"></i>Indoor session</span>
-        <span><i style="background:var(--sand)"></i>Sand session</span>
         <span><i class="hatch"></i>Court booked</span>
         <span><i style="background:var(--accent)"></i>Booked for a sign-up meet</span>
         <span><i style="background:var(--open);border:1px solid var(--line)"></i>Open to rent</span>
@@ -42,13 +41,19 @@
       <p class="note" style="margin:0" id="calNote"></p>
     </section>
 
-    <div>
+    <div id="sessionsPanel">
       <div class="dayhead">
         <h2 id="dayTitle">Today</h2>
         <label class="toggle"><input type="checkbox" id="showAll"> Show ended &amp; unconfirmed</label>
       </div>
       <div class="list" id="list"><p class="loading">Loading schedules…</p></div>
     </div>
+
+    <section class="card" id="bookingCalendarsCard" hidden>
+      <h3>Venue court-booking calendars</h3>
+      <p class="note">Reserve a court for your own group. These are separate from open-play signups. Where live availability is not displayed here, open the venue calendar to check times and final prices.</p>
+      <div id="bookingCalendars"></div>
+    </section>
 
     <section class="card" id="venueCalendarsCard" hidden>
       <h3>Venue hours, prices &amp; calendars</h3>
@@ -62,7 +67,7 @@
       <div class="courts" id="courts"></div>
     </section>
 
-    <section class="card">
+    <section class="card" id="sessionFreshness">
       <h3>How fresh is this?</h3>
       <div class="legend">
         <span><span class="pill fresh">Verified</span> checked within 7 days</span>

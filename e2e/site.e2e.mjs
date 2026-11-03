@@ -108,7 +108,7 @@ async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status
     return route.continue(); // index.html, app.js, styles.css from server.js
   });
   await page.goto(`${origin}${url}`);
-  await page.locator('#list .row, #list .error, #list .empty').first().waitFor();
+  await page.locator('#list .row, #list .error, #list .empty').first().waitFor({ state: 'attached' });
 }
 
 beforeEach(() => { apiCalls = []; });
@@ -368,12 +368,13 @@ test('site: overlapping sessions at one place get a second lane instead of cover
 });
 
 test('site: court lanes tint open time and show closed time in solid gray', async () => {
-  await open();
+  await open({ url: '/?view=booking' });
   const lane = page.locator('#cal .g-track.lane').first();
   await lane.waitFor();
   const bg = await lane.evaluate((el) => getComputedStyle(el).backgroundColor);
   const closed = await page.locator('#cal .g-closed').first().evaluate((el) => getComputedStyle(el).backgroundColor);
   assert.notEqual(bg, closed);
+  await page.locator('[data-view="openplay"]').click();
   // Session rows aren't tinted as "open to rent".
   assert.equal(await page.locator('#cal .g-bar').first().locator('xpath=..').getAttribute('class'), 'g-track');
 });
@@ -395,6 +396,7 @@ test('site: regions: one city at a time, in its own time zone, with a picker, a 
   assert.equal(await page.locator('#regionPick').isVisible(), true);
   assert.deepEqual(await page.locator('#regionPick option').allTextContents(), ['Austin, TX', 'Denver, CO']);
   assert.equal(await page.locator('#list .now').textContent(), 'Now · 5pm'); // Austin time
+  await page.locator('[data-view="booking"]').click();
   assert.ok((await page.locator('#cal .g-group').allTextContents()).some((t) => t.startsWith('Roots · Treehouse Gym')));
 
   await page.locator('#regionPick').selectOption('denver');
@@ -452,7 +454,7 @@ test('site: the day picker switches to other days of the week', async () => {
   assert.equal(await page.locator('#dayTitle').textContent(), 'Tomorrow · Monday, Oct 26');
   assert.deepEqual(await titles(), ['Monday Night Training', 'ACES Monday Open Play']);
   assert.equal(await page.locator('#list .now').count(), 0, 'no "Now" marker on other days');
-  assert.match(await page.locator('#calTitle').textContent(), /Day at a glance · Mon, Oct 26/);
+  assert.match(await page.locator('#calTitle').textContent(), /Open-play calendar · Mon, Oct 26/);
 
   await days.nth(2).click();
   assert.equal(await rows().count(), 0);
@@ -484,6 +486,10 @@ test('site: the day-at-a-glance chart shows sessions, court bookings and courts 
   assert.deepEqual(await bars.allTextContents(), ['9am–11am', '4pm–6pm', '7pm–10pm', '6pm–8pm', '7pm–10pm']); // one row per place: ATX Beach's two sessions share a row
   assert.equal(await bars.nth(3).getAttribute('href'), `${SIGNUP}/evening`);
 
+  assert.equal(await page.locator('#cal .g-track.lane').count(), 0);
+  await page.locator('[data-view="booking"]').click();
+  assert.equal(await page.locator('#cal a.g-bar').count(), 0);
+  assert.equal(await page.locator('#sessionsPanel').isHidden(), true);
   const group = page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' });
   const text = await group.textContent();
   assert.match(text, /open 6am, closes 11pm/);
@@ -500,7 +506,7 @@ test('site: the day-at-a-glance chart shows sessions, court bookings and courts 
 });
 
 test('site: "Book a court" opens the venue calendar on the day being viewed', async () => {
-  await open();
+  await open({ url: '/?view=booking' });
   const book = () => page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).locator('a.book', { hasText: 'Book a court' })
   assert.equal(await book().getAttribute('href'), `https://treehousegym.skedda.com/booking?viewdate=${TODAY}`);
   await page.locator('#days .day').nth(2).click();
@@ -514,21 +520,21 @@ test('site: "Book a court" opens the venue calendar on the day being viewed', as
 test('site: a venue without a per-day link falls back to its calendar', async () => {
   const venue = { ...COURTS.venues[0] };
   delete venue.calendarDay;
-  await open({ courts: { ...COURTS, venues: [venue] } });
+  await open({ url: '/?view=booking', courts: { ...COURTS, venues: [venue] } });
   const book = page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).locator('a.book', { hasText: 'Book a court' });
   assert.equal(await book.getAttribute('href'), 'https://treehousegym.skedda.com/booking');
 });
 
 test('site: court data falls back to /api/courts, and failures say so', async () => {
   // No pre-built courts.json: the page asks the live API.
-  await open({ courts: null, apiCourts: { status: 200, body: { ...COURTS, errors: [{ venue: 'velocity', calendar: 'https://austinvelocity.skedda.com/booking', message: 'HTTP 503' }] } } });
+  await open({ url: '/?view=booking', courts: null, apiCourts: { status: 200, body: { ...COURTS, errors: [{ venue: 'velocity', calendar: 'https://austinvelocity.skedda.com/booking', message: 'HTTP 503' }] } } });
   await page.locator('#cal a.g-book.open').waitFor();
   assert.deepEqual(apiCalls, ['/api/courts?days=7']);
   assert.match(await page.locator('#calErrors').textContent(), /Couldn't load some court calendars right now · open velocity calendar ↗/);
   await context.close();
 
   // Neither: an error, and the schedule still shows.
-  await open({ courts: null });
+  await open({ url: '/?view=booking', courts: null });
   await page.locator('#calErrors .error').waitFor();
   assert.match(await page.locator('#calErrors').textContent(), /Couldn't load some court calendars right now/);
   assert.equal(await rows().count(), 5);
@@ -550,4 +556,24 @@ test('site: no live-check UI yet, so the page never calls /api/check', async () 
   await page.locator('#showAll').check();
   await row('Monday Night Training').locator('a.signup').hover();
   assert.deepEqual(apiCalls.filter((c) => c.startsWith('/api/check')), []);
+});
+
+test('site: pickleball booking is separate, shareable, remembered, and does not imply live vacancies', async () => {
+  const schedule = structuredClone(PICKLE_SCHEDULE);
+  schedule.venues[0].bookingLink={sport:'pickleball',url:'https://example.test/book',note:'Reserve a private court.'};
+  await open({schedule,url:'/?sport=pickleball'});
+  assert.equal(await page.locator('#sessionsPanel').isVisible(),true);
+  assert.equal(await page.locator('#bookingCalendarsCard').isHidden(),true);
+  await page.locator('[data-view="booking"]').click();
+  assert.equal(await page.locator('#sessionsPanel').isHidden(),true);
+  assert.equal(await page.locator('#cal a.g-bar').count(),0);
+  assert.match(await page.locator('#cal').textContent(),/Live court availability is not connected/);
+  assert.equal(await page.locator('#bookingCalendars a.src', {hasText:'Open court-booking calendar'}).getAttribute('href'),'https://example.test/book');
+  assert.equal(new URL(page.url()).searchParams.get('view'),'booking');
+  await page.reload();
+  await page.locator('#bookingCalendarsCard').waitFor();
+  assert.equal(await page.locator('[data-view="booking"]').getAttribute('aria-pressed'),'true');
+  await page.locator('[data-sport="ice_skating"]').click();
+  assert.equal(await page.locator('#calendarModes').isHidden(),true);
+  assert.equal(await page.locator('#sessionsPanel').isVisible(),true);
 });

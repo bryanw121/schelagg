@@ -84,7 +84,7 @@ const setClock = () => { NOW = regionNow(); WEEK = Array.from({ length: 7 }, (_,
 setClock();
 
 let index = null, region = null, schedule = null, courts = null, courtsError = null;
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false };
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay' };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -92,20 +92,23 @@ try {
   const tab = s.tab ?? s.surf; // `surf` from before skating
   if (tab && SPORTS[state.sport].tabs[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
+  if (s.view === 'booking') state.view = s.view;
 } catch {}
 // A shared link (?region=austin&sport=ice_skating) wins over what was remembered.
 const params = new URLSearchParams(location.search);
 const urlRegion = params.get('region');
 if (urlRegion) state.region = urlRegion;
 const urlSport = params.get('sport');
+if (params.has('view')) state.view = params.get('view') === 'booking' ? 'booking' : 'openplay';
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll })); } catch {} };
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
   const u = new URL(location.href);
   const single = (index?.regions?.length ?? 1) <= 1;
   if (single || !state.region) u.searchParams.delete('region'); else u.searchParams.set('region', state.region);
   if (state.sport === 'volleyball') u.searchParams.delete('sport'); else u.searchParams.set('sport', state.sport);
+  if (state.view === 'booking') u.searchParams.set('view', 'booking'); else u.searchParams.delete('view');
   if (u.href !== location.href) history.replaceState(null, '', u);
 }
 
@@ -213,17 +216,17 @@ function renderTabs() {
   if (!sp.by) { $('tabs').innerHTML = ''; return; }
   const opts = [['all', 'All', null], ...Object.entries(sp.tabs).map(([k, v]) => [k, v.label, v.c])];
   $('tabs').innerHTML = opts.map(([k, l, c]) => {
-    const n = sessionsOn(NOW.iso, { ignoreTab: true }).filter((x) => (k === 'all' || x[sp.by] === k) && !hidden(x.f)).length;
+    const n = state.view === 'booking' ? 0 : sessionsOn(NOW.iso, { ignoreTab: true }).filter((x) => (k === 'all' || x[sp.by] === k) && !hidden(x.f)).length;
     return `<button class="tab" aria-pressed="${state.tab === k}" data-tab="${esc(k)}" ${c ? `style="--c:${c}"` : ''}>${c ? '<span class="dot"></span>' : ''}${l}<span class="n">${n || ''}</span></button>`;
   }).join('');
 }
 
 function renderDays() {
   $('days').innerHTML = WEEK.map((iso, i) => {
-    const list = sessionsOn(iso).filter((x) => !hidden(x.f));
+    const list = state.view === 'booking' ? [] : sessionsOn(iso).filter((x) => !hidden(x.f));
     const kinds = [...new Map(list.map((x) => [tabOf(x).c, tabOf(x)])).values()];
     const d = dowOf(iso);
-    return `<button class="day" aria-pressed="${state.di === i}" data-di="${i}" aria-label="${DAY_LONG[d]} ${+iso.slice(8)}, ${list.length} sessions">
+    return `<button class="day" aria-pressed="${state.di === i}" data-di="${i}" aria-label="${DAY_LONG[d]} ${+iso.slice(8)}${state.view === 'booking' ? ', court bookings' : `, ${list.length} sessions`}">
       <span class="dn">${i === 0 ? 'Today' : DAYS[d]}</span><span class="dd">${+iso.slice(8)}</span>
       <span class="pips">${kinds.map((k) => `<span class="pip" style="background:${k.c}"></span>`).join('')}</span></button>`;
   }).join('');
@@ -248,7 +251,7 @@ function renderList() {
         ${locationHtml(x)}
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
         ${movedHtml(x)}${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}
-        <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a>${alsoOnHtml(x)}</div>
+        <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a>${/^https?:\/\//.test(x.priceSource ?? '') ? `<a class="src" href="${esc(x.priceSource)}" target="_blank" rel="noopener">Price source ↗</a>` : ''}${alsoOnHtml(x)}</div>
       </div></div>`;
   }
   if (!nowPlaced && shown.length) html += nowLabel;
@@ -257,7 +260,7 @@ function renderList() {
     const sp = SPORTS[state.sport];
     const label = state.tab === 'all' || !sp.tabs[state.tab] ? '' : sp.tabs[state.tab].label.toLowerCase() + ' ';
     const hint = !sp.courts ? sp.empty
-      : state.tab === 'grass' ? `Grass has no scheduled play${region ? ` in ${esc(region.name.split(',')[0])}` : ''}. Use the free courts below.` : 'Courts open to rent are in the chart above, free public courts below.';
+      : state.tab === 'grass' ? `Grass has no scheduled play${region ? ` in ${esc(region.name.split(',')[0])}` : ''}. Choose Court booking to find public courts.` : 'Choose Court booking to see rental availability and free public courts.';
     html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
   } else if (hiddenN) html += `<div class="empty">${hiddenN} ended, canceled or unconfirmed session${hiddenN > 1 ? 's' : ''} hidden.</div>`;
   $('list').innerHTML = html;
@@ -265,7 +268,7 @@ function renderList() {
 
 function renderVenueCalendars() {
   const venues = (schedule?.venues || []).filter((v) => v.calendarLink?.sport === state.sport && /^https?:\/\//.test(v.calendarLink.url));
-  $('venueCalendarsCard').hidden = !venues.length;
+  $('venueCalendarsCard').hidden = state.view === 'booking' || !venues.length;
   $('venueCalendars').innerHTML = venues.map((v) => `<div class="venue-calendar">
     <b>${esc(v.name)}</b> · ${esc(v.city)}${locationHtml({ venueId: v.id })}
     <p class="note">${esc(v.calendarLink.note)}</p>
@@ -277,10 +280,25 @@ function renderVenueCalendars() {
   </div>`).join('');
 }
 
+function renderCalendarModes() {
+  const supportsBooking = ['volleyball', 'pickleball'].includes(state.sport);
+  $('calendarModes').hidden = !supportsBooking;
+  $('calendarModes').innerHTML = supportsBooking ? [['openplay', 'Open play'], ['booking', 'Court booking']]
+    .map(([value, label]) => `<button class="tab" type="button" data-view="${value}" aria-pressed="${state.view === value}">${label}</button>`).join('') : '';
+  $('sessionsPanel').hidden = state.view === 'booking';
+  $('sessionFreshness').hidden = state.view === 'booking';
+  const venues = (schedule?.venues || []).filter((v) => v.bookingLink?.sport === state.sport
+    && /^https?:\/\//.test(v.bookingLink.url) && (state.tab === 'all' || !v.bookingLink.surface || v.bookingLink.surface === 'mixed' || v.bookingLink.surface === state.tab));
+  $('bookingCalendarsCard').hidden = state.view !== 'booking';
+  $('bookingCalendars').innerHTML = venues.map((v) => `<div class="venue-calendar"><b>${esc(v.name)}</b> · ${esc(v.city)}${locationHtml({ venueId: v.id })}
+    <p class="note">${v.bookingLink.reviewBy && NOW.iso > v.bookingLink.reviewBy ? 'Published rates need rechecking; consult the venue for current prices.' : esc(v.bookingLink.note)}</p>${/^https:\/\//.test(v.bookingLink.source || '') ? `<a class="src" href="${esc(v.bookingLink.source)}" target="_blank" rel="noopener">Price source ↗</a> · ` : ''}<a class="src" href="${esc(v.bookingLink.url)}" target="_blank" rel="noopener">Open court-booking calendar ↗</a></div>`).join('')
+    || '<p class="note">No additional venue booking links for this selection. Available court feeds appear in the calendar above.</p>';
+}
+
 function renderPublicCourts() {
   const pc = schedule?.publicCourts;
   const list = (pc?.courts || []).filter((c) => (c.sport || 'volleyball') === state.sport && (state.tab === 'all' ? true : c.surface === state.tab));
-  $('courtsCard').hidden = !SPORTS[state.sport].courts || state.tab === 'indoor' || !list.length;
+  $('courtsCard').hidden = state.view !== 'booking' || !SPORTS[state.sport].courts || state.tab === 'indoor' || !list.length;
   $('courtsTitle').textContent = `Free public courts · ${list.length}`;
   $('courtsNote').textContent = `${pc?.note || ''} 💡 = lit.`;
   $('courts').innerHTML = list.map((c) => {
@@ -346,18 +364,18 @@ function glanceRows(sess, nowLine) {
 
 function renderGlance() {
   const iso = WEEK[state.di], isToday = state.di === 0, dow = dowOf(iso);
-  $('calTitle').textContent = `Day at a glance · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
+  $('calTitle').textContent = `${state.view === 'booking' ? 'Court bookings' : state.sport === 'ice_skating' ? 'Public skate calendar' : 'Open-play calendar'} · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
   const nowLine = isToday && NOW.minutes >= T0 ? `<div class="g-now" style="left:${pct(NOW.minutes)}%"></div>` : '';
   let html = axisRow();
 
   const sess = sessionsOn(iso).filter((x) => !hidden(x.f) && x.start && x.end).sort((a, b) => a.start.localeCompare(b.start));
-  if (sess.length) {
+  if (sess.length && state.view !== 'booking') {
     html += `<div class="g-group">${SPORTS[state.sport].group}<small>tap a bar for details</small></div>`;
     html += glanceRows(sess, nowLine);
   }
 
   // Court calendars (Skedda) are volleyball courts; other sports have none yet. Only this region's.
-  const facs = !SPORTS[state.sport].courts ? [] : regionCourts().flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
+  const facs = state.view !== 'booking' || !SPORTS[state.sport].courts ? [] : regionCourts().flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
   html += facs.map((f) => {
     const h = f.venue.hours?.[dow];
     if (!h) return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · closed today</small></div>`;
@@ -389,9 +407,10 @@ function renderGlance() {
     return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · open ${fmtT(h[0])}, closes ${fmtT(hhmm(close))} · ${sum} · ${pub}${stale} · <a class="book" href="${esc(calendarOn(f.venue, iso))}" target="_blank" rel="noopener">Book a court ↗</a></small></div>${lanes}`;
   }).join('');
 
-  const volleyball = SPORTS[state.sport].courts;
+  const volleyball = state.view === 'booking' && SPORTS[state.sport].courts;
   if (volleyball && !courts && !courtsError) html += `<p class="loading">Loading court calendars…</p>`;
-  if (!sess.length && !facs.length && (courts || !volleyball)) html += `<div class="g-group">Nothing timed on this day<small>${volleyball ? 'See free courts below' : 'Try another day'}</small></div>`;
+  if (state.view === 'booking' && !facs.length && !volleyball) html += '<div class="g-group">Use the venue booking calendars below<small>Live court availability is not connected for this sport.</small></div>';
+  else if (!(state.view === 'openplay' && sess.length) && !facs.length && (courts || !volleyball)) html += `<div class="g-group">Nothing timed on this day<small>${volleyball ? 'See free courts below' : 'Try another day'}</small></div>`;
   html += axisRow();
   $('cal').innerHTML = html;
 
@@ -431,7 +450,7 @@ function list(items) { return items.length <= 1 ? items.join('') : `${items.slic
 /** This region's court calendars. With no region known (data from before regions) or a court with no region, show it. */
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
-function render() { if (!schedule) return; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); }
+function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); }
 
 $('regionPick').addEventListener('change', (e) => chooseRegion(e.target.value));
 $('nearest').addEventListener('click', () => {
@@ -455,9 +474,10 @@ document.addEventListener('click', async (e) => {
     }
     return;
   }
-  const t = e.target.closest('[data-sport],[data-tab],[data-di]'); if (!t) return;
+  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view]'); if (!t) return;
   if (t.dataset.sport) { state.sport = t.dataset.sport; state.tab = 'all'; save(); }
   if (t.dataset.tab) { state.tab = t.dataset.tab; save(); }
+  if (t.dataset.view) { state.view = t.dataset.view; save(); }
   if (t.dataset.di) state.di = +t.dataset.di;
   render();
 });

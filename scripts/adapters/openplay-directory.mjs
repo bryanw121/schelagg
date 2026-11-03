@@ -1,6 +1,7 @@
 import { get } from '../../lib/http.js';
 import { pageObjects, findObject } from '../../lib/public-page-data.js';
 import { addDays, localDateTime } from '../../lib/time.js';
+import { contentHash } from '../../lib/health.js';
 
 export const needsBrowser = false;
 export const SOURCE = 'https://openplaymap.com/open-play/austin';
@@ -26,20 +27,29 @@ export function parse(html, ref, options, timezone) {
     if (!venue || e.preview || !/open\s*play/i.test(e.name ?? '')) continue;
     try {
       const url = new URL(e.bookingUrl);
-      if (url.protocol !== 'https:' || url.hostname !== venue.bookingHost || !/^\/community\/events\/[a-z0-9-]+$/.test(url.pathname)) throw new Error('Unexpected booking URL');
+      const validPath = venue.bookingPathPrefix
+        ? url.pathname.startsWith(venue.bookingPathPrefix) && /^\d+$/.test(url.searchParams.get('resId') ?? '')
+        : /^\/community\/events\/[a-z0-9-]+$/.test(url.pathname);
+      if (url.protocol !== 'https:' || url.hostname !== venue.bookingHost || !validPath) throw new Error('Unexpected booking URL');
+      for (const key of [...url.searchParams.keys()]) if (key.startsWith('utm_')) url.searchParams.delete(key);
       const times = eventTimes(e.startsAt, e.endsAt, timezone);
       if (times.date < ref || times.date > addDays(ref, 14)) continue;
-      const id = `openplay-${venue.slug}-${url.pathname.split('/').pop()}`;
+      const id = `openplay-${venue.slug}-${venue.bookingPathPrefix ? contentHash(url.pathname + url.search) : url.pathname.split('/').pop()}`;
       if (seen.has(id)) continue;
       seen.add(id);
-      const price = typeof e.price === 'number' && Number.isFinite(e.price) && e.price >= 0
+      let price = typeof e.price === 'number' && Number.isFinite(e.price) && e.price >= 0
         ? `$${e.price} / person (listed)` : 'Price not listed';
-      sessions.push({ id, ...times, sport: 'pickleball', title: e.name, venue: venue.name, city: 'Austin',
-        surface: e.indoor === true ? 'indoor' : e.indoor === false ? 'outdoor' : 'unspecified', type: 'Open play',
+      const rate = venue.openPlayRate;
+      const useRate = price === 'Price not listed' && rate && times.date <= rate.reviewBy
+        && (Date.parse(e.endsAt) - Date.parse(e.startsAt)) / 60000 === rate.minutes;
+      if (useRate) price = `$${rate.amount} / person (venue rate; confirm)`;
+      sessions.push({ id, ...times, sport: 'pickleball', title: e.name, venue: venue.name, city: venue.city ?? 'Austin',
+        surface: e.indoor === true ? 'indoor' : e.indoor === false ? 'outdoor' : venue.surface ?? 'unspecified', type: 'Open play',
         ...(e.skillLabel && e.skillLabel !== 'All levels' ? { level: e.skillLabel } : {}), price,
+        ...(useRate ? { priceSource: rate.url } : {}),
         scheduleBasis: 'directory_listing',
         note: `Listed by OpenPlay, an independent directory, updated ${updated} Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.`,
-        source: SOURCE, signup: { url: url.origin + url.pathname, label: 'Book with venue' } });
+        source: SOURCE, signup: { url: url.href, label: 'Book with venue' } });
     } catch (err) { warnings.push(`${venue.name}: ${err.message}; event withheld`); }
   }
   return { sessions, warnings };

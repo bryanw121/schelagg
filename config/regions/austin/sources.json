@@ -7,16 +7,29 @@
   "sources": [
     {
       "id": "austin-club-openplay",
-      "name": "OpenPlay directory · Ranch & Eastside",
+      "name": "OpenPlay directory · Austin clubs",
       "adapter": "openplay-directory",
       "sport": "pickleball",
       "cadence": "30m",
       "options": {
         "venues": [
           { "slug": "austin-pickle-ranch", "name": "Austin Pickle Ranch", "bookingHost": "austinpickleranch.podplay.app" },
-          { "slug": "eastside-paddle-club", "name": "Eastside Paddle Club", "bookingHost": "espc.podplay.app" }
+          { "slug": "eastside-paddle-club", "name": "Eastside Paddle Club", "bookingHost": "espc.podplay.app" },
+          {
+            "slug": "pickle-pit-stop", "name": "Pickle Pit Stop", "city": "Austin", "surface": "indoor",
+            "bookingHost": "app.courtreserve.com", "bookingPathPrefix": "/Online/Events/Details/15273/",
+            "openPlayRate": { "amount": 18, "minutes": 120, "reviewBy": "2026-11-30", "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/" }
+          }
         ]
       }
+    },
+    {
+      "id": "austin-picklehaus",
+      "name": "Austin PickleHaus · OpenCourt",
+      "adapter": "opencourt",
+      "sport": "pickleball",
+      "cadence": "30m",
+      "options": { "slug": "austinpicklehaus", "venue": "Austin PickleHaus", "city": "Pflugerville", "surface": "indoor" }
     },
     {
       "id": "holy-pickle",

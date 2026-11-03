@@ -76,3 +76,18 @@ test('club scrapes: plain public reads; failure does not silently publish a part
   await assert.rejects(scrape({ ref: '2026-10-25', options: holyOptions, timezone: TZ, fetch: async () => new Response('', { status: 503 }) }), /HTTP 503/);
   await assert.rejects(directoryScrape({ ref: '2026-10-25', options: directoryOptions, fetch: async () => new Response('Sign in', { status: 401 }) }), /HTTP 401/);
 });
+
+test('directory: CourtReserve keeps occurrence IDs and only applies reviewed rates to matching durations', () => {
+  const e = {...directory.initialData.events[0], venueSlug:'pickle-pit-stop', price:null, bookingUrl:'https://app.courtreserve.com/Online/Events/Details/15273/ABC?resId=1&utm_source=test'};
+  const run = events => parse(page({initialData:{...directory.initialData,events}}),'2026-10-25',directoryOptions,TZ);
+  const rows = run([e,{...e,bookingUrl:e.bookingUrl.replace('resId=1','resId=2')}]).sessions;
+  assert.equal(rows.length,2);
+  assert.notEqual(rows[0].id,rows[1].id);
+  assert.equal(new URL(rows[0].signup.url).search,'?resId=1');
+  assert.equal(rows[0].price,'$18 / person (venue rate; confirm)');
+  assert.match(rows[0].priceSource,/picklepitstop.com/);
+  assert.equal(run([{...e,endsAt:'2026-10-26T01:00:00Z'}]).sessions[0].price,'Price not listed');
+  assert.equal(run([{...e,bookingUrl:e.bookingUrl.replace('resId=1','missing=1')}]).sessions.length,0);
+  const expired = structuredClone(directoryOptions); expired.venues.find(v=>v.slug==='pickle-pit-stop').openPlayRate.reviewBy='2026-10-24';
+  assert.equal(parse(page({initialData:{...directory.initialData,events:[e]}}),'2026-10-25',expired,TZ).sessions[0].price,'Price not listed');
+});

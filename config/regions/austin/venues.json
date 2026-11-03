@@ -2,6 +2,110 @@
   "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates come from OSM.",
   "venues": [
     {
+      "id": "austin-pickleland",
+      "name": "Pickleland",
+      "city": "Pflugerville",
+      "address": "21427 Martin Ln, Pflugerville, TX 78660",
+      "addressSource": "https://pickleland.com/calendar",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "bookingLink": {
+        "sport": "pickleball",
+        "surface": "indoor",
+        "url": "https://play.pickleland.com/book/pickleland",
+        "note": "Nine indoor courts. Court rentals advertised from $24/hour; check the selected slot for the final price."
+      },
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://pickleland.com/calendar",
+        "note": "Use the venue calendar for current open play. General opening hours are not scheduled open-play sessions; dated sessions are not yet imported.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Mon–Fri 8am–10pm; Sat–Sun 8am–8pm.",
+            "url": "https://pickleland.com/calendar"
+          }
+        ]
+      }
+    },
+    {
+      "id": "austin-picklehaus",
+      "name": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "address": "18629 Weiss Ln, Building 2, Pflugerville, TX 78660",
+      "addressSource": "https://www.austinpicklehaus.com/",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/events",
+        "note": "Seven indoor courts in Pflugerville. Sessions above come from the venue's public event pages. The homepage preview is limited; the full calendar may list more sessions. General opening hours are not continuous open play.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Daily 7am–midnight.",
+            "url": "https://www.austinpicklehaus.com/"
+          },
+          {
+            "label": "Open-play price",
+            "text": "Published nonmember rates: $8 off-peak; $15 peak. Each dated session carries its own price. Peak hours are 4–10pm; off-peak is 7am–4pm and 10pm–midnight.",
+            "url": "https://app.getopencourt.com/club/austinpicklehaus"
+          }
+        ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/book",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+      }
+    },
+    {
+      "id": "austin-pickle-pit-stop",
+      "name": "Pickle Pit Stop",
+      "city": "Austin",
+      "address": "12915 Nutty Brown Rd, Austin, TX 78737",
+      "addressSource": "https://picklepitstop.com/",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+        "note": "Three indoor courts. Dated sessions are listed by the independent OpenPlay directory; confirm skill level and availability in CourtReserve. Venue rates are labeled separately from event-specific prices.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Sun–Thu 6am–10pm; Fri–Sat 6am–11pm. Members have 24/7 access.",
+            "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/"
+          },
+          {
+            "label": "Open-play price",
+            "text": "$18/person for a two-hour session; included for members. Confirm the final charge when booking.",
+            "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/"
+          }
+        ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://app.courtreserve.com/Online/PublicBookings/15273/Landing",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+      }
+    },
+    {
       "id": "austin-pickle-ranch",
       "name": "Austin Pickle Ranch",
       "city": "Austin",
@@ -35,6 +139,11 @@
             "url": "https://austinpickleranch.com/membership"
           }
         ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://austinpickleranch.com/plan-a-visit/braker",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
       }
     },
     {
@@ -71,6 +180,11 @@
             "url": "https://eastsidepaddleclub.com/faq"
           }
         ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://eastsidepaddleclub.com/",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
       }
     },
     {
@@ -99,6 +213,11 @@
             "url": "https://app.getopencourt.com/club/holy-pickle"
           }
         ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/holy-pickle",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
       }
     },
     {
@@ -300,6 +419,63 @@
       "googlePlaceId": null,
       "lat": null,
       "lng": null
+    },
+    {
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "id": "austin-atc",
+      "name": "Austin Tennis & Pickleball Center",
+      "city": "Austin",
+      "bookingLink": {
+        "sport": "pickleball",
+        "surface": "outdoor",
+        "url": "https://playtennis.usta.com/austintenniscenter/Booking/BookByDate",
+        "note": "Pickleball court fee: $5 per person. Up to 90 minutes for singles or 120 minutes for doubles. Reserve through the venue’s USTA booking system.",
+        "source": "https://playtennis.usta.com/austintenniscenter/Booking/CourtPricing",
+        "reviewBy": "2026-11-30"
+      }
+    },
+    {
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "id": "austin-bouldin-braker",
+      "name": "Bouldin Acres · Braker",
+      "city": "Austin",
+      "address": "1806 W Braker Ln, Austin, TX 78758",
+      "addressSource": "https://braker.bouldinacres.com/pickleball",
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://braker.bouldinacres.com/pickleball",
+        "note": "Court rental: Mon–Thu 11am–6pm $10/half-hour; evenings and Fri–Sun $20/half-hour. Monday/Wednesday 6–10pm reserved for leagues. Book up to one week ahead; customer reservations required. Early 7–11am bookings apply only to South Lamar.",
+        "reviewBy": "2026-11-30"
+      }
+    },
+    {
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "id": "crossover-diamond",
+      "name": "The Crossover Diamond Courts",
+      "city": "Cedar Park",
+      "parent": "crossover",
+      "address": "1717 Scottsdale Dr, Cedar Park, TX 78641",
+      "addressSource": "https://www.austinvelocity.com/rentals/pickleball",
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://www.austinvelocity.com/rentals/pickleball",
+        "note": "Venue-published recurring open play: Tuesday and Thursday 8am–noon, $5 drop-in. Six indoor courts; no registration required. Bring a paddle; waiver on arrival. Tournaments and facility events can change this schedule; check before going.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": []
+      }
     }
   ]
 }

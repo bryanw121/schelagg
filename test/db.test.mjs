@@ -367,7 +367,11 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
   const network = async (url) => {
     const u = new URL(String(url));
     if (u.hostname === 'openplaymap.com') return new Response(page(directory));
-    if (u.hostname === 'app.getopencourt.com') return new Response(page(u.pathname.endsWith(holyId) ? holyDetail : holyHome));
+    if (u.hostname === 'app.getopencourt.com') {
+      const haus = u.pathname.includes('austinpicklehaus');
+      const fixture = page(u.pathname.includes('/schedule/event/') ? holyDetail : holyHome).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId).replaceAll('holy-pickle', haus ? 'austinpicklehaus' : 'holy-pickle');
+      return new Response(fixture);
+    }
     if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return new Response(fixture('arketa-volleyworld-schedule.json'));
     if (u.hostname === 'www.austintexas.gov') return new Response(fixture('austin-pickleball.html'));
     if (u.hostname === 'apps.daysmartrecreation.com') {
