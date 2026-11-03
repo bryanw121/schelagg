@@ -6,6 +6,27 @@
   },
   "sources": [
     {
+      "id": "austin-club-openplay",
+      "name": "OpenPlay directory · Ranch & Eastside",
+      "adapter": "openplay-directory",
+      "sport": "pickleball",
+      "cadence": "30m",
+      "options": {
+        "venues": [
+          { "slug": "austin-pickle-ranch", "name": "Austin Pickle Ranch", "bookingHost": "austinpickleranch.podplay.app" },
+          { "slug": "eastside-paddle-club", "name": "Eastside Paddle Club", "bookingHost": "espc.podplay.app" }
+        ]
+      }
+    },
+    {
+      "id": "holy-pickle",
+      "name": "Holy Pickle · OpenCourt",
+      "adapter": "opencourt",
+      "sport": "pickleball",
+      "cadence": "30m",
+      "options": { "slug": "holy-pickle", "venue": "Holy Pickle", "city": "Austin", "surface": "outdoor" }
+    },
+    {
       "id": "volleyworld",
       "name": "Volleyworld",
       "adapter": "volleyworld",

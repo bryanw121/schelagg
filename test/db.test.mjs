@@ -11,6 +11,7 @@ import { PGlite } from '@electric-sql/pglite';
 import { loadSources } from '../lib/registry.js';
 import { runScrape, scrapePaths, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
 import { toOccurrences } from '../lib/occurrences.js';
+import { page, directory, holyHome, holyDetail, holyId } from './fixtures/public-calendars.mjs';
 import {
   wrapPglite, migrate, writeRun, persistRun, planRun, diffFields, sessionRow, occurrenceRow, sourceRows,
   canonical, feedOrder, isPast, redact, queryOccurrences, loadPublishedFromDb, UNTRACKED_FIELDS,
@@ -365,6 +366,8 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
   const CLUBS = { '/clubs/@vex_volleyball': 'reclub-club-vex_volleyball.html', '/clubs/@austin-lawn-club': 'reclub-club-austin-lawn-club.html' };
   const network = async (url) => {
     const u = new URL(String(url));
+    if (u.hostname === 'openplaymap.com') return new Response(page(directory));
+    if (u.hostname === 'app.getopencourt.com') return new Response(page(u.pathname.endsWith(holyId) ? holyDetail : holyHome));
     if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return new Response(fixture('arketa-volleyworld-schedule.json'));
     if (u.hostname === 'www.austintexas.gov') return new Response(fixture('austin-pickleball.html'));
     if (u.hostname === 'apps.daysmartrecreation.com') {

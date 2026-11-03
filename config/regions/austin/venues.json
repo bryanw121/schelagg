@@ -14,8 +14,27 @@
       "lng": null,
       "calendarLink": {
         "sport": "pickleball",
-        "url": "https://austinpickleranch.podplay.app/community/events?level=Casual&tag=Open+Play",
-        "note": "Open play varies by skill level. Check registration, rating requirements and prices on the venue calendar; availability is not tracked here."
+        "url": "https://austinpickleranch.podplay.app/community/events",
+        "note": "Sessions above are listed by the independent OpenPlay directory. Book at your skill level; some sessions require a verified DUPR rating. Opening hours below are facility hours, not continuous open play.",
+        "reviewedOn": "2026-11-02",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Mon 7am–11pm; Tue–Fri 7am–midnight; Sat 8am–midnight; Sun 8am–11pm.",
+            "url": "https://austinpickleranch.com/plan-a-visit/braker"
+          },
+          {
+            "label": "Open-play price",
+            "text": "Listed per session above. The venue says prices vary by time and duration; confirm the final charge when booking.",
+            "url": "https://austinpickleranch.com/faq/how-much-does-it-cost-to-play"
+          },
+          {
+            "label": "Membership",
+            "text": "Wrangler $99/month: daily off-peak open play. Trailboss $149/month plus $299 initiation: daily peak/off-peak open play. Limit one 2-hour open-play session per day; booking rules apply.",
+            "url": "https://austinpickleranch.com/membership"
+          }
+        ]
       }
     },
     {
@@ -32,7 +51,54 @@
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://espc.podplay.app/community/events",
-        "note": "Open play includes skill and rating restrictions. Registration requires an account; check the venue calendar for session times and remaining spots."
+        "note": "Sessions above are listed by the independent OpenPlay directory. Some require a verified DUPR rating. Opening hours below are facility hours, not continuous open play.",
+        "reviewedOn": "2026-11-02",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Mon–Fri 6am–10pm; Sat 7am–10pm; Sun 7am–8pm.",
+            "url": "https://eastsidepaddleclub.com/openplay"
+          },
+          {
+            "label": "Open-play price",
+            "text": "Venue FAQ: $15–$18/session for nonmembers; included for members. Directory listings also show $12 sessions. Check each event's final booking price.",
+            "url": "https://eastsidepaddleclub.com/faq"
+          },
+          {
+            "label": "Court rental / equipment",
+            "text": "Private courts $20–$40/hour; nonmember paddle rental $5. Court rental is separate from an open-play spot.",
+            "url": "https://eastsidepaddleclub.com/faq"
+          }
+        ]
+      }
+    },
+    {
+      "id": "austin-holy-pickle",
+      "name": "Holy Pickle",
+      "city": "Austin",
+      "address": "7001 Burnet Rd, Austin, TX 78757",
+      "addressSource": "https://app.getopencourt.com/club/holy-pickle",
+      "aliases": [
+        "Holy Pickleball"
+      ],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": null,
+      "lng": null,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/holy-pickle/events",
+        "note": "Outdoor courts. Upcoming open-play sessions and nonmember prices are read from Holy Pickle's public event pages. Its homepage shows a limited selection; check the full venue calendar for additional events. General opening hours are not published in the booking page.",
+        "reviewedOn": "2026-11-02",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Open-play price",
+            "text": "Currently published events are $10/person. Each session above carries its own checked price; final charges are confirmed at booking.",
+            "url": "https://app.getopencourt.com/club/holy-pickle"
+          }
+        ]
       }
     },
     {

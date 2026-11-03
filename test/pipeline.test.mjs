@@ -14,13 +14,14 @@ import { FEED_VERSION } from '../lib/occurrences.js';
 import { VENUES } from '../lib/skedda.js';
 import { runScrape, scrapePaths, buildCourts, HORIZON_DAYS, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
 import { judgeFix } from '../lib/health.js';
+import { page, directory, holyHome, holyDetail, holyId } from './fixtures/public-calendars.mjs';
 
 const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
 const REF = '2026-10-25';
 const { sources: SOURCES, manual: MANUAL } = loadSources();
-const ADAPTER_IDS = ['volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball'];
-const SPORT_OF = { 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball' }; // everything else: volleyball
+const ADAPTER_IDS = ['austin-club-openplay', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball'];
+const SPORT_OF = { 'austin-club-openplay': 'pickleball', 'holy-pickle': 'pickleball', 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball' }; // everything else: volleyball
 const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
 // DaySmart's events API for the rink sources: one page per company (paging is covered in daysmart.test.mjs).
 const daysmartEvents = (fixture, company) => {
@@ -100,6 +101,8 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
     calls.push(u.href);
     const res = (body, status = 200) => new Response(body, { status });
     if (down.has(u.hostname)) return res('down', 503);
+    if (u.hostname === 'openplaymap.com') return res(page(directory));
+    if (u.hostname === 'app.getopencourt.com') return res(page(u.pathname.endsWith(holyId) ? holyDetail : holyHome));
     if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return res(arketa ?? fixture('arketa-volleyworld-schedule.json'));
     if (u.hostname === 'reclub.co') {
       if (CLUBS[u.pathname]) return res(fixture(CLUBS[u.pathname]));
@@ -317,7 +320,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'holy-pickle', 'volleyworld', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));

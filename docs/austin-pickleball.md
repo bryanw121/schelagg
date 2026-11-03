@@ -1,7 +1,7 @@
 # Austin pickleball pilot source review
 
 Checked November 2, 2026 against the [official city programming page](https://www.austintexas.gov/parks/programs/pickleball) and the venue pages below.
-These are source-published recurrences, not individually confirmed events. Costs, skill eligibility and capacity remain unset where unverified.
+City sessions are source-published recurrences, not individually confirmed events. Their pages do not clearly state the open-play fee; the site explicitly says “Price not published” instead of assuming free access. Skill eligibility and capacity remain unset where unverified.
 
 | Venue | Published open play | Venue/address source |
 | --- | --- | --- |
@@ -20,13 +20,21 @@ November 11, 26 and 27 are withheld pending venue-specific confirmation based on
 
 Held back: Austin Recreation Center has conflicting end times; Zaragoza's index says Monday evening while its venue page says Wednesday noon–2pm; Dittmar has an expired October schedule. South Austin's all-ages session still needs its gym timetable reconciled. Varsity Generation eligibility is not assumed unrestricted. No lessons, leagues, park hours or private bookings are converted into open-play sessions.
 
-## Private club calendars
+## Private club sessions, prices and opening hours
 
-Austin Pickle Ranch and Eastside Paddle Club appear in a separate **More venue calendars** section, with addresses and directions. They create no synthetic sessions or availability claims. Their public frontend uses `/apis/v2/events`; unauthenticated GET checks for both tenants returned HTTP 401 on November 2. No sign-in, guest-account creation or credential workaround was attempted. Supported exports or an authorized integration are needed before automated club coverage. Picklr and YMCA remain separate access work.
+**Austin Pickle Ranch and Eastside:** the `openplay-directory` adapter reads dated open-play records embedded in the public [OpenPlay Austin calendar](https://openplaymap.com/open-play/austin). This is an independent directory, not a direct venue feed. The November 2 live check returned 183 sessions with listed prices of $12, $15, $17 or $18 per person. Each card identifies its directory provenance, directory update time, and links directly to the venue booking event. Venue-specific skill labels are preserved; missing court type is “Court type unlisted” and appears under All only. No remaining-spot claims are copied. Preview/demo data, stale directory snapshots, lessons, unreviewed venues and unexpected booking hosts are excluded. Source changes fail visibly, preserving the existing flagged last-good behavior.
 
-- [Ranch program](https://austinpickleranch.com/ways-to-play) and [calendar](https://austinpickleranch.podplay.app/community/events?level=Casual&tag=Open+Play): skill and registration requirements vary.
-- [Eastside program](https://eastsidepaddleclub.com/openplay) and [calendar](https://espc.podplay.app/community/events): account registration and skill/rating restrictions apply.
+Both Podplay `/apis/v2/events` and `/apis/v2/community/events` require sign-in. No sign-in, anonymous account creation or credential workaround is used. A sample Ranch event's public Open Graph metadata independently confirmed the directory's date and time; directory prices remain explicitly listed prices, not checkout quotes.
+
+The **Venue hours, prices & calendars** section separates facility hours from open-play sessions:
+
+- [Ranch Braker hours](https://austinpickleranch.com/plan-a-visit/braker): Mon 7am–11pm, Tue–Fri 7am–midnight, Sat 8am–midnight, Sun 8am–11pm. Its [pricing FAQ](https://austinpickleranch.com/faq/how-much-does-it-cost-to-play) directs players to event-specific prices. The [membership page](https://austinpickleranch.com/membership) lists Wrangler $99/month and Trailboss $149/month plus $299 initiation, with eligibility and daily session limits.
+- [Eastside hours](https://eastsidepaddleclub.com/openplay): Mon–Fri 6am–10pm, Sat 7am–10pm, Sun 7am–8pm. Its [FAQ](https://eastsidepaddleclub.com/faq) says nonmember open play $15–$18/session, private courts $20–$40/hour, and paddle rental $5. The directory also lists $12 sessions; the UI discloses the discrepancy and directs players to the final booking price.
+
+**Holy Pickle**, 7001 Burnet Rd, Austin, TX 78757: the `opencourt` adapter reads upcoming OpenPlay events from the [venue's public homepage](https://app.getopencourt.com/club/holy-pickle), then each public event detail page for its actual dates, court allocations, public/open status, and nonmember price. The live check returned six dated events, each $10/person. Example: November 3, 7–9pm CST. The [organizer's October announcement](https://buttondown.com/soul_serve/archive/new-open-play-at-holy-pickle-trosky-grand-opening/) corroborates outdoor play and the Burnet address. General facility hours are not published on the booking page, so none are invented. The homepage is a limited preview, not a promise of complete event coverage; its full calendar remains linked.
+
+Both new sources refresh on the 30-minute scrape cadence. UTC event timestamps are converted to Austin time across daylight-saving changes. No recurring club sessions are fabricated. Public page JSON is decoded with JSON.parse, never executed. Only selected event fields are persisted; fixtures contain no participants or contact data. General hours/pricing details were reviewed November 2 and are hidden after November 30 pending recheck; this editorial deadline does not stop the dated club feeds. Picklr, Pickleland and YMCA remain additional coverage work.
 
 Venue addresses pass through `schedule.venues` to card controls. Coordinates remain null until sourced under the existing venue-data policy. Map apps handle driving directions; no user location is requested by these controls and no estimated driving distance is displayed. Copy failures leave the full address visible for manual copying.
 
-Validation: run `npm test` and `npm run test:e2e`. Selected source fixtures omit contact numbers. Tests cover changed/missing blocks, strict time parsing, holiday holds, review expiry, HTTP failure, browser-free ingestion, dated feed/ICS output, sport isolation, map/copy controls, mobile layout and link-only calendars. City sessions say “Hours checked” / “Scheduled now” to distinguish published recurrences from live availability. Source warnings are visible in the freshness section. Generated production data is owned by the normal refresh workflow; this local implementation has not been deployed.
+Validation: run `npm test` and `npm run test:e2e`. Tests cover source changes, strict time parsing, daylight-saving conversion, holiday holds, review expiry, HTTP failure, browser-free ingestion, dated feed/ICS/database output, sport isolation, directory provenance, price display, unknown court type, map/copy controls and mobile layout. City sessions say “Hours checked”; directory sessions say “Listed today.” Source warnings remain visible. Generated production data is owned by the normal refresh workflow, triggered automatically when source changes deploy.

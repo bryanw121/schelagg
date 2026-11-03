@@ -175,7 +175,11 @@ test('site: external pickleball calendars are separate from sessions and source 
       checkedAt: CLOCK.toISOString(), warnings: ['Example venue: source block changed; withheld until reviewed'] }],
     sessions: PICKLE_SCHEDULE.sessions.map((s) => s.sport === 'pickleball' ? { ...s, sourceId: 'city', scheduleBasis: 'published_recurring_hours' } : s),
     venues: [...PICKLE_SCHEDULE.venues, { id: 'club', name: 'Example Club', city: 'Austin', address: '456 Main St, Austin, TX 78701',
-      calendarLink: { sport: 'pickleball', url: `${SIGNUP}/club`, note: 'Check skill eligibility and registration.' } }],
+      calendarLink: { sport: 'pickleball', url: `${SIGNUP}/club`, note: 'Check skill eligibility and registration.',
+        reviewedOn: TODAY, reviewBy: '2026-10-31', details: [
+          { label: 'Opening hours', text: 'Mon–Fri 7am–11pm. Facility hours, not continuous open play.', url: `${SIGNUP}/hours` },
+          { label: 'Open-play price', text: '$12–$18/person; confirm when booking.', url: `${SIGNUP}/prices` },
+        ] } }],
   };
   await open({ schedule, url: '/?sport=pickleball' });
   assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']);
@@ -183,11 +187,34 @@ test('site: external pickleball calendars are separate from sessions and source 
   assert.equal(await row('Outdoor pickleball').locator('.pill').textContent(), 'Scheduled now');
   assert.equal(await page.locator('#venueCalendarsCard').isVisible(), true);
   assert.equal(await page.locator('#venueCalendars a', { hasText: 'View venue calendar' }).getAttribute('href'), `${SIGNUP}/club`);
+  assert.match(await page.locator('#venueCalendars').textContent(), /Opening hours: Mon–Fri 7am–11pm/);
+  assert.match(await page.locator('#venueCalendars').textContent(), /\$12–\$18\/person/);
   assert.match(await page.locator('#sourceList').textContent(), /withheld until reviewed/);
   await page.setViewportSize({ width: 375, height: 812 });
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'mobile page fits viewport');
   await page.locator('[data-sport="volleyball"]').click();
   assert.equal(await page.locator('#venueCalendarsCard').isHidden(), true);
+  await open({ schedule, url: '/?sport=pickleball', clock: new Date('2026-11-01T18:00:00Z') });
+  assert.match(await page.locator('#venueCalendars').textContent(), /need rechecking/);
+  assert.doesNotMatch(await page.locator('#venueCalendars').textContent(), /\$12–\$18/);
+});
+
+test('site: directory session prices and unlisted court types do not imply venue verification', async () => {
+  const schedule = { ...PICKLE_SCHEDULE, sessions: [{ ...PICKLE_SCHEDULE.sessions.at(-1),
+    title: 'Ranch level 2 open play', surface: 'unspecified', start: '19:00', end: '21:00',
+    scheduleBasis: 'directory_listing', price: '$12 / person (listed)',
+    note: 'Listed by OpenPlay, an independent directory. Confirm final price at booking.',
+  }] };
+  await open({ schedule, url: '/?sport=pickleball' });
+  const listing = row('Ranch level 2 open play');
+  assert.equal(await listing.locator('.pill').textContent(), 'Listed today');
+  assert.match(await listing.textContent(), /\$12 \/ person \(listed\)/);
+  assert.match(await listing.textContent(), /Court type unlisted/);
+  assert.match(await listing.textContent(), /independent directory/);
+  await tab('indoor').click();
+  assert.equal(await rows().count(), 0);
+  await tab('outdoor').click();
+  assert.equal(await rows().count(), 0);
 });
 
 test('site: today\'s schedule renders in Austin time with freshness labels and sign-up links', async () => {

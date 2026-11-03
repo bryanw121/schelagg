@@ -27,7 +27,7 @@ const SPORTS = {
     label: 'Pickleball', group: 'Open play', courts: false, noun: 'open-play sessions',
     by: 'surface',
     tabs: { indoor: { label: 'Indoor', c: 'var(--indoor)' }, outdoor: { label: 'Outdoor', c: 'var(--grass)' } },
-    footer: 'Published recurring hours; confirm changes, holidays and access with the venue before you go.',
+    footer: 'Confirm times, final prices, skill requirements and availability with the venue before you go. Directory listings and published recurring hours are labeled.',
     empty: 'Try another day or surface. Only source-checked open play is listed; court rentals and general park hours are not scheduled sessions.',
   },
 };
@@ -36,6 +36,7 @@ const byOf = (x) => SPORTS[sportOf(x)].by;
 /** How a session is labelled and colored: its tab (e.g. Sand), or for a sport without tabs its type in the sport's color. */
 function tabOf(x) {
   const sp = SPORTS[sportOf(x)];
+  if (x.surface === 'unspecified') return { label: 'Court type unlisted', c: 'var(--muted)' };
   if (!sp.by) return { label: x.type || sp.label, c: sp.color };
   return sp.tabs[x[sp.by]] ?? { label: x[sp.by] || 'Other', c: 'var(--muted)' };
 }
@@ -117,6 +118,7 @@ function freshness(x, iso) {
   if (x.checkFailed) return { k: 'changed', l: "Couldn't recheck" };
   if (x.sourceChanged) return { k: 'changed', l: 'Source changed' };
   const age = Math.max(0, Math.round((dateObj(NOW.iso) - dateObj(x.verifiedAt)) / 864e5));
+  if (x.scheduleBasis === 'directory_listing') return { k: age <= 7 ? 'fresh' : age <= 21 ? 'aging' : 'stale', l: age === 0 ? 'Listed today' : `Listed ${age}d ago` };
   if (age <= 7) return { k: 'fresh', l: x.scheduleBasis === 'published_recurring_hours'
     ? (age === 0 ? 'Hours checked today' : `Hours checked ${age}d ago`)
     : (age === 0 ? 'Verified today' : `Verified ${age}d ago`) };
@@ -241,7 +243,7 @@ function renderList() {
     html += `<div class="row ${['expired', 'unverified', 'canceled'].includes(x.f.k) ? 'dim' : ''} ${past ? 'past' : ''}">
       <div class="time">${fmtT(x.start)}<small>${x.end ? 'to ' + fmtT(x.end) : ''}</small></div>
       <div class="body">
-        <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? (x.scheduleBasis === 'published_recurring_hours' ? 'Scheduled now' : 'Happening now') : x.f.l}</span></div>
+        <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? (x.scheduleBasis ? 'Scheduled now' : 'Happening now') : x.f.l}</span></div>
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}</div>
         ${locationHtml(x)}
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
@@ -267,6 +269,10 @@ function renderVenueCalendars() {
   $('venueCalendars').innerHTML = venues.map((v) => `<div class="venue-calendar">
     <b>${esc(v.name)}</b> · ${esc(v.city)}${locationHtml({ venueId: v.id })}
     <p class="note">${esc(v.calendarLink.note)}</p>
+    ${v.calendarLink.details?.length ? (v.calendarLink.reviewBy && NOW.iso > v.calendarLink.reviewBy
+      ? '<p class="note">Hours and general prices need rechecking. See the venue website for current details.</p>'
+      : `${v.calendarLink.details.map((d) => `<p class="note"><b>${esc(d.label)}:</b> ${esc(d.text)} ${/^https?:\/\//.test(d.url) ? `<a class="src" href="${esc(d.url)}" target="_blank" rel="noopener">Source ↗</a>` : ''}</p>`).join('')}<p class="note">Details checked ${esc(v.calendarLink.reviewedOn)} · Austin local time</p>`)
+      : ''}
     <a class="src" href="${esc(v.calendarLink.url)}" target="_blank" rel="noopener">View venue calendar ↗</a>
   </div>`).join('');
 }

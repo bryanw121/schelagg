@@ -86,6 +86,7 @@ export function parse(html, ref, options) {
           start: s.start, end: s.end, title: `${v.venue} · Pickleball open play`,
           venue: v.venue, city: 'Austin', surface: v.surface, type: 'Open play',
           scheduleBasis: 'published_recurring_hours', reviewBy: options.reviewedThrough,
+          price: 'Price not published — confirm with venue',
           note: `${v.note} City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.`,
           signup: { url: v.url, label: 'Venue details' }, source: SOURCE });
       }
