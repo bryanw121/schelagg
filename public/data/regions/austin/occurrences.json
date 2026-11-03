@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-03T20:13:35.355Z",
+  "generatedAt": "2026-11-03T20:43:39.586Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -28,91 +28,6 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bba2-9cfb-7776-99d2-a874b06b607c",
-      "session_id": "openplay-austin-pickle-ranch-01a0bba2-9cfb-7776-99d2-a874b06b607c",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-03T18:00:00.000Z",
-      "ends_at": "2026-11-03T20:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a0bba2-9cfb-7776-99d2-a874b06b607c",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-03",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a19dc9-8863-766c-861c-874b863a454c",
-      "session_id": "openplay-eastside-paddle-club-01a19dc9-8863-766c-861c-874b863a454c",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Level 1 Session (Beginner Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "level": "Beginner",
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-03T18:00:00.000Z",
-      "ends_at": "2026-11-03T20:00:00.000Z",
-      "signup_url": "https://espc.podplay.app/community/events/01a19dc9-8863-766c-861c-874b863a454c",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-03",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-eastside-paddle",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-pickle-pit-stop-24ac324b53df6195",
-      "session_id": "openplay-pickle-pit-stop-24ac324b53df6195",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "GATED Open Play- Advanced (Targeted DUPR 4.00-5.00)",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "level": "4.00–5.00",
-      "price": "$18 / person (venue rate; confirm)",
-      "starts_at": "2026-11-03T18:00:00.000Z",
-      "ends_at": "2026-11-03T20:00:00.000Z",
-      "signup_url": "https://app.courtreserve.com/Online/Events/Details/15273/CRTS4K115273384?resId=60944657",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-03",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play",
-        "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-pit-stop",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2803,7 +2718,7 @@
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
-        "spotsLeft": 11,
+        "spotsLeft": 10,
         "classId": "RuNoKxQdILikYDtnfMhP"
       },
       "venue_id": "volleyworld-georgetown",
