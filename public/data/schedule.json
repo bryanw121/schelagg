@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-03T06:13:25.460Z",
+  "generatedAt": "2026-11-03T07:13:27.776Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,8 +9,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T06:13:13.005Z",
-      "count": 175
+      "checkedAt": "2026-11-03T07:13:11.928Z",
+      "count": 189
     },
     {
       "id": "holy-pickle",
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T06:13:13.005Z",
+      "checkedAt": "2026-11-03T07:13:11.928Z",
       "count": 7
     },
     {
@@ -29,8 +29,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T06:13:13.005Z",
-      "count": 13
+      "checkedAt": "2026-11-03T07:13:11.928Z",
+      "count": 14
     },
     {
       "id": "aces",
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-03T06:13:13.005Z",
+      "checkedAt": "2026-11-03T07:13:11.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -70,7 +70,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-03T06:13:13.006Z",
+      "checkedAt": "2026-11-03T07:13:11.929Z",
       "count": 5
     },
     {
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T06:13:13.006Z",
+      "checkedAt": "2026-11-03T07:13:11.929Z",
       "count": 32
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T06:13:13.028Z",
+      "checkedAt": "2026-11-03T07:13:11.956Z",
       "count": 15
     },
     {
@@ -118,10 +118,37 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178f6-a723-755d-956b-1c3b31278f6c",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a18453-026a-7aae-b23f-c31d6c293396",
+      "date": "2026-11-03",
+      "start": "08:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "8:00am Early Bird (Intermediate Open Play)",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "Intermediate",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a18453-026a-7aae-b23f-c31d6c293396",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -144,7 +171,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bb9b-461c-7776-99a7-1e140c85a958",
@@ -170,7 +197,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba1-b7b7-7776-99cd-b08ef58359e4",
@@ -181,33 +208,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a18453-026a-7aae-b23f-c31d6c293396",
-      "date": "2026-11-03",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "8:00am Early Bird (Intermediate Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a18453-026a-7aae-b23f-c31d6c293396",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
     {
@@ -224,7 +224,7 @@
       "level": "3.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fd-454f-755d-9595-1620923c34fa",
@@ -251,7 +251,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fa-4407-755d-958b-6030356d3c4e",
@@ -278,7 +278,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0e9a0-78d7-7aaa-b8e3-59f42cef5e80",
@@ -304,7 +304,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc4a-d0f8-7333-b607-85c8190ecd06",
@@ -331,7 +331,7 @@
       "level": "3.25+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c08a-ff5c-7333-ba3b-fb1473372bad",
@@ -358,7 +358,7 @@
       "level": "4.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c08e-3079-7333-ba41-ecb7f248a479",
@@ -384,7 +384,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba2-2179-7333-b4c0-2cd4cba76cf7",
@@ -411,10 +411,37 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc8-bad1-766c-8608-ee1db304c107",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a19dc9-8863-766c-861c-874b863a454c",
+      "date": "2026-11-03",
+      "start": "12:00",
+      "end": "14:00",
+      "sport": "pickleball",
+      "title": "Level 1 Session (Beginner Open Play)",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "Beginner",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a19dc9-8863-766c-861c-874b863a454c",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -437,89 +464,10 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba2-9cfb-7776-99d2-a874b06b607c",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a19dc9-8863-766c-861c-874b863a454c",
-      "date": "2026-11-03",
-      "start": "12:00",
-      "end": "14:00",
-      "sport": "pickleball",
-      "title": "Level 1 Session (Beginner Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Beginner",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a19dc9-8863-766c-861c-874b863a454c",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bc46-1893-7333-b5f1-68e1af2827bd",
-      "date": "2026-11-03",
-      "start": "14:00",
-      "end": "17:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc46-1893-7333-b5f1-68e1af2827bd",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bc42-90b9-7776-9ae5-fa45c35059cc",
-      "date": "2026-11-03",
-      "start": "14:00",
-      "end": "17:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc42-90b9-7776-9ae5-fa45c35059cc",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -542,7 +490,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc51-a079-7333-b629-0684ecf33be0",
@@ -569,7 +517,7 @@
       "level": "3.25+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c095-7f14-7333-ba63-1b867c978566",
@@ -596,10 +544,89 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a117a3-0d0f-7227-8eec-df9a01fcc2b2",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc46-1893-7333-b5f1-68e1af2827bd",
+      "date": "2026-11-03",
+      "start": "14:00",
+      "end": "17:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 2",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc46-1893-7333-b5f1-68e1af2827bd",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc42-90b9-7776-9ae5-fa45c35059cc",
+      "date": "2026-11-03",
+      "start": "14:00",
+      "end": "17:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc42-90b9-7776-9ae5-fa45c35059cc",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a17e69-d472-7338-8ab5-41def4d53642",
+      "date": "2026-11-03",
+      "start": "16:00",
+      "end": "18:00",
+      "sport": "pickleball",
+      "title": "Level 2 Session (Intermediate Open Play)",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "Intermediate",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a17e69-d472-7338-8ab5-41def4d53642",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -623,7 +650,7 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e73-169e-7338-8ad6-0a4d09cc1a46",
@@ -634,59 +661,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e69-d472-7338-8ab5-41def4d53642",
-      "date": "2026-11-03",
-      "start": "16:00",
-      "end": "18:00",
-      "sport": "pickleball",
-      "title": "Level 2 Session (Intermediate Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e69-d472-7338-8ab5-41def4d53642",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a155e2-8372-7777-9861-028a86bdd78a",
-      "date": "2026-11-03",
-      "start": "17:00",
-      "end": "19:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a155e2-8372-7777-9861-028a86bdd78a",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -703,7 +677,7 @@
       "level": "3.5+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc74-dbe3-7333-b689-0210842ac59e",
@@ -729,7 +703,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc86-c651-7776-9b8e-19504454dc99",
@@ -755,7 +729,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc94-bddc-7333-b6dd-994699b239a3",
@@ -782,7 +756,7 @@
       "level": "2.75+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0e8-5478-7333-bb08-8eb0da4a63b3",
@@ -809,7 +783,7 @@
       "level": "3.25+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0c6-394d-7333-ba9f-f71ceba6bea9",
@@ -823,30 +797,29 @@
       "status": "scheduled"
     },
     {
-      "id": "openplay-eastside-paddle-club-01a17e6a-9533-7338-8abb-0a6cde835b4e",
+      "id": "openplay-austin-pickle-ranch-01a155e2-8372-7777-9861-028a86bdd78a",
       "date": "2026-11-03",
-      "start": "18:00",
-      "end": "20:00",
+      "start": "17:00",
+      "end": "19:00",
       "sport": "pickleball",
-      "title": "3.5-3.9+ DUPR Session (Advanced Open Play)",
-      "venue": "Eastside Paddle Club",
+      "title": "Open Play: Level 1",
+      "venue": "Austin Pickle Ranch",
       "city": "Austin",
       "surface": "unspecified",
       "type": "Open play",
-      "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e6a-9533-7338-8abb-0a6cde835b4e",
+        "url": "https://austinpickleranch.podplay.app/community/events/01a155e2-8372-7777-9861-028a86bdd78a",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -863,10 +836,37 @@
       "level": "Intermediate",
       "price": "$17 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e71-7493-7338-8ac6-45d3d63fd172",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a17e6a-9533-7338-8abb-0a6cde835b4e",
+      "date": "2026-11-03",
+      "start": "18:00",
+      "end": "20:00",
+      "sport": "pickleball",
+      "title": "3.5-3.9+ DUPR Session (Advanced Open Play)",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "3.5–3.9",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a17e6a-9533-7338-8abb-0a6cde835b4e",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -889,7 +889,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc87-415f-7776-9b92-cb92c3299173",
@@ -915,7 +915,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc95-46e2-7776-9bce-591cab331e6c",
@@ -941,7 +941,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc60-2654-7776-9b2c-6aac9ecfd4b0",
@@ -968,7 +968,7 @@
       "level": "3.25+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0c9-7985-7880-a879-192c51c6eb36",
@@ -995,7 +995,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e72-1595-7338-8acb-518eecd13762",
@@ -1022,7 +1022,7 @@
       "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e72-782b-7338-8ad0-8750630ff512",
@@ -1048,7 +1048,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bbd1-d0bf-7333-b55c-82b16df27233",
@@ -1074,7 +1074,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bbc4-8b7d-7333-b531-0d8f76e3fdbc",
@@ -1100,7 +1100,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba3-f828-7776-99dc-a1ef43f47262",
@@ -1126,7 +1126,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178f6-a76a-755d-956b-dcb2b94aa979",
@@ -1140,22 +1140,22 @@
       "status": "scheduled"
     },
     {
-      "id": "openplay-austin-pickle-ranch-01a0bb9c-1a3d-7776-99ac-92e36f29ea2f",
+      "id": "openplay-austin-pickle-ranch-01a0bba4-7e90-7776-99e1-d271164f2e36",
       "date": "2026-11-04",
       "start": "08:00",
       "end": "10:00",
       "sport": "pickleball",
-      "title": "Open Play: Level 1 / Level 2",
+      "title": "Open Play: Level 3",
       "venue": "Austin Pickle Ranch",
       "city": "Austin",
       "surface": "unspecified",
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bb9c-1a3d-7776-99ac-92e36f29ea2f",
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bba4-7e90-7776-99e1-d271164f2e36",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -1179,7 +1179,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-02e3-7aae-b240-82c26a3601c1",
@@ -1206,7 +1206,7 @@
       "level": "3.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fd-459e-755d-9595-d04cfd872008",
@@ -1220,22 +1220,22 @@
       "status": "scheduled"
     },
     {
-      "id": "openplay-austin-pickle-ranch-01a0bba4-7e90-7776-99e1-d271164f2e36",
+      "id": "openplay-austin-pickle-ranch-01a0bb9c-1a3d-7776-99ac-92e36f29ea2f",
       "date": "2026-11-04",
       "start": "08:00",
       "end": "10:00",
       "sport": "pickleball",
-      "title": "Open Play: Level 3",
+      "title": "Open Play: Level 1 / Level 2",
       "venue": "Austin Pickle Ranch",
       "city": "Austin",
       "surface": "unspecified",
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bba4-7e90-7776-99e1-d271164f2e36",
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bb9c-1a3d-7776-99ac-92e36f29ea2f",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -1259,7 +1259,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0e9a0-793a-7aaa-b8e4-1bcdf8d55e32",
@@ -1286,7 +1286,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fa-4459-755d-958c-204626e8edcb",
@@ -1297,33 +1297,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0c088-b647-7333-ba34-75efa4f5459e",
-      "date": "2026-11-04",
-      "start": "10:00",
-      "end": "12:00",
-      "sport": "pickleball",
-      "title": "Open Play: 4.0+ DUPR",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "4.0+",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0c088-b647-7333-ba34-75efa4f5459e",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -1340,7 +1313,7 @@
       "level": "3.5+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bbc0-eb78-7776-9a39-87a38f3802c2",
@@ -1367,7 +1340,7 @@
       "level": "3.25+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c091-2393-7333-ba4e-e33579b96080",
@@ -1393,7 +1366,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc4b-4a2f-7333-b60c-9e44ebf6bebf",
@@ -1419,10 +1392,37 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba5-17ca-7333-b4c9-1377175eaa83",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0c088-b647-7333-ba34-75efa4f5459e",
+      "date": "2026-11-04",
+      "start": "10:00",
+      "end": "12:00",
+      "sport": "pickleball",
+      "title": "Open Play: 4.0+ DUPR",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "4.0+",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0c088-b647-7333-ba34-75efa4f5459e",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -1446,7 +1446,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc8-bb30-766c-8609-a9a036b6ef0d",
@@ -1457,32 +1457,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bbbd-9d47-7776-9a2d-5c0a1721ebe5",
-      "date": "2026-11-04",
-      "start": "12:00",
-      "end": "14:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bbbd-9d47-7776-9a2d-5c0a1721ebe5",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -1498,7 +1472,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba5-8e3a-7776-99e7-d664a878d5b6",
@@ -1525,7 +1499,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc9-88af-766c-861d-46573a2bffe5",
@@ -1536,6 +1510,32 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bbbd-9d47-7776-9a2d-5c0a1721ebe5",
+      "date": "2026-11-04",
+      "start": "12:00",
+      "end": "14:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1 / Level 2",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bbbd-9d47-7776-9a2d-5c0a1721ebe5",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -1552,7 +1552,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e83-1c2c-7338-8b01-85a2507df704",
@@ -1563,32 +1563,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bc43-3c8b-7333-b5db-c20881a9b2f5",
-      "date": "2026-11-04",
-      "start": "14:00",
-      "end": "17:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc43-3c8b-7333-b5db-c20881a9b2f5",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -1604,7 +1578,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc46-9c1e-7333-b5f7-6570acffcd5a",
@@ -1630,7 +1604,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc55-6736-7333-b633-a777fbdca7bf",
@@ -1657,7 +1631,7 @@
       "level": "3.25+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c096-11b6-7333-ba69-f5fc9e9950b0",
@@ -1684,7 +1658,7 @@
       "level": "Beginner",
       "price": "$15 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e74-b0d3-7338-8adb-59f16db57500",
@@ -1695,6 +1669,32 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc43-3c8b-7333-b5db-c20881a9b2f5",
+      "date": "2026-11-04",
+      "start": "14:00",
+      "end": "17:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc43-3c8b-7333-b5db-c20881a9b2f5",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -1711,7 +1711,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e75-1398-7338-8adc-ef76e53eb2b5",
@@ -1738,7 +1738,7 @@
       "level": "3.7+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e75-c03d-7338-8ae2-ac8f393df576",
@@ -1764,7 +1764,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a155e3-47fb-7777-9863-13e8dda0b5c9",
@@ -1791,7 +1791,7 @@
       "level": "3.5+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc75-5ed5-7333-b68e-21a54763d59f",
@@ -1817,7 +1817,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc87-af92-7333-b6bd-05d502bca3b0",
@@ -1843,7 +1843,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc95-f896-7333-b6e3-d2631c3df2df",
@@ -1870,7 +1870,7 @@
       "level": "2.75+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0ea-36c3-7880-a8ce-5599fa57da4e",
@@ -1897,7 +1897,7 @@
       "level": "3.25+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0ca-113f-7880-a87e-3cef97d5cbc4",
@@ -1924,7 +1924,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e7b-5bd3-7338-8af8-8b49e2e33474",
@@ -1951,7 +1951,7 @@
       "level": "4.2+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e7a-2aa0-7338-8aee-2b0ea18c66cc",
@@ -1978,7 +1978,7 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc81-0442-7776-9b78-4c4d91f8314e",
@@ -2004,7 +2004,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc61-d186-7333-b648-42058d70cd63",
@@ -2030,7 +2030,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc88-352c-7776-9b99-ec0265087691",
@@ -2056,7 +2056,7 @@
       "type": "Open play",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc96-8e7e-7776-9bd4-5ffade54dfb1",
@@ -2083,7 +2083,7 @@
       "level": "3.25+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0ca-88fb-7333-baa8-a2f549b5a9d3",
@@ -2094,33 +2094,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a0b04a-c69e-7bbd-962f-22024eeb5024",
-      "date": "2026-11-04",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 2 Intermediate",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a0b04a-c69e-7bbd-962f-22024eeb5024",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
     {
@@ -2137,10 +2110,37 @@
       "level": "3.5+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e7a-b0d8-7338-8af3-58b01fb0e028",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a0b04a-c69e-7bbd-962f-22024eeb5024",
+      "date": "2026-11-04",
+      "start": "20:00",
+      "end": "22:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 2 Intermediate",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "Intermediate",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a0b04a-c69e-7bbd-962f-22024eeb5024",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -2163,7 +2163,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bbc5-02a4-7333-b535-f86edc84ea8f",
@@ -2189,7 +2189,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bbd2-8386-7333-b562-2015c0f9357b",
@@ -2215,7 +2215,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba6-0d72-7333-b4cf-acd46410e292",
@@ -2241,7 +2241,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178f6-a7b4-755d-956c-9b7922c8e203",
@@ -2252,6 +2252,32 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bb9d-0b99-7776-99b2-79779081c5c3",
+      "date": "2026-11-05",
+      "start": "08:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1 / Level 2",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bb9d-0b99-7776-99b2-79779081c5c3",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -2267,7 +2293,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba6-b059-7333-b4d4-89afdf38e82f",
@@ -2294,7 +2320,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-0348-7aae-b241-42054a9c2055",
@@ -2321,7 +2347,7 @@
       "level": "3.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fd-45df-755d-9596-92a95dd747b3",
@@ -2332,32 +2358,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bb9d-0b99-7776-99b2-79779081c5c3",
-      "date": "2026-11-05",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bb9d-0b99-7776-99b2-79779081c5c3",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -2374,7 +2374,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0e9a0-7b00-7aaa-b8e4-da66be91ae4f",
@@ -2401,7 +2401,7 @@
       "level": "3.25+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c091-be52-7880-a821-2442b5c63ad7",
@@ -2427,7 +2427,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc4b-e14d-7333-b611-dcfe37c07510",
@@ -2453,7 +2453,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba7-2328-7333-b4d9-b68b34e4017a",
@@ -2480,7 +2480,7 @@
       "level": "4.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c089-66b7-7880-a80a-357b64e653db",
@@ -2507,7 +2507,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc8-bb85-766c-860a-6c6850e3b6d5",
@@ -2534,7 +2534,7 @@
       "level": "3.5+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19df2-7787-766c-866f-1ef4f476871e",
@@ -2560,7 +2560,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bba7-a7da-7333-b4df-74af3bed45f0",
@@ -2587,37 +2587,10 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc9-88ff-766c-861e-04dc50a436db",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a119fd-2394-7227-9092-f6ff82863cd0",
-      "date": "2026-11-05",
-      "start": "14:00",
-      "end": "16:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3 Intermediate (Recommended DUPR 3.0+)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "3.0+",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a119fd-2394-7227-9092-f6ff82863cd0",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -2640,7 +2613,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc44-0f39-7333-b5e2-4b78db323cdd",
@@ -2666,7 +2639,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc47-21a6-7776-9af6-f46aae3badb6",
@@ -2692,7 +2665,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc56-61ad-7776-9b1d-d5c9ddfd429d",
@@ -2719,7 +2692,7 @@
       "level": "3.25+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c096-c2e6-7880-a833-c668b9e62045",
@@ -2746,10 +2719,37 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dcb-67ee-766c-862d-c361f2213716",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a119fd-2394-7227-9092-f6ff82863cd0",
+      "date": "2026-11-05",
+      "start": "14:00",
+      "end": "16:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 3 Intermediate (Recommended DUPR 3.0+)",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "3.0+",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a119fd-2394-7227-9092-f6ff82863cd0",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -2773,7 +2773,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ecd-a00f-7338-8b84-0ce2f9ea6329",
@@ -2800,7 +2800,7 @@
       "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ecd-558f-7338-8b82-ea4351fe6de3",
@@ -2811,6 +2811,32 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a155e3-e437-7aa3-8565-91c3cd81a5bd",
+      "date": "2026-11-05",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a155e3-e437-7aa3-8565-91c3cd81a5bd",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -2827,7 +2853,7 @@
       "level": "2.75+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0eb-3a73-7333-bb0e-bcc6b3505292",
@@ -2854,10 +2880,62 @@
       "level": "3.5+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0bc76-2776-7776-9b65-255ab77ba57a",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc88-fd93-7776-9b9e-d76c5cba7bc2",
+      "date": "2026-11-05",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 2",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc88-fd93-7776-9b9e-d76c5cba7bc2",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc97-51e4-7776-9bd9-64d25c502a61",
+      "date": "2026-11-05",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 3",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc97-51e4-7776-9bd9-64d25c502a61",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -2881,7 +2959,7 @@
       "level": "3.25+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://austinpickleranch.podplay.app/community/events/01a0c0cb-629d-7880-a885-11a3dfc527f5",
@@ -2908,7 +2986,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0cef4-c160-7666-8ede-3879de388e13",
@@ -2935,7 +3013,7 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ecd-f2cc-7338-8b84-eb4ea68069e1",
@@ -2946,6 +3024,138 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc65-cbf5-7333-b651-28474a9eb7e1",
+      "date": "2026-11-05",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc65-cbf5-7333-b651-28474a9eb7e1",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc7c-4236-7333-b69b-06d1e193a467",
+      "date": "2026-11-05",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Open Play: 3.5+ DUPR",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "3.5+",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc7c-4236-7333-b69b-06d1e193a467",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc89-b29d-7776-9ba3-fb0e09267d96",
+      "date": "2026-11-05",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 2",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc89-b29d-7776-9ba3-fb0e09267d96",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bc97-b489-7333-b6ea-c1e946435388",
+      "date": "2026-11-05",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 3",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bc97-b489-7333-b6ea-c1e946435388",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0c0cb-ee57-7333-baaf-2f895fc98a08",
+      "date": "2026-11-05",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Open Play: 3.25+ DUPR",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "3.25+",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0c0cb-ee57-7333-baaf-2f895fc98a08",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -2962,7 +3172,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a157c0-96d0-7880-aaee-20775cfb0c0a",
@@ -2973,6 +3183,84 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bbc5-6dab-7333-b53b-a2ddde535d62",
+      "date": "2026-11-05",
+      "start": "21:00",
+      "end": "23:30",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bbc5-6dab-7333-b53b-a2ddde535d62",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bbd3-335a-7776-9a71-f9e7b372b6b0",
+      "date": "2026-11-05",
+      "start": "21:00",
+      "end": "23:30",
+      "sport": "pickleball",
+      "title": "Open Play: Level 2",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bbd3-335a-7776-9a71-f9e7b372b6b0",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bba8-358b-7333-b4e5-8974e814cf09",
+      "date": "2026-11-05",
+      "start": "21:00",
+      "end": "23:30",
+      "sport": "pickleball",
+      "title": "Open Play: Level 3",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bba8-358b-7333-b4e5-8974e814cf09",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -2988,7 +3276,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178f6-a868-755d-956d-5f2355984f16",
@@ -2999,6 +3287,58 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bb9e-1e22-7776-99b8-4fa10713c727",
+      "date": "2026-11-06",
+      "start": "08:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 1 / Level 2",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bb9e-1e22-7776-99b8-4fa10713c727",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0bba8-b6a7-7776-99f2-8177e99f2005",
+      "date": "2026-11-06",
+      "start": "08:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "Open Play: Level 3",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0bba8-b6a7-7776-99f2-8177e99f2005",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -3015,7 +3355,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-03b2-7aae-b242-02f2ca229f11",
@@ -3026,6 +3366,33 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-austin-pickle-ranch-01a0c092-b4ee-7880-a826-dedcf157f81b",
+      "date": "2026-11-06",
+      "start": "10:00",
+      "end": "12:00",
+      "sport": "pickleball",
+      "title": "Open Play: 3.25+ DUPR",
+      "venue": "Austin Pickle Ranch",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "3.25+",
+      "price": "$12 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://austinpickleranch.podplay.app/community/events/01a0c092-b4ee-7880-a826-dedcf157f81b",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
     {
@@ -3042,7 +3409,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18e04-2dbe-788a-9571-a352c51eaeb2",
@@ -3069,7 +3436,7 @@
       "level": "3.5–3.9",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18e04-047a-788a-9571-0645d2ad2614",
@@ -3096,37 +3463,10 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19db2-61e3-766c-85f8-8894cc156fa2",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17ecf-7d30-7338-8b87-7baccdecc5b5",
-      "date": "2026-11-06",
-      "start": "14:00",
-      "end": "16:00",
-      "sport": "pickleball",
-      "title": "3.5-3.9+ DUPR Session (Advanced Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "3.5–3.9",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17ecf-7d30-7338-8b87-7baccdecc5b5",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -3150,7 +3490,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ecf-1d25-7338-8b86-905c9f104a84",
@@ -3164,23 +3504,23 @@
       "status": "scheduled"
     },
     {
-      "id": "openplay-eastside-paddle-club-01a17ecf-c4f9-7338-8b88-d95d3f23e76b",
+      "id": "openplay-eastside-paddle-club-01a17ecf-7d30-7338-8b87-7baccdecc5b5",
       "date": "2026-11-06",
-      "start": "16:00",
-      "end": "18:00",
+      "start": "14:00",
+      "end": "16:00",
       "sport": "pickleball",
-      "title": "Level 2 Session (Intermediate Open Play)",
+      "title": "3.5-3.9+ DUPR Session (Advanced Open Play)",
       "venue": "Eastside Paddle Club",
       "city": "Austin",
       "surface": "unspecified",
       "type": "Open play",
-      "level": "Intermediate",
+      "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17ecf-c4f9-7338-8b88-d95d3f23e76b",
+        "url": "https://espc.podplay.app/community/events/01a17ecf-7d30-7338-8b87-7baccdecc5b5",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -3204,10 +3544,37 @@
       "level": "4.2+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ed0-3721-7338-8b89-bd04e17b655e",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a17ecf-c4f9-7338-8b88-d95d3f23e76b",
+      "date": "2026-11-06",
+      "start": "16:00",
+      "end": "18:00",
+      "sport": "pickleball",
+      "title": "Level 2 Session (Intermediate Open Play)",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "Intermediate",
+      "price": "$18 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a17ecf-c4f9-7338-8b88-d95d3f23e76b",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -3231,7 +3598,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ede-9476-7338-8b90-226e2641fe46",
@@ -3258,7 +3625,7 @@
       "level": "3.5+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0cef2-82ba-7666-8ecb-0c88f2a62f4a",
@@ -3285,7 +3652,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0cef1-8050-7666-8ec4-40afcfe0cda3",
@@ -3312,7 +3679,7 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0cef0-e509-7666-8ebe-6027467b1cde",
@@ -3339,7 +3706,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ee1-97d9-7338-8ba0-8d3446fcfbe1",
@@ -3366,7 +3733,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17ee2-6dc7-7338-8ba2-199aa8209ec5",
@@ -3393,7 +3760,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dd4-bfb2-766c-863e-9dca2deeb43c",
@@ -3420,7 +3787,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a0ceef-1353-7666-8eb2-e67844396a3c",
@@ -3447,7 +3814,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dd5-374f-766c-8643-e88c70b91398",
@@ -3474,7 +3841,7 @@
       "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dd5-c6fb-766c-8649-32cb9ac860e0",
@@ -3501,7 +3868,7 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dd6-8c33-766c-864a-b9291501951c",
@@ -3528,7 +3895,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dd6-cfc7-766c-864c-111ba9174130",
@@ -3555,7 +3922,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dd7-2b10-766c-8650-be2613f223c0",
@@ -3581,7 +3948,7 @@
       "type": "Open play",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178f6-ab8b-755d-956e-1e454f4a772d",
@@ -3608,7 +3975,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-0733-7aae-b242-c23c2d1a3895",
@@ -3635,7 +4002,7 @@
       "level": "4.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19cf6-d127-7eec-87f8-811dbbb44374",
@@ -3662,7 +4029,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fa-44ac-755d-958c-e2b3fbabef78",
@@ -3689,7 +4056,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc8-c28e-766c-860b-2c0630c9087f",
@@ -3716,7 +4083,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc9-8949-766c-861e-c499cf32d144",
@@ -3743,7 +4110,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e60-69b4-7338-8a89-c9aa535dd931",
@@ -3770,7 +4137,7 @@
       "level": "4.2+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e66-d883-7338-8aa4-fba91caf13de",
@@ -3797,7 +4164,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e61-3f8b-7338-8a95-080ac4bef5bd",
@@ -3824,7 +4191,7 @@
       "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e67-63b0-7338-8aa9-eb914426e99a",
@@ -3851,7 +4218,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e66-0b0a-7338-8a9f-8a0bf15ad3a8",
@@ -3878,7 +4245,7 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e67-e03f-7338-8aae-9b5210b487c3",
@@ -3905,7 +4272,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17347-9e03-7ee4-b41a-3176d543faed",
@@ -3932,7 +4299,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-07a2-7aae-b243-8601d6dea93b",
@@ -3959,7 +4326,7 @@
       "level": "3.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fd-4901-755d-9598-d588b9d74a40",
@@ -3986,7 +4353,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc8-c2ec-766c-860b-eba0fd4b1872",
@@ -4013,7 +4380,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a19dc9-899a-766c-861f-84e53e4d81d3",
@@ -4040,7 +4407,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a117a3-0d58-7227-8eed-9bbb4890ad1e",
@@ -4067,7 +4434,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e69-d4e9-7338-8ab6-007cf1904d95",
@@ -4094,37 +4461,10 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e73-2303-7338-8ad6-cc94509131bb",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e71-74f1-7338-8ac7-00d7cc1a2246",
-      "date": "2026-11-10",
-      "start": "18:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": "Women's Level 3 Session (Intermediate+ Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$17 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e71-74f1-7338-8ac7-00d7cc1a2246",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -4148,10 +4488,37 @@
       "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e6a-95a3-7338-8abc-1a2bade621c0",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "austin-eastside-paddle",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-eastside-paddle-club-01a17e71-74f1-7338-8ac7-00d7cc1a2246",
+      "date": "2026-11-10",
+      "start": "18:00",
+      "end": "20:00",
+      "sport": "pickleball",
+      "title": "Women's Level 3 Session (Intermediate+ Open Play)",
+      "venue": "Eastside Paddle Club",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "Intermediate",
+      "price": "$17 / person (listed)",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://espc.podplay.app/community/events/01a17e71-74f1-7338-8ac7-00d7cc1a2246",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -4175,7 +4542,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e72-15ec-7338-8acc-1778e4ae271a",
@@ -4202,7 +4569,7 @@
       "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e72-788e-7338-8ad1-45cabccdeb0a",
@@ -4229,7 +4596,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-0b1f-7aae-b244-454b3bec09d0",
@@ -4256,7 +4623,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e83-1c82-7338-8b02-41fc78a2f335",
@@ -4283,7 +4650,7 @@
       "level": "Beginner",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e85-13f5-7338-8b08-95d006dd0d35",
@@ -4310,7 +4677,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e75-13f3-7338-8add-acb47051a66e",
@@ -4337,7 +4704,7 @@
       "level": "3.7+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e75-c09a-7338-8ae3-6bab7b99a0ae",
@@ -4364,7 +4731,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e7b-6760-7338-8af9-4bcbd5d370a7",
@@ -4391,7 +4758,7 @@
       "level": "4.2+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e7a-2af9-7338-8aee-e8834d3fb7eb",
@@ -4418,7 +4785,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e85-fbda-7338-8b0d-22adfb4211e5",
@@ -4445,7 +4812,7 @@
       "level": "3.5+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e7a-b181-7338-8af4-1bdaff119598",
@@ -4472,7 +4839,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-0c8b-7aae-b245-0352b8d422e1",
@@ -4499,7 +4866,7 @@
       "level": "3.0+",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a178fd-4a0d-755d-959a-50cbbb6b25cd",
@@ -4526,7 +4893,7 @@
       "level": "3.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a119fd-23e1-7227-9093-b3df79fae0f3",
@@ -4553,7 +4920,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e8c-cd8d-7338-8b1d-44d818d8fe5b",
@@ -4580,7 +4947,7 @@
       "level": "3.5–3.9",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e8e-195b-7338-8b28-6b5405bbef34",
@@ -4607,7 +4974,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e8d-882c-7338-8b23-76e736ae538a",
@@ -4634,7 +5001,7 @@
       "level": "4.0+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e8e-6c60-7338-8b2c-e11fa1e6ce9b",
@@ -4661,7 +5028,7 @@
       "level": "Intermediate",
       "price": "$12 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a18453-0d22-7aae-b245-c58caff2cfca",
@@ -4688,7 +5055,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e8f-2a54-7338-8b31-7394d9d1eedf",
@@ -4715,7 +5082,7 @@
       "level": "3.7+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e8f-92ca-7338-8b36-c81e1fce8016",
@@ -4742,7 +5109,7 @@
       "level": "Intermediate",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e90-d61e-7338-8b41-4f321e851685",
@@ -4769,7 +5136,7 @@
       "level": "4.2+",
       "price": "$18 / person (listed)",
       "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 2, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 12:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e90-4330-7338-8b3c-10c8c6cb0dc8",
@@ -4958,10 +5325,10 @@
       "status": "scheduled"
     },
     {
-      "id": "volleyworld-2026-11-03-20:30-georgetown",
+      "id": "volleyworld-2026-11-03-20:00-georgetown",
       "date": "2026-11-03",
-      "start": "20:30",
-      "end": "21:30",
+      "start": "20:00",
+      "end": "21:00",
       "title": "Jesus - Adult Training including Open Gym",
       "venue": "Volleyworld (Georgetown)",
       "city": "Georgetown",
@@ -4971,6 +5338,33 @@
       "capacity": 12,
       "spotsLeft": 12,
       "classId": "6NVfKOMO20XFwRgLMjP8",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
+    },
+    {
+      "id": "volleyworld-2026-11-03-20:30-georgetown",
+      "date": "2026-11-03",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Jesus - Open Gym",
+      "venue": "Volleyworld (Georgetown)",
+      "city": "Georgetown",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Adults · Jesus",
+      "capacity": 48,
+      "spotsLeft": 48,
+      "classId": "L0Rl9zvxdYyzDDqMx8Yu",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
         "label": "Book on Volleyworld"
