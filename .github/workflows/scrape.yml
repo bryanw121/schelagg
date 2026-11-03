@@ -1,6 +1,16 @@
 name: Refresh schedules
 
 on:
+  # Publish new or changed sources with their code deployment, so a new sport is
+  # available in the data index without waiting for the next scrape-clock tick.
+  push:
+    branches: [main]
+    paths:
+      - 'config/regions/**'
+      - 'scripts/adapters/**'
+      - 'scripts/scrape.mjs'
+      - 'lib/**'
+      - '.github/workflows/scrape.yml'
   schedule:
     # Backup only. .github/workflows/scrape-clock.yml starts the real schedule (every 30 minutes
     # from 8am to 10pm Austin time, hourly overnight), because GitHub drops many cron runs.
@@ -42,7 +52,7 @@ jobs:
       # of them needs Chromium, so a tick of API-only sources skips the browser install.
       - name: Plan this run
         id: plan
-        run: node scripts/scrape.mjs --plan ${{ inputs.all && '--all' || '' }}
+        run: node scripts/scrape.mjs --plan ${{ (github.event_name == 'push' || inputs.all) && '--all' || '' }}
       - name: Install Chromium
         if: steps.plan.outputs.browser == 'true'
         run: npx playwright install --with-deps chromium
@@ -54,7 +64,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: node scripts/db-migrate.mjs
-      - run: npm run scrape -- ${{ inputs.all && '--all' || '' }}
+      - run: npm run scrape -- ${{ (github.event_name == 'push' || inputs.all) && '--all' || '' }}
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           # Requests to one host are queued and spaced this far apart (lib/http.js).
