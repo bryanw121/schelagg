@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-03T15:13:29.774Z",
+  "generatedAt": "2026-11-03T15:43:30.027Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,8 +9,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T15:13:16.317Z",
-      "count": 190
+      "checkedAt": "2026-11-03T15:43:18.422Z",
+      "count": 189
     },
     {
       "id": "holy-pickle",
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T15:13:16.318Z",
+      "checkedAt": "2026-11-03T15:43:18.422Z",
       "count": 7
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T15:13:16.318Z",
+      "checkedAt": "2026-11-03T15:43:18.422Z",
       "count": 14
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-03T15:13:16.319Z",
+      "checkedAt": "2026-11-03T15:43:18.422Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T15:13:16.319Z",
+      "checkedAt": "2026-11-03T15:43:18.423Z",
       "count": 32
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-03T15:13:16.352Z",
+      "checkedAt": "2026-11-03T15:43:18.423Z",
       "count": 15
     },
     {
@@ -105,32 +105,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-eastside-paddle-club-01a178f6-a723-755d-956b-1c3b31278f6c",
-      "date": "2026-11-03",
-      "start": "07:00",
-      "end": "09:00",
-      "sport": "pickleball",
-      "title": "Open Play: 7:00am Early Bird ",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 3, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a178f6-a723-755d-956b-1c3b31278f6c",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-eastside-paddle-club-01a18453-026a-7aae-b23f-c31d6c293396",
       "date": "2026-11-03",
