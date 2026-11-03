@@ -4,13 +4,13 @@
       "counts": [
         189,
         189,
-        189,
         190,
         190,
         190,
         190,
         189,
         303,
+        298,
         298
       ],
       "sessions": 298,
@@ -29,6 +29,7 @@
     },
     "austin-picklehaus": {
       "counts": [
+        9,
         9,
         9
       ],
@@ -158,7 +159,7 @@
       ]
     },
     "aces": {
-      "failStreak": 225
+      "failStreak": 226
     },
     "atxbeach": {
       "counts": [
@@ -260,6 +261,7 @@
         "feeCurrency",
         "feeType",
         "flags",
+        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -308,6 +310,7 @@
         "scheduleId",
         "scheduleReference",
         "slots",
+        "slots[]",
         "sport",
         "sport.avgGameDuration",
         "sport.competitionType",
