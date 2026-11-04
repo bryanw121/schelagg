@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T15:43:33.297Z",
+  "generatedAt": "2026-11-04T16:13:52.594Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T15:43:19.256Z",
+      "checkedAt": "2026-11-04T16:13:34.942Z",
       "count": 302
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T15:43:19.257Z",
+      "checkedAt": "2026-11-04T16:13:34.943Z",
       "count": 10
     },
     {
@@ -34,8 +34,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T15:43:19.257Z",
-      "count": 7
+      "checkedAt": "2026-11-04T16:13:34.944Z",
+      "count": 6
     },
     {
       "id": "volleyworld",
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T15:43:19.257Z",
+      "checkedAt": "2026-11-04T16:13:34.944Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-04T15:43:19.258Z",
+      "checkedAt": "2026-11-04T16:13:34.946Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-04T10:13:33.319Z",
+      "checkedAt": "2026-11-04T16:13:34.946Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-03T16:01:18.375Z",
+      "checkedAt": "2026-11-04T16:13:34.984Z",
       "count": 8
     },
     {
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-04T15:13:20.596Z",
+      "checkedAt": "2026-11-04T16:13:36.050Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T15:43:19.259Z",
+      "checkedAt": "2026-11-04T16:13:37.193Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T15:43:19.301Z",
+      "checkedAt": "2026-11-04T16:13:37.255Z",
       "count": 15
     },
     {
@@ -115,7 +115,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-03T16:01:25.238Z",
+      "checkedAt": "2026-11-04T16:13:40.911Z",
       "count": 6
     }
   ],
@@ -8566,31 +8566,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-c56879e0-fa29-4f41-9611-70f2f84f6c46",
-      "date": "2026-11-04",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Holy Pickle · Open Play",
-      "venue": "Holy Pickle",
-      "city": "Austin",
-      "surface": "outdoor",
-      "type": "Open play",
-      "price": "$10 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/c56879e0-fa29-4f41-9611-70f2f84f6c46",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/c56879e0-fa29-4f41-9611-70f2f84f6c46",
-        "label": "View event & book"
-      },
-      "sourceId": "holy-pickle",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-holy-pickle",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-8b8eaa4a-4a6e-49b3-b5fa-6ed7e8ee7d0a",
       "date": "2026-11-06",
       "start": "08:00",
@@ -9175,7 +9150,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
+      "verifiedAt": "2026-11-04",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -10602,7 +10577,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
+      "verifiedAt": "2026-11-04",
       "venueId": "austin-alamo-rec",
       "status": "scheduled"
     },
@@ -10629,7 +10604,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
+      "verifiedAt": "2026-11-04",
       "venueId": "austin-dottie-jordan-rec",
       "status": "scheduled"
     },
@@ -10656,7 +10631,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
+      "verifiedAt": "2026-11-04",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -10683,7 +10658,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
+      "verifiedAt": "2026-11-04",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -10710,7 +10685,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
+      "verifiedAt": "2026-11-04",
       "venueId": "austin-northwest-rec",
       "status": "scheduled"
     },
@@ -10737,7 +10712,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
+      "verifiedAt": "2026-11-04",
       "venueId": "austin-northwest-rec",
       "status": "scheduled"
     },
@@ -10940,7 +10915,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-03",
+      "sourceChanged": "2026-11-04",
       "venueId": "crossover",
       "status": "scheduled"
     },
