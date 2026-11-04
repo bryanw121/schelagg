@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-04T21:16:51.272Z",
+  "generatedAt": "2026-11-04T21:43:32.081Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -141,34 +141,6 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e83-1c2c-7338-8b01-85a2507df704",
-      "session_id": "openplay-eastside-paddle-club-01a17e83-1c2c-7338-8b01-85a2507df704",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "50+ Level 3 Session (Intermediate Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "level": "Intermediate",
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-04T19:00:00.000Z",
-      "ends_at": "2026-11-04T21:00:00.000Z",
-      "signup_url": "https://espc.podplay.app/community/events/01a17e83-1c2c-7338-8b01-85a2507df704",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-04",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-eastside-paddle",
       "status": "scheduled",
       "previous_starts_at": null
     },
