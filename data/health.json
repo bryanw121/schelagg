@@ -4,20 +4,20 @@
       "counts": [
         302,
         302,
-        302,
         296,
         294,
         294,
         294,
         289,
         287,
-        287
+        287,
+        302
       ],
-      "sessions": 287,
+      "sessions": 302,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.78,
+        "level": 0.77,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -30,7 +30,7 @@
     "austin-picklehaus": {
       "counts": [
         9,
-        9,
+        10,
         10,
         10,
         10,
@@ -44,7 +44,7 @@
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.8,
+        "level": 0.9,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -61,13 +61,13 @@
         7,
         7,
         7,
-        7,
         6,
         6,
         6,
-        6
+        6,
+        7
       ],
-      "sessions": 6,
+      "sessions": 7,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -92,9 +92,9 @@
         14,
         14,
         14,
-        14
+        13
       ],
-      "sessions": 14,
+      "sessions": 13,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 251
+      "failStreak": 252
     },
     "atxbeach": {
       "counts": [
@@ -232,12 +232,12 @@
         5,
         5,
         5,
-        5,
         6,
         6,
-        6
+        6,
+        5
       ],
-      "sessions": 6,
+      "sessions": 5,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -268,7 +268,6 @@
         "feeCurrency",
         "feeType",
         "flags",
-        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -317,7 +316,6 @@
         "scheduleId",
         "scheduleReference",
         "slots",
-        "slots[]",
         "sport",
         "sport.avgGameDuration",
         "sport.competitionType",
@@ -372,9 +370,9 @@
         32,
         32,
         32,
-        32
+        33
       ],
-      "sessions": 32,
+      "sessions": 33,
       "coverage": {
         "end": 1,
         "price": 0,
