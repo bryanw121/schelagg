@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T02:13:37.519Z",
+  "generatedAt": "2026-11-04T02:43:26.508Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:13:23.091Z",
+      "checkedAt": "2026-11-04T02:43:15.760Z",
       "count": 294
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:13:23.091Z",
+      "checkedAt": "2026-11-04T02:43:15.761Z",
       "count": 10
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:13:23.092Z",
+      "checkedAt": "2026-11-04T02:43:15.761Z",
       "count": 7
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:13:23.092Z",
+      "checkedAt": "2026-11-04T02:43:15.761Z",
       "count": 14
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-04T02:13:23.093Z",
+      "checkedAt": "2026-11-04T02:43:15.762Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:13:23.139Z",
+      "checkedAt": "2026-11-04T02:43:15.762Z",
       "count": 32
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:13:24.131Z",
+      "checkedAt": "2026-11-04T02:43:15.802Z",
       "count": 15
     },
     {
@@ -8535,6 +8535,7 @@
       "surface": "indoor",
       "type": "Open play",
       "level": "Adults · Jesus",
+      "full": true,
       "capacity": 48,
       "spotsLeft": 48,
       "classId": "L0Rl9zvxdYyzDDqMx8Yu",
