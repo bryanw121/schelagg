@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        302,
         297,
         297,
         295,
@@ -11,6 +10,7 @@
         295,
         295,
         295,
+        291,
         291
       ],
       "sessions": 291,
@@ -163,10 +163,11 @@
         "total_booked",
         "unavailableReason",
         "waitlistLength"
-      ]
+      ],
+      "failStreak": 1
     },
     "aces": {
-      "failStreak": 274
+      "failStreak": 275
     },
     "atxbeach": {
       "counts": [
