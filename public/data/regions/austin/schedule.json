@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T02:43:26.508Z",
+  "generatedAt": "2026-11-04T03:13:32.424Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:43:15.760Z",
+      "checkedAt": "2026-11-04T03:13:16.571Z",
       "count": 294
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:43:15.761Z",
+      "checkedAt": "2026-11-04T03:13:16.571Z",
       "count": 10
     },
     {
@@ -34,8 +34,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:43:15.761Z",
-      "count": 7
+      "checkedAt": "2026-11-04T03:13:16.572Z",
+      "count": 6
     },
     {
       "id": "volleyworld",
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:43:15.761Z",
+      "checkedAt": "2026-11-04T03:13:16.572Z",
       "count": 14
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-04T02:43:15.762Z",
+      "checkedAt": "2026-11-04T03:13:16.573Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,8 +85,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-04T02:13:23.093Z",
-      "count": 5
+      "checkedAt": "2026-11-04T03:13:16.573Z",
+      "count": 6
     },
     {
       "id": "chaparral-ice",
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:43:15.762Z",
+      "checkedAt": "2026-11-04T03:13:16.606Z",
       "count": 32
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-04T02:43:15.802Z",
+      "checkedAt": "2026-11-04T03:13:17.692Z",
       "count": 15
     },
     {
@@ -8350,31 +8350,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-87cd1c50-8528-46ad-8ed5-f943def51072",
-      "date": "2026-11-03",
-      "start": "19:00",
-      "end": "21:00",
-      "sport": "pickleball",
-      "title": "Holy Pickle · Open Play",
-      "venue": "Holy Pickle",
-      "city": "Austin",
-      "surface": "outdoor",
-      "type": "Open play",
-      "price": "$10 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/87cd1c50-8528-46ad-8ed5-f943def51072",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/87cd1c50-8528-46ad-8ed5-f943def51072",
-        "label": "View event & book"
-      },
-      "sourceId": "holy-pickle",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-03",
-      "venueId": "austin-holy-pickle",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-c56879e0-fa29-4f41-9611-70f2f84f6c46",
       "date": "2026-11-04",
       "start": "08:00",
@@ -8563,6 +8538,7 @@
       "surface": "indoor",
       "type": "Open play",
       "level": "Adults · Jesus",
+      "full": true,
       "capacity": 12,
       "spotsLeft": 11,
       "classId": "6NVfKOMO20XFwRgLMjP8",
@@ -9099,6 +9075,33 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-03",
       "venueId": "treehouse",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-MS99PC",
+      "date": "2026-11-10",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Tuesday.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/MS99PC",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/MS99PC",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-03",
+      "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
     {

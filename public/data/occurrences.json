@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-04T02:43:26.508Z",
+  "generatedAt": "2026-11-04T03:13:32.424Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -85,33 +85,6 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "opencourt-87cd1c50-8528-46ad-8ed5-f943def51072",
-      "session_id": "opencourt-87cd1c50-8528-46ad-8ed5-f943def51072",
-      "source_id": "holy-pickle",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Holy Pickle · Open Play",
-      "venue": "Holy Pickle",
-      "city": "Austin",
-      "level": null,
-      "price": "$10 / person (nonmember)",
-      "starts_at": "2026-11-04T01:00:00.000Z",
-      "ends_at": "2026-11-04T03:00:00.000Z",
-      "signup_url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/87cd1c50-8528-46ad-8ed5-f943def51072",
-      "signup_label": "View event & book",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "canceled": false,
-      "verified_at": "2026-11-03",
-      "attributes": {
-        "surface": "outdoor",
-        "type": "Open play"
-      },
-      "venue_id": "austin-holy-pickle",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -531,6 +504,7 @@
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
+        "full": true,
         "capacity": 12,
         "spotsLeft": 11,
         "classId": "6NVfKOMO20XFwRgLMjP8"
@@ -8035,6 +8009,34 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-MS99PC",
+      "session_id": "reclub-MS99PC",
+      "source_id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "level": "C/B",
+      "price": "$12",
+      "starts_at": "2026-11-11T02:30:00.000Z",
+      "ends_at": "2026-11-11T05:30:00.000Z",
+      "signup_url": "https://reclub.co/m/MS99PC",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Vex Volleyball, every Tuesday.",
+      "canceled": false,
+      "verified_at": "2026-11-03",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 36
+      },
+      "venue_id": "volleyworld-pflugerville",
       "status": "scheduled",
       "previous_starts_at": null
     },
