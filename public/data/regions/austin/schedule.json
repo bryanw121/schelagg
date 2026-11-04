@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-04T21:14:03.662Z",
+  "generatedAt": "2026-11-04T21:16:51.272Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -43,10 +43,9 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "30m",
-      "ok": false,
-      "checkedAt": "2026-11-04T21:13:16.835Z",
-      "error": "The operation was aborted due to timeout",
-      "kept": 14
+      "ok": true,
+      "checkedAt": "2026-11-04T21:16:48.233Z",
+      "count": 14
     },
     {
       "id": "aces",
@@ -55,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-04T21:13:16.836Z",
+      "checkedAt": "2026-11-04T21:16:48.234Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -8442,7 +8441,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8470,7 +8468,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-pflugerville",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8498,7 +8495,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8526,7 +8522,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-pflugerville",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8554,7 +8549,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-pflugerville",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8582,7 +8576,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8610,7 +8603,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8638,7 +8630,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8666,7 +8657,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8694,7 +8684,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-pflugerville",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8722,7 +8711,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-pflugerville",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8750,7 +8738,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8778,7 +8765,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
@@ -8806,7 +8792,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
-      "checkFailed": "2026-11-04",
       "status": "scheduled"
     },
     {
