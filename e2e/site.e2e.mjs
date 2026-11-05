@@ -514,7 +514,8 @@ test('site: long venue names show in full on a 320px phone and on desktop, and t
   await open({ schedule: { ...SCHEDULE, sessions: [...SESSIONS, long] } });
   for (const width of [320, 390, 1280]) {
     await page.setViewportSize({ width, height: 800 });
-    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px: page fits the screen`);
+    const wide = await page.evaluate(() => [...document.querySelectorAll('body *')].filter((el) => !el.closest('.gantt') && el.getBoundingClientRect().right > innerWidth + 0.5).map((el) => `${el.tagName}.${el.className}`).slice(0, 5));
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px: page fits the screen (too wide: ${wide.join(', ')})`);
     // Every place the name appears shows all of it: no ellipsis, clamp or clipping, nothing past the screen edge.
     const cut = await page.evaluate((name) => [...document.querySelectorAll('.venue b, .g-lab, .title')].filter((el) => el.textContent.includes(name.split(' ')[0])).flatMap((el) => {
       const cs = getComputedStyle(el), r = el.getBoundingClientRect();
