@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-05T01:43:25.296Z",
+  "generatedAt": "2026-11-05T02:13:27.879Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -142,60 +142,6 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "opencourt-316970ee-886d-4303-afec-05239dfb6b5c",
-      "session_id": "opencourt-316970ee-886d-4303-afec-05239dfb6b5c",
-      "source_id": "austin-picklehaus",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Austin PickleHaus · Open Play Level 3 (6PM-8PM)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "level": "3.6–6 recommended",
-      "price": "$15 / person (nonmember)",
-      "starts_at": "2026-11-05T00:00:00.000Z",
-      "ends_at": "2026-11-05T02:00:00.000Z",
-      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/316970ee-886d-4303-afec-05239dfb6b5c",
-      "signup_label": "View event & book",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "canceled": false,
-      "verified_at": "2026-11-04",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "austin-picklehaus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "opencourt-58b5c09d-7dca-4d1a-97be-df2024e75d13",
-      "session_id": "opencourt-58b5c09d-7dca-4d1a-97be-df2024e75d13",
-      "source_id": "austin-picklehaus",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Austin PickleHaus · Open Play Level 2 (6PM-8PM)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "level": "2.8–3.8 recommended",
-      "price": "$15 / person (nonmember)",
-      "starts_at": "2026-11-05T00:00:00.000Z",
-      "ends_at": "2026-11-05T02:00:00.000Z",
-      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/58b5c09d-7dca-4d1a-97be-df2024e75d13",
-      "signup_label": "View event & book",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "canceled": false,
-      "verified_at": "2026-11-04",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1285,6 +1231,60 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-4ebd8da1-07d0-4fe4-8596-831544a47dc7",
+      "session_id": "opencourt-4ebd8da1-07d0-4fe4-8596-831544a47dc7",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Open Play Level 3 (11AM-1PM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "3.6–6 recommended",
+      "price": "$8 / person (nonmember)",
+      "starts_at": "2026-11-05T17:00:00.000Z",
+      "ends_at": "2026-11-05T19:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/4ebd8da1-07d0-4fe4-8596-831544a47dc7",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-04",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-e123a122-e9b1-4238-934c-f94aaf771b4b",
+      "session_id": "opencourt-e123a122-e9b1-4238-934c-f94aaf771b4b",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Open Play Level 2 (11AM-1PM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "2.8–3.8 recommended",
+      "price": "$8 / person (nonmember)",
+      "starts_at": "2026-11-05T17:00:00.000Z",
+      "ends_at": "2026-11-05T19:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/e123a122-e9b1-4238-934c-f94aaf771b4b",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-04",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },
