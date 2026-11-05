@@ -1,5 +1,5 @@
 {
-  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates come from OSM.",
+  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates never come from Google. lat/lng (Nov 2026) are the US Census geocoder's match for the address (public domain), or OpenStreetMap Nominatim's (© OpenStreetMap contributors, ODbL) where Census had no match: austin-pickle-ranch and atx-beach (11000 Middle Fiskville Rd), leander-activity-center, mueller-lake-park (sand courts at Mary Elizabeth Branch Park) and austin-bouldin-braker. The site uses them only for the 📍 distance order.",
   "venues": [
     {
       "id": "austin-pickleland",
@@ -10,8 +10,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.48954,
+      "lng": -97.55618,
       "bookingLink": {
         "sport": "pickleball",
         "surface": "indoor",
@@ -42,8 +42,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.44797,
+      "lng": -97.56099,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://app.getopencourt.com/club/austinpicklehaus/events",
@@ -78,8 +78,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.19321,
+      "lng": -97.97165,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
@@ -114,8 +114,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.37374,
+      "lng": -97.67913,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://austinpickleranch.podplay.app/community/events",
@@ -155,8 +155,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.26137,
+      "lng": -97.69818,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://espc.podplay.app/community/events",
@@ -198,8 +198,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.34676,
+      "lng": -97.73652,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://app.getopencourt.com/club/holy-pickle/events",
@@ -228,8 +228,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.2822,
+      "lng": -97.71979,
       "addressSource": "https://www.austintexas.gov/parks/alamo-recreation-center"
     },
     {
@@ -240,8 +240,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.31487,
+      "lng": -97.67401,
       "addressSource": "https://www.austintexas.gov/parks/dottie-jordan-recreation-center"
     },
     {
@@ -252,8 +252,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.23232,
+      "lng": -97.6989,
       "addressSource": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center"
     },
     {
@@ -264,8 +264,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.33458,
+      "lng": -97.75173,
       "addressSource": "https://www.austintexas.gov/parks/locations/northwest-recreation-center"
     },
     {
@@ -278,8 +278,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.18754,
+      "lng": -97.73957,
       "addressSource": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center"
     },
     {
@@ -292,8 +292,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.35443,
+      "lng": -97.68222,
       "addressSource": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center"
     },
     {
@@ -304,8 +304,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.65101,
+      "lng": -97.67498,
       "addressSource": "https://parks.georgetown.org/?p=18244"
     },
     {
@@ -316,8 +316,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.68653,
+      "lng": -97.68544,
       "addressSource": "https://parks.georgetown.org/?p=18244"
     },
     {
@@ -328,8 +328,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.57837,
+      "lng": -97.87053,
       "addressSource": "https://www.leandertx.gov/981/Leander-Activity-Center"
     },
     {
@@ -341,8 +341,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.70273,
+      "lng": -97.83485
     },
     {
       "id": "volleyworld-pflugerville",
@@ -353,8 +353,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.48951,
+      "lng": -97.55618
     },
     {
       "id": "atx-beach",
@@ -365,8 +365,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.37374,
+      "lng": -97.67913
     },
     {
       "id": "crossover",
@@ -379,8 +379,8 @@
       "skeddaFacility": "crossover",
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.55084,
+      "lng": -97.81646
     },
     {
       "id": "crossover-ice",
@@ -394,8 +394,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.55084,
+      "lng": -97.81646
     },
     {
       "id": "high-point",
@@ -408,8 +408,8 @@
       "skeddaFacility": "highpoint",
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.52876,
+      "lng": -97.84146
     },
     {
       "id": "treehouse",
@@ -423,8 +423,8 @@
       "skeddaFacility": "treehouse",
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.45395,
+      "lng": -97.67648
     },
     {
       "id": "mueller-lake-park",
@@ -433,8 +433,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.30074,
+      "lng": -97.70275
     },
     {
       "id": "hanovers",
@@ -445,8 +445,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.44075,
+      "lng": -97.62029
     },
     {
       "id": "chaparral-northcross",
@@ -458,8 +458,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.35739,
+      "lng": -97.73384
     },
     {
       "id": "bee-cave-on-ice",
@@ -468,8 +468,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.30789,
+      "lng": -97.94026
     },
     {
       "id": "four-seasons-austin",
@@ -481,15 +481,15 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.26265,
+      "lng": -97.74219
     },
     {
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.31145,
+      "lng": -97.63869,
       "id": "austin-atc",
       "name": "Austin Tennis & Pickleball Center",
       "city": "Austin",
@@ -506,8 +506,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.39127,
+      "lng": -97.70497,
       "id": "austin-bouldin-braker",
       "name": "Bouldin Acres · Braker",
       "city": "Austin",
@@ -524,8 +524,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null,
+      "lat": 30.55084,
+      "lng": -97.81646,
       "id": "crossover-diamond",
       "name": "The Crossover Diamond Courts",
       "city": "Cedar Park",
