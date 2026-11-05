@@ -508,6 +508,30 @@ test('site: the day-at-a-glance chart shows sessions, court bookings and courts 
   assert.equal(await page.locator('#calErrors').textContent(), '');
 });
 
+test('site: long venue names show in full on a 320px phone and on desktop, and the page never scrolls sideways', async () => {
+  const LONG = 'Northeast Metropolitan Community Recreation and Aquatics Center';
+  const long = { ...base, id: 'long-venue', sourceId: 'manual', date: TODAY, start: '18:30', end: '21:00', title: `${LONG} · Open play`, venue: LONG, city: 'Austin', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/long`, label: 'Venue details' }, source: `${SIGNUP}/long` };
+  await open({ schedule: { ...SCHEDULE, sessions: [...SESSIONS, long] } });
+  for (const width of [320, 390, 1280]) {
+    await page.setViewportSize({ width, height: 800 });
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}px: page fits the screen`);
+    // Every place the name appears shows all of it: no ellipsis, clamp or clipping, nothing past the screen edge.
+    const cut = await page.evaluate((name) => [...document.querySelectorAll('.venue b, .g-lab, .title')].filter((el) => el.textContent.includes(name.split(' ')[0])).flatMap((el) => {
+      const cs = getComputedStyle(el), r = el.getBoundingClientRect();
+      const bad = [];
+      if (cs.textOverflow === 'ellipsis' || (cs.webkitLineClamp && cs.webkitLineClamp !== 'none')) bad.push('truncated');
+      if (el.scrollWidth > el.clientWidth + 1 || r.right > innerWidth + 1) bad.push('clipped');
+      for (const s of el.querySelectorAll('small')) if (getComputedStyle(s).webkitLineClamp !== 'none' && getComputedStyle(s).webkitLineClamp) bad.push('sub-line clamped');
+      return bad.map((b) => `${el.className}: ${b}`);
+    }), LONG);
+    assert.deepEqual(cut, [], `${width}px`);
+    assert.equal(await row(LONG).locator('.venue b').textContent(), LONG);
+  }
+  // In the chart the line under the name doesn't repeat it.
+  const lab = page.locator('#cal .g-lab', { hasText: LONG });
+  assert.equal(await lab.textContent(), `${LONG}Open play`);
+});
+
 test('site: "Book a court" opens the venue calendar on the day being viewed', async () => {
   await open({ url: '/?view=booking' });
   const book = () => page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).locator('a.book', { hasText: 'Book a court' })

@@ -364,7 +364,9 @@ function glanceRows(sess, nowLine) {
       if (lane) lane.push(x); else lanes.push([x]);
     }
     const first = list[0];
-    const sub = first.rink || (list.length === 1 ? first.title : `${list.length} sessions`);
+    // The line under the name: the rink, the one session's title (without a repeat of the venue name), or a count.
+    const own = list.length === 1 ? first.title.replace(new RegExp(`^${first.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[·:–—-]?\\s*`, 'i'), '') : '';
+    const sub = first.rink || (list.length === 1 ? own || '1 session' : `${list.length} sessions`);
     lanes.forEach((lane, i) => {
       const bars = lane.map((x) => {
         const l = pct(mins(x.start)), w = +(pct(mins(x.end)) - l).toFixed(2);
