@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-05T17:13:27.610Z",
+  "generatedAt": "2026-11-05T17:43:28.441Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -28,34 +28,6 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a0e9a0-7b00-7aaa-b8e4-da66be91ae4f",
-      "session_id": "openplay-eastside-paddle-club-01a0e9a0-7b00-7aaa-b8e4-da66be91ae4f",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 3 Intermediate (Recommended DUPR 3.0+)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "level": "3.0+",
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-05T15:00:00.000Z",
-      "ends_at": "2026-11-05T17:00:00.000Z",
-      "signup_url": "https://espc.podplay.app/community/events/01a0e9a0-7b00-7aaa-b8e4-da66be91ae4f",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 5, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-05",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-eastside-paddle",
       "status": "scheduled",
       "previous_starts_at": null
     },
