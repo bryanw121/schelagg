@@ -303,7 +303,7 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   const labels = await page.locator('#cal .g-row:not(.g-axis) .g-lab').allTextContents();
   assert.deepEqual(labels, ['Example Ice RinkSilver Rink', 'Example Plaza RinkHoliday Rink', 'Example Ice RinkGold Rink']);
   const silver = page.locator('#cal .g-row', { has: page.locator('.g-lab', { hasText: 'Silver Rink' }) });
-  assert.deepEqual(await silver.locator('.g-bar').allTextContents(), ['2pm–4pm', '4:30pm–5:30pm']);
+  assert.deepEqual(await silver.locator('.g-bar').evaluateAll((els) => els.map((e) => e.dataset.label)), ['2–4p', '4:30–5:30p']);
   assert.equal(await page.locator('#sourceStatus').textContent(), 'Last check read all 1 scraped ice skating source.');
   // The footer lists this sport's sources by name.
   assert.equal(await page.locator('#footer').textContent(), 'Sources: Example Ice Rink and hand-checked pages. Rinks close for hockey and events; tap “Source” before you drive out.');
@@ -361,8 +361,8 @@ test('site: overlapping sessions at one place get a second lane instead of cover
   await open({ schedule: { ...SCHEDULE, sessions } });
   const rowsInChart = page.locator('#cal .g-row:not(.g-axis)').filter({ has: page.locator('.g-bar') });
   assert.equal(await rowsInChart.count(), 2); // A then Late on the first lane, B on a second
-  assert.deepEqual(await rowsInChart.nth(0).locator('.g-bar').allTextContents(), ['6pm–8pm', '9pm–10pm']);
-  assert.deepEqual(await rowsInChart.nth(1).locator('.g-bar').allTextContents(), ['7pm–9pm']);
+  assert.deepEqual(await rowsInChart.nth(0).locator('.g-bar').evaluateAll((els) => els.map((e) => e.dataset.label)), ['6–8p', '9–10p']);
+  assert.deepEqual(await rowsInChart.nth(1).locator('.g-bar').evaluateAll((els) => els.map((e) => e.dataset.label)), ['7–9p']);
   assert.equal(await rowsInChart.nth(0).locator('.g-lab').textContent(), 'Volleyworld (Georgetown)3 sessions');
   assert.equal(await rowsInChart.nth(1).locator('.g-lab').textContent(), '');
 });
@@ -483,7 +483,10 @@ test('site: "Show ended & unconfirmed" reveals canceled and unconfirmed sessions
 test('site: the day-at-a-glance chart shows sessions, court bookings and courts open for a meet', async () => {
   await open();
   const bars = page.locator('#cal a.g-bar');
-  assert.deepEqual(await bars.allTextContents(), ['9am–11am', '4pm–6pm', '7pm–10pm', '6pm–8pm', '7pm–10pm']); // one row per place: ATX Beach's two sessions share a row
+  assert.deepEqual(await bars.evaluateAll((els) => els.map((e) => e.dataset.label)), ['9–11a', '4–6p', '7–10p', '6–8p', '7–10p']); // one row per place: ATX Beach's two sessions share a row
+  // Venue names wrap instead of being cut off with an ellipsis.
+  const clipped = await page.locator('#cal .g-lab').evaluateAll((els) => els.filter((e) => e.scrollWidth > e.clientWidth + 1).map((e) => e.textContent));
+  assert.deepEqual(clipped, []);
   assert.equal(await bars.nth(3).getAttribute('href'), `${SIGNUP}/evening`);
 
   assert.equal(await page.locator('#cal .g-track.lane').count(), 0);

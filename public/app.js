@@ -66,6 +66,27 @@ const fmtDate = (iso, opts = { month: 'short', day: 'numeric' }) => dateObj(iso)
 const mins = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 const hhmm = (m) => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
 function fmtT(t) { if (!t) return 'TBD'; let [h, m] = t.split(':').map(Number); h %= 24; const ap = h >= 12 ? 'pm' : 'am'; return `${h % 12 || 12}${m ? ':' + pad(m) : ''}${ap}`; }
+/**
+ * Narrow bars (a 2-hour session on a phone is ~25px) show what fits: the compact range, then just
+ * the start ("8p"), then nothing. The full time is always in the tooltip and the session list.
+ */
+function fitBarLabels() {
+  for (const b of document.querySelectorAll('#cal .g-bar[data-label]')) {
+    b.textContent = b.dataset.label;
+    if (b.scrollWidth > b.clientWidth + 1) b.textContent = b.dataset.short;
+    if (b.scrollWidth > b.clientWidth + 1) b.textContent = '';
+  }
+}
+let fitTimer;
+addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitBarLabels, 100); });
+
+/** Compact range for chart bars: "8–10p", "9–11:30p", "10:30a–1:30p" (the full range is in the tooltip). */
+function fmtRange(a, b) {
+  if (!a || !b) return `${fmtT(a)}–${fmtT(b)}`;
+  const part = (t) => { let [h, m] = t.split(':').map(Number); h %= 24; return { t: `${h % 12 || 12}${m ? ':' + pad(m) : ''}`, ap: h >= 12 ? 'p' : 'a' }; };
+  const s = part(a), e = part(b);
+  return `${s.t}${s.ap === e.ap ? '' : s.ap}–${e.t}${e.ap}`;
+}
 const tick = (t) => { const h = +t.slice(0, 2) % 24; return (h % 12 || 12) + (h >= 12 ? 'p' : 'a'); };
 const pct = (m) => +(((Math.min(Math.max(m, T0), T1) - T0) / (T1 - T0)) * 100).toFixed(2);
 const clock = (iso) => new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ });
@@ -348,11 +369,13 @@ function glanceRows(sess, nowLine) {
       const bars = lane.map((x) => {
         const l = pct(mins(x.start)), w = +(pct(mins(x.end)) - l).toFixed(2);
         const style = `--c:${tabOf(x).c};left:${l}%;width:${w}%`;
-        const label = `${fmtT(x.start)}–${fmtT(x.end)}`;
-        const tip = `${x.title} · ${label}${x.signup?.label ? ` · ${x.signup.label}` : ''}`;
+        const full = `${fmtT(x.start)}–${fmtT(x.end)}`;
+        const label = fmtRange(x.start, x.end);
+        const short = fmtRange(x.start, x.start).split('–')[1];
+        const tip = `${x.title} · ${full}${x.signup?.label ? ` · ${x.signup.label}` : ''}`;
         return x.signup?.url
-          ? `<a class="g-bar" href="${esc(x.signup.url)}" target="_blank" rel="noopener" title="${esc(tip)}" style="${style}">${label}</a>`
-          : `<div class="g-bar" title="${esc(tip)}" style="${style}">${label}</div>`;
+          ? `<a class="g-bar" href="${esc(x.signup.url)}" target="_blank" rel="noopener" title="${esc(tip)}" aria-label="${esc(tip)}" data-label="${esc(label)}" data-short="${esc(short)}" style="${style}">${label}</a>`
+          : `<div class="g-bar" title="${esc(tip)}" data-label="${esc(label)}" data-short="${esc(short)}" style="${style}">${label}</div>`;
       }).join('');
       const aria = `${first.venue}: ${lane.map((x) => `${x.title} ${fmtT(x.start)} to ${fmtT(x.end)}`).join(', ')}`;
       const lab = i === 0 ? `<span class="g-lab" title="${esc(first.venue)}">${esc(first.venue)}<small>${esc(sub)}</small></span>` : '<span class="g-lab" aria-hidden="true"></span>';
@@ -413,6 +436,7 @@ function renderGlance() {
   else if (!(state.view === 'openplay' && sess.length) && !facs.length && (courts || !volleyball)) html += `<div class="g-group">Nothing timed on this day<small>${volleyball ? 'See free courts below' : 'Try another day'}</small></div>`;
   html += axisRow();
   $('cal').innerHTML = html;
+  fitBarLabels();
 
   document.querySelector('#glance .key').hidden = !volleyball;
   $('calNote').hidden = !volleyball;
