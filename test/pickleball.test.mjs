@@ -22,8 +22,8 @@ test('Austin pickleball source survives the pipeline, keeps addresses and emits 
       launchBrowser: () => { throw new Error('manual pilot needs no browser'); },
     });
     const sessions = result.out.sessions.filter((s) => s.sport === 'pickleball');
-    assert.equal(sessions.length, 6);
-    assert.equal(new Set(sessions.map((s) => s.venueId)).size, 4);
+    assert.equal(sessions.length, 13);
+    assert.equal(new Set(sessions.map((s) => s.venueId)).size, 6);
     for (const s of sessions) {
       assert.deepEqual(sessionProblems(s), { errors: [], notes: [] });
       assert.equal(s.region, 'austin');
@@ -34,7 +34,7 @@ test('Austin pickleball source survives the pipeline, keeps addresses and emits 
       assert.match(v.address, /Austin, TX \d{5}$/);
     }
     const occurrences = result.feed.occurrences.filter((o) => o.sport === 'pickleball');
-    assert.equal(occurrences.length, 6);
+    assert.equal(occurrences.length, 13);
     assert.ok(occurrences.every((o) => o.attributes.type === 'Open play'));
     assert.equal(occurrences.find((o) => o.session_id === 'pickleball-austin-montopolis-rec-0-2026-11-02').starts_at, '2026-11-03T00:00:00.000Z');
     assert.deepEqual(toOccurrences(sessions, { now: new Date('2026-11-09T18:00:00Z') }), []);
@@ -43,7 +43,7 @@ test('Austin pickleball source survives the pipeline, keeps addresses and emits 
     const regional = JSON.parse(await readFile(join(dir, 'regions/austin/schedule.json'), 'utf8'));
     assert.ok(regional.venues.find((v) => v.id === 'austin-northwest-rec').address);
     const ics = await readFile(join(dir, 'regions/austin/pickleball.ics'), 'utf8');
-    assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, 6);
+    assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, 13);
     assert.match(ics, /X-WR-CALNAME:Schelagg · Austin pickleball/);
     assert.doesNotMatch(ics, /Ice Rodeo|Volleyball|ATX Sand Social/);
   } finally { await rm(dir, { recursive: true, force: true }); }

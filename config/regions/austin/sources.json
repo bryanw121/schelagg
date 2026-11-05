@@ -242,7 +242,7 @@
           "2026-11-26",
           "2026-11-27"
         ],
-        "_review": "Checked Nov 2, 2026. This is an editorial review deadline, not a season. Official city holidays withheld pending venue confirmation: https://www.austintexas.gov/human-resources/official-city-holidays . Hashes are of normalized venue blocks; re-review source and venue pages before updating.",
+        "_review": "Checked Nov 2, 2026; Dove Springs and Gus Garcia added Nov 4, 2026 (their hashes come from blocks rebuilt from a text rendering of the page, so the first live run may report changed fingerprints to confirm). This is an editorial review deadline, not a season. Official city holidays withheld pending venue confirmation: https://www.austintexas.gov/human-resources/official-city-holidays . Hashes are of normalized venue blocks; re-review source and venue pages before updating.",
         "venues": [
           {
             "id": "austin-alamo-rec",
@@ -275,6 +275,110 @@
             "url": "https://www.austintexas.gov/parks/locations/northwest-recreation-center",
             "reviewedHash": "9f40bd6b20727a98",
             "note": "Three pickleball courts in the multi-purpose gym."
+          },
+          {
+            "id": "austin-dove-springs-rec",
+            "venue": "George Morales Dove Springs Recreation Center",
+            "surface": "indoor",
+            "url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
+            "reviewedHash": "32d1f7bfa60188a5",
+            "note": "Three indoor courts."
+          },
+          {
+            "id": "austin-gus-garcia-rec",
+            "venue": "Gus Garcia Recreation Center",
+            "surface": "indoor",
+            "url": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center",
+            "reviewedHash": "05a25b8e5f067ef4",
+            "note": "Three pickleball courts on one multi-purpose indoor court."
+          }
+        ]
+      }
+    },
+    {
+      "id": "georgetown-pickleball",
+      "name": "Georgetown Parks pickleball",
+      "adapter": "official-schedule",
+      "sport": "pickleball",
+      "cadence": "1d",
+      "options": {
+        "url": "https://parks.georgetown.org/?p=18244",
+        "horizonDays": 7,
+        "reviewedThrough": "2026-11-30",
+        "excludeDates": [
+          "2026-11-11",
+          "2026-11-26",
+          "2026-11-27"
+        ],
+        "_review": "Checked Nov 4, 2026 against the official City of Georgetown pickleball page (text rendering; the hashes were computed from test/fixtures/sources/georgetown-pickleball.html, rebuilt from it, so the first live run may report changed fingerprints to confirm). Editorial review deadline, not a season. Holiday holds copy the Austin city holidays conservatively pending Georgetown notices. McMaster Athletic Complex is plain daylight court access, not open play, and is deliberately left out.",
+        "venues": [
+          {
+            "id": "georgetown-rec-center",
+            "venue": "Georgetown Recreation Center",
+            "city": "Georgetown",
+            "surface": "indoor",
+            "from": "1003 N Austin Ave",
+            "to": "For information on pickleball at the Georgetown Recreation Center",
+            "reviewedHash": "d538627ad8120f62",
+            "price": "$6 day pass; included with membership",
+            "url": "https://parks.georgetown.org/?p=18244",
+            "note": "Six indoor courts; drop-in only at these times, first come first served, no reservations. Tue/Thu: 4 courts from 9am; Wed and Sun: 3 courts. Paddles to borrow at the front desk.",
+            "slots": [
+              { "days": ["Tue", "Thu"], "start": "08:00", "end": "12:00" },
+              { "days": ["Wed"], "start": "18:00", "end": "20:45" },
+              { "days": ["Sun"], "start": "12:00", "end": "15:00" }
+            ]
+          },
+          {
+            "id": "georgetown-tennis-center",
+            "venue": "Georgetown Tennis Center",
+            "city": "Georgetown",
+            "surface": "outdoor",
+            "from": "400 Serenada Dr.",
+            "to": "Pickleball Programs at the Georgetown Tennis Center",
+            "reviewedHash": "ddd9fa1452827117",
+            "price": "$6 drop-in (nonmember); free for members",
+            "url": "https://parks.georgetown.org/?p=18244",
+            "note": "Outdoor courts set aside for drop-in play: 4 courts Mon–Thu, 6 courts Fri–Sun. Other courts are reservable rentals, not open play.",
+            "slots": [
+              { "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], "start": "18:00", "end": "20:00" },
+              { "days": ["Sun"], "start": "14:30", "end": "17:30" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "leander-pickleball",
+      "name": "Leander Parks pickleball",
+      "adapter": "official-schedule",
+      "sport": "pickleball",
+      "cadence": "1d",
+      "options": {
+        "url": "https://www.leandertx.gov/981/Leander-Activity-Center",
+        "horizonDays": 7,
+        "reviewedThrough": "2026-11-30",
+        "excludeDates": [
+          "2026-11-11",
+          "2026-11-26",
+          "2026-11-27"
+        ],
+        "_review": "Checked Nov 4, 2026 against the official City of Leander facility page (text rendering; the hash was computed from test/fixtures/sources/leander-pickleball.html, rebuilt from it, so the first live run may report a changed fingerprint to confirm). The page does not say whether the courts are indoor or outdoor, so the court type stays unlisted. Holiday holds copy the Austin city holidays conservatively.",
+        "venues": [
+          {
+            "id": "leander-activity-center",
+            "venue": "Leander Activity Center",
+            "city": "Leander",
+            "surface": "unspecified",
+            "from": "Join us at the Leander Activity Center for open play",
+            "to": "Please Note",
+            "reviewedHash": "cd80a3c15dbfd359",
+            "price": "$4 / person; $2 Active Adult members (pay at the door)",
+            "url": "https://www.leandertx.gov/981/Leander-Activity-Center",
+            "note": "All ages and levels; no registration. The city notes its courts are slightly larger than regulation size.",
+            "slots": [
+              { "days": ["Mon", "Wed"], "start": "17:00", "end": "21:00" }
+            ]
           }
         ]
       }

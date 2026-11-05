@@ -5,6 +5,9 @@ import { contentHash } from '../../lib/health.js';
 
 export const needsBrowser = false;
 export const SOURCE = 'https://openplaymap.com/open-play/austin';
+// Names that say a session is not open to every player (private bookings, ladies/men-only,
+// members-only, invite-only). Not public drop-in, so never imported as open play.
+const RESTRICTED = /\b(private|ladies|women|womens|men|mens|invite|invitation|invitational|only)\b/i;
 
 export function eventTimes(start, end, timezone = 'America/Chicago') {
   const a = Date.parse(String(start).replace(/^\$D/, '')), b = Date.parse(String(end).replace(/^\$D/, ''));
@@ -24,7 +27,7 @@ export function parse(html, ref, options, timezone) {
   const sessions = [], warnings = [], seen = new Set();
   for (const e of data.events) {
     const venue = options.venues.find((v) => v.slug === e.venueSlug);
-    if (!venue || e.preview || !/open\s*play/i.test(e.name ?? '')) continue;
+    if (!venue || e.preview || !/open\s*play/i.test(e.name ?? '') || RESTRICTED.test(e.name)) continue;
     try {
       const url = new URL(e.bookingUrl);
       const validPath = venue.bookingPathPrefix

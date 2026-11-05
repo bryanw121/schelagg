@@ -55,3 +55,48 @@ Volleyball and pickleball now have separate **Open play** and **Court booking** 
 The directory live check also returned 80 Ranch and 109 Eastside sessions. These are point-in-time observations, not guaranteed availability. New editorial rates/details require re-review after November 30.
 
 Remaining source audit: Picklr Austin West, Kingdom, YMCA/Pickleball Den, JCC, community organizers and the conflicting municipal schedules noted above. Access-restricted calendars need public-source alternatives or an approved integration. Do not interpret memberships, all-day park access, lessons or leagues as public drop-in events.
+
+## November 4 additions: Dove Springs, Gus Garcia, Georgetown and Leander
+
+Checked November 4, 2026 against each official page. The build environment's proxy blocks these hosts, so the pages
+were read through a text rendering (WebFetch), not as raw HTML. Every time, day and price below was re-read on the
+official page that day; anything that could not be confirmed was left out.
+
+| Venue | Open play (verified Nov 4) | Price shown | Source / limits |
+| --- | --- | --- | --- |
+| George Morales Dove Springs Recreation Center, 5801 Ainez Dr, Austin, TX 78744 | Mon 9am–noon; Wed 6–8:30pm; Fri 9am–noon. Indoor, 3 courts | Price not published | [City programming page](https://www.austintexas.gov/parks/programs/pickleball); [venue page](https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center) gives the address and no conflicting times. |
+| Gus Garcia Recreation Center, 1201 E Rundberg Ln, Austin, TX 78753 | Tue & Thu 11am–1pm; Sat 10am–noon; Sun 1–2:30pm. Indoor, 1 multi-purpose court striped for 3 | Price not published | City programming page; [venue page](https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center) gives the address and no conflicting times. |
+| Georgetown Recreation Center, 1003 N Austin Ave, Georgetown, TX 78626 | Tue & Thu 8am–noon (4 courts from 9am); Wed 6–8:45pm (3 courts); Sun noon–3pm (3 courts). Indoor, 6 lined courts; drop-in only, first come, no reservations | $6 day pass; included with membership | [Official Georgetown pickleball page](https://parks.georgetown.org/?p=18244). "Scheduled days and times of play are subject to change." |
+| Georgetown Tennis Center, 400 Serenada Dr, Georgetown, TX 78628 | Mon–Thu 6–8pm (4 courts); Fri–Sat 6–8pm (6 courts); Sun 2:30–5:30pm (6 courts). Outdoor | $6 drop-in (nonmember); free for members | Same page, "Georgetown Tennis Center Open Play Pickleball Hours". Reservable courts and the instruction programs are not imported. |
+| Leander Activity Center, 11880 Hero Way W, Suite 600, Leander, TX | Mon & Wed 5–9pm. All ages and levels, no registration | $4 / person; $2 Active Adult members (pay at the door) | [Official facility page](https://www.leandertx.gov/981/Leander-Activity-Center). No official page says indoor or outdoor, so the court type is "Court type unlisted". The page gives no ZIP code, so none is added. Courts are slightly larger than regulation size (city's note). |
+
+Left out: **McMaster Athletic Complex** (Georgetown) publishes daylight court access, not open play. The other
+municipal centers held back above are unchanged (Austin Recreation Center, Dittmar, Zaragoza, South Austin,
+Varsity Generation sessions, Givens, which lists no open play).
+
+**How.** Dove Springs and Gus Garcia join the `austin-pickleball` city adapter's reviewed venues. Their blocks use
+"Open Play Schedule:" and a bare "Open Play" heading over one line per day, so the strict grammar now accepts those
+two labels; any other text after the label still withholds the venue. Georgetown and Leander use the new
+browser-free `official-schedule` adapter (`georgetown-pickleball`, `leander-pickleball` in `sources.json`): each
+venue's slots and price are stored in config, read by a person, next to the fingerprint of the page text they were
+read from (from the venue's `from` marker to its `to` marker, contact details removed). A run emits that venue's
+sessions only while the fingerprint still matches; a changed, missing or ambiguous block is withheld with a warning
+showing the new fingerprint, and a page with no recognisable block fails the source (keep-last-good flags it). The
+same `reviewedThrough: 2026-11-30` deadline and seven-day window apply, and successful fetches never extend it.
+Holiday holds copy the Austin city dates (November 11, 26, 27) for Georgetown and Leander as a conservative default
+until those cities' notices are checked.
+
+**Fixtures and first live run.** Because only a text rendering was available, the new fixture blocks
+(`test/fixtures/sources/austin-pickleball.html` for the two Austin centers, `georgetown-pickleball.html`,
+`leander-pickleball.html`) are rebuilt from it and labelled as such, and the five new `reviewedHash` values are
+computed from those rebuilt blocks. The live page's markup may normalise to slightly different text. If it does, the
+first scheduled run withholds that venue with "source block changed (fingerprint …)": compare the live block with the
+table above and, if the schedule and price are unchanged, put the reported fingerprint in `reviewedHash`.
+
+**OpenPlay directory checks (November 4).** Session names that mark a private or restricted session ("Private",
+"Ladies", "Women's", "Men's", "Only", "Invite") are now excluded even when they also say "Open Play"; before, only
+names without "open play" were dropped, so "Ladies Only Open Play" would have been published as public open play.
+The live directory showed no such names that day. The audit's dates "one day later" come from openplaymap's own
+event-detail URLs, which carry the UTC date (an 8pm Nov 4 CST session is `.../events/2026-11-05-...`). The adapter
+dates sessions from the event's instants in Austin time and links the venue booking page (Podplay or CourtReserve
+URLs carry no date), so imported dates match the heading day; a test pins this.

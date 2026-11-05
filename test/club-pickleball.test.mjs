@@ -91,3 +91,23 @@ test('directory: CourtReserve keeps occurrence IDs and only applies reviewed rat
   const expired = structuredClone(directoryOptions); expired.venues.find(v=>v.slug==='pickle-pit-stop').openPlayRate.reviewBy='2026-10-24';
   assert.equal(parse(page({initialData:{...directory.initialData,events:[e]}}),'2026-10-25',expired,TZ).sessions[0].price,'Price not listed');
 });
+
+test('directory: private and restricted sessions are not imported as public open play', () => {
+  const e = directory.initialData.events[0];
+  const names = ['Private Event', 'Private Event - Open Play', 'Ladies Only Open Play', "Women's Open Play", "Men's Open Play 3.5+",
+    'Members Only Open Play', 'Open Play (Invite Only)'];
+  const events = names.map((name, i) => ({ ...e, name, bookingUrl: `${e.bookingUrl.slice(0, -1)}${i + 2}` }));
+  const kept = ['Open Play: Level 2', 'Open Play: 3.5+ DUPR', 'Level 1 Session (Beginner Open Play)', 'Open Play: 7:00am Early Bird'];
+  events.push(...kept.map((name, i) => ({ ...e, name, bookingUrl: `${e.bookingUrl.slice(0, -2)}9${i}` })));
+  const result = parse(page({ initialData: { ...directory.initialData, events } }), '2026-10-25', directoryOptions, TZ);
+  assert.deepEqual(result.warnings, []);
+  assert.deepEqual(result.sessions.map((s) => s.title), kept);
+});
+
+test('directory: an evening session is dated by its Austin heading day, not the UTC date in directory URLs', () => {
+  // openplaymap's own detail URLs use the UTC date (".../events/2026-11-05-...") for an 8pm Nov 4 CST session.
+  const e = { ...directory.initialData.events[0], startsAt: '2026-11-05T02:00:00Z', endsAt: '2026-11-05T04:00:00Z' };
+  const s = parse(page({ initialData: { ...directory.initialData, checkedAt: '2026-11-04T18:00:00Z', events: [e] } }), '2026-11-04', directoryOptions, TZ).sessions[0];
+  assert.deepEqual([s.date, s.start, s.end], ['2026-11-04', '20:00', '22:00']);
+  assert.match(s.signup.url, /^https:\/\/austinpickleranch\.podplay\.app\/community\/events\/[0-9a-f-]+$/, 'links the venue booking event, not the dated directory page');
+});
