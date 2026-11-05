@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-05T04:32:26.268Z",
+  "generatedAt": "2026-11-05T05:13:27.901Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:07.890Z",
+      "checkedAt": "2026-11-05T05:13:14.840Z",
       "count": 268
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:07.890Z",
+      "checkedAt": "2026-11-05T05:13:14.840Z",
       "count": 10
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:07.891Z",
+      "checkedAt": "2026-11-05T05:13:14.841Z",
       "count": 6
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:07.891Z",
+      "checkedAt": "2026-11-05T05:13:14.841Z",
       "count": 14
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-05T04:32:07.893Z",
+      "checkedAt": "2026-11-05T05:13:14.842Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:09.609Z",
+      "checkedAt": "2026-11-05T05:13:14.842Z",
       "count": 33
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:09.945Z",
+      "checkedAt": "2026-11-05T05:13:14.890Z",
       "count": 15
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-05T04:32:10.588Z",
+      "checkedAt": "2026-11-05T05:13:15.963Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-05T04:32:10.694Z",
+      "checkedAt": "2026-11-05T05:13:16.040Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7849,8 +7849,9 @@
       "surface": "indoor",
       "type": "Training",
       "level": "Adults · Adan",
+      "canceled": true,
       "capacity": 12,
-      "spotsLeft": 11,
+      "spotsLeft": 12,
       "classId": "bmi7QGyxpkXAXOZaXmDG",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -7863,7 +7864,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-pflugerville",
-      "status": "scheduled"
+      "status": "cancelled"
     },
     {
       "id": "volleyworld-2026-11-06-20:30-georgetown",
@@ -7920,33 +7921,6 @@
       "status": "scheduled"
     },
     {
-      "id": "volleyworld-2026-11-08-07:30-pflugerville",
-      "date": "2026-11-08",
-      "start": "07:30",
-      "end": "09:00",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Training",
-      "level": "Adults · Adan",
-      "capacity": 12,
-      "spotsLeft": 12,
-      "classId": "j832pfctCOA0XokNXOfB",
-      "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
-        "label": "Book on Volleyworld"
-      },
-      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "sourceId": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "volleyworld-pflugerville",
-      "status": "scheduled"
-    },
-    {
       "id": "volleyworld-2026-11-08-20:30-georgetown",
       "date": "2026-11-08",
       "start": "20:30",
@@ -7956,7 +7930,7 @@
       "city": "Georgetown",
       "surface": "indoor",
       "type": "Training",
-      "level": "Adults · Adan",
+      "level": "Adults · Paty & Jesus",
       "capacity": 12,
       "spotsLeft": 12,
       "classId": "RnmaD20Nu0sGZxSU0y2r",
@@ -8028,6 +8002,33 @@
       "status": "scheduled"
     },
     {
+      "id": "volleyworld-2026-11-11-21:00-pflugerville",
+      "date": "2026-11-11",
+      "start": "21:00",
+      "end": "22:30",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "tnS2SUxuWAZNMRwBLiZk",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
       "id": "volleyworld-2026-11-13-20:30-georgetown",
       "date": "2026-11-13",
       "start": "20:30",
@@ -8082,33 +8083,6 @@
       "status": "scheduled"
     },
     {
-      "id": "volleyworld-2026-11-15-07:30-pflugerville",
-      "date": "2026-11-15",
-      "start": "07:30",
-      "end": "09:00",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Training",
-      "level": "Adults · Adan",
-      "capacity": 12,
-      "spotsLeft": 12,
-      "classId": "Feg41wH7FGFoPq1qJvkL",
-      "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
-        "label": "Book on Volleyworld"
-      },
-      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "sourceId": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "volleyworld-pflugerville",
-      "status": "scheduled"
-    },
-    {
       "id": "volleyworld-2026-11-15-20:30-georgetown",
       "date": "2026-11-15",
       "start": "20:30",
@@ -8118,7 +8092,7 @@
       "city": "Georgetown",
       "surface": "indoor",
       "type": "Training",
-      "level": "Adults · Adan",
+      "level": "Adults · Paty & Jesus",
       "capacity": 12,
       "spotsLeft": 12,
       "classId": "f69y5PcBFofgLu4wYVwJ",
@@ -8187,6 +8161,33 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
+    },
+    {
+      "id": "volleyworld-2026-11-18-21:00-pflugerville",
+      "date": "2026-11-18",
+      "start": "21:00",
+      "end": "22:30",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "1ECrbBraMnBUFUSEQKWY",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
     {

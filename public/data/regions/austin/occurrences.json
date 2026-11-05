@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-05T04:32:26.268Z",
+  "generatedAt": "2026-11-05T05:13:27.901Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -2153,17 +2153,17 @@
       "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
       "signup_label": "Book on Volleyworld",
       "note": null,
-      "canceled": false,
+      "canceled": true,
       "verified_at": "2026-11-04",
       "attributes": {
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
-        "spotsLeft": 11,
+        "spotsLeft": 12,
         "classId": "bmi7QGyxpkXAXOZaXmDG"
       },
       "venue_id": "volleyworld-pflugerville",
-      "status": "scheduled",
+      "status": "cancelled",
       "previous_starts_at": null
     },
     {
@@ -4735,36 +4735,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "volleyworld-2026-11-08-07:30-pflugerville",
-      "session_id": "volleyworld-2026-11-08-07:30-pflugerville",
-      "source_id": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "level": "Adults · Adan",
-      "price": null,
-      "starts_at": "2026-11-08T13:30:00.000Z",
-      "ends_at": "2026-11-08T15:00:00.000Z",
-      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "signup_label": "Book on Volleyworld",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-11-04",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Training",
-        "capacity": 12,
-        "spotsLeft": 12,
-        "classId": "j832pfctCOA0XokNXOfB"
-      },
-      "venue_id": "volleyworld-pflugerville",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "openplay-eastside-paddle-club-01a19dd4-bfb2-766c-863e-9dca2deeb43c",
       "session_id": "openplay-eastside-paddle-club-01a19dd4-bfb2-766c-863e-9dca2deeb43c",
       "source_id": "austin-club-openplay",
@@ -5619,7 +5589,7 @@
       "title": "Adult Volleyball Training",
       "venue": "Volleyworld (Georgetown)",
       "city": "Georgetown",
-      "level": "Adults · Adan",
+      "level": "Adults · Paty & Jesus",
       "price": null,
       "starts_at": "2026-11-09T02:30:00.000Z",
       "ends_at": "2026-11-09T04:00:00.000Z",
@@ -7849,6 +7819,36 @@
       "previous_starts_at": null
     },
     {
+      "id": "volleyworld-2026-11-11-21:00-pflugerville",
+      "session_id": "volleyworld-2026-11-11-21:00-pflugerville",
+      "source_id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "level": "Adults · Adan",
+      "price": null,
+      "starts_at": "2026-11-12T03:00:00.000Z",
+      "ends_at": "2026-11-12T04:30:00.000Z",
+      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "signup_label": "Book on Volleyworld",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-11-04",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Training",
+        "capacity": 12,
+        "spotsLeft": 12,
+        "classId": "tnS2SUxuWAZNMRwBLiZk"
+      },
+      "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-pickle-pit-stop-4f85ceffefc0a533",
       "session_id": "openplay-pickle-pit-stop-4f85ceffefc0a533",
       "source_id": "austin-club-openplay",
@@ -9358,36 +9358,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "volleyworld-2026-11-15-07:30-pflugerville",
-      "session_id": "volleyworld-2026-11-15-07:30-pflugerville",
-      "source_id": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Pflugerville)",
-      "city": "Pflugerville",
-      "level": "Adults · Adan",
-      "price": null,
-      "starts_at": "2026-11-15T13:30:00.000Z",
-      "ends_at": "2026-11-15T15:00:00.000Z",
-      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "signup_label": "Book on Volleyworld",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-11-04",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Training",
-        "capacity": 12,
-        "spotsLeft": 12,
-        "classId": "Feg41wH7FGFoPq1qJvkL"
-      },
-      "venue_id": "volleyworld-pflugerville",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "openplay-pickle-pit-stop-052047f3c1258691",
       "session_id": "openplay-pickle-pit-stop-052047f3c1258691",
       "source_id": "austin-club-openplay",
@@ -9709,7 +9679,7 @@
       "title": "Adult Volleyball Training",
       "venue": "Volleyworld (Georgetown)",
       "city": "Georgetown",
-      "level": "Adults · Adan",
+      "level": "Adults · Paty & Jesus",
       "price": null,
       "starts_at": "2026-11-16T02:30:00.000Z",
       "ends_at": "2026-11-16T04:00:00.000Z",
@@ -10839,6 +10809,36 @@
         "classId": "uWYFtjB2lxZrUViT33w3"
       },
       "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "volleyworld-2026-11-18-21:00-pflugerville",
+      "session_id": "volleyworld-2026-11-18-21:00-pflugerville",
+      "source_id": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "level": "Adults · Adan",
+      "price": null,
+      "starts_at": "2026-11-19T03:00:00.000Z",
+      "ends_at": "2026-11-19T04:30:00.000Z",
+      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "signup_label": "Book on Volleyworld",
+      "note": null,
+      "canceled": false,
+      "verified_at": "2026-11-04",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Training",
+        "capacity": 12,
+        "spotsLeft": 12,
+        "classId": "1ECrbBraMnBUFUSEQKWY"
+      },
+      "venue_id": "volleyworld-pflugerville",
       "status": "scheduled",
       "previous_starts_at": null
     },
