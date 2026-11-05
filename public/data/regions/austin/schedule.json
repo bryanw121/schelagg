@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-05T04:13:46.455Z",
+  "generatedAt": "2026-11-05T04:32:26.268Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,8 +14,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:31.849Z",
-      "count": 275
+      "checkedAt": "2026-11-05T04:32:07.890Z",
+      "count": 268
     },
     {
       "id": "austin-picklehaus",
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:31.850Z",
+      "checkedAt": "2026-11-05T04:32:07.890Z",
       "count": 10
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:31.850Z",
+      "checkedAt": "2026-11-05T04:32:07.891Z",
       "count": 6
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:31.850Z",
+      "checkedAt": "2026-11-05T04:32:07.891Z",
       "count": 14
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-05T04:13:31.851Z",
+      "checkedAt": "2026-11-05T04:32:07.893Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:31.851Z",
+      "checkedAt": "2026-11-05T04:32:07.894Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-04T16:13:34.984Z",
+      "checkedAt": "2026-11-05T04:32:07.926Z",
       "count": 8
     },
     {
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:31.909Z",
+      "checkedAt": "2026-11-05T04:32:08.244Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:33.122Z",
+      "checkedAt": "2026-11-05T04:32:09.609Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T04:13:33.576Z",
+      "checkedAt": "2026-11-05T04:32:09.945Z",
       "count": 15
     },
     {
@@ -115,65 +115,33 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-04T16:13:40.911Z",
-      "count": 6
+      "checkedAt": "2026-11-05T04:32:09.981Z",
+      "count": 13
+    },
+    {
+      "id": "georgetown-pickleball",
+      "name": "Georgetown Parks pickleball",
+      "sport": "pickleball",
+      "region": "austin",
+      "cadence": "1d",
+      "ok": false,
+      "checkedAt": "2026-11-05T04:32:10.588Z",
+      "error": "fetch failed",
+      "kept": 0
+    },
+    {
+      "id": "leander-pickleball",
+      "name": "Leander Parks pickleball",
+      "sport": "pickleball",
+      "region": "austin",
+      "cadence": "1d",
+      "ok": false,
+      "checkedAt": "2026-11-05T04:32:10.694Z",
+      "error": "Official pickleball page: HTTP 403",
+      "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-eastside-paddle-club-01a0b04a-c69e-7bbd-962f-22024eeb5024",
-      "date": "2026-11-04",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 2 Intermediate",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a0b04a-c69e-7bbd-962f-22024eeb5024",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e7a-b0d8-7338-8af3-58b01fb0e028",
-      "date": "2026-11-04",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "3.5+ DUPR Session (Intermediate+ Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "3.5+",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e7a-b0d8-7338-8af3-58b01fb0e028",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-austin-pickle-ranch-01a0bbd2-8386-7333-b562-2015c0f9357b",
       "date": "2026-11-04",
@@ -330,34 +298,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-04",
       "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-pickle-pit-stop-10a32a838de059a5",
-      "date": "2026-11-05",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99) LADIES ONLY!!",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://app.courtreserve.com/Online/Events/Details/15273/QEZ8Z8215273464?resId=60940749",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
     {
@@ -4740,34 +4680,6 @@
       "status": "scheduled"
     },
     {
-      "id": "openplay-pickle-pit-stop-0c804dece072211b",
-      "date": "2026-11-10",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99) LADIES ONLY!!",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://app.courtreserve.com/Online/Events/Details/15273/IFDZ83B15273474?resId=60940750",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-pickle-pit-stop",
-      "status": "scheduled"
-    },
-    {
       "id": "openplay-eastside-paddle-club-01a18453-07a2-7aae-b243-8601d6dea93b",
       "date": "2026-11-10",
       "start": "08:00",
@@ -5086,33 +4998,6 @@
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://espc.podplay.app/community/events/01a17e6a-95a3-7338-8abc-1a2bade621c0",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e71-74f1-7338-8ac7-00d7cc1a2246",
-      "date": "2026-11-10",
-      "start": "18:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": "Women's Level 3 Session (Intermediate+ Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$17 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e71-74f1-7338-8ac7-00d7cc1a2246",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -5715,34 +5600,6 @@
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://app.courtreserve.com/Online/Events/Details/15273/4SFHO3X15273654?resId=60942245",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-pickle-pit-stop",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-pickle-pit-stop-4b32bc5c20742548",
-      "date": "2026-11-12",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99) LADIES ONLY!!",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://app.courtreserve.com/Online/Events/Details/15273/3MD1AF115273480?resId=60940751",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -7206,34 +7063,6 @@
       "source": "https://openplaymap.com/open-play/austin",
       "signup": {
         "url": "https://app.courtreserve.com/Online/Events/Details/15273/MFR7MDS15273794?resId=60942249",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-pickle-pit-stop",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-pickle-pit-stop-5fb1a916ced473b5",
-      "date": "2026-11-17",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99) LADIES ONLY!!",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://app.courtreserve.com/Online/Events/Details/15273/B3SEAZK15273486?resId=60940752",
         "label": "Book with venue"
       },
       "sourceId": "austin-club-openplay",
@@ -10016,6 +9845,195 @@
       "status": "scheduled"
     },
     {
+      "id": "pickleball-austin-dove-springs-rec-1-2026-11-04",
+      "sport": "pickleball",
+      "date": "2026-11-04",
+      "start": "18:00",
+      "end": "20:30",
+      "title": "George Morales Dove Springs Recreation Center · Pickleball open play",
+      "venue": "George Morales Dove Springs Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "austin-dove-springs-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-dove-springs-rec-2-2026-11-06",
+      "sport": "pickleball",
+      "date": "2026-11-06",
+      "start": "09:00",
+      "end": "12:00",
+      "title": "George Morales Dove Springs Recreation Center · Pickleball open play",
+      "venue": "George Morales Dove Springs Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "austin-dove-springs-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-dove-springs-rec-0-2026-11-09",
+      "sport": "pickleball",
+      "date": "2026-11-09",
+      "start": "09:00",
+      "end": "12:00",
+      "title": "George Morales Dove Springs Recreation Center · Pickleball open play",
+      "venue": "George Morales Dove Springs Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "austin-dove-springs-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-gus-garcia-rec-1-2026-11-05",
+      "sport": "pickleball",
+      "date": "2026-11-05",
+      "start": "11:00",
+      "end": "13:00",
+      "title": "Gus Garcia Recreation Center · Pickleball open play",
+      "venue": "Gus Garcia Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "austin-gus-garcia-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-gus-garcia-rec-2-2026-11-07",
+      "sport": "pickleball",
+      "date": "2026-11-07",
+      "start": "10:00",
+      "end": "12:00",
+      "title": "Gus Garcia Recreation Center · Pickleball open play",
+      "venue": "Gus Garcia Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "austin-gus-garcia-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-gus-garcia-rec-3-2026-11-08",
+      "sport": "pickleball",
+      "date": "2026-11-08",
+      "start": "13:00",
+      "end": "14:30",
+      "title": "Gus Garcia Recreation Center · Pickleball open play",
+      "venue": "Gus Garcia Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "austin-gus-garcia-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-gus-garcia-rec-0-2026-11-10",
+      "sport": "pickleball",
+      "date": "2026-11-10",
+      "start": "11:00",
+      "end": "13:00",
+      "title": "Gus Garcia Recreation Center · Pickleball open play",
+      "venue": "Gus Garcia Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-04",
+      "venueId": "austin-gus-garcia-rec",
+      "status": "scheduled"
+    },
+    {
       "id": "atx-sand-social-sun",
       "days": [
         "Sun"
@@ -10402,7 +10420,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-31",
+      "sourceChanged": "2026-11-04",
       "venueId": "four-seasons-austin",
       "status": "scheduled"
     }
@@ -10870,6 +10888,41 @@
       "name": "Northwest Recreation Center",
       "city": "Austin",
       "address": "2913 Northland Dr, Austin, TX 78757",
+      "region": "austin"
+    },
+    {
+      "id": "austin-dove-springs-rec",
+      "name": "George Morales Dove Springs Recreation Center",
+      "city": "Austin",
+      "address": "5801 Ainez Dr, Austin, TX 78744",
+      "region": "austin"
+    },
+    {
+      "id": "austin-gus-garcia-rec",
+      "name": "Gus Garcia Recreation Center",
+      "city": "Austin",
+      "address": "1201 E Rundberg Ln, Austin, TX 78753",
+      "region": "austin"
+    },
+    {
+      "id": "georgetown-rec-center",
+      "name": "Georgetown Recreation Center",
+      "city": "Georgetown",
+      "address": "1003 N Austin Ave, Georgetown, TX 78626",
+      "region": "austin"
+    },
+    {
+      "id": "georgetown-tennis-center",
+      "name": "Georgetown Tennis Center",
+      "city": "Georgetown",
+      "address": "400 Serenada Dr, Georgetown, TX 78628",
+      "region": "austin"
+    },
+    {
+      "id": "leander-activity-center",
+      "name": "Leander Activity Center",
+      "city": "Leander",
+      "address": "11880 Hero Way W, Suite 600, Leander, TX",
       "region": "austin"
     },
     {

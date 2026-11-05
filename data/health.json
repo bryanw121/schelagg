@@ -4,20 +4,20 @@
       "counts": [
         284,
         284,
-        284,
         290,
         283,
         283,
         281,
         281,
         275,
-        275
+        275,
+        268
       ],
-      "sessions": 275,
+      "sessions": 268,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.77,
+        "level": 0.76,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 291
+      "failStreak": 292
     },
     "atxbeach": {
       "counts": [
@@ -202,7 +202,7 @@
         2,
         2,
         2,
-        2,
+        8,
         8,
         8,
         8,
@@ -504,9 +504,10 @@
         6,
         6,
         6,
-        6
+        6,
+        13
       ],
-      "sessions": 6,
+      "sessions": 13,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -519,7 +520,13 @@
         "spotsLeft": 0,
         "signup": 1
       },
-      "contentHash": "8dbc28a0da7cfdf6"
+      "contentHash": "1a56c3b727a58c8f"
+    },
+    "georgetown-pickleball": {
+      "failStreak": 1
+    },
+    "leander-pickleball": {
+      "failStreak": 1
     },
     "manual": {
       "counts": [
@@ -552,6 +559,7 @@
   "manual": {},
   "reported": [
     "aces:failing",
+    "austin-city-pickleball:content:1a56c3b727a58c8f",
     "manual:aces-mon-6s-indoor:unverified",
     "manual:aces-mon-6s-indoor:watch",
     "manual:aces-open-mon:watch",
@@ -562,7 +570,7 @@
     "manual:beecave-on-ice-sat:changed:2026-10-28",
     "manual:beecave-on-ice-sun:changed:2026-10-28",
     "manual:beecave-on-ice-tue:changed:2026-10-28",
-    "manual:four-seasons-ice-rodeo:changed:2026-10-31",
+    "manual:four-seasons-ice-rodeo:changed:2026-11-04",
     "manual:hanovers-open:changed:2026-10-25",
     "manual:hanovers-open:unverified",
     "manual:ssc-crossover-mon-sand:changed:2026-11-04",
