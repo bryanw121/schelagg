@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-05T02:23:13.797Z",
+  "generatedAt": "2026-11-05T02:43:28.627Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,8 +9,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T02:13:13.238Z",
-      "count": 283
+      "checkedAt": "2026-11-05T02:43:17.009Z",
+      "count": 281
     },
     {
       "id": "austin-picklehaus",
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T02:13:13.239Z",
+      "checkedAt": "2026-11-05T02:43:17.009Z",
       "count": 10
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T02:13:13.239Z",
+      "checkedAt": "2026-11-05T02:43:17.010Z",
       "count": 6
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T02:13:13.239Z",
+      "checkedAt": "2026-11-05T02:43:17.010Z",
       "count": 14
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-05T02:23:12.476Z",
+      "checkedAt": "2026-11-05T02:43:17.011Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T02:13:13.271Z",
+      "checkedAt": "2026-11-05T02:43:17.011Z",
       "count": 33
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-05T02:13:14.280Z",
+      "checkedAt": "2026-11-05T02:43:17.075Z",
       "count": 15
     },
     {
@@ -115,60 +115,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-eastside-paddle-club-01a17e7b-5bd3-7338-8af8-8b49e2e33474",
-      "date": "2026-11-04",
-      "start": "18:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3 Intermediate (Recommended DUPR 3.0+)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "3.0+",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e7b-5bd3-7338-8af8-8b49e2e33474",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e7a-2aa0-7338-8aee-2b0ea18c66cc",
-      "date": "2026-11-04",
-      "start": "18:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": "Partner Play 4.2+ DUPR Session (Advanced+ Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "4.2+",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 4, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e7a-2aa0-7338-8aee-2b0ea18c66cc",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-pickle-pit-stop-ff8a4846b97737ec",
       "date": "2026-11-04",
@@ -8207,6 +8153,7 @@
       "surface": "indoor",
       "type": "Training",
       "level": "Adults · Paty & Jesus",
+      "full": true,
       "capacity": 12,
       "spotsLeft": 10,
       "classId": "RuNoKxQdILikYDtnfMhP",
