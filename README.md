@@ -8,9 +8,11 @@ venue addresses, Google/Apple directions and copy-address controls.
 
 ### Austin pickleball pilot
 
-The city adapter checks four reviewed recreation centers daily: Alamo, Dottie Jordan,
-Montopolis and Northwest. It generates seven days of dated sessions from published open-play
-programs, not court rentals, park opening hours or live capacity. Changed venue blocks are
+The city adapter checks six reviewed recreation centers daily: Alamo, Dottie Jordan,
+George Morales Dove Springs, Gus Garcia, Montopolis and Northwest. The `official-schedule` adapter does the same
+for the Georgetown Recreation Center, the Georgetown Tennis Center and the Leander Activity Center (outside Austin
+city limits, inside the Austin region; sessions carry their own `city`). Both generate seven days of dated sessions
+from published open-play programs, not court rentals, park opening hours or live capacity. Changed venue blocks are
 withheld until reviewed. See [source review](docs/austin-pickleball.md).
 The pilot has a November 30, 2026 editorial review deadline and excludes official city holidays
 pending venue confirmation. Successful fetches never extend the review deadline. Club calendar
@@ -38,6 +40,7 @@ sessions and status untouched.
 | ATX Beach open play | TeamUp membership page | 6h |
 | Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
 | Austin city pickleball | Reviewed recreation-center blocks on the city's public page; bounded dated sessions and holiday holds | 1d |
+| Georgetown and Leander pickleball | `scripts/adapters/official-schedule.mjs`: reviewed slots per venue, emitted only while that venue's block on the official city page keeps its reviewed fingerprint; bounded dated sessions and holiday holds | 1d |
 | Hand-checked sessions (Sand Social, Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
 | New Reclub clubs | `scripts/discover-reclub.mjs` (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Weekly |
 

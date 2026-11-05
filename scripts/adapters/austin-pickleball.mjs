@@ -45,9 +45,11 @@ const clock = (hour, minute, period) => {
 
 /** Strict schedule grammar. Unrecognized extra clauses invalidate the venue. */
 export function slots(block) {
-  const at = block.search(/\bOpen play\s*:/i);
+  // Labels seen on the city page: "Open play:", "Open Play Schedule:" and a bare "Open Play"
+  // heading over one line per day. Anything else after the label still fails the remainder check.
+  const at = block.search(/\bOpen play\b/i);
   if (at < 0) throw new Error('No explicit open-play schedule');
-  const schedule = block.slice(at).replace(/^Open play\s*:\s*/i, '').split(/Equipment Rental/i)[0].trim();
+  const schedule = block.slice(at).replace(/^Open play(?:\s+schedule)?\s*:?\s*/i, '').split(/Equipment Rental/i)[0].trim();
   const result = [];
   for (const m of schedule.matchAll(SLOT)) {
     const start = clock(m[2], m[3], m[4]), end = clock(m[5], m[6], m[7]);
@@ -71,7 +73,7 @@ export function parse(html, ref, options) {
   for (const v of options.venues) {
     const block = sections.get(v.venue);
     if (!block || contentHash(block) !== v.reviewedHash) {
-      warnings.push(`${v.venue}: source block changed or disappeared; withheld until reviewed`);
+      warnings.push(`${v.venue}: source block ${block ? `changed (fingerprint ${contentHash(block)})` : 'disappeared'}; withheld until reviewed`);
       continue;
     }
     let schedule;

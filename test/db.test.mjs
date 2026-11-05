@@ -374,6 +374,8 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
     }
     if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return new Response(fixture('arketa-volleyworld-schedule.json'));
     if (u.hostname === 'www.austintexas.gov') return new Response(fixture('austin-pickleball.html'));
+    if (u.hostname === 'parks.georgetown.org') return new Response(fixture('georgetown-pickleball.html'));
+    if (u.hostname === 'www.leandertx.gov') return new Response(fixture('leander-pickleball.html'));
     if (u.hostname === 'apps.daysmartrecreation.com') {
       // One page per company here; paging is covered in daysmart.test.mjs.
       if (u.searchParams.get('company') === 'iceandfield') return new Response(fixture('daysmart-iceandfield-events.json'));
