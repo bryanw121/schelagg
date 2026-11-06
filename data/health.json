@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         263,
-        263,
         268,
         268,
         262,
@@ -11,9 +10,10 @@
         260,
         260,
         254,
-        254
+        254,
+        252
       ],
-      "sessions": 254,
+      "sessions": 252,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -31,7 +31,7 @@
       "counts": [
         9,
         9,
-        9,
+        10,
         10,
         10,
         10,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 331
+      "failStreak": 332
     },
     "atxbeach": {
       "counts": [
@@ -201,7 +201,7 @@
         2,
         2,
         2,
-        2,
+        8,
         8,
         8,
         8,
@@ -233,7 +233,7 @@
         5,
         5,
         5,
-        5,
+        6,
         6,
         6
       ],
@@ -505,9 +505,10 @@
         6,
         6,
         6,
-        13
+        13,
+        11
       ],
-      "sessions": 13,
+      "sessions": 11,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -523,10 +524,10 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 40
+      "failStreak": 41
     },
     "leander-pickleball": {
-      "failStreak": 40
+      "failStreak": 41
     },
     "manual": {
       "counts": [
@@ -559,7 +560,6 @@
   "manual": {},
   "reported": [
     "aces:failing",
-    "austin-city-pickleball:content:1a56c3b727a58c8f",
     "georgetown-pickleball:failing",
     "leander-pickleball:failing",
     "manual:aces-mon-6s-indoor:unverified",
@@ -573,9 +573,9 @@
     "manual:beecave-on-ice-sun:changed:2026-10-28",
     "manual:beecave-on-ice-tue:changed:2026-10-28",
     "manual:four-seasons-ice-rodeo:changed:2026-11-04",
-    "manual:hanovers-open:changed:2026-10-25",
+    "manual:hanovers-open:changed:2026-11-05",
     "manual:hanovers-open:unverified",
-    "manual:ssc-crossover-mon-sand:changed:2026-11-04",
+    "manual:ssc-crossover-mon-sand:changed:2026-11-05",
     "manual:ssc-crossover-mon-sand:unverified"
   ]
 }

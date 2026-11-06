@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-06T04:13:36.111Z",
+  "generatedAt": "2026-11-06T05:13:50.195Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,8 +9,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T04:13:19.556Z",
-      "count": 254
+      "checkedAt": "2026-11-06T05:13:27.926Z",
+      "count": 252
     },
     {
       "id": "austin-picklehaus",
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T04:13:19.556Z",
+      "checkedAt": "2026-11-06T05:13:27.927Z",
       "count": 10
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T04:13:19.556Z",
+      "checkedAt": "2026-11-06T05:13:27.930Z",
       "count": 7
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T04:13:19.557Z",
+      "checkedAt": "2026-11-06T05:13:27.930Z",
       "count": 13
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-06T04:13:19.557Z",
+      "checkedAt": "2026-11-06T05:13:27.931Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -60,7 +60,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-05T22:43:31.822Z",
+      "checkedAt": "2026-11-06T05:13:27.932Z",
       "count": 2
     },
     {
@@ -70,7 +70,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:07.926Z",
+      "checkedAt": "2026-11-06T05:13:27.977Z",
       "count": 8
     },
     {
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-06T04:13:19.557Z",
+      "checkedAt": "2026-11-06T05:13:28.263Z",
       "count": 6
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T04:13:19.631Z",
+      "checkedAt": "2026-11-06T05:13:29.301Z",
       "count": 32
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T04:13:19.980Z",
+      "checkedAt": "2026-11-06T05:13:29.551Z",
       "count": 15
     },
     {
@@ -110,8 +110,8 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-05T04:32:09.981Z",
-      "count": 13
+      "checkedAt": "2026-11-06T05:13:32.257Z",
+      "count": 11
     },
     {
       "id": "georgetown-pickleball",
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-06T04:13:20.896Z",
+      "checkedAt": "2026-11-06T05:13:32.613Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,67 +131,12 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-06T04:13:21.062Z",
+      "checkedAt": "2026-11-06T05:13:32.646Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-pickle-pit-stop-95f531e469c6c666",
-      "date": "2026-11-05",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Open Play- Advanced (Suggested DUPR 4.00-5.00)",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "4.00–5.00",
-      "price": "$18 / person (venue rate; confirm)",
-      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 5, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://app.courtreserve.com/Online/Events/Details/15273/XJL69C515273550?resId=56119821",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-05",
-      "venueId": "austin-pickle-pit-stop",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a157c0-96d0-7880-aaee-20775cfb0c0a",
-      "date": "2026-11-05",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 2 Intermediate",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 5, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a157c0-96d0-7880-aaee-20775cfb0c0a",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-05",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-austin-pickle-ranch-01a0bbd3-335a-7776-9a71-f9e7b372b6b0",
       "date": "2026-11-05",
@@ -7898,7 +7843,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -9326,7 +9271,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-alamo-rec",
       "status": "scheduled"
     },
@@ -9353,7 +9298,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-dottie-jordan-rec",
       "status": "scheduled"
     },
@@ -9380,7 +9325,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -9407,7 +9352,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -9434,7 +9379,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-northwest-rec",
       "status": "scheduled"
     },
@@ -9461,7 +9406,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-dove-springs-rec",
       "status": "scheduled"
     },
@@ -9488,7 +9433,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-dove-springs-rec",
       "status": "scheduled"
     },
@@ -9515,7 +9460,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -9542,7 +9487,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -9569,7 +9514,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -9596,7 +9541,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-04",
+      "verifiedAt": "2026-11-05",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -9770,7 +9715,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-10-25",
+      "sourceChanged": "2026-11-05",
       "venueId": "hanovers",
       "status": "scheduled"
     },
@@ -9799,7 +9744,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-04",
+      "sourceChanged": "2026-11-05",
       "venueId": "crossover",
       "status": "scheduled"
     },
