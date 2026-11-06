@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-06T00:43:29.614Z",
+  "generatedAt": "2026-11-06T01:13:30.011Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T00:43:16.519Z",
+      "checkedAt": "2026-11-06T01:13:14.394Z",
       "count": 268
     },
     {
@@ -24,8 +24,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T00:43:16.520Z",
-      "count": 9
+      "checkedAt": "2026-11-06T01:13:14.395Z",
+      "count": 10
     },
     {
       "id": "holy-pickle",
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T00:43:16.520Z",
+      "checkedAt": "2026-11-06T01:13:14.395Z",
       "count": 7
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T00:43:16.520Z",
+      "checkedAt": "2026-11-06T01:13:14.395Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-06T00:43:16.521Z",
+      "checkedAt": "2026-11-06T01:13:14.396Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-06T00:11:42.675Z",
+      "checkedAt": "2026-11-06T01:13:14.396Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T00:43:16.521Z",
+      "checkedAt": "2026-11-06T01:13:14.446Z",
       "count": 32
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T00:43:16.553Z",
+      "checkedAt": "2026-11-06T01:13:14.792Z",
       "count": 15
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-06T00:43:17.564Z",
+      "checkedAt": "2026-11-06T01:13:15.972Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-06T00:43:17.745Z",
+      "checkedAt": "2026-11-06T01:13:16.153Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7631,6 +7631,32 @@
       "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/6e86197b-c359-45c4-b062-b0eeb558c5f3",
       "signup": {
         "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/6e86197b-c359-45c4-b062-b0eeb558c5f3",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-05",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-33217480-a2ca-4ffe-9aff-0151077ab618",
+      "date": "2026-11-06",
+      "start": "11:00",
+      "end": "13:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Open Play Level 2 (11AM-1PM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "level": "2.8–3.8 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/33217480-a2ca-4ffe-9aff-0151077ab618",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/33217480-a2ca-4ffe-9aff-0151077ab618",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
