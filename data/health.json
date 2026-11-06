@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        263,
         268,
         268,
         262,
@@ -11,13 +10,14 @@
         260,
         254,
         254,
-        252
+        252,
+        256
       ],
-      "sessions": 252,
+      "sessions": 256,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.76,
+        "level": 0.78,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -30,7 +30,7 @@
     "austin-picklehaus": {
       "counts": [
         9,
-        9,
+        10,
         10,
         10,
         10,
@@ -44,7 +44,7 @@
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.8,
+        "level": 0.9,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -65,9 +65,9 @@
         7,
         7,
         7,
-        7
+        8
       ],
-      "sessions": 7,
+      "sessions": 8,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 332
+      "failStreak": 333
     },
     "atxbeach": {
       "counts": [
@@ -232,12 +232,12 @@
         5,
         5,
         5,
-        5,
         6,
         6,
-        6
+        6,
+        5
       ],
-      "sessions": 6,
+      "sessions": 5,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -370,9 +370,9 @@
         32,
         32,
         32,
-        32
+        33
       ],
-      "sessions": 32,
+      "sessions": 33,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -524,10 +524,10 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 41
+      "failStreak": 42
     },
     "leander-pickleball": {
-      "failStreak": 41
+      "failStreak": 42
     },
     "manual": {
       "counts": [
