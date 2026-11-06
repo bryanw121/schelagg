@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-06T02:43:32.748Z",
+  "generatedAt": "2026-11-06T03:13:29.119Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -7756,6 +7756,34 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-QLVJT0",
+      "session_id": "reclub-QLVJT0",
+      "source_id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "level": "B/BB · men",
+      "price": "$12",
+      "starts_at": "2026-11-13T02:30:00.000Z",
+      "ends_at": "2026-11-13T05:30:00.000Z",
+      "signup_url": "https://reclub.co/m/QLVJT0",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Vex Volleyball, every Thursday.",
+      "canceled": false,
+      "verified_at": "2026-11-05",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "capacity": 36
+      },
+      "venue_id": "volleyworld-pflugerville",
       "status": "scheduled",
       "previous_starts_at": null
     },
