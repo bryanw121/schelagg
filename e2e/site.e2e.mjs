@@ -694,6 +694,7 @@ test('site: pickleball court booking shows live court lanes where a club publish
   };
   const errors = [{ venue: 'velocity', sport: 'volleyball', calendar: 'https://austinvelocity.skedda.com/booking', message: 'HTTP 503' }];
   await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball&view=booking', courts: { ...COURTS, errors, venues: [...COURTS.venues, holy] } });
+  await page.locator('#cal .g-group', { hasText: 'Holy Courts' }).waitFor(); // court data loads after the schedule
   assert.equal(await page.locator('#glance').isVisible(), true);
   assert.equal(await page.locator('#days').isVisible(), true);
   const group = page.locator('#cal .g-group', { hasText: 'Holy Courts' });
