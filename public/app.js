@@ -606,7 +606,7 @@ function renderMeta() {
   const places = regionCourts().flatMap((v) => v.facilities.map((f) => f.name));
   const notes = regionCourts().map((v) => v.note).filter(Boolean);
   $('calNote').textContent = places.length
-    ? `Court bookings at ${list(places)} are mostly club practices and private rentals. Blue blocks line up with a public Reclub meet, so those courts are open to sign up. Who booked each slot is hidden on their calendars.${notes.length ? ` ${notes.join(' ')}` : ''}${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh with each schedule update.` : ''}`
+    ? `Booked time at ${list(places)} is private rentals, clubs and the venue's own programs. Blue blocks line up with a public session listed here, so those courts are open to sign up. Only times are shown, never who booked.${notes.length ? ` ${notes.join(' ')}` : ''}${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh with each schedule update.` : ''}`
     : '';
   const mine = schedule.sources.filter((s) => (s.sport || 'volleyball') === state.sport);
   const bad = mine.filter((s) => !s.ok);

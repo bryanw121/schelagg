@@ -37,11 +37,12 @@ test('OpenCourt courts: a day is opening hours plus each court\'s taken time, me
   const day = parseDay(holySchedule('2026-10-25'), '2026-10-25');
   assert.deepEqual(day.open, [7 * 60, 23 * 60]);
   assert.deepEqual(day.courts, [[[540, 660]], [[540, 660], [780, 870]], [[540, 660]], [[540, 660]]]);
-  // Back-to-back bookings read as one block.
+  // One reservation over several slots is one block; back-to-back reservations stay separate, so an
+  // open play right before a rental still matches its session.
   const touching = holySchedule('2026-10-26');
   const slots = touching.remappedReservations['2026-10-26'].courts[1].slots;
-  slots[slots.findIndex((s) => s.startTimeInMinutes === 870)].reservationId = 'r-next';
-  assert.deepEqual(parseDay(touching, '2026-10-26').courts[1], [[780, 900]]);
+  for (const m of [870, 900]) slots[slots.findIndex((s) => s.startTimeInMinutes === m)].reservationId = 'r-next';
+  assert.deepEqual(parseDay(touching, '2026-10-26').courts[1], [[780, 870], [870, 930]]);
   // A closed day has no hours and nothing booked.
   assert.deepEqual(parseDay(holySchedule('2026-10-27', { closed: true }), '2026-10-27'), { open: null, courts: [[], [], [], []] });
   // An unfamiliar response fails loudly instead of looking free all day.
