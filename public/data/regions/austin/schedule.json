@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T15:45:34.144Z",
+  "generatedAt": "2026-11-07T16:15:37.353Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T15:43:15.839Z",
+      "checkedAt": "2026-11-07T16:13:16.996Z",
       "count": 268
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T15:43:15.840Z",
+      "checkedAt": "2026-11-07T16:13:16.996Z",
       "count": 109
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T15:43:15.840Z",
+      "checkedAt": "2026-11-07T16:13:16.997Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T15:43:15.840Z",
+      "checkedAt": "2026-11-07T16:13:16.997Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-07T15:43:15.841Z",
+      "checkedAt": "2026-11-07T16:13:16.998Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-07T15:13:17.594Z",
+      "checkedAt": "2026-11-07T16:13:16.998Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T15:43:15.842Z",
+      "checkedAt": "2026-11-07T16:13:17.037Z",
       "count": 32
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T15:43:15.878Z",
+      "checkedAt": "2026-11-07T16:13:18.025Z",
       "count": 15
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T15:43:16.893Z",
+      "checkedAt": "2026-11-07T16:13:19.117Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T15:43:16.996Z",
+      "checkedAt": "2026-11-07T16:13:19.290Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -10234,31 +10234,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-0cd415e5-1ec5-4f31-a28a-d8e8f810b3e9",
-      "date": "2026-11-07",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Holy Pickle · Open Play",
-      "venue": "Holy Pickle",
-      "city": "Austin",
-      "surface": "outdoor",
-      "type": "Open play",
-      "price": "$10 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/0cd415e5-1ec5-4f31-a28a-d8e8f810b3e9",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/0cd415e5-1ec5-4f31-a28a-d8e8f810b3e9",
-        "label": "View event & book"
-      },
-      "sourceId": "holy-pickle",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
-      "venueId": "austin-holy-pickle",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-bad800af-4a0e-4bac-9544-9864595042ca",
       "date": "2026-11-08",
       "start": "19:00",
@@ -10424,6 +10399,31 @@
       "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/3a0bbae2-8750-4932-92b2-f95a2c422261",
       "signup": {
         "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/3a0bbae2-8750-4932-92b2-f95a2c422261",
+        "label": "View event & book"
+      },
+      "sourceId": "holy-pickle",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-holy-pickle",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-0cd415e5-1ec5-4f31-a28a-d8e8f810b3e9",
+      "date": "2026-11-07",
+      "start": "08:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "Holy Pickle · Open Play",
+      "venue": "Holy Pickle",
+      "city": "Austin",
+      "surface": "outdoor",
+      "type": "Open play",
+      "price": "$10 / person (nonmember)",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/0cd415e5-1ec5-4f31-a28a-d8e8f810b3e9",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/0cd415e5-1ec5-4f31-a28a-d8e8f810b3e9",
         "label": "View event & book"
       },
       "sourceId": "holy-pickle",
