@@ -133,17 +133,21 @@ const PICKLE_SCHEDULE = { ...SCHEDULE, venues: [{ id: 'rec', name: 'Example Rec 
 test('site: pickleball deep link, filters, directions and copy address keep sports separate', async () => {
   await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball' });
   assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']);
-  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All2', 'Indoor1', 'Outdoor1']);
+  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All levels2', 'Beginner2', 'Intermediate2', 'Advanced2']);
   assert.equal(await page.locator('#courtsCard').isHidden(), true);
   assert.equal(await page.locator('#cal .g-group', { hasText: 'Treehouse' }).count(), 0);
   assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /pickleball\.ics$/);
   assert.match(await page.locator('#sourceStatus').textContent(), /hand-checked/);
   const indoor = row('Indoor pickleball');
+  // Address, directions and the fine print fold under Details (a tap, not a hover).
+  assert.equal(await indoor.getByRole('link', { name: 'Google Maps' }).count(), 0);
+  await indoor.locator('details.more summary').click();
   const google = new URL(await indoor.getByRole('link', { name: 'Google Maps' }).getAttribute('href'));
   assert.equal(google.searchParams.get('destination'), 'Example Rec Center, 123 Main St, Suite A & B, Austin, TX 78701');
   const apple = new URL(await indoor.getByRole('link', { name: 'Apple Maps' }).getAttribute('href'));
   assert.equal(apple.searchParams.get('destination'), google.searchParams.get('destination'));
   assert.equal(await row('Outdoor pickleball').locator('.location').count(), 0, 'no guessed address');
+  assert.ok(await indoor.locator(':scope .body > .actions :is(.signup, .dropin)').first().isVisible(), 'the sign-up action stays outside Details');
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async (text) => { window.copiedAddress = text; } } }));
   await indoor.getByRole('button', { name: 'Copy address' }).click();
   await indoor.getByRole('status').filter({ hasText: 'Address copied' }).waitFor();
@@ -151,13 +155,13 @@ test('site: pickleball deep link, filters, directions and copy address keep spor
   await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('denied'); }; });
   await indoor.getByRole('button', { name: 'Copy address' }).click();
   await indoor.getByRole('status').filter({ hasText: 'Could not copy' }).waitFor();
-  await tab('outdoor').click();
-  assert.deepEqual(await titles(), ['Outdoor pickleball']);
+  await tab('beginner').click();
+  assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']); // no level listed: shown under every level
   await page.reload();
   await row('Outdoor pickleball').waitFor();
-  assert.equal(await tab('outdoor').getAttribute('aria-pressed'), 'true');
+  assert.equal(await tab('beginner').getAttribute('aria-pressed'), 'true');
   await page.locator('#days .day').nth(1).click();
-  assert.match(await page.locator('#list .empty').textContent(), /No confirmed outdoor open-play sessions/);
+  assert.match(await page.locator('#list .empty').textContent(), /No confirmed beginner open-play sessions/);
   assert.doesNotMatch(await page.locator('#list .empty').textContent(), /Rinks|Courts open to rent/);
   await page.locator('[data-sport="volleyball"]').click();
   assert.ok(!(await titles()).some((t) => t.includes('pickleball')));
@@ -213,10 +217,29 @@ test('site: directory session prices and unlisted court types do not imply venue
   assert.match(await listing.textContent(), /\$12 \/ person \(listed\)/);
   assert.match(await listing.textContent(), /Court type unlisted/);
   assert.match(await listing.textContent(), /independent directory/);
-  await tab('indoor').click();
+  await tab('beginner').click(); // "level 2" is intermediate
   assert.equal(await rows().count(), 0);
-  await tab('outdoor').click();
-  assert.equal(await rows().count(), 0);
+  await tab('intermediate').click();
+  assert.equal(await rows().count(), 1);
+});
+
+test('site: pickleball level chips read words, DUPR numbers and "Level N", and sessions with no level show under every level', async () => {
+  const one = PICKLE_SCHEDULE.sessions.at(-1);
+  const at = (id, title, extra = {}) => ({ ...one, id, title, ...extra });
+  const schedule = { ...PICKLE_SCHEDULE, sessions: [
+    at('l1', 'Level 1 open play'), at('l3', 'Level 3 open play'), at('l4', 'Level 4 open play'),
+    at('dupr', 'Open play', { level: '3.25+' }), at('word', 'Beginner clinic'), at('none', 'Open play for all'),
+  ] };
+  await open({ schedule, url: '/?sport=pickleball' });
+  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All levels6', 'Beginner3', 'Intermediate3', 'Advanced3']);
+  await tab('beginner').click();
+  assert.deepEqual((await titles()).sort(), ['Beginner clinic', 'Level 1 open play', 'Open play for all']);
+  await tab('intermediate').click();
+  assert.deepEqual((await titles()).sort(), ['Level 3 open play', 'Open play', 'Open play for all']);
+  await tab('advanced').click();
+  assert.deepEqual((await titles()).sort(), ['Level 4 open play', 'Open play', 'Open play for all']);
+  await page.locator('[data-view="booking"]').click();
+  assert.equal(await page.locator('#tabs').isHidden(), true, 'levels are for open play only');
 });
 
 test('site: today\'s schedule renders in Austin time with freshness labels and sign-up links', async () => {
@@ -299,7 +322,7 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   assert.equal(await page.locator('#glance .key').isHidden(), true);
   assert.equal(await page.locator('#calNote').isHidden(), true);
   assert.equal(await page.locator('#courtsCard').isHidden(), true);
-  assert.equal(await page.locator('#cal .g-group').first().textContent(), 'Public skatetap a bar for details');
+  assert.equal(await page.locator('#cal .g-group').first().textContent(), 'Public skatetap a block to see its sessions');
   assert.equal(await page.locator('#cal .g-group').count(), 1);
   // One row per rink: both Silver Rink sessions sit on the same row.
   const labels = await page.locator('#cal .g-row:not(.g-axis) .g-lab').allTextContents();
@@ -354,7 +377,7 @@ test('site: spots left and capacity come from the source and say so', async () =
   assert.equal(await row('Public Skating').locator('.cap').count(), 0);
 });
 
-test('site: overlapping sessions at one place get a second lane instead of covering each other', async () => {
+test('site: overlapping sessions at one place merge into one block with a count, and tapping it lists each with its sign-up', async () => {
   const sessions = [
     { ...base, id: 'a', sourceId: 'volleyworld', date: TODAY, start: '18:00', end: '20:00', title: 'Court A', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/a` }, source: `${SIGNUP}/a` },
     { ...base, id: 'b', sourceId: 'volleyworld', date: TODAY, start: '19:00', end: '21:00', title: 'Court B', venue: 'Volleyworld (Georgetown)', city: 'Georgetown', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/b` }, source: `${SIGNUP}/b` },
@@ -362,11 +385,20 @@ test('site: overlapping sessions at one place get a second lane instead of cover
   ];
   await open({ schedule: { ...SCHEDULE, sessions } });
   const rowsInChart = page.locator('#cal .g-row:not(.g-axis)').filter({ has: page.locator('.g-bar') });
-  assert.equal(await rowsInChart.count(), 2); // A then Late on the first lane, B on a second
-  assert.deepEqual(await rowsInChart.nth(0).locator('.g-bar').evaluateAll((els) => els.map((e) => e.dataset.label)), ['6–8p', '9–10p']);
-  assert.deepEqual(await rowsInChart.nth(1).locator('.g-bar').evaluateAll((els) => els.map((e) => e.dataset.label)), ['7–9p']);
-  assert.equal(await rowsInChart.nth(0).locator('.g-lab').textContent(), 'Volleyworld (Georgetown)3 sessions');
-  assert.equal(await rowsInChart.nth(1).locator('.g-lab').textContent(), '');
+  assert.equal(await rowsInChart.count(), 1); // one row per venue
+  const blocks = rowsInChart.locator('.g-bar');
+  assert.deepEqual(await blocks.evaluateAll((els) => els.map((e) => e.dataset.label)), ['6–9p ×2', '9–10p']);
+  assert.equal(await rowsInChart.locator('.g-lab').textContent(), 'Volleyworld (Georgetown)3 sessions');
+  assert.equal(await page.locator('#cal .g-pop').count(), 0);
+  await blocks.first().click();
+  assert.equal(await blocks.first().getAttribute('aria-expanded'), 'true');
+  assert.ok(await page.evaluate(() => document.activeElement?.dataset.block), 'focus stays on the block');
+  const items = page.locator('#cal .g-pop .pop-item');
+  assert.equal(await items.count(), 2);
+  assert.match(await items.nth(0).textContent(), /Court A/);
+  assert.equal(await items.nth(1).locator('a.signup').getAttribute('href'), `${SIGNUP}/b`);
+  await blocks.first().click(); // tap again to close
+  assert.equal(await page.locator('#cal .g-pop').count(), 0);
 });
 
 test('site: 📍 orders the calendar\'s venues nearest first, unsure ones a little later, and tapping again undoes it', async () => {
@@ -408,8 +440,32 @@ test('site: 📍 orders the calendar\'s venues nearest first, unsure ones a litt
   assert.deepEqual(await names(), ['No Coordinates Gym', 'Far Gym', 'Near Gym', 'Mid Gym', 'Unsure Gym']);
 });
 
+test('site: the chart zooms to the day\'s hours; on a phone long days scroll sideways with names pinned', async () => {
+  const at = (id, start, end) => ({ ...base, id, sourceId: 'manual', date: TODAY, start, end, title: `Session ${id}`, venue: `Gym ${id}`, city: 'Austin', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
+  const axis = () => page.locator('#cal .g-axis').first().locator('.g-track span').allTextContents();
+  // An evening-only day: 6pm–midnight (at least 6 hours), every hour labelled.
+  await open({ schedule: { ...SCHEDULE, sessions: [at('a', '18:00', '20:00'), at('b', '19:30', '22:00')] }, clock: new Date('2026-10-25T15:00:00Z') });
+  assert.deepEqual(await axis(), ['6p', '7p', '8p', '9p', '10p', '11p', '12a']);
+  // A long day on a 390px phone: each hour stays readable, so the chart scrolls; venue names stay put.
+  await open({ schedule: { ...SCHEDULE, sessions: [at('a', '06:00', '08:00'), at('b', '20:00', '23:00')] }, clock: new Date('2026-10-25T15:00:00Z') });
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.reload(); await page.locator('#cal .g-bar').first().waitFor();
+  assert.deepEqual(await axis(), ['6a', '9a', '12p', '3p', '6p', '9p', '11p']);
+  const g = await page.locator('#cal').evaluate((el) => ({ sw: el.scrollWidth, cw: el.clientWidth, hourPx: el.querySelector('.g-row:not(.g-axis) .g-track').offsetWidth / 17, sticky: getComputedStyle(el.querySelector('.g-lab')).position }));
+  assert.ok(g.sw > g.cw, 'scrolls sideways');
+  assert.ok(g.hourPx >= 36, `an hour is ${g.hourPx}px`);
+  assert.equal(g.sticky, 'sticky');
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'only the chart scrolls, not the page');
+  // Desktop: the whole day fits, no scrolling.
+  await page.setViewportSize({ width: 1280, height: 800 });
+  assert.ok(await page.locator('#cal').evaluate((el) => el.scrollWidth <= el.clientWidth + 1));
+});
+
 test('site: court lanes tint open time and show closed time in solid gray', async () => {
-  await open({ url: '/?view=booking' });
+  // The chart spans the day's opening hours; a venue that opens later and closes earlier shows closed time.
+  const short = { ...COURTS.venues[0], id: 'short', hours: Array(7).fill(['09:00', '17:00']),
+    facilities: [{ ...COURTS.venues[0].facilities[0], id: 'short', name: 'Short Hours Gym' }] };
+  await open({ url: '/?view=booking', courts: { ...COURTS, venues: [...COURTS.venues, short] } });
   const lane = page.locator('#cal .g-track.lane').first();
   await lane.waitFor();
   const bg = await lane.evaluate((el) => getComputedStyle(el).backgroundColor);
@@ -523,16 +579,17 @@ test('site: "Show ended & unconfirmed" reveals canceled and unconfirmed sessions
 
 test('site: the day-at-a-glance chart shows sessions, court bookings and courts open for a meet', async () => {
   await open();
-  const bars = page.locator('#cal a.g-bar');
+  const bars = page.locator('#cal .g-bar');
   assert.deepEqual(await bars.evaluateAll((els) => els.map((e) => e.dataset.label)), ['9–11a', '4–6p', '7–10p', '6–8p', '7–10p']); // one row per place: ATX Beach's two sessions share a row
   // Venue names wrap instead of being cut off with an ellipsis.
   const clipped = await page.locator('#cal .g-lab').evaluateAll((els) => els.filter((e) => e.scrollWidth > e.clientWidth + 1).map((e) => e.textContent));
   assert.deepEqual(clipped, []);
-  assert.equal(await bars.nth(3).getAttribute('href'), `${SIGNUP}/evening`);
+  await bars.nth(3).click();
+  assert.equal(await page.locator('#cal .g-pop a.signup').getAttribute('href'), `${SIGNUP}/evening`);
 
   assert.equal(await page.locator('#cal .g-track.lane').count(), 0);
   await page.locator('[data-view="booking"]').click();
-  assert.equal(await page.locator('#cal a.g-bar').count(), 0);
+  assert.equal(await page.locator('#cal .g-bar').count(), 0);
   assert.equal(await page.locator('#sessionsPanel').isHidden(), true);
   const group = page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' });
   const text = await group.textContent();
@@ -635,9 +692,11 @@ test('site: pickleball booking is separate, shareable, remembered, and does not 
   assert.equal(await page.locator('#bookingCalendarsCard').isHidden(),true);
   await page.locator('[data-view="booking"]').click();
   assert.equal(await page.locator('#sessionsPanel').isHidden(),true);
+  // No live court data for pickleball: no empty chart and no day picker, just the venues to book with.
+  assert.equal(await page.locator('#glance').isHidden(),true);
+  assert.equal(await page.locator('#days').isHidden(),true);
   assert.equal(await page.locator('#cal a.g-bar').count(),0);
-  assert.match(await page.locator('#cal').textContent(),/Live court availability is not connected/);
-  assert.equal(await page.locator('#bookingCalendars a.src', {hasText:'Open court-booking calendar'}).getAttribute('href'),'https://example.test/book');
+  assert.equal(await page.locator('#bookingCalendars a.signup', {hasText:'Book'}).getAttribute('href'),'https://example.test/book');
   assert.equal(new URL(page.url()).searchParams.get('view'),'booking');
   await page.reload();
   await page.locator('#bookingCalendarsCard').waitFor();
