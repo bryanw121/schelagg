@@ -382,6 +382,9 @@ function renderCalendarModes() {
   $('sessionFreshness').hidden = state.view === 'booking';
   const venues = (schedule?.venues || []).filter((v) => v.bookingLink?.sport === state.sport
     && /^https?:\/\//.test(v.bookingLink.url) && (state.tab === 'all' || SPORTS[state.sport].filter || !v.bookingLink.surface || v.bookingLink.surface === 'mixed' || v.bookingLink.surface === state.tab));
+  // A venue with live court lanes above is booked from there; the list is everyone else.
+  const live = new Set(regionCourts().flatMap((v) => v.facilities.map((f) => f.venueId)).filter(Boolean));
+  for (let i = venues.length - 1; i >= 0; i--) if (live.has(venues[i].id)) venues.splice(i, 1);
   $('bookingCalendarsCard').hidden = state.view !== 'booking';
   // One line per venue: name, town, distance, a Book button. A note shared by several venues is said
   // once above the list; a venue's own note (its price, its courts) and its address fold under Details.
@@ -515,6 +518,67 @@ function glanceRows(sess, nowLine) {
   return html;
 }
 
+let openFacs = new Set(); // court venues whose per-court lanes are shown (the "4 courts ▾" toggle)
+
+/**
+ * One court venue in Court booking: a header (name, what's free, Book) and a single row whose
+ * shading says how many courts are free each half hour. A public session on its courts (open play,
+ * a meet) is one blue block that links to sign up, however many courts it takes. "N courts ▾"
+ * opens a lane per court for anyone who wants the detail.
+ */
+function venueCourts(f, iso, dow, nowLine) {
+  const book = `<a class="signup v-book" href="${esc(calendarOn(f.venue, iso))}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(f.name)}">Book ↗</a>`;
+  const h = f.venue.hours?.[dow];
+  if (!h) return `<div class="g-venue"><span class="v-name">${esc(f.name)}<small>${esc(f.city)} · closed today</small></span>${book}</div>`;
+  const open = mins(h[0]), close = mins(h[1]) || 1440, n = f.courts.length;
+  const span = (a, b) => `left:${pct(a)}%;width:${(pct(b) - pct(a)).toFixed(2)}%`;
+  const closedBlocks = [[T0, open], [close, T1]].filter(([a, b]) => b > a).map(([a, b]) => `<div class="g-closed" style="${span(a, b)}" title="Closed"></div>`).join('');
+  const meets = sessionsOn(iso, { ignoreTab: true }).filter((x) => (x.facility === f.id || (f.venueId && x.venueId === f.venueId)) && x.start && x.end && !hidden(x.f));
+  const meetFor = (s, e) => meets.find((x) => Math.abs(mins(x.start) - s) <= 15 && Math.abs(mins(x.end) - e) <= 15);
+  const busy = f.courts.map((c) => (c.days[iso] || []).map(([s, e]) => [mins(s), mins(e) || 1440]));
+
+  // Free courts per stretch of the day, between every booking edge.
+  const edges = [...new Set([open, close, ...busy.flat(2)].filter((m) => m >= open && m <= close))].sort((a, b) => a - b);
+  const segs = [];
+  for (let i = 0; i < edges.length - 1; i++) {
+    const [a, b] = [edges[i], edges[i + 1]];
+    const free = busy.filter((bl) => !bl.some(([s, e]) => s < b && e > a)).length;
+    const last = segs.at(-1);
+    if (last && last.free === free && last.b === a) last.b = b; else segs.push({ a, b, free });
+  }
+  const shade = (free) => (free === n ? 'all' : free ? 'some' : 'none');
+  const word = (free) => (free === n ? (n > 1 ? `all ${n} courts free` : 'free') : free ? `${free} of ${n} courts free` : 'all booked');
+  const strip = segs.map(({ a, b, free }) => `<div class="g-seg ${shade(free)}" style="${span(a, b)}" title="${fmtT(hhmm(a))}–${fmtT(hhmm(b))}: ${word(free)}">${free && free < n ? `${free}/${n}` : ''}</div>`).join('');
+  // A public session on these courts: one block, wherever it sits.
+  const used = meets.map((m) => ({ m, s: mins(m.start), e: mins(m.end) || 1440 })).filter(({ s, e }) => busy.some((bl) => bl.some(([a, b]) => meetFor(a, b) && Math.abs(a - s) <= 15 && Math.abs(b - e) <= 15)));
+  const meetBlocks = used.map(({ m, s, e }) => `<a class="g-book open" href="${esc(m.signup.url)}" target="_blank" rel="noopener" style="${span(s, e)}" title="${esc(m.title)}: ${fmtT(m.start)}–${fmtT(m.end)}, sign up">${esc(/open play/i.test(m.title) ? 'Open play' : 'Sign up')}</a>`).join('');
+
+  const anyFree = segs.filter((x) => x.free).reduce((out, x) => { const l = out.at(-1); if (l && l[1] === x.a) l[1] = x.b; else out.push([x.a, x.b]); return out; }, []).filter(([a, b]) => b - a >= 30);
+  const freeText = anyFree.length ? `free <b>${anyFree.map(([a, b]) => `${fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}</b>` : '<b class="full">fully booked</b>';
+  const meetText = used.map(({ m }) => `<a class="book" href="${esc(m.signup.url)}" target="_blank" rel="noopener">${esc(/open play/i.test(m.title) ? 'Open play' : m.title)} ${fmtT(m.start)}–${fmtT(m.end)} ↗</a>`).join(' · ');
+  const stale = f.venue.stale ? ' · <b class="full">showing last good data</b>' : '';
+  const mi = milesTo(f.venueId);
+  const where = `${esc(f.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}`;
+  const expanded = openFacs.has(f.id), laneId = `lanes-${f.id}`;
+  const freeAria = segs.map(({ a, b, free }) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))} ${word(free)}`).join('; ');
+
+  let html = `<div class="g-venue"><span class="v-name">${esc(f.name)}<small>${where} · ${freeText}${meetText ? ` · ${meetText}` : ''}${stale}</small></span>${book}</div>`;
+  html += `<div class="g-row"><button type="button" class="g-lab g-toggle" data-fac="${esc(f.id)}" aria-expanded="${expanded}" aria-controls="${laneId}">${n} court${n === 1 ? '' : 's'} <span aria-hidden="true">${expanded ? '▴' : '▾'}</span></button>`
+    + `<div class="g-track avail" role="img" aria-label="${esc(f.name)}: ${esc(freeAria)}">${closedBlocks}${strip}${meetBlocks}${nowLine}</div></div>`;
+  if (!expanded) return html;
+  const lanes = f.courts.map((c, i) => {
+    const bl = busy[i].map(([s, e]) => {
+      const m = meetFor(s, e);
+      return m ? `<a class="g-book open" href="${esc(m.signup.url)}" target="_blank" rel="noopener" style="${span(s, e)}" title="${esc(m.title)}: ${fmtT(m.start)}–${fmtT(m.end)}, sign up"></a>`
+        : `<div class="g-book" style="${span(s, e)}" title="Booked ${fmtT(hhmm(s))}–${fmtT(hhmm(e))}"></div>`;
+    }).join('');
+    const free = freeWindows(busy[i], open, close);
+    const aria = `${busy[i].length ? 'booked ' + busy[i].map(([s, e]) => `${fmtT(hhmm(s))} to ${fmtT(hhmm(e))}`).join(', ') : 'no bookings'}; ${free.length ? 'open to rent ' + free.map(([a, b]) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))}`).join(', ') : 'no open time'}`;
+    return `<div class="g-row court"><span class="g-lab">${esc(c.name.replace(/^(HP|CO) /, '').replace('Court #', 'Court '))}</span><div class="g-track lane" role="img" aria-label="${esc(c.name)}: ${aria}">${closedBlocks}${bl}${nowLine}</div></div>`;
+  }).join('');
+  return html + `<div class="g-lanes" id="${laneId}">${lanes}</div>`;
+}
+
 function renderGlance() {
   const iso = WEEK[state.di], isToday = state.di === 0, dow = dowOf(iso);
   if ($('cal').dataset.key !== `${state.sport}|${state.view}|${iso}|${state.tab}`) openBlock = null;
@@ -535,36 +599,7 @@ function renderGlance() {
     html += glanceRows(sess, nowLine);
   }
 
-  html += facs.map((f) => {
-    const h = f.venue.hours?.[dow];
-    if (!h) return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · closed today</small></div>`;
-    const open = mins(h[0]), close = mins(h[1]) || 1440;
-    const closedBlocks = [[T0, open], [close, T1]].filter(([a, b]) => b > a)
-      .map(([a, b]) => `<div class="g-closed" style="left:${pct(a)}%;width:${(pct(b) - pct(a)).toFixed(2)}%" title="Closed"></div>`).join('')
-      + `<div class="g-close" style="left:calc(${pct(close)}% - 2px)" title="Closes ${fmtT(hhmm(close))}"></div>`;
-    const frees = [];
-    // Public meets held at this facility (e.g. Vex on a privately booked Treehouse court).
-    const meets = sessionsOn(iso, { ignoreTab: true }).filter((x) => (x.facility === f.id || (f.venueId && x.venueId === f.venueId)) && x.start && x.end && !hidden(x.f));
-    const lanes = f.courts.map((c) => {
-      const blocks = (c.days[iso] || []).map(([s, e]) => [mins(s), mins(e) || 1440]);
-      const free = freeWindows(blocks, open, close); frees.push(free);
-      const bl = blocks.map(([s, e]) => {
-        const st = `left:${pct(s)}%;width:${(pct(e) - pct(s)).toFixed(2)}%`;
-        // A booking whose start and end line up with a public meet is that meet's court.
-        const m = meets.find((x) => Math.abs(mins(x.start) - s) <= 15 && Math.abs(mins(x.end) - e) <= 15);
-        return m
-          ? `<a class="g-book open" href="${esc(m.signup.url)}" target="_blank" rel="noopener" style="${st}" title="${esc(m.title)}: ${fmtT(m.start)}–${fmtT(m.end)}, sign up">Sign up</a>`
-          : `<div class="g-book" style="${st}" title="Booked ${fmtT(hhmm(s))}–${fmtT(hhmm(e))}"></div>`;
-      }).join('');
-      const aria = `${blocks.length ? 'booked ' + blocks.map(([s, e]) => `${fmtT(hhmm(s))} to ${fmtT(hhmm(e))}`).join(', ') : 'no bookings'}; ${free.length ? 'open to rent ' + free.map(([a, b]) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))}`).join(', ') : 'no open time'}`;
-      return `<div class="g-row"><span class="g-lab">${esc(c.name.replace(/^(HP|CO) /, '').replace('Court #', 'Court '))}</span><div class="g-track lane" role="img" aria-label="${esc(c.name)}: ${aria}">${closedBlocks}${bl}${nowLine}</div></div>`;
-    }).join('');
-    const anyFree = union(frees).filter(([a, b]) => b - a >= 30);
-    const sum = anyFree.length ? `courts free <b>${anyFree.map(([a, b]) => `${fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}</b>` : `<b class="full">fully booked</b>`;
-    const stale = f.venue.stale ? ' · <b class="full">showing last good data</b>' : '';
-    const pub = meets.length ? meets.map((m) => `<a class="book" href="${esc(m.signup.url)}" target="_blank" rel="noopener">${esc(m.title)} ${fmtT(m.start)}–${fmtT(m.end)} ↗</a>`).join(' · ') : 'no public play';
-    return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · open ${fmtT(h[0])}, closes ${fmtT(hhmm(close))} · ${sum} · ${pub}${stale} · <a class="book" href="${esc(calendarOn(f.venue, iso))}" target="_blank" rel="noopener">Book a court ↗</a></small></div>${lanes}`;
-  }).join('');
+  html += facs.map((f) => venueCourts(f, iso, dow, nowLine)).join('');
 
   const volleyball = state.view === 'booking' && liveCourts(); // booking with live court calendars
   if (volleyball && !courts && !courtsError) html += `<p class="loading">Loading court calendars…</p>`;
@@ -606,7 +641,7 @@ function renderMeta() {
   const places = regionCourts().flatMap((v) => v.facilities.map((f) => f.name));
   const notes = regionCourts().map((v) => v.note).filter(Boolean);
   $('calNote').textContent = places.length
-    ? `Booked time at ${list(places)} is private rentals, clubs and the venue's own programs. Blue blocks line up with a public session listed here, so those courts are open to sign up. Only times are shown, never who booked.${notes.length ? ` ${notes.join(' ')}` : ''}${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh with each schedule update.` : ''}`
+    ? `Blue is a public session on those courts: tap it to sign up. Booked time is rentals and the venue's own programs; only times are shown, never who booked.${notes.length ? ` ${notes.join(' ')}` : ''}${courts ? ` Checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}.` : ''}`
     : '';
   const mine = schedule.sources.filter((s) => (s.sport || 'volleyball') === state.sport);
   const bad = mine.filter((s) => !s.ok);
@@ -642,6 +677,14 @@ $('nearest').addEventListener('click', () => {
 });
 
 document.addEventListener('click', async (e) => {
+  const fac = e.target.closest('[data-fac]');
+  if (fac) {
+    const id = fac.dataset.fac;
+    if (!openFacs.delete(id)) openFacs.add(id);
+    renderGlance();
+    document.querySelector(`[data-fac="${CSS.escape(id)}"]`)?.focus();
+    return;
+  }
   const blk = e.target.closest('[data-block]');
   if (blk) {
     openBlock = openBlock === blk.dataset.block ? null : blk.dataset.block;
