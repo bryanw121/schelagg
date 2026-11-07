@@ -769,6 +769,30 @@ test('site: pickleball court booking shows live court lanes where a club publish
   assert.match(await page.locator('#calErrors').textContent(), /Couldn't load some court calendars/);
 });
 
+test('site: booking and sign-up links open on the chosen day where the site supports it, and court prices show', async () => {
+  const schedule = structuredClone(PICKLE_SCHEDULE);
+  schedule.venues = [
+    { id: 'pod', name: 'Pod Club', city: 'Austin', bookingLink: { sport: 'pickleball', url: 'https://club.podplay.app/book/main', price: '$30–40/hr', reviewBy: '2099-01-01' } },
+    { id: 'usta', name: 'Tennis Center', city: 'Austin', bookingLink: { sport: 'pickleball', url: 'https://playtennis.usta.com/austintenniscenter/Booking/BookByDate', price: '$5/person' } },
+    { id: 'old', name: 'Old Prices', city: 'Austin', bookingLink: { sport: 'pickleball', url: 'https://example.test/book', price: '$1/hr', reviewBy: '2000-01-01' } },
+  ];
+  const one = schedule.sessions.at(-1);
+  schedule.sessions = [{ ...one, id: 'dash', date: undefined, days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], title: 'Drop-in',
+    signup: { url: 'https://apps.daysmartrecreation.com/dash/x/#/online/rink/calendar?location=1' } }];
+  await open({ schedule, url: '/?sport=pickleball' });
+  await page.locator('#days .day').nth(2).click();
+  const day = await page.locator('#days .day').nth(2).getAttribute('data-iso');
+  assert.equal(await row('Drop-in').locator('a.signup').getAttribute('href'), `https://apps.daysmartrecreation.com/dash/x/#/online/rink/calendar?location=1&start=${day}&end=${day}`);
+  await page.locator('[data-view="booking"]').click();
+  const book = (name) => page.locator('#bookingCalendars .book-row', { hasText: name });
+  assert.equal(await book('Pod Club').locator('a.signup').getAttribute('href'), `https://club.podplay.app/book/main/${day}`);
+  assert.equal(await book('Tennis Center').locator('a.signup').getAttribute('href'), `https://playtennis.usta.com/austintenniscenter/Booking/BookByDate#?date=${day}&role=guest`);
+  assert.equal(await book('Old Prices').locator('a.signup').getAttribute('href'), 'https://example.test/book', 'other sites open as they are');
+  assert.equal(await book('Pod Club').locator('.price').textContent(), '$30–40/hr');
+  assert.equal(await book('Tennis Center').locator('.price').textContent(), '$5/person');
+  assert.equal(await book('Old Prices').locator('.price').count(), 0, 'a price past its review date is not shown');
+});
+
 test('site: pickleball booking is separate, shareable, remembered, and does not imply live vacancies', async () => {
   const schedule = structuredClone(PICKLE_SCHEDULE);
   schedule.venues[0].bookingLink={sport:'pickleball',url:'https://example.test/book',note:'Reserve a private court.'};
@@ -777,9 +801,10 @@ test('site: pickleball booking is separate, shareable, remembered, and does not 
   assert.equal(await page.locator('#bookingCalendarsCard').isHidden(),true);
   await page.locator('[data-view="booking"]').click();
   assert.equal(await page.locator('#sessionsPanel').isHidden(),true);
-  // No live court data for pickleball: no empty chart and no day picker, just the venues to book with.
+  // No live court data for pickleball: no empty chart, just the venues to book with (the day picker
+  // stays, since booking links open on the chosen day where the venue's site allows it).
   assert.equal(await page.locator('#glance').isHidden(),true);
-  assert.equal(await page.locator('#days').isHidden(),true);
+  assert.equal(await page.locator('#days').isVisible(),true);
   assert.equal(await page.locator('#cal a.g-bar').count(),0);
   assert.equal(await page.locator('#bookingCalendars a.signup', {hasText:'Book'}).getAttribute('href'),'https://example.test/book');
   assert.equal(new URL(page.url()).searchParams.get('view'),'booking');
