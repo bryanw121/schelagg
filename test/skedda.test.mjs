@@ -67,5 +67,5 @@ test('time helpers', () => {
 
 test('Skedda: per-day booking links use ?viewdate={date}', () => {
   assert.equal(skeddaDayUrl('https://austinvelocity.skedda.com/booking'), 'https://austinvelocity.skedda.com/booking?viewdate={date}');
-  for (const v of VENUES) assert.match(skeddaDayUrl(v.calendar).replace('{date}', '2026-10-27'), /^https:\/\/[a-z]+\.skedda\.com\/booking\?viewdate=2026-10-27$/);
+  for (const v of VENUES.filter((x) => !x.system)) assert.match(skeddaDayUrl(v.calendar).replace('{date}', '2026-10-27'), /^https:\/\/[a-z]+\.skedda\.com\/booking\?viewdate=2026-10-27$/);
 });

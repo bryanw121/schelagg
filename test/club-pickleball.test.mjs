@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { loadSources } from '../lib/registry.js';
 import { pageObjects } from '../lib/public-page-data.js';
 import { parse, eventTimes, scrape as directoryScrape } from '../scripts/adapters/openplay-directory.mjs';
-import { upcoming, parseDetail, scrape } from '../scripts/adapters/opencourt.mjs';
-import { page, directory, holyId, holyListing, holyHome, holyDetail } from './fixtures/public-calendars.mjs';
+import { upcoming, parseDetail, scrape, scheduleEventIds } from '../scripts/adapters/opencourt.mjs';
+import { page, directory, holyId, holyListing, holyHome, holyDetail, holySchedule } from './fixtures/public-calendars.mjs';
 
 const sources = loadSources().sources;
 const directoryOptions = sources.find((s) => s.id === 'austin-club-openplay').options;
@@ -69,12 +69,41 @@ test('OpenCourt: ignore open court rentals; read dated event and nonmember price
 test('club scrapes: plain public reads; failure does not silently publish a partial list', async () => {
   const calls = [];
   const result = await scrape({ ref: '2026-10-25', options: holyOptions, timezone: TZ, fetch: async (url) => {
-    calls.push(url); return new Response(page(url.endsWith(holyId) ? holyDetail : holyHome));
+    calls.push(url);
+    const u = new URL(url);
+    if (u.pathname.startsWith('/api/club/')) return new Response(JSON.stringify(holySchedule(u.searchParams.get('date'))));
+    return new Response(page(url.endsWith(holyId) ? holyDetail : holyHome));
   } });
   assert.equal(result.sessions.length, 1);
-  assert.equal(calls.length, 2);
+  assert.equal(calls.length, 1 + 15 + 1); // club page, 15 days of court schedule, one event page
   await assert.rejects(scrape({ ref: '2026-10-25', options: holyOptions, timezone: TZ, fetch: async () => new Response('', { status: 503 }) }), /HTTP 503/);
   await assert.rejects(directoryScrape({ ref: '2026-10-25', options: directoryOptions, fetch: async () => new Response('Sign in', { status: 401 }) }), /HTTP 401/);
+});
+
+test('OpenCourt: events beyond the club page\'s first 10 come from the court schedule; ones without a public page are skipped', async () => {
+  // The club page lists nothing; the court schedule holds holyId on Oct 25 and, on Oct 30, a second
+  // open play plus a private event whose page is not public.
+  const later = '00000000-0000-0000-0000-00000000000a', priv = '00000000-0000-0000-0000-00000000000b';
+  const day = (iso) => {
+    const body = holySchedule(iso), courts = body.remappedReservations[iso].courts;
+    if (iso === '2026-10-30') { courts[0].slots[0].eventId = later; courts[1].slots[0].eventId = priv; }
+    return body;
+  };
+  const laterDetail = { event: { ...holyDetail.event, id: later, spaceAllocations: [{ startTime: '$D2026-10-30T12:00:00Z', endTime: '$D2026-10-30T13:00:00Z', deletedAt: null }] } };
+  const fetch = async (url) => {
+    const u = new URL(url);
+    if (u.pathname.startsWith('/api/club/')) return new Response(JSON.stringify(day(u.searchParams.get('date'))));
+    if (url.endsWith(priv)) return new Response('Not found', { status: 404 });
+    if (url.endsWith(later)) return new Response(page(laterDetail));
+    if (url.endsWith(holyId)) return new Response(page(holyDetail));
+    return new Response(page([holyHome[0], { ...holyHome[1], events: { events: [], truncated: true } }]));
+  };
+  const { sessions } = await scrape({ ref: '2026-10-25', options: holyOptions, timezone: TZ, fetch });
+  assert.deepEqual(sessions.map((x) => [x.date, x.start, x.end]), [['2026-10-25', '09:00', '11:00'], ['2026-10-30', '07:00', '08:00']]);
+  assert.deepEqual(scheduleEventIds(day('2026-10-30'), '2026-10-30').filter((id) => id !== holyId).sort(), [later, priv]);
+  assert.throws(() => scheduleEventIds({}, '2026-10-30'), /missing/);
+  // An event the club page itself lists as open play must read cleanly.
+  await assert.rejects(scrape({ ref: '2026-10-25', options: holyOptions, timezone: TZ, fetch: async (url) => (url.endsWith(holyId) ? new Response('gone', { status: 410 }) : fetch(url).then((r) => (new URL(url).pathname === '/club/holy-pickle' ? new Response(page(holyHome)) : r))) }), /HTTP 410/);
 });
 
 test('directory: CourtReserve keeps occurrence IDs and only applies reviewed rates to matching durations', () => {
