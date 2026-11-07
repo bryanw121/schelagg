@@ -545,9 +545,10 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
     { id: 'gym', name: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7, bookingLink: { sport: 'volleyball', url: 'https://club.podplay.app/book/main', price: '$30/hr' } },
     { id: 'beach', name: 'ATX Beach', city: 'Austin', lat: 30.3, lng: -97.75 },
     { id: 'nowhere', name: 'Unmapped Hall', city: 'Austin' },
+    { id: 'park', name: 'Morning Park', city: 'Austin', lat: 30.25, lng: -97.8 },
   ];
   const at = (id, venueId, venue, start, end) => ({ ...base, id, sourceId: 'manual', date: TODAY, start, end, title: `Session ${id}`, venueId, venue, city: 'Austin', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
-  sched.sessions = [at('g1', 'gym', 'North Gym', '18:00', '20:00'), at('g2', 'gym', 'North Gym', '20:00', '22:00'), at('b1', 'beach', 'ATX Beach', '18:30', '20:00'), at('u1', 'nowhere', 'Unmapped Hall', '19:00', '21:00')];
+  sched.sessions = [at('g0', 'gym', 'North Gym', '09:00', '11:00'), at('g1', 'gym', 'North Gym', '18:00', '20:00'), at('g2', 'gym', 'North Gym', '20:00', '22:00'), at('b1', 'beach', 'ATX Beach', '18:30', '20:00'), at('u1', 'nowhere', 'Unmapped Hall', '19:00', '21:00'), at('p1', 'park', 'Morning Park', '08:00', '09:00')];
   await open({ index: INDEX, regions: { austin: sched }, maps: MAPS });
   const layout = page.locator('#layout');
   assert.equal(await layout.isVisible(), true);
@@ -559,16 +560,19 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   const pins = page.locator('#map .pin');
   await pins.first().waitFor();
   assert.deepEqual((await pins.evaluateAll((els) => els.map((e) => [e.dataset.pin, e.textContent, e.getAttribute('aria-label')]))).sort(), [
-    ['beach', '6:30p', 'ATX Beach: 1 session, first at 6:30pm'],
-    ['gym', '6p +1', 'North Gym: 2 sessions, first at 6pm'],
+    ['beach', '6:30p', 'ATX Beach: 1 session, next at 6:30pm'],
+    ['gym', '6p +1', 'North Gym: 2 sessions still to come, next at 6pm'], // its 9am session has ended (it's 5pm)
+    ['park', 'Ended', "Morning Park: today's sessions have ended"],
   ]);
-  assert.match(await page.locator('#mapPanel').textContent(), /2 places with volleyball on Oct 25 · tap a pin · 1 more without a location are in the list/);
+  assert.equal(await page.locator('#map .pin[data-pin="park"]').evaluate((e) => e.classList.contains('done')), true);
+  assert.match(await page.locator('#mapPanel').textContent(), /3 places with volleyball on Oct 25 · tap a pin · 1 more without a location are in the list/);
   // Tap a pin: that place's day, with each sign-up and the venue's Book (opened on this day).
   await page.locator('#map .pin[data-pin="gym"]').click();
   const panel = page.locator('#mapPanel');
   assert.match(await panel.locator('.g-venue').textContent(), /North Gym.*Austin · \$30\/hr/);
   assert.equal(await panel.locator('a.v-book, a.signup', { hasText: 'Book' }).first().getAttribute('href'), `https://club.podplay.app/book/main/${TODAY}`);
-  assert.deepEqual(await panel.locator('.pop-item a.signup').evaluateAll((els) => els.map((e) => e.getAttribute('href'))), [`${SIGNUP}/g1`, `${SIGNUP}/g2`]);
+  assert.deepEqual(await panel.locator('.pop-item a.signup').evaluateAll((els) => els.map((e) => e.getAttribute('href'))), [`${SIGNUP}/g0`, `${SIGNUP}/g1`, `${SIGNUP}/g2`]);
+  assert.deepEqual(await panel.locator('.pop-item').evaluateAll((els) => els.map((e) => e.classList.contains('past'))), [true, false, false], 'the ended session is dimmed');
   assert.equal(await page.locator('#map .pin[data-pin="gym"]').getAttribute('aria-pressed'), 'true');
   await page.locator('#map .pin[data-pin="gym"]').click(); // tap again: back to the summary
   assert.match(await panel.textContent(), /tap a pin/);

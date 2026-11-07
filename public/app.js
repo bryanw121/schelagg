@@ -753,12 +753,15 @@ function mapPlaces(iso) {
     for (const x of sessionsOn(iso).filter((y) => !hidden(y.f))) { const v = venues.get(x.venueId); if (v) at(v).sessions.push(x); }
     for (const p of out.values()) p.booking = venues.get(p.id)?.bookingLink?.sport === state.sport ? venues.get(p.id).bookingLink : null;
   }
+  // Today, a pin names the next session (ended ones stay in the place's day, dimmed, as in the list).
+  const over = (x) => iso === WEEK[0] && x.end && mins(x.end) <= NOW.minutes;
   for (const p of out.values()) {
     p.sessions.sort((a, b) => (a.start || '99').localeCompare(b.start || '99'));
-    const timed = p.sessions.filter((x) => x.start);
-    const first = timed[0], more = p.sessions.length - 1;
-    p.label = state.view === 'booking' ? (courtPrice(p.booking) || 'Book') : first ? `${fmtT(first.start).replace(/m$/, '')}${more > 0 ? ` +${more}` : ''}` : `${p.sessions.length} session${p.sessions.length === 1 ? '' : 's'}`;
-    p.aria = state.view === 'booking' ? `${p.name}: ${courtPrice(p.booking) ? `courts ${courtPrice(p.booking)}` : 'book a court'}` : `${p.name}: ${p.sessions.length} session${p.sessions.length === 1 ? '' : 's'}${first ? `, first at ${fmtT(first.start)}` : ''}`;
+    const left = p.sessions.filter((x) => !over(x));
+    p.done = state.view === 'openplay' && p.sessions.length > 0 && !left.length;
+    const first = left.find((x) => x.start), more = left.length - 1;
+    p.label = state.view === 'booking' ? (courtPrice(p.booking) || 'Book') : p.done ? 'Ended' : first ? `${fmtT(first.start).replace(/m$/, '')}${more > 0 ? ` +${more}` : ''}` : `${left.length} session${left.length === 1 ? '' : 's'}`;
+    p.aria = state.view === 'booking' ? `${p.name}: ${courtPrice(p.booking) ? `courts ${courtPrice(p.booking)}` : 'book a court'}` : p.done ? `${p.name}: today's sessions have ended` : `${p.name}: ${left.length} session${left.length === 1 ? '' : 's'}${left.length < p.sessions.length ? ' still to come' : ''}${first ? `, next at ${fmtT(first.start)}` : ''}`;
   }
   return [...out.values()];
 }
@@ -772,7 +775,8 @@ function mapPanelHtml(places, iso) {
   }
   const mi = milesTo(p.id), cost = courtPrice(p.booking);
   const book = p.booking?.url ? `<a class="signup" href="${esc(onDay(p.booking.url, iso))}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(p.name)}">Book ↗</a>` : '';
-  const rows = p.sessions.map((x) => `<div class="pop-item"><span class="pop-t">${x.start ? `${fmtT(x.start)}${x.end ? `–${fmtT(x.end)}` : ''}` : 'Any time'}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('');
+  const ended = (x) => state.di === 0 && x.end && mins(x.end) <= NOW.minutes;
+  const rows = p.sessions.map((x) => `<div class="pop-item${ended(x) ? ' past' : ''}"><span class="pop-t">${x.start ? `${fmtT(x.start)}${x.end ? `–${fmtT(x.end)}` : ''}` : 'Any time'}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('');
   return `<div class="map-place"><div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}</small></span>${book}</div>
     ${rows ? `<div class="g-pop map-sessions">${rows}</div>` : `<p class="note">${state.view === 'booking' ? 'No public sessions here on this day; book a court on the venue\'s site.' : 'Nothing else here on this day.'}</p>`}
     ${locationHtml({ venueId: p.id })}</div>`;
@@ -781,7 +785,7 @@ function mapPanelHtml(places, iso) {
 /** Hide the labels of pins that would sit on top of another (the busier place keeps its label). */
 function declutter() {
   const boxes = [];
-  for (const { el, p } of [...mapMarkers].sort((a, b) => (b.p.id === mapPick) - (a.p.id === mapPick) || b.p.sessions.length - a.p.sessions.length)) {
+  for (const { el, p } of [...mapMarkers].sort((a, b) => (b.p.id === mapPick) - (a.p.id === mapPick) || a.p.done - b.p.done || b.p.sessions.length - a.p.sessions.length)) {
     el.classList.remove('dot');
     const r = el.getBoundingClientRect();
     const hit = boxes.some((b) => r.left < b.right + 2 && r.right > b.left - 2 && r.top < b.bottom + 2 && r.bottom > b.top - 2);
@@ -826,7 +830,7 @@ async function renderMap() {
   for (const m of mapMarkers) m.marker.remove();
   mapMarkers = places.map((p) => {
     const el = document.createElement('button');
-    Object.assign(el, { type: 'button', className: `pin${state.view === 'booking' ? ' book' : ''}${p.id === mapPick ? ' sel' : ''}`, textContent: p.label });
+    Object.assign(el, { type: 'button', className: `pin${state.view === 'booking' ? ' book' : ''}${p.done ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}`, textContent: p.label });
     el.dataset.pin = p.id; el.setAttribute('aria-label', p.aria); el.setAttribute('aria-pressed', String(p.id === mapPick));
     return { el, p, marker: new gl.Marker({ element: el, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(mapView) };
   });
