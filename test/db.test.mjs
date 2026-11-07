@@ -11,7 +11,7 @@ import { PGlite } from '@electric-sql/pglite';
 import { loadSources } from '../lib/registry.js';
 import { runScrape, scrapePaths, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
 import { toOccurrences } from '../lib/occurrences.js';
-import { page, directory, holyHome, holyDetail, holyId } from './fixtures/public-calendars.mjs';
+import { page, directory, holyHome, holyDetail, holyId, holySchedule } from './fixtures/public-calendars.mjs';
 import {
   wrapPglite, migrate, writeRun, persistRun, planRun, diffFields, sessionRow, occurrenceRow, sourceRows,
   canonical, feedOrder, isPast, redact, queryOccurrences, loadPublishedFromDb, UNTRACKED_FIELDS,
@@ -369,6 +369,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
     if (u.hostname === 'openplaymap.com') return new Response(page(directory));
     if (u.hostname === 'app.getopencourt.com') {
       const haus = u.pathname.includes('austinpicklehaus');
+      if (u.pathname.startsWith('/api/club/')) return new Response(JSON.stringify(holySchedule(u.searchParams.get('date'))).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId));
       const fixture = page(u.pathname.includes('/schedule/event/') ? holyDetail : holyHome).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId).replaceAll('holy-pickle', haus ? 'austinpicklehaus' : 'holy-pickle');
       return new Response(fixture);
     }

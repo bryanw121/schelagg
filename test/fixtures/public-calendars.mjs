@@ -22,3 +22,23 @@ export const holyDetail = { event: {
   metadata: { paymentData: { isPaid: true, rules: { NON_MEMBER: 10 } } },
   spaceAllocations: [{ startTime: holyListing.startTime, endTime: holyListing.endTime, deletedAt: null }],
 } };
+
+/**
+ * OpenCourt's per-day court schedule (/api/club/<slug>/schedule?date=), times only. Four courts
+ * open 7am–11pm in 30-minute slots. On Oct 25 the open play (holyId) holds every court 9–11am;
+ * every day Court 2 has a member booking 1–2:30pm. The real response also names who booked; the
+ * reader must not need that, so it is left out here.
+ */
+export function holySchedule(iso, { closed = false } = {}) {
+  const court = (n) => {
+    const slots = [];
+    for (let m = 7 * 60; m < 23 * 60;) {
+      if (iso === '2026-10-25' && m === 9 * 60) { slots.push({ reservationId: `r-open-${n}`, eventId: holyId, startTimeInMinutes: m, duration: 120 }); m += 120; continue; }
+      if (n === 1 && m === 13 * 60) { slots.push({ reservationId: 'r-member', eventId: null, startTimeInMinutes: m, duration: 90 }); m += 90; continue; }
+      slots.push({ reservationId: null, eventId: null, startTimeInMinutes: m, duration: 30, hasBookableDuration: true });
+      m += 30;
+    }
+    return { courtId: `c${n}`, slots };
+  };
+  return { daysInRange: 1, remappedReservations: { [iso]: { courts: [0, 1, 2, 3].map(court), closedDay: closed, reservations: [], events: [] } } };
+}

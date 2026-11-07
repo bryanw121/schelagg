@@ -7,7 +7,8 @@ import assert from 'node:assert/strict';
 import { createServer, request } from 'node:http';
 import { readFileSync } from 'node:fs';
 import { loadSources } from '../lib/registry.js';
-import { VENUES } from '../lib/skedda.js';
+import { VENUES as ALL_COURT_VENUES } from '../lib/skedda.js';
+const VENUES = ALL_COURT_VENUES.filter((v) => !v.system); // the Skedda ones; OpenCourt has its own tests
 import { createHandler as checkHandler } from '../api/check.js';
 import { createHandler as courtsHandler } from '../api/courts.js';
 
@@ -280,7 +281,7 @@ function skedda({ down = new Set() } = {}) {
 
 test('/api/courts over HTTP: venues, hours and bookings from Skedda; days is clamped', async () => {
   const fetch = skedda();
-  await withServer(courtsHandler({ fetch, now: () => NOW }), async (get) => {
+  await withServer(courtsHandler({ venues: VENUES, fetch, now: () => NOW }), async (get) => {
     const r = await get('/api/courts?days=3');
     assert.equal(r.status, 200);
     assert.equal(r.headers['access-control-allow-origin'], '*');
@@ -308,7 +309,7 @@ test('/api/courts over HTTP: cached for a minute, then a failing venue keeps its
   let t = NOW.getTime();
   const down = new Set();
   const fetch = skedda({ down });
-  await withServer(courtsHandler({ fetch, now: () => new Date(t) }), async (get) => {
+  await withServer(courtsHandler({ venues: VENUES, fetch, now: () => new Date(t) }), async (get) => {
     const first = await get('/api/courts?days=2');
     assert.equal(first.json.venues.length, 2);
     const calls = fetch.calls.length;
@@ -335,7 +336,7 @@ test('/api/courts over HTTP: cached for a minute, then a failing venue keeps its
 
 test('/api/courts over HTTP: a venue that never loaded is just an error (still 200)', async () => {
   const fetch = skedda({ down: new Set(VENUES.map((v) => v.host)) });
-  await withServer(courtsHandler({ fetch, now: () => NOW }), async (get) => {
+  await withServer(courtsHandler({ venues: VENUES, fetch, now: () => NOW }), async (get) => {
     const r = await get('/api/courts');
     assert.equal(r.status, 200);
     assert.deepEqual(r.json.venues, []);
@@ -345,7 +346,7 @@ test('/api/courts over HTTP: a venue that never loaded is just an error (still 2
 
 test('/api/courts over HTTP: OPTIONS preflight, HEAD without a body, other methods 405', async () => {
   const fetch = skedda();
-  await withServer(courtsHandler({ fetch, now: () => NOW }), async (req) => {
+  await withServer(courtsHandler({ venues: VENUES, fetch, now: () => NOW }), async (req) => {
     const pre = await req('/api/courts', 'OPTIONS');
     assert.deepEqual([pre.status, pre.text, pre.headers['access-control-allow-origin'], pre.headers['access-control-allow-methods'], pre.headers['access-control-max-age']], [204, '', '*', 'GET', '86400']);
     assert.equal(fetch.calls.length, 0);

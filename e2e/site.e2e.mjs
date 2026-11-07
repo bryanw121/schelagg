@@ -684,6 +684,35 @@ test('site: no live-check UI yet, so the page never calls /api/check', async () 
   assert.deepEqual(apiCalls.filter((c) => c.startsWith('/api/check')), []);
 });
 
+test('site: pickleball court booking shows live court lanes where a club publishes them (OpenCourt), with open play linked', async () => {
+  const holy = {
+    id: 'holy', sport: 'pickleball', region: 'austin', calendar: 'https://app.getopencourt.com/club/holy/book', calendarDay: null, hours: Array(7).fill(['07:00', '23:00']),
+    facilities: [{ id: 'holy', venueId: 'rec', name: 'Holy Courts', city: 'Austin', surface: 'outdoor', courts: [
+      { name: 'Court 1', days: { [TODAY]: [['10:00', '12:00']] } }, // the indoor pickleball open play at 'rec'
+      { name: 'Court 2', days: { [TODAY]: [['13:00', '14:30']] } }, // a member's booking
+    ] }],
+  };
+  const errors = [{ venue: 'velocity', sport: 'volleyball', calendar: 'https://austinvelocity.skedda.com/booking', message: 'HTTP 503' }];
+  await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball&view=booking', courts: { ...COURTS, errors, venues: [...COURTS.venues, holy] } });
+  await page.locator('#cal .g-group', { hasText: 'Holy Courts' }).waitFor(); // court data loads after the schedule
+  assert.equal(await page.locator('#glance').isVisible(), true);
+  assert.equal(await page.locator('#days').isVisible(), true);
+  const group = page.locator('#cal .g-group', { hasText: 'Holy Courts' });
+  assert.match(await group.textContent(), /open 7am, closes 11pm · courts free 7am–11pm · Indoor pickleball 10am–12pm ↗/);
+  assert.equal(await page.locator('#cal .g-group', { hasText: 'Treehouse' }).count(), 0, 'volleyball courts stay on volleyball');
+  assert.equal(await page.locator('#cal a.g-book.open').getAttribute('href'), `${SIGNUP}/pickle`);
+  assert.equal(await page.locator('#cal div.g-book').getAttribute('title'), 'Booked 1pm–2:30pm');
+  assert.equal(await group.locator('a.book', { hasText: 'Book a court' }).getAttribute('href'), 'https://app.getopencourt.com/club/holy/book');
+  assert.equal(await page.locator('#calErrors').textContent(), '', "volleyball's calendar errors aren't pickleball's");
+  // A level chosen in open play doesn't hide courts.
+  await page.locator('[data-view="openplay"]').click();
+  await tab('advanced').click();
+  await page.locator('[data-view="booking"]').click();
+  assert.equal(await page.locator('#cal .g-group', { hasText: 'Holy Courts' }).count(), 1);
+  await page.locator('[data-sport="volleyball"]').click();
+  assert.match(await page.locator('#calErrors').textContent(), /Couldn't load some court calendars/);
+});
+
 test('site: pickleball booking is separate, shareable, remembered, and does not imply live vacancies', async () => {
   const schedule = structuredClone(PICKLE_SCHEDULE);
   schedule.venues[0].bookingLink={sport:'pickleball',url:'https://example.test/book',note:'Reserve a private court.'};

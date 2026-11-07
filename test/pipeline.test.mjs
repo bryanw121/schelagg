@@ -11,10 +11,11 @@ import { loadSources } from '../lib/registry.js';
 import { repoPath } from '../lib/paths.js';
 import { validateSessions, SCHEMA_VERSION, SPORT_ATTRIBUTES } from '../lib/session.js';
 import { FEED_VERSION } from '../lib/occurrences.js';
-import { VENUES } from '../lib/skedda.js';
+import { VENUES as ALL_COURT_VENUES } from '../lib/skedda.js';
+const VENUES = ALL_COURT_VENUES.filter((v) => !v.system); // the Skedda ones; OpenCourt has its own tests
 import { runScrape, scrapePaths, buildCourts, HORIZON_DAYS, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
 import { judgeFix } from '../lib/health.js';
-import { page, directory, holyHome, holyDetail, holyId } from './fixtures/public-calendars.mjs';
+import { page, directory, holyHome, holyDetail, holyId, holySchedule } from './fixtures/public-calendars.mjs';
 
 const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
@@ -104,6 +105,7 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
     if (u.hostname === 'openplaymap.com') return res(page(directory));
     if (u.hostname === 'app.getopencourt.com') {
       const haus = u.pathname.includes('austinpicklehaus');
+      if (u.pathname.startsWith('/api/club/')) return new Response(JSON.stringify(holySchedule(u.searchParams.get('date'))).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId));
       const fixture = page(u.pathname.includes('/schedule/event/') ? holyDetail : holyHome).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId).replaceAll('holy-pickle', haus ? 'austinpicklehaus' : 'holy-pickle');
       return res(fixture);
     }
@@ -466,7 +468,7 @@ function skedda({ down = new Set(), site } = {}) {
 
 test('build-courts: writes courts.json for every venue from Skedda', async () => {
   const out = join(tempDir(), 'courts.json');
-  const body = await buildCourts({ out, fetch: skedda(), now: () => NOW, log: () => {} });
+  const body = await buildCourts({ venues: VENUES, out, fetch: skedda(), now: () => NOW, log: () => {} });
   const file = readJson(out);
   assert.deepEqual(file, body);
   assert.deepEqual([file.from, file.days, file.fetchedAt, file.errors], [REF, 14, NOW.toISOString(), []]);
@@ -482,10 +484,10 @@ test('build-courts: writes courts.json for every venue from Skedda', async () =>
 
 test('build-courts: a failing venue keeps the last good copy from the local file, marked stale', async () => {
   const out = join(tempDir(), 'courts.json');
-  await buildCourts({ out, fetch: skedda(), now: () => NOW, log: () => {} });
+  await buildCourts({ venues: VENUES, out, fetch: skedda(), now: () => NOW, log: () => {} });
   const good = readJson(out).venues.find((v) => v.id === 'treehouse');
   const logs = [];
-  const body = await buildCourts({ out, fetch: skedda({ down: new Set(['treehousegym.skedda.com']) }), now: () => new Date(NOW.getTime() + 900e3), log: (l) => logs.push(l) });
+  const body = await buildCourts({ venues: VENUES, out, fetch: skedda({ down: new Set(['treehousegym.skedda.com']) }), now: () => new Date(NOW.getTime() + 900e3), log: (l) => logs.push(l) });
   assert.deepEqual(body.errors.map((e) => [e.venue, e.calendar]), [['treehouse', 'https://treehousegym.skedda.com/booking']]);
   assert.deepEqual(body.venues.find((v) => v.id === 'treehouse'), { ...good, stale: true });
   assert.equal(body.venues.find((v) => v.id === 'velocity').stale, undefined);
@@ -497,13 +499,13 @@ test('build-courts: with no local file, the last good copy comes from the live s
   const live = { venues: [{ id: 'velocity', calendar: 'https://austinvelocity.skedda.com/booking', hours: [], facilities: [] }] };
   const allDown = new Set(VENUES.map((v) => v.host));
   const fetch = skedda({ down: allDown, site: { base: 'https://example.test/schelagg/data/courts.json', body: live } });
-  const body = await buildCourts({ out: join(dir, 'a.json'), siteUrl: 'https://example.test/schelagg', fetch, now: () => NOW, log: () => {} });
+  const body = await buildCourts({ venues: VENUES, out: join(dir, 'a.json'), siteUrl: 'https://example.test/schelagg', fetch, now: () => NOW, log: () => {} });
   assert.ok(fetch.calls.includes('https://example.test/schelagg/data/courts.json'));
   assert.deepEqual(body.venues, [{ ...live.venues[0], stale: true }]);
   assert.equal(body.errors.length, 2);
 
   // No local file, no site copy, every venue down: nothing usable (the script exits 1 on this).
-  const empty = await buildCourts({ out: join(dir, 'b.json'), fetch: skedda({ down: allDown }), now: () => NOW, log: () => {} });
+  const empty = await buildCourts({ venues: VENUES, out: join(dir, 'b.json'), fetch: skedda({ down: allDown }), now: () => NOW, log: () => {} });
   assert.deepEqual(empty.venues, []);
   assert.deepEqual(readJson(join(dir, 'b.json')).venues, []);
 });

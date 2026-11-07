@@ -2,6 +2,7 @@ import { get } from '../../lib/http.js';
 import { pageObjects, findObject } from '../../lib/public-page-data.js';
 import { addDays } from '../../lib/time.js';
 import { eventTimes } from './openplay-directory.mjs';
+import { scheduleUrl } from '../../lib/opencourt-courts.js';
 
 export const needsBrowser = false;
 export const clubUrl = (slug) => `https://app.getopencourt.com/club/${slug}`;
@@ -37,15 +38,41 @@ export function parseDetail(html, listed, options, timezone) {
     source, signup: { url: source, label: 'View event & book' } };
 }
 
+/** Event ids on one day of the club's court schedule (the same public request its booking page makes). */
+export function scheduleEventIds(body, iso) {
+  const courts = body?.remappedReservations?.[iso]?.courts;
+  if (!Array.isArray(courts)) throw new Error(`OpenCourt schedule for ${iso} missing`);
+  return courts.flatMap((c) => (c.slots ?? []).map((s) => s.eventId)).filter(uuid);
+}
+
+/**
+ * The club page embeds only its next 10 events (OpenCourt marks the list truncated), so busier
+ * clubs lose sessions. The per-day court schedule names every event on the courts; each is then
+ * read from its public event page, which says whether it is open play.
+ */
 export async function scrape({ ref, options, timezone, fetch }) {
   if (!/^[a-z0-9-]+$/.test(options.slug)) throw new Error('Invalid OpenCourt club');
   const home = await get(clubUrl(options.slug), { fetch });
   if (!home.ok) throw new Error(`OpenCourt calendar: HTTP ${home.status}`);
-  const events = upcoming(home.text, ref, timezone), sessions = [];
-  for (const listed of events) {
-    const res = await get(`${clubUrl(options.slug)}/schedule/event/${listed.eventId}`, { fetch });
-    if (!res.ok) throw new Error(`OpenCourt event: HTTP ${res.status}`);
-    const session = parseDetail(res.text, listed, options, timezone);
+  const listed = new Set(upcoming(home.text, ref, timezone).map((e) => e.eventId)), ids = new Set(listed);
+  for (let i = 0; i <= 14; i++) {
+    const iso = addDays(ref, i);
+    const res = await get(scheduleUrl(options.slug, iso), { fetch, headers: { accept: 'application/json' } });
+    if (!res.ok) throw new Error(`OpenCourt schedule: HTTP ${res.status}`);
+    let body;
+    try { body = JSON.parse(res.text); } catch { throw new Error('OpenCourt schedule is not JSON'); }
+    for (const id of scheduleEventIds(body, iso)) ids.add(id);
+  }
+  const sessions = [];
+  for (const eventId of ids) {
+    // An event the club page lists as open play must read cleanly; anything else found only on the
+    // court schedule (a private booking, a league) may have no public page and is skipped.
+    let session;
+    try {
+      const res = await get(`${clubUrl(options.slug)}/schedule/event/${eventId}`, { fetch });
+      if (!res.ok) throw new Error(`OpenCourt event: HTTP ${res.status}`);
+      session = parseDetail(res.text, { eventId }, options, timezone);
+    } catch (e) { if (listed.has(eventId)) throw e; continue; }
     if (session && session.date >= ref && session.date <= addDays(ref, 14)) sessions.push(session);
   }
   return { sessions: [...new Map(sessions.map((s) => [s.id, s])).values()] };

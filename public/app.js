@@ -307,7 +307,7 @@ function renderTabs() {
 
 function renderDays() {
   // Booking links for a sport without live court calendars don't depend on the day.
-  $('days').hidden = state.view === 'booking' && !SPORTS[state.sport].courts;
+  $('days').hidden = state.view === 'booking' && !liveCourts();
   $('days').innerHTML = WEEK.map((iso, i) => {
     const list = state.view === 'booking' ? [] : sessionsOn(iso).filter((x) => !hidden(x.f));
     const kinds = [...new Map(list.map((x) => [tabOf(x).c, tabOf(x)])).values()];
@@ -520,8 +520,9 @@ function renderGlance() {
   if ($('cal').dataset.key !== `${state.sport}|${state.view}|${iso}|${state.tab}`) openBlock = null;
   $('calTitle').textContent = `${state.view === 'booking' ? 'Court bookings' : state.sport === 'ice_skating' ? 'Public skate calendar' : 'Open-play calendar'} · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
   const sess = sessionsOn(iso).filter((x) => !hidden(x.f) && x.start && x.end).sort((a, b) => a.start.localeCompare(b.start));
-  // Court calendars (Skedda) are volleyball courts; other sports have none yet. Only this region's.
-  const facs = state.view !== 'booking' || !SPORTS[state.sport].courts ? [] : regionCourts().flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
+  // Court calendars (Skedda, OpenCourt) for this sport and region. Level chips don't apply to courts.
+  const facs = state.view !== 'booking' || !liveCourts() ? [] : regionCourts().flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v })))
+    .filter((f) => state.tab === 'all' || SPORTS[state.sport].filter || f.surface === state.tab);
   zoomTo(state.view === 'booking'
     ? facs.map((f) => f.venue.hours?.[dow]).filter(Boolean).map(([o, c]) => [mins(o), mins(c) || 1440])
     : sess.map((x) => [mins(x.start), mins(x.end) || 1440]));
@@ -543,7 +544,7 @@ function renderGlance() {
       + `<div class="g-close" style="left:calc(${pct(close)}% - 2px)" title="Closes ${fmtT(hhmm(close))}"></div>`;
     const frees = [];
     // Public meets held at this facility (e.g. Vex on a privately booked Treehouse court).
-    const meets = sessionsOn(iso, { ignoreTab: true }).filter((x) => x.facility === f.id && x.start && x.end && !hidden(x.f));
+    const meets = sessionsOn(iso, { ignoreTab: true }).filter((x) => (x.facility === f.id || (f.venueId && x.venueId === f.venueId)) && x.start && x.end && !hidden(x.f));
     const lanes = f.courts.map((c) => {
       const blocks = (c.days[iso] || []).map(([s, e]) => [mins(s), mins(e) || 1440]);
       const free = freeWindows(blocks, open, close); frees.push(free);
@@ -565,13 +566,13 @@ function renderGlance() {
     return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · open ${fmtT(h[0])}, closes ${fmtT(hhmm(close))} · ${sum} · ${pub}${stale} · <a class="book" href="${esc(calendarOn(f.venue, iso))}" target="_blank" rel="noopener">Book a court ↗</a></small></div>${lanes}`;
   }).join('');
 
-  const volleyball = state.view === 'booking' && SPORTS[state.sport].courts;
+  const volleyball = state.view === 'booking' && liveCourts(); // booking with live court calendars
   if (volleyball && !courts && !courtsError) html += `<p class="loading">Loading court calendars…</p>`;
   if (state.view === 'booking' && !facs.length && !volleyball) html += '<div class="g-group">Use the venue booking calendars below<small>Live court availability is not connected for this sport.</small></div>';
   else if (!(state.view === 'openplay' && sess.length) && !facs.length && (courts || !volleyball)) html += `<div class="g-group">Nothing timed on this day<small>${volleyball ? 'See free courts below' : 'Try another day'}</small></div>`;
   html += axisRow();
   // Booking for a sport without live court calendars: nothing to chart; the venue list below is the page.
-  $('glance').hidden = state.view === 'booking' && !SPORTS[state.sport].courts;
+  $('glance').hidden = state.view === 'booking' && !liveCourts();
   const cal = $('cal'), key = `${state.sport}|${state.view}|${iso}|${state.tab}`, keep = cal.dataset.key === key ? cal.scrollLeft : null;
   cal.innerHTML = html;
   cal.dataset.key = key;
@@ -590,7 +591,7 @@ function renderGlance() {
 
   document.querySelector('#glance .key').hidden = !volleyball;
   $('calNote').hidden = !volleyball;
-  const errs = !volleyball ? [] : [...(courts?.errors || []), ...(courtsError ? [{ message: courtsError }] : [])];
+  const errs = !volleyball ? [] : [...(courts?.errors || []).filter((e) => (e.sport || 'volleyball') === state.sport), ...(courtsError ? [{ message: courtsError }] : [])];
   $('calErrors').innerHTML = errs.length ? `<div class="error">Couldn't load some court calendars right now${errs.map((e) => e.calendar ? ` · <a href="${esc(e.calendar)}" target="_blank" rel="noopener">open ${esc(e.venue)} calendar ↗</a>` : '').join('')}</div>` : '';
 }
 
@@ -605,7 +606,7 @@ function renderMeta() {
   const places = regionCourts().flatMap((v) => v.facilities.map((f) => f.name));
   const notes = regionCourts().map((v) => v.note).filter(Boolean);
   $('calNote').textContent = places.length
-    ? `Court bookings at ${list(places)} are mostly club practices and private rentals. Blue blocks line up with a public Reclub meet, so those courts are open to sign up. Who booked each slot is hidden on their calendars.${notes.length ? ` ${notes.join(' ')}` : ''}${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh with each schedule update.` : ''}`
+    ? `Booked time at ${list(places)} is private rentals, clubs and the venue's own programs. Blue blocks line up with a public session listed here, so those courts are open to sign up. Only times are shown, never who booked.${notes.length ? ` ${notes.join(' ')}` : ''}${courts ? ` Court calendars checked ${courtAge < 2 ? 'just now' : `${courtAge} min ago`}; they refresh with each schedule update.` : ''}`
     : '';
   const mine = schedule.sources.filter((s) => (s.sport || 'volleyball') === state.sport);
   const bad = mine.filter((s) => !s.ok);
@@ -622,6 +623,8 @@ function renderMeta() {
 /** "a, b and c" */
 function list(items) { return items.length <= 1 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`; }
 /** This region's court calendars. With no region known (data from before regions) or a court with no region, show it. */
+/** Booking shows court lanes when the sport has calendars here (volleyball always: it waits for them to load). */
+const liveCourts = () => SPORTS[state.sport].courts || regionCourts().length > 0;
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
 function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); }
