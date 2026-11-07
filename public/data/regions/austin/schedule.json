@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-06T23:43:28.741Z",
+  "generatedAt": "2026-11-07T00:13:29.547Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T23:43:15.815Z",
+      "checkedAt": "2026-11-07T00:13:16.163Z",
       "count": 254
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T23:43:15.815Z",
+      "checkedAt": "2026-11-07T00:13:16.164Z",
       "count": 10
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T23:43:15.815Z",
+      "checkedAt": "2026-11-07T00:13:16.164Z",
       "count": 7
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T23:43:15.816Z",
+      "checkedAt": "2026-11-07T00:13:16.164Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-06T23:43:15.817Z",
+      "checkedAt": "2026-11-07T00:13:16.165Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-06T23:15:13.827Z",
+      "checkedAt": "2026-11-07T00:13:16.165Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T23:43:15.817Z",
+      "checkedAt": "2026-11-07T00:13:16.206Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-06T23:43:15.881Z",
+      "checkedAt": "2026-11-07T00:13:17.245Z",
       "count": 15
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-06T23:43:16.136Z",
+      "checkedAt": "2026-11-07T00:13:17.772Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-06T23:43:16.267Z",
+      "checkedAt": "2026-11-07T00:13:17.843Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7035,58 +7035,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-4e05ee9e-48ec-4ec7-912e-60da2461b9b9",
-      "date": "2026-11-06",
-      "start": "16:00",
-      "end": "18:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Open Play Level 3 (4PM-6PM)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$8 / person (nonmember)",
-      "level": "3.6–6 recommended",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/4e05ee9e-48ec-4ec7-912e-60da2461b9b9",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/4e05ee9e-48ec-4ec7-912e-60da2461b9b9",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-d118102c-ec0e-47fe-96ed-cb2a40777b04",
-      "date": "2026-11-06",
-      "start": "16:00",
-      "end": "18:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Open Play Level 2 (4PM-6PM)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$8 / person (nonmember)",
-      "level": "2.8–3.8 recommended",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d118102c-ec0e-47fe-96ed-cb2a40777b04",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d118102c-ec0e-47fe-96ed-cb2a40777b04",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-83628a2a-cd8e-408a-9647-de5c587ca47c",
       "date": "2026-11-06",
       "start": "18:00",
@@ -7284,6 +7232,58 @@
       "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/49f06bd7-e798-40e4-9c01-b23f3fafac23",
       "signup": {
         "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/49f06bd7-e798-40e4-9c01-b23f3fafac23",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-06",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-a63652be-a7a0-409b-bfde-3cf663bcd890",
+      "date": "2026-11-07",
+      "start": "09:00",
+      "end": "12:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Open Play Level 1  Weekend",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "level": "2–2.8 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/a63652be-a7a0-409b-bfde-3cf663bcd890",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/a63652be-a7a0-409b-bfde-3cf663bcd890",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-06",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-c5c617f7-0098-417d-944d-cc9d24a32c88",
+      "date": "2026-11-07",
+      "start": "09:00",
+      "end": "12:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Level 3 Open Play Weekend",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "level": "3.7–6 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5c617f7-0098-417d-944d-cc9d24a32c88",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5c617f7-0098-417d-944d-cc9d24a32c88",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
