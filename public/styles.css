@@ -157,3 +157,6 @@ a.src.also{color:var(--muted)}
 .brand .region{display:flex;align-items:center;gap:6px;margin-right:auto;font:700 15px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
 .brand .region select{font:700 15px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 6px}
 .brand .nearest{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:3px 6px;cursor:pointer;font-size:14px;line-height:1}
+/* On: venues are in distance order (tap again to turn off). 44px tap area on touch screens. */
+.brand .nearest[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
+@media (pointer:coarse){.brand .nearest{min-width:44px;min-height:44px;font-size:18px}}

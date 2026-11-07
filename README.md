@@ -453,7 +453,13 @@ Each city is a folder, `config/regions/<id>/` (`lib/regions.js`):
 Sources get their `region` and `timezone` from `region.json`. Source and venue ids must be unique across all regions
 (the scrape checks). The site loads `data/index.json` and then only the chosen region's folder
 (`data/regions/<id>/`); with more than one region it shows a city menu (and a "nearest" button), and `?region=<id>`
-links to one.
+links to one. The 📍 button (shown whenever the browser has location) picks the nearest city when there are several,
+and puts the calendar's venues in distance order, nearest first, with each one's straight-line miles under its name.
+Venues whose listings are all unconfirmed or couldn't be rechecked count 2 miles farther; venues without coordinates come
+last. Nothing changes until someone taps it: no location prompt on load, the position stays on that device (rounded to
+about 100 m, kept for a day) and is never sent anywhere, and tapping 📍 again goes back to the usual order (first session
+of the day). The session list stays in time order. Coordinates are `lat`/`lng` in each region's `venues.json` (its `_doc`
+says where they came from).
 
 - **A new city**: copy `config/regions/austin/` to `config/regions/<id>/`, set `region.json`, and empty the lists. Run
   the **Discover venues** workflow to fill `venues.json` (one pull request per sport); add sources for venues on

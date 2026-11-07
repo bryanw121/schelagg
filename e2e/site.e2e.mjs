@@ -85,8 +85,10 @@ after(async () => {
 });
 
 /** A fresh page (own localStorage) with data answered by `data` and the clock fixed. */
-async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK } = {}) {
-  context = await browser.newContext({ timezoneId, locale: 'en-US' }); // viewer elsewhere: the page still shows Austin time
+const titlesWithVenue = () => page.locator('#list .row .venue b').allTextContents();
+
+async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null } = {}) {
+  context = await browser.newContext({ timezoneId, locale: 'en-US', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}) }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
   await page.clock.setFixedTime(clock);
   apiCalls = [];
@@ -365,6 +367,45 @@ test('site: overlapping sessions at one place get a second lane instead of cover
   assert.deepEqual(await rowsInChart.nth(1).locator('.g-bar').evaluateAll((els) => els.map((e) => e.dataset.label)), ['7–9p']);
   assert.equal(await rowsInChart.nth(0).locator('.g-lab').textContent(), 'Volleyworld (Georgetown)3 sessions');
   assert.equal(await rowsInChart.nth(1).locator('.g-lab').textContent(), '');
+});
+
+test('site: 📍 orders the calendar\'s venues nearest first, unsure ones a little later, and tapping again undoes it', async () => {
+  const at = (id, venue, start, extra = {}) => ({ ...base, id, sourceId: 'manual', venueId: id, date: TODAY, start, end: `${+start.slice(0, 2) + 1}:00`, title: 'Open play', venue, city: 'Austin', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}`, ...extra });
+  const sessions = [
+    at('nocoords', 'No Coordinates Gym', '07:00'),
+    at('far', 'Far Gym', '08:00'),
+    at('near', 'Near Gym', '09:00'),
+    at('mid', 'Mid Gym', '10:00'),
+    at('unsure', 'Unsure Gym', '11:00', { checkFailed: true }), // closest, but its source couldn't be rechecked
+  ];
+  const venues = [
+    { id: 'far', name: 'Far Gym', city: 'Georgetown', lat: 30.63, lng: -97.68 },
+    { id: 'near', name: 'Near Gym', city: 'Austin', lat: 30.27, lng: -97.74 },
+    { id: 'mid', name: 'Mid Gym', city: 'Austin', lat: 30.35, lng: -97.73 },
+    { id: 'unsure', name: 'Unsure Gym', city: 'Austin', lat: 30.268, lng: -97.742 },
+    { id: 'nocoords', name: 'No Coordinates Gym', city: 'Austin' },
+  ];
+  await open({ schedule: { ...SCHEDULE, sessions, venues }, geolocation: { latitude: 30.2672, longitude: -97.7431 } });
+  const names = () => page.locator('#cal .g-row:not(.g-axis) .g-lab').evaluateAll((els) => els.map((e) => e.firstChild.textContent).filter(Boolean));
+  // Before anyone shares a location: no prompt, the usual order (first session of the day).
+  assert.deepEqual(await names(), ['No Coordinates Gym', 'Far Gym', 'Near Gym', 'Mid Gym', 'Unsure Gym']);
+  const pin = page.locator('#nearest');
+  assert.equal(await pin.isVisible(), true); // one city: 📍 still shows, for distance
+  assert.equal(await pin.getAttribute('aria-pressed'), 'false');
+  await pin.click();
+  await page.waitForFunction(() => document.querySelector('#nearest').getAttribute('aria-pressed') === 'true');
+  assert.deepEqual(await names(), ['Near Gym', 'Unsure Gym', 'Mid Gym', 'Far Gym', 'No Coordinates Gym']);
+  assert.match(await page.locator('#cal .g-lab', { hasText: 'Near Gym' }).locator('small').textContent(), /· <1 mi$/);
+  assert.match(await page.locator('#cal .g-lab', { hasText: 'Far Gym' }).locator('small').textContent(), /· 2\d mi$/);
+  // The session list keeps time order.
+  assert.deepEqual((await titlesWithVenue()).slice(0, 2), ['No Coordinates Gym', 'Far Gym']);
+  // Remembered on this device for the next visit…
+  await page.reload();
+  await page.locator('#cal .g-row').first().waitFor();
+  assert.equal((await names())[0], 'Near Gym');
+  // …and tapping 📍 again goes back to the usual order.
+  await pin.click();
+  assert.deepEqual(await names(), ['No Coordinates Gym', 'Far Gym', 'Near Gym', 'Mid Gym', 'Unsure Gym']);
 });
 
 test('site: court lanes tint open time and show closed time in solid gray', async () => {

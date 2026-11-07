@@ -217,7 +217,12 @@ function renderRegion() {
   $('regionName').hidden = many;
   $('regionName').textContent = region?.name ?? '';
   $('regionPick').hidden = !many;
-  $('nearest').hidden = !many || !('geolocation' in navigator);
+  // 📍 picks the nearest city when there are several, and orders venues by distance in any case.
+  $('nearest').hidden = !('geolocation' in navigator);
+  const label = here ? 'Stop ordering venues by distance from me' : many ? 'Nearest city to me, and order venues by distance' : 'Order venues by distance from me';
+  $('nearest').setAttribute('aria-label', label);
+  $('nearest').title = label;
+  $('nearest').setAttribute('aria-pressed', String(!!here));
   if (many) {
     $('regionPick').innerHTML = list.map((r) => `<option value="${esc(r.id)}" ${r.id === region?.id ? 'selected' : ''}>${esc(r.name)}</option>`).join('');
   }
@@ -344,6 +349,37 @@ function axisRow() {
   return `<div class="g-row g-axis" aria-hidden="true"><span class="g-lab">Time</span><div class="g-track">${ticks.map((t, i) => `<span class="${i === 0 ? 'first' : i === ticks.length - 1 ? 'last' : ''}" style="left:${pct(mins(t))}%">${tick(t)}</span>`).join('')}</div></div>`;
 }
 
+// ---------- distance (the viewer's 📍, only after they tap it) ----------
+// Kept on this device only, rounded to ~100 m, forgotten after a day. Never sent anywhere: distances
+// are worked out here in the browser from the venues' coordinates (config/regions/<id>/venues.json).
+const HERE_KEY = 'schelagg.here', HERE_MAX_AGE = 864e5;
+let here = (() => {
+  try {
+    const h = JSON.parse(localStorage.getItem(HERE_KEY) || 'null');
+    return h && Date.now() - h.at < HERE_MAX_AGE ? h : null;
+  } catch { return null; }
+})();
+function setHere(lat, lng) {
+  here = lat == null ? null : { lat: +lat.toFixed(3), lng: +lng.toFixed(3), at: Date.now() };
+  try { here ? localStorage.setItem(HERE_KEY, JSON.stringify(here)) : localStorage.removeItem(HERE_KEY); } catch { /* private mode: keep it for this visit */ }
+}
+/** Straight-line miles from the viewer to a venue (its own coordinates, else its parent's), or null. */
+function milesTo(venueId) {
+  if (!here || !venueId) return null;
+  const all = schedule?.venues || [];
+  let v = all.find((x) => x.id === venueId);
+  if (v && v.lat == null && v.parent) v = all.find((x) => x.id === v.parent);
+  if (v?.lat == null) return null;
+  const rad = Math.PI / 180, dLat = (v.lat - here.lat) * rad, dLng = (v.lng - here.lng) * rad;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(here.lat * rad) * Math.cos(v.lat * rad) * Math.sin(dLng / 2) ** 2;
+  return 3958.8 * 2 * Math.asin(Math.sqrt(a));
+}
+// How far a venue "feels" when ordering: its distance, plus a little when every listing there is
+// unconfirmed or couldn't be rechecked, so a sure thing nearby comes before a maybe slightly closer.
+const UNSURE_MILES = 2;
+const feltMiles = (list, mi) => mi + (list.every((x) => ['unverified', 'changed', 'stale'].includes(x.f?.k)) ? UNSURE_MILES : 0);
+const fmtMiles = (mi) => (mi < 0.95 ? '<1 mi' : `${mi < 9.95 ? mi.toFixed(1) : Math.round(mi)} mi`);
+
 /**
  * Session rows for the glance chart: one row per place (venue + rink), every session there as a
  * bar on it. Sessions at the same place that overlap (two courts at once) get extra lanes under
@@ -356,8 +392,12 @@ function glanceRows(sess, nowLine) {
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(x);
   }
+  // Nearest first once the viewer has shared their location; places without coordinates follow, and
+  // without a location the order stays by first session of the day (the sort is stable).
+  const places = [...groups.values()].map((list) => ({ list, mi: milesTo(list[0].venueId) }));
+  if (here) places.sort((a, b) => (a.mi == null) - (b.mi == null) || (a.mi != null && feltMiles(a.list, a.mi) - feltMiles(b.list, b.mi)));
   let html = '';
-  for (const list of groups.values()) {
+  for (const { list, mi } of places) {
     const lanes = [];
     for (const x of list) { // already sorted by start
       const lane = lanes.find((l) => mins(l[l.length - 1].end) <= mins(x.start));
@@ -366,7 +406,8 @@ function glanceRows(sess, nowLine) {
     const first = list[0];
     // The line under the name: the rink, the one session's title (without a repeat of the venue name), or a count.
     const own = list.length === 1 ? first.title.replace(new RegExp(`^${first.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[·:–—-]?\\s*`, 'i'), '') : '';
-    const sub = first.rink || (list.length === 1 ? own || '1 session' : `${list.length} sessions`);
+    const what = first.rink || (list.length === 1 ? own || '1 session' : `${list.length} sessions`);
+    const sub = mi == null ? what : `${what} · ${fmtMiles(mi)}`;
     lanes.forEach((lane, i) => {
       const bars = lane.map((x) => {
         const l = pct(mins(x.start)), w = +(pct(mins(x.end)) - l).toFixed(2);
@@ -480,11 +521,13 @@ function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].inc
 
 $('regionPick').addEventListener('change', (e) => chooseRegion(e.target.value));
 $('nearest').addEventListener('click', () => {
+  if (here) { setHere(null); render(); return; } // tapping again goes back to the usual order
   navigator.geolocation.getCurrentPosition((pos) => {
-    const here = [pos.coords.latitude, pos.coords.longitude];
-    const d = (c) => (c[0] - here[0]) ** 2 + ((c[1] - here[1]) * Math.cos((here[0] * Math.PI) / 180)) ** 2;
+    setHere(pos.coords.latitude, pos.coords.longitude);
+    const at = [here.lat, here.lng];
+    const d = (c) => (c[0] - at[0]) ** 2 + ((c[1] - at[1]) * Math.cos((at[0] * Math.PI) / 180)) ** 2;
     const best = [...(index?.regions ?? [])].filter((r) => r.center).sort((a, b) => d(a.center) - d(b.center))[0];
-    if (best) chooseRegion(best.id);
+    if (best && best.id !== region?.id && (index?.regions?.length ?? 0) > 1) chooseRegion(best.id); else render();
   }, () => {}, { maximumAge: 3600e3, timeout: 10e3 });
 });
 
