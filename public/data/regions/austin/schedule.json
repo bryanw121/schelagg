@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T02:13:30.850Z",
+  "generatedAt": "2026-11-07T02:43:26.288Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T02:13:13.197Z",
+      "checkedAt": "2026-11-07T02:43:14.182Z",
       "count": 257
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T02:13:13.198Z",
+      "checkedAt": "2026-11-07T02:43:14.183Z",
       "count": 10
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T02:13:13.198Z",
+      "checkedAt": "2026-11-07T02:43:14.183Z",
       "count": 7
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T02:13:13.198Z",
+      "checkedAt": "2026-11-07T02:43:14.183Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-07T02:13:13.199Z",
+      "checkedAt": "2026-11-07T02:43:14.184Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T02:13:13.230Z",
+      "checkedAt": "2026-11-07T02:43:14.184Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T02:13:13.515Z",
+      "checkedAt": "2026-11-07T02:43:14.215Z",
       "count": 15
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T02:13:13.993Z",
+      "checkedAt": "2026-11-07T02:43:15.235Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T02:13:14.171Z",
+      "checkedAt": "2026-11-07T02:43:15.346Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7556,6 +7556,7 @@
       "surface": "indoor",
       "type": "Open play",
       "level": "Adults · Jesus",
+      "full": true,
       "capacity": 12,
       "spotsLeft": 11,
       "classId": "wt76MMDN8VE2WNJDJTZP",
