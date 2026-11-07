@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-07T19:51:43.431Z",
+  "generatedAt": "2026-11-07T20:01:08.752Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -10149,6 +10149,60 @@
         "capacity": 250
       },
       "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-56a84004-9ad7-4ed7-92bb-e76a547df77c",
+      "session_id": "opencourt-56a84004-9ad7-4ed7-92bb-e76a547df77c",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · DUPR Trooper Round Robin – Intermediate (3.3–3.9)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "3.3–3.9 recommended",
+      "price": "$20 / person (nonmember)",
+      "starts_at": "2026-11-14T20:00:00.000Z",
+      "ends_at": "2026-11-14T23:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/56a84004-9ad7-4ed7-92bb-e76a547df77c",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-07",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-dc0246e9-110d-4453-9880-64166f5c2d14",
+      "session_id": "opencourt-dc0246e9-110d-4453-9880-64166f5c2d14",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · DUPR Trooper Round Robin – Intermediate (2.5–3.2)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "2.5–3.2 required",
+      "price": "$15 / person (nonmember)",
+      "starts_at": "2026-11-14T20:00:00.000Z",
+      "ends_at": "2026-11-14T23:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/dc0246e9-110d-4453-9880-64166f5c2d14",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-07",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },
