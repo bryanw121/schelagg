@@ -130,6 +130,8 @@ function edges() {
 $('cal').addEventListener('scroll', edges, { passive: true });
 let fitTimer;
 addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(() => { fitBarLabels(); edges(); }, 100); });
+// Crossing the phone breakpoint changes the hour labels (every hour on phones).
+matchMedia('(max-width: 699px)').addEventListener?.('change', () => { if (typeof renderGlance === 'function') renderGlance(); });
 
 /** Compact range for chart bars: "8–10p", "9–11:30p", "10:30a–1:30p" (the full range is in the tooltip). */
 function fmtRange(a, b) {
@@ -429,7 +431,8 @@ function union(lists) {
   return out;
 }
 function axisRow() {
-  const span = (T1 - T0) / 60, step = span <= 7 ? 1 : span <= 12 ? 2 : 3;
+  // Phones scroll a zoomed-in day (64px an hour), so every hour gets its label there.
+  const span = (T1 - T0) / 60, phone = matchMedia('(max-width: 699px)').matches, step = phone || span <= 7 ? 1 : span <= 12 ? 2 : 3;
   const ticks = [];
   for (let m = T0; m <= T1; m += 60) if (((m / 60) % step === 0) || m === T0 || m === T1) ticks.push(hhmm(m));
   if (ticks.length > 2 && mins(ticks[1]) - T0 < step * 60 / 2) ticks.splice(1, 1); // keep the first two apart
@@ -596,7 +599,7 @@ function venueCourts(f, iso, dow, nowLine) {
 
 function renderGlance() {
   const iso = WEEK[state.di], isToday = state.di === 0, dow = dowOf(iso);
-  if ($('cal').dataset.key !== `${state.sport}|${state.view}|${iso}|${state.tab}`) openBlock = null;
+  if (!($('cal').dataset.key ?? '').startsWith(`${state.sport}|${state.view}|${iso}|${state.tab}|`)) openBlock = null;
   $('calTitle').textContent = `${state.view === 'booking' ? 'Court bookings' : state.sport === 'ice_skating' ? 'Public skate calendar' : 'Open-play calendar'} · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
   const sess = sessionsOn(iso).filter((x) => !hidden(x.f) && x.start && x.end).sort((a, b) => a.start.localeCompare(b.start));
   // Court calendars (Skedda, OpenCourt) for this sport and region. Level chips don't apply to courts.
@@ -623,7 +626,8 @@ function renderGlance() {
   html += axisRow();
   // Booking for a sport without live court calendars: nothing to chart; the venue list below is the page.
   $('glance').hidden = state.view === 'booking' && !liveCourts();
-  const cal = $('cal'), key = `${state.sport}|${state.view}|${iso}|${state.tab}`, keep = cal.dataset.key === key ? cal.scrollLeft : null;
+  // Court data arriving after the first render counts as a new view, so it too starts at now.
+  const cal = $('cal'), key = `${state.sport}|${state.view}|${iso}|${state.tab}|${facs.length}`, keep = cal.dataset.key === key ? cal.scrollLeft : null;
   cal.innerHTML = html;
   cal.dataset.key = key;
   fitBarLabels();

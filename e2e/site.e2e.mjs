@@ -446,19 +446,34 @@ test('site: the chart zooms to the day\'s hours; on a phone long days scroll sid
   // An evening-only day: 6pm–midnight (at least 6 hours), every hour labelled.
   await open({ schedule: { ...SCHEDULE, sessions: [at('a', '18:00', '20:00'), at('b', '19:30', '22:00')] }, clock: new Date('2026-10-25T15:00:00Z') });
   assert.deepEqual(await axis(), ['6p', '7p', '8p', '9p', '10p', '11p', '12a']);
-  // A long day on a 390px phone: each hour stays readable, so the chart scrolls; venue names stay put.
+  // A long day on a 390px phone: zoomed in (64px an hour, every hour labelled), so the chart scrolls; venue names stay put.
   await open({ schedule: { ...SCHEDULE, sessions: [at('a', '06:00', '08:00'), at('b', '20:00', '23:00')] }, clock: new Date('2026-10-25T15:00:00Z') });
   await page.setViewportSize({ width: 390, height: 800 });
   await page.reload(); await page.locator('#cal .g-bar').first().waitFor();
-  assert.deepEqual(await axis(), ['6a', '9a', '12p', '3p', '6p', '9p', '11p']);
+  assert.deepEqual(await axis(), ['6a', '7a', '8a', '9a', '10a', '11a', '12p', '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p']);
   const g = await page.locator('#cal').evaluate((el) => ({ sw: el.scrollWidth, cw: el.clientWidth, hourPx: el.querySelector('.g-row:not(.g-axis) .g-track').offsetWidth / 17, sticky: getComputedStyle(el.querySelector('.g-lab')).position }));
   assert.ok(g.sw > g.cw, 'scrolls sideways');
-  assert.ok(g.hourPx >= 36, `an hour is ${g.hourPx}px`);
+  assert.ok(g.hourPx >= 64, `an hour is ${g.hourPx}px`);
   assert.equal(g.sticky, 'sticky');
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'only the chart scrolls, not the page');
   // Desktop: the whole day fits, no scrolling.
   await page.setViewportSize({ width: 1280, height: 800 });
   assert.ok(await page.locator('#cal').evaluate((el) => el.scrollWidth <= el.clientWidth + 1));
+  await page.locator('#cal .g-axis').first().waitFor();
+  assert.deepEqual(await axis(), ['6a', '9a', '12p', '3p', '6p', '9p', '11p'], 'wider screens label every 3 hours');
+});
+
+test('site: on a phone, court booking opens at the current time once court data arrives', async () => {
+  await open({ url: '/?view=booking', clock: new Date('2026-10-25T20:10:00Z') }); // 3:10pm in Austin
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.reload();
+  await page.locator('#cal .g-venue').first().waitFor();
+  await page.waitForTimeout(200);
+  const first = await page.locator('#cal').evaluate((el) => {
+    const left = el.getBoundingClientRect().left + el.querySelector('.g-lab').offsetWidth;
+    return [...el.querySelectorAll('.g-axis .g-track span')].find((s) => s.getBoundingClientRect().left >= left - 2)?.textContent;
+  });
+  assert.equal(first, '2p', 'starts half an hour before now, on the hour');
 });
 
 test('site: court lanes tint open time and show closed time in solid gray', async () => {
