@@ -112,10 +112,11 @@ footer{font-size:12px;color:var(--muted)}
 /* Narrow enough at 320px that the chart fits the card without scrolling sideways (bars fit their times, #67). */
 .g-row{display:grid;grid-template-columns:minmax(92px,34%) minmax(140px,1fr);gap:8px;align-items:center}
 @media (min-width:700px){.g-row{grid-template-columns:170px minmax(260px,1fr)}}
-/* Phones: each hour keeps at least 36px so bars are wide enough to read; the chart scrolls sideways
-   when the day is long, with the venue names pinned on the left. */
+/* Phones: each hour gets 64px, about five hours on screen, so bars and their times read at a glance
+   (as booking apps do on phones); the chart scrolls sideways to the rest of the day, with the venue
+   names pinned on the left and the view starting at the current time or first session. */
 @media (max-width:699px){
-  .g-row{grid-template-columns:92px minmax(max(140px,calc(var(--hours, 18) * 36px)),1fr)}
+  .g-row{grid-template-columns:92px minmax(max(140px,calc(var(--hours, 18) * 64px)),1fr)}
   .g-lab{position:sticky;left:0;z-index:3;background:var(--panel);box-shadow:8px 0 6px -6px var(--panel)}
   .gantt{scroll-behavior:auto;overscroll-behavior-x:contain}
   .g-group{position:sticky;left:0;z-index:3}
