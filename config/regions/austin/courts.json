@@ -84,6 +84,31 @@
           ]
         }
       ]
+    },
+    {
+      "id": "austinpicklehaus",
+      "system": "opencourt",
+      "slug": "austinpicklehaus",
+      "sport": "pickleball",
+      "calendar": "https://app.getopencourt.com/club/austinpicklehaus/book",
+      "facilities": [
+        {
+          "id": "austinpicklehaus",
+          "venueId": "austin-picklehaus",
+          "name": "Austin PickleHaus",
+          "city": "Pflugerville",
+          "surface": "indoor",
+          "spaces": [
+            "Court 1",
+            "Court 2",
+            "Court 3",
+            "Court 4",
+            "Court 5",
+            "Court 6",
+            "Court 7"
+          ]
+        }
+      ]
     }
   ]
 }
