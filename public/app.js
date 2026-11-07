@@ -43,7 +43,18 @@ function tabOf(x) {
 const cap = (t) => String(t).charAt(0).toUpperCase() + String(t).slice(1);
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const DAY_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const T0 = 6 * 60, T1 = 24 * 60;
+// The chart's hours. Zoomed to the day: from the first hour anything starts to the last hour anything
+// ends (at least 6 hours), so a 9am–9pm day isn't squeezed into 6am–midnight. Set by renderGlance.
+let T0 = 6 * 60, T1 = 24 * 60;
+const MIN_SPAN = 6 * 60;
+function zoomTo(ranges) {
+  const rs = ranges.filter(([a, b]) => Number.isFinite(a) && Number.isFinite(b) && b > a);
+  if (!rs.length) { T0 = 6 * 60; T1 = 24 * 60; return; }
+  let a = Math.floor(Math.min(...rs.map((r) => r[0])) / 60) * 60;
+  let b = Math.min(24 * 60, Math.ceil(Math.max(...rs.map((r) => r[1])) / 60) * 60);
+  if (b - a < MIN_SPAN) { b = Math.min(24 * 60, a + MIN_SPAN); a = Math.max(0, b - MIN_SPAN); }
+  T0 = a; T1 = b;
+}
 
 const $ = (id) => document.getElementById(id);
 const pad = (n) => String(n).padStart(2, '0');
@@ -77,8 +88,15 @@ function fitBarLabels() {
     if (b.scrollWidth > b.clientWidth + 1) b.textContent = '';
   }
 }
+// Fade the chart's edge while there are more hours to scroll to (phones), shadow the pinned names once scrolled.
+function edges() {
+  const cal = $('cal');
+  cal.classList.toggle('more-right', cal.scrollLeft + cal.clientWidth < cal.scrollWidth - 2);
+  cal.classList.toggle('more-left', cal.scrollLeft > 2);
+}
+$('cal').addEventListener('scroll', edges, { passive: true });
 let fitTimer;
-addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitBarLabels, 100); });
+addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(() => { fitBarLabels(); edges(); }, 100); });
 
 /** Compact range for chart bars: "8–10p", "9–11:30p", "10:30a–1:30p" (the full range is in the tooltip). */
 function fmtRange(a, b) {
@@ -248,6 +266,8 @@ function renderTabs() {
 }
 
 function renderDays() {
+  // Booking links for a sport without live court calendars don't depend on the day.
+  $('days').hidden = state.view === 'booking' && !SPORTS[state.sport].courts;
   $('days').innerHTML = WEEK.map((iso, i) => {
     const list = state.view === 'booking' ? [] : sessionsOn(iso).filter((x) => !hidden(x.f));
     const kinds = [...new Map(list.map((x) => [tabOf(x).c, tabOf(x)])).values()];
@@ -256,6 +276,13 @@ function renderDays() {
       <span class="dn">${i === 0 ? 'Today' : DAYS[d]}</span><span class="dd">${+iso.slice(8)}</span>
       <span class="pips">${kinds.map((k) => `<span class="pip" style="background:${k.c}"></span>`).join('')}</span></button>`;
   }).join('');
+}
+
+// The fine print, folded away: address and directions, the source's note, and where the listing
+// came from. A real button (<summary>), so it works by tap and keyboard; nothing is hover-only.
+function detailsHtml(x) {
+  const links = `<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a>${/^https?:\/\//.test(x.priceSource ?? '') ? `<a class="src" href="${esc(x.priceSource)}" target="_blank" rel="noopener">Price source ↗</a>` : ''}${alsoOnHtml(x)}`;
+  return `<details class="more"><summary>Details</summary>${locationHtml(x)}${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}<div class="actions">${links}</div></details>`;
 }
 
 function renderList() {
@@ -273,11 +300,11 @@ function renderList() {
       <div class="time">${fmtT(x.start)}<small>${x.end ? 'to ' + fmtT(x.end) : ''}</small></div>
       <div class="body">
         <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? (x.scheduleBasis ? 'Scheduled now' : 'Happening now') : x.f.l}</span></div>
-        <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}</div>
-        ${locationHtml(x)}
+        <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}${milesTo(x.venueId) != null ? ` · ${fmtMiles(milesTo(x.venueId))}` : ''}</div>
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
-        ${movedHtml(x)}${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}
-        <div class="actions">${signupHtml(x)}<a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Source ↗</a>${/^https?:\/\//.test(x.priceSource ?? '') ? `<a class="src" href="${esc(x.priceSource)}" target="_blank" rel="noopener">Price source ↗</a>` : ''}${alsoOnHtml(x)}</div>
+        ${movedHtml(x)}
+        <div class="actions">${signupHtml(x)}</div>
+        ${detailsHtml(x)}
       </div></div>`;
   }
   if (!nowPlaced && shown.length) html += nowLabel;
@@ -316,9 +343,23 @@ function renderCalendarModes() {
   const venues = (schedule?.venues || []).filter((v) => v.bookingLink?.sport === state.sport
     && /^https?:\/\//.test(v.bookingLink.url) && (state.tab === 'all' || !v.bookingLink.surface || v.bookingLink.surface === 'mixed' || v.bookingLink.surface === state.tab));
   $('bookingCalendarsCard').hidden = state.view !== 'booking';
-  $('bookingCalendars').innerHTML = venues.map((v) => `<div class="venue-calendar"><b>${esc(v.name)}</b> · ${esc(v.city)}${locationHtml({ venueId: v.id })}
-    <p class="note">${v.bookingLink.reviewBy && NOW.iso > v.bookingLink.reviewBy ? 'Published rates need rechecking; consult the venue for current prices.' : esc(v.bookingLink.note)}</p>${/^https:\/\//.test(v.bookingLink.source || '') ? `<a class="src" href="${esc(v.bookingLink.source)}" target="_blank" rel="noopener">Price source ↗</a> · ` : ''}<a class="src" href="${esc(v.bookingLink.url)}" target="_blank" rel="noopener">Open court-booking calendar ↗</a></div>`).join('')
-    || '<p class="note">No additional venue booking links for this selection. Available court feeds appear in the calendar above.</p>';
+  // One line per venue: name, town, distance, a Book button. A note shared by several venues is said
+  // once above the list; a venue's own note (its price, its courts) and its address fold under Details.
+  const notes = venues.map((v) => v.bookingLink.note).filter(Boolean);
+  const common = notes.find((n) => notes.filter((m) => m === n).length > 1) || '';
+  $('bookingIntro').textContent = common || "Reserve a court for your own group on the venue's site, where you'll see open times and prices.";
+  const rows = venues.map((v) => ({ v, mi: milesTo(v.id) }));
+  if (here) rows.sort((a, b) => (a.mi == null) - (b.mi == null) || (a.mi != null && a.mi - b.mi));
+  $('bookingCalendars').innerHTML = rows.map(({ v, mi }) => {
+    const stale = v.bookingLink.reviewBy && NOW.iso > v.bookingLink.reviewBy;
+    const own = stale ? 'Published rates need rechecking; consult the venue for current prices.' : v.bookingLink.note !== common ? v.bookingLink.note : '';
+    const price = /^https:\/\//.test(v.bookingLink.source || '') ? `<a class="src" href="${esc(v.bookingLink.source)}" target="_blank" rel="noopener">Price source ↗</a>` : '';
+    const more = locationHtml({ venueId: v.id }) + (own ? `<p class="note">${esc(own)}</p>` : '') + (price ? `<div class="actions">${price}</div>` : '');
+    return `<div class="book-row"><div class="book-name"><b>${esc(v.name)}</b><span>${esc(v.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</span></div>
+      <a class="signup" href="${esc(v.bookingLink.url)}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(v.name)}">Book ↗</a>
+      ${more ? `<details class="more"><summary>Details</summary>${more}</details>` : ''}</div>`;
+  }).join('')
+    || '<p class="note">No venue booking links for this selection.</p>';
 }
 
 function renderPublicCourts() {
@@ -345,7 +386,11 @@ function union(lists) {
   return out;
 }
 function axisRow() {
-  const ticks = ['06:00', '09:00', '12:00', '15:00', '18:00', '21:00', '24:00'];
+  const span = (T1 - T0) / 60, step = span <= 7 ? 1 : span <= 12 ? 2 : 3;
+  const ticks = [];
+  for (let m = T0; m <= T1; m += 60) if (((m / 60) % step === 0) || m === T0 || m === T1) ticks.push(hhmm(m));
+  if (ticks.length > 2 && mins(ticks[1]) - T0 < step * 60 / 2) ticks.splice(1, 1); // keep the first two apart
+  if (ticks.length > 2 && T1 - mins(ticks.at(-2)) < step * 60 / 2) ticks.splice(-2, 1);
   return `<div class="g-row g-axis" aria-hidden="true"><span class="g-lab">Time</span><div class="g-track">${ticks.map((t, i) => `<span class="${i === 0 ? 'first' : i === ticks.length - 1 ? 'last' : ''}" style="left:${pct(mins(t))}%">${tick(t)}</span>`).join('')}</div></div>`;
 }
 
@@ -431,17 +476,21 @@ function glanceRows(sess, nowLine) {
 function renderGlance() {
   const iso = WEEK[state.di], isToday = state.di === 0, dow = dowOf(iso);
   $('calTitle').textContent = `${state.view === 'booking' ? 'Court bookings' : state.sport === 'ice_skating' ? 'Public skate calendar' : 'Open-play calendar'} · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
-  const nowLine = isToday && NOW.minutes >= T0 ? `<div class="g-now" style="left:${pct(NOW.minutes)}%"></div>` : '';
+  const sess = sessionsOn(iso).filter((x) => !hidden(x.f) && x.start && x.end).sort((a, b) => a.start.localeCompare(b.start));
+  // Court calendars (Skedda) are volleyball courts; other sports have none yet. Only this region's.
+  const facs = state.view !== 'booking' || !SPORTS[state.sport].courts ? [] : regionCourts().flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
+  zoomTo(state.view === 'booking'
+    ? facs.map((f) => f.venue.hours?.[dow]).filter(Boolean).map(([o, c]) => [mins(o), mins(c) || 1440])
+    : sess.map((x) => [mins(x.start), mins(x.end) || 1440]));
+  $('cal').style.setProperty('--hours', (T1 - T0) / 60);
+  const nowLine = isToday && NOW.minutes >= T0 && NOW.minutes <= T1 ? `<div class="g-now" style="left:${pct(NOW.minutes)}%"></div>` : '';
   let html = axisRow();
 
-  const sess = sessionsOn(iso).filter((x) => !hidden(x.f) && x.start && x.end).sort((a, b) => a.start.localeCompare(b.start));
   if (sess.length && state.view !== 'booking') {
     html += `<div class="g-group">${SPORTS[state.sport].group}<small>tap a bar for details</small></div>`;
     html += glanceRows(sess, nowLine);
   }
 
-  // Court calendars (Skedda) are volleyball courts; other sports have none yet. Only this region's.
-  const facs = state.view !== 'booking' || !SPORTS[state.sport].courts ? [] : regionCourts().flatMap((v) => v.facilities.map((f) => ({ ...f, venue: v }))).filter((f) => state.tab === 'all' || f.surface === state.tab);
   html += facs.map((f) => {
     const h = f.venue.hours?.[dow];
     if (!h) return `<div class="g-group">${esc(f.name)}<small>${esc(f.city)} · closed today</small></div>`;
@@ -478,8 +527,23 @@ function renderGlance() {
   if (state.view === 'booking' && !facs.length && !volleyball) html += '<div class="g-group">Use the venue booking calendars below<small>Live court availability is not connected for this sport.</small></div>';
   else if (!(state.view === 'openplay' && sess.length) && !facs.length && (courts || !volleyball)) html += `<div class="g-group">Nothing timed on this day<small>${volleyball ? 'See free courts below' : 'Try another day'}</small></div>`;
   html += axisRow();
-  $('cal').innerHTML = html;
+  // Booking for a sport without live court calendars: nothing to chart; the venue list below is the page.
+  $('glance').hidden = state.view === 'booking' && !SPORTS[state.sport].courts;
+  const cal = $('cal'), key = `${state.sport}|${state.view}|${iso}`, keep = cal.dataset.key === key ? cal.scrollLeft : null;
+  cal.innerHTML = html;
+  cal.dataset.key = key;
   fitBarLabels();
+  // On a phone the hours keep a readable width and the chart scrolls sideways (names stay put).
+  // A new day starts at now (today) or at its first session; a re-render keeps where you scrolled.
+  if (keep != null) cal.scrollLeft = keep;
+  else {
+    const track = cal.querySelector('.g-track');
+    // Start on a whole hour so the axis labels line up; a chart that barely overflows stays at its start.
+    const at = Math.floor((isToday && NOW.minutes > T0 && NOW.minutes < T1 ? NOW.minutes - 30 : sess[0] ? mins(sess[0].start) : T0) / 60) * 60;
+    const x = track ? ((at - T0) / (T1 - T0)) * track.offsetWidth : 0;
+    cal.scrollLeft = cal.scrollWidth - cal.clientWidth > 60 ? Math.max(0, x) : 0;
+  }
+  edges();
 
   document.querySelector('#glance .key').hidden = !volleyball;
   $('calNote').hidden = !volleyball;

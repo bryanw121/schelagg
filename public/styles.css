@@ -112,13 +112,21 @@ footer{font-size:12px;color:var(--muted)}
 /* Narrow enough at 320px that the chart fits the card without scrolling sideways (bars fit their times, #67). */
 .g-row{display:grid;grid-template-columns:minmax(92px,34%) minmax(140px,1fr);gap:8px;align-items:center}
 @media (min-width:700px){.g-row{grid-template-columns:170px minmax(260px,1fr)}}
+/* Phones: each hour keeps at least 36px so bars are wide enough to read; the chart scrolls sideways
+   when the day is long, with the venue names pinned on the left. */
+@media (max-width:699px){
+  .g-row{grid-template-columns:92px minmax(max(140px,calc(var(--hours, 18) * 36px)),1fr)}
+  .g-lab{position:sticky;left:0;z-index:3;background:var(--panel);box-shadow:8px 0 6px -6px var(--panel)}
+  .gantt{scroll-behavior:auto;overscroll-behavior-x:contain}
+  .g-group{position:sticky;left:0;z-index:3}
+}
 /* Venue names and the line under them wrap onto more lines instead of being cut off. */
 .g-lab{font:500 12px/1.2 var(--body);color:var(--ink);min-width:0;overflow-wrap:break-word;padding:2px 0}
 .g-lab small{display:block;color:var(--muted);font-size:11px}
 .g-track{position:relative;height:26px;border-radius:4px;background:
-  repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/18)),var(--bg)}
+  repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100% / var(--hours, 18))),var(--bg)}
 /* A court lane: time it's open to rent is tinted green, closed time is solid gray (.g-closed), bookings hatched. */
-.g-track.lane{background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/18)),var(--open)}
+.g-track.lane{background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100% / var(--hours, 18))),var(--open)}
 .g-bar{position:absolute;top:3px;bottom:3px;border-radius:3px;background:var(--c);color:#fff;font:600 10.5px/20px var(--mono);padding:0 5px;overflow:hidden;white-space:nowrap;text-decoration:none}
 a.g-bar:hover{filter:brightness(1.12)}
 .g-book{position:absolute;top:3px;bottom:3px;border-radius:2px;background:repeating-linear-gradient(135deg,var(--muted) 0 3px,transparent 3px 6px);opacity:.75;border:1px solid var(--muted)}
@@ -139,8 +147,9 @@ a.g-bar:hover{filter:brightness(1.12)}
 @media (max-width:440px){.row{grid-template-columns:70px 1fr}.tab{font-size:14px}}
 /* 320–360px phones: tabs and the week strip fit the screen instead of pushing the page sideways. */
 @media (max-width:360px){.days{gap:2px}.tab{font-size:13px;letter-spacing:.02em;padding:7px 4px;gap:4px}.day .dn{font-size:11px;letter-spacing:0}.day .dd{font-size:15px}}
-/* A narrow chart labels every other hour mark (6a, 12p, 6p, 12a) so they don't run together. */
-@media (max-width:420px){.g-axis .g-track span:nth-child(even){display:none}}
+/* More hours off to the side: the edge fades, so it's clear the chart scrolls. */
+.gantt.more-right{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+.gantt.more-left .g-lab{box-shadow:10px 0 8px -6px rgba(0,0,0,.18)}
 @media (prefers-reduced-motion:no-preference){.row{transition:opacity .15s}}
 
 /* Per-source freshness list and calendar link in "How fresh is this?" */
@@ -160,3 +169,18 @@ a.src.also{color:var(--muted)}
 /* On: venues are in distance order (tap again to turn off). 44px tap area on touch screens. */
 .brand .nearest[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
 @media (pointer:coarse){.brand .nearest{min-width:44px;min-height:44px;font-size:18px}}
+
+/* Fine print folded under a tap-to-open Details (a real button; nothing is hover-only). */
+details.more{font-size:13px}
+details.more summary{cursor:pointer;color:var(--accent);font-weight:600;list-style:none;display:inline-flex;align-items:center;gap:4px;min-height:32px;touch-action:manipulation}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:"▾";font-size:11px}
+details.more[open] summary::after{content:"▴"}
+details.more > *:not(summary){margin-top:6px}
+/* Book a court: one line per venue, a Book button on the right. */
+.book-row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.book-row:first-child{border-top:0}
+.book-name{min-width:0;overflow-wrap:break-word}
+.book-name span{display:block;font-size:13px;color:var(--muted)}
+.book-row details.more{grid-column:1/-1}
+.book-row .signup{min-height:44px;box-sizing:border-box}
