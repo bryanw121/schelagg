@@ -249,6 +249,23 @@ npm run dev                       # http://localhost:5173 (+ live /api/courts, /
 `api/courts.js`, `api/check.js`, `api/sessions.js` + `vercel.json` also let the same repo deploy to Vercel with on-request data (see
 [Live API](#live-api)).
 
+### Map view
+
+**List / Map** shows the day's places on an OpenStreetMap map: one pin per venue (open play shows the first
+session's time, Court booking shows the court price), and a tap shows that venue's day with sign-ups, Book and
+directions. It's free and needs no key:
+- **Map file:** `scripts/build-maps.mjs` cuts each region's map (a box around its venues, zoom 0–14, about 25 MB
+  for Austin) out of [Protomaps](https://protomaps.com)' daily OpenStreetMap build into `public/maps/<region>.pmtiles`.
+  It also copies the label fonts and map icons it uses. The deploy (`pages.yml`) runs it once a month, or when venues
+  change, and caches it between runs. Viewers download only the part of the file they look at (HTTP range requests).
+- **Libraries:** MapLibre GL, pmtiles and the Protomaps basemap style are vendored in `public/vendor/map` and load
+  only when someone opens Map.
+- **Fallback:** with no WebGL, or no map for the region, the Map button doesn't appear.
+
+`public/maps` isn't committed. To try the map locally, install the [pmtiles CLI](https://github.com/protomaps/go-pmtiles)
+and run `node scripts/build-maps.mjs --pmtiles <path to pmtiles> --maxzoom 14`. Map data © OpenStreetMap
+contributors (ODbL).
+
 ## Independence and the public feed
 
 Schelagg owns its data and knows nothing about the apps that use it. It has no credentials to any consumer's

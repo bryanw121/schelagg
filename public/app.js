@@ -187,7 +187,7 @@ const setClock = () => { NOW = regionNow(); WEEK = Array.from({ length: 7 }, (_,
 setClock();
 
 let index = null, region = null, schedule = null, courts = null, courtsError = null;
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay' };
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list' };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -196,6 +196,7 @@ try {
   if (tab && tabsOf(state.sport)[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
   if (s.view === 'booking') state.view = s.view;
+  if (s.layout === 'map') state.layout = 'map';
 } catch {}
 // A shared link (?region=austin&sport=ice_skating) wins over what was remembered.
 const params = new URLSearchParams(location.search);
@@ -203,8 +204,9 @@ const urlRegion = params.get('region');
 if (urlRegion) state.region = urlRegion;
 const urlSport = params.get('sport');
 if (params.has('view')) state.view = params.get('view') === 'booking' ? 'booking' : 'openplay';
+if (params.has('layout')) state.layout = params.get('layout') === 'map' ? 'map' : 'list';
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view })); } catch {} };
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
   const u = new URL(location.href);
@@ -212,6 +214,7 @@ function syncUrl() {
   if (single || !state.region) u.searchParams.delete('region'); else u.searchParams.set('region', state.region);
   if (state.sport === 'volleyball') u.searchParams.delete('sport'); else u.searchParams.set('sport', state.sport);
   if (state.view === 'booking') u.searchParams.set('view', 'booking'); else u.searchParams.delete('view');
+  if (state.layout === 'map' && mapReady()) u.searchParams.set('layout', 'map'); else u.searchParams.delete('layout');
   if (u.href !== location.href) history.replaceState(null, '', u);
 }
 
@@ -712,7 +715,136 @@ function list(items) { return items.length <= 1 ? items.join('') : `${items.slic
 const liveCourts = () => SPORTS[state.sport].courts || regionCourts().length > 0;
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
-function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); }
+function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); }
+
+// ---------- map view ----------
+// The day's places on an OpenStreetMap map, one pin each: open play shows the first session's time,
+// Court booking the court price. Tap a pin for that place's day: its sessions with sign-ups, Book,
+// directions. The map (public/maps/<region>.pmtiles, cut by scripts/build-maps.mjs) and its libraries
+// (public/vendor/map) load only when someone opens Map. Without WebGL or a map for the region, the
+// Map button doesn't appear and the list stays.
+const MAPS = location.hostname.endsWith('.vercel.app') ? 'https://bryanw121.github.io/schelagg/maps/' : 'maps/';
+const webgl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
+let maps = null; // maps.json: which regions have a map
+let mapPick = null; // the venue whose day is shown under the map
+let mapView = null, mapMarkers = [], mapKey = '', mapLibs = null, youMarker = null;
+const mapReady = () => webgl && !!region && !!maps?.maps?.some((m) => m.region === region.id);
+
+function loadMapLibs() {
+  const add = (tag, attrs) => new Promise((ok, fail) => { const el = Object.assign(document.createElement(tag), attrs); el.onload = ok; el.onerror = () => fail(new Error(`${attrs.src || attrs.href} did not load`)); document.head.append(el); });
+  mapLibs ??= Promise.all([
+    add('link', { rel: 'stylesheet', href: 'vendor/map/maplibre-gl.css' }),
+    add('script', { src: 'vendor/map/maplibre-gl.js' }).then(() => add('script', { src: 'vendor/map/pmtiles.js' })).then(() => add('script', { src: 'vendor/map/basemaps.js' })),
+  ]);
+  return mapLibs;
+}
+
+/** Places on the map for this sport, day and view: { id, name, city, lat, lng, sessions, booking, label, note }. */
+function mapPlaces(iso) {
+  const venues = new Map((schedule?.venues || []).filter((v) => Number.isFinite(v.lat) && Number.isFinite(v.lng)).map((v) => [v.id, v]));
+  const out = new Map();
+  const at = (v) => out.get(v.id) ?? out.set(v.id, { id: v.id, name: v.name, city: v.city, lat: v.lat, lng: v.lng, sessions: [], booking: null }).get(v.id);
+  if (state.view === 'booking') {
+    const live = new Set(regionCourts().flatMap((c) => c.facilities.map((f) => f.venueId)).filter(Boolean));
+    for (const v of venues.values()) if (v.bookingLink?.sport === state.sport || live.has(v.id)) at(v).booking = v.bookingLink ?? null;
+    // Sessions held on bookable courts still show in the place's day.
+    for (const x of sessionsOn(iso, { ignoreTab: true })) if (out.has(x.venueId) && !hidden(x.f)) out.get(x.venueId).sessions.push(x);
+  } else {
+    for (const x of sessionsOn(iso).filter((y) => !hidden(y.f))) { const v = venues.get(x.venueId); if (v) at(v).sessions.push(x); }
+    for (const p of out.values()) p.booking = venues.get(p.id)?.bookingLink?.sport === state.sport ? venues.get(p.id).bookingLink : null;
+  }
+  for (const p of out.values()) {
+    p.sessions.sort((a, b) => (a.start || '99').localeCompare(b.start || '99'));
+    const timed = p.sessions.filter((x) => x.start);
+    const first = timed[0], more = p.sessions.length - 1;
+    p.label = state.view === 'booking' ? (courtPrice(p.booking) || 'Book') : first ? `${fmtT(first.start).replace(/m$/, '')}${more > 0 ? ` +${more}` : ''}` : `${p.sessions.length} session${p.sessions.length === 1 ? '' : 's'}`;
+    p.aria = state.view === 'booking' ? `${p.name}: ${courtPrice(p.booking) ? `courts ${courtPrice(p.booking)}` : 'book a court'}` : `${p.name}: ${p.sessions.length} session${p.sessions.length === 1 ? '' : 's'}${first ? `, first at ${fmtT(first.start)}` : ''}`;
+  }
+  return [...out.values()];
+}
+
+/** What's under the map: the picked place's day, or a line saying how many places there are. */
+function mapPanelHtml(places, iso) {
+  const p = places.find((x) => x.id === mapPick);
+  const untimed = state.view === 'openplay' ? sessionsOn(iso).filter((y) => !hidden(y.f) && !(schedule?.venues || []).some((v) => v.id === y.venueId && Number.isFinite(v.lat))).length : 0;
+  if (!p) {
+    return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> ${state.view === 'booking' ? 'to book a court' : `with ${SPORTS[state.sport].label.toLowerCase()} on ${fmtDate(iso)}`} · tap a pin${untimed ? ` · ${untimed} more without a location are in the list` : ''}</p>`;
+  }
+  const mi = milesTo(p.id), cost = courtPrice(p.booking);
+  const book = p.booking?.url ? `<a class="signup" href="${esc(onDay(p.booking.url, iso))}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(p.name)}">Book ↗</a>` : '';
+  const rows = p.sessions.map((x) => `<div class="pop-item"><span class="pop-t">${x.start ? `${fmtT(x.start)}${x.end ? `–${fmtT(x.end)}` : ''}` : 'Any time'}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('');
+  return `<div class="map-place"><div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}</small></span>${book}</div>
+    ${rows ? `<div class="g-pop map-sessions">${rows}</div>` : `<p class="note">${state.view === 'booking' ? 'No public sessions here on this day; book a court on the venue\'s site.' : 'Nothing else here on this day.'}</p>`}
+    ${locationHtml({ venueId: p.id })}</div>`;
+}
+
+/** Hide the labels of pins that would sit on top of another (the busier place keeps its label). */
+function declutter() {
+  const boxes = [];
+  for (const { el, p } of [...mapMarkers].sort((a, b) => (b.p.id === mapPick) - (a.p.id === mapPick) || b.p.sessions.length - a.p.sessions.length)) {
+    el.classList.remove('dot');
+    const r = el.getBoundingClientRect();
+    const hit = boxes.some((b) => r.left < b.right + 2 && r.right > b.left - 2 && r.top < b.bottom + 2 && r.bottom > b.top - 2);
+    if (hit && p.id !== mapPick) el.classList.add('dot'); else boxes.push(r);
+  }
+}
+
+async function renderMap() {
+  const on = state.layout === 'map' && mapReady();
+  $('layout').hidden = !mapReady();
+  $('layout').innerHTML = mapReady() ? [['list', 'List'], ['map', 'Map']].map(([v, l]) => `<button class="tab" type="button" data-layout="${v}" aria-pressed="${(on ? 'map' : 'list') === v}">${l}</button>`).join('') : '';
+  $('mapCard').hidden = !on;
+  // The map replaces the day's chart and lists; the free-courts and sources cards stay.
+  for (const id of ['glance', 'sessionsPanel', 'bookingCalendarsCard', 'venueCalendarsCard']) if (on) $(id).hidden = true;
+  if (!on) return;
+  const iso = WEEK[state.di];
+  const places = mapPlaces(iso);
+  if (mapPick && !places.some((p) => p.id === mapPick)) mapPick = null;
+  $('mapTitle').textContent = `${state.view === 'booking' ? 'Court booking' : 'Open play'} · ${state.di === 0 ? 'Today' : fmtDate(iso)}`;
+  $('mapPanel').innerHTML = mapPanelHtml(places, iso);
+  try { await loadMapLibs(); } catch { $('mapPanel').insertAdjacentHTML('afterbegin', '<p class="note">The map could not load. Switch to List.</p>'); return; }
+  const gl = window.maplibregl;
+  if (!mapView) {
+    const proto = new window.pmtiles.Protocol();
+    gl.addProtocol('pmtiles', proto.tile);
+    const dark = document.documentElement.dataset.theme === 'dark' || (document.documentElement.dataset.theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+    const base = new URL(MAPS, location.href).href, flavor = dark ? 'dark' : 'light';
+    const box = maps.maps.find((m) => m.region === region.id).bbox;
+    mapView = new gl.Map({
+      container: 'map',
+      style: { version: 8, glyphs: `${base}fonts/{fontstack}/{range}.pbf`, sprite: `${base}sprites/${flavor}`,
+        sources: { osm: { type: 'vector', url: `pmtiles://${base}${region.id}.pmtiles`, attribution: '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>' } },
+        layers: window.basemaps.layers('osm', window.basemaps.namedFlavor(flavor), { lang: 'en' }) },
+      bounds: [[box[0], box[1]], [box[2], box[3]]], maxBounds: [[box[0] - 0.2, box[1] - 0.2], [box[2] + 0.2, box[3] + 0.2]],
+      attributionControl: { compact: true }, dragRotate: false, pitchWithRotate: false, cooperativeGestures: false,
+    });
+    mapView.touchZoomRotate.disableRotation();
+    mapView.addControl(new gl.NavigationControl({ showCompass: false }), 'top-right');
+    mapView.on('zoomend', declutter); mapView.on('moveend', declutter);
+    window.__schelaggMap = mapView; // for tests
+  }
+  for (const m of mapMarkers) m.marker.remove();
+  mapMarkers = places.map((p) => {
+    const el = document.createElement('button');
+    Object.assign(el, { type: 'button', className: `pin${state.view === 'booking' ? ' book' : ''}${p.id === mapPick ? ' sel' : ''}`, textContent: p.label });
+    el.dataset.pin = p.id; el.setAttribute('aria-label', p.aria); el.setAttribute('aria-pressed', String(p.id === mapPick));
+    return { el, p, marker: new gl.Marker({ element: el, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(mapView) };
+  });
+  youMarker?.remove(); youMarker = null;
+  if (here) { const el = Object.assign(document.createElement('div'), { className: 'you', title: 'You (from 📍)' }); youMarker = new gl.Marker({ element: el }).setLngLat([here.lng, here.lat]).addTo(mapView); }
+  // A new sport, view or day frames its places; picking a pin keeps the view and brings it into sight.
+  const key = `${region.id}|${state.sport}|${state.view}|${state.di}|${state.tab}`;
+  if (key !== mapKey && places.length) {
+    mapKey = key;
+    const lngs = places.map((p) => p.lng), lats = places.map((p) => p.lat);
+    mapView.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: 48, maxZoom: 12, duration: 0 });
+  } else if (mapPick) {
+    const p = places.find((x) => x.id === mapPick);
+    if (p && !mapView.getBounds().contains([p.lng, p.lat])) mapView.easeTo({ center: [p.lng, p.lat] });
+  }
+  mapView.resize();
+  requestAnimationFrame(declutter);
+}
 
 $('regionPick').addEventListener('change', (e) => chooseRegion(e.target.value));
 $('nearest').addEventListener('click', () => {
@@ -753,7 +885,10 @@ document.addEventListener('click', async (e) => {
     }
     return;
   }
-  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view]'); if (!t) return;
+  const pin = e.target.closest('[data-pin]');
+  if (pin) { mapPick = mapPick === pin.dataset.pin ? null : pin.dataset.pin; renderMap(); return; }
+  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout]'); if (!t) return;
+  if (t.dataset.layout) { state.layout = t.dataset.layout; mapPick = null; save(); }
   if (t.dataset.sport) { state.sport = t.dataset.sport; state.tab = 'all'; save(); }
   if (t.dataset.tab) { state.tab = t.dataset.tab; save(); }
   if (t.dataset.view) { state.view = t.dataset.view; save(); }
@@ -795,6 +930,7 @@ async function chooseRegion(id) {
 // file, or the live API when running locally. Without an index (data published before regions
 // existed) the combined data/schedule.json is the one region.
 try { index = await getJson(`${DATA}index.json`); } catch { index = null; }
+try { maps = await getJson(`${MAPS}maps.json`); } catch { maps = null; }
 if (index?.regions?.length) await chooseRegion(state.region);
 else {
   try { schedule = await getJson(`${DATA}schedule.json`); render(); }

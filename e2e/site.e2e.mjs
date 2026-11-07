@@ -76,7 +76,8 @@ before(async () => {
     });
     server.on('exit', (code) => reject(new Error(`server.js exited (${code}): ${out}`)));
   });
-  browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
+  // WebGL for the Map view: headless Chrome only offers it through SwiftShader when asked.
+  browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined, args: ['--enable-unsafe-swiftshader', '--use-angle=swiftshader', '--ignore-gpu-blocklist'] });
 });
 
 after(async () => {
@@ -87,7 +88,7 @@ after(async () => {
 /** A fresh page (own localStorage) with data answered by `data` and the clock fixed. */
 const titlesWithVenue = () => page.locator('#list .row .venue b').allTextContents();
 
-async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null } = {}) {
+async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, maps = null, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null } = {}) {
   context = await browser.newContext({ timezoneId, locale: 'en-US', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}) }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
   await page.clock.setFixedTime(clock);
@@ -107,6 +108,10 @@ async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status
     if (reg) return regions[reg[1]] ? json(regions[reg[1]]) : route.fulfill({ status: 404, body: 'Not found' });
     if (u.pathname === '/data/schedule.json') return schedule ? json(schedule) : json('{"error":"nope"}', 500);
     if (u.pathname === '/data/courts.json') return courts ? json(courts) : route.fulfill({ status: 404, body: 'Not found' });
+    // Map view: maps.json says which regions have a map; the map file, fonts and icons aren't served
+    // (pins and the place panel don't need them).
+    if (u.pathname === '/maps/maps.json') return maps ? json(maps) : route.fulfill({ status: 404, body: 'Not found' });
+    if (u.pathname.startsWith('/maps/')) return route.fulfill({ status: 404, body: 'Not found' });
     return route.continue(); // index.html, app.js, styles.css from server.js
   });
   await page.goto(`${origin}${url}`);
@@ -529,6 +534,63 @@ test('site: regions: one city at a time, in its own time zone, with a picker, a 
   await open({ index: INDEX, regions: { austin, denver }, url: '/?region=denver&sport=ice_skating' });
   assert.equal(await page.locator('#regionPick').inputValue(), 'denver');
   assert.deepEqual(await titles(), ['Mile High Skate']);
+});
+
+test('site: Map view: one pin per place with the first session\'s time, tap for its day; booking pins show the price; shareable', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
+  sched.venues = [
+    { id: 'gym', name: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7, bookingLink: { sport: 'volleyball', url: 'https://club.podplay.app/book/main', price: '$30/hr' } },
+    { id: 'beach', name: 'ATX Beach', city: 'Austin', lat: 30.3, lng: -97.75 },
+    { id: 'nowhere', name: 'Unmapped Hall', city: 'Austin' },
+  ];
+  const at = (id, venueId, venue, start, end) => ({ ...base, id, sourceId: 'manual', date: TODAY, start, end, title: `Session ${id}`, venueId, venue, city: 'Austin', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
+  sched.sessions = [at('g1', 'gym', 'North Gym', '18:00', '20:00'), at('g2', 'gym', 'North Gym', '20:00', '22:00'), at('b1', 'beach', 'ATX Beach', '18:30', '20:00'), at('u1', 'nowhere', 'Unmapped Hall', '19:00', '21:00')];
+  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS });
+  const layout = page.locator('#layout');
+  assert.equal(await layout.isVisible(), true);
+  await layout.locator('[data-layout="map"]').click();
+  assert.equal(new URL(page.url()).searchParams.get('layout'), 'map');
+  assert.equal(await page.locator('#mapCard').isVisible(), true);
+  assert.equal(await page.locator('#glance').isHidden(), true);
+  assert.equal(await page.locator('#sessionsPanel').isHidden(), true);
+  const pins = page.locator('#map .pin');
+  await pins.first().waitFor();
+  assert.deepEqual((await pins.evaluateAll((els) => els.map((e) => [e.dataset.pin, e.textContent, e.getAttribute('aria-label')]))).sort(), [
+    ['beach', '6:30p', 'ATX Beach: 1 session, first at 6:30pm'],
+    ['gym', '6p +1', 'North Gym: 2 sessions, first at 6pm'],
+  ]);
+  assert.match(await page.locator('#mapPanel').textContent(), /2 places with volleyball on Oct 25 · tap a pin · 1 more without a location are in the list/);
+  // Tap a pin: that place's day, with each sign-up and the venue's Book (opened on this day).
+  await page.locator('#map .pin[data-pin="gym"]').click();
+  const panel = page.locator('#mapPanel');
+  assert.match(await panel.locator('.g-venue').textContent(), /North Gym.*Austin · \$30\/hr/);
+  assert.equal(await panel.locator('a.v-book, a.signup', { hasText: 'Book' }).first().getAttribute('href'), `https://club.podplay.app/book/main/${TODAY}`);
+  assert.deepEqual(await panel.locator('.pop-item a.signup').evaluateAll((els) => els.map((e) => e.getAttribute('href'))), [`${SIGNUP}/g1`, `${SIGNUP}/g2`]);
+  assert.equal(await page.locator('#map .pin[data-pin="gym"]').getAttribute('aria-pressed'), 'true');
+  await page.locator('#map .pin[data-pin="gym"]').click(); // tap again: back to the summary
+  assert.match(await panel.textContent(), /tap a pin/);
+  // Court booking: pins are the places to book, labelled with the price.
+  await page.locator('[data-view="booking"]').click();
+  await page.locator('#map .pin.book').first().waitFor();
+  assert.deepEqual(await page.locator('#map .pin').evaluateAll((els) => els.map((e) => e.textContent)), ['$30/hr']);
+  // The view is shareable and remembered; List brings the day's chart and lists back.
+  await page.reload();
+  await page.locator('#map .pin').first().waitFor();
+  assert.equal(await page.locator('#mapCard').isVisible(), true);
+  await page.locator('[data-layout="list"]').click();
+  assert.equal(await page.locator('#mapCard').isHidden(), true);
+  assert.equal(new URL(page.url()).searchParams.get('layout'), null);
+});
+
+test('site: no Map button without a map for the region', async () => {
+  await open({ index: { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] }, regions: { austin: SCHEDULE }, url: '/?layout=map' });
+  assert.equal(await page.locator('#layout').isHidden(), true);
+  assert.equal(await page.locator('#mapCard').isHidden(), true);
+  assert.equal(await page.locator('#glance').isVisible(), true);
+  assert.equal(new URL(page.url()).searchParams.get('layout'), null);
 });
 
 test('site: with one region the city is a plain label, not a menu', async () => {
