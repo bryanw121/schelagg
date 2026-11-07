@@ -158,9 +158,16 @@ function edges() {
 }
 $('cal').addEventListener('scroll', edges, { passive: true });
 let fitTimer;
-addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(() => { fitBarLabels(); edges(); }, 100); });
-// Crossing the phone breakpoint changes the hour labels (every hour on phones).
-matchMedia('(max-width: 699px)').addEventListener?.('change', () => { if (typeof renderGlance === 'function') renderGlance(); });
+// Crossing the phone breakpoint changes the hour labels (every hour on phones), so redraw then.
+let wasPhone = matchMedia('(max-width: 699px)').matches;
+addEventListener('resize', () => {
+  clearTimeout(fitTimer);
+  fitTimer = setTimeout(() => {
+    const phone = matchMedia('(max-width: 699px)').matches;
+    if (phone !== wasPhone) { wasPhone = phone; renderGlance(); }
+    fitBarLabels(); edges();
+  }, 100);
+});
 
 /** Compact range for chart bars: "8–10p", "9–11:30p", "10:30a–1:30p" (the full range is in the tooltip). */
 function fmtRange(a, b) {
@@ -556,6 +563,30 @@ function glanceRows(sess, nowLine) {
   return html;
 }
 
+/**
+ * A live court venue's day in a sentence: when at least one court is free (30 minutes or more; today,
+ * from now on) and how many are free right now. null without live court data for that venue.
+ */
+function courtFree(venueId, iso) {
+  const f = regionCourts().flatMap((v) => v.facilities.map((x) => ({ ...x, venue: v }))).find((x) => x.venueId === venueId);
+  if (!f) return null;
+  const h = f.venue.hours?.[new Date(`${iso}T12:00:00Z`).getUTCDay()];
+  if (!h) return { closed: true, windows: [], n: f.courts.length, nowFree: 0 };
+  const today = iso === WEEK[0], from = Math.max(mins(h[0]), today ? NOW.minutes : 0), close = mins(h[1]) || 1440;
+  const busy = f.courts.map((c) => (c.days[iso] || []).map(([a, b]) => [mins(a), mins(b) || 1440]));
+  const freeAt = (a, b) => busy.filter((bl) => !bl.some(([s, e]) => s < b && e > a)).length;
+  const edges = [...new Set([from, close, ...busy.flat(2)].filter((m) => m >= from && m <= close))].sort((a, b) => a - b);
+  const windows = [];
+  for (let i = 0; i < edges.length - 1; i++) {
+    const [a, b] = [edges[i], edges[i + 1]];
+    if (!freeAt(a, b)) continue;
+    const last = windows.at(-1);
+    if (last && last[1] === a) last[1] = b; else windows.push([a, b]);
+  }
+  const open = today && NOW.minutes >= mins(h[0]) && NOW.minutes < close;
+  return { closed: false, windows: windows.filter(([a, b]) => b - a >= 30), n: f.courts.length, nowFree: open ? freeAt(NOW.minutes, NOW.minutes + 1) : 0 };
+}
+
 let openFacs = new Set(); // court venues whose per-court lanes are shown (the "4 courts ▾" toggle)
 
 /**
@@ -739,11 +770,16 @@ function loadMapLibs() {
   return mapLibs;
 }
 
+/**
+ * A place's name for a map pin: the venue's own `short` name if it has one, else its name without a
+ * leading "Austin", with "(Georgetown)" as plain words and "Recreation Center" as "Rec Center".
+ */
+const pinName = (v) => v.short || v.name.replace(/^Austin (?=\S+\s*\S)/, '').replace(/\s*\(([^)]+)\)/, ' $1').replace(/Recreation Center/, 'Rec Center').trim();
 /** Places on the map for this sport, day and view: { id, name, city, lat, lng, sessions, booking, label, note }. */
 function mapPlaces(iso) {
   const venues = new Map((schedule?.venues || []).filter((v) => Number.isFinite(v.lat) && Number.isFinite(v.lng)).map((v) => [v.id, v]));
   const out = new Map();
-  const at = (v) => out.get(v.id) ?? out.set(v.id, { id: v.id, name: v.name, city: v.city, lat: v.lat, lng: v.lng, sessions: [], booking: null }).get(v.id);
+  const at = (v) => out.get(v.id) ?? out.set(v.id, { id: v.id, name: v.name, short: pinName(v), city: v.city, lat: v.lat, lng: v.lng, sessions: [], booking: null }).get(v.id);
   if (state.view === 'booking') {
     const live = new Set(regionCourts().flatMap((c) => c.facilities.map((f) => f.venueId)).filter(Boolean));
     for (const v of venues.values()) if (v.bookingLink?.sport === state.sport || live.has(v.id)) at(v).booking = v.bookingLink ?? null;
@@ -760,8 +796,21 @@ function mapPlaces(iso) {
     const left = p.sessions.filter((x) => !over(x));
     p.done = state.view === 'openplay' && p.sessions.length > 0 && !left.length;
     const first = left.find((x) => x.start), more = left.length - 1;
-    p.label = state.view === 'booking' ? (courtPrice(p.booking) || 'Book') : p.done ? 'Ended' : first ? `${fmtT(first.start).replace(/m$/, '')}${more > 0 ? ` +${more}` : ''}` : `${left.length} session${left.length === 1 ? '' : 's'}`;
-    p.aria = state.view === 'booking' ? `${p.name}: ${courtPrice(p.booking) ? `courts ${courtPrice(p.booking)}` : 'book a court'}` : p.done ? `${p.name}: today's sessions have ended` : `${p.name}: ${left.length} session${left.length === 1 ? '' : 's'}${left.length < p.sessions.length ? ' still to come' : ''}${first ? `, next at ${fmtT(first.start)}` : ''}`;
+    const short = (m) => fmtT(hhmm(m)).replace(/m$/, '');
+    if (state.view === 'booking') {
+      // What a player needs to choose a court: is one free (and when), else what it costs.
+      const c = courtFree(p.id, iso), cost = courtPrice(p.booking);
+      p.live = !!c;
+      p.detail = !c ? (cost || 'see times') : c.closed ? 'closed' : c.nowFree ? `${c.nowFree} free now` : c.windows.length ? `free ${short(c.windows[0][0])}` : 'full';
+      p.status = !c ? `${cost ? `${cost} · ` : ''}open times on the venue's site` : c.closed ? 'Closed this day' : c.windows.length
+        ? `Courts free ${c.windows.map(([a, b]) => `${iso === WEEK[0] && a <= NOW.minutes ? 'now' : fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}${cost ? ` · ${cost}` : ''}` : `All courts booked${iso === WEEK[0] ? ' for the rest of today' : ''}`;
+      p.full = !!c && (c.closed || !c.windows.length);
+    } else {
+      p.detail = p.done ? 'ended' : first ? `${short(mins(first.start))}${more > 0 ? ` +${more}` : ''}` : `${left.length} session${left.length === 1 ? '' : 's'}`;
+      p.status = p.done ? "Today's sessions have ended" : `${left.length} session${left.length === 1 ? '' : 's'}${left.length < p.sessions.length ? ' still to come' : ''}${first ? ` · next ${fmtT(first.start)}` : ''}`;
+    }
+    p.label = p.detail;
+    p.aria = `${p.name}: ${p.status}`;
   }
   return [...out.values()];
 }
@@ -771,25 +820,40 @@ function mapPanelHtml(places, iso) {
   const p = places.find((x) => x.id === mapPick);
   const untimed = state.view === 'openplay' ? sessionsOn(iso).filter((y) => !hidden(y.f) && !(schedule?.venues || []).some((v) => v.id === y.venueId && Number.isFinite(v.lat))).length : 0;
   if (!p) {
-    return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> ${state.view === 'booking' ? 'to book a court' : `with ${SPORTS[state.sport].label.toLowerCase()} on ${fmtDate(iso)}`} · tap a pin${untimed ? ` · ${untimed} more without a location are in the list` : ''}</p>`;
+    // Every place on the map as a row: what it is, where, and the one thing that decides it.
+    const order = [...places].sort((a, b) => !!(a.done || a.full) - !!(b.done || b.full) || (milesTo(a.id) ?? 1e9) - (milesTo(b.id) ?? 1e9) || a.name.localeCompare(b.name));
+    const rows = order.map((x) => {
+      const mi = milesTo(x.id);
+      return `<li><button type="button" class="place-row${x.done || x.full ? ' dim' : ''}" data-pin="${esc(x.id)}"><span class="pr-name">${esc(x.name)}<small>${esc(x.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
+    }).join('');
+    return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> ${state.view === 'booking' ? 'to book a court' : `with ${SPORTS[state.sport].label.toLowerCase()}`} ${state.di === 0 ? 'today' : `on ${fmtDate(iso)}`}${here ? ', nearest first' : ''}. Tap one for its day${state.view === 'booking' ? ' and Book' : ' and sign-ups'}.${untimed ? ` ${untimed} more without a location are in the list.` : ''}</p><ul class="place-list">${rows}</ul>`;
   }
   const mi = milesTo(p.id), cost = courtPrice(p.booking);
   const book = p.booking?.url ? `<a class="signup" href="${esc(onDay(p.booking.url, iso))}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(p.name)}">Book ↗</a>` : '';
   const ended = (x) => state.di === 0 && x.end && mins(x.end) <= NOW.minutes;
   const rows = p.sessions.map((x) => `<div class="pop-item${ended(x) ? ' past' : ''}"><span class="pop-t">${x.start ? `${fmtT(x.start)}${x.end ? `–${fmtT(x.end)}` : ''}` : 'Any time'}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('');
-  return `<div class="map-place"><div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}</small></span>${book}</div>
+  const live = state.view === 'booking' ? `<p class="map-status">${esc(p.status)}</p>` : '';
+  return `<div class="map-place"><button type="button" class="map-back" data-pin="${esc(p.id)}">‹ All places</button>${live}<div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}</small></span>${book}</div>
     ${rows ? `<div class="g-pop map-sessions">${rows}</div>` : `<p class="note">${state.view === 'booking' ? 'No public sessions here on this day; book a court on the venue\'s site.' : 'Nothing else here on this day.'}</p>`}
     ${locationHtml({ venueId: p.id })}</div>`;
 }
 
 /** Hide the labels of pins that would sit on top of another (the busier place keeps its label). */
 function declutter() {
-  const boxes = [];
-  for (const { el, p } of [...mapMarkers].sort((a, b) => (b.p.id === mapPick) - (a.p.id === mapPick) || a.p.done - b.p.done || b.p.sessions.length - a.p.sessions.length)) {
-    el.classList.remove('dot');
-    const r = el.getBoundingClientRect();
-    const hit = boxes.some((b) => r.left < b.right + 2 && r.right > b.left - 2 && r.top < b.bottom + 2 && r.bottom > b.top - 2);
-    if (hit && p.id !== mapPick) el.classList.add('dot'); else boxes.push(r);
+  // Pins that would sit on top of each other fold into the one kept there, which shows "+N more";
+  // tapping it zooms in on the group. The picked place and the most useful pins are kept first.
+  const kept = [];
+  for (const m of mapMarkers) { m.el.hidden = false; m.el.querySelector('.more')?.remove(); delete m.el.dataset.group; }
+  for (const m of [...mapMarkers].sort((a, b) => (b.p.id === mapPick) - (a.p.id === mapPick) || !!(a.p.done || a.p.full) - !!(b.p.done || b.p.full) || b.p.sessions.length - a.p.sessions.length)) {
+    const r = m.el.getBoundingClientRect();
+    const k = kept.find((x) => r.left < x.r.right + 4 && r.right > x.r.left - 4 && r.top < x.r.bottom + 4 && r.bottom > x.r.top - 4);
+    if (k && m.p.id !== mapPick) { k.group.push(m.p); m.el.hidden = true; } else kept.push({ m, r, group: [] });
+  }
+  for (const { m, group } of kept) {
+    if (!group.length) continue;
+    m.el.dataset.group = [m.p, ...group].map((p) => p.id).join(',');
+    m.el.insertAdjacentHTML('beforeend', `<i class="more">+${group.length} more</i>`);
+    m.el.setAttribute('aria-label', `${m.p.aria}. ${group.length} more here: ${group.map((p) => p.name).join(', ')}. Tap to zoom in.`);
   }
 }
 
@@ -830,7 +894,8 @@ async function renderMap() {
   for (const m of mapMarkers) m.marker.remove();
   mapMarkers = places.map((p) => {
     const el = document.createElement('button');
-    Object.assign(el, { type: 'button', className: `pin${state.view === 'booking' ? ' book' : ''}${p.done ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}`, textContent: p.label });
+    Object.assign(el, { type: 'button', className: `pin${state.view === 'booking' ? ' book' : ''}${p.done || p.full ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}` });
+    el.innerHTML = `<b>${esc(p.short)}</b>`; // just the place: what's on there is in the list under the map
     el.dataset.pin = p.id; el.setAttribute('aria-label', p.aria); el.setAttribute('aria-pressed', String(p.id === mapPick));
     return { el, p, marker: new gl.Marker({ element: el, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(mapView) };
   });
@@ -890,7 +955,19 @@ document.addEventListener('click', async (e) => {
     return;
   }
   const pin = e.target.closest('[data-pin]');
-  if (pin) { mapPick = mapPick === pin.dataset.pin ? null : pin.dataset.pin; renderMap(); return; }
+  if (pin) {
+    // A pin standing for a group zooms in on it first; a single place opens (or closes) its day.
+    if (pin.dataset.group && mapView && mapView.getZoom() < 14.5) {
+      const ps = mapMarkers.filter((m) => pin.dataset.group.split(',').includes(m.p.id)).map((m) => m.p);
+      const lngs = ps.map((p) => p.lng), lats = ps.map((p) => p.lat);
+      mapView.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: 80, maxZoom: 15 });
+      return;
+    }
+    mapPick = mapPick === pin.dataset.pin ? null : pin.dataset.pin;
+    renderMap();
+    if (mapPick && pin.closest('#mapPanel')) $('mapCard').scrollIntoView({ block: 'start' });
+    return;
+  }
   const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout]'); if (!t) return;
   if (t.dataset.layout) { state.layout = t.dataset.layout; mapPick = null; save(); }
   if (t.dataset.sport) { state.sport = t.dataset.sport; state.tab = 'all'; save(); }

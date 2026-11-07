@@ -464,7 +464,8 @@ test('site: the chart zooms to the day\'s hours; on a phone long days scroll sid
   // Desktop: the whole day fits, no scrolling.
   await page.setViewportSize({ width: 1280, height: 800 });
   assert.ok(await page.locator('#cal').evaluate((el) => el.scrollWidth <= el.clientWidth + 1));
-  await page.locator('#cal .g-axis').first().waitFor();
+  // The breakpoint change redraws the chart; wait for the wider labels.
+  await page.waitForFunction(() => document.querySelector('#cal .g-axis').querySelectorAll('.g-track span').length < 10);
   assert.deepEqual(await axis(), ['6a', '9a', '12p', '3p', '6p', '9p', '11p'], 'wider screens label every 3 hours');
 });
 
@@ -542,14 +543,18 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   const sched = structuredClone(SCHEDULE);
   sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
   sched.venues = [
-    { id: 'gym', name: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7, bookingLink: { sport: 'volleyball', url: 'https://club.podplay.app/book/main', price: '$30/hr' } },
+    { id: 'gym', name: 'Austin North Gym', short: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7, bookingLink: { sport: 'volleyball', url: 'https://club.podplay.app/book/main', price: '$30/hr' } },
     { id: 'beach', name: 'ATX Beach', city: 'Austin', lat: 30.3, lng: -97.75 },
+    { id: 'rec', name: 'Austin Alamo Recreation Center', city: 'Austin', lat: 30.28, lng: -97.71 },
     { id: 'nowhere', name: 'Unmapped Hall', city: 'Austin' },
     { id: 'park', name: 'Morning Park', city: 'Austin', lat: 30.25, lng: -97.8 },
   ];
   const at = (id, venueId, venue, start, end) => ({ ...base, id, sourceId: 'manual', date: TODAY, start, end, title: `Session ${id}`, venueId, venue, city: 'Austin', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
-  sched.sessions = [at('g0', 'gym', 'North Gym', '09:00', '11:00'), at('g1', 'gym', 'North Gym', '18:00', '20:00'), at('g2', 'gym', 'North Gym', '20:00', '22:00'), at('b1', 'beach', 'ATX Beach', '18:30', '20:00'), at('u1', 'nowhere', 'Unmapped Hall', '19:00', '21:00'), at('p1', 'park', 'Morning Park', '08:00', '09:00')];
-  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS });
+  sched.sessions = [at('g0', 'gym', 'North Gym', '09:00', '11:00'), at('g1', 'gym', 'North Gym', '18:00', '20:00'), at('g2', 'gym', 'North Gym', '20:00', '22:00'), at('b1', 'beach', 'ATX Beach', '18:30', '20:00'), at('u1', 'nowhere', 'Unmapped Hall', '19:00', '21:00'), at('p1', 'park', 'Morning Park', '08:00', '09:00'), at('r1', 'rec', 'Alamo Recreation Center', '19:30', '21:00')];
+  // Live courts at North Gym: it's 5pm; court 1 is booked 5–7pm, court 2 5–11pm, so the next free court is at 7pm.
+  const courts = { ...COURTS, venues: [{ id: 'gymcourts', sport: 'volleyball', region: 'austin', calendar: 'https://club.podplay.app/book/main', calendarDay: null, hours: Array(7).fill(['07:00', '23:00']),
+    facilities: [{ id: 'gymcourts', venueId: 'gym', name: 'North Gym', city: 'Austin', surface: 'indoor', courts: [{ name: 'Court 1', days: { [TODAY]: [['17:00', '19:00']] } }, { name: 'Court 2', days: { [TODAY]: [['17:00', '23:00']] } }] }] }] };
+  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, courts });
   const layout = page.locator('#layout');
   assert.equal(await layout.isVisible(), true);
   await layout.locator('[data-layout="map"]').click();
@@ -559,13 +564,19 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   assert.equal(await page.locator('#sessionsPanel').isHidden(), true);
   const pins = page.locator('#map .pin');
   await pins.first().waitFor();
+  // Each pin is just the place (what's on is in the list below and in its label).
   assert.deepEqual((await pins.evaluateAll((els) => els.map((e) => [e.dataset.pin, e.textContent, e.getAttribute('aria-label')]))).sort(), [
-    ['beach', '6:30p', 'ATX Beach: 1 session, next at 6:30pm'],
-    ['gym', '6p +1', 'North Gym: 2 sessions still to come, next at 6pm'], // its 9am session has ended (it's 5pm)
-    ['park', 'Ended', "Morning Park: today's sessions have ended"],
+    ['beach', 'ATX Beach', 'ATX Beach: 1 session · next 6:30pm'],
+    ['gym', 'North Gym', 'Austin North Gym: 2 sessions still to come · next 6pm'], // its own short name; its 9am session has ended (it's 5pm)
+    ['park', 'Morning Park', "Morning Park: Today's sessions have ended"],
+    ['rec', 'Alamo Rec Center', 'Austin Alamo Recreation Center: 1 session · next 7:30pm'], // shortened: no "Austin", "Rec Center"
   ]);
   assert.equal(await page.locator('#map .pin[data-pin="park"]').evaluate((e) => e.classList.contains('done')), true);
-  assert.match(await page.locator('#mapPanel').textContent(), /3 places with volleyball on Oct 25 · tap a pin · 1 more without a location are in the list/);
+  // Under the map, every place as a row: name, town, and what's on.
+  assert.match(await page.locator('#mapPanel .map-hint').textContent(), /^4 places with volleyball today\. Tap one for its day and sign-ups\. 1 more without a location are in the list\.$/);
+  assert.deepEqual(await page.locator('#mapPanel .place-row').evaluateAll((els) => els.map((e) => [e.dataset.pin, e.querySelector('.pr-status').textContent, e.classList.contains('dim')])), [
+    ['beach', '1 session · next 6:30pm', false], ['rec', '1 session · next 7:30pm', false], ['gym', '2 sessions still to come · next 6pm', false], ['park', "Today's sessions have ended", true],
+  ]);
   // Tap a pin: that place's day, with each sign-up and the venue's Book (opened on this day).
   await page.locator('#map .pin[data-pin="gym"]').click();
   const panel = page.locator('#mapPanel');
@@ -574,12 +585,21 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   assert.deepEqual(await panel.locator('.pop-item a.signup').evaluateAll((els) => els.map((e) => e.getAttribute('href'))), [`${SIGNUP}/g0`, `${SIGNUP}/g1`, `${SIGNUP}/g2`]);
   assert.deepEqual(await panel.locator('.pop-item').evaluateAll((els) => els.map((e) => e.classList.contains('past'))), [true, false, false], 'the ended session is dimmed');
   assert.equal(await page.locator('#map .pin[data-pin="gym"]').getAttribute('aria-pressed'), 'true');
-  await page.locator('#map .pin[data-pin="gym"]').click(); // tap again: back to the summary
-  assert.match(await panel.textContent(), /tap a pin/);
+  await panel.locator('.map-back').click(); // back to all places
+  assert.equal(await panel.locator('.place-row').count(), 4);
+  await panel.locator('.place-row[data-pin="beach"]').click(); // a row picks its pin
+  assert.equal(await page.locator('#map .pin[data-pin="beach"]').getAttribute('aria-pressed'), 'true');
+  assert.match(await panel.locator('.g-venue').textContent(), /ATX Beach/);
+  await page.locator('#map .pin[data-pin="beach"]').click(); // tap the pin again: back to the list
+  assert.equal(await panel.locator('.place-row').count(), 4);
   // Court booking: pins are the places to book, labelled with the price.
   await page.locator('[data-view="booking"]').click();
   await page.locator('#map .pin.book').first().waitFor();
-  assert.deepEqual(await page.locator('#map .pin').evaluateAll((els) => els.map((e) => e.textContent)), ['$30/hr']);
+  assert.deepEqual(await page.locator('#map .pin').evaluateAll((els) => els.map((e) => [e.querySelector('b').textContent, e.getAttribute('aria-label')])), [['North Gym', 'Austin North Gym: Courts free 7pm–11pm · $30/hr']]);
+  assert.equal(await panel.locator('.pr-status').textContent(), 'Courts free 7pm–11pm · $30/hr');
+  await panel.locator('.place-row').click();
+  assert.equal(await panel.locator('.map-status').textContent(), 'Courts free 7pm–11pm · $30/hr');
+  await panel.locator('.map-back').click();
   // The view is shareable and remembered; List brings the day's chart and lists back.
   await page.reload();
   await page.locator('#map .pin').first().waitFor();
@@ -587,6 +607,26 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   await page.locator('[data-layout="list"]').click();
   assert.equal(await page.locator('#mapCard').isHidden(), true);
   assert.equal(new URL(page.url()).searchParams.get('layout'), null);
+});
+
+test('site: Map view: pins at the same spot fold into one "+N more" that zooms in when tapped', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
+  sched.venues = [{ id: 'a', name: 'Twin A', city: 'Austin', lat: 30.3, lng: -97.75 }, { id: 'b', name: 'Twin B', city: 'Austin', lat: 30.3001, lng: -97.7501 }, { id: 'far', name: 'Far Park', city: 'Austin', lat: 30.6, lng: -97.4 }];
+  const at = (id, venueId, venue) => ({ ...base, id, sourceId: 'manual', date: TODAY, start: '19:00', end: '21:00', title: id, venueId, venue, city: 'Austin', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
+  sched.sessions = [at('s1', 'a', 'Twin A'), at('s2', 'b', 'Twin B'), at('s3', 'far', 'Far Park')];
+  await open({ index: INDEX, regions: { austin: sched }, maps: { maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.3, 30.78] }] }, url: '/?layout=map' });
+  await page.locator('#map .pin').first().waitFor();
+  await page.waitForTimeout(300);
+  const shown = page.locator('#map .pin:not([hidden])');
+  assert.equal(await shown.count(), 2);
+  const group = page.locator('#map .pin[data-group]');
+  assert.equal(await group.locator('.more').textContent(), '+1 more');
+  assert.match(await group.getAttribute('aria-label'), /1 more here: Twin [AB]\. Tap to zoom in\./);
+  const before = await page.evaluate(() => window.__schelaggMap.getZoom());
+  await group.click();
+  await page.waitForFunction((z) => window.__schelaggMap.getZoom() > z + 2 && !window.__schelaggMap.isMoving(), before, { timeout: 8000 });
 });
 
 test('site: no Map button without a map for the region', async () => {
