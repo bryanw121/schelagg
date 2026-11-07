@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T19:45:52.011Z",
+  "generatedAt": "2026-11-07T19:51:43.431Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T19:43:13.670Z",
+      "checkedAt": "2026-11-07T19:48:54.561Z",
       "count": 262
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T19:43:13.670Z",
+      "checkedAt": "2026-11-07T19:48:54.561Z",
       "count": 109
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T19:43:13.671Z",
+      "checkedAt": "2026-11-07T19:48:54.562Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T19:43:13.671Z",
+      "checkedAt": "2026-11-07T19:48:54.562Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-07T19:43:13.673Z",
+      "checkedAt": "2026-11-07T19:48:54.564Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-07T17:21:40.746Z",
+      "checkedAt": "2026-11-07T19:48:54.564Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-07T17:21:40.781Z",
+      "checkedAt": "2026-11-07T19:48:54.616Z",
       "count": 8
     },
     {
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-07T19:13:12.717Z",
+      "checkedAt": "2026-11-07T19:48:54.909Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T19:43:13.673Z",
+      "checkedAt": "2026-11-07T19:48:55.837Z",
       "count": 32
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T19:43:13.722Z",
+      "checkedAt": "2026-11-07T19:48:56.425Z",
       "count": 15
     },
     {
@@ -115,7 +115,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-07T17:21:43.396Z",
+      "checkedAt": "2026-11-07T19:48:56.744Z",
       "count": 11
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T19:43:14.069Z",
+      "checkedAt": "2026-11-07T19:48:57.334Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T19:43:14.246Z",
+      "checkedAt": "2026-11-07T19:48:57.369Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -13055,7 +13055,10 @@
         "sport": "pickleball",
         "surface": "indoor",
         "url": "https://play.pickleland.com/book/pickleland",
-        "note": "Nine indoor courts. Court rentals advertised from $24/hour; check the selected slot for the final price."
+        "note": "Nine indoor courts. Court rental $24–44/hr by time of day (members $17–31/hr); check the selected slot for the final price.",
+        "price": "$24–44/hr",
+        "source": "https://pickleland.com/pricing",
+        "reviewBy": "2027-01-31"
       },
       "region": "austin"
     },
@@ -13088,7 +13091,10 @@
       "bookingLink": {
         "sport": "pickleball",
         "url": "https://app.getopencourt.com/club/austinpicklehaus/book",
-        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+        "note": "Court reservation $20/hr off-peak, $40/hr peak.",
+        "price": "$20–40/hr",
+        "source": "https://app.getopencourt.com/club/austinpicklehaus",
+        "reviewBy": "2027-01-31"
       },
       "region": "austin"
     },
@@ -13121,7 +13127,10 @@
       "bookingLink": {
         "sport": "pickleball",
         "url": "https://app.courtreserve.com/Online/PublicBookings/15273/Landing",
-        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+        "note": "Off-peak (weekdays 6am–5pm) $30; peak (weekdays after 5pm, weekends and holidays) $40.",
+        "price": "$30–40/hr",
+        "source": "https://picklepitstop.com/",
+        "reviewBy": "2027-01-31"
       },
       "region": "austin"
     },
@@ -13158,7 +13167,7 @@
       },
       "bookingLink": {
         "sport": "pickleball",
-        "url": "https://austinpickleranch.com/plan-a-visit/braker",
+        "url": "https://austinpickleranch.podplay.app/book/braker",
         "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
       },
       "region": "austin"
@@ -13196,7 +13205,7 @@
       },
       "bookingLink": {
         "sport": "pickleball",
-        "url": "https://eastsidepaddleclub.com/",
+        "url": "https://espc.podplay.app/book/springdale",
         "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
       },
       "region": "austin"
@@ -13224,8 +13233,11 @@
       },
       "bookingLink": {
         "sport": "pickleball",
-        "url": "https://app.getopencourt.com/club/holy-pickle",
-        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+        "url": "https://app.getopencourt.com/club/holy-pickle/book",
+        "note": "Court reservation $40/hr.",
+        "price": "$40/hr",
+        "source": "https://app.getopencourt.com/club/holy-pickle",
+        "reviewBy": "2027-01-31"
       },
       "region": "austin"
     },
@@ -13419,7 +13431,8 @@
         "url": "https://playtennis.usta.com/austintenniscenter/Booking/BookByDate",
         "note": "Pickleball court fee: $5 per person. Up to 90 minutes for singles or 120 minutes for doubles. Reserve through the venue’s USTA booking system.",
         "source": "https://playtennis.usta.com/austintenniscenter/Booking/CourtPricing",
-        "reviewBy": "2026-11-30"
+        "reviewBy": "2026-11-30",
+        "price": "$5/person"
       },
       "region": "austin"
     },
@@ -13434,7 +13447,8 @@
         "sport": "pickleball",
         "url": "https://braker.bouldinacres.com/pickleball",
         "note": "Court rental: Mon–Thu 11am–6pm $10/half-hour; evenings and Fri–Sun $20/half-hour. Monday/Wednesday 6–10pm reserved for leagues. Book up to one week ahead; customer reservations required. Early 7–11am bookings apply only to South Lamar.",
-        "reviewBy": "2026-11-30"
+        "reviewBy": "2026-11-30",
+        "price": "$20–40/hr"
       },
       "region": "austin"
     },
