@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-07T07:04:46.554Z",
+  "generatedAt": "2026-11-07T07:11:24.000Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -439,7 +439,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -468,7 +468,7 @@
       "signup_label": "Venue details",
       "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -2210,7 +2210,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -2971,7 +2971,7 @@
       "signup_label": "Venue details",
       "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -3253,7 +3253,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -3986,7 +3986,7 @@
       "signup_label": "Venue details",
       "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -4633,7 +4633,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -6051,7 +6051,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -6392,7 +6392,7 @@
       "signup_label": "Venue details",
       "note": "Covered outdoor pavilion with temporary court markers. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play",
@@ -6421,7 +6421,7 @@
       "signup_label": "Venue details",
       "note": "Outdoor tennis courts. Equipment checkout ends at 6pm, before play ends. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play",
@@ -6737,6 +6737,35 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "pickleball-austin-dove-springs-rec-2-2026-11-13",
+      "session_id": "pickleball-austin-dove-springs-rec-2-2026-11-13",
+      "source_id": "austin-city-pickleball",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "George Morales Dove Springs Recreation Center · Pickleball open play",
+      "venue": "George Morales Dove Springs Recreation Center",
+      "city": "Austin",
+      "level": null,
+      "price": "Price not published — confirm with venue",
+      "starts_at": "2026-11-13T15:00:00.000Z",
+      "ends_at": "2026-11-13T18:00:00.000Z",
+      "signup_url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
+      "signup_label": "Venue details",
+      "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "canceled": false,
+      "verified_at": "2026-11-07",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "scheduleBasis": "published_recurring_hours",
+        "reviewBy": "2026-11-30"
+      },
+      "venue_id": "austin-dove-springs-rec",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7125,7 +7154,7 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -8151,7 +8180,7 @@
       "signup_label": "Book on Austin Velocity",
       "note": "Season pass or drop in. Updates post on Instagram @austinvelocityadults.",
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -10284,7 +10313,7 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -11149,7 +11178,7 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -11608,7 +11637,7 @@
       "signup_label": "Drop in · or get membership",
       "note": null,
       "canceled": false,
-      "verified_at": "2026-11-06",
+      "verified_at": "2026-11-07",
       "attributes": {
         "surface": "sand",
         "type": "Open play"

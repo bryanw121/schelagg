@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T07:04:46.554Z",
+  "generatedAt": "2026-11-07T07:11:24.000Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T07:04:30.422Z",
+      "checkedAt": "2026-11-07T07:11:04.509Z",
       "count": 266
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T07:04:30.423Z",
+      "checkedAt": "2026-11-07T07:11:04.509Z",
       "count": 10
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T07:04:30.423Z",
+      "checkedAt": "2026-11-07T07:11:04.510Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T07:04:30.423Z",
+      "checkedAt": "2026-11-07T07:11:04.513Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-07T07:04:30.424Z",
+      "checkedAt": "2026-11-07T07:11:04.513Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:27.229Z",
+      "checkedAt": "2026-11-07T07:11:04.514Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:27.253Z",
+      "checkedAt": "2026-11-07T07:11:04.541Z",
       "count": 8
     },
     {
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-07T07:04:30.424Z",
+      "checkedAt": "2026-11-07T07:11:04.896Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T07:04:30.460Z",
+      "checkedAt": "2026-11-07T07:11:05.749Z",
       "count": 32
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T07:04:30.798Z",
+      "checkedAt": "2026-11-07T07:11:05.961Z",
       "count": 15
     },
     {
@@ -115,7 +115,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:30.770Z",
+      "checkedAt": "2026-11-07T07:11:06.143Z",
       "count": 11
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T07:04:31.842Z",
+      "checkedAt": "2026-11-07T07:11:06.831Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T07:04:31.887Z",
+      "checkedAt": "2026-11-07T07:11:06.985Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -8201,7 +8201,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -8229,7 +8229,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -8256,7 +8256,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -9658,7 +9658,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-alamo-rec",
       "status": "scheduled"
     },
@@ -9685,7 +9685,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-dottie-jordan-rec",
       "status": "scheduled"
     },
@@ -9712,7 +9712,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -9739,7 +9739,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -9766,7 +9766,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-northwest-rec",
       "status": "scheduled"
     },
@@ -9793,7 +9793,34 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-dove-springs-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-dove-springs-rec-2-2026-11-13",
+      "sport": "pickleball",
+      "date": "2026-11-13",
+      "start": "09:00",
+      "end": "12:00",
+      "title": "George Morales Dove Springs Recreation Center · Pickleball open play",
+      "venue": "George Morales Dove Springs Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-dove-springs-rec",
       "status": "scheduled"
     },
@@ -9820,7 +9847,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -9847,7 +9874,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -9874,7 +9901,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -9901,7 +9928,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -10104,7 +10131,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-06",
+      "sourceChanged": "2026-11-07",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -10552,6 +10579,8 @@
       "name": "Pickleland",
       "city": "Pflugerville",
       "address": "21427 Martin Ln, Pflugerville, TX 78660",
+      "lat": 30.48954,
+      "lng": -97.55618,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://pickleland.com/calendar",
@@ -10579,6 +10608,8 @@
       "name": "Austin PickleHaus",
       "city": "Pflugerville",
       "address": "18629 Weiss Ln, Building 2, Pflugerville, TX 78660",
+      "lat": 30.44797,
+      "lng": -97.56099,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://app.getopencourt.com/club/austinpicklehaus/events",
@@ -10610,6 +10641,8 @@
       "name": "Pickle Pit Stop",
       "city": "Austin",
       "address": "12915 Nutty Brown Rd, Austin, TX 78737",
+      "lat": 30.19321,
+      "lng": -97.97165,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
@@ -10641,6 +10674,8 @@
       "name": "Austin Pickle Ranch",
       "city": "Austin",
       "address": "11000 Middle Fiskville Rd, Building B, Austin, TX 78753",
+      "lat": 30.37374,
+      "lng": -97.67913,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://austinpickleranch.podplay.app/community/events",
@@ -10677,6 +10712,8 @@
       "name": "Eastside Paddle Club",
       "city": "Austin",
       "address": "979 Springdale Rd, Suite 120, Austin, TX 78702",
+      "lat": 30.26137,
+      "lng": -97.69818,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://espc.podplay.app/community/events",
@@ -10713,6 +10750,8 @@
       "name": "Holy Pickle",
       "city": "Austin",
       "address": "7001 Burnet Rd, Austin, TX 78757",
+      "lat": 30.34676,
+      "lng": -97.73652,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://app.getopencourt.com/club/holy-pickle/events",
@@ -10739,6 +10778,8 @@
       "name": "Alamo Recreation Center",
       "city": "Austin",
       "address": "2100 Alamo St, Austin, TX 78722",
+      "lat": 30.2822,
+      "lng": -97.71979,
       "region": "austin"
     },
     {
@@ -10746,6 +10787,8 @@
       "name": "Dottie Jordan Recreation Center",
       "city": "Austin",
       "address": "2803 Loyola Lane, Austin, TX 78723",
+      "lat": 30.31487,
+      "lng": -97.67401,
       "region": "austin"
     },
     {
@@ -10753,6 +10796,8 @@
       "name": "Montopolis Recreation and Community Center",
       "city": "Austin",
       "address": "1200 Montopolis Dr, Austin, TX 78741",
+      "lat": 30.23232,
+      "lng": -97.6989,
       "region": "austin"
     },
     {
@@ -10760,6 +10805,8 @@
       "name": "Northwest Recreation Center",
       "city": "Austin",
       "address": "2913 Northland Dr, Austin, TX 78757",
+      "lat": 30.33458,
+      "lng": -97.75173,
       "region": "austin"
     },
     {
@@ -10767,6 +10814,8 @@
       "name": "George Morales Dove Springs Recreation Center",
       "city": "Austin",
       "address": "5801 Ainez Dr, Austin, TX 78744",
+      "lat": 30.18754,
+      "lng": -97.73957,
       "region": "austin"
     },
     {
@@ -10774,6 +10823,8 @@
       "name": "Gus Garcia Recreation Center",
       "city": "Austin",
       "address": "1201 E Rundberg Ln, Austin, TX 78753",
+      "lat": 30.35443,
+      "lng": -97.68222,
       "region": "austin"
     },
     {
@@ -10781,6 +10832,8 @@
       "name": "Georgetown Recreation Center",
       "city": "Georgetown",
       "address": "1003 N Austin Ave, Georgetown, TX 78626",
+      "lat": 30.65101,
+      "lng": -97.67498,
       "region": "austin"
     },
     {
@@ -10788,6 +10841,8 @@
       "name": "Georgetown Tennis Center",
       "city": "Georgetown",
       "address": "400 Serenada Dr, Georgetown, TX 78628",
+      "lat": 30.68653,
+      "lng": -97.68544,
       "region": "austin"
     },
     {
@@ -10795,36 +10850,48 @@
       "name": "Leander Activity Center",
       "city": "Leander",
       "address": "11880 Hero Way W, Suite 600, Leander, TX",
+      "lat": 30.57837,
+      "lng": -97.87053,
       "region": "austin"
     },
     {
       "id": "volleyworld-georgetown",
       "name": "Volleyworld (Georgetown)",
       "city": "Georgetown",
+      "lat": 30.70273,
+      "lng": -97.83485,
       "region": "austin"
     },
     {
       "id": "volleyworld-pflugerville",
       "name": "Volleyworld (Pflugerville)",
       "city": "Pflugerville",
+      "lat": 30.48951,
+      "lng": -97.55618,
       "region": "austin"
     },
     {
       "id": "atx-beach",
       "name": "ATX Beach",
       "city": "North Austin",
+      "lat": 30.37374,
+      "lng": -97.67913,
       "region": "austin"
     },
     {
       "id": "crossover",
       "name": "The Crossover",
       "city": "Cedar Park",
+      "lat": 30.55084,
+      "lng": -97.81646,
       "region": "austin"
     },
     {
       "id": "crossover-ice",
       "name": "Ice & Field at The Crossover",
       "city": "Cedar Park",
+      "lat": 30.55084,
+      "lng": -97.81646,
       "parent": "crossover",
       "region": "austin"
     },
@@ -10832,48 +10899,64 @@
       "id": "high-point",
       "name": "High Point Center",
       "city": "Leander",
+      "lat": 30.52876,
+      "lng": -97.84146,
       "region": "austin"
     },
     {
       "id": "treehouse",
       "name": "Roots · Treehouse Gym",
       "city": "N. Austin",
+      "lat": 30.45395,
+      "lng": -97.67648,
       "region": "austin"
     },
     {
       "id": "mueller-lake-park",
       "name": "Mueller Lake Park",
       "city": "Austin",
+      "lat": 30.30074,
+      "lng": -97.70275,
       "region": "austin"
     },
     {
       "id": "hanovers",
       "name": "Hanovers Draught Haus",
       "city": "Pflugerville",
+      "lat": 30.44075,
+      "lng": -97.62029,
       "region": "austin"
     },
     {
       "id": "chaparral-northcross",
       "name": "Chaparral Ice",
       "city": "N. Austin (Northcross)",
+      "lat": 30.35739,
+      "lng": -97.73384,
       "region": "austin"
     },
     {
       "id": "bee-cave-on-ice",
       "name": "Bee Cave on Ice",
       "city": "Bee Cave",
+      "lat": 30.30789,
+      "lng": -97.94026,
       "region": "austin"
     },
     {
       "id": "four-seasons-austin",
       "name": "Four Seasons Hotel",
       "city": "Downtown",
+      "lat": 30.26265,
+      "lng": -97.74219,
       "region": "austin"
     },
     {
       "id": "austin-atc",
       "name": "Austin Tennis & Pickleball Center",
       "city": "Austin",
+      "lat": 30.31145,
+      "lng": -97.63869,
       "bookingLink": {
         "sport": "pickleball",
         "surface": "outdoor",
@@ -10889,6 +10972,8 @@
       "name": "Bouldin Acres · Braker",
       "city": "Austin",
       "address": "1806 W Braker Ln, Austin, TX 78758",
+      "lat": 30.39127,
+      "lng": -97.70497,
       "bookingLink": {
         "sport": "pickleball",
         "url": "https://braker.bouldinacres.com/pickleball",
@@ -10902,6 +10987,8 @@
       "name": "The Crossover Diamond Courts",
       "city": "Cedar Park",
       "address": "1717 Scottsdale Dr, Cedar Park, TX 78641",
+      "lat": 30.55084,
+      "lng": -97.81646,
       "calendarLink": {
         "sport": "pickleball",
         "url": "https://www.austinvelocity.com/rentals/pickleball",
