@@ -475,6 +475,8 @@ const fmtMiles = (mi) => (mi < 0.95 ? '<1 mi' : `${mi < 9.95 ? mi.toFixed(1) : M
  */
 /** A session's title without a leading repeat of its venue's name ("Gus Garcia Recreation Center · Pickleball open play" → "Pickleball open play"). */
 const ownTitle = (x) => x.title.replace(new RegExp(`^${x.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[·:–—-]?\\s*`, 'i'), '').trim();
+/** The sessions behind a tapped chart block: time, title, level, price, and each one's sign-up. */
+const popHtml = (items, id) => `<div class="g-pop" id="${id}">${items.map((x) => `<div class="pop-item"><span class="pop-t">${fmtT(x.start)}–${fmtT(x.end)}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('')}</div>`;
 let openBlock = null; // the chart block whose sessions are listed (tap again to close); reset with the day
 
 function glanceRows(sess, nowLine) {
@@ -510,7 +512,7 @@ function glanceRows(sess, nowLine) {
       const short = n > 1 ? `×${n}` : fmtRange(hhmm(b.s), hhmm(b.s)).split('–')[1];
       const tip = n > 1 ? `${first.venue}: ${n} sessions, ${fmtT(hhmm(b.s))} to ${fmtT(hhmm(b.e))}` : `${first.venue}: ${b.items[0].title}, ${fmtT(b.items[0].start)} to ${fmtT(b.items[0].end)}`;
       const id = `pop-${blocks.indexOf(b)}-${rowKey.replace(/[^a-z0-9]/gi, '')}`;
-      if (open) pop = `<div class="g-pop" id="${id}">${b.items.map((x) => `<div class="pop-item"><span class="pop-t">${fmtT(x.start)}–${fmtT(x.end)}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('')}</div>`;
+      if (open) pop = popHtml(b.items, id);
       return `<button type="button" class="g-bar" data-block="${esc(key)}" aria-expanded="${open}" aria-controls="${id}" title="${esc(tip)}" aria-label="${esc(tip)}" data-label="${esc(label)}" data-short="${esc(short)}" style="--c:${tabOf(b.items[0]).c};left:${l}%;width:${w}%">${esc(label)}</button>`;
     }).join('');
     html += `<div class="g-row"><span class="g-lab" title="${esc(first.venue)}">${esc(first.venue)}<small>${esc(sub)}</small></span><div class="g-track">${bars}${nowLine}</div></div>${pop}`;
@@ -548,23 +550,36 @@ function venueCourts(f, iso, dow, nowLine) {
   }
   const shade = (free) => (free === n ? 'all' : free ? 'some' : 'none');
   const word = (free) => (free === n ? (n > 1 ? `all ${n} courts free` : 'free') : free ? `${free} of ${n} courts free` : 'all booked');
-  const strip = segs.map(({ a, b, free }) => `<div class="g-seg ${shade(free)}" style="${span(a, b)}" title="${fmtT(hhmm(a))}–${fmtT(hhmm(b))}: ${word(free)}">${free && free < n ? `${free}/${n}` : ''}</div>`).join('');
+  // Shading only: three levels read at a glance; exact counts are in the title and the court lanes.
+  const strip = segs.map(({ a, b, free }) => `<div class="g-seg ${shade(free)}" style="${span(a, b)}" title="${fmtT(hhmm(a))}–${fmtT(hhmm(b))}: ${word(free)}"></div>`).join('');
   // A public session on these courts: one block, wherever it sits.
   const used = meets.map((m) => ({ m, s: mins(m.start), e: mins(m.end) || 1440 })).filter(({ s, e }) => busy.some((bl) => bl.some(([a, b]) => meetFor(a, b) && Math.abs(a - s) <= 15 && Math.abs(b - e) <= 15)));
-  const meetBlocks = used.map(({ m, s, e }) => `<a class="g-book open" href="${esc(m.signup.url)}" target="_blank" rel="noopener" style="${span(s, e)}" title="${esc(m.title)}: ${fmtT(m.start)}–${fmtT(m.end)}, sign up">${esc(/open play/i.test(m.title) ? 'Open play' : 'Sign up')}</a>`).join('');
+  // Public sessions on these courts, overlapping ones merged: tap a block to list them with sign-ups.
+  const clusters = [];
+  for (const u of [...used].sort((a, b) => a.s - b.s)) {
+    const c = clusters.at(-1);
+    if (c && u.s < c.e) { c.items.push(u.m); c.e = Math.max(c.e, u.e); } else clusters.push({ s: u.s, e: u.e, items: [u.m] });
+  }
+  let pop = '';
+  const meetBlocks = clusters.map((c, i) => {
+    const key = `court|${f.id}|${c.s}`, open = openBlock === key, k = c.items.length, id = `pop-court-${i}-${f.id.replace(/[^a-z0-9]/gi, '')}`;
+    const label = k > 1 ? `${k} sessions` : /open play/i.test(c.items[0].title) ? 'Open play' : 'Session';
+    const tip = k > 1 ? `${k} sessions, ${fmtT(hhmm(c.s))} to ${fmtT(hhmm(c.e))}` : `${c.items[0].title}, ${fmtT(c.items[0].start)} to ${fmtT(c.items[0].end)}`;
+    if (open) pop = popHtml(c.items, id);
+    return `<button type="button" class="g-bar g-meet" data-block="${esc(key)}" aria-expanded="${open}" aria-controls="${id}" title="${esc(tip)}" aria-label="${esc(f.name)}: ${esc(tip)}" data-label="${esc(label)}" data-short="${k > 1 ? `×${k}` : 'Join'}" style="--c:var(--accent);${span(c.s, c.e)}">${esc(label)}</button>`;
+  }).join('');
 
   const anyFree = segs.filter((x) => x.free).reduce((out, x) => { const l = out.at(-1); if (l && l[1] === x.a) l[1] = x.b; else out.push([x.a, x.b]); return out; }, []).filter(([a, b]) => b - a >= 30);
   const freeText = anyFree.length ? `free <b>${anyFree.map(([a, b]) => `${fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}</b>` : '<b class="full">fully booked</b>';
-  const meetText = used.map(({ m }) => `<a class="book" href="${esc(m.signup.url)}" target="_blank" rel="noopener">${esc(/open play/i.test(m.title) ? 'Open play' : m.title)} ${fmtT(m.start)}–${fmtT(m.end)} ↗</a>`).join(' · ');
   const stale = f.venue.stale ? ' · <b class="full">showing last good data</b>' : '';
   const mi = milesTo(f.venueId);
   const where = `${esc(f.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}`;
   const expanded = openFacs.has(f.id), laneId = `lanes-${f.id}`;
   const freeAria = segs.map(({ a, b, free }) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))} ${word(free)}`).join('; ');
 
-  let html = `<div class="g-venue"><span class="v-name">${esc(f.name)}<small>${where} · ${freeText}${meetText ? ` · ${meetText}` : ''}${stale}</small></span>${book}</div>`;
+  let html = `<div class="g-venue"><span class="v-name">${esc(f.name)}<small>${where} · ${freeText}${stale}</small></span>${book}</div>`;
   html += `<div class="g-row"><button type="button" class="g-lab g-toggle" data-fac="${esc(f.id)}" aria-expanded="${expanded}" aria-controls="${laneId}">${n} court${n === 1 ? '' : 's'} <span aria-hidden="true">${expanded ? '▴' : '▾'}</span></button>`
-    + `<div class="g-track avail" role="img" aria-label="${esc(f.name)}: ${esc(freeAria)}">${closedBlocks}${strip}${meetBlocks}${nowLine}</div></div>`;
+    + `<div class="g-track avail"><div class="g-avail" role="img" aria-label="${esc(f.name)}: ${esc(freeAria)}">${closedBlocks}${strip}</div>${meetBlocks}${nowLine}</div></div>${pop}`;
   if (!expanded) return html;
   const lanes = f.courts.map((c, i) => {
     const bl = busy[i].map(([s, e]) => {
