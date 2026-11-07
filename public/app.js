@@ -27,6 +27,8 @@ const SPORTS = {
     label: 'Pickleball', group: 'Open play', courts: false, noun: 'open-play sessions',
     by: 'surface',
     tabs: { indoor: { label: 'Indoor', c: 'var(--indoor)' }, outdoor: { label: 'Outdoor', c: 'var(--grass)' } },
+    // Filtered by level, not surface: almost all of it is indoor, and level is what decides a session.
+    filter: { tabs: { beginner: { label: 'Beginner' }, intermediate: { label: 'Intermediate' }, advanced: { label: 'Advanced' } }, match: (x, tab) => { const b = levelBands(x); return !b.length || b.includes(tab); } },
     footer: 'Confirm times, final prices, skill requirements and availability with the venue before you go. Directory listings and published recurring hours are labeled.',
     empty: 'Try another day or surface. Only source-checked open play is listed; court rentals and general park hours are not scheduled sessions.',
   },
@@ -39,6 +41,35 @@ function tabOf(x) {
   if (x.surface === 'unspecified') return { label: 'Court type unlisted', c: 'var(--muted)' };
   if (!sp.by) return { label: x.type || sp.label, c: sp.color };
   return sp.tabs[x[sp.by]] ?? { label: x[sp.by] || 'Other', c: 'var(--muted)' };
+}
+/** The filter buttons a sport offers: its level filter if it has one, else its surface tabs. */
+const tabsOf = (sport) => SPORTS[sport].filter?.tabs ?? SPORTS[sport].tabs;
+/**
+ * Pickleball levels, read from the venue's own words, in order: Beginner / Intermediate / Advanced in
+ * the title or level; else DUPR-style numbers (under 3.0 beginner, 3.0–3.99 intermediate, 4.0 up
+ * advanced; "3.25+" spans upward); else "Level 1" beginner, 2–3 intermediate, 4+ advanced. Venues
+ * label levels differently, so this is a best guess, and a session that states no level ([] here)
+ * shows under every level.
+ */
+function levelBands(x) {
+  const s = `${x.level || ''} ${x.title || ''}`.toLowerCase();
+  const out = new Set();
+  if (/beginner|novice|intro/.test(s)) out.add('beginner');
+  if (/intermediate/.test(s)) out.add('intermediate');
+  if (/advanced/.test(s)) out.add('advanced');
+  if (!out.size) {
+    const nums = [...s.replace(/level \d/g, '').matchAll(/(?<![\d.$])([2-5](?:\.\d{1,2})?)(\+?)(?![\d.])/g)].map((m) => ({ n: +m[1], up: !!m[2] }));
+    if (nums.length) {
+      const lo = Math.min(...nums.map((m) => m.n)), hi = nums.some((m) => m.up) ? 5.5 : Math.max(...nums.map((m) => m.n));
+      const BANDS = ['beginner', 'intermediate', 'advanced'], band = (n) => (n < 3 ? 0 : n < 4 ? 1 : 2);
+      BANDS.slice(band(lo), band(hi) + 1).forEach((b) => out.add(b));
+    }
+  }
+  if (!out.size) {
+    const m = s.match(/level (\d)/);
+    if (m) out.add(+m[1] <= 1 ? 'beginner' : +m[1] <= 3 ? 'intermediate' : 'advanced');
+  }
+  return [...out];
 }
 const cap = (t) => String(t).charAt(0).toUpperCase() + String(t).slice(1);
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -93,6 +124,8 @@ function edges() {
   const cal = $('cal');
   cal.classList.toggle('more-right', cal.scrollLeft + cal.clientWidth < cal.scrollWidth - 2);
   cal.classList.toggle('more-left', cal.scrollLeft > 2);
+  // A tapped block's session list spans what's visible, not the whole scrollable day (clear of the right fade).
+  cal.style.setProperty('--vis', `${cal.clientWidth - (cal.scrollWidth > cal.clientWidth + 2 ? 34 : 6)}px`);
 }
 $('cal').addEventListener('scroll', edges, { passive: true });
 let fitTimer;
@@ -129,7 +162,7 @@ try {
   if (typeof s.region === 'string') state.region = s.region;
   if (SPORTS[s.sport]) state.sport = s.sport;
   const tab = s.tab ?? s.surf; // `surf` from before skating
-  if (tab && SPORTS[state.sport].tabs[tab]) state.tab = tab;
+  if (tab && tabsOf(state.sport)[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
   if (s.view === 'booking') state.view = s.view;
 } catch {}
@@ -168,7 +201,12 @@ function freshness(x, iso) {
   return { k: 'stale', l: `Stale · ${age}d` };
 }
 const hidden = (f) => !state.showAll && (f.k === 'expired' || f.k === 'unverified' || f.k === 'canceled');
-const matchTab = (x) => state.tab === 'all' || !byOf(x) || x[byOf(x)] === state.tab;
+const matchTab = (x) => {
+  const sp = SPORTS[sportOf(x)];
+  if (state.tab === 'all' || !tabsOf(sportOf(x))[state.tab]) return true;
+  if (sp.filter) return sp.filter.match(x, state.tab);
+  return !sp.by || x[sp.by] === state.tab;
+};
 
 function sessionsOn(iso, { ignoreTab = false } = {}) {
   const dn = DAYS[dowOf(iso)];
@@ -256,11 +294,13 @@ function renderSports() {
 
 function renderTabs() {
   const sp = SPORTS[state.sport];
-  $('tabs').hidden = !sp.by;
+  // A level filter means nothing for court booking, so it isn't shown there.
+  $('tabs').hidden = !sp.by || (sp.filter && state.view === 'booking');
   if (!sp.by) { $('tabs').innerHTML = ''; return; }
-  const opts = [['all', 'All', null], ...Object.entries(sp.tabs).map(([k, v]) => [k, v.label, v.c])];
+  const opts = [['all', sp.filter ? 'All levels' : 'All', null], ...Object.entries(tabsOf(state.sport)).map(([k, v]) => [k, v.label, v.c])];
+  const isIn = (x, k) => k === 'all' || (sp.filter ? sp.filter.match(x, k) : x[sp.by] === k);
   $('tabs').innerHTML = opts.map(([k, l, c]) => {
-    const n = state.view === 'booking' ? 0 : sessionsOn(NOW.iso, { ignoreTab: true }).filter((x) => (k === 'all' || x[sp.by] === k) && !hidden(x.f)).length;
+    const n = state.view === 'booking' ? 0 : sessionsOn(NOW.iso, { ignoreTab: true }).filter((x) => isIn(x, k) && !hidden(x.f)).length;
     return `<button class="tab" aria-pressed="${state.tab === k}" data-tab="${esc(k)}" ${c ? `style="--c:${c}"` : ''}>${c ? '<span class="dot"></span>' : ''}${l}<span class="n">${n || ''}</span></button>`;
   }).join('');
 }
@@ -311,7 +351,7 @@ function renderList() {
   const hiddenN = all.length - shown.length;
   if (!shown.length) {
     const sp = SPORTS[state.sport];
-    const label = state.tab === 'all' || !sp.tabs[state.tab] ? '' : sp.tabs[state.tab].label.toLowerCase() + ' ';
+    const label = state.tab === 'all' || !tabsOf(state.sport)[state.tab] ? '' : tabsOf(state.sport)[state.tab].label.toLowerCase() + ' ';
     const hint = !sp.courts ? sp.empty
       : state.tab === 'grass' ? `Grass has no scheduled play${region ? ` in ${esc(region.name.split(',')[0])}` : ''}. Choose Court booking to find public courts.` : 'Choose Court booking to see rental availability and free public courts.';
     html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
@@ -341,7 +381,7 @@ function renderCalendarModes() {
   $('sessionsPanel').hidden = state.view === 'booking';
   $('sessionFreshness').hidden = state.view === 'booking';
   const venues = (schedule?.venues || []).filter((v) => v.bookingLink?.sport === state.sport
-    && /^https?:\/\//.test(v.bookingLink.url) && (state.tab === 'all' || !v.bookingLink.surface || v.bookingLink.surface === 'mixed' || v.bookingLink.surface === state.tab));
+    && /^https?:\/\//.test(v.bookingLink.url) && (state.tab === 'all' || SPORTS[state.sport].filter || !v.bookingLink.surface || v.bookingLink.surface === 'mixed' || v.bookingLink.surface === state.tab));
   $('bookingCalendarsCard').hidden = state.view !== 'booking';
   // One line per venue: name, town, distance, a Book button. A note shared by several venues is said
   // once above the list; a venue's own note (its price, its courts) and its address fold under Details.
@@ -430,6 +470,10 @@ const fmtMiles = (mi) => (mi < 0.95 ? '<1 mi' : `${mi < 9.95 ? mi.toFixed(1) : M
  * bar on it. Sessions at the same place that overlap (two courts at once) get extra lanes under
  * the first, so bars never cover each other.
  */
+/** A session's title without a leading repeat of its venue's name ("Gus Garcia Recreation Center · Pickleball open play" → "Pickleball open play"). */
+const ownTitle = (x) => x.title.replace(new RegExp(`^${x.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[·:–—-]?\\s*`, 'i'), '').trim();
+let openBlock = null; // the chart block whose sessions are listed (tap again to close); reset with the day
+
 function glanceRows(sess, nowLine) {
   const groups = new Map();
   for (const x of sess) {
@@ -443,38 +487,37 @@ function glanceRows(sess, nowLine) {
   if (here) places.sort((a, b) => (a.mi == null) - (b.mi == null) || (a.mi != null && feltMiles(a.list, a.mi) - feltMiles(b.list, b.mi)));
   let html = '';
   for (const { list, mi } of places) {
-    const lanes = [];
-    for (const x of list) { // already sorted by start
-      const lane = lanes.find((l) => mins(l[l.length - 1].end) <= mins(x.start));
-      if (lane) lane.push(x); else lanes.push([x]);
-    }
     const first = list[0];
-    // The line under the name: the rink, the one session's title (without a repeat of the venue name), or a count.
-    const own = list.length === 1 ? first.title.replace(new RegExp(`^${first.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[·:–—-]?\\s*`, 'i'), '') : '';
-    const what = first.rink || (list.length === 1 ? own || '1 session' : `${list.length} sessions`);
+    const what = first.rink || (list.length === 1 ? ownTitle(first) || '1 session' : `${list.length} sessions`);
     const sub = mi == null ? what : `${what} · ${fmtMiles(mi)}`;
-    lanes.forEach((lane, i) => {
-      const bars = lane.map((x) => {
-        const l = pct(mins(x.start)), w = +(pct(mins(x.end)) - l).toFixed(2);
-        const style = `--c:${tabOf(x).c};left:${l}%;width:${w}%`;
-        const full = `${fmtT(x.start)}–${fmtT(x.end)}`;
-        const label = fmtRange(x.start, x.end);
-        const short = fmtRange(x.start, x.start).split('–')[1];
-        const tip = `${x.title} · ${full}${x.signup?.label ? ` · ${x.signup.label}` : ''}`;
-        return x.signup?.url
-          ? `<a class="g-bar" href="${esc(x.signup.url)}" target="_blank" rel="noopener" title="${esc(tip)}" aria-label="${esc(tip)}" data-label="${esc(label)}" data-short="${esc(short)}" style="${style}">${label}</a>`
-          : `<div class="g-bar" title="${esc(tip)}" data-label="${esc(label)}" data-short="${esc(short)}" style="${style}">${label}</div>`;
-      }).join('');
-      const aria = `${first.venue}: ${lane.map((x) => `${x.title} ${fmtT(x.start)} to ${fmtT(x.end)}`).join(', ')}`;
-      const lab = i === 0 ? `<span class="g-lab" title="${esc(first.venue)}">${esc(first.venue)}<small>${esc(sub)}</small></span>` : '<span class="g-lab" aria-hidden="true"></span>';
-      html += `<div class="g-row">${lab}<div class="g-track" role="img" aria-label="${esc(aria)}">${bars}${nowLine}</div></div>`;
-    });
+    // One row per venue. Sessions that overlap (Austin Pickle Ranch's five levels at 9am) become one
+    // block with a count; tapping a block lists its sessions under the row, each with its sign-up.
+    const blocks = [];
+    for (const x of list) { // already sorted by start
+      const b = blocks.at(-1), s = mins(x.start), e = mins(x.end) || 1440;
+      if (b && s < b.e) { b.items.push(x); b.e = Math.max(b.e, e); } else blocks.push({ s, e, items: [x] });
+    }
+    const rowKey = `${first.venueId || first.venue}|${first.rink || ''}`;
+    let pop = '';
+    const bars = blocks.map((b) => {
+      const key = `${rowKey}|${b.s}`, n = b.items.length, open = openBlock === key;
+      const l = pct(b.s), w = +(pct(b.e) - l).toFixed(2);
+      const range = fmtRange(hhmm(b.s), hhmm(b.e));
+      const label = n > 1 ? `${range} ×${n}` : range;
+      const short = n > 1 ? `×${n}` : fmtRange(hhmm(b.s), hhmm(b.s)).split('–')[1];
+      const tip = n > 1 ? `${first.venue}: ${n} sessions, ${fmtT(hhmm(b.s))} to ${fmtT(hhmm(b.e))}` : `${first.venue}: ${b.items[0].title}, ${fmtT(b.items[0].start)} to ${fmtT(b.items[0].end)}`;
+      const id = `pop-${blocks.indexOf(b)}-${rowKey.replace(/[^a-z0-9]/gi, '')}`;
+      if (open) pop = `<div class="g-pop" id="${id}">${b.items.map((x) => `<div class="pop-item"><span class="pop-t">${fmtT(x.start)}–${fmtT(x.end)}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('')}</div>`;
+      return `<button type="button" class="g-bar" data-block="${esc(key)}" aria-expanded="${open}" aria-controls="${id}" title="${esc(tip)}" aria-label="${esc(tip)}" data-label="${esc(label)}" data-short="${esc(short)}" style="--c:${tabOf(b.items[0]).c};left:${l}%;width:${w}%">${esc(label)}</button>`;
+    }).join('');
+    html += `<div class="g-row"><span class="g-lab" title="${esc(first.venue)}">${esc(first.venue)}<small>${esc(sub)}</small></span><div class="g-track">${bars}${nowLine}</div></div>${pop}`;
   }
   return html;
 }
 
 function renderGlance() {
   const iso = WEEK[state.di], isToday = state.di === 0, dow = dowOf(iso);
+  if ($('cal').dataset.key !== `${state.sport}|${state.view}|${iso}|${state.tab}`) openBlock = null;
   $('calTitle').textContent = `${state.view === 'booking' ? 'Court bookings' : state.sport === 'ice_skating' ? 'Public skate calendar' : 'Open-play calendar'} · ${isToday ? 'today' : fmtDate(iso, { weekday: 'short', month: 'short', day: 'numeric' })}`;
   const sess = sessionsOn(iso).filter((x) => !hidden(x.f) && x.start && x.end).sort((a, b) => a.start.localeCompare(b.start));
   // Court calendars (Skedda) are volleyball courts; other sports have none yet. Only this region's.
@@ -487,7 +530,7 @@ function renderGlance() {
   let html = axisRow();
 
   if (sess.length && state.view !== 'booking') {
-    html += `<div class="g-group">${SPORTS[state.sport].group}<small>tap a bar for details</small></div>`;
+    html += `<div class="g-group">${SPORTS[state.sport].group}<small>tap a block to see its sessions</small></div>`;
     html += glanceRows(sess, nowLine);
   }
 
@@ -529,7 +572,7 @@ function renderGlance() {
   html += axisRow();
   // Booking for a sport without live court calendars: nothing to chart; the venue list below is the page.
   $('glance').hidden = state.view === 'booking' && !SPORTS[state.sport].courts;
-  const cal = $('cal'), key = `${state.sport}|${state.view}|${iso}`, keep = cal.dataset.key === key ? cal.scrollLeft : null;
+  const cal = $('cal'), key = `${state.sport}|${state.view}|${iso}|${state.tab}`, keep = cal.dataset.key === key ? cal.scrollLeft : null;
   cal.innerHTML = html;
   cal.dataset.key = key;
   fitBarLabels();
@@ -596,6 +639,13 @@ $('nearest').addEventListener('click', () => {
 });
 
 document.addEventListener('click', async (e) => {
+  const blk = e.target.closest('[data-block]');
+  if (blk) {
+    openBlock = openBlock === blk.dataset.block ? null : blk.dataset.block;
+    renderGlance();
+    document.querySelector(`[data-block="${CSS.escape(blk.dataset.block)}"]`)?.focus();
+    return;
+  }
   const copy = e.target.closest('[data-address]');
   if (copy) {
     const status = copy.parentElement.querySelector('.copy-status');
