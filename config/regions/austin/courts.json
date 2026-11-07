@@ -1,5 +1,5 @@
 {
-  "_doc": "Court calendars for this region (lib/courts.js reads them every refresh). Each venue is a booking site: Skedda by default, or `system: \"opencourt\"` with the club's `slug`. `sport` defaults to volleyball. Facilities group its spaces (courts) by place, in the booking site's order, with surface for the filter; `venueId` (venues.json) links a facility to the sessions held there.",
+  "_doc": "Court calendars for this region (lib/courts.js reads them every refresh). Each venue is a booking site: Skedda by default, or `system: \"opencourt\"` / `\"usta\"` with the club's `slug` (USTA also needs its court `group`). `sport` defaults to volleyball. Facilities group its spaces (courts) by place, in the booking site's order, with surface for the filter; `venueId` (venues.json) links a facility to the sessions held there.",
   "venues": [
     {
       "id": "velocity",
@@ -106,6 +106,35 @@
             "Court 5",
             "Court 6",
             "Court 7"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "austin-atc",
+      "system": "usta",
+      "slug": "austintenniscenter",
+      "group": "Pickleball",
+      "sport": "pickleball",
+      "calendar": "https://playtennis.usta.com/austintenniscenter/Booking/BookByDate",
+      "calendarDay": "https://playtennis.usta.com/austintenniscenter/Booking/BookByDate#?date={date}&role=guest",
+      "note": "Austin Tennis & Pickleball Center takes court bookings up to 2 days ahead.",
+      "facilities": [
+        {
+          "id": "austin-atc",
+          "venueId": "austin-atc",
+          "name": "Austin Tennis & Pickleball Center",
+          "city": "Austin",
+          "surface": "outdoor",
+          "spaces": [
+            "Pickleball 1",
+            "Pickleball 2",
+            "Pickleball 3",
+            "Pickleball 4",
+            "Pickleball 5",
+            "Pickleball 6",
+            "Pickleball 7",
+            "Pickleball 8"
           ]
         }
       ]
