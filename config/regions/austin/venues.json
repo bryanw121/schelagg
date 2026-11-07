@@ -1,5 +1,5 @@
 {
-  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates never come from Google. lat/lng (Nov 2026) are the US Census geocoder's match for the address (public domain), or OpenStreetMap Nominatim's (© OpenStreetMap contributors, ODbL) where Census had no match: austin-pickle-ranch and atx-beach (11000 Middle Fiskville Rd), leander-activity-center, mueller-lake-park (sand courts at Mary Elizabeth Branch Park) and austin-bouldin-braker. The site uses them only for the 📍 distance order.",
+  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates never come from Google. lat/lng (Nov 2026) are the US Census geocoder's match for the address (public domain), or OpenStreetMap Nominatim's (© OpenStreetMap contributors, ODbL) where Census had no match: austin-pickle-ranch and atx-beach (11000 Middle Fiskville Rd), leander-activity-center, mueller-lake-park (sand courts at Mary Elizabeth Branch Park) and austin-bouldin-braker. The site uses them only for the 📍 distance order. `short` (optional, up to 24 characters) is the name on map pins when the full name is long; otherwise the site shortens it.",
   "venues": [
     {
       "id": "austin-pickleland",
@@ -244,6 +244,7 @@
     {
       "id": "austin-dottie-jordan-rec",
       "name": "Dottie Jordan Recreation Center",
+      "short": "Dottie Jordan Rec",
       "address": "2803 Loyola Lane, Austin, TX 78723",
       "city": "Austin",
       "aliases": [],
@@ -256,6 +257,7 @@
     {
       "id": "austin-montopolis-rec",
       "name": "Montopolis Recreation and Community Center",
+      "short": "Montopolis Rec",
       "address": "1200 Montopolis Dr, Austin, TX 78741",
       "city": "Austin",
       "aliases": [],
@@ -280,6 +282,7 @@
     {
       "id": "austin-dove-springs-rec",
       "name": "George Morales Dove Springs Recreation Center",
+      "short": "Dove Springs Rec",
       "address": "5801 Ainez Dr, Austin, TX 78744",
       "city": "Austin",
       "aliases": [
@@ -332,6 +335,7 @@
     {
       "id": "leander-activity-center",
       "name": "Leander Activity Center",
+      "short": "Leander Activity Ctr",
       "address": "11880 Hero Way W, Suite 600, Leander, TX",
       "city": "Leander",
       "aliases": [],
@@ -394,6 +398,7 @@
     {
       "id": "crossover-ice",
       "name": "Ice & Field at The Crossover",
+      "short": "Ice & Field",
       "city": "Cedar Park",
       "parent": "crossover",
       "aliases": [
@@ -423,6 +428,7 @@
     {
       "id": "treehouse",
       "name": "Roots · Treehouse Gym",
+      "short": "Treehouse",
       "city": "N. Austin",
       "aliases": [
         "Treehouse Gym",
@@ -448,6 +454,7 @@
     {
       "id": "hanovers",
       "name": "Hanovers Draught Haus",
+      "short": "Hanovers",
       "city": "Pflugerville",
       "aliases": [
         "Hanovers"
@@ -501,6 +508,7 @@
       "lng": -97.63869,
       "id": "austin-atc",
       "name": "Austin Tennis & Pickleball Center",
+      "short": "Tennis Center",
       "city": "Austin",
       "bookingLink": {
         "sport": "pickleball",
@@ -520,6 +528,7 @@
       "lng": -97.70497,
       "id": "austin-bouldin-braker",
       "name": "Bouldin Acres · Braker",
+      "short": "Bouldin Acres",
       "city": "Austin",
       "address": "1806 W Braker Ln, Austin, TX 78758",
       "addressSource": "https://braker.bouldinacres.com/pickleball",
@@ -539,6 +548,7 @@
       "lng": -97.81646,
       "id": "crossover-diamond",
       "name": "The Crossover Diamond Courts",
+      "short": "Crossover Diamond",
       "city": "Cedar Park",
       "parent": "crossover",
       "address": "1717 Scottsdale Dr, Cedar Park, TX 78641",
