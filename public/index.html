@@ -21,11 +21,16 @@
     <div class="tabs" role="group" aria-label="Calendar type" id="calendarModes"></div>
     <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
     <div class="days" role="group" aria-label="Day" id="days"></div>
+    <div class="tabs layout" role="group" aria-label="List or map" id="layout" hidden></div>
   </div>
 </header>
 
 <main>
   <div class="wrap">
+    <section class="card map-card" id="mapCard" hidden>
+      <div class="dayhead"><h3 id="mapTitle">Map</h3></div>
+      <div class="map-wrap"><div id="map" class="map" role="region" aria-label="Map of the day's places"></div><div id="mapPanel" class="map-panel" aria-live="polite"></div></div>
+    </section>
     <section class="card" id="glance">
       <div class="dayhead"><h3 id="calTitle">Day at a glance</h3></div>
       <div class="key">
