@@ -135,7 +135,7 @@ test('site: pickleball deep link, filters, directions and copy address keep spor
   assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']);
   assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All levels2', 'Beginner2', 'Intermediate2', 'Advanced2']);
   assert.equal(await page.locator('#courtsCard').isHidden(), true);
-  assert.equal(await page.locator('#cal .g-group', { hasText: 'Treehouse' }).count(), 0);
+  assert.equal(await page.locator('#cal .g-venue', { hasText: 'Treehouse' }).count(), 0);
   assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /pickleball\.ics$/);
   assert.match(await page.locator('#sourceStatus').textContent(), /hand-checked/);
   const indoor = row('Indoor pickleball');
@@ -466,6 +466,7 @@ test('site: court lanes tint open time and show closed time in solid gray', asyn
   const short = { ...COURTS.venues[0], id: 'short', hours: Array(7).fill(['09:00', '17:00']),
     facilities: [{ ...COURTS.venues[0].facilities[0], id: 'short', name: 'Short Hours Gym' }] };
   await open({ url: '/?view=booking', courts: { ...COURTS, venues: [...COURTS.venues, short] } });
+  await page.locator('#cal [data-fac]').first().click(); // per-court lanes are folded under "2 courts ▾"
   const lane = page.locator('#cal .g-track.lane').first();
   await lane.waitFor();
   const bg = await lane.evaluate((el) => getComputedStyle(el).backgroundColor);
@@ -494,7 +495,7 @@ test('site: regions: one city at a time, in its own time zone, with a picker, a 
   assert.deepEqual(await page.locator('#regionPick option').allTextContents(), ['Austin, TX', 'Denver, CO']);
   assert.equal(await page.locator('#list .now').textContent(), 'Now · 5pm'); // Austin time
   await page.locator('[data-view="booking"]').click();
-  assert.ok((await page.locator('#cal .g-group').allTextContents()).some((t) => t.startsWith('Roots · Treehouse Gym')));
+  assert.ok((await page.locator('#cal .g-venue').allTextContents()).some((t) => t.startsWith('Roots · Treehouse Gym')));
 
   await page.locator('#regionPick').selectOption('denver');
   await page.locator('#list .row .title', { hasText: 'Mile High Skate' }).waitFor();
@@ -503,7 +504,7 @@ test('site: regions: one city at a time, in its own time zone, with a picker, a 
   assert.equal(await page.locator('#list .now').textContent(), 'Now · 4pm');
   assert.equal(new URL(page.url()).searchParams.get('region'), 'denver');
   assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /\/data\/regions\/denver\/ice_skating\.ics$/);
-  assert.equal(await page.locator('#cal .g-group', { hasText: 'Treehouse' }).count(), 0);
+  assert.equal(await page.locator('#cal .g-venue', { hasText: 'Treehouse' }).count(), 0);
   assert.equal(await page.locator('#footer').textContent(), 'Sources: Denver Rink. Rinks close for hockey and events; tap “Source” before you drive out.');
 
   // Remembered, and a shared link opens that city.
@@ -591,18 +592,30 @@ test('site: the day-at-a-glance chart shows sessions, court bookings and courts 
   await page.locator('[data-view="booking"]').click();
   assert.equal(await page.locator('#cal .g-bar').count(), 0);
   assert.equal(await page.locator('#sessionsPanel').isHidden(), true);
-  const group = page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' });
-  const text = await group.textContent();
-  assert.match(text, /open 6am, closes 11pm/);
-  assert.match(text, /courts free 6am–11pm/); // Court #2 is free whenever Court #1 isn't, and vice versa
+  const venue = page.locator('#cal .g-venue', { hasText: 'Roots · Treehouse Gym' });
+  const text = await venue.textContent();
+  assert.match(text, /free 6am–11pm/); // Court #2 is free whenever Court #1 isn't, and vice versa
   assert.match(text, /Sunday Coed Net Volleyball 7pm–10pm ↗/);
-  // The booking that lines up with the Reclub meet links to its sign-up; the other is just booked.
+  // One row for the venue: shading by how many courts are free, between every booking edge.
+  assert.deepEqual(await page.locator('#cal .g-track.avail .g-seg').evaluateAll((els) => els.map((e) => [e.className, e.textContent])),
+    [['g-seg all', ''], ['g-seg some', '1/2'], ['g-seg all', ''], ['g-seg some', '1/2'], ['g-seg all', '']]);
+  assert.equal(await page.locator('#cal .g-seg.some').first().getAttribute('title'), '8am–10am: 1 of 2 courts free');
+  // The booking that lines up with the Reclub meet is one blue block that links to its sign-up.
   const open_ = page.locator('#cal a.g-book.open');
   assert.equal(await open_.count(), 1);
   assert.equal(await open_.getAttribute('href'), `${SIGNUP}/reclub`);
+  // Per-court lanes are one tap away; the private booking is just booked.
+  const toggle = page.locator('#cal [data-fac]');
+  assert.equal(await toggle.textContent(), '2 courts ▾');
+  assert.equal(await page.locator('#cal .g-track.lane').count(), 0);
+  await toggle.click();
+  assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+  assert.equal(await page.locator('#cal .g-track.lane').count(), 2);
   assert.equal(await page.locator('#cal div.g-book').getAttribute('title'), 'Booked 8am–10am');
+  await toggle.click();
+  assert.equal(await page.locator('#cal .g-track.lane').count(), 0);
   assert.equal(await page.locator('#cal .g-now').count() > 0, true);
-  assert.match(await page.locator('#calNote').textContent(), /Court calendars checked 5 min ago/);
+  assert.match(await page.locator('#calNote').textContent(), /Checked 5 min ago/);
   assert.equal(await page.locator('#calErrors').textContent(), '');
 });
 
@@ -633,7 +646,7 @@ test('site: long venue names show in full on a 320px phone and on desktop, and t
 
 test('site: "Book a court" opens the venue calendar on the day being viewed', async () => {
   await open({ url: '/?view=booking' });
-  const book = () => page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).locator('a.book', { hasText: 'Book a court' })
+  const book = () => page.locator('#cal .g-venue', { hasText: 'Roots · Treehouse Gym' }).locator('a.v-book');
   assert.equal(await book().getAttribute('href'), `https://treehousegym.skedda.com/booking?viewdate=${TODAY}`);
   await page.locator('#days .day').nth(2).click();
   const later = await page.locator('#days .day').nth(2).getAttribute('data-iso').catch(() => null);
@@ -647,7 +660,7 @@ test('site: a venue without a per-day link falls back to its calendar', async ()
   const venue = { ...COURTS.venues[0] };
   delete venue.calendarDay;
   await open({ url: '/?view=booking', courts: { ...COURTS, venues: [venue] } });
-  const book = page.locator('#cal .g-group', { hasText: 'Roots · Treehouse Gym' }).locator('a.book', { hasText: 'Book a court' });
+  const book = page.locator('#cal .g-venue', { hasText: 'Roots · Treehouse Gym' }).locator('a.v-book');
   assert.equal(await book.getAttribute('href'), 'https://treehousegym.skedda.com/booking');
 });
 
@@ -693,22 +706,29 @@ test('site: pickleball court booking shows live court lanes where a club publish
     ] }],
   };
   const errors = [{ venue: 'velocity', sport: 'volleyball', calendar: 'https://austinvelocity.skedda.com/booking', message: 'HTTP 503' }];
-  await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball&view=booking', courts: { ...COURTS, errors, venues: [...COURTS.venues, holy] } });
-  await page.locator('#cal .g-group', { hasText: 'Holy Courts' }).waitFor(); // court data loads after the schedule
+  const schedule = structuredClone(PICKLE_SCHEDULE);
+  schedule.venues[0].bookingLink = { sport: 'pickleball', url: 'https://example.test/book-rec' };
+  schedule.venues.push({ id: 'other', name: 'Other Club', city: 'Austin', bookingLink: { sport: 'pickleball', url: 'https://example.test/book-other' } });
+  await open({ schedule, url: '/?sport=pickleball&view=booking', courts: { ...COURTS, errors, venues: [...COURTS.venues, holy] } });
+  await page.locator('#cal .g-venue', { hasText: 'Holy Courts' }).waitFor(); // court data loads after the schedule
   assert.equal(await page.locator('#glance').isVisible(), true);
   assert.equal(await page.locator('#days').isVisible(), true);
-  const group = page.locator('#cal .g-group', { hasText: 'Holy Courts' });
-  assert.match(await group.textContent(), /open 7am, closes 11pm · courts free 7am–11pm · Indoor pickleball 10am–12pm ↗/);
-  assert.equal(await page.locator('#cal .g-group', { hasText: 'Treehouse' }).count(), 0, 'volleyball courts stay on volleyball');
+  const group = page.locator('#cal .g-venue', { hasText: 'Holy Courts' });
+  assert.match(await group.textContent(), /Austin · free 7am–11pm · Indoor pickleball 10am–12pm ↗/);
+  // The venue with live courts is booked from its row; the list below is the other venues.
+  assert.deepEqual(await page.locator('#bookingCalendars .book-name b').allTextContents(), ['Other Club']);
+  assert.equal(await page.locator('#cal .g-venue', { hasText: 'Treehouse' }).count(), 0, 'volleyball courts stay on volleyball');
   assert.equal(await page.locator('#cal a.g-book.open').getAttribute('href'), `${SIGNUP}/pickle`);
+  assert.equal(await page.locator('#cal .g-seg.some').evaluateAll((els) => els.map((e) => e.textContent).join(' ')), '1/2 1/2');
+  await page.locator('#cal [data-fac="holy"]').click();
   assert.equal(await page.locator('#cal div.g-book').getAttribute('title'), 'Booked 1pm–2:30pm');
-  assert.equal(await group.locator('a.book', { hasText: 'Book a court' }).getAttribute('href'), 'https://app.getopencourt.com/club/holy/book');
+  assert.equal(await group.locator('a.v-book').getAttribute('href'), 'https://app.getopencourt.com/club/holy/book');
   assert.equal(await page.locator('#calErrors').textContent(), '', "volleyball's calendar errors aren't pickleball's");
   // A level chosen in open play doesn't hide courts.
   await page.locator('[data-view="openplay"]').click();
   await tab('advanced').click();
   await page.locator('[data-view="booking"]').click();
-  assert.equal(await page.locator('#cal .g-group', { hasText: 'Holy Courts' }).count(), 1);
+  assert.equal(await page.locator('#cal .g-venue', { hasText: 'Holy Courts' }).count(), 1);
   await page.locator('[data-sport="volleyball"]').click();
   assert.match(await page.locator('#calErrors').textContent(), /Couldn't load some court calendars/);
 });
