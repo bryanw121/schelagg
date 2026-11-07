@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T03:43:26.200Z",
+  "generatedAt": "2026-11-07T04:13:28.887Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T03:43:13.205Z",
+      "checkedAt": "2026-11-07T04:13:15.109Z",
       "count": 256
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T03:43:13.205Z",
+      "checkedAt": "2026-11-07T04:13:15.109Z",
       "count": 10
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T03:43:13.206Z",
+      "checkedAt": "2026-11-07T04:13:15.109Z",
       "count": 7
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T03:43:13.206Z",
+      "checkedAt": "2026-11-07T04:13:15.110Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-07T03:43:13.207Z",
+      "checkedAt": "2026-11-07T04:13:15.110Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,8 +85,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-07T03:13:13.524Z",
-      "count": 7
+      "checkedAt": "2026-11-07T04:13:15.111Z",
+      "count": 5
     },
     {
       "id": "chaparral-ice",
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T03:43:13.207Z",
+      "checkedAt": "2026-11-07T04:13:15.146Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T03:43:13.237Z",
+      "checkedAt": "2026-11-07T04:13:15.403Z",
       "count": 15
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T03:43:13.601Z",
+      "checkedAt": "2026-11-07T04:13:17.096Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T03:43:13.759Z",
+      "checkedAt": "2026-11-07T04:13:17.249Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7087,84 +7087,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-6d645ec1-a955-4188-86a4-daaf04628f20",
-      "date": "2026-11-06",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Gated Level 2 Mittel Play",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "3–3.5 required",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/6d645ec1-a955-4188-86a4-daaf04628f20",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/6d645ec1-a955-4188-86a4-daaf04628f20",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-807ab889-da4e-4298-9272-18f95dfaf721",
-      "date": "2026-11-06",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Gated Miester Play 3.6+",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "3.6–6 required",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/807ab889-da4e-4298-9272-18f95dfaf721",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/807ab889-da4e-4298-9272-18f95dfaf721",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-fe6e7e0a-965b-4201-90b1-b11fc3da5046",
-      "date": "2026-11-06",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Gated Level 1  Neuling Play",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$8 / person (nonmember)",
-      "level": "2–2.8 required",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/fe6e7e0a-965b-4201-90b1-b11fc3da5046",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/fe6e7e0a-965b-4201-90b1-b11fc3da5046",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-617ec99f-ba4b-476a-ad75-a0e9e6f38457",
       "date": "2026-11-06",
       "start": "22:00",
@@ -7335,6 +7257,84 @@
       "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d22ab2f8-414a-4168-94eb-a3742436b507",
       "signup": {
         "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d22ab2f8-414a-4168-94eb-a3742436b507",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-06",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-0b074bbc-1a9a-4905-ba1a-b78358af790e",
+      "date": "2026-11-07",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Gated Miester Play 3.6+",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$15 / person (nonmember)",
+      "level": "3.6–6 required",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/0b074bbc-1a9a-4905-ba1a-b78358af790e",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/0b074bbc-1a9a-4905-ba1a-b78358af790e",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-06",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-546294b3-a3e6-417e-a179-eb153d14abf4",
+      "date": "2026-11-07",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Gated Level 2 Mittel Play",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$15 / person (nonmember)",
+      "level": "3–3.5 required",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/546294b3-a3e6-417e-a179-eb153d14abf4",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/546294b3-a3e6-417e-a179-eb153d14abf4",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-06",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-d03cac45-61a7-4077-b4cf-18e1b4998ec8",
+      "date": "2026-11-07",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Gated Level 1  Neuling Play",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "level": "2–2.8 required",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d03cac45-61a7-4077-b4cf-18e1b4998ec8",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d03cac45-61a7-4077-b4cf-18e1b4998ec8",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
@@ -7957,62 +7957,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-05",
       "venueId": "crossover",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-3WDMON",
-      "date": "2026-11-06",
-      "start": "19:00",
-      "end": "22:00",
-      "title": "Koi C/B Friday Coed Net Volleyball",
-      "venue": "Roots · Treehouse Gym",
-      "city": "N. Austin",
-      "surface": "indoor",
-      "facility": "treehouse",
-      "type": "Open play",
-      "level": "C/B",
-      "price": "$12",
-      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
-      "capacity": 36,
-      "signup": {
-        "url": "https://reclub.co/m/3WDMON",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/3WDMON",
-      "sourceId": "reclub",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "treehouse",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-32FAFL",
-      "date": "2026-11-06",
-      "start": "19:00",
-      "end": "22:00",
-      "title": "Qilin B/BB Friday Coed Net Volleyball",
-      "venue": "Roots · Treehouse Gym",
-      "city": "N. Austin",
-      "surface": "indoor",
-      "facility": "treehouse",
-      "type": "Open play",
-      "level": "B/BB",
-      "price": "$12",
-      "note": "Hosted by Vex Volleyball, every Friday. Runs on a privately booked court.",
-      "capacity": 36,
-      "signup": {
-        "url": "https://reclub.co/m/32FAFL",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/32FAFL",
-      "sourceId": "reclub",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "treehouse",
       "status": "scheduled"
     },
     {
