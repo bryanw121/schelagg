@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-07T05:13:43.308Z",
+  "generatedAt": "2026-11-07T06:13:27.084Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,8 +9,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:27.226Z",
-      "count": 256
+      "checkedAt": "2026-11-07T06:13:12.598Z",
+      "count": 259
     },
     {
       "id": "austin-picklehaus",
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:27.227Z",
+      "checkedAt": "2026-11-07T06:13:12.598Z",
       "count": 10
     },
     {
@@ -29,8 +29,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:27.227Z",
-      "count": 7
+      "checkedAt": "2026-11-07T06:13:12.599Z",
+      "count": 8
     },
     {
       "id": "volleyworld",
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:27.227Z",
+      "checkedAt": "2026-11-07T06:13:12.599Z",
       "count": 13
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-07T05:13:27.228Z",
+      "checkedAt": "2026-11-07T06:13:12.600Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:27.533Z",
+      "checkedAt": "2026-11-07T06:13:12.600Z",
       "count": 5
     },
     {
@@ -90,8 +90,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:28.898Z",
-      "count": 33
+      "checkedAt": "2026-11-07T06:13:12.630Z",
+      "count": 32
     },
     {
       "id": "ice-and-field",
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-07T05:13:29.747Z",
+      "checkedAt": "2026-11-07T06:13:12.941Z",
       "count": 15
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T05:13:31.146Z",
+      "checkedAt": "2026-11-07T06:13:13.840Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,118 +131,12 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-07T05:13:31.261Z",
+      "checkedAt": "2026-11-07T06:13:13.902Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bbaa-106a-7333-b4f2-5b6c8553cf39",
-      "date": "2026-11-06",
-      "start": "21:00",
-      "end": "23:30",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bbaa-106a-7333-b4f2-5b6c8553cf39",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bbd8-2991-7776-9a7f-2fc0b0f33bf8",
-      "date": "2026-11-06",
-      "start": "21:00",
-      "end": "23:30",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bbd8-2991-7776-9a7f-2fc0b0f33bf8",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bbd8-f350-7776-9a80-de58e1c01197",
-      "date": "2026-11-06",
-      "start": "21:00",
-      "end": "23:30",
-      "sport": "pickleball",
-      "title": "Open Play: Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bbd8-f350-7776-9a80-de58e1c01197",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-pickle-pit-stop-3d77ca6d73fbe23b",
-      "date": "2026-11-06",
-      "start": "21:00",
-      "end": "23:00",
-      "sport": "pickleball",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99)",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://app.courtreserve.com/Online/Events/Details/15273/8WFJXF915273497?resId=37470195",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-pickle-pit-stop",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-pickle-pit-stop-fb98a5dad2a83082",
       "date": "2026-11-07",
@@ -267,7 +161,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -295,7 +189,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -322,7 +216,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -348,7 +242,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -375,7 +269,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -402,7 +296,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -428,7 +322,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -454,7 +348,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -482,7 +376,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -509,7 +403,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -535,7 +429,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -561,7 +455,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -587,7 +481,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -614,7 +508,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -641,7 +535,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -669,7 +563,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -696,7 +590,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -722,7 +616,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -748,7 +642,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -774,7 +668,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -801,7 +695,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -828,7 +722,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -855,7 +749,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -881,7 +775,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -908,7 +802,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -934,7 +828,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -961,7 +855,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -987,7 +881,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1013,7 +907,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1041,7 +935,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1067,7 +961,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1093,7 +987,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1119,7 +1013,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1147,7 +1041,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1173,7 +1067,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1201,7 +1095,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1227,7 +1121,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1253,7 +1147,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1279,7 +1173,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1307,7 +1201,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1335,7 +1229,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1362,7 +1256,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -1388,7 +1282,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1414,7 +1308,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1441,7 +1335,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1468,7 +1362,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1494,7 +1388,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1521,7 +1415,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -1548,7 +1442,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -1576,7 +1470,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1602,7 +1496,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1628,7 +1522,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1655,7 +1549,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1681,7 +1575,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1708,7 +1602,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -1736,7 +1630,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1762,7 +1656,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1788,7 +1682,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1815,7 +1709,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1841,7 +1735,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1868,7 +1762,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -1895,7 +1789,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -1921,7 +1815,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1947,7 +1841,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -1973,7 +1867,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2000,7 +1894,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2027,7 +1921,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2055,7 +1949,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2083,7 +1977,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2110,7 +2004,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2138,7 +2032,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2166,7 +2060,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2192,7 +2086,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2218,7 +2112,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2245,7 +2139,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2272,7 +2166,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2298,7 +2192,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2326,7 +2220,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2353,7 +2247,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2381,7 +2275,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2408,7 +2302,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2434,7 +2328,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2460,7 +2354,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2486,7 +2380,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2513,7 +2407,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2540,7 +2434,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2567,7 +2461,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2595,7 +2489,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2621,7 +2515,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2647,7 +2541,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2674,7 +2568,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2700,7 +2594,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2726,7 +2620,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2752,7 +2646,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2779,7 +2673,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2806,7 +2700,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2833,7 +2727,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2860,7 +2754,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2887,7 +2781,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2914,7 +2808,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -2942,7 +2836,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -2968,7 +2862,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -2995,7 +2889,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3021,7 +2915,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3048,7 +2942,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3075,7 +2969,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3102,7 +2996,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3128,7 +3022,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3155,7 +3049,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3182,7 +3076,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3210,7 +3104,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3237,7 +3131,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3263,7 +3157,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3289,7 +3183,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3316,7 +3210,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3343,7 +3237,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3369,7 +3263,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3395,7 +3289,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3421,7 +3315,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3449,7 +3343,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3475,7 +3369,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3501,7 +3395,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-ranch",
       "status": "scheduled"
     },
@@ -3528,7 +3422,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3555,7 +3449,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3583,7 +3477,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3610,7 +3504,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3638,7 +3532,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3665,7 +3559,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3693,7 +3587,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3720,7 +3614,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3748,7 +3642,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3775,7 +3669,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3802,7 +3696,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3829,7 +3723,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3857,7 +3751,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3884,7 +3778,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3911,7 +3805,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -3939,7 +3833,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3967,7 +3861,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -3994,7 +3888,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4021,7 +3915,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4049,7 +3943,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4077,7 +3971,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4104,7 +3998,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4131,7 +4025,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4158,7 +4052,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4185,7 +4079,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4212,7 +4106,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4239,7 +4133,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4267,7 +4161,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4294,7 +4188,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4321,7 +4215,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4349,7 +4243,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4376,7 +4270,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4403,7 +4297,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4431,7 +4325,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4458,7 +4352,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4485,7 +4379,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4513,7 +4407,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4540,7 +4434,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4567,7 +4461,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4595,7 +4489,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4622,7 +4516,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4650,7 +4544,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4677,7 +4571,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4704,7 +4598,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4731,7 +4625,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4759,7 +4653,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4786,7 +4680,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4813,7 +4707,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4840,7 +4734,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4867,7 +4761,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -4895,7 +4789,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4923,7 +4817,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4951,7 +4845,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -4978,7 +4872,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5006,7 +4900,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5033,7 +4927,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5061,7 +4955,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5088,7 +4982,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5115,7 +5009,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5142,7 +5036,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5170,7 +5064,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5197,7 +5091,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5224,7 +5118,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5252,7 +5146,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5278,7 +5172,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5306,7 +5200,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5334,7 +5228,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5362,7 +5256,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5389,7 +5283,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5417,7 +5311,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5444,7 +5338,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5472,7 +5366,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5499,7 +5393,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5526,7 +5420,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5553,7 +5447,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5580,7 +5474,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5607,7 +5501,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5635,7 +5529,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5663,7 +5557,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5691,7 +5585,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5719,7 +5613,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5747,7 +5641,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5774,7 +5668,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5802,7 +5696,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5829,7 +5723,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5857,7 +5751,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5884,7 +5778,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5911,7 +5805,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -5939,7 +5833,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5967,7 +5861,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -5995,7 +5889,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6022,7 +5916,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -6049,7 +5943,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -6077,7 +5971,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6105,7 +5999,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6132,7 +6026,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -6160,7 +6054,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6187,7 +6081,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -6214,7 +6108,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6241,7 +6135,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -6268,7 +6162,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-eastside-paddle",
       "status": "scheduled"
     },
@@ -6296,7 +6190,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6323,7 +6217,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6351,7 +6245,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6379,7 +6273,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6407,7 +6301,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6435,7 +6329,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6463,7 +6357,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6491,7 +6385,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6519,7 +6413,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6547,7 +6441,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6575,7 +6469,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6603,7 +6497,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6631,7 +6525,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6658,7 +6552,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6686,7 +6580,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6714,7 +6608,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6742,7 +6636,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6770,7 +6664,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6798,7 +6692,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6826,7 +6720,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6854,7 +6748,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6882,7 +6776,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6910,7 +6804,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6938,7 +6832,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6966,7 +6860,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -6993,7 +6887,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -7021,7 +6915,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -7049,7 +6943,7 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
@@ -7077,33 +6971,203 @@
       "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
     {
-      "id": "opencourt-617ec99f-ba4b-476a-ad75-a0e9e6f38457",
-      "date": "2026-11-06",
-      "start": "22:00",
-      "end": "24:00",
+      "id": "openplay-pickle-pit-stop-4d3efdbc0c18f5cc",
+      "date": "2026-11-21",
+      "start": "08:00",
+      "end": "10:00",
       "sport": "pickleball",
-      "title": "Austin PickleHaus · Unrestricted Open Play (10PM-12AM)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
+      "title": "Open Play- Advanced (Suggested DUPR 4.00-5.00)",
+      "venue": "Pickle Pit Stop",
+      "city": "Austin",
       "surface": "indoor",
       "type": "Open play",
-      "price": "$8 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/617ec99f-ba4b-476a-ad75-a0e9e6f38457",
+      "level": "4.00–5.00",
+      "price": "$18 / person (venue rate; confirm)",
+      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
       "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/617ec99f-ba4b-476a-ad75-a0e9e6f38457",
-        "label": "View event & book"
+        "url": "https://app.courtreserve.com/Online/Events/Details/15273/Q86LJ1N15273650?resId=50965308",
+        "label": "Book with venue"
       },
-      "sourceId": "austin-picklehaus",
+      "sourceId": "austin-club-openplay",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-picklehaus",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-pickle-pit-stop",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-pickle-pit-stop-c01ba9c62c0e7c9b",
+      "date": "2026-11-21",
+      "start": "10:00",
+      "end": "12:00",
+      "sport": "pickleball",
+      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99)",
+      "venue": "Pickle Pit Stop",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "3.00–3.99",
+      "price": "$18 / person (venue rate; confirm)",
+      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://app.courtreserve.com/Online/Events/Details/15273/SHAMNLM15273137?resId=47649411",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-pickle-pit-stop",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-pickle-pit-stop-cd2915e8f9ca01f9",
+      "date": "2026-11-21",
+      "start": "12:00",
+      "end": "14:00",
+      "sport": "pickleball",
+      "title": "Open Play- Beginner (Suggested DUPR 2.00-2.99)",
+      "venue": "Pickle Pit Stop",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "2.00–2.99",
+      "price": "$18 / person (venue rate; confirm)",
+      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://app.courtreserve.com/Online/Events/Details/15273/DEC3MQ315273538?resId=50965462",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-pickle-pit-stop",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-pickle-pit-stop-2ea790744b1f9ae1",
+      "date": "2026-11-21",
+      "start": "14:00",
+      "end": "17:00",
+      "sport": "pickleball",
+      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99)",
+      "venue": "Pickle Pit Stop",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "3.00–3.99",
+      "price": "Price not listed",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://app.courtreserve.com/Online/Events/Details/15273/EY1YRJ615273295?resId=50965533",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-pickle-pit-stop",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-pickle-pit-stop-4cc0e99f821ce0fd",
+      "date": "2026-11-21",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Open Play- Advanced (Suggested DUPR 4.00-5.00)",
+      "venue": "Pickle Pit Stop",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "4.00–5.00",
+      "price": "$18 / person (venue rate; confirm)",
+      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://app.courtreserve.com/Online/Events/Details/15273/EM8QDII15273202?resId=56120117",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-pickle-pit-stop",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-pickle-pit-stop-d9b1e7d47f96d4a8",
+      "date": "2026-11-21",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99)",
+      "venue": "Pickle Pit Stop",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "3.00–3.99",
+      "price": "$18 / person (venue rate; confirm)",
+      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://app.courtreserve.com/Online/Events/Details/15273/LMZ2A8615273427?resId=50965678",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-pickle-pit-stop",
+      "status": "scheduled"
+    },
+    {
+      "id": "openplay-pickle-pit-stop-149db4c14e3aacaf",
+      "date": "2026-11-21",
+      "start": "21:00",
+      "end": "23:00",
+      "sport": "pickleball",
+      "title": "Open Play- Advanced (Suggested DUPR 4.00-5.00)",
+      "venue": "Pickle Pit Stop",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "4.00–5.00",
+      "price": "$18 / person (venue rate; confirm)",
+      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+      "scheduleBasis": "directory_listing",
+      "note": "Listed by OpenPlay, an independent directory, updated Nov 6, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
+      "source": "https://openplaymap.com/open-play/austin",
+      "signup": {
+        "url": "https://app.courtreserve.com/Online/Events/Details/15273/KG559PG15273831?resId=37471031",
+        "label": "Book with venue"
+      },
+      "sourceId": "austin-club-openplay",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-pickle-pit-stop",
       "status": "scheduled"
     },
     {
@@ -7128,7 +7192,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7154,7 +7218,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7180,7 +7244,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7206,7 +7270,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7231,7 +7295,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7257,7 +7321,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7283,7 +7347,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7309,7 +7373,7 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7335,7 +7399,33 @@
       "sourceId": "austin-picklehaus",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-469f4457-3a8d-4c51-8dda-422e4510af4a",
+      "date": "2026-11-07",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · DUPR Trooper Neuling Level 1",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$20 / person (nonmember)",
+      "level": "2–2.8 required",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/469f4457-3a8d-4c51-8dda-422e4510af4a",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/469f4457-3a8d-4c51-8dda-422e4510af4a",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
     },
@@ -7360,7 +7450,7 @@
       "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
@@ -7385,7 +7475,7 @@
       "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
@@ -7410,7 +7500,7 @@
       "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
@@ -7435,7 +7525,7 @@
       "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
@@ -7460,7 +7550,7 @@
       "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
@@ -7485,7 +7575,7 @@
       "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
@@ -7510,36 +7600,33 @@
       "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
     {
-      "id": "volleyworld-2026-11-06-20:30-georgetown",
-      "date": "2026-11-06",
-      "start": "20:30",
-      "end": "21:30",
-      "title": "Jesus - Adult Training including Open Gym",
-      "venue": "Volleyworld (Georgetown)",
-      "city": "Georgetown",
-      "surface": "indoor",
+      "id": "opencourt-3a0bbae2-8750-4932-92b2-f95a2c422261",
+      "date": "2026-11-14",
+      "start": "08:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "Holy Pickle · Open Play",
+      "venue": "Holy Pickle",
+      "city": "Austin",
+      "surface": "outdoor",
       "type": "Open play",
-      "level": "Adults · Jesus",
-      "full": true,
-      "capacity": 12,
-      "spotsLeft": 11,
-      "classId": "wt76MMDN8VE2WNJDJTZP",
+      "price": "$10 / person (nonmember)",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/3a0bbae2-8750-4932-92b2-f95a2c422261",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
-        "label": "Book on Volleyworld"
+        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/3a0bbae2-8750-4932-92b2-f95a2c422261",
+        "label": "View event & book"
       },
-      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "sourceId": "volleyworld",
-      "sport": "volleyball",
+      "sourceId": "holy-pickle",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "volleyworld-georgetown",
+      "verifiedAt": "2026-11-07",
+      "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
     {
@@ -7565,7 +7652,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -7592,7 +7679,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
@@ -7619,7 +7706,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
@@ -7646,7 +7733,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
@@ -7673,7 +7760,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -7700,7 +7787,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
@@ -7727,7 +7814,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -7754,7 +7841,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
@@ -7781,7 +7868,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
@@ -7808,7 +7895,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
@@ -7835,7 +7922,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -7862,8 +7949,35 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-georgetown",
+      "status": "scheduled"
+    },
+    {
+      "id": "volleyworld-2026-11-21-19:30-pflugerville",
+      "date": "2026-11-21",
+      "start": "19:30",
+      "end": "21:00",
+      "title": "Adult Volleyball Training",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Training",
+      "level": "Adults · Adan",
+      "capacity": 12,
+      "spotsLeft": 12,
+      "classId": "W6xDL2JDLao1KpCmYtR4",
+      "signup": {
+        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "label": "Book on Volleyworld"
+      },
+      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
+      "sourceId": "volleyworld",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
     {
@@ -7977,7 +8091,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -8004,7 +8118,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -8032,7 +8146,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "treehouse",
       "status": "scheduled"
     },
@@ -8060,7 +8174,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "treehouse",
       "status": "scheduled"
     },
@@ -8087,86 +8201,8 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "mueller-lake-park",
-      "status": "scheduled"
-    },
-    {
-      "id": "daysmart-chaparralice-346674",
-      "date": "2026-11-06",
-      "start": "09:00",
-      "end": "10:00",
-      "title": "Adult Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "surface": "indoor",
-      "type": "Adult skate",
-      "rink": "Northcross Rink",
-      "price": null,
-      "note": "No reservation needed. Skate rental at the rink.",
-      "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
-      },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "sourceId": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "chaparral-northcross",
-      "status": "scheduled"
-    },
-    {
-      "id": "daysmart-chaparralice-346696",
-      "date": "2026-11-06",
-      "start": "10:00",
-      "end": "12:00",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "surface": "indoor",
-      "type": "Public skate",
-      "rink": "Northcross Rink",
-      "price": null,
-      "note": "No reservation needed. Skate rental at the rink.",
-      "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
-      },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "sourceId": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "chaparral-northcross",
-      "status": "scheduled"
-    },
-    {
-      "id": "daysmart-chaparralice-346697",
-      "date": "2026-11-06",
-      "start": "14:45",
-      "end": "17:00",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "surface": "indoor",
-      "type": "Public skate",
-      "rink": "Northcross Rink",
-      "price": null,
-      "note": "No reservation needed. Skate rental at the rink.",
-      "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
-      },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "sourceId": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
     {
@@ -8191,7 +8227,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8217,7 +8253,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8243,7 +8279,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8269,7 +8305,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8295,7 +8331,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8321,7 +8357,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8347,7 +8383,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8373,7 +8409,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8399,7 +8435,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8425,7 +8461,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8451,7 +8487,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8477,7 +8513,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8503,7 +8539,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8529,7 +8565,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8555,7 +8591,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8581,7 +8617,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8607,7 +8643,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8633,7 +8669,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8659,7 +8695,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8685,7 +8721,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8711,7 +8747,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8737,7 +8773,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8763,7 +8799,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8789,7 +8825,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8815,7 +8851,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8841,7 +8877,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8867,7 +8903,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8893,7 +8929,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8919,7 +8955,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
@@ -8945,35 +8981,61 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
     {
-      "id": "daysmart-iceandfield-10386",
-      "date": "2026-11-06",
+      "id": "daysmart-chaparralice-346722",
+      "date": "2026-11-21",
       "start": "13:00",
       "end": "15:00",
-      "title": "Public Skating",
-      "venue": "Ice & Field at The Crossover",
-      "city": "Cedar Park",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
       "surface": "indoor",
       "type": "Public skate",
-      "rink": "Silver Rink",
-      "price": "$14 · skates $6",
-      "capacity": 250,
-      "note": null,
+      "rink": "Northcross Rink",
+      "price": null,
+      "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://iceandfield.com/public-skating/",
-        "label": "Public skating info"
+        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+        "label": "Rink calendar"
       },
-      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/iceandfield/calendar?location=1",
-      "sourceId": "ice-and-field",
+      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "sourceId": "chaparral-ice",
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "crossover-ice",
+      "verifiedAt": "2026-11-07",
+      "venueId": "chaparral-northcross",
+      "status": "scheduled"
+    },
+    {
+      "id": "daysmart-chaparralice-348129",
+      "date": "2026-11-21",
+      "start": "19:15",
+      "end": "21:15",
+      "title": "Public Skate",
+      "venue": "Chaparral Ice",
+      "city": "N. Austin (Northcross)",
+      "surface": "indoor",
+      "type": "Public skate",
+      "rink": "Northcross Rink",
+      "price": null,
+      "capacity": 200,
+      "note": "No reservation needed. Skate rental at the rink.",
+      "signup": {
+        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+        "label": "Rink calendar"
+      },
+      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "sourceId": "chaparral-ice",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
+      "venueId": "chaparral-northcross",
       "status": "scheduled"
     },
     {
@@ -8999,7 +9061,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9026,7 +9088,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9053,7 +9115,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9080,7 +9142,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9107,7 +9169,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9134,7 +9196,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9161,7 +9223,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9188,7 +9250,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9215,7 +9277,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9242,7 +9304,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9269,7 +9331,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9296,7 +9358,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9323,7 +9385,7 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9350,7 +9412,34 @@
       "sport": "ice_skating",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
+      "verifiedAt": "2026-11-07",
+      "venueId": "crossover-ice",
+      "status": "scheduled"
+    },
+    {
+      "id": "daysmart-iceandfield-2386",
+      "date": "2026-11-21",
+      "start": "14:00",
+      "end": "16:00",
+      "title": "Public Skating",
+      "venue": "Ice & Field at The Crossover",
+      "city": "Cedar Park",
+      "surface": "indoor",
+      "type": "Public skate",
+      "rink": "Silver Rink",
+      "price": "$14 · skates $6",
+      "capacity": 250,
+      "note": null,
+      "signup": {
+        "url": "https://iceandfield.com/public-skating/",
+        "label": "Public skating info"
+      },
+      "source": "https://apps.daysmartrecreation.com/dash/x/#/online/iceandfield/calendar?location=1",
+      "sourceId": "ice-and-field",
+      "sport": "ice_skating",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-07",
       "venueId": "crossover-ice",
       "status": "scheduled"
     },
@@ -9487,33 +9576,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-06",
       "venueId": "austin-northwest-rec",
-      "status": "scheduled"
-    },
-    {
-      "id": "pickleball-austin-dove-springs-rec-2-2026-11-06",
-      "sport": "pickleball",
-      "date": "2026-11-06",
-      "start": "09:00",
-      "end": "12:00",
-      "title": "George Morales Dove Springs Recreation Center · Pickleball open play",
-      "venue": "George Morales Dove Springs Recreation Center",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "scheduleBasis": "published_recurring_hours",
-      "reviewBy": "2026-11-30",
-      "price": "Price not published — confirm with venue",
-      "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
-      "signup": {
-        "url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
-        "label": "Venue details"
-      },
-      "source": "https://www.austintexas.gov/parks/programs/pickleball",
-      "sourceId": "austin-city-pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-06",
-      "venueId": "austin-dove-springs-rec",
       "status": "scheduled"
     },
     {
