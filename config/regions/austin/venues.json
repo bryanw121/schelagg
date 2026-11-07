@@ -16,7 +16,10 @@
         "sport": "pickleball",
         "surface": "indoor",
         "url": "https://play.pickleland.com/book/pickleland",
-        "note": "Nine indoor courts. Court rentals advertised from $24/hour; check the selected slot for the final price."
+        "note": "Nine indoor courts. Court rental $24–44/hr by time of day (members $17–31/hr); check the selected slot for the final price.",
+        "price": "$24–44/hr",
+        "source": "https://pickleland.com/pricing",
+        "reviewBy": "2027-01-31"
       },
       "calendarLink": {
         "sport": "pickleball",
@@ -66,7 +69,10 @@
       "bookingLink": {
         "sport": "pickleball",
         "url": "https://app.getopencourt.com/club/austinpicklehaus/book",
-        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+        "note": "Court reservation $20/hr off-peak, $40/hr peak.",
+        "price": "$20–40/hr",
+        "source": "https://app.getopencourt.com/club/austinpicklehaus",
+        "reviewBy": "2027-01-31"
       }
     },
     {
@@ -102,7 +108,10 @@
       "bookingLink": {
         "sport": "pickleball",
         "url": "https://app.courtreserve.com/Online/PublicBookings/15273/Landing",
-        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+        "note": "Off-peak (weekdays 6am–5pm) $30; peak (weekdays after 5pm, weekends and holidays) $40.",
+        "price": "$30–40/hr",
+        "source": "https://picklepitstop.com/",
+        "reviewBy": "2027-01-31"
       }
     },
     {
@@ -142,7 +151,7 @@
       },
       "bookingLink": {
         "sport": "pickleball",
-        "url": "https://austinpickleranch.com/plan-a-visit/braker",
+        "url": "https://austinpickleranch.podplay.app/book/braker",
         "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
       }
     },
@@ -183,7 +192,7 @@
       },
       "bookingLink": {
         "sport": "pickleball",
-        "url": "https://eastsidepaddleclub.com/",
+        "url": "https://espc.podplay.app/book/springdale",
         "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
       }
     },
@@ -216,8 +225,11 @@
       },
       "bookingLink": {
         "sport": "pickleball",
-        "url": "https://app.getopencourt.com/club/holy-pickle",
-        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+        "url": "https://app.getopencourt.com/club/holy-pickle/book",
+        "note": "Court reservation $40/hr.",
+        "price": "$40/hr",
+        "source": "https://app.getopencourt.com/club/holy-pickle",
+        "reviewBy": "2027-01-31"
       }
     },
     {
@@ -499,7 +511,8 @@
         "url": "https://playtennis.usta.com/austintenniscenter/Booking/BookByDate",
         "note": "Pickleball court fee: $5 per person. Up to 90 minutes for singles or 120 minutes for doubles. Reserve through the venue’s USTA booking system.",
         "source": "https://playtennis.usta.com/austintenniscenter/Booking/CourtPricing",
-        "reviewBy": "2026-11-30"
+        "reviewBy": "2026-11-30",
+        "price": "$5/person"
       }
     },
     {
@@ -517,7 +530,8 @@
         "sport": "pickleball",
         "url": "https://braker.bouldinacres.com/pickleball",
         "note": "Court rental: Mon–Thu 11am–6pm $10/half-hour; evenings and Fri–Sun $20/half-hour. Monday/Wednesday 6–10pm reserved for leagues. Book up to one week ahead; customer reservations required. Early 7–11am bookings apply only to South Lamar.",
-        "reviewBy": "2026-11-30"
+        "reviewBy": "2026-11-30",
+        "price": "$20–40/hr"
       }
     },
     {

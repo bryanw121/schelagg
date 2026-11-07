@@ -91,7 +91,36 @@ const $ = (id) => document.getElementById(id);
 const pad = (n) => String(n).padStart(2, '0');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 // A venue's booking calendar opened on `iso` (YYYY-MM-DD) when its platform supports it.
-const calendarOn = (venue, iso) => (venue.calendarDay && iso ? venue.calendarDay.replace('{date}', iso) : venue.calendar);
+/**
+ * The same booking or sign-up page, opened on the chosen day, for the systems whose links carry a date
+ * (checked against each site: it shows that day). Anything else comes back unchanged, so it opens
+ * wherever the venue's own page starts. OpenCourt, Arketa, CourtReserve and PlayByPoint links don't take one.
+ */
+function onDay(url, iso) {
+  if (!url || !iso) return url;
+  let u;
+  try { u = new URL(url); } catch { return url; }
+  // PodPlay: /book/<area> -> /book/<area>/<date> (its own day links keep ?pod=)
+  if (/\.podplay\.app$/.test(u.hostname) && /^\/book\/[^/]+(\/\d{4}-\d{2}-\d{2})?\/?$/.test(u.pathname)) {
+    u.pathname = `${u.pathname.replace(/\/(\d{4}-\d{2}-\d{2})?\/?$/, '').replace(/\/\d{4}-\d{2}-\d{2}$/, '')}/${iso}`;
+    return u.href;
+  }
+  // USTA PlayTennis "Book by date": the date rides in the hash.
+  if (u.hostname === 'playtennis.usta.com' && /\/Booking\/BookByDate$/i.test(u.pathname)) return `${u.origin}${u.pathname}#?date=${iso}&role=guest`;
+  // DaySmart (Dash) calendars: one day is start = end.
+  if (u.hostname === 'apps.daysmartrecreation.com' && /calendar/.test(u.hash || u.pathname)) {
+    const [path, q = ''] = (u.hash || '').split('?');
+    const p = new URLSearchParams(q);
+    p.set('start', iso); p.set('end', iso); p.delete('date');
+    if (u.hash) { u.hash = `${path}?${p}`; return u.href; }
+    for (const [k, v] of p) u.searchParams.set(k, v);
+    return u.href;
+  }
+  return url;
+}
+const calendarOn = (venue, iso) => (venue.calendarDay && iso ? venue.calendarDay.replace('{date}', iso) : onDay(venue.calendar, iso));
+/** A venue's published court price ("$40/hr"), unless it's past its review date. */
+const courtPrice = (bl) => (bl?.price && !(bl.reviewBy && NOW.iso > bl.reviewBy) ? bl.price : '');
 
 // The region's time zone (set from data/index.json); everything date- and time-like uses it.
 let TZ = 'America/Chicago';
@@ -214,14 +243,14 @@ function sessionsOn(iso, { ignoreTab = false } = {}) {
   const dn = DAYS[dowOf(iso)];
   return (schedule?.sessions || [])
     .filter((x) => sportOf(x) === state.sport && (ignoreTab || matchTab(x)) && (x.date ? x.date === iso : (x.days || []).includes(dn)))
-    .map((x) => ({ ...x, f: freshness(x, iso) }));
+    .map((x) => ({ ...x, on: iso, f: freshness(x, iso) }));
 }
 
 function signupHtml(x) {
   if (x.f.k === 'expired' || x.f.k === 'canceled') return '';
-  const s = x.signup || {};
-  if (s.url && !s.dropIn) return `<a class="signup" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label || 'Sign up')} ↗</a>`;
-  if (s.url) return `<span class="dropin">${esc(s.label || 'Drop in')}</span><a class="src" href="${esc(s.url)}" target="_blank" rel="noopener">Details ↗</a>`;
+  const s = x.signup || {}, url = onDay(s.url, x.date || x.on); // a shared calendar link opens on this session's day
+  if (url && !s.dropIn) return `<a class="signup" href="${esc(url)}" target="_blank" rel="noopener">${esc(s.label || 'Sign up')} ↗</a>`;
+  if (url) return `<span class="dropin">${esc(s.label || 'Drop in')}</span><a class="src" href="${esc(url)}" target="_blank" rel="noopener">Details ↗</a>`;
   return s.label ? `<span class="dropin">${esc(s.label)}</span>` : '';
 }
 
@@ -308,13 +337,13 @@ function renderTabs() {
 }
 
 function renderDays() {
-  // Booking links for a sport without live court calendars don't depend on the day.
-  $('days').hidden = state.view === 'booking' && !liveCourts();
+  // Always shown: booking and sign-up links open on the chosen day where the venue's site allows it.
+  $('days').hidden = false;
   $('days').innerHTML = WEEK.map((iso, i) => {
     const list = state.view === 'booking' ? [] : sessionsOn(iso).filter((x) => !hidden(x.f));
     const kinds = [...new Map(list.map((x) => [tabOf(x).c, tabOf(x)])).values()];
     const d = dowOf(iso);
-    return `<button class="day" aria-pressed="${state.di === i}" data-di="${i}" aria-label="${DAY_LONG[d]} ${+iso.slice(8)}${state.view === 'booking' ? ', court bookings' : `, ${list.length} sessions`}">
+    return `<button class="day" aria-pressed="${state.di === i}" data-di="${i}" data-iso="${iso}" aria-label="${DAY_LONG[d]} ${+iso.slice(8)}${state.view === 'booking' ? ', court bookings' : `, ${list.length} sessions`}">
       <span class="dn">${i === 0 ? 'Today' : DAYS[d]}</span><span class="dd">${+iso.slice(8)}</span>
       <span class="pips">${kinds.map((k) => `<span class="pip" style="background:${k.c}"></span>`).join('')}</span></button>`;
   }).join('');
@@ -371,7 +400,7 @@ function renderVenueCalendars() {
       ? '<p class="note">Hours and general prices need rechecking. See the venue website for current details.</p>'
       : `${v.calendarLink.details.map((d) => `<p class="note"><b>${esc(d.label)}:</b> ${esc(d.text)} ${/^https?:\/\//.test(d.url) ? `<a class="src" href="${esc(d.url)}" target="_blank" rel="noopener">Source ↗</a>` : ''}</p>`).join('')}<p class="note">Details checked ${esc(v.calendarLink.reviewedOn)} · Austin local time</p>`)
       : ''}
-    <a class="src" href="${esc(v.calendarLink.url)}" target="_blank" rel="noopener">View venue calendar ↗</a>
+    <a class="src" href="${esc(onDay(v.calendarLink.url, WEEK[state.di]))}" target="_blank" rel="noopener">View venue calendar ↗</a>
   </div>`).join('');
 }
 
@@ -400,8 +429,9 @@ function renderCalendarModes() {
     const own = stale ? 'Published rates need rechecking; consult the venue for current prices.' : v.bookingLink.note !== common ? v.bookingLink.note : '';
     const price = /^https:\/\//.test(v.bookingLink.source || '') ? `<a class="src" href="${esc(v.bookingLink.source)}" target="_blank" rel="noopener">Price source ↗</a>` : '';
     const more = locationHtml({ venueId: v.id }) + (own ? `<p class="note">${esc(own)}</p>` : '') + (price ? `<div class="actions">${price}</div>` : '');
-    return `<div class="book-row"><div class="book-name"><b>${esc(v.name)}</b><span>${esc(v.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</span></div>
-      <a class="signup" href="${esc(v.bookingLink.url)}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(v.name)}">Book ↗</a>
+    const cost = courtPrice(v.bookingLink);
+    return `<div class="book-row"><div class="book-name"><b>${esc(v.name)}</b><span>${esc(v.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}</span></div>
+      <a class="signup" href="${esc(onDay(v.bookingLink.url, WEEK[state.di]))}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(v.name)}">Book ↗</a>
       ${more ? `<details class="more"><summary>Details</summary>${more}</details>` : ''}</div>`;
   }).join('')
     || '<p class="note">No venue booking links for this selection.</p>';
@@ -576,7 +606,8 @@ function venueCourts(f, iso, dow, nowLine) {
   const freeText = anyFree.length ? `free <b>${anyFree.map(([a, b]) => `${fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}</b>` : '<b class="full">fully booked</b>';
   const stale = f.venue.stale ? ' · <b class="full">showing last good data</b>' : '';
   const mi = milesTo(f.venueId);
-  const where = `${esc(f.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}`;
+  const cost = courtPrice(schedule?.venues?.find((v) => v.id === f.venueId)?.bookingLink);
+  const where = `${esc(f.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}`;
   const expanded = openFacs.has(f.id), laneId = `lanes-${f.id}`;
   const freeAria = segs.map(({ a, b, free }) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))} ${word(free)}`).join('; ');
 
