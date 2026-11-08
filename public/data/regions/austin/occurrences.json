@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-08T18:45:40.686Z",
+  "generatedAt": "2026-11-08T19:15:39.545Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -109,34 +109,6 @@
       },
       "venue_id": "austin-picklehaus",
       "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-8FLID5",
-      "session_id": "reclub-8FLID5",
-      "source_id": "reclub",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Austin Lawn Club - Sunday Fun Day!",
-      "venue": "Mueller Lake Park",
-      "city": "Austin",
-      "level": "All levels",
-      "price": "$6",
-      "starts_at": "2026-11-08T16:00:00.000Z",
-      "ends_at": "2026-11-08T19:00:00.000Z",
-      "signup_url": "https://reclub.co/m/8FLID5",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Austin Lawn Club, every Sunday.",
-      "canceled": true,
-      "verified_at": "2026-11-08",
-      "attributes": {
-        "surface": "grass",
-        "type": "Open play",
-        "capacity": 16
-      },
-      "venue_id": "mueller-lake-park",
-      "status": "cancelled",
       "previous_starts_at": null
     },
     {
@@ -333,6 +305,33 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-2413fbe7-1db4-4d14-8e24-1c0af53e7131",
+      "session_id": "opencourt-2413fbe7-1db4-4d14-8e24-1c0af53e7131",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Unrestricted Open Play Weekend",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "2–6 recommended",
+      "price": "$8 / person (nonmember)",
+      "starts_at": "2026-11-08T19:00:00.000Z",
+      "ends_at": "2026-11-08T21:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/2413fbe7-1db4-4d14-8e24-1c0af53e7131",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-08",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },

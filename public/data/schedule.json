@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T18:45:40.686Z",
+  "generatedAt": "2026-11-08T19:15:39.545Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T18:43:17.124Z",
+      "checkedAt": "2026-11-08T19:13:15.727Z",
       "count": 267
     },
     {
@@ -19,8 +19,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T18:43:17.124Z",
-      "count": 106
+      "checkedAt": "2026-11-08T19:13:15.728Z",
+      "count": 107
     },
     {
       "id": "holy-pickle",
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T18:43:17.125Z",
+      "checkedAt": "2026-11-08T19:13:15.728Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T18:43:17.125Z",
+      "checkedAt": "2026-11-08T19:13:15.728Z",
       "count": 13
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-08T18:43:17.126Z",
+      "checkedAt": "2026-11-08T19:13:15.728Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -80,8 +80,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-08T18:13:28.820Z",
-      "count": 6
+      "checkedAt": "2026-11-08T19:13:15.729Z",
+      "count": 5
     },
     {
       "id": "chaparral-ice",
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T18:43:17.126Z",
+      "checkedAt": "2026-11-08T19:13:15.754Z",
       "count": 32
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T18:43:17.807Z",
+      "checkedAt": "2026-11-08T19:13:16.769Z",
       "count": 15
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T18:43:18.287Z",
+      "checkedAt": "2026-11-08T19:13:16.820Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T18:43:18.464Z",
+      "checkedAt": "2026-11-08T19:13:16.983Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7383,6 +7383,32 @@
       "status": "scheduled"
     },
     {
+      "id": "opencourt-2413fbe7-1db4-4d14-8e24-1c0af53e7131",
+      "date": "2026-11-08",
+      "start": "13:00",
+      "end": "15:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Unrestricted Open Play Weekend",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "level": "2–6 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/2413fbe7-1db4-4d14-8e24-1c0af53e7131",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/2413fbe7-1db4-4d14-8e24-1c0af53e7131",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-08",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
       "id": "opencourt-2758c043-1646-4928-81a8-0cb9aa916a15",
       "date": "2026-11-08",
       "start": "15:00",
@@ -10878,34 +10904,6 @@
       "verifiedAt": "2026-11-08",
       "venueId": "treehouse",
       "status": "scheduled"
-    },
-    {
-      "id": "reclub-8FLID5",
-      "date": "2026-11-08",
-      "start": "10:00",
-      "end": "13:00",
-      "title": "Austin Lawn Club - Sunday Fun Day!",
-      "venue": "Mueller Lake Park",
-      "city": "Austin",
-      "surface": "grass",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$6",
-      "note": "Hosted by Austin Lawn Club, every Sunday.",
-      "canceled": true,
-      "capacity": 16,
-      "signup": {
-        "url": "https://reclub.co/m/8FLID5",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/8FLID5",
-      "sourceId": "reclub",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-08",
-      "venueId": "mueller-lake-park",
-      "status": "cancelled"
     },
     {
       "id": "reclub-V7JN1R",
