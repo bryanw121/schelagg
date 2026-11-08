@@ -279,7 +279,7 @@ body.filters-closed .map{height:min(74vh,760px)}
 .seg:empty{display:none}
 .seg-btn{border:0;border-radius:999px;background:none;color:var(--ink);font:600 14px/1 var(--body);padding:0 14px;height:34px;cursor:pointer;white-space:nowrap;touch-action:manipulation}
 .seg-btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);font-weight:700}
-@media (pointer:coarse){.seg-btn{height:38px}}
+@media (pointer:coarse){.seg-btn{height:44px}}
 .day{border-radius:12px;min-height:52px;touch-action:manipulation}
 
 /* Bottom sheets (native <dialog>: focus stays inside, Esc closes). Full width on phones, a centred card on desktop. */
@@ -301,7 +301,8 @@ dialog.sheet::backdrop{background:rgba(5,9,13,.55)}
 @media (min-width:700px){dialog.sheet{margin:auto;width:min(480px,calc(100% - 32px));border-radius:16px}}
 @media (prefers-reduced-motion:no-preference){dialog.sheet[open]{animation:sheet-up .18s ease-out}@media (min-width:700px){dialog.sheet[open]{animation:none}}}
 @keyframes sheet-up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
-body:has(dialog.sheet[open]){overflow:hidden}
+html:has(dialog.sheet[open]),body:has(dialog.sheet[open]){overflow:hidden}
+dialog.sheet{overscroll-behavior:contain}
 
 /* List / Map: one floating button over the bottom of the screen. */
 .layout-fab{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:6}
@@ -323,10 +324,12 @@ details.earlier summary::after{content:"▾";margin-left:auto}
 details.earlier[open] summary::after{content:"▴"}
 details.earlier[open]{margin-bottom:4px}
 details.earlier .row{margin-top:10px}
-#mapCard{order:-2}
-#sessionsPanel{order:-1}
-body.view-booking #glance{order:-1}
-body.view-booking #sessionsPanel{order:0}
+/* The floating List button sits over the map's bottom edge: lift the map's credit and controls clear of it. */
+body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibregl-ctrl-bottom-left{margin-bottom:60px}
+/* Nothing in the chips row (skating): no empty row in the header. */
+.chips-row:not(:has(> :not([hidden]))){display:none}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.linkish{border:0;background:none;padding:0 2px;color:var(--accent);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;min-height:44px;touch-action:manipulation}
 /* The folded filters on the map: one line under the brand. */
 body.filters-closed .sub{margin-bottom:-2px}
 @media (max-width:360px){.pill-btn{padding:0 10px}.seg-btn{padding:0 10px;font-size:13px}h1{font-size:22px}}

@@ -332,7 +332,9 @@ function renderSports() {
   const today = (schedule?.sessions || []).filter((x) => !x.date || x.date >= NOW.iso);
   const offered = new Set(region?.sports ?? []);
   const list = Object.entries(SPORTS).filter(([k]) => k === state.sport || offered.has(k) || today.some((x) => sportOf(x) === k));
+  const focused = $('sportSheet').open && document.activeElement?.dataset.sport;
   $('sports').innerHTML = list.map(([k, sp]) => `<button type="button" class="tab opt sport" aria-pressed="${state.sport === k}" data-sport="${k}">${sp.label}</button>`).join('');
+  if (focused) $('sports').querySelector(`[data-sport="${CSS.escape(focused)}"]`)?.focus();
   // The sport is a pill in the header; with only one sport here it's a plain label.
   $('sportBtn').innerHTML = `${esc(SPORTS[state.sport].label)}${list.length > 1 ? ' <span class="caret" aria-hidden="true">▾</span>' : ''}`;
   $('sportBtn').disabled = list.length <= 1;
@@ -350,10 +352,14 @@ function renderTabs() {
   const isIn = (x, k) => k === 'all' || (sp.filter ? sp.filter.match(x, k) : x[sp.by] === k);
   // Counts are for the day being viewed, so they match the list the option leads to.
   const day = sessionsOn(WEEK[state.di], { ignoreTab: true }).filter((x) => !hidden(x.f));
+  const focused = $('levelSheet').open && document.activeElement?.dataset.tab;
+  // Booking counts no sessions, so it shows (and announces) no count.
+  const counting = state.view !== 'booking';
   $('tabs').innerHTML = opts.map(([k, l, c, d]) => {
-    const n = state.view === 'booking' ? 0 : day.filter((x) => isIn(x, k)).length;
-    return `<button type="button" class="tab opt" aria-pressed="${state.tab === k}" data-tab="${esc(k)}" ${c ? `style="--c:${c}"` : ''}>${c ? '<span class="dot"></span>' : ''}<span class="lbl">${l}${d ? `<small>${esc(d)}</small>` : ''}</span><span class="n" aria-label="${n} sessions">${n || ''}</span></button>`;
+    const n = counting ? day.filter((x) => isIn(x, k)).length : 0;
+    return `<button type="button" class="tab opt" aria-pressed="${state.tab === k}" data-tab="${esc(k)}" ${c ? `style="--c:${c}"` : ''}>${c ? '<span class="dot"></span>' : ''}<span class="lbl">${l}${d ? `<small>${esc(d)}</small>` : ''}</span><span class="n" aria-hidden="true">${n || ''}</span>${counting ? `<span class="vh">, ${n} session${n === 1 ? '' : 's'}</span>` : ''}</button>`;
   }).join('');
+  if (focused) $('tabs').querySelector(`[data-tab="${CSS.escape(focused)}"]`)?.focus();
   const what = sp.filter ? 'Level' : 'Court type';
   $('levelSheetTitle').textContent = what;
   $('levelNote').textContent = sp.filter ? 'Read from each listing\'s words: Beginner / Intermediate / Advanced, a DUPR range or "Level N". Sessions that don\'t say show under every level.' : '';
@@ -384,6 +390,8 @@ function detailsHtml(x) {
   return `<details class="more"><summary>Details</summary>${locationHtml(x)}${x.note ? `<div class="note">${esc(x.note)}</div>` : ''}<div class="actions">${links}</div></details>`;
 }
 
+let earlierOpen = false; // "N ended earlier today" stays open across redraws once opened
+document.addEventListener('toggle', (e) => { if (e.target.matches?.('details.earlier')) earlierOpen = e.target.open; }, true);
 function renderList() {
   const iso = WEEK[state.di], isToday = state.di === 0;
   $('dayTitle').textContent = (isToday ? 'Today · ' : state.di === 1 ? 'Tomorrow · ' : '') + fmtDate(iso, { weekday: 'long', month: 'short', day: 'numeric' });
@@ -409,8 +417,9 @@ function renderList() {
   };
   const earlier = shown.filter(ended), rest = shown.filter((x) => !ended(x));
   let html = '';
-  if (earlier.length) html += `<details class="earlier"><summary>${earlier.length} ended earlier today</summary>${earlier.map(card).join('')}</details>`;
-  if (isToday && shown.length) html += nowLabel;
+  if (earlier.length) html += `<details class="earlier"${earlierOpen ? ' open' : ''}><summary>${earlier.length} ended earlier today</summary>${earlier.map(card).join('')}</details>`;
+  if (isToday && rest.length) html += nowLabel;
+  else if (isToday && earlier.length) html += `<div class="empty"><b>Nothing else today.</b> <button type="button" class="linkish" data-di="1">See tomorrow</button></div>`;
   html += rest.map(card).join('');
   const hiddenN = all.length - shown.length;
   if (!shown.length) {
@@ -800,6 +809,8 @@ const setFilters = (open) => {
   mapView?.resize();
   (open ? $('filtersToggle') : $('filtersSummary')).focus();
 };
+/** Without data there's no map: never leave the filters folded away. */
+const unfold = () => { $('filters').hidden = false; document.body.classList.remove('filters-closed'); };
 $('filtersToggle').addEventListener('click', () => setFilters(false));
 $('filtersSummary').addEventListener('click', () => setFilters(true));
 // Apply the remembered state at once, so collapsed filters don't flash open while data loads.
@@ -923,6 +934,7 @@ async function renderMap() {
   const MAP_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>';
   $('layout').innerHTML = mapReady() ? (on ? `<button class="fab" type="button" data-layout="list">${LIST_ICON}List</button>` : `<button class="fab" type="button" data-layout="map">${MAP_ICON}Map</button>`) : '';
   $('mapCard').hidden = !on;
+  document.body.classList.toggle('layout-map', on);
   // The map replaces the day's chart and lists; the free-courts and sources cards stay.
   for (const id of ['glance', 'sessionsPanel', 'bookingCalendarsCard', 'venueCalendarsCard']) if (on) $(id).hidden = true;
   if (!on) return;
@@ -967,7 +979,7 @@ async function renderMap() {
   if (key !== mapKey && places.length) {
     mapKey = key;
     const lngs = places.map((p) => p.lng), lats = places.map((p) => p.lat);
-    mapView.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: 48, maxZoom: 12, duration: 0 });
+    mapView.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: { top: 48, right: 48, left: 48, bottom: 96 }, maxZoom: 12, duration: 0 });
   } else if (mapPick) {
     const p = places.find((x) => x.id === mapPick);
     if (p && !mapView.getBounds().contains([p.lng, p.lat])) mapView.easeTo({ center: [p.lng, p.lat] });
@@ -1002,7 +1014,11 @@ function closeSheets() { for (const d of sheets()) if (d.open) d.close(); }
 for (const d of sheets()) {
   d.addEventListener('close', () => { d.returnTo?.isConnected && d.returnTo.focus(); d.returnTo = null; });
   // A tap on the dimmed backdrop lands on the dialog itself (the content is inside .sheet-in).
-  d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
+  d.addEventListener('click', (e) => {
+    if (e.target !== d) return;
+    const r = d.getBoundingClientRect(); // the dialog's own box is the sheet; outside it is the backdrop
+    if (e.clientY < r.top || e.clientY > r.bottom || e.clientX < r.left || e.clientX > r.right) d.close();
+  });
 }
 
 document.addEventListener('click', async (e) => {
@@ -1065,8 +1081,11 @@ document.addEventListener('click', async (e) => {
   if (t.dataset.view) { state.view = t.dataset.view; save(); }
   if (t.dataset.di) state.di = +t.dataset.di;
   // A choice in a sheet applies at once and closes it; focus returns to the chip that opened it.
-  if (t.closest('dialog.sheet')) closeSheets();
+  const inSheet = t.closest('dialog.sheet'), inDays = !!t.closest('#days'); // asked before the redraw detaches t
+  if (inSheet) closeSheets();
   render();
+  // The control just used was redrawn; keep keyboard focus on its new copy (a sheet returns it to its chip).
+  if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`[data-view="${t.dataset.view}"]`) : inDays ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
 });
 $('showAll').checked = state.showAll;
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });
@@ -1092,6 +1111,7 @@ async function chooseRegion(id) {
   } catch (e) {
     schedule = null;
     $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`;
+    unfold();
     return;
   }
   if (region?.sports?.length && !region.sports.includes(state.sport)) { state.sport = region.sports[0]; state.tab = 'all'; }
@@ -1107,7 +1127,7 @@ try { maps = await getJson(`${MAPS}maps.json`); } catch { maps = null; }
 if (index?.regions?.length) await chooseRegion(state.region);
 else {
   try { schedule = await getJson(`${DATA}schedule.json`); render(); }
-  catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`; }
+  catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`; unfold(); }
 }
 try { courts = await getJson(`${DATA}courts.json`); }
 catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }

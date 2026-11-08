@@ -718,6 +718,20 @@ test('site: level and sport open as bottom sheets that apply on a tap and close 
   assert.equal(await btn.isHidden(), true, 'skating has no level or court type');
 });
 
+test('site: late in the day, "Nothing else today" leads to tomorrow, and the ended fold stays open once opened', async () => {
+  await open({ clock: new Date('2026-10-26T04:40:00Z') }); // Sun Oct 25, 11:40pm in Austin
+  assert.equal(await page.locator('#list .now').count(), 0, 'no "Now" heading over nothing');
+  const empty = page.locator('#list .empty', { hasText: 'Nothing else today.' });
+  assert.equal(await empty.isVisible(), true);
+  await page.locator('#list details.earlier > summary').click();
+  await page.locator('#days [data-di="1"]').click(); // keyboard focus follows the redrawn day
+  assert.equal(await page.evaluate(() => document.activeElement.dataset.di), '1');
+  await page.locator('#days [data-di="0"]').click();
+  assert.equal(await page.locator('#list details.earlier').getAttribute('open'), '', 'still open after a redraw');
+  await empty.locator('button').click();
+  assert.match(await page.locator('#dayTitle').textContent(), /^Tomorrow/);
+});
+
 test('site: no Map button without a map for the region', async () => {
   await open({ index: { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] }, regions: { austin: SCHEDULE }, url: '/?layout=map' });
   assert.equal(await page.locator('#layout').isHidden(), true);
