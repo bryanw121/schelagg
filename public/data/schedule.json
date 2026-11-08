@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T01:15:38.011Z",
+  "generatedAt": "2026-11-08T01:45:54.846Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T01:13:17.156Z",
+      "checkedAt": "2026-11-08T01:43:16.130Z",
       "count": 261
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T01:13:17.157Z",
+      "checkedAt": "2026-11-08T01:43:16.131Z",
       "count": 117
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T01:13:17.157Z",
+      "checkedAt": "2026-11-08T01:43:16.131Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T01:13:17.157Z",
+      "checkedAt": "2026-11-08T01:43:16.131Z",
       "count": 13
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-08T01:13:17.158Z",
+      "checkedAt": "2026-11-08T01:43:16.132Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-08T00:43:15.986Z",
+      "checkedAt": "2026-11-08T01:43:16.132Z",
       "count": 5
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T01:13:17.159Z",
+      "checkedAt": "2026-11-08T01:43:16.172Z",
       "count": 32
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T01:13:17.200Z",
+      "checkedAt": "2026-11-08T01:43:16.508Z",
       "count": 15
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T01:13:17.679Z",
+      "checkedAt": "2026-11-08T01:43:17.473Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T01:13:17.768Z",
+      "checkedAt": "2026-11-08T01:43:17.521Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -10460,6 +10460,7 @@
       "surface": "indoor",
       "type": "Training",
       "level": "Adults · Kira",
+      "full": true,
       "capacity": 12,
       "spotsLeft": 11,
       "classId": "u07j3PtwFOeVm97fuF4t",
