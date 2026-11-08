@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T17:01:37.839Z",
+  "generatedAt": "2026-11-08T17:15:40.518Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T16:43:12.783Z",
+      "checkedAt": "2026-11-08T17:13:16.410Z",
       "count": 266
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T16:43:12.783Z",
+      "checkedAt": "2026-11-08T17:13:16.410Z",
       "count": 107
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T16:43:12.783Z",
+      "checkedAt": "2026-11-08T17:13:16.411Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T16:43:12.783Z",
+      "checkedAt": "2026-11-08T17:13:16.411Z",
       "count": 13
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-08T17:01:36.507Z",
+      "checkedAt": "2026-11-08T17:13:16.411Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,8 +85,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-08T16:13:15.061Z",
-      "count": 5
+      "checkedAt": "2026-11-08T17:13:16.412Z",
+      "count": 6
     },
     {
       "id": "chaparral-ice",
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T16:43:12.784Z",
+      "checkedAt": "2026-11-08T17:13:16.444Z",
       "count": 32
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T16:43:12.810Z",
+      "checkedAt": "2026-11-08T17:13:17.427Z",
       "count": 15
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T17:01:36.508Z",
+      "checkedAt": "2026-11-08T17:13:17.504Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T17:01:36.508Z",
+      "checkedAt": "2026-11-08T17:13:17.653Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -10909,6 +10909,33 @@
       "verifiedAt": "2026-11-08",
       "venueId": "mueller-lake-park",
       "status": "cancelled"
+    },
+    {
+      "id": "reclub-V7JN1R",
+      "date": "2026-11-15",
+      "start": "10:00",
+      "end": "13:00",
+      "title": "Austin Lawn Club - Sunday Fun Day!",
+      "venue": "Mueller Lake Park",
+      "city": "Austin",
+      "surface": "grass",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$6",
+      "note": "Hosted by Austin Lawn Club, every Sunday.",
+      "capacity": 16,
+      "signup": {
+        "url": "https://reclub.co/m/V7JN1R",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/V7JN1R",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-08",
+      "venueId": "mueller-lake-park",
+      "status": "scheduled"
     },
     {
       "id": "daysmart-chaparralice-346699",

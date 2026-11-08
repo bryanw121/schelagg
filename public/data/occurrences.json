@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-08T17:01:37.839Z",
+  "generatedAt": "2026-11-08T17:15:40.518Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -10036,6 +10036,34 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-V7JN1R",
+      "session_id": "reclub-V7JN1R",
+      "source_id": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin Lawn Club - Sunday Fun Day!",
+      "venue": "Mueller Lake Park",
+      "city": "Austin",
+      "level": "All levels",
+      "price": "$6",
+      "starts_at": "2026-11-15T16:00:00.000Z",
+      "ends_at": "2026-11-15T19:00:00.000Z",
+      "signup_url": "https://reclub.co/m/V7JN1R",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Austin Lawn Club, every Sunday.",
+      "canceled": false,
+      "verified_at": "2026-11-08",
+      "attributes": {
+        "surface": "grass",
+        "type": "Open play",
+        "capacity": 16
+      },
+      "venue_id": "mueller-lake-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
