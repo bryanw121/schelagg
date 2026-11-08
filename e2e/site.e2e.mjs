@@ -125,6 +125,19 @@ const rows = () => page.locator('#list .row');
 const titles = () => page.locator('#list .row .title').allTextContents();
 const row = (title) => page.locator('#list .row', { has: page.locator('.title', { hasText: title }) });
 const tab = (k) => page.locator(`#tabs [data-tab="${k}"]`);
+/** Level / court type and sport are chosen in bottom sheets: open the sheet, tap the option (it closes). */
+async function pick(k) {
+  await page.locator('#levelBtn').click();
+  await tab(k).click();
+  await page.locator('#levelSheet').waitFor({ state: 'hidden' });
+}
+async function pickSport(k) {
+  await page.locator('#sportBtn').click();
+  await page.locator(`#sports [data-sport="${k}"]`).click();
+  await page.locator('#sportSheet').waitFor({ state: 'hidden' });
+}
+/** Each option's name and count ("Beginner3"), without its description line. */
+const tabTexts = () => page.locator('#tabs .tab').evaluateAll((bs) => bs.map((b) => b.querySelector('.lbl').firstChild.textContent + b.querySelector('.n').textContent));
 
 const PICKLE_SCHEDULE = { ...SCHEDULE, venues: [{ id: 'rec', name: 'Example Rec Center', address: '123 Main St, Suite A & B, Austin, TX 78701' }], sessions: [
   ...SESSIONS,
@@ -138,12 +151,13 @@ const PICKLE_SCHEDULE = { ...SCHEDULE, venues: [{ id: 'rec', name: 'Example Rec 
 test('site: pickleball deep link, filters, directions and copy address keep sports separate', async () => {
   await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball' });
   assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']);
-  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All levels2', 'Beginner2', 'Intermediate2', 'Advanced2']);
+  assert.deepEqual(await tabTexts(), ['All levels2', 'Beginner2', 'Intermediate2', 'Advanced2']);
   assert.equal(await page.locator('#courtsCard').isHidden(), true);
   assert.equal(await page.locator('#cal .g-venue', { hasText: 'Treehouse' }).count(), 0);
   assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /pickleball\.ics$/);
   assert.match(await page.locator('#sourceStatus').textContent(), /hand-checked/);
   const indoor = row('Indoor pickleball');
+  await page.locator('#list details.earlier > summary').click(); // 10am–noon: ended by 5pm, folded away
   // Address, directions and the fine print fold under Details (a tap, not a hover).
   assert.equal(await indoor.getByRole('link', { name: 'Google Maps' }).count(), 0);
   await indoor.locator('details.more summary').click();
@@ -160,7 +174,7 @@ test('site: pickleball deep link, filters, directions and copy address keep spor
   await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('denied'); }; });
   await indoor.getByRole('button', { name: 'Copy address' }).click();
   await indoor.getByRole('status').filter({ hasText: 'Could not copy' }).waitFor();
-  await tab('beginner').click();
+  await pick('beginner');
   assert.deepEqual(await titles(), ['Indoor pickleball', 'Outdoor pickleball']); // no level listed: shown under every level
   await page.reload();
   await row('Outdoor pickleball').waitFor();
@@ -168,7 +182,7 @@ test('site: pickleball deep link, filters, directions and copy address keep spor
   await page.locator('#days .day').nth(1).click();
   assert.match(await page.locator('#list .empty').textContent(), /No confirmed beginner open-play sessions/);
   assert.doesNotMatch(await page.locator('#list .empty').textContent(), /Rinks|Courts open to rent/);
-  await page.locator('[data-sport="volleyball"]').click();
+  await pickSport('volleyball');
   assert.ok(!(await titles()).some((t) => t.includes('pickleball')));
 });
 
@@ -203,7 +217,7 @@ test('site: external pickleball calendars are separate from sessions and source 
   assert.match(await page.locator('#sourceList').textContent(), /withheld until reviewed/);
   await page.setViewportSize({ width: 375, height: 812 });
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'mobile page fits viewport');
-  await page.locator('[data-sport="volleyball"]').click();
+  await pickSport('volleyball');
   assert.equal(await page.locator('#venueCalendarsCard').isHidden(), true);
   await open({ schedule, url: '/?sport=pickleball', clock: new Date('2026-11-01T18:00:00Z') });
   assert.match(await page.locator('#venueCalendars').textContent(), /need rechecking/);
@@ -222,9 +236,9 @@ test('site: directory session prices and unlisted court types do not imply venue
   assert.match(await listing.textContent(), /\$12 \/ person \(listed\)/);
   assert.match(await listing.textContent(), /Court type unlisted/);
   assert.match(await listing.textContent(), /independent directory/);
-  await tab('beginner').click(); // "level 2" is intermediate
+  await pick('beginner'); // "level 2" is intermediate
   assert.equal(await rows().count(), 0);
-  await tab('intermediate').click();
+  await pick('intermediate');
   assert.equal(await rows().count(), 1);
 });
 
@@ -236,15 +250,15 @@ test('site: pickleball level chips read words, DUPR numbers and "Level N", and s
     at('dupr', 'Open play', { level: '3.25+' }), at('word', 'Beginner clinic'), at('none', 'Open play for all'),
   ] };
   await open({ schedule, url: '/?sport=pickleball' });
-  assert.deepEqual(await page.locator('#tabs .tab').allTextContents(), ['All levels6', 'Beginner3', 'Intermediate3', 'Advanced3']);
-  await tab('beginner').click();
+  assert.deepEqual(await tabTexts(), ['All levels6', 'Beginner3', 'Intermediate3', 'Advanced3']);
+  await pick('beginner');
   assert.deepEqual((await titles()).sort(), ['Beginner clinic', 'Level 1 open play', 'Open play for all']);
-  await tab('intermediate').click();
+  await pick('intermediate');
   assert.deepEqual((await titles()).sort(), ['Level 3 open play', 'Open play', 'Open play for all']);
-  await tab('advanced').click();
+  await pick('advanced');
   assert.deepEqual((await titles()).sort(), ['Level 4 open play', 'Open play', 'Open play for all']);
   await page.locator('[data-view="booking"]').click();
-  assert.equal(await page.locator('#tabs').isHidden(), true, 'levels are for open play only');
+  assert.equal(await page.locator('#levelBtn').isHidden(), true, 'levels are for open play only');
 });
 
 test('site: today\'s schedule renders in Austin time with freshness labels and sign-up links', async () => {
@@ -266,10 +280,15 @@ test('site: today\'s schedule renders in Austin time with freshness labels and s
   assert.equal(await pill('Sunday Sand Social'), 'Source changed'); // hand-checked page changed
   assert.match(await row('Morning Adult Training').getAttribute('class'), /\bpast\b/);
 
-  // The "Now" marker sits between what's started and what's next.
+  // Ended sessions fold into one line at the top; "Now" heads what's on and what's next.
   assert.equal(await page.locator('#list .now').textContent(), 'Now · 5pm');
-  const order = await page.locator('#list > .row .title, #list > .now').allTextContents();
-  assert.deepEqual(order.slice(1, 4), ['Afternoon Sand Open Play', 'Now · 5pm', 'Evening Indoor Open Gym']);
+  const order = await page.locator('#list .row .title, #list .now').allTextContents();
+  assert.deepEqual(order.slice(0, 4), ['Morning Adult Training', 'Now · 5pm', 'Afternoon Sand Open Play', 'Evening Indoor Open Gym']);
+  const earlier = page.locator('#list details.earlier');
+  assert.equal(await earlier.locator(':scope > summary').textContent(), '1 ended earlier today');
+  assert.equal(await row('Morning Adult Training').isVisible(), false, 'folded away');
+  await earlier.locator(':scope > summary').click();
+  assert.equal(await row('Morning Adult Training').isVisible(), true);
 
   const signup = row('Evening Indoor Open Gym').locator('a.signup');
   assert.equal(await signup.getAttribute('href'), `${SIGNUP}/evening`);
@@ -288,22 +307,22 @@ test('site: surface tabs filter the list, show counts and are remembered across 
   const counts = await page.locator('#tabs .tab .n').allTextContents();
   assert.deepEqual(counts, ['5', '3', '2', '']); // all, indoor, sand, grass (visible today)
 
-  await tab('sand').click();
+  await pick('sand');
   assert.equal(await tab('sand').getAttribute('aria-pressed'), 'true');
   assert.equal(await tab('all').getAttribute('aria-pressed'), 'false');
   assert.deepEqual(await titles(), ['Afternoon Sand Open Play', 'Sunday Sand Social']);
   assert.equal(await page.locator('#courtsTitle').textContent(), 'Free public courts · 1');
 
   await page.reload();
-  await rows().first().waitFor();
+  await rows().first().waitFor({ state: 'attached' });
   assert.equal(await tab('sand').getAttribute('aria-pressed'), 'true');
   assert.deepEqual(await titles(), ['Afternoon Sand Open Play', 'Sunday Sand Social']);
 
-  await tab('indoor').click();
+  await pick('indoor');
   assert.deepEqual(await titles(), ['Morning Adult Training', 'Evening Indoor Open Gym', 'Sunday Coed Net Volleyball']);
   assert.equal(await page.locator('#courtsCard').isHidden(), true); // no free indoor courts
 
-  await tab('grass').click();
+  await pick('grass');
   assert.equal(await rows().count(), 0);
   assert.match(await page.locator('#list .empty').textContent(), /No confirmed grass sessions today\..*Grass has no scheduled play/);
 });
@@ -314,12 +333,12 @@ test('site: the sport switcher shows each sport on its own, with its own filters
   assert.deepEqual(await page.locator('#sports .tab').allTextContents(), ['Volleyball', 'Ice skating']);
   assert.equal(await sport('volleyball').getAttribute('aria-pressed'), 'true');
   assert.ok(!(await titles()).includes('Public Skating')); // other sports stay out of the volleyball list
-  await tab('sand').click();
+  await pick('sand');
 
-  await sport('ice_skating').click();
+  await pickSport('ice_skating');
   assert.equal(new URL(page.url()).searchParams.get('sport'), 'ice_skating');
   // No filter tabs for skating (almost all indoors); an outdoor rink says so on its session.
-  assert.equal(await page.locator('#tabs').isHidden(), true);
+  assert.equal(await page.locator('#levelBtn').isHidden(), true);
   assert.deepEqual(await titles(), ['Public Skating', 'Evening Session', 'Holiday Rink', 'Adult Skate']);
   assert.equal(await row('Public Skating').locator('.meta').textContent(), 'Public skateSilver Rink· $14 · skates $6');
   assert.equal(await row('Holiday Rink').locator('.meta').textContent(), 'Public skateOutdoor');
@@ -340,14 +359,14 @@ test('site: the sport switcher shows each sport on its own, with its own filters
 
   // Remembered on reload; a shared link opens that sport even for a viewer who last chose another.
   await page.reload();
-  await rows().first().waitFor();
+  await rows().first().waitFor({ state: 'attached' });
   assert.equal(await sport('ice_skating').getAttribute('aria-pressed'), 'true');
-  await sport('volleyball').click();
+  await pickSport('volleyball');
   assert.equal(new URL(page.url()).searchParams.get('sport'), null);
-  assert.equal(await page.locator('#tabs').isHidden(), false);
+  assert.equal(await page.locator('#levelBtn').isHidden(), false);
   assert.equal(await tab('all').getAttribute('aria-pressed'), 'true');
   await page.goto(`${origin}/?sport=ice_skating`);
-  await rows().first().waitFor();
+  await rows().first().waitFor({ state: 'attached' });
   assert.deepEqual(await titles(), ['Public Skating', 'Evening Session', 'Holiday Rink', 'Adult Skate']);
 });
 
@@ -364,8 +383,10 @@ test('site: freshness per source, calendar subscription, moved sessions and othe
   assert.equal(await copyCal.textContent(), 'Copy calendar link');
   assert.equal(await page.locator('#subscribe').textContent().then((t) => t.includes('.ics')), false);
   await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
+  // Court data arriving redraws this line; wait for it so the click isn't redrawn away (flaked on main).
+  await page.waitForFunction(() => document.querySelector('#asof').title.includes('court calendars'));
   await copyCal.click();
-  assert.equal(await copyCal.textContent(), 'Copied ✓');
+  await page.locator('#subscribe .copy-cal', { hasText: 'Copied ✓' }).waitFor();
   assert.equal(await page.evaluate(() => navigator.clipboard.readText()), `${origin}/data/volleyball.ics`);
 
   await page.locator('#days [data-di="1"]').click();
@@ -374,7 +395,7 @@ test('site: freshness per source, calendar subscription, moved sessions and othe
   assert.equal(await moved.locator('a.also').textContent(), 'Also on Reclub ↗');
   assert.equal(await moved.locator('a.also').getAttribute('href'), `${SIGNUP}/reclub-dup`);
 
-  await page.locator('#sports [data-sport="ice_skating"]').click();
+  await pickSport('ice_skating');
   assert.deepEqual(await page.locator('#sourceList li b').allTextContents(), ['Example Ice Rink']);
   assert.match(await page.locator('#subscribe a').first().getAttribute('href'), /\/data\/ice_skating\.ics$/);
 });
@@ -385,7 +406,7 @@ test('site: spots left and capacity come from the source and say so', async () =
   assert.equal(await cap.textContent(), '· 3 of 12 spots left');
   assert.equal(await cap.getAttribute('title'), 'from Volleyworld at the last check');
   assert.equal(await row('Morning Adult Training').locator('.cap').count(), 0); // no data: nothing guessed
-  await page.locator('#sports [data-sport="ice_skating"]').click();
+  await pickSport('ice_skating');
   assert.equal(await row('Public Skating').locator('.cap').count(), 0);
 });
 
@@ -599,7 +620,10 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   assert.match(await panel.locator('.g-venue').textContent(), /ATX Beach/);
   await page.locator('#map .pin[data-pin="beach"]').click(); // tap the pin again: back to the list
   assert.equal(await panel.locator('.place-row').count(), 4);
-  // Court booking: pins are the places to book, labelled with the price.
+  // Court booking: pins are the places to book, labelled with the price. On the map the day and
+  // chips are folded into one line; tap it to change them.
+  assert.equal(await page.locator('#filters').isHidden(), true);
+  await page.locator('#filtersSummary').click();
   await page.locator('[data-view="booking"]').click();
   await page.locator('#map .pin.book').first().waitFor();
   assert.deepEqual(await page.locator('#map .pin').evaluateAll((els) => els.map((e) => [e.querySelector('b').textContent, e.getAttribute('aria-label')])), [['North Gym', 'Austin North Gym: Courts free 7pm–11pm · $30/hr']]);
@@ -636,23 +660,78 @@ test('site: Map view: pins at the same spot fold into one "+N more" that zooms i
   await page.waitForFunction((z) => window.__schelaggMap.getZoom() > z + 2 && !window.__schelaggMap.isMoving(), before, { timeout: 8000 });
 });
 
-test('site: the filters fold into one summary line and back, remembered on this device', async () => {
-  await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball&view=booking' });
-  await page.locator('#days .day').nth(2).click();
-  await page.locator('#filtersToggle').click();
-  assert.equal(await page.locator('#filters').isHidden(), true);
+test('site: on the map the day and chips fold into one line that opens and folds again, remembered on this device', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball', 'pickleball'] }] };
+  const MAPS = { maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78] }] };
+  await open({ index: INDEX, regions: { austin: PICKLE_SCHEDULE }, maps: MAPS, url: '/?sport=pickleball&view=booking' });
+  // The list keeps them open: there's nothing to fold.
+  assert.equal(await page.locator('#filters').isVisible(), true);
   assert.equal(await page.locator('#filtersToggle').isHidden(), true);
+  await page.locator('#days .day').nth(2).click();
+  await page.locator('[data-layout="map"]').click();
   const summary = page.locator('#filtersSummary');
-  const day = await page.locator('#days .day').nth(2).getAttribute('aria-label');
-  assert.match(await summary.textContent(), /^Pickleball · Court booking · .+Filters ▾$/);
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'filtersSummary', 'focus moves to the summary');
-  await page.reload();
-  assert.equal(await page.locator('#filters').isHidden(), true, 'remembered');
+  assert.equal(await page.locator('#filters').isHidden(), true, 'folded on the map');
+  assert.match(await summary.textContent(), /^Pickleball · Book a court · [A-Z][a-z]{2} \d+Change ▾$/);
   await summary.click();
   assert.equal(await page.locator('#filters').isVisible(), true);
   assert.equal(await summary.isHidden(), true);
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'filtersToggle', 'focus moves to Done');
   assert.equal(await page.locator('#filtersToggle').getAttribute('aria-expanded'), 'true');
-  assert.ok(day);
+  await page.reload();
+  await page.locator('#map').waitFor();
+  assert.equal(await page.locator('#filters').isVisible(), true, 'remembered open');
+  await page.locator('#filtersToggle').click();
+  assert.equal(await page.locator('#filters').isHidden(), true);
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'filtersSummary', 'focus moves to the summary');
+  await page.locator('[data-layout="list"]').click();
+  assert.equal(await page.locator('#filters').isVisible(), true, 'the list always shows them');
+});
+
+test('site: level and sport open as bottom sheets that apply on a tap and close by Esc, ✕ or the backdrop', async () => {
+  await open();
+  const btn = page.locator('#levelBtn'), sheet = page.locator('#levelSheet');
+  assert.equal(await btn.textContent(), 'All courts ▾');
+  assert.equal(await sheet.isHidden(), true);
+  await btn.click();
+  assert.equal(await sheet.isVisible(), true);
+  assert.equal(await page.locator('#levelSheetTitle').textContent(), 'Court type');
+  assert.equal(await page.evaluate(() => document.activeElement.dataset.tab), 'all', 'focus starts on the current choice');
+  await page.keyboard.press('Escape');
+  assert.equal(await sheet.isHidden(), true);
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'levelBtn', 'focus goes back to the chip');
+  await btn.click();
+  await sheet.locator('[data-close]').click();
+  assert.equal(await sheet.isHidden(), true);
+  await btn.click();
+  await page.mouse.click(10, 10); // the dimmed backdrop above the sheet
+  assert.equal(await sheet.isHidden(), true);
+  await pick('sand');
+  assert.equal(await btn.textContent(), 'Sand ▾');
+  assert.equal(await btn.evaluate((e) => e.classList.contains('on')), true);
+  assert.deepEqual(await titles(), ['Afternoon Sand Open Play', 'Sunday Sand Social']);
+  // Counts follow the day being viewed: tomorrow has no sand.
+  await page.locator('#days [data-di="1"]').click();
+  assert.deepEqual(await page.locator('#tabs .tab .n').allTextContents(), ['2', '2', '', '']);
+  assert.equal(await page.locator('#sportBtn').textContent(), 'Volleyball ▾');
+  await pickSport('ice_skating');
+  assert.equal(await page.locator('#sportBtn').textContent(), 'Ice skating ▾');
+  assert.equal(await btn.isHidden(), true, 'skating has no level or court type');
+});
+
+test('site: late in the day, "Nothing else today" leads to tomorrow, and the ended fold stays open once opened', async () => {
+  await open({ clock: new Date('2026-10-26T04:40:00Z') }); // Sun Oct 25, 11:40pm in Austin
+  assert.equal(await page.locator('#list .now').count(), 0, 'no "Now" heading over nothing');
+  const empty = page.locator('#list .empty', { hasText: 'Nothing else today.' });
+  assert.equal(await empty.isVisible(), true);
+  await page.locator('#list details.earlier > summary').click();
+  await page.locator('#days [data-di="1"]').click(); // keyboard focus follows the redrawn day
+  assert.equal(await page.evaluate(() => document.activeElement.dataset.di), '1');
+  await page.locator('#days [data-di="0"]').click();
+  assert.equal(await page.locator('#list details.earlier').getAttribute('open'), '', 'still open after a redraw');
+  await empty.locator('button').focus();
+  await page.keyboard.press('Enter');
+  assert.match(await page.locator('#dayTitle').textContent(), /^Tomorrow/);
+  assert.equal(await page.evaluate(() => document.activeElement.closest('#days') && document.activeElement.dataset.di), '1', 'focus lands on the day');
 });
 
 test('site: no Map button without a map for the region', async () => {
@@ -720,7 +799,7 @@ test('site: "Show ended & unconfirmed" reveals canceled and unconfirmed sessions
   assert.equal(await page.locator('#list > .empty').count(), 0);
 
   await page.reload();
-  await rows().first().waitFor();
+  await rows().first().waitFor({ state: 'attached' });
   assert.equal(await page.locator('#showAll').isChecked(), true, 'remembered');
   assert.equal(await rows().count(), 7);
 });
@@ -857,7 +936,7 @@ test('site: no live-check UI yet, so the page never calls /api/check', async () 
   // The mock in open() answers any check with status "changed", so this test is where that
   // flow's assertions go once the site uses it.
   await open();
-  await tab('indoor').click();
+  await pick('indoor');
   await page.locator('#days .day').nth(1).click();
   await page.locator('#showAll').check();
   await row('Monday Night Training').locator('a.signup').hover();
@@ -894,10 +973,10 @@ test('site: pickleball court booking shows live court lanes where a club publish
   assert.equal(await page.locator('#calErrors').textContent(), '', "volleyball's calendar errors aren't pickleball's");
   // A level chosen in open play doesn't hide courts.
   await page.locator('[data-view="openplay"]').click();
-  await tab('advanced').click();
+  await pick('advanced');
   await page.locator('[data-view="booking"]').click();
   assert.equal(await page.locator('#cal .g-venue', { hasText: 'Holy Courts' }).count(), 1);
-  await page.locator('[data-sport="volleyball"]').click();
+  await pickSport('volleyball');
   assert.match(await page.locator('#calErrors').textContent(), /Couldn't load some court calendars/);
 });
 
@@ -944,7 +1023,7 @@ test('site: pickleball booking is separate, shareable, remembered, and does not 
   await page.reload();
   await page.locator('#bookingCalendarsCard').waitFor();
   assert.equal(await page.locator('[data-view="booking"]').getAttribute('aria-pressed'),'true');
-  await page.locator('[data-sport="ice_skating"]').click();
+  await pickSport('ice_skating');
   assert.equal(await page.locator('#calendarModes').isHidden(),true);
   assert.equal(await page.locator('#sessionsPanel').isVisible(),true);
 });
