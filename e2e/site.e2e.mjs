@@ -580,7 +580,7 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   // Tap a pin: that place's day, with each sign-up and the venue's Book (opened on this day).
   await page.locator('#map .pin[data-pin="gym"]').click();
   const panel = page.locator('#mapPanel');
-  assert.match(await panel.locator('.g-venue').textContent(), /North Gym.*Austin · \$30\/hr/);
+  assert.match(await panel.locator('.g-venue small').textContent(), /^Austin$/, 'open play: no court price on the place');
   assert.equal(await panel.locator('a.v-book, a.signup', { hasText: 'Book' }).first().getAttribute('href'), `https://club.podplay.app/book/main/${TODAY}`);
   assert.deepEqual(await panel.locator('.pop-item a.signup').evaluateAll((els) => els.map((e) => e.getAttribute('href'))), [`${SIGNUP}/g0`, `${SIGNUP}/g1`, `${SIGNUP}/g2`]);
   assert.deepEqual(await panel.locator('.pop-item').evaluateAll((els) => els.map((e) => e.classList.contains('past'))), [true, false, false], 'the ended session is dimmed');
@@ -855,7 +855,7 @@ test('site: pickleball court booking shows live court lanes where a club publish
   assert.equal(await page.locator('#glance').isVisible(), true);
   assert.equal(await page.locator('#days').isVisible(), true);
   const group = page.locator('#cal .g-venue', { hasText: 'Holy Courts' });
-  assert.equal(await group.locator('small').textContent(), 'Austin · free 7am–11pm');
+  assert.equal(await group.locator('small').textContent(), 'Austin · Price not listed · free 7am–11pm');
   // The venue with live courts is booked from its row; the list below is the other venues.
   assert.deepEqual(await page.locator('#bookingCalendars .book-name b').allTextContents(), ['Other Club']);
   assert.equal(await page.locator('#cal .g-venue', { hasText: 'Treehouse' }).count(), 0, 'volleyball courts stay on volleyball');
@@ -897,6 +897,7 @@ test('site: booking and sign-up links open on the chosen day where the site supp
   assert.equal(await book('Pod Club').locator('.price').textContent(), '$30–40/hr');
   assert.equal(await book('Tennis Center').locator('.price').textContent(), '$5/person');
   assert.equal(await book('Old Prices').locator('.price').count(), 0, 'a price past its review date is not shown');
+  assert.equal(await book('Old Prices').locator('.noprice').textContent(), 'Price not listed', 'a missing price says so');
 });
 
 test('site: pickleball booking is separate, shareable, remembered, and does not imply live vacancies', async () => {

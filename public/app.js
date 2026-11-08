@@ -120,6 +120,9 @@ function onDay(url, iso) {
 }
 const calendarOn = (venue, iso) => (venue.calendarDay && iso ? venue.calendarDay.replace('{date}', iso) : onDay(venue.calendar, iso));
 /** A venue's published court price ("$40/hr"), unless it's past its review date. */
+/** A court price for display; a venue whose price we couldn't find says so rather than showing nothing. */
+const NO_PRICE = 'Price not listed';
+const priceHtml = (cost) => (cost ? `<b class="price">${esc(cost)}</b>` : `<span class="noprice" title="We couldn't find a published court price; check with the venue">${NO_PRICE}</span>`);
 const courtPrice = (bl) => (bl?.price && !(bl.reviewBy && NOW.iso > bl.reviewBy) ? bl.price : '');
 
 // The region's time zone (set from data/index.json); everything date- and time-like uses it.
@@ -440,7 +443,7 @@ function renderCalendarModes() {
     const price = /^https:\/\//.test(v.bookingLink.source || '') ? `<a class="src" href="${esc(v.bookingLink.source)}" target="_blank" rel="noopener">Price source ↗</a>` : '';
     const more = locationHtml({ venueId: v.id }) + (own ? `<p class="note">${esc(own)}</p>` : '') + (price ? `<div class="actions">${price}</div>` : '');
     const cost = courtPrice(v.bookingLink);
-    return `<div class="book-row"><div class="book-name"><b>${esc(v.name)}</b><span>${esc(v.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}</span></div>
+    return `<div class="book-row"><div class="book-name"><b>${esc(v.name)}</b><span>${esc(v.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''} · ${priceHtml(cost)}</span></div>
       <a class="signup" href="${esc(onDay(v.bookingLink.url, WEEK[state.di]))}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(v.name)}">Book ↗</a>
       ${more ? `<details class="more"><summary>Details</summary>${more}</details>` : ''}</div>`;
   }).join('')
@@ -641,7 +644,7 @@ function venueCourts(f, iso, dow, nowLine) {
   const stale = f.venue.stale ? ' · <b class="full">showing last good data</b>' : '';
   const mi = milesTo(f.venueId);
   const cost = courtPrice(schedule?.venues?.find((v) => v.id === f.venueId)?.bookingLink);
-  const where = `${esc(f.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}`;
+  const where = `${esc(f.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''} · ${priceHtml(cost)}`;
   const expanded = openFacs.has(f.id), laneId = `lanes-${f.id}`;
   const freeAria = segs.map(({ a, b, free }) => `${fmtT(hhmm(a))} to ${fmtT(hhmm(b))} ${word(free)}`).join('; ');
 
@@ -802,8 +805,8 @@ function mapPlaces(iso) {
       const c = courtFree(p.id, iso), cost = courtPrice(p.booking);
       p.live = !!c;
       p.detail = !c ? (cost || 'see times') : c.closed ? 'closed' : c.nowFree ? `${c.nowFree} free now` : c.windows.length ? `free ${short(c.windows[0][0])}` : 'full';
-      p.status = !c ? `${cost ? `${cost} · ` : ''}open times on the venue's site` : c.closed ? 'Closed this day' : c.windows.length
-        ? `Courts free ${c.windows.map(([a, b]) => `${iso === WEEK[0] && a <= NOW.minutes ? 'now' : fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')}${cost ? ` · ${cost}` : ''}` : `All courts booked${iso === WEEK[0] ? ' for the rest of today' : ''}`;
+      p.status = !c ? `${cost || NO_PRICE} · open times on the venue's site` : c.closed ? 'Closed this day' : c.windows.length
+        ? `Courts free ${c.windows.map(([a, b]) => `${iso === WEEK[0] && a <= NOW.minutes ? 'now' : fmtT(hhmm(a))}–${fmtT(hhmm(b))}`).join(', ')} · ${cost || NO_PRICE}` : `All courts booked${iso === WEEK[0] ? ' for the rest of today' : ''}`;
       p.full = !!c && (c.closed || !c.windows.length);
     } else {
       p.detail = p.done ? 'ended' : first ? `${short(mins(first.start))}${more > 0 ? ` +${more}` : ''}` : `${left.length} session${left.length === 1 ? '' : 's'}`;
@@ -833,7 +836,7 @@ function mapPanelHtml(places, iso) {
   const ended = (x) => state.di === 0 && x.end && mins(x.end) <= NOW.minutes;
   const rows = p.sessions.map((x) => `<div class="pop-item${ended(x) ? ' past' : ''}"><span class="pop-t">${x.start ? `${fmtT(x.start)}${x.end ? `–${fmtT(x.end)}` : ''}` : 'Any time'}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('');
   const live = state.view === 'booking' ? `<p class="map-status">${esc(p.status)}</p>` : '';
-  return `<div class="map-place"><button type="button" class="map-back" data-pin="${esc(p.id)}">‹ All places</button>${live}<div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${cost ? ` · <b class="price">${esc(cost)}</b>` : ''}</small></span>${book}</div>
+  return `<div class="map-place"><button type="button" class="map-back" data-pin="${esc(p.id)}">‹ All places</button>${live}<div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${state.view === 'booking' ? ` · ${priceHtml(cost)}` : ''}</small></span>${book}</div>
     ${rows ? `<div class="g-pop map-sessions">${rows}</div>` : `<p class="note">${state.view === 'booking' ? 'No public sessions here on this day; book a court on the venue\'s site.' : 'Nothing else here on this day.'}</p>`}
     ${locationHtml({ venueId: p.id })}</div>`;
 }
