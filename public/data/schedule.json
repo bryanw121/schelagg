@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T23:13:51.702Z",
+  "generatedAt": "2026-11-08T23:44:22.405Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,8 +9,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:13:17.446Z",
-      "count": 254
+      "checkedAt": "2026-11-08T23:43:33.016Z",
+      "count": 250
     },
     {
       "id": "austin-picklehaus",
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": false,
-      "checkedAt": "2026-11-08T23:13:17.446Z",
+      "checkedAt": "2026-11-08T23:43:33.019Z",
       "error": "OpenCourt court times differ",
       "kept": 111
     },
@@ -30,7 +30,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:13:17.446Z",
+      "checkedAt": "2026-11-08T23:43:33.019Z",
       "count": 8
     },
     {
@@ -40,7 +40,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:13:17.446Z",
+      "checkedAt": "2026-11-08T23:43:33.020Z",
       "count": 13
     },
     {
@@ -50,7 +50,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-08T23:13:17.447Z",
+      "checkedAt": "2026-11-08T23:43:33.021Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -71,7 +71,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-07T23:46:34.621Z",
+      "checkedAt": "2026-11-08T23:43:33.022Z",
       "count": 8
     },
     {
@@ -91,7 +91,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:13:17.479Z",
+      "checkedAt": "2026-11-08T23:43:33.059Z",
       "count": 32
     },
     {
@@ -101,7 +101,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:13:18.496Z",
+      "checkedAt": "2026-11-08T23:43:33.331Z",
       "count": 15
     },
     {
@@ -111,7 +111,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-07T23:46:37.681Z",
+      "checkedAt": "2026-11-08T23:43:34.129Z",
       "count": 11
     },
     {
@@ -121,7 +121,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T23:13:19.092Z",
+      "checkedAt": "2026-11-08T23:43:34.572Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -132,117 +132,12 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T23:13:19.253Z",
+      "checkedAt": "2026-11-08T23:43:34.839Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bcb1-fbd0-7776-9c22-ee88329f747d",
-      "date": "2026-11-08",
-      "start": "15:00",
-      "end": "17:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 8, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bcb1-fbd0-7776-9c22-ee88329f747d",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-08",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bcab-758b-7333-b739-78fd3fa3e0cc",
-      "date": "2026-11-08",
-      "start": "15:00",
-      "end": "17:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 8, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bcab-758b-7333-b739-78fd3fa3e0cc",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-08",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0c0de-e414-7880-a8b1-fab74c030c4e",
-      "date": "2026-11-08",
-      "start": "15:00",
-      "end": "17:00",
-      "sport": "pickleball",
-      "title": "Open Play: 3.25+ DUPR",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "3.25+",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 8, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0c0de-e414-7880-a8b1-fab74c030c4e",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-08",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a0bca8-ffec-7776-9c11-bc3b88c9d74f",
-      "date": "2026-11-08",
-      "start": "15:00",
-      "end": "17:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 8, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a0bca8-ffec-7776-9c11-bc3b88c9d74f",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-08",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-eastside-paddle-club-01a19dd6-cfc7-766c-864c-111ba9174130",
       "date": "2026-11-08",
@@ -10661,7 +10556,34 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
+      "venueId": "crossover",
+      "status": "scheduled"
+    },
+    {
+      "start": "17:00",
+      "end": "20:00",
+      "title": "Austin Velocity Adult Open Gym",
+      "venue": "The Crossover",
+      "city": "Cedar Park",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Ages 17+ · competitive, self-called",
+      "price": "$10 online · $12 door",
+      "capacity": 42,
+      "note": "Season pass or drop in. Updates post on Instagram @austinvelocityadults.",
+      "signup": {
+        "url": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
+        "label": "Book on Austin Velocity"
+      },
+      "source": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
+      "id": "velocity-2026-11-22",
+      "date": "2026-11-22",
+      "sourceId": "velocity",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-08",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -12063,7 +11985,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-alamo-rec",
       "status": "scheduled"
     },
@@ -12090,7 +12012,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-dottie-jordan-rec",
       "status": "scheduled"
     },
@@ -12117,7 +12039,34 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
+      "venueId": "austin-montopolis-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-montopolis-rec-1-2026-11-14",
+      "sport": "pickleball",
+      "date": "2026-11-14",
+      "start": "10:00",
+      "end": "12:00",
+      "title": "Montopolis Recreation and Community Center · Pickleball open play",
+      "venue": "Montopolis Recreation and Community Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -12144,7 +12093,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-northwest-rec",
       "status": "scheduled"
     },
@@ -12171,7 +12120,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-dove-springs-rec",
       "status": "scheduled"
     },
@@ -12198,7 +12147,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-dove-springs-rec",
       "status": "scheduled"
     },
@@ -12225,7 +12174,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -12252,7 +12201,7 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -12279,7 +12228,34 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-07",
+      "verifiedAt": "2026-11-08",
+      "venueId": "austin-gus-garcia-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-gus-garcia-rec-2-2026-11-14",
+      "sport": "pickleball",
+      "date": "2026-11-14",
+      "start": "10:00",
+      "end": "12:00",
+      "title": "Gus Garcia Recreation Center · Pickleball open play",
+      "venue": "Gus Garcia Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-08",
       "venueId": "austin-gus-garcia-rec",
       "status": "scheduled"
     },
@@ -12482,7 +12458,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-07",
+      "sourceChanged": "2026-11-08",
       "venueId": "crossover",
       "status": "scheduled"
     },
@@ -12514,7 +12490,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-06",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12544,7 +12520,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-06",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12574,7 +12550,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-06",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12604,7 +12580,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-06",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12634,7 +12610,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-06",
+      "watchError": "HTTP 502",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
