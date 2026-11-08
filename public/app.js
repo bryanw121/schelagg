@@ -306,7 +306,7 @@ function renderSourceList() {
     ${(s.warnings || []).map((w) => `<div class="note">${esc(w)}</div>`).join('')}</li>`).join('');
   // Calendar subscription for this sport (public/data/<sport>.ics, rebuilt every scrape).
   const ics = new URL(`${regionData()}${state.sport}.ics`, location.href);
-  $('subscribe').innerHTML = `📅 <a href="${esc(ics.href.replace(/^https?:/, 'webcal:'))}">Subscribe in your calendar</a> to see ${esc(SPORTS[state.sport].label.toLowerCase())} here, updated hourly · <a href="${esc(ics.href)}" download>.ics file</a>`;
+  $('subscribe').innerHTML = `📅 <a href="${esc(ics.href.replace(/^https?:/, 'webcal:'))}">Subscribe in your calendar</a> to see ${esc(SPORTS[state.sport].label.toLowerCase())} here, updated hourly · <button type="button" class="copy-cal" data-copy="${esc(ics.href)}" title="For calendars that add a subscription from a link, such as Google Calendar's 'From URL'">Copy calendar link</button>`;
 }
 
 // ---------- render ----------
@@ -960,6 +960,15 @@ $('nearest').addEventListener('click', () => {
 });
 
 document.addEventListener('click', async (e) => {
+  // "Copy calendar link": the feed's address for calendars that subscribe from a pasted link.
+  const copyCal = e.target.closest('[data-copy]');
+  if (copyCal) {
+    try { await navigator.clipboard.writeText(copyCal.dataset.copy); copyCal.textContent = 'Copied ✓'; setTimeout(() => { copyCal.textContent = 'Copy calendar link'; }, 2000); } catch {
+      const box = Object.assign(document.createElement('input'), { value: copyCal.dataset.copy, readOnly: true, className: 'copy-box', ariaLabel: 'Calendar link' });
+      copyCal.replaceWith(box); box.focus(); box.select();
+    }
+    return;
+  }
   const fac = e.target.closest('[data-fac]');
   if (fac) {
     const id = fac.dataset.fac;
