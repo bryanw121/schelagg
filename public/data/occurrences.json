@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-08T12:16:04.580Z",
+  "generatedAt": "2026-11-08T13:15:50.521Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -9927,6 +9927,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-1e25766e-b4d3-4955-bc56-f61fe04a994d",
+      "session_id": "opencourt-1e25766e-b4d3-4955-bc56-f61fe04a994d",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Sip & Smash (7AM-9AM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "2.8–3.8 recommended",
+      "price": "$15 / person (nonmember)",
+      "starts_at": "2026-11-15T13:00:00.000Z",
+      "ends_at": "2026-11-15T15:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/1e25766e-b4d3-4955-bc56-f61fe04a994d",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-08",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },
