@@ -629,6 +629,25 @@ test('site: Map view: pins at the same spot fold into one "+N more" that zooms i
   await page.waitForFunction((z) => window.__schelaggMap.getZoom() > z + 2 && !window.__schelaggMap.isMoving(), before, { timeout: 8000 });
 });
 
+test('site: the filters fold into one summary line and back, remembered on this device', async () => {
+  await open({ schedule: PICKLE_SCHEDULE, url: '/?sport=pickleball&view=booking' });
+  await page.locator('#days .day').nth(2).click();
+  await page.locator('#filtersToggle').click();
+  assert.equal(await page.locator('#filters').isHidden(), true);
+  assert.equal(await page.locator('#filtersToggle').isHidden(), true);
+  const summary = page.locator('#filtersSummary');
+  const day = await page.locator('#days .day').nth(2).getAttribute('aria-label');
+  assert.match(await summary.textContent(), /^Pickleball · Court booking · .+Filters ▾$/);
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'filtersSummary', 'focus moves to the summary');
+  await page.reload();
+  assert.equal(await page.locator('#filters').isHidden(), true, 'remembered');
+  await summary.click();
+  assert.equal(await page.locator('#filters').isVisible(), true);
+  assert.equal(await summary.isHidden(), true);
+  assert.equal(await page.locator('#filtersToggle').getAttribute('aria-expanded'), 'true');
+  assert.ok(day);
+});
+
 test('site: no Map button without a map for the region', async () => {
   await open({ index: { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] }, regions: { austin: SCHEDULE }, url: '/?layout=map' });
   assert.equal(await page.locator('#layout').isHidden(), true);

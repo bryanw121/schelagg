@@ -16,11 +16,15 @@
       <h1>Schel<span>agg</span></h1>
       <span class="region"><span id="regionName"></span><select id="regionPick" aria-label="City" hidden></select><button type="button" id="nearest" class="nearest" title="Nearest city to me" aria-label="Nearest city to me" hidden>📍</button></span>
       <span class="asof" id="asof">Loading…</span>
+      <button type="button" id="filtersToggle" class="filters-toggle" aria-expanded="true" aria-controls="filters">Hide filters ▴</button>
     </div>
-    <div class="tabs sports" role="group" aria-label="Sport" id="sports"></div>
-    <div class="tabs" role="group" aria-label="Calendar type" id="calendarModes"></div>
-    <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
-    <div class="days" role="group" aria-label="Day" id="days"></div>
+    <button type="button" id="filtersSummary" class="filters-summary" aria-controls="filters" hidden></button>
+    <div id="filters" class="filters">
+      <div class="tabs sports" role="group" aria-label="Sport" id="sports"></div>
+      <div class="tabs" role="group" aria-label="Calendar type" id="calendarModes"></div>
+      <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
+      <div class="days" role="group" aria-label="Day" id="days"></div>
+    </div>
     <div class="tabs layout" role="group" aria-label="List or map" id="layout" hidden></div>
   </div>
 </header>
