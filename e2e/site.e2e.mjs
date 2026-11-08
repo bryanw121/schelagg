@@ -620,10 +620,8 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   assert.match(await panel.locator('.g-venue').textContent(), /ATX Beach/);
   await page.locator('#map .pin[data-pin="beach"]').click(); // tap the pin again: back to the list
   assert.equal(await panel.locator('.place-row').count(), 4);
-  // Court booking: pins are the places to book, labelled with the price. On the map the day and
-  // chips are folded into one line; tap it to change them.
-  assert.equal(await page.locator('#filters').isHidden(), true);
-  await page.locator('#filtersSummary').click();
+  // Court booking: pins are the places to book, labelled with the price. The day and chips stay in the header.
+  assert.equal(await page.locator('#filters').isVisible(), true);
   await page.locator('[data-view="booking"]').click();
   await page.locator('#map .pin.book').first().waitFor();
   assert.deepEqual(await page.locator('#map .pin').evaluateAll((els) => els.map((e) => [e.querySelector('b').textContent, e.getAttribute('aria-label')])), [['North Gym', 'Austin North Gym: Courts free 7pm–11pm · $30/hr']]);
@@ -658,33 +656,6 @@ test('site: Map view: pins at the same spot fold into one "+N more" that zooms i
   const before = await page.evaluate(() => window.__schelaggMap.getZoom());
   await group.click();
   await page.waitForFunction((z) => window.__schelaggMap.getZoom() > z + 2 && !window.__schelaggMap.isMoving(), before, { timeout: 8000 });
-});
-
-test('site: on the map the day and chips fold into one line that opens and folds again, remembered on this device', async () => {
-  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball', 'pickleball'] }] };
-  const MAPS = { maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78] }] };
-  await open({ index: INDEX, regions: { austin: PICKLE_SCHEDULE }, maps: MAPS, url: '/?sport=pickleball&view=booking' });
-  // The list keeps them open: there's nothing to fold.
-  assert.equal(await page.locator('#filters').isVisible(), true);
-  assert.equal(await page.locator('#filtersToggle').isHidden(), true);
-  await page.locator('#days .day').nth(2).click();
-  await page.locator('[data-layout="map"]').click();
-  const summary = page.locator('#filtersSummary');
-  assert.equal(await page.locator('#filters').isHidden(), true, 'folded on the map');
-  assert.match(await summary.textContent(), /^Pickleball · Book a court · [A-Z][a-z]{2} \d+Change ▾$/);
-  await summary.click();
-  assert.equal(await page.locator('#filters').isVisible(), true);
-  assert.equal(await summary.isHidden(), true);
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'filtersToggle', 'focus moves to Done');
-  assert.equal(await page.locator('#filtersToggle').getAttribute('aria-expanded'), 'true');
-  await page.reload();
-  await page.locator('#map').waitFor();
-  assert.equal(await page.locator('#filters').isVisible(), true, 'remembered open');
-  await page.locator('#filtersToggle').click();
-  assert.equal(await page.locator('#filters').isHidden(), true);
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'filtersSummary', 'focus moves to the summary');
-  await page.locator('[data-layout="list"]').click();
-  assert.equal(await page.locator('#filters').isVisible(), true, 'the list always shows them');
 });
 
 test('site: level and sport open as bottom sheets that apply on a tap and close by Esc, ✕ or the backdrop', async () => {

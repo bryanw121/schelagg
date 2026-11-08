@@ -780,51 +780,17 @@ function list(items) { return items.length <= 1 ? items.join('') : `${items.slic
 const liveCourts = () => SPORTS[state.sport].courts || regionCourts().length > 0;
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
-function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderFilters(); }
+function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); fitHeader(); }
 
-// ---------- filters folded on the map ----------
-// The list keeps the day strip and chips in the header (they're compact). On the map they fold into
-// one summary line by default, so the map gets the screen; tap it to change them, "Done" folds them
-// again. Remembered on this device.
-let filtersOpen = false;
-try { filtersOpen = localStorage.getItem('schelagg.filters') === 'open'; } catch {}
-const onMap = () => state.layout === 'map' && mapReady();
-function renderFilters() {
-  const sp = SPORTS[state.sport], iso = WEEK[state.di];
-  const level = state.tab !== 'all' ? (sp.filter?.tabs ?? sp.tabs)?.[state.tab]?.label : '';
-  const bits = [sp.label, ['volleyball', 'pickleball'].includes(state.sport) ? (state.view === 'booking' ? 'Book a court' : 'Open play') : '', state.view === 'booking' && sp.filter ? '' : level, state.di === 0 ? 'Today' : fmtDate(iso)].filter(Boolean);
-  const open = !onMap() || filtersOpen;
-  $('filters').hidden = !open;
-  $('filtersSummary').hidden = open;
-  $('filtersSummary').innerHTML = `<span>${bits.map(esc).join(' · ')}</span><b>Change ▾</b>`;
-  $('filtersSummary').setAttribute('aria-label', `${bits.join(', ')}. Change filters`);
-  $('filtersToggle').hidden = !onMap() || !open;
-  $('filtersToggle').setAttribute('aria-expanded', String(open));
-  document.body.classList.toggle('filters-closed', !open);
-  fitHeader();
-}
+// ---------- header height ----------
 /** The header's height, so on a phone the map can end at the bottom of the screen (where the List button floats). */
 function fitHeader() { document.documentElement.style.setProperty('--hdr', `${document.querySelector('header').offsetHeight}px`); }
 addEventListener('resize', fitHeader);
-const setFilters = (open) => {
-  filtersOpen = open;
-  try { localStorage.setItem('schelagg.filters', open ? 'open' : 'closed'); } catch {}
-  renderFilters();
-  mapView?.resize();
-  (open ? $('filtersToggle') : $('filtersSummary')).focus();
-};
-/** Without data there's no map: never leave the filters folded away. */
+/** A failed load: show its error in the list, not a map of the last region. */
 const unfold = () => {
-  $('filters').hidden = false; $('filtersSummary').hidden = true; $('filtersToggle').hidden = true;
-  document.body.classList.remove('filters-closed', 'layout-map');
-  // The error is in the list: show it, not a map of the last region.
+  document.body.classList.remove('layout-map');
   $('mapCard').hidden = true; $('layout').hidden = true; $('sessionsPanel').hidden = false;
 };
-$('filtersToggle').addEventListener('click', () => setFilters(false));
-$('filtersSummary').addEventListener('click', () => setFilters(true));
-// Apply the remembered state at once, so collapsed filters don't flash open while data loads.
-// (The map's own check isn't ready yet, so go by the remembered layout.)
-if (state.layout === 'map' && !filtersOpen) { $('filters').hidden = true; document.body.classList.add('filters-closed'); }
 
 // ---------- map view ----------
 // The day's places on an OpenStreetMap map, one pin each: open play shows the first session's time,

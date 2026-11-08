@@ -256,14 +256,6 @@ button.g-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px
 .map-back{border:0;background:none;color:var(--accent);font:600 13px var(--body);padding:4px 0 8px;cursor:pointer;min-height:36px}
 .map-status{margin:0 0 8px;font:600 13px/1.3 var(--body);color:var(--ok)}
 .noprice{color:var(--muted);font-style:italic}
-/* Collapsible filters: a small toggle in the brand row; collapsed, one summary line that expands them. */
-.filters{display:grid;gap:10px}.filters[hidden]{display:none}
-.filters-toggle{margin-left:auto;border:0;background:none;color:var(--accent);font:600 12px var(--body);padding:6px 4px;cursor:pointer;min-height:36px;touch-action:manipulation;white-space:nowrap}
-.filters-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);padding:9px 12px;font:600 13px/1.3 var(--body);text-align:left;cursor:pointer;min-height:44px;touch-action:manipulation}
-.filters-summary[hidden]{display:none}
-.filters-summary b{color:var(--accent);font-size:12px;white-space:nowrap}
-.filters-toggle:focus-visible,.filters-summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-body.filters-closed .map{height:min(74vh,760px)}
 .copy-cal{border:0;background:none;padding:0;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer;touch-action:manipulation}
 .copy-box{font:13px var(--mono);width:100%;max-width:420px;margin-top:6px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
 
@@ -333,6 +325,4 @@ body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibr
 .chips-row:not(:has(> :not([hidden]))){display:none}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .linkish{border:0;background:none;padding:0 2px;color:var(--accent);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;min-height:44px;touch-action:manipulation}
-/* The folded filters on the map: one line under the brand. */
-body.filters-closed .sub{margin-bottom:-2px}
 @media (max-width:360px){.pill-btn{padding:0 10px}.seg-btn{padding:0 10px;font-size:13px}h1{font-size:22px}}
