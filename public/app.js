@@ -749,7 +749,36 @@ function list(items) { return items.length <= 1 ? items.join('') : `${items.slic
 const liveCourts = () => SPORTS[state.sport].courts || regionCourts().length > 0;
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
-function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); }
+function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderFilters(); }
+
+// ---------- collapsible filters ----------
+// "Hide filters" folds the sport, calendar, level and day rows into one summary line (tap it to bring
+// them back), so the list or map gets the screen. Remembered on this device.
+let filtersOpen = true;
+try { filtersOpen = localStorage.getItem('schelagg.filters') !== 'closed'; } catch {}
+function renderFilters() {
+  const sp = SPORTS[state.sport], iso = WEEK[state.di];
+  const level = state.tab !== 'all' ? (sp.filter?.tabs ?? sp.tabs)?.[state.tab]?.label : '';
+  const bits = [sp.label, ['volleyball', 'pickleball'].includes(state.sport) ? (state.view === 'booking' ? 'Court booking' : 'Open play') : '', state.view === 'booking' && sp.filter ? '' : level, state.di === 0 ? 'Today' : fmtDate(iso)].filter(Boolean);
+  $('filters').hidden = !filtersOpen;
+  $('filtersSummary').hidden = filtersOpen;
+  $('filtersSummary').innerHTML = `<span>${bits.map(esc).join(' · ')}</span><b>Filters ▾</b>`;
+  $('filtersSummary').setAttribute('aria-label', `${bits.join(', ')}. Show filters`);
+  $('filtersToggle').hidden = !filtersOpen;
+  $('filtersToggle').setAttribute('aria-expanded', String(filtersOpen));
+  document.body.classList.toggle('filters-closed', !filtersOpen);
+}
+const setFilters = (open) => {
+  filtersOpen = open;
+  try { localStorage.setItem('schelagg.filters', open ? 'open' : 'closed'); } catch {}
+  renderFilters();
+  mapView?.resize();
+  (open ? $('filtersToggle') : $('filtersSummary')).focus();
+};
+$('filtersToggle').addEventListener('click', () => setFilters(false));
+$('filtersSummary').addEventListener('click', () => setFilters(true));
+// Apply the remembered state at once, so collapsed filters don't flash open while data loads.
+try { renderFilters(); } catch { $('filters').hidden = !filtersOpen; $('filtersToggle').hidden = !filtersOpen; }
 
 // ---------- map view ----------
 // The day's places on an OpenStreetMap map, one pin each: open play shows the first session's time,
