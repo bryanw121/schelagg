@@ -359,7 +359,14 @@ test('site: freshness per source, calendar subscription, moved sessions and othe
   ]);
   const sub = page.locator('#subscribe a').first();
   assert.equal(await sub.getAttribute('href'), `${origin.replace('http:', 'webcal:')}/data/volleyball.ics`);
-  assert.equal(await page.locator('#subscribe a[download]').getAttribute('href'), `${origin}/data/volleyball.ics`);
+  // "Copy calendar link" (plain words, not ".ics file") copies the feed for calendars that subscribe from a link.
+  const copyCal = page.locator('#subscribe .copy-cal');
+  assert.equal(await copyCal.textContent(), 'Copy calendar link');
+  assert.equal(await page.locator('#subscribe').textContent().then((t) => t.includes('.ics')), false);
+  await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
+  await copyCal.click();
+  assert.equal(await copyCal.textContent(), 'Copied ✓');
+  assert.equal(await page.evaluate(() => navigator.clipboard.readText()), `${origin}/data/volleyball.ics`);
 
   await page.locator('#days [data-di="1"]').click();
   const moved = row('ACES Monday Open Play');

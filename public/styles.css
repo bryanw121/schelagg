@@ -263,3 +263,5 @@ button.g-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px
 .filters-summary b{color:var(--accent);font-size:12px;white-space:nowrap}
 .filters-toggle:focus-visible,.filters-summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 body.filters-closed .map{height:min(74vh,760px)}
+.copy-cal{border:0;background:none;padding:0;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer;touch-action:manipulation}
+.copy-box{font:13px var(--mono);width:100%;max-width:420px;margin-top:6px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
