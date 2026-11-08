@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-08T02:46:01.985Z",
+  "generatedAt": "2026-11-08T03:16:02.677Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -10395,6 +10395,33 @@
         "classId": "izVkHBusMmsbzTS46Ujn"
       },
       "venue_id": "volleyworld-pflugerville",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-dd96af2f-27ca-481a-bcc0-782fbc4c884c",
+      "session_id": "opencourt-dd96af2f-27ca-481a-bcc0-782fbc4c884c",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Weekend Unrestricted Open Play",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": null,
+      "price": "$8 / person (nonmember)",
+      "starts_at": "2026-11-15T03:00:00.000Z",
+      "ends_at": "2026-11-15T06:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/dd96af2f-27ca-481a-bcc0-782fbc4c884c",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-07",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },
