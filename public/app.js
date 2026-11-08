@@ -801,7 +801,11 @@ function renderFilters() {
   $('filtersToggle').hidden = !onMap() || !open;
   $('filtersToggle').setAttribute('aria-expanded', String(open));
   document.body.classList.toggle('filters-closed', !open);
+  fitHeader();
 }
+/** The header's height, so on a phone the map can end at the bottom of the screen (where the List button floats). */
+function fitHeader() { document.documentElement.style.setProperty('--hdr', `${document.querySelector('header').offsetHeight}px`); }
+addEventListener('resize', fitHeader);
 const setFilters = (open) => {
   filtersOpen = open;
   try { localStorage.setItem('schelagg.filters', open ? 'open' : 'closed'); } catch {}
@@ -810,7 +814,12 @@ const setFilters = (open) => {
   (open ? $('filtersToggle') : $('filtersSummary')).focus();
 };
 /** Without data there's no map: never leave the filters folded away. */
-const unfold = () => { $('filters').hidden = false; document.body.classList.remove('filters-closed'); };
+const unfold = () => {
+  $('filters').hidden = false; $('filtersSummary').hidden = true; $('filtersToggle').hidden = true;
+  document.body.classList.remove('filters-closed', 'layout-map');
+  // The error is in the list: show it, not a map of the last region.
+  $('mapCard').hidden = true; $('layout').hidden = true; $('sessionsPanel').hidden = false;
+};
 $('filtersToggle').addEventListener('click', () => setFilters(false));
 $('filtersSummary').addEventListener('click', () => setFilters(true));
 // Apply the remembered state at once, so collapsed filters don't flash open while data loads.
@@ -1081,11 +1090,11 @@ document.addEventListener('click', async (e) => {
   if (t.dataset.view) { state.view = t.dataset.view; save(); }
   if (t.dataset.di) state.di = +t.dataset.di;
   // A choice in a sheet applies at once and closes it; focus returns to the chip that opened it.
-  const inSheet = t.closest('dialog.sheet'), inDays = !!t.closest('#days'); // asked before the redraw detaches t
+  const inSheet = t.closest('dialog.sheet'); // asked before the redraw detaches t
   if (inSheet) closeSheets();
   render();
   // The control just used was redrawn; keep keyboard focus on its new copy (a sheet returns it to its chip).
-  if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`[data-view="${t.dataset.view}"]`) : inDays ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
+  if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`[data-view="${t.dataset.view}"]`) : t.dataset.di ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
 });
 $('showAll').checked = state.showAll;
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });

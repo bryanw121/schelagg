@@ -728,8 +728,10 @@ test('site: late in the day, "Nothing else today" leads to tomorrow, and the end
   assert.equal(await page.evaluate(() => document.activeElement.dataset.di), '1');
   await page.locator('#days [data-di="0"]').click();
   assert.equal(await page.locator('#list details.earlier').getAttribute('open'), '', 'still open after a redraw');
-  await empty.locator('button').click();
+  await empty.locator('button').focus();
+  await page.keyboard.press('Enter');
   assert.match(await page.locator('#dayTitle').textContent(), /^Tomorrow/);
+  assert.equal(await page.evaluate(() => document.activeElement.closest('#days') && document.activeElement.dataset.di), '1', 'focus lands on the day');
 });
 
 test('site: no Map button without a map for the region', async () => {

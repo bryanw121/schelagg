@@ -325,6 +325,9 @@ details.earlier[open] summary::after{content:"▴"}
 details.earlier[open]{margin-bottom:4px}
 details.earlier .row{margin-top:10px}
 /* The floating List button sits over the map's bottom edge: lift the map's credit and controls clear of it. */
+/* Phones: the map fills the screen under the header (less the card's title and padding), so its bottom
+   edge, credit and controls line up with the floating button rather than running off-screen. */
+@media (max-width:699px){body.layout-map .map{height:max(280px,calc(100dvh - var(--hdr,200px) - 92px))}}
 body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibregl-ctrl-bottom-left{margin-bottom:60px}
 /* Nothing in the chips row (skating): no empty row in the header. */
 .chips-row:not(:has(> :not([hidden]))){display:none}
