@@ -88,7 +88,7 @@ after(async () => {
 /** A fresh page (own localStorage) with data answered by `data` and the clock fixed. */
 const titlesWithVenue = () => page.locator('#list .row .venue b').allTextContents();
 
-async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, maps = null, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null } = {}) {
+async function open({ programs = null, schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, maps = null, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null } = {}) {
   context = await browser.newContext({ timezoneId, locale: 'en-US', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}) }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
   await page.clock.setFixedTime(clock);
@@ -108,6 +108,7 @@ async function open({ schedule = SCHEDULE, courts = COURTS, apiCourts = { status
     if (reg) return regions[reg[1]] ? json(regions[reg[1]]) : route.fulfill({ status: 404, body: 'Not found' });
     if (u.pathname === '/data/schedule.json') return schedule ? json(schedule) : json('{"error":"nope"}', 500);
     if (u.pathname === '/data/courts.json') return courts ? json(courts) : route.fulfill({ status: 404, body: 'Not found' });
+    if (u.pathname === '/data/programs.json') return programs ? json(programs) : route.fulfill({ status: 404, body: 'Not found' });
     // Map view: maps.json says which regions have a map; the map file, fonts and icons aren't served
     // (pins and the place panel don't need them).
     if (u.pathname === '/maps/maps.json') return maps ? json(maps) : route.fulfill({ status: 404, body: 'Not found' });
@@ -997,4 +998,94 @@ test('site: pickleball booking is separate, shareable, remembered, and does not 
   await pickSport('ice_skating');
   assert.equal(await page.locator('#calendarModes').isHidden(),true);
   assert.equal(await page.locator('#sessionsPanel').isVisible(),true);
+});
+
+// --- Sign-ups: leagues and tournaments (data/programs.json) ---------------------------------
+
+const prog = (id, extra) => ({ id, kind: 'league', sport: 'volleyball', surface: 'indoor', region: 'austin', state: 'TX', series: null, org: 'Example League Co', source_id: 'x', title: id,
+  venue: 'Example Gym', city: 'Austin', address: null, lat: null, lng: null, format: null, level: null, divisions: [], starts_on: '2026-11-15', ends_on: '2027-01-10', weekdays: ['Sunday'],
+  registration_opens: null, registration_deadline: '2026-11-13', waitlist_on: null, team_price: '$600', individual_price: '$90', price_note: null, price_changes_on: null, status: 'open',
+  signup_url: `${SIGNUP}/${id}`, source_url: `${SIGNUP}/${id}`, feed_source: 'x', checked_at: '2026-10-25T13:00:00.000Z', ...extra });
+const PROGRAMS = {
+  feedVersion: 1, generatedAt: '2026-10-25T13:00:00.000Z',
+  sources: [{ id: 'x', ok: true, checkedAt: '2026-10-25T13:00:00.000Z', count: 6 }, { id: 'y', ok: false, checkedAt: '2026-10-24T13:00:00.000Z', count: 0, error: 'HTTP 503' }],
+  programs: [
+    prog('Last Call Sand League', { surface: 'sand', registration_deadline: TODAY, weekdays: ['Monday'] }),
+    prog('Holiday Spikes', { kind: 'tournament', starts_on: '2026-12-05', ends_on: '2026-12-05', weekdays: ['Saturday'], registration_deadline: '2026-12-04', team_price: '$315–415', individual_price: '$50', price_note: 'Early bird', price_changes_on: '2026-10-26' }),
+    prog('Sunday Indoor League', {}),
+    prog('Winter League', { registration_deadline: '2027-01-03', starts_on: '2027-01-10', ends_on: '2027-03-21', status: 'closed', registration_opens: '2026-12-01' }),
+    prog('Austin Pride Cup', { kind: 'tournament', series: 'nagva', org: 'NAGVA', starts_on: '2026-11-28', ends_on: '2026-11-29', registration_deadline: '2026-11-20', individual_price: null, team_price: '$500', divisions: [{ name: 'BB', cap: 12, confirmed: 7 }] }),
+    prog('Battle of the Example', { kind: 'tournament', series: 'nagva', org: 'NAGVA', region: null, city: 'San Antonio', starts_on: '2026-12-18', ends_on: '2026-12-19', registration_deadline: '2026-12-01', individual_price: null, team_price: '$650' }),
+    prog('Pickle League', { sport: 'pickleball', surface: null }),
+    prog('Dallas League', { region: 'dallas', city: 'Dallas' }),
+  ],
+};
+const AUSTIN_INDEX = { regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball', 'pickleball', 'ice_skating'] }] };
+const progTitles = () => page.locator('#programs .prog .p-title').allTextContents();
+const groups = () => page.locator('#programs .p-group').evaluateAll((hs) => hs.map((h) => h.firstChild.textContent));
+
+test('site: Sign-ups lists leagues and tournaments by deadline, with kinds and NAGVA', async () => {
+  await open({ programs: PROGRAMS, index: AUSTIN_INDEX, regions: { austin: SCHEDULE } });
+  // Open play today: a sign-up closing today is called out above the list, and leads to Sign-ups.
+  const heads = page.locator('#list .heads-up');
+  assert.match(await heads.textContent(), /Sign-ups closing today:\s*Last Call Sand League/);
+  await heads.click();
+  assert.equal(await page.locator('#calendarModes [data-view="signups"]').getAttribute('aria-pressed'), 'true');
+  assert.match(page.url(), /view=signups/);
+  // Not about a day: the day strip, charts and session list step aside.
+  for (const id of ['days', 'sessionsPanel', 'glance', 'levelBtn']) assert.equal(await page.locator(`#${id}`).isHidden(), true, id);
+  assert.deepEqual(await groups(), ['Closing this week', 'Open', 'Not open yet, full or closed']);
+  // Soonest deadline first; Dallas and pickleball aren't here; the NAGVA one nearby is.
+  assert.deepEqual(await progTitles(), ['Last Call Sand League', 'Holiday Spikes', 'Sunday Indoor League', 'Austin Pride Cup', 'Winter League']);
+  const card = (t) => page.locator('#programs .prog', { has: page.locator('.p-title', { hasText: t }) });
+  assert.equal(await card('Last Call Sand League').locator('.p-badge').textContent(), 'Last day to sign up');
+  assert.equal(await card('Holiday Spikes').locator('.p-badge').textContent(), 'Price goes up after tomorrow');
+  assert.match(await card('Holiday Spikes').locator('.p-when').textContent(), /Sat, Dec 5/);
+  assert.match(await card('Sunday Indoor League').locator('.p-price').textContent(), /\$600 team · \$90 free agent/);
+  assert.match(await card('Sunday Indoor League').locator('.p-when').textContent(), /Sundays · Nov 15 – Jan 10/);
+  assert.equal(await card('Sunday Indoor League').locator('.p-dl').textContent(), 'Sign up by Fri, Nov 13');
+  assert.equal(await card('Winter League').locator('.p-dl').textContent(), 'Opens Dec 1');
+  assert.equal(await card('Sunday Indoor League').getByRole('link', { name: /Sign up for Sunday Indoor League/ }).getAttribute('href'), `${SIGNUP}/Sunday Indoor League`);
+  assert.match(await page.locator('#programsNote').textContent(), /couldn't read y/);
+  assert.match(await page.locator('#asof').textContent(), /twice a day/);
+  // Kinds.
+  await page.locator('#kinds [data-kind="tournament"]').click();
+  assert.deepEqual(await progTitles(), ['Holiday Spikes', 'Austin Pride Cup']);
+  assert.match(await page.locator('#programs .empty').textContent(), /1 NAGVA tournament elsewhere in Texas/);
+  await page.locator('#programs .empty [data-kind="nagva"]').click();
+  assert.deepEqual(await groups(), ['Near Austin', 'Elsewhere in Texas']);
+  assert.deepEqual(await progTitles(), ['Austin Pride Cup', 'Battle of the Example']);
+  const cup = card('Austin Pride Cup');
+  await cup.locator('details.more summary').click();
+  assert.match(await cup.locator('.divs').textContent(), /BB · 7 of 12 teams confirmed/);
+  assert.match(await card('Battle of the Example').locator('.p-org').textContent(), /San Antonio/);
+  assert.match(page.url(), /kind=nagva/);
+  // A shared link opens the same view; leagues only has no NAGVA hint.
+  await context.close();
+  await open({ programs: PROGRAMS, index: AUSTIN_INDEX, regions: { austin: SCHEDULE }, url: '/?view=signups&kind=league' });
+  await page.locator('#programs .prog').first().waitFor();
+  assert.deepEqual(await progTitles(), ['Last Call Sand League', 'Sunday Indoor League', 'Winter League']);
+  assert.equal(await page.locator('#programs .empty').count(), 0);
+  // A shared NAGVA link keeps its chip through the first render, before the feed has loaded.
+  await context.close();
+  await open({ programs: PROGRAMS, index: AUSTIN_INDEX, regions: { austin: SCHEDULE }, url: '/?view=signups&kind=nagva' });
+  await page.locator('#programs .prog').first().waitFor();
+  assert.deepEqual(await progTitles(), ['Austin Pride Cup', 'Battle of the Example']);
+  await context.close();
+  await open({ programs: PROGRAMS, index: AUSTIN_INDEX, regions: { austin: SCHEDULE }, url: '/?view=signups&kind=league' });
+  await page.locator('#programs .prog').first().waitFor();
+  // Pickleball has its own.
+  await pickSport('pickleball');
+  assert.equal(await page.locator('#kinds [data-kind="nagva"]').count(), 0);
+  await page.locator('#kinds [data-kind="all"]').click();
+  assert.deepEqual(await progTitles(), ['Pickle League']);
+});
+
+test('site: Sign-ups says so when the feed can\'t load, and open play is unaffected', async () => {
+  await open({ programs: null, url: '/?view=signups' });
+  await page.locator('#programs .error').waitFor();
+  assert.match(await page.locator('#programs .error').textContent(), /Couldn't load leagues and tournaments/);
+  await page.locator('#calendarModes [data-view="openplay"]').click();
+  assert.ok((await titles()).length > 0);
+  assert.equal(await page.locator('#list .heads-up').count(), 0);
 });

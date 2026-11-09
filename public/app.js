@@ -3,6 +3,7 @@
 //   data/regions/<id>/schedule.json     one region's sessions, sources and free courts
 //   data/regions/<id>/<sport>.ics       its calendar subscriptions
 //   data/courts.json                    court bookings + opening hours (Skedda), every region, built on deploy
+//   data/programs.json                  leagues and tournaments open for sign-up, every region (twice a day)
 //                                       (falls back to the live api/courts endpoint when running server.js or on Vercel)
 // A visitor loads one region. Times are shown in the region's own time zone, wherever the viewer is.
 
@@ -196,8 +197,10 @@ let WEEK = [];
 const setClock = () => { NOW = regionNow(); WEEK = Array.from({ length: 7 }, (_, i) => addDays(NOW.iso, i)); };
 setClock();
 
-let index = null, region = null, schedule = null, courts = null, courtsError = null;
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list' };
+let index = null, region = null, schedule = null, courts = null, courtsError = null, programs = null, programsError = null;
+const VIEWS = ['openplay', 'booking', 'signups'];
+const KINDS = { all: 'All', league: 'Leagues', tournament: 'Tournaments', nagva: 'NAGVA' };
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', kind: 'all' };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -205,7 +208,8 @@ try {
   const tab = s.tab ?? s.surf; // `surf` from before skating
   if (tab && tabsOf(state.sport)[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
-  if (s.view === 'booking') state.view = s.view;
+  if (VIEWS.includes(s.view)) state.view = s.view;
+  if (KINDS[s.kind]) state.kind = s.kind;
   if (s.layout === 'map') state.layout = 'map';
 } catch {}
 // A shared link (?region=austin&sport=ice_skating) wins over what was remembered.
@@ -213,17 +217,19 @@ const params = new URLSearchParams(location.search);
 const urlRegion = params.get('region');
 if (urlRegion) state.region = urlRegion;
 const urlSport = params.get('sport');
-if (params.has('view')) state.view = params.get('view') === 'booking' ? 'booking' : 'openplay';
+if (params.has('view')) state.view = VIEWS.includes(params.get('view')) ? params.get('view') : 'openplay';
+if (KINDS[params.get('kind')]) state.kind = params.get('kind');
 if (params.has('layout')) state.layout = params.get('layout') === 'map' ? 'map' : 'list';
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout })); } catch {} };
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, kind: state.kind })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
   const u = new URL(location.href);
   const single = (index?.regions?.length ?? 1) <= 1;
   if (single || !state.region) u.searchParams.delete('region'); else u.searchParams.set('region', state.region);
   if (state.sport === 'volleyball') u.searchParams.delete('sport'); else u.searchParams.set('sport', state.sport);
-  if (state.view === 'booking') u.searchParams.set('view', 'booking'); else u.searchParams.delete('view');
+  if (state.view !== 'openplay') u.searchParams.set('view', state.view); else u.searchParams.delete('view');
+  if (state.view === 'signups' && state.kind !== 'all') u.searchParams.set('kind', state.kind); else u.searchParams.delete('kind');
   if (state.layout === 'map' && mapReady()) u.searchParams.set('layout', 'map'); else u.searchParams.delete('layout');
   if (u.href !== location.href) history.replaceState(null, '', u);
 }
@@ -429,7 +435,7 @@ function renderList() {
       : state.tab === 'grass' ? `Grass has no scheduled play${region ? ` in ${esc(region.name.split(',')[0])}` : ''}. Choose Court booking to find public courts.` : 'Choose Court booking to see rental availability and free public courts.';
     html = `<div class="empty"><b>No confirmed ${label}${sp.noun}${isToday ? ' today' : ''}.</b> ${hiddenN ? `${hiddenN} ended, canceled or unconfirmed hidden. ` : ''}${hint}</div>`;
   } else if (hiddenN) html += `<div class="empty">${hiddenN} ended, canceled or unconfirmed session${hiddenN > 1 ? 's' : ''} hidden.</div>`;
-  $('list').innerHTML = html;
+  $('list').innerHTML = (isToday ? headsUpHtml() : '') + html;
 }
 
 function renderVenueCalendars() {
@@ -449,7 +455,7 @@ function renderVenueCalendars() {
 function renderCalendarModes() {
   const supportsBooking = ['volleyball', 'pickleball'].includes(state.sport);
   $('calendarModes').hidden = !supportsBooking;
-  $('calendarModes').innerHTML = supportsBooking ? [['openplay', 'Open play'], ['booking', 'Book a court']]
+  $('calendarModes').innerHTML = supportsBooking ? [['openplay', 'Open play'], ['booking', 'Book a court'], ['signups', 'Sign-ups']]
     .map(([value, label]) => `<button class="seg-btn" type="button" data-view="${value}" aria-pressed="${state.view === value}">${label}</button>`).join('') : '';
   // Booking puts the live court chart first; open play puts the list first (styles.css orders them).
   document.body.classList.toggle('view-booking', state.view === 'booking');
@@ -771,6 +777,7 @@ function renderMeta() {
   const handChecked = (schedule.sessions || []).some((x) => x.sourceId === 'manual' && sportOf(x) === state.sport);
   $('footer').innerHTML = `${names.length || handChecked ? `Sources: ${esc(list([...names, ...(handChecked ? ['hand-checked pages'] : [])]))}. ` : ''}${SPORTS[state.sport].footer}`;
   renderSourceList();
+  if (state.view === 'signups') signupsMeta();
 }
 
 /** "a, b and c" */
@@ -780,7 +787,134 @@ function list(items) { return items.length <= 1 ? items.join('') : `${items.slic
 const liveCourts = () => SPORTS[state.sport].courts || regionCourts().length > 0;
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
-function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); fitHeader(); }
+function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderSignups(); fitHeader(); }
+
+
+// ---------- sign-ups: leagues and tournaments ----------
+// data/programs.json (scripts/programs.mjs, twice a day): every league season and tournament open
+// for sign-up, from each organizer's own registration page. A row says only what the page says;
+// sign-up happens on the organizer's site. NAGVA tournaments have their own chip, with the region's
+// first and then the rest of the state, since people travel for them.
+const regionState = () => region?.name?.match(/,\s*([A-Z]{2})$/)?.[1] ?? null;
+const daysUntil = (iso) => Math.round((dateObj(iso) - dateObj(NOW.iso)) / 864e5);
+const WEEKDAY_SHORT = { Sunday: 'Sun', Monday: 'Mon', Tuesday: 'Tue', Wednesday: 'Wed', Thursday: 'Thu', Friday: 'Fri', Saturday: 'Sat' };
+/** This sport's programs here (`nagva`: the state's NAGVA tournaments too, wherever they are). */
+function programsHere(kind = state.kind) {
+  const st = regionState();
+  return (programs?.programs || []).filter((p) => p.sport === state.sport
+    && (kind === 'nagva' ? p.series === 'nagva' && (p.region === region?.id || (!p.region && st && p.state === st))
+      : (!region || p.region === region.id) && (kind === 'all' || p.kind === kind)));
+}
+/** "5 days left", "Last day", "Early bird ends today": what's urgent about a program, or ''. */
+function urgency(p) {
+  if (p.status === 'closed' || p.status === 'full') return '';
+  if (p.price_changes_on && p.price_changes_on >= NOW.iso) {
+    const n = daysUntil(p.price_changes_on);
+    if (n === 0) return `${p.price_note || 'This price'} ends today`;
+    if (n === 1) return 'Price goes up after tomorrow';
+  }
+  if (p.registration_deadline) {
+    const n = daysUntil(p.registration_deadline);
+    if (n === 0) return 'Last day to sign up';
+    if (n === 1) return '1 day left';
+    if (n <= 7) return `${n} days left`;
+  }
+  return '';
+}
+const range = (a, b, opts) => (b && b !== a ? `${fmtDate(a, opts)} – ${fmtDate(b, opts)}` : fmtDate(a, opts));
+function whenHtml(p) {
+  if (!p.starts_on) return '';
+  if (p.kind === 'league') {
+    const days = p.weekdays.length ? `<b>${esc(p.weekdays.map((d) => `${d}s`).join(' & '))}</b> · ` : '';
+    return `${days}${p.ends_on && p.ends_on !== p.starts_on ? esc(range(p.starts_on, p.ends_on)) : `${p.starts_on > NOW.iso ? 'from ' : ''}${esc(fmtDate(p.starts_on))}`}`;
+  }
+  return `<b>${esc(range(p.starts_on, p.ends_on, { weekday: 'short', month: 'short', day: 'numeric' }))}</b>`;
+}
+function priceLine(p) {
+  const team = p.team_price, one = p.individual_price;
+  if (!team && !one) return '<span class="noprice">Price on the sign-up page</span>';
+  return [team && `<b>${esc(team)}</b> team`, one && `<b>${esc(one)}</b> ${team ? 'free agent' : 'per player'}`].filter(Boolean).join(' · ');
+}
+function deadlineLine(p) {
+  if (p.status === 'closed') return p.registration_opens && p.registration_opens > NOW.iso ? `Opens ${fmtDate(p.registration_opens)}` : 'Registration closed';
+  if (p.status === 'full') return 'Full';
+  if (p.status === 'waitlist') return 'Waitlist';
+  return p.registration_deadline ? `Sign up by ${fmtDate(p.registration_deadline, { weekday: 'short', month: 'short', day: 'numeric' })}` : '';
+}
+function programCard(p) {
+  const kind = [p.kind === 'league' ? 'League' : 'Tournament', p.surface && cap(p.surface), p.series === 'nagva' && 'NAGVA'].filter(Boolean).join(' · ');
+  const u = urgency(p);
+  const dim = p.status === 'closed' || p.status === 'full';
+  const divs = p.divisions.length ? `<ul class="divs">${p.divisions.map((d) => `<li><b>${esc(d.name)}</b>${d.cap ? ` · ${d.confirmed != null ? `${d.confirmed} of ${d.cap} teams confirmed` : `up to ${d.cap}`}` : d.confirmed != null ? ` · ${d.confirmed} confirmed` : ''}</li>`).join('')}</ul>` : '';
+  const dest = p.address ? encodeURIComponent(`${p.venue ? `${p.venue}, ` : ''}${p.address}`) : '';
+  const where = p.address ? `<div class="location"><div>${esc(p.address)}</div><div class="actions"><a class="src" href="https://www.google.com/maps/dir/?api=1&amp;destination=${dest}" target="_blank" rel="noopener">Google Maps ↗</a><a class="src" href="https://maps.apple.com/directions?destination=${dest}&amp;mode=driving" target="_blank" rel="noopener">Apple Maps ↗</a></div></div>` : '';
+  const notes = [p.format, p.price_changes_on && p.price_changes_on >= NOW.iso ? `${p.price_note || 'This price'} until ${fmtDate(p.price_changes_on)}; the price goes up after.` : '',
+    p.waitlist_on && p.waitlist_on >= NOW.iso ? `New teams go on a waitlist from ${fmtDate(p.waitlist_on)}.` : ''].filter(Boolean);
+  const checked = p.checked_at ? `Checked ${ago(p.checked_at)}` : '';
+  const safe = (url) => (/^https:\/\//.test(url || '') ? url : '');
+  return `<article class="prog${dim ? ' dim' : ''}">
+    <div class="p-top"><span class="p-kind">${esc(kind)}</span>${u ? `<span class="p-badge">${esc(u)}</span>` : ''}</div>
+    <h3 class="p-title">${esc(p.title)}</h3>
+    <p class="p-org">${esc([p.org, p.venue, p.city && p.region !== region?.id ? p.city : ''].filter(Boolean).join(' · '))}</p>
+    ${p.starts_on ? `<p class="p-when">${whenHtml(p)}</p>` : ''}
+    <div class="p-foot"><span class="p-price">${priceLine(p)}</span><span class="p-dl${u ? ' hot' : ''}">${esc(deadlineLine(p))}</span></div>
+    ${safe(p.signup_url) ? `<div class="actions"><a class="signup" href="${esc(p.signup_url)}" target="_blank" rel="noopener" aria-label="${dim ? 'See' : 'Sign up for'} ${esc(p.title)} on ${esc(p.org)}'s site">${dim ? 'See details' : 'Sign up'} ↗</a></div>` : ''}
+    <details class="more"><summary>Details</summary>${divs}${notes.map((n) => `<p class="note">${esc(n)}</p>`).join('')}${where}<div class="actions">${safe(p.source_url) ? `<a class="src" href="${esc(p.source_url)}" target="_blank" rel="noopener">Source ↗</a>` : ''}<span class="note">${esc(checked)}</span></div></details>
+  </article>`;
+}
+function renderSignups() {
+  const on = state.view === 'signups';
+  $('signupsPanel').hidden = !on;
+  if (!on) return;
+  // Sign-ups aren't about a day: the day strip, the level filter, the charts and the map step aside.
+  for (const id of ['days', 'levelBtn', 'sessionsPanel', 'glance', 'bookingCalendarsCard', 'venueCalendarsCard', 'courtsCard', 'sessionFreshness', 'mapCard', 'layout']) $(id).hidden = true;
+  document.body.classList.remove('layout-map', 'view-booking');
+  const hasNagva = programsHere('nagva').length > 0;
+  // (Only once the feed is in: a shared NAGVA link must survive the first render, before it loads.)
+  if (programs && state.kind === 'nagva' && !hasNagva) state.kind = 'all';
+  const kinds = Object.entries(KINDS).filter(([k]) => k !== 'nagva' || hasNagva);
+  $('kinds').innerHTML = kinds.map(([k, l]) => `<button type="button" class="pill-btn chip-btn${state.kind === k ? ' on' : ''}" data-kind="${k}" aria-pressed="${state.kind === k}">${l}<span class="vh">, ${programsHere(k).length}</span></button>`).join('');
+  if (!programs) {
+    $('programs').innerHTML = programsError ? `<div class="error">Couldn't load leagues and tournaments: ${esc(programsError)}</div>` : '<p class="loading">Loading leagues and tournaments…</p>';
+    $('programsNote').textContent = '';
+    return;
+  }
+  const shown = programsHere();
+  const section = (title, rows, cls = '') => (rows.length ? `<h2 class="p-group ${cls}">${esc(title)}<span class="n">${rows.length}</span></h2>${rows.map(programCard).join('')}` : '');
+  let html = '';
+  if (state.kind === 'nagva') {
+    const byStart = (a, b) => (a.starts_on || '').localeCompare(b.starts_on || '');
+    const city = region?.name?.split(',')[0] || 'here';
+    html = section(`Near ${city}`, shown.filter((p) => p.region === region?.id).sort(byStart)) + section(`Elsewhere in ${regionState() === 'TX' ? 'Texas' : 'the state'}`, shown.filter((p) => p.region !== region?.id).sort(byStart));
+  } else {
+    const open = shown.filter((p) => p.status === 'open' || p.status === 'waitlist' || p.status == null);
+    const soon = open.filter((p) => urgency(p));
+    html = section('Closing this week', soon, 'hot') + section('Open', open.filter((p) => !soon.includes(p)))
+      + section('Not open yet, full or closed', shown.filter((p) => !open.includes(p)), 'quiet');
+    const away = state.kind !== 'league' && hasNagva ? programsHere('nagva').filter((p) => p.region !== region?.id).length : 0;
+    if (away) html += `<div class="empty">${away} NAGVA tournament${away === 1 ? '' : 's'} elsewhere in ${regionState() === 'TX' ? 'Texas' : 'the state'}. <button type="button" class="linkish" data-kind="nagva">See NAGVA</button></div>`;
+  }
+  if (!shown.length) html = `<div class="empty"><b>No ${state.kind === 'all' ? 'leagues or tournaments' : KINDS[state.kind].toLowerCase()} open for sign-up${region ? ` in ${esc(region.name.split(',')[0])}` : ''} right now.</b> Organizers post new seasons every month or two; this checks twice a day.</div>`;
+  $('programs').innerHTML = html;
+  signupsMeta();
+}
+/** The Sign-ups view's freshness line, note and sources (kept current with the rest of the page's "x ago"). */
+function signupsMeta() {
+  if (!programs) return;
+  const bad = (programs.sources || []).filter((x) => !x.ok);
+  $('programsNote').textContent = `From each organizer's sign-up page, checked twice a day. Prices, caps and deadlines change: confirm on their page before you pay.${bad.length ? ` Last check couldn't read ${bad.map((x) => x.id).join(', ')}; their listings are from the check before.` : ''}`;
+  $('asof').textContent = `Checked ${ago(programs.generatedAt)} · twice a day`;
+  const orgs = [...new Set((programs.programs || []).filter((p) => p.sport === state.sport).map((p) => p.org))];
+  $('footer').innerHTML = orgs.length ? `Sources: ${esc(list(orgs))}. Sign up on the organizer's site; Schelagg only links to it.` : '';
+}
+/** Today, in open play: a league or tournament whose sign-up (or early-bird price) ends today. */
+function headsUpHtml() {
+  if (!programs || state.view !== 'openplay') return '';
+  const today = programsHere('all').filter((p) => (p.status === 'open' || p.status === 'waitlist') && (p.registration_deadline === NOW.iso || p.price_changes_on === NOW.iso));
+  if (!today.length) return '';
+  const what = today.length === 1 ? esc(today[0].title) : `${today.length} leagues and tournaments`;
+  return `<button type="button" class="heads-up" data-view="signups"><b>Sign-ups closing today:</b> ${what}<span aria-hidden="true">›</span></button>`;
+}
 
 // ---------- header height ----------
 /** The header's height, so on a phone the map can end at the bottom of the screen (where the List button floats). */
@@ -902,8 +1036,8 @@ function declutter() {
 }
 
 async function renderMap() {
-  const on = state.layout === 'map' && mapReady();
-  $('layout').hidden = !mapReady();
+  const on = state.layout === 'map' && mapReady() && state.view !== 'signups';
+  $('layout').hidden = !mapReady() || state.view === 'signups';
   // One floating button for the other view: "Map" on the list, "List" on the map.
   const LIST_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>';
   const MAP_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>';
@@ -1049,7 +1183,8 @@ document.addEventListener('click', async (e) => {
     if (mapPick && pin.closest('#mapPanel')) $('mapCard').scrollIntoView({ block: 'start' });
     return;
   }
-  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout]'); if (!t) return;
+  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout],[data-kind]'); if (!t) return;
+  if (t.dataset.kind) { state.kind = t.dataset.kind; save(); }
   if (t.dataset.layout) { state.layout = t.dataset.layout; mapPick = null; save(); }
   if (t.dataset.sport) { state.sport = t.dataset.sport; state.tab = 'all'; save(); }
   if (t.dataset.tab) { state.tab = t.dataset.tab; save(); }
@@ -1060,7 +1195,7 @@ document.addEventListener('click', async (e) => {
   if (inSheet) closeSheets();
   render();
   // The control just used was redrawn; keep keyboard focus on its new copy (a sheet returns it to its chip).
-  if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`[data-view="${t.dataset.view}"]`) : t.dataset.di ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
+  if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`#calendarModes [data-view="${t.dataset.view}"]`) : t.dataset.kind ? document.querySelector(`#kinds [data-kind="${t.dataset.kind}"]`) : t.dataset.di ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
 });
 $('showAll').checked = state.showAll;
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });
@@ -1106,5 +1241,8 @@ else {
 }
 try { courts = await getJson(`${DATA}courts.json`); }
 catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }
+render();
+// Leagues and tournaments: one small file for every region, read after the day's schedule.
+try { programs = await getJson(`${DATA}programs.json`); } catch (e) { programsError = e.message; }
 render();
 setInterval(() => renderMeta(), 60_000); // keep "x min ago" current while the page stays open
