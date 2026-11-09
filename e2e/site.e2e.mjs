@@ -1052,8 +1052,9 @@ test('site: Leagues and Tournaments are their own tabs, by deadline, filtered by
 
   // Tournaments: the region's, then the rest of Texas; hosts to filter by.
   await page.locator('#calendarModes [data-view="tournaments"]').click();
-  assert.deepEqual(await groups(), ['Closing this week', 'Open', 'Elsewhere in Texas']);
-  assert.deepEqual(await progTitles(), ['Holiday Spikes', 'Austin Pride Cup', 'Battle of the Example']);
+  // By the month they happen (sign-up deadlines stay on the cards), then the rest of Texas.
+  assert.deepEqual(await groups(), ['November 2026', 'December 2026', 'Elsewhere in Texas']);
+  assert.deepEqual(await progTitles(), ['Austin Pride Cup', 'Holiday Spikes', 'Battle of the Example']);
   assert.equal(await card('Holiday Spikes').locator('.p-badge').textContent(), 'Price goes up after tomorrow');
   assert.match(await card('Holiday Spikes').locator('.p-when').textContent(), /Sat, Dec 5/);
   assert.match(await card('Battle of the Example').locator('.p-org').textContent(), /San Antonio/);

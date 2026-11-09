@@ -899,11 +899,27 @@ function renderSignups() {
   const section = (title, rows, cls = '') => (rows.length ? `<h2 class="p-group ${cls}">${esc(title)}<span class="n">${rows.length}</span></h2>${rows.map(programCard).join('')}` : '');
   const near = shown.filter((p) => !region || p.region === region.id);
   const away = shown.filter((p) => !near.includes(p)).sort((a, b) => (a.starts_on || '').localeCompare(b.starts_on || ''));
-  const open = near.filter((p) => p.status === 'open' || p.status === 'waitlist' || p.status == null);
-  const soon = open.filter((p) => urgency(p));
-  let html = section('Closing this week', soon, 'hot') + section('Open', open.filter((p) => !soon.includes(p)))
-    + section('Not open yet, full or closed', near.filter((p) => !open.includes(p)), 'quiet')
-    + section(`Elsewhere in ${regionState() === 'TX' ? 'Texas' : 'the state'}`, away, 'quiet');
+  const elsewhere = `Elsewhere in ${regionState() === 'TX' ? 'Texas' : 'the state'}`;
+  let html;
+  if (kind === 'tournament') {
+    // Tournaments by the month they happen, soonest first: you plan around the date. Each card
+    // shows its days and how long sign-up stays open.
+    const byStart = (a, b) => (a.starts_on || '9999').localeCompare(b.starts_on || '9999');
+    const months = new Map();
+    for (const p of [...near].sort(byStart)) {
+      const key = (p.starts_on || '').slice(0, 7);
+      if (!months.has(key)) months.set(key, []);
+      months.get(key).push(p);
+    }
+    html = [...months].map(([key, rows]) => section(key ? fmtDate(`${key}-01`, { month: 'long', year: 'numeric' }) : 'Date to be announced', rows)).join('')
+      + section(elsewhere, away, 'quiet');
+  } else {
+    // Leagues by deadline: when to sign up is what decides them.
+    const open = near.filter((p) => p.status === 'open' || p.status === 'waitlist' || p.status == null);
+    const soon = open.filter((p) => urgency(p));
+    html = section('Closing this week', soon, 'hot') + section('Open', open.filter((p) => !soon.includes(p)))
+      + section('Not open yet, full or closed', near.filter((p) => !open.includes(p)), 'quiet');
+  }
   const where = region ? ` in ${esc(region.name.split(',')[0])}` : '';
   if (!shown.length) html = `<div class="empty"><b>No ${noun} open for sign-up${where} right now.</b> Organizers post new ${kind === 'league' ? 'seasons' : 'dates'} every month or two; this checks twice a day.</div>`;
   $('programs').innerHTML = html;
