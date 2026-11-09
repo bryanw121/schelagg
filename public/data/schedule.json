@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T23:44:22.405Z",
+  "generatedAt": "2026-11-09T00:15:04.748Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:43:33.016Z",
+      "checkedAt": "2026-11-09T00:13:33.484Z",
       "count": 250
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": false,
-      "checkedAt": "2026-11-08T23:43:33.019Z",
+      "checkedAt": "2026-11-09T00:13:33.485Z",
       "error": "OpenCourt court times differ",
       "kept": 111
     },
@@ -30,7 +30,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:43:33.019Z",
+      "checkedAt": "2026-11-09T00:13:33.485Z",
       "count": 8
     },
     {
@@ -40,7 +40,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:43:33.020Z",
+      "checkedAt": "2026-11-09T00:13:33.486Z",
       "count": 13
     },
     {
@@ -50,7 +50,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-08T23:43:33.021Z",
+      "checkedAt": "2026-11-09T00:13:33.487Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -61,7 +61,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-08T18:13:28.791Z",
+      "checkedAt": "2026-11-09T00:13:33.487Z",
       "count": 2
     },
     {
@@ -81,7 +81,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-08T23:13:17.447Z",
+      "checkedAt": "2026-11-09T00:13:33.524Z",
       "count": 5
     },
     {
@@ -91,7 +91,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:43:33.059Z",
+      "checkedAt": "2026-11-09T00:13:33.779Z",
       "count": 32
     },
     {
@@ -101,7 +101,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-08T23:43:33.331Z",
+      "checkedAt": "2026-11-09T00:13:34.516Z",
       "count": 15
     },
     {
@@ -121,7 +121,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T23:43:34.572Z",
+      "checkedAt": "2026-11-09T00:13:35.132Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -132,7 +132,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-08T23:43:34.839Z",
+      "checkedAt": "2026-11-09T00:13:35.290Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -12490,7 +12490,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 502",
+      "watchError": "fetch failed",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12520,7 +12520,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 502",
+      "watchError": "fetch failed",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12550,7 +12550,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 502",
+      "watchError": "fetch failed",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12580,7 +12580,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 502",
+      "watchError": "fetch failed",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
@@ -12610,7 +12610,7 @@
       "sourceId": "manual",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 502",
+      "watchError": "fetch failed",
       "venueId": "bee-cave-on-ice",
       "status": "scheduled"
     },
