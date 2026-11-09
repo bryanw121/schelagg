@@ -787,7 +787,9 @@ function list(items) { return items.length <= 1 ? items.join('') : `${items.slic
 const liveCourts = () => SPORTS[state.sport].courts || regionCourts().length > 0;
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
-function render() { if (!schedule) return; if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderSignups(); fitHeader(); }
+function render() {
+  // Without the day's schedule, Sign-ups (its own file) still works.
+  if (!schedule) { if (programs || programsError) { renderCalendarModes(); renderSignups(); fitHeader(); } return; } if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderSignups(); fitHeader(); }
 
 
 // ---------- sign-ups: leagues and tournaments ----------
@@ -871,7 +873,7 @@ function renderSignups() {
   document.body.classList.remove('layout-map', 'view-booking');
   const hasNagva = programsHere('nagva').length > 0;
   // (Only once the feed is in: a shared NAGVA link must survive the first render, before it loads.)
-  if (programs && state.kind === 'nagva' && !hasNagva) state.kind = 'all';
+  if (programs && state.kind === 'nagva' && !hasNagva) { state.kind = 'all'; syncUrl(); save(); }
   const kinds = Object.entries(KINDS).filter(([k]) => k !== 'nagva' || hasNagva);
   $('kinds').innerHTML = kinds.map(([k, l]) => `<button type="button" class="pill-btn chip-btn${state.kind === k ? ' on' : ''}" data-kind="${k}" aria-pressed="${state.kind === k}">${l}<span class="vh">, ${programsHere(k).length}</span></button>`).join('');
   if (!programs) {
@@ -896,6 +898,7 @@ function renderSignups() {
   }
   if (!shown.length) html = `<div class="empty"><b>No ${state.kind === 'all' ? 'leagues or tournaments' : KINDS[state.kind].toLowerCase()} open for sign-up${region ? ` in ${esc(region.name.split(',')[0])}` : ''} right now.</b> Organizers post new seasons every month or two; this checks twice a day.</div>`;
   $('programs').innerHTML = html;
+  $('programsCount').textContent = `${shown.length} ${state.kind === 'all' ? 'leagues and tournaments' : KINDS[state.kind].toLowerCase()} listed`;
   signupsMeta();
 }
 /** The Sign-ups view's freshness line, note and sources (kept current with the rest of the page's "x ago"). */
@@ -904,16 +907,19 @@ function signupsMeta() {
   const bad = (programs.sources || []).filter((x) => !x.ok);
   $('programsNote').textContent = `From each organizer's sign-up page, checked twice a day. Prices, caps and deadlines change: confirm on their page before you pay.${bad.length ? ` Last check couldn't read ${bad.map((x) => x.id).join(', ')}; their listings are from the check before.` : ''}`;
   $('asof').textContent = `Checked ${ago(programs.generatedAt)} · twice a day`;
-  const orgs = [...new Set((programs.programs || []).filter((p) => p.sport === state.sport).map((p) => p.org))];
+  $('asof').title = `Leagues and tournaments checked ${clock(programs.generatedAt)}`;
+  const orgs = [...new Set([...programsHere('all'), ...programsHere('nagva')].map((p) => p.org))];
   $('footer').innerHTML = orgs.length ? `Sources: ${esc(list(orgs))}. Sign up on the organizer's site; Schelagg only links to it.` : '';
 }
 /** Today, in open play: a league or tournament whose sign-up (or early-bird price) ends today. */
 function headsUpHtml() {
   if (!programs || state.view !== 'openplay') return '';
-  const today = programsHere('all').filter((p) => (p.status === 'open' || p.status === 'waitlist') && (p.registration_deadline === NOW.iso || p.price_changes_on === NOW.iso));
-  if (!today.length) return '';
-  const what = today.length === 1 ? esc(today[0].title) : `${today.length} leagues and tournaments`;
-  return `<button type="button" class="heads-up" data-view="signups"><b>Sign-ups closing today:</b> ${what}<span aria-hidden="true">›</span></button>`;
+  const live = programsHere('all').filter((p) => p.status === 'open' || p.status === 'waitlist');
+  const closing = live.filter((p) => p.registration_deadline === NOW.iso);
+  const pricier = live.filter((p) => p.price_changes_on === NOW.iso && !closing.includes(p));
+  const name = (xs) => (xs.length === 1 ? esc(xs[0].title) : `${xs.length} leagues and tournaments`);
+  const line = closing.length ? `<b>Sign-ups closing today:</b> ${name(closing)}` : pricier.length ? `<b>Last day at today's price:</b> ${name(pricier)}` : '';
+  return line ? `<button type="button" class="heads-up" data-view="signups">${line}<span aria-hidden="true">›</span></button>` : '';
 }
 
 // ---------- header height ----------

@@ -75,6 +75,8 @@ jobs:
       # skip it (--if-due). Before the commit, so it rides the same data-branch push.
       - name: Leagues and tournaments
         continue-on-error: true
+        # Never let it hold up the data push below (the job has 20 minutes in all).
+        timeout-minutes: 7
         env:
           SCHELAGG_HOST_GAP_MS: 300
         run: node scripts/programs.mjs ${{ (github.event_name == 'push' || inputs.all) && '' || '--if-due' }}

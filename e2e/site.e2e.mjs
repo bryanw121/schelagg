@@ -1089,3 +1089,15 @@ test('site: Sign-ups says so when the feed can\'t load, and open play is unaffec
   assert.ok((await titles()).length > 0);
   assert.equal(await page.locator('#list .heads-up').count(), 0);
 });
+
+test('site: Sign-ups works when the day\'s schedule can\'t load; a price step gets its own heads-up', async () => {
+  await open({ programs: PROGRAMS, schedule: null, url: '/?view=signups' });
+  await page.locator('#programs .prog').first().waitFor();
+  assert.ok((await progTitles()).includes('Sunday Indoor League'));
+  assert.match(await page.locator('#programsCount').textContent(), /\d+ leagues and tournaments listed/);
+  await context.close();
+  const priceDay = { ...PROGRAMS, programs: [prog('Early Bird Cup', { kind: 'tournament', registration_deadline: '2026-11-20', price_note: 'Early bird', price_changes_on: TODAY })] };
+  await open({ programs: priceDay, index: AUSTIN_INDEX, regions: { austin: SCHEDULE } });
+  await page.locator('#list .heads-up').waitFor();
+  assert.match(await page.locator('#list .heads-up').textContent(), /Last day at today's price:\s*Early Bird Cup/);
+});

@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { moneyRange, upcomingDate, monthDay, clean, regionAt } from '../lib/programs/common.js';
+import { moneyRange, upcomingDate, monthDay, clean, regionAt, notAfter } from '../lib/programs/common.js';
 import { parseAces } from '../lib/programs/aces.js';
 import { parseLeagueLab } from '../lib/programs/leaguelab.js';
 import { parseNagva, confirmedCounts, tournamentRecords, feeSchedule } from '../lib/programs/nagva.js';
@@ -23,6 +23,8 @@ test('helpers: money ranges, year-less dates, entities, regions', () => {
   assert.equal(upcomingDate(1, 31, '2026-11-08'), '2027-01-31');
   // A date a few weeks back stays in this year (a deadline that just passed).
   assert.equal(upcomingDate(10, 30, '2026-11-08'), '2026-10-30');
+  assert.equal(upcomingDate(2, 30, '2026-11-08'), null);
+  assert.equal(notAfter('2027-11-13', '2027-01-10'), '2026-11-13');
   assert.equal(clean('Coed 4&#039;s &amp; more'), "Coed 4's & more");
   assert.equal(regionAt(30.49, -97.55, REGIONS), 'austin');
   assert.equal(regionAt(29.39, -98.49, REGIONS), null);
@@ -64,6 +66,12 @@ test('LeagueLab: Austin SSC volleyball and pickleball leagues, dates anchored to
   assert.equal(early.price_note, 'Early bird');
   assert.equal(early.price_changes_on, '2026-11-13');
   assert.equal(early.team_price, '$679');
+  // After the early-bird cutoff, the higher price shows and the note goes.
+  const late = parseLeagueLab(fx('leaguelab-austinssc.html'), { site: 'https://austinssc.leaguelab.com', org: 'Austin SSC', now: Date.parse('2026-11-15T18:00:00Z'), regionId: 'austin' })
+    .find((p) => /Hanovers/.test(p.title));
+  assert.equal(late.price_note, null);
+  assert.equal(late.price_changes_on, null);
+  assert.ok(Number(late.team_price.slice(1)) > 679);
   assert.ok(out.some((p) => p.sport === 'pickleball' && p.surface === null));
 });
 
@@ -90,15 +98,20 @@ test('NAGVA: upcoming Texas tournaments only, with the current fee and confirmed
   assert.equal(p.starts_on, '2026-12-18');
   assert.equal(p.ends_on, '2026-12-19');
   assert.equal(p.team_price, '$650');
-  assert.equal(p.registration_deadline, '2026-12-01');
+  assert.equal(p.price_changes_on, null); // the last step: $650 from here on
+  assert.equal(p.registration_deadline, null); // payment deadlines raise the fee; they don't end registration
   assert.equal(p.waitlist_on, '2026-12-16');
+  assert.equal(p.status, 'open');
   assert.deepEqual(p.divisions.find((d) => d.name === 'A1'), { name: 'A1', cap: 12, confirmed: 7 });
   // Nothing about who runs it or who registered.
-  assert.doesNotMatch(JSON.stringify(p), /@|venmo|Team \d|Gonzalez/i);
+  assert.doesNotMatch(JSON.stringify(p), /@|venmo|paypal|Team \d|director|registrar/i);
   // Earlier in the season the lower fee shows, with when it goes up.
   const early = parseNagva(html, { now: Date.parse('2026-09-01T17:00:00Z'), regions: REGIONS }).find((x) => x.title === 'Battle of the Alamo 2026');
   assert.equal(early.team_price, '$550');
   assert.equal(early.price_changes_on, '2026-10-05');
+  assert.equal(early.price_note, 'Current fee');
+  // From the waitlist date, new teams wait.
+  assert.equal(parseNagva(html, { now: Date.parse('2026-12-16T18:00:00Z'), regions: REGIONS })[0].status, 'waitlist');
 });
 
 test('Reclub: sitemap competitions, and a volleyball league near Austin', () => {
