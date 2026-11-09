@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Schelagg</title>
-<meta name="description" content="Where to play today: volleyball, pickleball open play and public ice skating, with schedules, venue directions and sign-up links.">
+<meta name="description" content="Where to play today: volleyball, pickleball open play and public ice skating, with schedules, venue directions and sign-up links, plus leagues and tournaments open for sign-up.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
@@ -59,6 +59,14 @@
         <label class="toggle"><input type="checkbox" id="showAll"> Show ended &amp; unconfirmed</label>
       </div>
       <div class="list" id="list"><p class="loading">Loading schedules…</p></div>
+    </div>
+
+    <!-- Sign-ups: leagues and tournaments open for registration (data/programs.json, twice a day). -->
+    <div id="signupsPanel" hidden>
+      <div class="chips-row kinds" role="group" aria-label="Kind" id="kinds"></div>
+      <p class="vh" id="programsCount" role="status"></p>
+      <div class="programs" id="programs"><p class="loading">Loading leagues and tournaments…</p></div>
+      <p class="note" id="programsNote"></p>
     </div>
 
     <section class="card" id="glance">

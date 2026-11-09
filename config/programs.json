@@ -1,0 +1,10 @@
+{
+  "//": "Leagues and tournaments (public/data/programs.json, built twice a day by scripts/programs.mjs). Each source runs one reader in lib/programs/ with its options; a failing source keeps its last good rows.",
+  "sources": [
+    { "id": "aces", "reader": "aces" },
+    { "id": "austin-ssc", "reader": "leaguelab", "options": { "sites": [{ "url": "https://austinssc.leaguelab.com/leagues?v=upcoming", "org": "Austin Sports & Social Club", "region": "austin", "state": "TX", "sports": ["Volleyball", "Pickleball"] }] } },
+    { "id": "meanwhile", "reader": "leaguelab", "options": { "sites": [{ "url": "https://meanwhile.leaguelab.com/leagues?sport=Sand+Volleyball", "org": "Meanwhile Brewing", "region": "austin", "state": "TX", "sports": ["Volleyball"] }] } },
+    { "id": "nagva-tx", "reader": "nagva", "options": { "state": "TX" } },
+    { "id": "reclub", "reader": "reclub", "options": { "state": "TX", "max": 120 } }
+  ]
+}

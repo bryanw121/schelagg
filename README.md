@@ -283,12 +283,25 @@ database and never writes into one. Instead it publishes a feed, and consumers p
   `previous_starts_at` (where a rescheduled session was). `canceled` stays for existing consumers.
 - **`public/data/<sport>.ics`** (`volleyball.ics`, `ice_skating.ics`): the same occurrences as calendar subscriptions.
   Cancelled sessions stay in with `STATUS:CANCELLED` and every occurrence keeps its UID, so a move shows as a move.
+- **`public/data/programs.json`** (`https://bryanw121.github.io/schelagg/data/programs.json`): leagues and
+  tournaments open for sign-up, every sport and region, built twice a day by `scripts/programs.mjs` from the readers in
+  `lib/programs/` (sources in `config/programs.json`: ACES's members site, LeagueLab for Austin Sports & Social Club
+  and Meanwhile, NAGVA's Texas tournaments, Reclub competitions). `{ feedVersion, generatedAt, sources: [{ id, ok,
+  checkedAt, count, error? }], programs: [...] }`; each program has `id`, `kind` (`league` / `tournament`), `sport`,
+  `surface`, `region` (null outside every region circle, e.g. NAGVA tournaments elsewhere in the state), `state`,
+  `series` (`nagva` or null), `org`, `title`, `venue`, `city`, `address`, `lat`, `lng`, `format`, `divisions`
+  (`[{ name, cap?, confirmed? }]`: confirmed team counts only, never who), `starts_on`, `ends_on`, `weekdays`,
+  `registration_opens`, `registration_deadline`, `waitlist_on`, `team_price`, `individual_price`, `price_note`,
+  `price_changes_on` (the last day of the current price), `status` (`open` / `waitlist` / `full` / `closed`),
+  `signup_url`, `source_url`, `checked_at`. Dates are `YYYY-MM-DD` in the region's zone; anything the organizer's
+  page doesn't state is null. A source that fails keeps its last good rows (its `sources` entry says so), and rows
+  whose deadline or last day has passed are dropped, so mirror the feed: delete rows no longer in it.
 - A session missing from a run is gone at the source, so a consumer that mirrors the feed should delete upcoming
   rows that are no longer in it (that's how cancellations propagate) and treat a feed whose `generatedAt` is many
   hours old as stale.
 
 vteam (the volleyball app) is one such consumer: a scheduled function in its own Supabase project pulls this feed
-hourly and keeps only `sport: volleyball`, `region: austin`. Keep it that way: nothing in this repo should depend on
+hourly and keeps only `sport: volleyball`, `region: austin`; another pulls `programs.json` twice a day. Keep it that way: nothing in this repo should depend on
 vteam or its database.
 
 ### Live API
