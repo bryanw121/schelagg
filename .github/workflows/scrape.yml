@@ -7,6 +7,8 @@ on:
     branches: [main]
     paths:
       - 'config/regions/**'
+      - 'config/programs.json'
+      - 'scripts/programs.mjs'
       - 'scripts/adapters/**'
       - 'scripts/scrape.mjs'
       - 'lib/**'
@@ -69,6 +71,13 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           # Requests to one host are queued and spaced this far apart (lib/http.js).
           SCHELAGG_HOST_GAP_MS: 300
+      # Leagues and tournaments (public/data/programs.json): built twice a day, so most ticks
+      # skip it (--if-due). Before the commit, so it rides the same data-branch push.
+      - name: Leagues and tournaments
+        continue-on-error: true
+        env:
+          SCHELAGG_HOST_GAP_MS: 300
+        run: node scripts/programs.mjs ${{ (github.event_name == 'push' || inputs.all) && '' || '--if-due' }}
       # To the data branch, never main: a push to main is a Vercel deployment.
       - name: Commit updated data
         run: |
