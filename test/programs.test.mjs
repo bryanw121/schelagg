@@ -8,6 +8,7 @@ import { parseLeagueLab } from '../lib/programs/leaguelab.js';
 import { parseNagva, confirmedCounts, tournamentRecords, feeSchedule } from '../lib/programs/nagva.js';
 import { competitionOf, competitionUrls, parseCompetition } from '../lib/programs/reclub.js';
 import { buildFeed, isDue, runSources, DUE_AFTER_MS } from '../lib/programs/feed.js';
+import { dateRange, parseTexasAO } from '../lib/programs/texasao.js';
 
 const fx = (f) => readFileSync(new URL(`./fixtures/programs/${f}`, import.meta.url), 'utf8');
 const REGIONS = [{ id: 'austin', center: [30.2672, -97.7431], radiusKm: 60 }];
@@ -157,4 +158,39 @@ test('feed: due twice a day; runSources turns a throwing reader into an error', 
   assert.equal(results[0].programs.length, 13);
   assert.match(results[1].error, /503/);
   assert.match(results[2].error, /no reader/);
+});
+
+test('Texas Asian Olympics: the year\'s tournament from the home and registration pages', () => {
+  assert.deepEqual(dateRange('Nov 14 - 15, 2026'), { starts_on: '2026-11-14', ends_on: '2026-11-15' });
+  assert.deepEqual(dateRange('Oct 31 - Nov 1, 2026'), { starts_on: '2026-10-31', ends_on: '2026-11-01' });
+  assert.deepEqual(dateRange('Dec 30 - Jan 2, 2027'), { starts_on: '2026-12-30', ends_on: '2027-01-02' });
+  assert.equal(dateRange('3 Divisions'), null);
+  const home = fx('texasao-home.html'), reg = fx('texasao-registration.html');
+  const [p, ...more] = parseTexasAO(home, reg, { now: NOW, regions: REGIONS });
+  assert.equal(more.length, 0);
+  assert.equal(p.kind, 'tournament');
+  assert.equal(p.series, 'asian-olympics');
+  assert.equal(p.org, 'Texas Asian Olympics');
+  assert.equal(p.starts_on, '2026-11-14');
+  assert.equal(p.ends_on, '2026-11-15');
+  assert.equal(p.venue, "Children's Health StarCenter Multisport Northlake");
+  assert.equal(p.city, 'Northlake');
+  assert.equal(p.state, 'TX');
+  assert.equal(p.region, null); // Dallas–Fort Worth: listed with the rest of Texas
+  assert.equal(p.team_price, '$300');
+  assert.deepEqual(p.divisions, [{ name: 'Teams', cap: 64 }]);
+  assert.equal(p.format, '3 divisions · up to 3 non-Asian players per team');
+  assert.equal(p.status, 'open');
+  assert.equal(p.signup_url, 'https://texasao.org/registration/');
+  assert.doesNotMatch(JSON.stringify(p), /docs\.google|forms\.gle/); // the page, not the form or the roster sheet
+  // Without the registration page: still listed, fee and cap unknown.
+  const bare = parseTexasAO(home, '', { now: NOW })[0];
+  assert.equal(bare.team_price, null);
+  assert.deepEqual(bare.divisions, []);
+  // A closed registration says so; once it's over it drops.
+  assert.equal(parseTexasAO(home, reg.replace('<ul>', '<p>Registration is closed.</p><ul>'), { now: NOW })[0].status, 'closed');
+  assert.deepEqual(parseTexasAO(home, reg, { now: Date.parse('2026-11-16T18:00:00Z') }), []);
+  // Held in the region's own city, it's the region's.
+  const local = parseTexasAO(home.replace('Northlake, TX 76262', 'Austin, TX 78701'), reg, { now: NOW, regions: [{ ...REGIONS[0], name: 'Austin, TX' }] })[0];
+  assert.equal(local.region, 'austin');
 });

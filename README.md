@@ -286,7 +286,7 @@ database and never writes into one. Instead it publishes a feed, and consumers p
 - **`public/data/programs.json`** (`https://bryanw121.github.io/schelagg/data/programs.json`): leagues and
   tournaments open for sign-up, every sport and region, built twice a day by `scripts/programs.mjs` from the readers in
   `lib/programs/` (sources in `config/programs.json`: ACES's members site, LeagueLab for Austin Sports & Social Club
-  and Meanwhile, NAGVA's Texas tournaments, Reclub competitions). `{ feedVersion, generatedAt, sources: [{ id, ok,
+  and Meanwhile, NAGVA's Texas tournaments, Reclub competitions, the Texas Asian Olympics at texasao.org). `{ feedVersion, generatedAt, sources: [{ id, ok,
   checkedAt, count, error? }], programs: [...] }`; each program has `id`, `kind` (`league` / `tournament`), `sport`,
   `surface`, `region` (null outside every region circle, e.g. NAGVA tournaments elsewhere in the state), `state`,
   `series` (`nagva` or null), `org`, `title`, `venue`, `city`, `address`, `lat`, `lng`, `format`, `divisions`
