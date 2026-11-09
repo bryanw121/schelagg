@@ -198,9 +198,12 @@ const setClock = () => { NOW = regionNow(); WEEK = Array.from({ length: 7 }, (_,
 setClock();
 
 let index = null, region = null, schedule = null, courts = null, courtsError = null, programs = null, programsError = null;
-const VIEWS = ['openplay', 'booking', 'signups'];
-const KINDS = { all: 'All', league: 'Leagues', tournament: 'Tournaments', nagva: 'NAGVA' };
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', kind: 'all' };
+const VIEWS = ['openplay', 'booking', 'leagues', 'tournaments'];
+/** The two sign-up views and the program kind each lists. */
+const PROGRAM_VIEWS = { leagues: 'league', tournaments: 'tournament' };
+/** A view from a remembered or shared value; the old single "signups" view (kind=…) maps onto the new two. */
+const viewFrom = (v, kind) => (v === 'signups' ? (kind === 'tournament' || kind === 'nagva' ? 'tournaments' : 'leagues') : VIEWS.includes(v) ? v : null);
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all' };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -208,8 +211,8 @@ try {
   const tab = s.tab ?? s.surf; // `surf` from before skating
   if (tab && tabsOf(state.sport)[tab]) state.tab = tab;
   if (typeof s.showAll === 'boolean') state.showAll = s.showAll;
-  if (VIEWS.includes(s.view)) state.view = s.view;
-  if (KINDS[s.kind]) state.kind = s.kind;
+  if (viewFrom(s.view, s.kind)) state.view = viewFrom(s.view, s.kind);
+  if (typeof s.host === 'string' && s.host) state.host = s.host;
   if (s.layout === 'map') state.layout = 'map';
 } catch {}
 // A shared link (?region=austin&sport=ice_skating) wins over what was remembered.
@@ -217,11 +220,12 @@ const params = new URLSearchParams(location.search);
 const urlRegion = params.get('region');
 if (urlRegion) state.region = urlRegion;
 const urlSport = params.get('sport');
-if (params.has('view')) state.view = VIEWS.includes(params.get('view')) ? params.get('view') : 'openplay';
-if (KINDS[params.get('kind')]) state.kind = params.get('kind');
+if (params.has('view')) state.view = viewFrom(params.get('view'), params.get('kind')) ?? 'openplay';
+if (params.get('kind') === 'nagva') state.host = 'NAGVA';
+if (params.get('host')) state.host = params.get('host');
 if (params.has('layout')) state.layout = params.get('layout') === 'map' ? 'map' : 'list';
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, kind: state.kind })); } catch {} };
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, host: state.host })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
   const u = new URL(location.href);
@@ -229,7 +233,8 @@ function syncUrl() {
   if (single || !state.region) u.searchParams.delete('region'); else u.searchParams.set('region', state.region);
   if (state.sport === 'volleyball') u.searchParams.delete('sport'); else u.searchParams.set('sport', state.sport);
   if (state.view !== 'openplay') u.searchParams.set('view', state.view); else u.searchParams.delete('view');
-  if (state.view === 'signups' && state.kind !== 'all') u.searchParams.set('kind', state.kind); else u.searchParams.delete('kind');
+  u.searchParams.delete('kind');
+  if (PROGRAM_VIEWS[state.view] && state.host !== 'all') u.searchParams.set('host', state.host); else u.searchParams.delete('host');
   if (state.layout === 'map' && mapReady()) u.searchParams.set('layout', 'map'); else u.searchParams.delete('layout');
   if (u.href !== location.href) history.replaceState(null, '', u);
 }
@@ -455,7 +460,7 @@ function renderVenueCalendars() {
 function renderCalendarModes() {
   const supportsBooking = ['volleyball', 'pickleball'].includes(state.sport);
   $('calendarModes').hidden = !supportsBooking;
-  $('calendarModes').innerHTML = supportsBooking ? [['openplay', 'Open play'], ['booking', 'Book a court'], ['signups', 'Sign-ups']]
+  $('calendarModes').innerHTML = supportsBooking ? [['openplay', 'Open play'], ['booking', 'Courts'], ['leagues', 'Leagues'], ['tournaments', 'Tournaments']]
     .map(([value, label]) => `<button class="seg-btn" type="button" data-view="${value}" aria-pressed="${state.view === value}">${label}</button>`).join('') : '';
   // Booking puts the live court chart first; open play puts the list first (styles.css orders them).
   document.body.classList.toggle('view-booking', state.view === 'booking');
@@ -777,7 +782,7 @@ function renderMeta() {
   const handChecked = (schedule.sessions || []).some((x) => x.sourceId === 'manual' && sportOf(x) === state.sport);
   $('footer').innerHTML = `${names.length || handChecked ? `Sources: ${esc(list([...names, ...(handChecked ? ['hand-checked pages'] : [])]))}. ` : ''}${SPORTS[state.sport].footer}`;
   renderSourceList();
-  if (state.view === 'signups') signupsMeta();
+  if (PROGRAM_VIEWS[state.view]) signupsMeta();
 }
 
 /** "a, b and c" */
@@ -788,25 +793,28 @@ const liveCourts = () => SPORTS[state.sport].courts || regionCourts().length > 0
 const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'volleyball') === state.sport && (!region || !v.region || v.region === region.id));
 
 function render() {
-  // Without the day's schedule, Sign-ups (its own file) still works.
+  // Without the day's schedule, Leagues and Tournaments (their own file) still work.
   if (!schedule) { if (programs || programsError) { renderCalendarModes(); renderSignups(); fitHeader(); } return; } if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay'; syncUrl(); renderRegion(); renderSports(); renderTabs(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderSignups(); fitHeader(); }
 
 
-// ---------- sign-ups: leagues and tournaments ----------
+// ---------- leagues and tournaments ----------
 // data/programs.json (scripts/programs.mjs, twice a day): every league season and tournament open
 // for sign-up, from each organizer's own registration page. A row says only what the page says;
-// sign-up happens on the organizer's site. NAGVA tournaments have their own chip, with the region's
-// first and then the rest of the state, since people travel for them.
+// sign-up happens on the organizer's site. Each has its own tab, filtered by host; Tournaments
+// also lists the rest of the region's state (NAGVA) after the region's own, since people travel for them.
 const regionState = () => region?.name?.match(/,\s*([A-Z]{2})$/)?.[1] ?? null;
 const daysUntil = (iso) => Math.round((dateObj(iso) - dateObj(NOW.iso)) / 864e5);
 const WEEKDAY_SHORT = { Sunday: 'Sun', Monday: 'Mon', Tuesday: 'Tue', Wednesday: 'Wed', Thursday: 'Thu', Friday: 'Fri', Saturday: 'Sat' };
-/** This sport's programs here (`nagva`: the state's NAGVA tournaments too, wherever they are). */
-function programsHere(kind = state.kind) {
+/**
+ * This sport's leagues or tournaments here. Tournaments also take the rest of the region's state
+ * (NAGVA's Texas tournaments, which people travel for), listed after the region's own.
+ */
+function programsFor(kind) {
   const st = regionState();
-  return (programs?.programs || []).filter((p) => p.sport === state.sport
-    && (kind === 'nagva' ? p.series === 'nagva' && (p.region === region?.id || (!p.region && st && p.state === st))
-      : (!region || p.region === region.id) && (kind === 'all' || p.kind === kind)));
+  return (programs?.programs || []).filter((p) => p.sport === state.sport && p.kind === kind
+    && (!region || p.region === region.id || (kind === 'tournament' && !p.region && st && p.state === st)));
 }
+const programsHere = (kind) => programsFor(kind).filter((p) => !region || p.region === region.id);
 /** "5 days left", "Last day", "Early bird ends today": what's urgent about a program, or ''. */
 function urgency(p) {
   if (p.status === 'closed' || p.status === 'full') return '';
@@ -865,61 +873,63 @@ function programCard(p) {
   </article>`;
 }
 function renderSignups() {
-  const on = state.view === 'signups';
-  $('signupsPanel').hidden = !on;
-  if (!on) return;
-  // Sign-ups aren't about a day: the day strip, the level filter, the charts and the map step aside.
+  const kind = PROGRAM_VIEWS[state.view];
+  $('signupsPanel').hidden = !kind;
+  if (!kind) return;
+  // Leagues and tournaments aren't about a day: the day strip, the level filter, the charts and the map step aside.
   for (const id of ['days', 'levelBtn', 'sessionsPanel', 'glance', 'bookingCalendarsCard', 'venueCalendarsCard', 'courtsCard', 'sessionFreshness', 'mapCard', 'layout']) $(id).hidden = true;
   document.body.classList.remove('layout-map', 'view-booking');
-  const hasNagva = programsHere('nagva').length > 0;
-  // (Only once the feed is in: a shared NAGVA link must survive the first render, before it loads.)
-  if (programs && state.kind === 'nagva' && !hasNagva) { state.kind = 'all'; syncUrl(); save(); }
-  const kinds = Object.entries(KINDS).filter(([k]) => k !== 'nagva' || hasNagva);
-  $('kinds').innerHTML = kinds.map(([k, l]) => `<button type="button" class="pill-btn chip-btn${state.kind === k ? ' on' : ''}" data-kind="${k}" aria-pressed="${state.kind === k}">${l}<span class="vh">, ${programsHere(k).length}</span></button>`).join('');
+  const noun = kind === 'league' ? 'leagues' : 'tournaments';
   if (!programs) {
-    $('programs').innerHTML = programsError ? `<div class="error">Couldn't load leagues and tournaments: ${esc(programsError)}</div>` : '<p class="loading">Loading leagues and tournaments…</p>';
+    $('hosts').innerHTML = '';
+    $('programs').innerHTML = programsError ? `<div class="error">Couldn't load ${noun}: ${esc(programsError)}</div>` : `<p class="loading">Loading ${noun}…</p>`;
     $('programsNote').textContent = '';
     return;
   }
-  const shown = programsHere();
+  // Hosts: who runs them (ACES, NAGVA, a Reclub club…), most listings first. A host with nothing
+  // here any more falls back to all (after the feed loads, so a shared ?host= survives the first render).
+  const all = programsFor(kind);
+  const counts = new Map();
+  for (const p of all) counts.set(p.org, (counts.get(p.org) ?? 0) + 1);
+  const hosts = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  if (state.host !== 'all' && !counts.has(state.host)) { state.host = 'all'; syncUrl(); save(); }
+  const chip = (value, label, n) => `<button type="button" class="pill-btn chip-btn${state.host === value ? ' on' : ''}" data-host="${esc(value)}" aria-pressed="${state.host === value}">${esc(label)} <span class="n" aria-hidden="true">${n}</span><span class="vh">, ${n} ${noun}</span></button>`;
+  $('hosts').innerHTML = hosts.length > 1 ? chip('all', 'All hosts', all.length) + hosts.map(([org, n]) => chip(org, org, n)).join('') : '';
+  const shown = state.host === 'all' ? all : all.filter((p) => p.org === state.host);
   const section = (title, rows, cls = '') => (rows.length ? `<h2 class="p-group ${cls}">${esc(title)}<span class="n">${rows.length}</span></h2>${rows.map(programCard).join('')}` : '');
-  let html = '';
-  if (state.kind === 'nagva') {
-    const byStart = (a, b) => (a.starts_on || '').localeCompare(b.starts_on || '');
-    const city = region?.name?.split(',')[0] || 'here';
-    html = section(`Near ${city}`, shown.filter((p) => p.region === region?.id).sort(byStart)) + section(`Elsewhere in ${regionState() === 'TX' ? 'Texas' : 'the state'}`, shown.filter((p) => p.region !== region?.id).sort(byStart));
-  } else {
-    const open = shown.filter((p) => p.status === 'open' || p.status === 'waitlist' || p.status == null);
-    const soon = open.filter((p) => urgency(p));
-    html = section('Closing this week', soon, 'hot') + section('Open', open.filter((p) => !soon.includes(p)))
-      + section('Not open yet, full or closed', shown.filter((p) => !open.includes(p)), 'quiet');
-    const away = state.kind !== 'league' && hasNagva ? programsHere('nagva').filter((p) => p.region !== region?.id).length : 0;
-    if (away) html += `<div class="empty">${away} NAGVA tournament${away === 1 ? '' : 's'} elsewhere in ${regionState() === 'TX' ? 'Texas' : 'the state'}. <button type="button" class="linkish" data-kind="nagva">See NAGVA</button></div>`;
-  }
-  if (!shown.length) html = `<div class="empty"><b>No ${state.kind === 'all' ? 'leagues or tournaments' : KINDS[state.kind].toLowerCase()} open for sign-up${region ? ` in ${esc(region.name.split(',')[0])}` : ''} right now.</b> Organizers post new seasons every month or two; this checks twice a day.</div>`;
+  const near = shown.filter((p) => !region || p.region === region.id);
+  const away = shown.filter((p) => !near.includes(p)).sort((a, b) => (a.starts_on || '').localeCompare(b.starts_on || ''));
+  const open = near.filter((p) => p.status === 'open' || p.status === 'waitlist' || p.status == null);
+  const soon = open.filter((p) => urgency(p));
+  let html = section('Closing this week', soon, 'hot') + section('Open', open.filter((p) => !soon.includes(p)))
+    + section('Not open yet, full or closed', near.filter((p) => !open.includes(p)), 'quiet')
+    + section(`Elsewhere in ${regionState() === 'TX' ? 'Texas' : 'the state'}`, away, 'quiet');
+  const where = region ? ` in ${esc(region.name.split(',')[0])}` : '';
+  if (!shown.length) html = `<div class="empty"><b>No ${noun} open for sign-up${where} right now.</b> Organizers post new ${kind === 'league' ? 'seasons' : 'dates'} every month or two; this checks twice a day.</div>`;
   $('programs').innerHTML = html;
-  $('programsCount').textContent = `${shown.length} ${state.kind === 'all' ? 'leagues and tournaments' : KINDS[state.kind].toLowerCase()} listed`;
+  $('programsCount').textContent = `${shown.length} ${noun}${state.host === 'all' ? '' : ` from ${state.host}`} listed`;
   signupsMeta();
 }
-/** The Sign-ups view's freshness line, note and sources (kept current with the rest of the page's "x ago"). */
+/** Leagues' and Tournaments' freshness line, note and sources (kept current with the rest of the page's "x ago"). */
 function signupsMeta() {
   if (!programs) return;
   const bad = (programs.sources || []).filter((x) => !x.ok);
   $('programsNote').textContent = `From each organizer's sign-up page, checked twice a day. Prices, caps and deadlines change: confirm on their page before you pay.${bad.length ? ` Last check couldn't read ${bad.map((x) => x.id).join(', ')}; their listings are from the check before.` : ''}`;
   $('asof').textContent = `Checked ${ago(programs.generatedAt)} · twice a day`;
   $('asof').title = `Leagues and tournaments checked ${clock(programs.generatedAt)}`;
-  const orgs = [...new Set([...programsHere('all'), ...programsHere('nagva')].map((p) => p.org))];
+  const orgs = [...new Set([...programsFor('league'), ...programsFor('tournament')].map((p) => p.org))];
   $('footer').innerHTML = orgs.length ? `Sources: ${esc(list(orgs))}. Sign up on the organizer's site; Schelagg only links to it.` : '';
 }
 /** Today, in open play: a league or tournament whose sign-up (or early-bird price) ends today. */
 function headsUpHtml() {
   if (!programs || state.view !== 'openplay') return '';
-  const live = programsHere('all').filter((p) => p.status === 'open' || p.status === 'waitlist');
+  const live = [...programsHere('league'), ...programsHere('tournament')].filter((p) => p.status === 'open' || p.status === 'waitlist');
   const closing = live.filter((p) => p.registration_deadline === NOW.iso);
   const pricier = live.filter((p) => p.price_changes_on === NOW.iso && !closing.includes(p));
   const name = (xs) => (xs.length === 1 ? esc(xs[0].title) : `${xs.length} leagues and tournaments`);
   const line = closing.length ? `<b>Sign-ups closing today:</b> ${name(closing)}` : pricier.length ? `<b>Last day at today's price:</b> ${name(pricier)}` : '';
-  return line ? `<button type="button" class="heads-up" data-view="signups">${line}<span aria-hidden="true">›</span></button>` : '';
+  const to = (closing[0] ?? pricier[0])?.kind === 'tournament' ? 'tournaments' : 'leagues';
+  return line ? `<button type="button" class="heads-up" data-view="${to}">${line}<span aria-hidden="true">›</span></button>` : '';
 }
 
 // ---------- header height ----------
@@ -1042,8 +1052,8 @@ function declutter() {
 }
 
 async function renderMap() {
-  const on = state.layout === 'map' && mapReady() && state.view !== 'signups';
-  $('layout').hidden = !mapReady() || state.view === 'signups';
+  const on = state.layout === 'map' && mapReady() && !PROGRAM_VIEWS[state.view];
+  $('layout').hidden = !mapReady() || !!PROGRAM_VIEWS[state.view];
   // One floating button for the other view: "Map" on the list, "List" on the map.
   const LIST_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>';
   const MAP_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>';
@@ -1189,8 +1199,9 @@ document.addEventListener('click', async (e) => {
     if (mapPick && pin.closest('#mapPanel')) $('mapCard').scrollIntoView({ block: 'start' });
     return;
   }
-  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout],[data-kind]'); if (!t) return;
-  if (t.dataset.kind) { state.kind = t.dataset.kind; save(); }
+  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout],[data-host]'); if (!t) return;
+  if (t.dataset.host) { state.host = t.dataset.host; save(); }
+  if (t.dataset.view && t.dataset.view !== state.view) state.host = 'all'; // each tab starts with every host
   if (t.dataset.layout) { state.layout = t.dataset.layout; mapPick = null; save(); }
   if (t.dataset.sport) { state.sport = t.dataset.sport; state.tab = 'all'; save(); }
   if (t.dataset.tab) { state.tab = t.dataset.tab; save(); }
@@ -1201,7 +1212,7 @@ document.addEventListener('click', async (e) => {
   if (inSheet) closeSheets();
   render();
   // The control just used was redrawn; keep keyboard focus on its new copy (a sheet returns it to its chip).
-  if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`#calendarModes [data-view="${t.dataset.view}"]`) : t.dataset.kind ? document.querySelector(`#kinds [data-kind="${t.dataset.kind}"]`) : t.dataset.di ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
+  if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`#calendarModes [data-view="${t.dataset.view}"]`) : t.dataset.host ? document.querySelector(`#hosts [data-host="${CSS.escape(t.dataset.host)}"]`) : t.dataset.di ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
 });
 $('showAll').checked = state.showAll;
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });

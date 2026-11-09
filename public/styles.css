@@ -357,3 +357,9 @@ body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibr
 .heads-up span{margin-left:auto;font-size:18px;color:var(--warn)}
 .prog details.more summary{min-height:44px;display:flex;align-items:center}
 .prog .src{min-height:44px;display:inline-flex;align-items:center}
+.kinds .pill-btn .n{font:600 11px var(--mono);opacity:.7}
+/* Four views: on a phone the control spans the row and its buttons share it. */
+@media (max-width:520px){#calendarModes{display:flex;width:100%;max-width:100%;box-sizing:border-box;overflow-x:auto;scrollbar-width:none}#calendarModes::-webkit-scrollbar{display:none}#calendarModes .seg-btn{flex:1 0 auto;padding:0 6px}}
+@media (max-width:360px){#calendarModes .seg-btn{font-size:13px;padding:0 4px;letter-spacing:-.01em}}
+.kinds .pill-btn{position:relative}
+header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
