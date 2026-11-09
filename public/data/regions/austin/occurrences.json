@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-09T15:15:55.715Z",
+  "generatedAt": "2026-11-09T15:45:59.034Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -54,34 +54,6 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a178f6-ab8b-755d-956e-1e454f4a772d",
-      "session_id": "openplay-eastside-paddle-club-01a178f6-ab8b-755d-956e-1e454f4a772d",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: 7:00am Early Bird ",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "level": null,
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-09T13:00:00.000Z",
-      "ends_at": "2026-11-09T15:00:00.000Z",
-      "signup_url": "https://espc.podplay.app/community/events/01a178f6-ab8b-755d-956e-1e454f4a772d",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 9, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-09",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-eastside-paddle",
       "status": "scheduled",
       "previous_starts_at": null
     },
