@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        257,
         254,
         254,
         250,
@@ -11,6 +10,7 @@
         268,
         266,
         266,
+        265,
         265
       ],
       "sessions": 265,
@@ -29,7 +29,6 @@
     },
     "austin-picklehaus": {
       "counts": [
-        108,
         107,
         107,
         107,
@@ -38,13 +37,14 @@
         107,
         107,
         111,
-        111
+        111,
+        112
       ],
-      "sessions": 111,
+      "sessions": 112,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.89,
+        "level": 0.88,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -52,8 +52,7 @@
         "capacity": 0,
         "spotsLeft": 0,
         "signup": 1
-      },
-      "failStreak": 14
+      }
     },
     "holy-pickle": {
       "counts": [
@@ -167,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 459
+      "failStreak": 460
     },
     "atxbeach": {
       "counts": [
@@ -530,10 +529,10 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 168
+      "failStreak": 169
     },
     "leander-pickleball": {
-      "failStreak": 168
+      "failStreak": 169
     },
     "manual": {
       "counts": [
@@ -566,7 +565,6 @@
   "manual": {},
   "reported": [
     "aces:failing",
-    "austin-picklehaus:failing",
     "georgetown-pickleball:failing",
     "leander-pickleball:failing",
     "manual:aces-mon-6s-indoor:unverified",
