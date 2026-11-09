@@ -5,6 +5,7 @@
 //   node scripts/programs.mjs --if-due   build only if the last build is 11+ hours old (the
 //                                        scrape workflow runs this every tick; it builds twice a day)
 //   node scripts/programs.mjs --dry      print a summary, write nothing
+//   node scripts/programs.mjs --now      build now (the same as no flag; the workflow passes it on a code push)
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { get } from '../lib/http.js';

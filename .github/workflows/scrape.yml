@@ -79,7 +79,8 @@ jobs:
         timeout-minutes: 7
         env:
           SCHELAGG_HOST_GAP_MS: 300
-        run: node scripts/programs.mjs ${{ (github.event_name == 'push' || inputs.all) && '' || '--if-due' }}
+        # (An empty string is false in a GitHub expression, so the always-build case needs a word of its own.)
+        run: node scripts/programs.mjs ${{ (github.event_name == 'push' || inputs.all) && '--now' || '--if-due' }}
       # To the data branch, never main: a push to main is a Vercel deployment.
       - name: Commit updated data
         run: |
