@@ -7,7 +7,7 @@ import { parseAces } from '../lib/programs/aces.js';
 import { parseLeagueLab } from '../lib/programs/leaguelab.js';
 import { parseNagva, confirmedCounts, tournamentRecords, feeSchedule } from '../lib/programs/nagva.js';
 import { competitionOf, competitionUrls, parseCompetition } from '../lib/programs/reclub.js';
-import { buildFeed, isDue, runSources, DUE_AFTER_MS } from '../lib/programs/feed.js';
+import { buildFeed, isDue, runSources, DUE_AFTER_MS, REQUIRED } from '../lib/programs/feed.js';
 import { dateRange, parseTexasAO } from '../lib/programs/texasao.js';
 
 const fx = (f) => readFileSync(new URL(`./fixtures/programs/${f}`, import.meta.url), 'utf8');
@@ -132,7 +132,7 @@ test('Reclub: sitemap competitions, and a volleyball league near Austin', () => 
 });
 
 test('feed: a failed source keeps its last good rows; past deadlines and ended rows drop', () => {
-  const row = (id, extra = {}) => ({ id, kind: 'league', sport: 'volleyball', title: id, starts_on: '2026-12-01', ends_on: '2027-01-01', registration_deadline: '2026-11-20', ...extra });
+  const row = (id, extra = {}) => ({ id, kind: 'league', sport: 'volleyball', org: 'X', source_id: 'x', title: id, starts_on: '2026-12-01', ends_on: '2027-01-01', registration_deadline: '2026-11-20', ...extra });
   const first = buildFeed({ now: NOW, results: [{ id: 'a', programs: [row('a1'), row('a2', { registration_deadline: '2026-11-01' })] }, { id: 'b', programs: [row('b1', { registration_deadline: '2026-11-10' })] }] });
   assert.deepEqual(first.programs.map((p) => p.id), ['b1', 'a1']); // soonest deadline first; a2's has passed
   assert.ok(first.sources.every((s) => s.ok));
@@ -170,6 +170,7 @@ test('Texas Asian Olympics: the year\'s tournament from the home and registratio
   assert.equal(more.length, 0);
   assert.equal(p.kind, 'tournament');
   assert.equal(p.series, 'asian-olympics');
+  assert.equal(p.source_id, 'texasao');
   assert.equal(p.org, 'Texas Asian Olympics');
   assert.equal(p.starts_on, '2026-11-14');
   assert.equal(p.ends_on, '2026-11-15');
@@ -193,4 +194,22 @@ test('Texas Asian Olympics: the year\'s tournament from the home and registratio
   // Held in the region's own city, it's the region's.
   const local = parseTexasAO(home.replace('Northlake, TX 76262', 'Austin, TX 78701'), reg, { now: NOW, regions: [{ ...REGIONS[0], name: 'Austin, TX' }] })[0];
   assert.equal(local.region, 'austin');
+});
+
+test('feed: a row missing a required field is dropped and counted, never published', () => {
+  const row = (id, extra = {}) => ({ id, kind: 'tournament', sport: 'volleyball', org: 'X', title: id, source_id: 'x', starts_on: '2026-12-01', ends_on: '2026-12-01', ...extra });
+  const feed = buildFeed({ now: NOW, results: [{ id: 'x', programs: [row('good'), row('no-source', { source_id: null }), row('no-org', { org: '' })] }] });
+  assert.deepEqual(feed.programs.map((p) => p.id), ['good']);
+  assert.equal(feed.sources[0].dropped, 2);
+});
+
+test('every reader sets the required fields', () => {
+  const rows = [
+    ...parseAces(fx('aces-leagues.html'), { now: NOW, regions: REGIONS }),
+    ...parseLeagueLab(fx('leaguelab-austinssc.html'), { site: 'https://austinssc.leaguelab.com', org: 'Austin SSC', now: NOW }),
+    ...parseNagva(fx('nagva-tournaments.html'), { now: NOW, regions: REGIONS }),
+    parseCompetition(competitionOf(fx('reclub-competition.html')), { now: Date.parse('2026-11-01T17:00:00Z'), regions: REGIONS }),
+    ...parseTexasAO(fx('texasao-home.html'), fx('texasao-registration.html'), { now: NOW }),
+  ];
+  for (const p of rows) for (const k of REQUIRED) assert.ok(typeof p[k] === 'string' && p[k], `${p.id}: ${k}`);
 });
