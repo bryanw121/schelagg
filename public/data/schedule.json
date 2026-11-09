@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-09T20:45:54.413Z",
+  "generatedAt": "2026-11-09T21:15:56.630Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-09T20:43:15.118Z",
+      "checkedAt": "2026-11-09T21:13:14.163Z",
       "count": 265
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-09T20:43:15.118Z",
+      "checkedAt": "2026-11-09T21:13:14.164Z",
       "count": 119
     },
     {
@@ -29,8 +29,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-09T20:43:15.118Z",
-      "count": 8
+      "checkedAt": "2026-11-09T21:13:14.164Z",
+      "count": 7
     },
     {
       "id": "volleyworld",
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-09T20:43:15.118Z",
+      "checkedAt": "2026-11-09T21:13:14.164Z",
       "count": 12
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-09T20:43:15.119Z",
+      "checkedAt": "2026-11-09T21:13:14.165Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-09T20:43:15.146Z",
+      "checkedAt": "2026-11-09T21:13:14.166Z",
       "count": 34
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-09T20:43:15.465Z",
+      "checkedAt": "2026-11-09T21:13:14.208Z",
       "count": 16
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-09T20:43:18.051Z",
+      "checkedAt": "2026-11-09T21:13:14.505Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-09T20:43:18.103Z",
+      "checkedAt": "2026-11-09T21:13:14.650Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -10403,31 +10403,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-09",
       "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-768b7a5d-1082-412a-8386-eaf50e98b43e",
-      "date": "2026-11-10",
-      "start": "19:00",
-      "end": "21:00",
-      "sport": "pickleball",
-      "title": "Holy Pickle · Open Play",
-      "venue": "Holy Pickle",
-      "city": "Austin",
-      "surface": "outdoor",
-      "type": "Open play",
-      "price": "$10 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/768b7a5d-1082-412a-8386-eaf50e98b43e",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/768b7a5d-1082-412a-8386-eaf50e98b43e",
-        "label": "View event & book"
-      },
-      "sourceId": "holy-pickle",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-09",
-      "venueId": "austin-holy-pickle",
       "status": "scheduled"
     },
     {
