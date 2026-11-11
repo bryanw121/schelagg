@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T21:13:49.823Z",
+  "generatedAt": "2026-11-11T21:27:12.794Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": false,
-      "checkedAt": "2026-11-11T21:13:17.681Z",
+      "checkedAt": "2026-11-11T21:27:00.668Z",
       "error": "OpenCourt court times differ",
       "kept": 72
     },
@@ -50,7 +50,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-11T21:13:17.682Z",
+      "checkedAt": "2026-11-11T21:27:00.669Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -121,7 +121,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T21:13:19.656Z",
+      "checkedAt": "2026-11-11T21:27:00.669Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -132,7 +132,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T21:13:19.781Z",
+      "checkedAt": "2026-11-11T21:27:00.669Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
