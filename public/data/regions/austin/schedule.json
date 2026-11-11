@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T22:43:55.831Z",
+  "generatedAt": "2026-11-11T23:14:18.296Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:43:17.588Z",
+      "checkedAt": "2026-11-11T23:13:40.990Z",
       "count": 255
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": false,
-      "checkedAt": "2026-11-11T22:43:17.588Z",
+      "checkedAt": "2026-11-11T23:13:40.990Z",
       "error": "OpenCourt court times differ",
       "kept": 72
     },
@@ -35,7 +35,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:43:17.588Z",
+      "checkedAt": "2026-11-11T23:13:40.991Z",
       "count": 8
     },
     {
@@ -45,7 +45,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:43:17.588Z",
+      "checkedAt": "2026-11-11T23:13:40.991Z",
       "count": 13
     },
     {
@@ -55,7 +55,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-11T22:43:17.589Z",
+      "checkedAt": "2026-11-11T23:13:40.993Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -66,7 +66,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-11T17:15:21.644Z",
+      "checkedAt": "2026-11-11T23:13:40.993Z",
       "count": 2
     },
     {
@@ -86,7 +86,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-11T22:13:17.508Z",
+      "checkedAt": "2026-11-11T23:13:41.035Z",
       "count": 5
     },
     {
@@ -96,7 +96,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:43:17.589Z",
+      "checkedAt": "2026-11-11T23:13:41.335Z",
       "count": 36
     },
     {
@@ -106,7 +106,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:43:17.643Z",
+      "checkedAt": "2026-11-11T23:13:42.917Z",
       "count": 20
     },
     {
@@ -126,7 +126,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T22:43:17.897Z",
+      "checkedAt": "2026-11-11T23:13:45.494Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -137,7 +137,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T22:43:17.990Z",
+      "checkedAt": "2026-11-11T23:13:45.655Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
