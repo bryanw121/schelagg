@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T02:45:02.744Z",
+  "generatedAt": "2026-11-11T03:15:03.603Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T02:43:12.114Z",
+      "checkedAt": "2026-11-11T03:13:13.840Z",
       "count": 258
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T02:43:12.114Z",
+      "checkedAt": "2026-11-11T03:13:13.840Z",
       "count": 86
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T02:43:12.114Z",
+      "checkedAt": "2026-11-11T03:13:13.841Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T02:43:12.114Z",
+      "checkedAt": "2026-11-11T03:13:13.841Z",
       "count": 13
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-11T02:43:12.115Z",
+      "checkedAt": "2026-11-11T03:13:13.842Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -80,8 +80,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-11T02:13:17.022Z",
-      "count": 5
+      "checkedAt": "2026-11-11T03:13:13.842Z",
+      "count": 6
     },
     {
       "id": "chaparral-ice",
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T02:43:12.115Z",
+      "checkedAt": "2026-11-11T03:13:13.872Z",
       "count": 35
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T02:43:12.147Z",
+      "checkedAt": "2026-11-11T03:13:14.854Z",
       "count": 18
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T02:43:12.379Z",
+      "checkedAt": "2026-11-11T03:13:15.115Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T02:43:12.408Z",
+      "checkedAt": "2026-11-11T03:13:15.309Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -10140,6 +10140,33 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-10",
       "venueId": "treehouse",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-06TS6L",
+      "date": "2026-11-17",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Koi C/B Tuesday Coed Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "C/B",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Tuesday.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/06TS6L",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/06TS6L",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-10",
+      "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
     {
