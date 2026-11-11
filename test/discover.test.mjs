@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyClub, budgetFor, discover, distanceKm, intervalDays, judgeMeet, knownSlugs, nextState, planQueries, prBody, readResults, reclubLinks, reclubOptions, seedsFromVenues } from '../scripts/discover-reclub.mjs';
+import { applyClub, budgetFor, communityClubs, discover, distanceKm, intervalDays, judgeMeet, knownSlugs, nextState, planQueries, prBody, readResults, reclubLinks, reclubOptions, seedsFromVenues } from '../scripts/discover-reclub.mjs';
 import { meetData } from '../scripts/adapters/reclub.mjs';
 import { loadSources } from '../lib/registry.js';
 
@@ -173,7 +173,7 @@ test('discover: credits the queries that found each club, skips what the state a
   };
   const calls = [];
   const fetch = async (url, init) => { calls.push(String(url)); return fakeFetch(url, init); };
-  const r = await discover({ options, search: async (q) => byQuery[q], fetch, delayMs: 0, queries: Object.keys(byQuery), seedClubs: ['seed_club'] });
+  const r = await discover({ options, search: async (q) => byQuery[q], fetch, delayMs: 0, queries: Object.keys(byQuery), seedClubs: ['seed_club'], communities: [] });
   assert.deepEqual(r.candidates.map((c) => [c.slug, c.queries]), [['north_austin_vb', ['q-meet']], ['club_only', ['q-club']]]);
   assert.deepEqual(r.credited, ['q-meet', 'q-club']);
   assert.ok(calls.includes('https://reclub.co/clubs/@seed_club')); // checked without a search (404 here: a warning)
@@ -182,7 +182,7 @@ test('discover: credits the queries that found each club, skips what the state a
   // Next run with that state: the same results cost no Reclub pages at all.
   const state = nextState({}, { queries: Object.keys(byQuery), batch: Object.keys(byQuery), result: r, today: '2026-10-28' });
   calls.length = 0;
-  const again = await discover({ options, search: async (q) => byQuery[q], fetch, delayMs: 0, queries: Object.keys(byQuery), state });
+  const again = await discover({ options, search: async (q) => byQuery[q], fetch, delayMs: 0, queries: Object.keys(byQuery), state, communities: [] });
   assert.deepEqual([again.candidates.length, again.credited, calls], [0, [], []]);
 });
 
@@ -192,4 +192,46 @@ test('seedsFromVenues: Reclub clubs that discovered venues link to', () => {
     { id: 'b', schedule: { surface: 'platform:daysmart', platform: 'daysmart', company: 'rink' } },
     { id: 'c' },
   ]), ['gym_club']);
+});
+
+// A Reclub community page links each club as href="/clubs/@<slug>" (reclub.co/communities/us/texas/austin, Oct 31, 2026).
+const community = (...slugs) => `<a href="/communities">Communities</a>${slugs.map((x) => `<a href="/clubs/@${x}" class="club">${x}</a>`).join('')}<a href="/platform/clubs">Clubs</a>`;
+
+test('communityClubs reads the club links off a community page', () => {
+  assert.deepEqual(communityClubs(community('austin-lawn-club', 'atx.womens_vb', 'austin-lawn-club')), ['austin-lawn-club', 'atx.womens_vb']);
+  assert.deepEqual(communityClubs('<a href="https://reclub.co/clubs/@vex_volleyball/">x</a><a href="/clubs">all</a>'), ['vex_volleyball']);
+});
+
+test('discover: community pages find clubs without any search, nearest cities first, a few per run', async () => {
+  const pages = {
+    ...PAGES,
+    'https://reclub.co/communities/us/texas/austin': community('vex_volleyball', 'club_only'),
+    'https://reclub.co/communities/us/texas': community('club_only', 'dallas_club', 'houston_club', 'another'),
+    'https://reclub.co/clubs/@dallas_club': '<a href="/m/DAL001">meet</a>',
+  };
+  const calls = [];
+  const fetch = async (url) => { calls.push(String(url)); const body = pages[url]; return { status: body ? 200 : 404, ok: !!body, text: async () => body ?? 'not found' }; };
+  const communities = ['https://reclub.co/communities/us/texas/austin', 'https://reclub.co/communities/us/texas', 'https://evil.example/communities/x'];
+  const r = await discover({ options, search: async () => [], fetch, delayMs: 0, queries: [], communities, communityClubsPerRun: 2 });
+  // vex_volleyball is already configured; club_only qualifies; dallas_club is read and rejected; the cap stops there.
+  assert.deepEqual(r.candidates.map((c) => [c.slug, c.queries]), [['club_only', ['communities']]]);
+  assert.deepEqual(r.rejected.map((x) => x.club), ['dallas_vb']);
+  assert.equal(r.fromCommunities, 2);
+  assert.deepEqual(r.credited, []); // community finds don't count for any query's schedule
+  assert.ok(!calls.some((u) => u.includes('evil.example')), 'only reclub.co community pages are read');
+  assert.ok(!calls.includes('https://reclub.co/clubs/@houston_club'), 'clubs past the per-run cap wait for the next run');
+
+  // Next run, with what this one decided: the cap moves on to the clubs not seen yet.
+  const state = nextState({}, { queries: [], batch: [], result: r, today: '2026-11-04' });
+  calls.length = 0;
+  const next = await discover({ options, search: async () => [], fetch, delayMs: 0, queries: [], communities, communityClubsPerRun: 2, state });
+  assert.ok(calls.includes('https://reclub.co/clubs/@houston_club'));
+  assert.ok(!calls.includes('https://reclub.co/clubs/@club_only'));
+});
+
+test('the Austin config lists Reclub community pages for discovery', () => {
+  const d = options.discover;
+  assert.ok(d.communities.length >= 1);
+  assert.ok(d.communities.every((u) => /^https:\/\/reclub\.co\/communities\/us\/texas(\/[a-z-]+)?$/.test(u)));
+  assert.equal(d.communities[0], 'https://reclub.co/communities/us/texas/austin');
 });
