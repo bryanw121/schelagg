@@ -477,7 +477,7 @@ Each city is a folder, `config/regions/<id>/` (`lib/regions.js`):
 | `sources.json` | what to scrape: `defaults.sport`, then `sources` (each with `id`, `name`, `adapter`, `cadence`, `options`) and `manual` |
 | `venues.json` | canonical venues (name, aliases, external ids) that sessions are matched to |
 | `manual.json` | hand-checked sessions |
-| `public-courts.json` | free public courts (optional) |
+| `public-courts.json` | free public courts (optional): park, street address, surface, courts, lights. Each needs `lat`/`lng` to be pinned on the map (Court booking); the Geocode public courts workflow fills them in from the address (US Census geocoder) and opens a review PR. Coordinates already there are never changed, so a pin placed by hand stays. |
 | `courts.json` | Skedda court calendars (optional), with an optional `note` per venue shown under the chart |
 
 Sources get their `region` and `timezone` from `region.json`. Source and venue ids must be unique across all regions

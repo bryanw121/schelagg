@@ -639,6 +639,36 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   assert.equal(new URL(page.url()).searchParams.get('layout'), null);
 });
 
+test('site: Map view: free public courts with coordinates get their own pins in Court booking, with directions', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
+  sched.venues = [{ id: 'gym', name: 'Austin North Gym', short: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7, bookingLink: { sport: 'volleyball', url: 'https://club.podplay.app/book/main', price: '$30/hr' } }];
+  sched.sessions = [];
+  sched.publicCourts = { note: 'Free, first-come.', courts: [
+    { park: 'Pease District Park', address: '1100 Kingsbury St', lat: 30.2845, lng: -97.7539, surface: 'sand', courts: 3, lights: true, region: 'austin' },
+    { park: 'Krieg Athletic Complex', address: '425 S Pleasant Valley Rd', lat: 30.2468, lng: -97.7167, surface: 'sand', courts: 4, lights: true, closedUntil: '2099-01-01', region: 'austin' },
+    { park: 'Yates Pocket Park', address: '6015 Felix Ave', surface: 'grass', courts: 1, lights: false, region: 'austin' },
+  ] };
+  await open({ index: INDEX, regions: { austin: sched }, maps: { maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78] }] }, url: '/?layout=map' });
+  await page.locator('[data-view="booking"]').click();
+  await page.locator('#map .pin.free').first().waitFor();
+  assert.deepEqual((await page.locator('#map .pin').evaluateAll((els) => els.map((e) => [e.dataset.pin, e.querySelector('b').textContent, e.className.includes('free'), e.className.includes('done')]))).sort(), [
+    ['court:krieg-athletic-complex', 'Krieg Athletic Complex', true, true], // closed: on the map, dimmed
+    ['court:pease-district-park', 'Pease Park', true, false],
+    ['gym', 'North Gym', false, false],
+  ]);
+  const panel = page.locator('#mapPanel');
+  assert.match(await panel.locator('.map-hint').textContent(), /^1 place to book a court and 2 free public courts today\. Tap one for its day, Book or directions\. 1 public court without a location is in the list\.$/);
+  await page.locator('#map .pin[data-pin="court:pease-district-park"]').click();
+  assert.equal(await panel.locator('.map-status').textContent(), 'Free, first come · 3 sand courts, lit');
+  assert.match(await panel.locator('.g-venue').textContent(), /Pease District Park\s*Free public court/);
+  assert.match(await panel.locator('a', { hasText: 'Google Maps' }).getAttribute('href'), /destination=Pease%20District%20Park%2C%201100%20Kingsbury%20St/);
+  assert.equal(await panel.locator('a.signup').count(), 0, 'nothing to book at a free court');
+  // Grass only: the sand courts leave the map.
+  await page.locator('#map .pin[data-pin="court:pease-district-park"]').click();
+});
+
 test('site: Map view: pins at the same spot fold into one "+N more" that zooms in when tapped', async () => {
   const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
   const sched = structuredClone(SCHEDULE);

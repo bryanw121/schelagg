@@ -492,9 +492,15 @@ function renderCalendarModes() {
     || '<p class="note">No venue booking links for this selection.</p>';
 }
 
+/** Free public courts for this sport and court type (Court booking lists them; the map pins those with coordinates). */
+const publicCourts = () => (schedule?.publicCourts?.courts || []).filter((c) => (c.sport || 'volleyball') === state.sport && (state.tab === 'all' ? true : c.surface === state.tab));
+/** A public court's id on the map: `court:` + its park, in plain letters. */
+const courtId = (c) => `court:${c.park.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`;
+const courtById = (id) => (schedule?.publicCourts?.courts || []).find((c) => courtId(c) === id);
+
 function renderPublicCourts() {
   const pc = schedule?.publicCourts;
-  const list = (pc?.courts || []).filter((c) => (c.sport || 'volleyball') === state.sport && (state.tab === 'all' ? true : c.surface === state.tab));
+  const list = publicCourts();
   $('courtsCard').hidden = state.view !== 'booking' || !SPORTS[state.sport].courts || state.tab === 'indoor' || !list.length;
   $('courtsTitle').textContent = `Free public courts · ${list.length}`;
   $('courtsNote').textContent = `${pc?.note || ''} 💡 = lit.`;
@@ -543,7 +549,7 @@ function setHere(lat, lng) {
 function milesTo(venueId) {
   if (!here || !venueId) return null;
   const all = schedule?.venues || [];
-  let v = all.find((x) => x.id === venueId);
+  let v = all.find((x) => x.id === venueId) ?? (venueId.startsWith('court:') ? courtById(venueId) : null);
   if (v && v.lat == null && v.parent) v = all.find((x) => x.id === v.parent);
   if (v?.lat == null) return null;
   const rad = Math.PI / 180, dLat = (v.lat - here.lat) * rad, dLng = (v.lng - here.lng) * rad;
@@ -985,6 +991,8 @@ function loadMapLibs() {
  * leading "Austin", with "(Georgetown)" as plain words and "Recreation Center" as "Rec Center".
  */
 const pinName = (v) => v.short || v.name.replace(/^Austin (?=\S+\s*\S)/, '').replace(/\s*\(([^)]+)\)/, ' $1').replace(/Recreation Center/, 'Rec Center').trim();
+/** A free court's pin name: the park without "Neighborhood", "District" or "Metro" ("Bailey Park"). */
+const courtPinName = (park) => park.replace(/\s+(Neighborhood|District|Metro(politan)?)\b/, '').replace(/\s+–\s+/, ' · ');
 /** Places on the map for this sport, day and view: { id, name, city, lat, lng, sessions, booking, label, note }. */
 function mapPlaces(iso) {
   const venues = new Map((schedule?.venues || []).filter((v) => Number.isFinite(v.lat) && Number.isFinite(v.lng)).map((v) => [v.id, v]));
@@ -995,6 +1003,10 @@ function mapPlaces(iso) {
     for (const v of venues.values()) if (v.bookingLink?.sport === state.sport || live.has(v.id)) at(v).booking = v.bookingLink ?? null;
     // Sessions held on bookable courts still show in the place's day.
     for (const x of sessionsOn(iso, { ignoreTab: true })) if (out.has(x.venueId) && !hidden(x.f)) out.get(x.venueId).sessions.push(x);
+    // Free public courts (first come, no booking) with coordinates get their own pins.
+    for (const c of publicCourts().filter((c) => Number.isFinite(c.lat) && Number.isFinite(c.lng))) {
+      out.set(courtId(c), { id: courtId(c), name: c.park, short: courtPinName(c.park), city: 'Free public court', lat: c.lat, lng: c.lng, sessions: [], booking: null, court: c });
+    }
   } else {
     for (const x of sessionsOn(iso).filter((y) => !hidden(y.f))) { const v = venues.get(x.venueId); if (v) at(v).sessions.push(x); }
     for (const p of out.values()) p.booking = venues.get(p.id)?.bookingLink?.sport === state.sport ? venues.get(p.id).bookingLink : null;
@@ -1007,7 +1019,14 @@ function mapPlaces(iso) {
     p.done = state.view === 'openplay' && p.sessions.length > 0 && !left.length;
     const first = left.find((x) => x.start), more = left.length - 1;
     const short = (m) => fmtT(hhmm(m)).replace(/m$/, '');
-    if (state.view === 'booking') {
+    if (p.court) {
+      // A free court: how many, what surface, lit or not; closed ones stay on the map, dimmed.
+      const c = p.court, closed = c.closedUntil && NOW.iso < c.closedUntil;
+      const what = `${c.courts} ${c.surface} court${c.courts === 1 ? '' : 's'}${c.lights ? ', lit' : ''}`;
+      p.detail = closed ? 'closed' : `free · ${c.courts} ${c.surface}`;
+      p.status = closed ? `Closed until ${fmtDate(c.closedUntil, { month: 'short', year: 'numeric' })}` : `Free, first come · ${what}${c.fee ? ` · ${c.fee}` : ''}`;
+      p.full = !!closed;
+    } else if (state.view === 'booking') {
       // What a player needs to choose a court: is one free (and when), else what it costs.
       const c = courtFree(p.id, iso), cost = courtPrice(p.booking);
       p.live = !!c;
@@ -1029,6 +1048,8 @@ function mapPlaces(iso) {
 function mapPanelHtml(places, iso) {
   const p = places.find((x) => x.id === mapPick);
   const untimed = state.view === 'openplay' ? sessionsOn(iso).filter((y) => !hidden(y.f) && !(schedule?.venues || []).some((v) => v.id === y.venueId && Number.isFinite(v.lat))).length : 0;
+  const unplaced = state.view === 'booking' ? publicCourts().filter((c) => !Number.isFinite(c.lat)).length : 0;
+  const free = places.filter((x) => x.court).length;
   if (!p) {
     // Every place on the map as a row: what it is, where, and the one thing that decides it.
     const order = [...places].sort((a, b) => !!(a.done || a.full) - !!(b.done || b.full) || (milesTo(a.id) ?? 1e9) - (milesTo(b.id) ?? 1e9) || a.name.localeCompare(b.name));
@@ -1036,7 +1057,22 @@ function mapPanelHtml(places, iso) {
       const mi = milesTo(x.id);
       return `<li><button type="button" class="place-row${x.done || x.full ? ' dim' : ''}" data-pin="${esc(x.id)}"><span class="pr-name">${esc(x.name)}<small>${esc(x.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
     }).join('');
-    return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> ${state.view === 'booking' ? 'to book a court' : `with ${SPORTS[state.sport].label.toLowerCase()}`} ${state.di === 0 ? 'today' : `on ${fmtDate(iso)}`}${here ? ', nearest first' : ''}. Tap one for its day${state.view === 'booking' ? ' and Book' : ' and sign-ups'}.${untimed ? ` ${untimed} more without a location are in the list.` : ''}</p><ul class="place-list">${rows}</ul>`;
+    const booked = places.length - free;
+    const what = state.view === 'booking'
+      ? [booked || !free ? `<b>${booked} place${booked === 1 ? '' : 's'}</b> to book a court` : '', free ? `<b>${free} free public court${free === 1 ? '' : 's'}</b>` : ''].filter(Boolean).join(' and ')
+      : `<b>${places.length} place${places.length === 1 ? '' : 's'}</b> with ${SPORTS[state.sport].label.toLowerCase()}`;
+    return `<p class="map-hint">${what} ${state.di === 0 ? 'today' : `on ${fmtDate(iso)}`}${here ? ', nearest first' : ''}. Tap one for its day${state.view === 'booking' ? ', Book or directions' : ' and sign-ups'}.${untimed ? ` ${untimed} more without a location are in the list.` : ''}${unplaced ? ` ${unplaced} public court${unplaced === 1 ? '' : 's'} without a location ${unplaced === 1 ? 'is' : 'are'} in the list.` : ''}</p><ul class="place-list">${rows}</ul>`;
+  }
+  if (p.court) {
+    // A free court: no booking, no sessions; what's there, and how to get there.
+    const mi = milesTo(p.id), c = p.court, destination = encodeURIComponent(`${c.park}, ${c.address}, ${region?.name || ''}`);
+    return `<div class="map-place"><button type="button" class="map-back" data-pin="${esc(p.id)}">‹ All places</button><p class="map-status">${esc(p.status)}</p><div class="g-venue"><span class="v-name">${esc(c.park)}<small>Free public court${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span></div>
+      ${schedule?.publicCourts?.note ? `<p class="note">${esc(schedule.publicCourts.note)}</p>` : ''}
+      <div class="location"><div>${esc(c.address)}</div><div class="actions">
+      <a class="src" href="https://www.google.com/maps/dir/?api=1&amp;destination=${destination}" target="_blank" rel="noopener">Google Maps ↗</a>
+      <a class="src" href="https://maps.apple.com/directions?destination=${destination}&amp;mode=driving" target="_blank" rel="noopener">Apple Maps ↗</a>
+      <button class="src copy-address" type="button" data-address="${esc(c.address)}">Copy address</button>
+      <span class="copy-status" role="status"></span></div></div></div>`;
   }
   const mi = milesTo(p.id), cost = courtPrice(p.booking);
   const book = p.booking?.url ? `<a class="signup" href="${esc(onDay(p.booking.url, iso))}" target="_blank" rel="noopener" aria-label="Book a court at ${esc(p.name)}">Book ↗</a>` : '';
@@ -1108,7 +1144,7 @@ async function renderMap() {
   for (const m of mapMarkers) m.marker.remove();
   mapMarkers = places.map((p) => {
     const el = document.createElement('button');
-    Object.assign(el, { type: 'button', className: `pin${state.view === 'booking' ? ' book' : ''}${p.done || p.full ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}` });
+    Object.assign(el, { type: 'button', className: `pin${p.court ? ' free' : state.view === 'booking' ? ' book' : ''}${p.done || p.full ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}` });
     el.innerHTML = `<b>${esc(p.short)}</b>`; // just the place: what's on there is in the list under the map
     el.dataset.pin = p.id; el.setAttribute('aria-label', p.aria); el.setAttribute('aria-pressed', String(p.id === mapPick));
     return { el, p, marker: new gl.Marker({ element: el, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(mapView) };

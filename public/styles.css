@@ -240,6 +240,7 @@ button.g-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px
 .pin span{font:600 11px/1.1 var(--body);opacity:.85;white-space:nowrap}
 .pin .more{font:700 10px/1.1 var(--body);font-style:normal;opacity:.8;white-space:nowrap}
 .pin.book{background:#fff;color:#111}
+.pin.free{background:#d7f5e1;color:#0b3d1f}
 .pin.sel,.pin[aria-pressed="true"]{background:#111;color:#fff;outline:2px solid #fff;z-index:5}
 .pin:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 @media (pointer:coarse){.pin{padding:7px 10px;min-height:40px;justify-content:center}}
