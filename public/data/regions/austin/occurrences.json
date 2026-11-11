@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-11T19:43:52.643Z",
+  "generatedAt": "2026-11-11T20:13:47.955Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1362,36 +1362,6 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "volleyworld-2026-11-11-20:30-georgetown",
-      "session_id": "volleyworld-2026-11-11-20:30-georgetown",
-      "source_id": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Georgetown)",
-      "city": "Georgetown",
-      "level": "Adults · Jesus",
-      "price": null,
-      "starts_at": "2026-11-12T02:30:00.000Z",
-      "ends_at": "2026-11-12T04:00:00.000Z",
-      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "signup_label": "Book on Volleyworld",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-11-11",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Training",
-        "capacity": 12,
-        "spotsLeft": 12,
-        "classId": "D4OStJfJ7w0oaoH6RcUh"
-      },
-      "venue_id": "volleyworld-georgetown",
       "status": "scheduled",
       "previous_starts_at": null
     },

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T19:43:52.643Z",
+  "generatedAt": "2026-11-11T20:13:47.955Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T19:43:15.824Z",
+      "checkedAt": "2026-11-11T20:13:13.817Z",
       "count": 267
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": false,
-      "checkedAt": "2026-11-11T19:43:15.824Z",
+      "checkedAt": "2026-11-11T20:13:13.817Z",
       "error": "OpenCourt court times differ",
       "kept": 72
     },
@@ -30,7 +30,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T19:43:15.825Z",
+      "checkedAt": "2026-11-11T20:13:13.817Z",
       "count": 8
     },
     {
@@ -40,8 +40,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T19:43:15.825Z",
-      "count": 14
+      "checkedAt": "2026-11-11T20:13:13.817Z",
+      "count": 13
     },
     {
       "id": "aces",
@@ -50,7 +50,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-11T19:43:15.826Z",
+      "checkedAt": "2026-11-11T20:13:13.818Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -81,7 +81,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-11T19:13:16.622Z",
+      "checkedAt": "2026-11-11T20:13:13.818Z",
       "count": 5
     },
     {
@@ -91,7 +91,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T19:43:15.826Z",
+      "checkedAt": "2026-11-11T20:13:13.845Z",
       "count": 36
     },
     {
@@ -101,7 +101,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T19:43:15.867Z",
+      "checkedAt": "2026-11-11T20:13:14.196Z",
       "count": 20
     },
     {
@@ -121,7 +121,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T19:43:16.217Z",
+      "checkedAt": "2026-11-11T20:13:15.430Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -132,7 +132,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T19:43:16.304Z",
+      "checkedAt": "2026-11-11T20:13:15.484Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -9513,33 +9513,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-holy-pickle",
-      "status": "scheduled"
-    },
-    {
-      "id": "volleyworld-2026-11-11-20:30-georgetown",
-      "date": "2026-11-11",
-      "start": "20:30",
-      "end": "22:00",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Georgetown)",
-      "city": "Georgetown",
-      "surface": "indoor",
-      "type": "Training",
-      "level": "Adults · Jesus",
-      "capacity": 12,
-      "spotsLeft": 12,
-      "classId": "D4OStJfJ7w0oaoH6RcUh",
-      "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
-        "label": "Book on Volleyworld"
-      },
-      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "sourceId": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-11",
-      "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
     {
