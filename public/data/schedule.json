@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T22:13:47.694Z",
+  "generatedAt": "2026-11-11T22:43:55.831Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:13:17.506Z",
+      "checkedAt": "2026-11-11T22:43:17.588Z",
       "count": 255
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": false,
-      "checkedAt": "2026-11-11T22:13:17.506Z",
+      "checkedAt": "2026-11-11T22:43:17.588Z",
       "error": "OpenCourt court times differ",
       "kept": 72
     },
@@ -30,7 +30,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:13:17.506Z",
+      "checkedAt": "2026-11-11T22:43:17.588Z",
       "count": 8
     },
     {
@@ -40,7 +40,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:13:17.506Z",
+      "checkedAt": "2026-11-11T22:43:17.588Z",
       "count": 13
     },
     {
@@ -50,7 +50,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-11T22:13:17.507Z",
+      "checkedAt": "2026-11-11T22:43:17.589Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -91,7 +91,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:13:17.552Z",
+      "checkedAt": "2026-11-11T22:43:17.589Z",
       "count": 36
     },
     {
@@ -101,7 +101,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T22:13:18.643Z",
+      "checkedAt": "2026-11-11T22:43:17.643Z",
       "count": 20
     },
     {
@@ -121,7 +121,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T22:13:18.754Z",
+      "checkedAt": "2026-11-11T22:43:17.897Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -132,7 +132,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T22:13:18.833Z",
+      "checkedAt": "2026-11-11T22:43:17.990Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -9207,7 +9207,7 @@
       "type": "Training",
       "level": "Adults · Adan",
       "capacity": 12,
-      "spotsLeft": 12,
+      "spotsLeft": 11,
       "classId": "tnS2SUxuWAZNMRwBLiZk",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
