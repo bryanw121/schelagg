@@ -1,0 +1,49 @@
+name: Geocode public courts
+
+# Free public courts (config/regions/<id>/public-courts.json) need coordinates to show on the map.
+# When that file changes on main (or on demand), give every court without lat/lng a point from its
+# street address (scripts/geocode-courts.mjs: US Census geocoder) and open one review pull request
+# (geocode/public-courts) with the coordinates. Courts that already have coordinates are left alone,
+# so a hand-placed pin is never moved.
+on:
+  push:
+    branches: [main]
+    paths: ['config/regions/*/public-courts.json']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: geocode-courts
+
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Geocode and propose
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "volley-atx-bot"
+          git config user.email "volley-atx-bot@users.noreply.github.com"
+          branch="geocode/public-courts"
+          git checkout -q -B "$branch" "$GITHUB_SHA"
+          node scripts/geocode-courts.mjs | tee geocode.log
+          if git diff --quiet -- config/regions; then
+            echo "Every public court already has coordinates."
+            exit 0
+          fi
+          git commit -qm "Coordinates for public courts" -- config/regions
+          git push -q -f origin "$branch"
+          { echo "Coordinates for free public courts, from their street addresses (US Census geocoder), so the map can pin them."; echo; echo '```'; cat geocode.log; echo '```'; } > body.md
+          open=$(gh pr list --state open --head "$branch" --json number --jq '.[0].number' || true)
+          if [ -n "$open" ]; then gh pr edit "$open" --body-file body.md
+          else gh pr create --base main --head "$branch" --title "Coordinates for public courts" --body-file body.md --assignee "$GITHUB_REPOSITORY_OWNER"; fi
