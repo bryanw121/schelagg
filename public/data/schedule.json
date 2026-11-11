@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T09:14:46.290Z",
+  "generatedAt": "2026-11-11T10:14:55.824Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -8,10 +8,9 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "30m",
-      "ok": false,
-      "checkedAt": "2026-11-11T09:13:13.397Z",
-      "error": "OpenPlay directory data is stale or not live",
-      "kept": 268
+      "ok": true,
+      "checkedAt": "2026-11-11T10:13:37.111Z",
+      "count": 268
     },
     {
       "id": "austin-picklehaus",
@@ -20,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T09:13:13.397Z",
+      "checkedAt": "2026-11-11T10:13:37.112Z",
       "count": 72
     },
     {
@@ -30,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T09:13:13.398Z",
+      "checkedAt": "2026-11-11T10:13:37.112Z",
       "count": 8
     },
     {
@@ -40,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T09:13:13.398Z",
+      "checkedAt": "2026-11-11T10:13:37.112Z",
       "count": 14
     },
     {
@@ -50,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-11T09:13:13.398Z",
+      "checkedAt": "2026-11-11T10:13:37.113Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -61,7 +60,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-11T03:24:05.830Z",
+      "checkedAt": "2026-11-11T10:13:37.114Z",
       "count": 2
     },
     {
@@ -81,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-11T09:13:13.398Z",
+      "checkedAt": "2026-11-11T10:13:37.148Z",
       "count": 5
     },
     {
@@ -91,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T09:13:13.423Z",
+      "checkedAt": "2026-11-11T10:13:38.206Z",
       "count": 36
     },
     {
@@ -101,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T09:13:14.374Z",
+      "checkedAt": "2026-11-11T10:13:39.087Z",
       "count": 20
     },
     {
@@ -121,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T09:13:14.750Z",
+      "checkedAt": "2026-11-11T10:13:39.680Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -132,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T09:13:14.806Z",
+      "checkedAt": "2026-11-11T10:13:39.759Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -164,7 +163,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -191,7 +189,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -218,7 +215,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -247,7 +243,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -275,7 +270,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -302,7 +296,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -331,7 +324,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -359,7 +351,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -387,7 +378,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -414,7 +404,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -442,7 +431,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -470,7 +458,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -497,7 +484,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -524,7 +510,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -552,7 +537,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -581,7 +565,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -609,7 +592,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -637,7 +619,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -664,7 +645,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -692,7 +672,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -719,7 +698,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -747,7 +725,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -774,7 +751,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -802,7 +778,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -830,7 +805,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -858,7 +832,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -886,7 +859,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -913,7 +885,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -940,7 +911,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -967,7 +937,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -995,7 +964,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1023,7 +991,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1052,7 +1019,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1080,7 +1046,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1108,7 +1073,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1137,7 +1101,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1164,7 +1127,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1191,7 +1153,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1219,7 +1180,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1247,7 +1207,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1274,7 +1233,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1302,7 +1260,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1330,7 +1287,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1357,7 +1313,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1384,7 +1339,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1411,7 +1365,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1440,7 +1393,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1467,7 +1419,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1494,7 +1445,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1522,7 +1472,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1550,7 +1499,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1579,7 +1527,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1606,7 +1553,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1633,7 +1579,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1660,7 +1605,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1688,7 +1632,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1716,7 +1659,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1744,7 +1686,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1772,7 +1713,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1800,7 +1740,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1829,7 +1768,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1858,7 +1796,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1886,7 +1823,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1913,7 +1849,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1940,7 +1875,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1968,7 +1902,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -1996,7 +1929,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2024,7 +1956,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2053,7 +1984,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2081,7 +2011,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2109,7 +2038,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2136,7 +2064,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2164,7 +2091,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2191,7 +2117,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2218,7 +2143,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2246,7 +2170,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2274,7 +2197,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2302,7 +2224,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2330,7 +2251,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2358,7 +2278,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2386,7 +2305,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2413,7 +2331,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2440,7 +2357,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2468,7 +2384,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2497,7 +2412,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2524,7 +2438,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2551,7 +2464,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2578,7 +2490,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2607,7 +2518,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2636,7 +2546,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2663,7 +2572,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2690,7 +2598,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2718,7 +2625,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2747,7 +2653,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2775,7 +2680,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2803,7 +2707,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2830,7 +2733,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2857,7 +2759,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2885,7 +2786,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2913,7 +2813,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2941,7 +2840,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2970,7 +2868,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -2997,7 +2894,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3024,7 +2920,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3053,7 +2948,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3081,7 +2975,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3109,7 +3002,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3137,7 +3029,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3165,7 +3056,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3192,7 +3082,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3219,7 +3108,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3247,7 +3135,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3275,7 +3162,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3304,7 +3190,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3332,7 +3217,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3359,7 +3243,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3386,7 +3269,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3413,7 +3295,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3441,7 +3322,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3469,7 +3349,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3497,7 +3376,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3525,7 +3403,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3552,7 +3429,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3580,7 +3456,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3607,7 +3482,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3634,7 +3508,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3662,7 +3535,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3691,7 +3563,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3718,7 +3589,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3747,7 +3617,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3776,7 +3645,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3805,7 +3673,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3833,7 +3700,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3860,7 +3726,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3887,7 +3752,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3915,7 +3779,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3944,7 +3807,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3971,7 +3833,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -3998,7 +3859,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4027,7 +3887,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4055,7 +3914,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4083,7 +3941,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4110,7 +3967,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4137,7 +3993,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4165,7 +4020,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4193,7 +4047,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4220,7 +4073,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4248,7 +4100,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4277,7 +4128,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4304,7 +4154,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4331,7 +4180,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4358,7 +4206,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-ranch",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4387,7 +4234,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4416,7 +4262,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4445,7 +4290,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4474,7 +4318,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4502,7 +4345,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4530,7 +4372,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4559,7 +4400,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4588,7 +4428,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4616,7 +4455,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4644,7 +4482,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4672,7 +4509,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4700,7 +4536,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4729,7 +4564,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4757,7 +4591,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4786,7 +4619,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4815,7 +4647,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4843,7 +4674,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4871,7 +4701,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4899,7 +4728,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4928,7 +4756,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4956,7 +4783,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -4985,7 +4811,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5014,7 +4839,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5042,7 +4866,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5070,7 +4893,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5098,7 +4920,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5126,7 +4947,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5154,7 +4974,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5182,7 +5001,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5211,7 +5029,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5239,7 +5056,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5267,7 +5083,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5296,7 +5111,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5324,7 +5138,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5352,7 +5165,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5381,7 +5193,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5409,7 +5220,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5437,7 +5247,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5466,7 +5275,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5494,7 +5302,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5523,7 +5330,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5551,7 +5357,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5580,7 +5385,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5608,7 +5412,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5637,7 +5440,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5665,7 +5467,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5693,7 +5494,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5721,7 +5521,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5750,7 +5549,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5778,7 +5576,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5806,7 +5603,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5835,7 +5631,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5863,7 +5658,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5891,7 +5685,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5920,7 +5713,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5949,7 +5741,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -5977,7 +5768,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6006,7 +5796,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6034,7 +5823,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6062,7 +5850,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6090,7 +5877,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6118,7 +5904,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6146,7 +5931,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6174,7 +5958,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6203,7 +5986,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6231,7 +6013,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6259,7 +6040,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6288,7 +6068,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6316,7 +6095,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6344,7 +6122,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6373,7 +6150,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6401,7 +6177,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6429,7 +6204,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6458,7 +6232,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6486,7 +6259,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-eastside-paddle",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6515,7 +6287,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6544,7 +6315,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6573,7 +6343,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6602,7 +6371,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6631,7 +6399,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6660,7 +6427,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6689,7 +6455,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6718,7 +6483,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6746,7 +6510,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6775,7 +6538,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6804,7 +6566,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6833,7 +6594,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6862,7 +6622,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6891,7 +6650,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6920,7 +6678,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6948,7 +6705,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -6977,7 +6733,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7006,7 +6761,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7035,7 +6789,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7064,7 +6817,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7093,7 +6845,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7122,7 +6873,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7150,7 +6900,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7179,7 +6928,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7208,7 +6956,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7237,7 +6984,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7266,7 +7012,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7294,7 +7039,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7323,7 +7067,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7351,7 +7094,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7380,7 +7122,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7409,7 +7150,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7438,7 +7178,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7467,7 +7206,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7496,7 +7234,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7525,7 +7262,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7554,7 +7290,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7583,7 +7318,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7611,7 +7345,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7640,7 +7373,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -7669,7 +7401,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-11",
       "venueId": "austin-pickle-pit-stop",
-      "checkFailed": "2026-11-11",
       "status": "scheduled"
     },
     {
@@ -10146,7 +9877,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-10",
+      "verifiedAt": "2026-11-11",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -10174,7 +9905,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-10",
+      "verifiedAt": "2026-11-11",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
