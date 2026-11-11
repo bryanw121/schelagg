@@ -3,7 +3,7 @@ name: Geocode public courts
 # Free public courts (config/regions/<id>/public-courts.json) need coordinates to show on the map.
 # When that file changes on main (or on demand), give every court without lat/lng a point from its
 # street address (scripts/geocode-courts.mjs: US Census geocoder) and open one review pull request
-# (geocode/public-courts) with the coordinates. Courts that already have coordinates are left alone,
+# (geocode/public-courts) with the coordinates, or, where Actions may not open pull requests, a link to open it. Courts that already have coordinates are left alone,
 # so a hand-placed pin is never moved.
 on:
   push:
@@ -46,4 +46,7 @@ jobs:
           { echo "Coordinates for free public courts, from their street addresses (US Census geocoder), so the map can pin them."; echo; echo '```'; cat geocode.log; echo '```'; } > body.md
           open=$(gh pr list --state open --head "$branch" --json number --jq '.[0].number' || true)
           if [ -n "$open" ]; then gh pr edit "$open" --body-file body.md
-          else gh pr create --base main --head "$branch" --title "Coordinates for public courts" --body-file body.md --assignee "$GITHUB_REPOSITORY_OWNER"; fi
+          elif ! gh pr create --base main --head "$branch" --title "Coordinates for public courts" --body-file body.md --assignee "$GITHUB_REPOSITORY_OWNER"; then
+            # This repo doesn't let Actions open pull requests: leave the branch and say where to open one.
+            echo "::notice::Coordinates are on the $branch branch. Open the pull request: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/compare/main...$branch"
+          fi
