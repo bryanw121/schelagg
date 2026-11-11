@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-11T03:20:15.324Z",
+  "generatedAt": "2026-11-11T03:25:56.813Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:18.748Z",
+      "checkedAt": "2026-11-11T03:24:05.824Z",
       "count": 254
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:18.748Z",
+      "checkedAt": "2026-11-11T03:24:05.825Z",
       "count": 86
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:18.749Z",
+      "checkedAt": "2026-11-11T03:24:05.828Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:18.750Z",
+      "checkedAt": "2026-11-11T03:24:05.828Z",
       "count": 13
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-11T03:18:18.752Z",
+      "checkedAt": "2026-11-11T03:24:05.830Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -60,7 +60,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:18.754Z",
+      "checkedAt": "2026-11-11T03:24:05.830Z",
       "count": 2
     },
     {
@@ -70,7 +70,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:18.795Z",
+      "checkedAt": "2026-11-11T03:24:05.873Z",
       "count": 8
     },
     {
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:19.092Z",
+      "checkedAt": "2026-11-11T03:24:07.028Z",
       "count": 6
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:20.356Z",
+      "checkedAt": "2026-11-11T03:24:07.412Z",
       "count": 35
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:21.257Z",
+      "checkedAt": "2026-11-11T03:24:07.638Z",
       "count": 18
     },
     {
@@ -110,7 +110,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-11T03:18:26.348Z",
+      "checkedAt": "2026-11-11T03:24:10.626Z",
       "count": 11
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T03:18:26.495Z",
+      "checkedAt": "2026-11-11T03:24:10.951Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-11T03:18:26.576Z",
+      "checkedAt": "2026-11-11T03:24:11.036Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -12183,6 +12183,9 @@
       {
         "park": "Bailey Neighborhood Park",
         "address": "1101 W 33rd St",
+        "lat": 30.30249,
+        "lng": -97.74673,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": true,
@@ -12191,6 +12194,9 @@
       {
         "park": "Balcones District Park",
         "address": "12017 Amherst Dr",
+        "lat": 30.4126,
+        "lng": -97.7194,
+        "located": "park",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12199,6 +12205,9 @@
       {
         "park": "Brentwood Neighborhood Park",
         "address": "6807 Yates Ave",
+        "lat": 30.3417,
+        "lng": -97.7309,
+        "located": "park",
         "surface": "sand",
         "courts": 1,
         "lights": true,
@@ -12207,6 +12216,9 @@
       {
         "park": "Bull Creek District Park",
         "address": "6713 Lakewood Dr",
+        "lat": 30.36639,
+        "lng": -97.78687,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12215,6 +12227,9 @@
       {
         "park": "Circle C Ranch Metro Park",
         "address": "6301 W Slaughter Ln",
+        "lat": 30.1995,
+        "lng": -97.8813,
+        "located": "park",
         "surface": "sand",
         "courts": 2,
         "lights": false,
@@ -12223,6 +12238,9 @@
       {
         "park": "Davis/White Northeast Park",
         "address": "6705 Crystalbrook Dr",
+        "lat": 30.30297,
+        "lng": -97.65377,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12231,6 +12249,9 @@
       {
         "park": "Dick Nichols District Park",
         "address": "8101 Beckett Rd",
+        "lat": 30.21431,
+        "lng": -97.8637,
+        "located": "address",
         "surface": "sand",
         "courts": 2,
         "lights": true,
@@ -12239,6 +12260,9 @@
       {
         "park": "Dove Springs District Park",
         "address": "5801 Ainez Dr",
+        "lat": 30.18754,
+        "lng": -97.73957,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12247,6 +12271,9 @@
       {
         "park": "Emma Long Metro Park",
         "address": "1600 City Park Rd",
+        "lat": 30.33385,
+        "lng": -97.84181,
+        "located": "address",
         "surface": "sand",
         "courts": 4,
         "lights": false,
@@ -12256,6 +12283,9 @@
       {
         "park": "Gillis Neighborhood Park",
         "address": "2410 Durwood Ave",
+        "lat": 30.24035,
+        "lng": -97.75851,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12264,6 +12294,9 @@
       {
         "park": "Gracywoods Neighborhood Park",
         "address": "12133 Metric Blvd",
+        "lat": 30.40381,
+        "lng": -97.69895,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12272,6 +12305,9 @@
       {
         "park": "Kendra Page Neighborhood Park",
         "address": "2203 Blue Meadow Dr",
+        "lat": 30.18166,
+        "lng": -97.76446,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12280,6 +12316,9 @@
       {
         "park": "Mary Moore Searight Metro Park",
         "address": "907 W Slaughter Ln",
+        "lat": 30.17386,
+        "lng": -97.80655,
+        "located": "address",
         "surface": "sand",
         "courts": 2,
         "lights": false,
@@ -12288,6 +12327,9 @@
       {
         "park": "Northwest Recreation Center",
         "address": "2913 Northland Dr",
+        "lat": 30.33458,
+        "lng": -97.75173,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12296,6 +12338,9 @@
       {
         "park": "Parque Zaragoza",
         "address": "2611 Webberville Rd",
+        "lat": 30.26313,
+        "lng": -97.71259,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12304,6 +12349,9 @@
       {
         "park": "Pastor E.C. Craig Jr. Park",
         "address": "4800 Copperbend Blvd",
+        "lat": 30.19639,
+        "lng": -97.74072,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12312,6 +12360,9 @@
       {
         "park": "Patterson Neighborhood Park",
         "address": "4201 Brookview Rd",
+        "lat": 30.29647,
+        "lng": -97.70937,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12320,6 +12371,9 @@
       {
         "park": "Pease District Park",
         "address": "1100 Kingsbury St",
+        "lat": 30.28089,
+        "lng": -97.75152,
+        "located": "address",
         "surface": "sand",
         "courts": 3,
         "lights": false,
@@ -12328,6 +12382,9 @@
       {
         "park": "Quail Creek Neighborhood Park",
         "address": "1101 Mearns Meadow Dr",
+        "lat": 30.36953,
+        "lng": -97.70049,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12336,6 +12393,9 @@
       {
         "park": "Rialto Neighborhood Park",
         "address": "7025 Rialto Blvd",
+        "lat": 30.2487,
+        "lng": -97.8635,
+        "located": "park",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12344,6 +12404,9 @@
       {
         "park": "Krieg Athletic Complex",
         "address": "425 S Pleasant Valley Rd",
+        "lat": 30.24535,
+        "lng": -97.71532,
+        "located": "address",
         "surface": "sand",
         "courts": 4,
         "lights": true,
@@ -12353,6 +12416,9 @@
       {
         "park": "Scofield Farms Park",
         "address": "12901 Scofield Farms Dr",
+        "lat": 30.4162,
+        "lng": -97.68202,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12361,6 +12427,9 @@
       {
         "park": "Silk Oak Neighborhood Park",
         "address": "3204 Silk Oak Dr",
+        "lat": 30.18699,
+        "lng": -97.84066,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12369,6 +12438,9 @@
       {
         "park": "Springwoods Neighborhood Park",
         "address": "9207 Anderson Mill Rd",
+        "lat": 30.45106,
+        "lng": -97.78288,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12377,6 +12449,9 @@
       {
         "park": "Tanglewood Neighborhood Park",
         "address": "11409 Rustic Rock Rd",
+        "lat": 30.43134,
+        "lng": -97.78243,
+        "located": "address",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12385,6 +12460,9 @@
       {
         "park": "Walter E. Long Metro Park",
         "address": "6620 Blue Bluff Rd",
+        "lat": 30.28115,
+        "lng": -97.60954,
+        "located": "address",
         "surface": "sand",
         "courts": 2,
         "lights": false,
@@ -12394,6 +12472,9 @@
       {
         "park": "Zilker – Great Lawn",
         "address": "2100 Barton Springs Rd",
+        "lat": 30.2688,
+        "lng": -97.7684,
+        "located": "osm",
         "surface": "sand",
         "courts": 5,
         "lights": false,
@@ -12402,6 +12483,9 @@
       {
         "park": "Zilker – Polo Area",
         "address": "2501 Barton Springs Rd",
+        "lat": 30.268,
+        "lng": -97.7756,
+        "located": "park",
         "surface": "sand",
         "courts": 1,
         "lights": false,
@@ -12410,6 +12494,9 @@
       {
         "park": "Commons Ford Ranch Metro Park",
         "address": "614 N Commons Ford Rd",
+        "lat": 30.33878,
+        "lng": -97.88387,
+        "located": "address",
         "surface": "grass",
         "courts": 2,
         "lights": false,
@@ -12418,6 +12505,9 @@
       {
         "park": "Yates Pocket Park",
         "address": "6015 Felix Ave",
+        "lat": 30.23656,
+        "lng": -97.70113,
+        "located": "address",
         "surface": "grass",
         "courts": 1,
         "lights": false,
