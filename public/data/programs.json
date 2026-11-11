@@ -1,41 +1,41 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-10T14:45:44.838Z",
+ "generatedAt": "2026-11-11T02:15:03.028Z",
  "sources": [
   {
    "id": "aces",
    "ok": true,
-   "checkedAt": "2026-11-10T14:45:44.838Z",
-   "count": 14
+   "checkedAt": "2026-11-11T02:15:03.028Z",
+   "count": 23
   },
   {
    "id": "austin-ssc",
    "ok": true,
-   "checkedAt": "2026-11-10T14:45:44.838Z",
+   "checkedAt": "2026-11-11T02:15:03.028Z",
    "count": 39
   },
   {
    "id": "meanwhile",
    "ok": true,
-   "checkedAt": "2026-11-10T14:45:44.838Z",
+   "checkedAt": "2026-11-11T02:15:03.028Z",
    "count": 4
   },
   {
    "id": "nagva-tx",
    "ok": true,
-   "checkedAt": "2026-11-10T14:45:44.838Z",
+   "checkedAt": "2026-11-11T02:15:03.028Z",
    "count": 1
   },
   {
    "id": "reclub",
    "ok": true,
-   "checkedAt": "2026-11-10T14:45:44.838Z",
+   "checkedAt": "2026-11-11T02:15:03.028Z",
    "count": 0
   },
   {
    "id": "texasao",
    "ok": true,
-   "checkedAt": "2026-11-10T14:45:44.838Z",
+   "checkedAt": "2026-11-11T02:15:03.028Z",
    "count": 1
   }
  ],
@@ -75,89 +75,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/13cdafb6-b9ed-4b7b-b33a-2dce01f6dfdc",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
-  },
-  {
-   "id": "leaguelab-austinssc-108279",
-   "kind": "league",
-   "sport": "volleyball",
-   "surface": "indoor",
-   "region": "austin",
-   "state": "TX",
-   "series": null,
-   "org": "Austin Sports & Social Club",
-   "source_id": "leaguelab",
-   "title": "Sunday Indoor Volleyball November 2026 (SARC - South)",
-   "venue": "South Austin Recreation Center",
-   "city": null,
-   "address": null,
-   "lat": null,
-   "lng": null,
-   "format": "6v6 · Rosters up to 8 Players",
-   "level": null,
-   "divisions": [
-    {
-     "name": "REC+"
-    }
-   ],
-   "starts_on": "2026-11-22",
-   "ends_on": "2027-01-31",
-   "weekdays": [
-    "Sunday"
-   ],
-   "registration_opens": null,
-   "registration_deadline": "2026-11-13",
-   "waitlist_on": null,
-   "team_price": "$689",
-   "individual_price": "$99",
-   "price_note": null,
-   "price_changes_on": null,
-   "status": "open",
-   "signup_url": "https://austinssc.leaguelab.com/league/108279/details",
-   "source_url": "https://austinssc.leaguelab.com/league/108279/details",
-   "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
-  },
-  {
-   "id": "leaguelab-austinssc-108288",
-   "kind": "league",
-   "sport": "volleyball",
-   "surface": "sand",
-   "region": "austin",
-   "state": "TX",
-   "series": null,
-   "org": "Austin Sports & Social Club",
-   "source_id": "leaguelab",
-   "title": "Sunday Sand Volleyball 4s November 2026 (Project Serve - The Domain)",
-   "venue": "Project Serve",
-   "city": null,
-   "address": null,
-   "lat": null,
-   "lng": null,
-   "format": "4v4 · Rosters up to 6 Players",
-   "level": null,
-   "divisions": [
-    {
-     "name": "REC+"
-    }
-   ],
-   "starts_on": "2026-11-22",
-   "ends_on": "2027-01-31",
-   "weekdays": [
-    "Sunday"
-   ],
-   "registration_opens": null,
-   "registration_deadline": "2026-11-13",
-   "waitlist_on": null,
-   "team_price": "$609",
-   "individual_price": "$109",
-   "price_note": null,
-   "price_changes_on": null,
-   "status": "open",
-   "signup_url": "https://austinssc.leaguelab.com/league/108288/details",
-   "source_url": "https://austinssc.leaguelab.com/league/108288/details",
-   "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108285",
@@ -201,7 +119,177 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108285/details",
    "source_url": "https://austinssc.leaguelab.com/league/108285/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-f606373f-8375-413b-9e31-0e33b1709a72",
+   "kind": "tournament",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Autumn Sets Co-Ed 2's (B & BB) Sand Volleyball Tourney @ CTX Beach (Buda) - November 14",
+   "venue": "CTX Beach",
+   "city": "Buda",
+   "address": "2448 Main St, Buda, TX 78610, USA",
+   "lat": 30.0892281,
+   "lng": -97.8091664,
+   "format": "Co-Ed 2's · Coed",
+   "level": null,
+   "divisions": [
+    {
+     "name": "B"
+    },
+    {
+     "name": "BB"
+    }
+   ],
+   "starts_on": "2026-11-14",
+   "ends_on": "2026-11-14",
+   "weekdays": [
+    "Saturday"
+   ],
+   "registration_opens": "2026-10-20",
+   "registration_deadline": "2026-11-14",
+   "waitlist_on": null,
+   "team_price": "$80",
+   "individual_price": "$45",
+   "price_note": null,
+   "price_changes_on": null,
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/f606373f-8375-413b-9e31-0e33b1709a72",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-f52eba4c-0f72-4645-922b-e0ede7662ac5",
+   "kind": "tournament",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Autumn Spikes Co-Ed Blind Draw 4s Sand Volleyball Tourney @ CTX Beach (Buda) - November 14",
+   "venue": "CTX Beach",
+   "city": "Buda",
+   "address": "2448 Main St, Buda, TX 78610, USA",
+   "lat": 30.0892281,
+   "lng": -97.8091664,
+   "format": "Blind Draw 4s · Coed",
+   "level": null,
+   "divisions": [
+    {
+     "name": "B"
+    },
+    {
+     "name": "BB"
+    }
+   ],
+   "starts_on": "2026-11-14",
+   "ends_on": "2026-11-14",
+   "weekdays": [
+    "Saturday"
+   ],
+   "registration_opens": "2026-11-07",
+   "registration_deadline": "2026-11-14",
+   "waitlist_on": null,
+   "team_price": null,
+   "individual_price": "$45",
+   "price_note": null,
+   "price_changes_on": null,
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/f52eba4c-0f72-4645-922b-e0ede7662ac5",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "leaguelab-austinssc-108279",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "Austin Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Sunday Indoor Volleyball November 2026 (SARC - South)",
+   "venue": "South Austin Recreation Center",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 8 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2026-11-22",
+   "ends_on": "2027-01-31",
+   "weekdays": [
+    "Sunday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2026-11-15",
+   "waitlist_on": null,
+   "team_price": "$689",
+   "individual_price": "$99",
+   "price_note": null,
+   "price_changes_on": null,
+   "status": "open",
+   "signup_url": "https://austinssc.leaguelab.com/league/108279/details",
+   "source_url": "https://austinssc.leaguelab.com/league/108279/details",
+   "feed_source": "austin-ssc",
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "leaguelab-austinssc-108288",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "Austin Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Sunday Sand Volleyball 4s November 2026 (Project Serve - The Domain)",
+   "venue": "Project Serve",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "4v4 · Rosters up to 6 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2026-11-22",
+   "ends_on": "2027-01-31",
+   "weekdays": [
+    "Sunday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2026-11-15",
+   "waitlist_on": null,
+   "team_price": "$609",
+   "individual_price": "$109",
+   "price_note": null,
+   "price_changes_on": null,
+   "status": "open",
+   "signup_url": "https://austinssc.leaguelab.com/league/108288/details",
+   "source_url": "https://austinssc.leaguelab.com/league/108288/details",
+   "feed_source": "austin-ssc",
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108287",
@@ -235,7 +323,7 @@
     "Monday"
    ],
    "registration_opens": null,
-   "registration_deadline": "2026-11-13",
+   "registration_deadline": "2026-11-15",
    "waitlist_on": null,
    "team_price": "$609",
    "individual_price": "$99",
@@ -245,95 +333,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108287/details",
    "source_url": "https://austinssc.leaguelab.com/league/108287/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
-  },
-  {
-   "id": "aces-f606373f-8375-413b-9e31-0e33b1709a72",
-   "kind": "tournament",
-   "sport": "volleyball",
-   "surface": "sand",
-   "region": "austin",
-   "state": "TX",
-   "series": null,
-   "org": "ACES",
-   "source_id": "aces",
-   "title": "Autumn Sets Co-Ed 2's (B & BB) Sand Volleyball Tourney - November 14",
-   "venue": "CTX Beach",
-   "city": "Buda",
-   "address": "2448 Main St, Buda, TX 78610, USA",
-   "lat": 30.0892281,
-   "lng": -97.8091664,
-   "format": "Co-Ed 2's · Coed",
-   "level": null,
-   "divisions": [
-    {
-     "name": "B"
-    },
-    {
-     "name": "BB"
-    }
-   ],
-   "starts_on": "2026-11-14",
-   "ends_on": "2026-11-14",
-   "weekdays": [
-    "Saturday"
-   ],
-   "registration_opens": "2026-10-20",
-   "registration_deadline": "2026-11-14",
-   "waitlist_on": null,
-   "team_price": "$80",
-   "individual_price": "$45",
-   "price_note": null,
-   "price_changes_on": null,
-   "status": "open",
-   "signup_url": "https://members.acesintexas.com/leagues/f606373f-8375-413b-9e31-0e33b1709a72",
-   "source_url": "https://members.acesintexas.com/leagues",
-   "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
-  },
-  {
-   "id": "aces-f52eba4c-0f72-4645-922b-e0ede7662ac5",
-   "kind": "tournament",
-   "sport": "volleyball",
-   "surface": "sand",
-   "region": "austin",
-   "state": "TX",
-   "series": null,
-   "org": "ACES",
-   "source_id": "aces",
-   "title": "Autumn Spikes Co-Ed Blind Draw 4s Sand Volleyball Tourney - November 14",
-   "venue": "CTX Beach",
-   "city": "Buda",
-   "address": "2448 Main St, Buda, TX 78610, USA",
-   "lat": 30.0892281,
-   "lng": -97.8091664,
-   "format": "Blind Draw 4s · Coed",
-   "level": null,
-   "divisions": [
-    {
-     "name": "B"
-    },
-    {
-     "name": "BB"
-    }
-   ],
-   "starts_on": "2026-11-14",
-   "ends_on": "2026-11-14",
-   "weekdays": [
-    "Saturday"
-   ],
-   "registration_opens": "2026-11-07",
-   "registration_deadline": "2026-11-14",
-   "waitlist_on": null,
-   "team_price": null,
-   "individual_price": "$45",
-   "price_note": null,
-   "price_changes_on": null,
-   "status": "open",
-   "signup_url": "https://members.acesintexas.com/leagues/f52eba4c-0f72-4645-922b-e0ede7662ac5",
-   "source_url": "https://members.acesintexas.com/leagues",
-   "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108404",
@@ -374,7 +374,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108404/details",
    "source_url": "https://austinssc.leaguelab.com/league/108404/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108402",
@@ -415,7 +415,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108402/details",
    "source_url": "https://austinssc.leaguelab.com/league/108402/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108403",
@@ -456,7 +456,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108403/details",
    "source_url": "https://austinssc.leaguelab.com/league/108403/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108364",
@@ -497,7 +497,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108364/details",
    "source_url": "https://austinssc.leaguelab.com/league/108364/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108406",
@@ -541,7 +541,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108406/details",
    "source_url": "https://austinssc.leaguelab.com/league/108406/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-e719fb8e-ab8c-419a-b1a1-8de75633e8f5",
@@ -578,7 +578,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/e719fb8e-ab8c-419a-b1a1-8de75633e8f5",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108539",
@@ -619,7 +619,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108539/details",
    "source_url": "https://austinssc.leaguelab.com/league/108539/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-108537",
@@ -660,7 +660,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108537/details",
    "source_url": "https://austinssc.leaguelab.com/league/108537/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-4a9c9f09-8cb5-40d5-8700-83cdd5c3fb99",
@@ -672,7 +672,7 @@
    "series": null,
    "org": "ACES",
    "source_id": "aces",
-   "title": "Turkey Spikes Blind Draw 4's Sand Volleyball Tourney - November 28",
+   "title": "Turkey Spikes Blind Draw 4's Sand Volleyball Tourney @ ATX Beach - November 28",
    "venue": "ATX Beach",
    "city": "Austin",
    "address": "11000 Middle Fiskville Rd, Austin, TX 78753, USA",
@@ -704,7 +704,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/4a9c9f09-8cb5-40d5-8700-83cdd5c3fb99",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-499efe2c-3f30-45cf-b788-07ba737be50b",
@@ -716,7 +716,7 @@
    "series": null,
    "org": "ACES",
    "source_id": "aces",
-   "title": "Turkey Spikes BYO4's Sand Volleyball Tourney - November 28",
+   "title": "Turkey Spikes BYO4's Sand Volleyball Tourney @ ATX Beach - November 28",
    "venue": "ATX Beach",
    "city": "Austin",
    "address": "11000 Middle Fiskville Rd, Austin, TX 78753, USA",
@@ -748,7 +748,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/499efe2c-3f30-45cf-b788-07ba737be50b",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-99ab7223-875c-4a9e-8a36-dac6767c37e6",
@@ -760,7 +760,7 @@
    "series": null,
    "org": "ACES",
    "source_id": "aces",
-   "title": "Holiday Spikes Indoor Volleyball Tournament (BB/B)",
+   "title": "Holiday Spikes Co-Ed (BB) Indoor Volleyball Tournament @ ASC (Central) - Dec 5",
    "venue": "Austin Sports Center - Central",
    "city": "Austin",
    "address": "425 Woodward St, Austin, TX 78704, USA",
@@ -775,17 +775,105 @@
     "Saturday"
    ],
    "registration_opens": "2026-10-20",
-   "registration_deadline": "2026-12-05",
+   "registration_deadline": "2026-11-29",
    "waitlist_on": null,
    "team_price": "$385–485",
    "individual_price": "$60",
    "price_note": null,
-   "price_changes_on": "2026-11-28",
+   "price_changes_on": "2026-11-21",
    "status": "open",
    "signup_url": "https://members.acesintexas.com/leagues/99ab7223-875c-4a9e-8a36-dac6767c37e6",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-7a75d5b9-1782-4400-9431-c24ac50181ce",
+   "kind": "tournament",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Double Spikes Men's (B & BB) 2's Tourney @ CTX Beach (Buda) - December 12",
+   "venue": "CTX Beach",
+   "city": "Buda",
+   "address": "2448 Main St, Buda, TX 78610, USA",
+   "lat": 30.0892281,
+   "lng": -97.8091664,
+   "format": "2's Men · Men's",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2026-12-12",
+   "ends_on": "2026-12-12",
+   "weekdays": [
+    "Saturday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2026-12-11",
+   "waitlist_on": null,
+   "team_price": "$80",
+   "individual_price": "$45",
+   "price_note": null,
+   "price_changes_on": null,
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/7a75d5b9-1782-4400-9431-c24ac50181ce",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-25d99255-363c-4802-a56c-374591b26835",
+   "kind": "tournament",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Double Spikes Women's (B & BB) 2's Tourney @ CTX Beach (Buda) - December 12",
+   "venue": "CTX Beach",
+   "city": "Buda",
+   "address": "2448 Main St, Buda, TX 78610, USA",
+   "lat": 30.0892281,
+   "lng": -97.8091664,
+   "format": "2's Women's · Women's",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2026-12-12",
+   "ends_on": "2026-12-12",
+   "weekdays": [
+    "Saturday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2026-12-11",
+   "waitlist_on": null,
+   "team_price": "$40",
+   "individual_price": "$45",
+   "price_note": null,
+   "price_changes_on": null,
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/25d99255-363c-4802-a56c-374591b26835",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-meanwhile-108661",
@@ -822,7 +910,7 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108661/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108661/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-meanwhile-108662",
@@ -859,7 +947,7 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108662/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108662/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-meanwhile-108663",
@@ -896,7 +984,7 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108663/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108663/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-meanwhile-108664",
@@ -933,7 +1021,51 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108664/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108664/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-89803c93-522f-4937-aaa9-997584a8e85e",
+   "kind": "tournament",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Winter Spikes BYO4s Sand Volleyball Tourney @ ATX Beach - December 19",
+   "venue": "ATX Beach",
+   "city": "Austin",
+   "address": "11000 Middle Fiskville Rd, Austin, TX 78753, USA",
+   "lat": 30.3734198,
+   "lng": -97.6807725,
+   "format": "BYO4s · Coed",
+   "level": null,
+   "divisions": [
+    {
+     "name": "B"
+    },
+    {
+     "name": "BB"
+    }
+   ],
+   "starts_on": "2026-12-19",
+   "ends_on": "2026-12-19",
+   "weekdays": [
+    "Saturday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2026-12-18",
+   "waitlist_on": null,
+   "team_price": "$160",
+   "individual_price": "$45",
+   "price_note": null,
+   "price_changes_on": null,
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/89803c93-522f-4937-aaa9-997584a8e85e",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-23eb227c-3d47-424e-b2f7-427a71d2bd11",
@@ -945,7 +1077,7 @@
    "series": null,
    "org": "ACES",
    "source_id": "aces",
-   "title": "Winter Spikes Blind Draw 4's Sand Volleyball Tourney - December 19",
+   "title": "Winter Spikes Blind Draw 4's Sand Volleyball Tourney @ ATX Beach - December 19",
    "venue": "ATX Beach",
    "city": "Austin",
    "address": "11000 Middle Fiskville Rd, Austin, TX 78753, USA",
@@ -977,7 +1109,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/23eb227c-3d47-424e-b2f7-427a71d2bd11",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-315b6a93-f050-4e73-82a6-454832aae406",
@@ -1014,51 +1146,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/315b6a93-f050-4e73-82a6-454832aae406",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
-  },
-  {
-   "id": "aces-2907dea3-7d53-4c7c-b830-fb4452ec0aa0",
-   "kind": "league",
-   "sport": "volleyball",
-   "surface": "indoor",
-   "region": "austin",
-   "state": "TX",
-   "series": null,
-   "org": "ACES",
-   "source_id": "aces",
-   "title": "Monday Co-Ed Indoor 6s @ Volleyworld (Pflugerville) Winter",
-   "venue": "Volleyworld - Pflugerville",
-   "city": "Pflugerville",
-   "address": "21419 Martin Ln Suite 240, Pflugerville, TX 78660, USA",
-   "lat": 30.4903411,
-   "lng": -97.5550974,
-   "format": "6 Co-Ed · Coed",
-   "level": null,
-   "divisions": [
-    {
-     "name": "Advanced"
-    },
-    {
-     "name": "Intermediate"
-    }
-   ],
-   "starts_on": "2027-01-04",
-   "ends_on": "2027-02-15",
-   "weekdays": [
-    "Monday"
-   ],
-   "registration_opens": "2026-11-09",
-   "registration_deadline": "2027-01-01",
-   "waitlist_on": null,
-   "team_price": "$630–710",
-   "individual_price": "$95",
-   "price_note": "Early bird",
-   "price_changes_on": "2026-12-13",
-   "status": "open",
-   "signup_url": "https://members.acesintexas.com/leagues/2907dea3-7d53-4c7c-b830-fb4452ec0aa0",
-   "source_url": "https://members.acesintexas.com/leagues",
-   "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-29b6c985-6e98-452c-97a1-92b8a1a76ac1",
@@ -1095,7 +1183,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/29b6c985-6e98-452c-97a1-92b8a1a76ac1",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109221",
@@ -1139,7 +1227,51 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109221/details",
    "source_url": "https://austinssc.leaguelab.com/league/109221/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-6712bd02-91a4-41df-b437-c130ec184183",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Tuesday Women's Indoor 6s @ Volleyworld (GTX) - Winter",
+   "venue": "Volleyworld - Georgetown",
+   "city": "Georgetown",
+   "address": "4701 FM 3405 Unit 900, Georgetown, TX 78633, USA",
+   "lat": 30.7014514,
+   "lng": -97.8333437,
+   "format": "6 Women's · Women's",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2027-01-05",
+   "ends_on": "2027-02-09",
+   "weekdays": [
+    "Tuesday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2027-01-01",
+   "waitlist_on": null,
+   "team_price": "$630–710",
+   "individual_price": "$95",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-13",
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/6712bd02-91a4-41df-b437-c130ec184183",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-d673c008-45f4-4d88-a98a-7dbe335fc589",
@@ -1168,7 +1300,7 @@
    "registration_opens": "2026-10-22",
    "registration_deadline": "2027-01-01",
    "waitlist_on": null,
-   "team_price": "$665–745",
+   "team_price": "$665–765",
    "individual_price": "$100",
    "price_note": "Early bird",
    "price_changes_on": "2026-12-13",
@@ -1176,7 +1308,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/d673c008-45f4-4d88-a98a-7dbe335fc589",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-12cf52a9-4eba-41ea-b02d-572aef5860c4",
@@ -1205,7 +1337,7 @@
    "registration_opens": "2026-10-22",
    "registration_deadline": "2027-01-01",
    "waitlist_on": null,
-   "team_price": "$665–745",
+   "team_price": "$665–765",
    "individual_price": "$100",
    "price_note": "Early bird",
    "price_changes_on": "2026-12-13",
@@ -1213,7 +1345,95 @@
    "signup_url": "https://members.acesintexas.com/leagues/12cf52a9-4eba-41ea-b02d-572aef5860c4",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-c1de57a9-9074-4005-9a9c-f7fa7f61b143",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Thursday Co-Ed Indoor 6s @ Volleyworld (GTX) - Winter",
+   "venue": "Volleyworld - Georgetown",
+   "city": "Georgetown",
+   "address": "4701 FM 3405 Unit 900, Georgetown, TX 78633, USA",
+   "lat": 30.7014514,
+   "lng": -97.8333437,
+   "format": "6 Co-Ed · Coed",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2027-01-07",
+   "ends_on": "2027-02-11",
+   "weekdays": [
+    "Thursday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2027-01-01",
+   "waitlist_on": null,
+   "team_price": "$630–710",
+   "individual_price": "$95",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-13",
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/c1de57a9-9074-4005-9a9c-f7fa7f61b143",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-7bae735b-400a-4bf2-9c23-ec4aff6be5ad",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Thursday Women's Indoor 6s @ Volleyworld (GTX) - Winter",
+   "venue": "Volleyworld - Georgetown",
+   "city": "Georgetown",
+   "address": "4701 FM 3405 Unit 900, Georgetown, TX 78633, USA",
+   "lat": 30.7014514,
+   "lng": -97.8333437,
+   "format": "6 Women's · Women's",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2027-01-07",
+   "ends_on": "2027-02-11",
+   "weekdays": [
+    "Thursday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2027-01-01",
+   "waitlist_on": null,
+   "team_price": "$630–710",
+   "individual_price": "$95",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-13",
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/7bae735b-400a-4bf2-9c23-ec4aff6be5ad",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109567",
@@ -1257,7 +1477,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109567/details",
    "source_url": "https://austinssc.leaguelab.com/league/109567/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109535",
@@ -1301,7 +1521,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109535/details",
    "source_url": "https://austinssc.leaguelab.com/league/109535/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109537",
@@ -1342,7 +1562,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109537/details",
    "source_url": "https://austinssc.leaguelab.com/league/109537/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109541",
@@ -1383,7 +1603,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109541/details",
    "source_url": "https://austinssc.leaguelab.com/league/109541/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109545",
@@ -1424,7 +1644,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109545/details",
    "source_url": "https://austinssc.leaguelab.com/league/109545/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109549",
@@ -1465,7 +1685,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109549/details",
    "source_url": "https://austinssc.leaguelab.com/league/109549/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109550",
@@ -1509,7 +1729,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109550/details",
    "source_url": "https://austinssc.leaguelab.com/league/109550/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109538",
@@ -1553,7 +1773,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109538/details",
    "source_url": "https://austinssc.leaguelab.com/league/109538/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109542",
@@ -1597,7 +1817,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109542/details",
    "source_url": "https://austinssc.leaguelab.com/league/109542/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109546",
@@ -1638,7 +1858,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109546/details",
    "source_url": "https://austinssc.leaguelab.com/league/109546/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109551",
@@ -1682,7 +1902,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109551/details",
    "source_url": "https://austinssc.leaguelab.com/league/109551/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109539",
@@ -1726,7 +1946,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109539/details",
    "source_url": "https://austinssc.leaguelab.com/league/109539/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109543",
@@ -1767,7 +1987,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109543/details",
    "source_url": "https://austinssc.leaguelab.com/league/109543/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109547",
@@ -1808,7 +2028,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109547/details",
    "source_url": "https://austinssc.leaguelab.com/league/109547/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109544",
@@ -1849,7 +2069,95 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109544/details",
    "source_url": "https://austinssc.leaguelab.com/league/109544/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-2907dea3-7d53-4c7c-b830-fb4452ec0aa0",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Monday Co-Ed Indoor 6s @ Volleyworld (Pflugerville) - Winter",
+   "venue": "Volleyworld - Pflugerville",
+   "city": "Pflugerville",
+   "address": "21419 Martin Ln Suite 240, Pflugerville, TX 78660, USA",
+   "lat": 30.4903411,
+   "lng": -97.5550974,
+   "format": "6 Co-Ed · Coed",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2027-01-04",
+   "ends_on": "2027-02-15",
+   "weekdays": [
+    "Monday"
+   ],
+   "registration_opens": "2026-11-09",
+   "registration_deadline": "2027-01-03",
+   "waitlist_on": null,
+   "team_price": "$630–710",
+   "individual_price": "$95",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-13",
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/2907dea3-7d53-4c7c-b830-fb4452ec0aa0",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-604d7d83-d62d-4cf3-8370-9dabafd6cbd8",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Wednesday Co-Ed Indoor 6s @ Volleyworld (Georgetown) - Winter",
+   "venue": "Volleyworld - Georgetown",
+   "city": "Georgetown",
+   "address": "4701 FM 3405 Unit 900, Georgetown, TX 78633, USA",
+   "lat": 30.7014514,
+   "lng": -97.8333437,
+   "format": "6 Co-Ed · Coed",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2027-01-06",
+   "ends_on": "2027-02-17",
+   "weekdays": [
+    "Wednesday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2027-01-03",
+   "waitlist_on": null,
+   "team_price": "$630–710",
+   "individual_price": "$95",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-13",
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/604d7d83-d62d-4cf3-8370-9dabafd6cbd8",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109435",
@@ -1893,7 +2201,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109435/details",
    "source_url": "https://austinssc.leaguelab.com/league/109435/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109562",
@@ -1937,7 +2245,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109562/details",
    "source_url": "https://austinssc.leaguelab.com/league/109562/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109563",
@@ -1981,7 +2289,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109563/details",
    "source_url": "https://austinssc.leaguelab.com/league/109563/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109559",
@@ -2022,7 +2330,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109559/details",
    "source_url": "https://austinssc.leaguelab.com/league/109559/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109553",
@@ -2066,7 +2374,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109553/details",
    "source_url": "https://austinssc.leaguelab.com/league/109553/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109560",
@@ -2110,7 +2418,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109560/details",
    "source_url": "https://austinssc.leaguelab.com/league/109560/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109566",
@@ -2154,7 +2462,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109566/details",
    "source_url": "https://austinssc.leaguelab.com/league/109566/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109561",
@@ -2195,7 +2503,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109561/details",
    "source_url": "https://austinssc.leaguelab.com/league/109561/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109548",
@@ -2236,7 +2544,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109548/details",
    "source_url": "https://austinssc.leaguelab.com/league/109548/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109554",
@@ -2280,7 +2588,95 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109554/details",
    "source_url": "https://austinssc.leaguelab.com/league/109554/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-8272aa44-a772-4f10-a142-d334b537abfe",
+   "kind": "tournament",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Chill Spikes Co-Ed (B) Indoor Tourney @ ASC (Central) - January 16th",
+   "venue": "Austin Sports Center - Cedar Park",
+   "city": "Cedar Park",
+   "address": "1420 Toro Grande Blvd Ste 106, Cedar Park, TX 78613, USA",
+   "lat": 30.5437927,
+   "lng": -97.7769388,
+   "format": "6 Co-Ed · Coed",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2027-01-16",
+   "ends_on": "2027-01-16",
+   "weekdays": [
+    "Saturday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2027-01-15",
+   "waitlist_on": null,
+   "team_price": "$315–415",
+   "individual_price": "$50",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-20",
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/8272aa44-a772-4f10-a142-d334b537abfe",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
+  },
+  {
+   "id": "aces-b251cfa2-95a2-4674-901b-77dadb10b697",
+   "kind": "tournament",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "austin",
+   "state": "TX",
+   "series": null,
+   "org": "ACES",
+   "source_id": "aces",
+   "title": "Chill Spikes Women's (BB) Indoor Tourney @ ASC (Central) - January 16",
+   "venue": "Austin Sports Center - Central",
+   "city": "Austin",
+   "address": "425 Woodward St, Austin, TX 78704, USA",
+   "lat": 30.2270143,
+   "lng": -97.7558394,
+   "format": "6 Women's · Women's",
+   "level": null,
+   "divisions": [
+    {
+     "name": "Advanced"
+    },
+    {
+     "name": "Intermediate"
+    }
+   ],
+   "starts_on": "2027-01-16",
+   "ends_on": "2027-01-16",
+   "weekdays": [
+    "Saturday"
+   ],
+   "registration_opens": "2026-11-10",
+   "registration_deadline": "2027-01-15",
+   "waitlist_on": null,
+   "team_price": "$315–415",
+   "individual_price": "$50",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-20",
+   "status": "open",
+   "signup_url": "https://members.acesintexas.com/leagues/b251cfa2-95a2-4674-901b-77dadb10b697",
+   "source_url": "https://members.acesintexas.com/leagues",
+   "feed_source": "aces",
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "aces-1ad1e335-c294-4808-9a6f-991f3156746a",
@@ -2317,7 +2713,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/1ad1e335-c294-4808-9a6f-991f3156746a",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109556",
@@ -2358,7 +2754,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109556/details",
    "source_url": "https://austinssc.leaguelab.com/league/109556/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "leaguelab-austinssc-109557",
@@ -2402,7 +2798,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109557/details",
    "source_url": "https://austinssc.leaguelab.com/league/109557/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "texasao-2026-11-14",
@@ -2442,7 +2838,7 @@
    "signup_url": "https://texasao.org/registration/",
    "source_url": "https://texasao.org/",
    "feed_source": "texasao",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   },
   {
    "id": "nagva-88ed8a81-48c0-4aaa-ba5c-25847f6a309a",
@@ -2498,7 +2894,7 @@
    "signup_url": "https://www.nagva.org/tournaments-1/battle-of-the-alamo-2026",
    "source_url": "https://www.nagva.org/tournaments-1/battle-of-the-alamo-2026",
    "feed_source": "nagva-tx",
-   "checked_at": "2026-11-10T14:45:44.838Z"
+   "checked_at": "2026-11-11T02:15:03.028Z"
   }
  ]
 }
