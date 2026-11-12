@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-12T11:02:05.566Z",
+  "generatedAt": "2026-11-12T11:13:46.337Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-12T10:58:35.848Z",
+      "checkedAt": "2026-11-12T11:13:31.618Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-12T05:13:30.908Z",
+      "checkedAt": "2026-11-12T11:13:31.620Z",
       "count": 2
     },
     {
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-12T10:13:17.850Z",
+      "checkedAt": "2026-11-12T11:13:31.621Z",
       "count": 5
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-12T10:58:36.931Z",
+      "checkedAt": "2026-11-12T11:13:31.622Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-12T10:58:37.028Z",
+      "checkedAt": "2026-11-12T11:13:31.622Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -12080,7 +12080,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-11",
+      "verifiedAt": "2026-11-12",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -12108,7 +12108,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-11",
+      "verifiedAt": "2026-11-12",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
