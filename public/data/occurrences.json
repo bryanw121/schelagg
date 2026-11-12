@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-12T17:46:44.220Z",
+  "generatedAt": "2026-11-12T18:16:11.442Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1525,6 +1525,33 @@
       "starts_at": "2026-11-13T02:00:00.000Z",
       "ends_at": "2026-11-13T04:00:00.000Z",
       "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/9a7e1e2b-fb55-4988-9806-92ba222939c6",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-12",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-c6d1e1b4-fe74-474d-b3b7-c331a0bccc5b",
+      "session_id": "opencourt-c6d1e1b4-fe74-474d-b3b7-c331a0bccc5b",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Open Play Level 2 (8PM-10PM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "2.8–3.8 recommended",
+      "price": "$15 / person (nonmember)",
+      "starts_at": "2026-11-13T02:00:00.000Z",
+      "ends_at": "2026-11-13T04:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c6d1e1b4-fe74-474d-b3b7-c331a0bccc5b",
       "signup_label": "View event & book",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
       "canceled": false,
@@ -5412,7 +5439,7 @@
       "signup_url": "https://reclub.co/m/V7JN1R",
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Austin Lawn Club, every Sunday.",
-      "canceled": false,
+      "canceled": true,
       "verified_at": "2026-11-12",
       "attributes": {
         "surface": "grass",
@@ -5420,7 +5447,7 @@
         "capacity": 16
       },
       "venue_id": "mueller-lake-park",
-      "status": "scheduled",
+      "status": "cancelled",
       "previous_starts_at": null
     },
     {

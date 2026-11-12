@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-12T17:46:44.220Z",
+  "generatedAt": "2026-11-12T18:16:11.442Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T17:43:16.467Z",
+      "checkedAt": "2026-11-12T18:13:17.812Z",
       "count": 281
     },
     {
@@ -19,8 +19,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T17:43:16.468Z",
-      "count": 143
+      "checkedAt": "2026-11-12T18:13:17.812Z",
+      "count": 144
     },
     {
       "id": "holy-pickle",
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T17:43:16.468Z",
+      "checkedAt": "2026-11-12T18:13:17.812Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T17:43:16.468Z",
+      "checkedAt": "2026-11-12T18:13:17.812Z",
       "count": 11
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-12T17:43:16.468Z",
+      "checkedAt": "2026-11-12T18:13:17.813Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-12T17:13:35.408Z",
+      "checkedAt": "2026-11-12T18:13:17.813Z",
       "count": 5
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T17:43:16.469Z",
+      "checkedAt": "2026-11-12T18:13:17.846Z",
       "count": 33
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T17:43:16.493Z",
+      "checkedAt": "2026-11-12T18:13:18.881Z",
       "count": 19
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-12T17:43:16.819Z",
+      "checkedAt": "2026-11-12T18:13:19.364Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-12T17:43:16.916Z",
+      "checkedAt": "2026-11-12T18:13:19.682Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7949,21 +7949,22 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-8f62b538-2c34-4652-8706-3ccc05203f6b",
+      "id": "opencourt-c6d1e1b4-fe74-474d-b3b7-c331a0bccc5b",
       "date": "2026-11-12",
-      "start": "22:00",
-      "end": "24:00",
+      "start": "20:00",
+      "end": "22:00",
       "sport": "pickleball",
-      "title": "Austin PickleHaus · Unrestricted Open Play (10PM-12AM)",
+      "title": "Austin PickleHaus · Open Play Level 2 (8PM-10PM)",
       "venue": "Austin PickleHaus",
       "city": "Pflugerville",
       "surface": "indoor",
       "type": "Open play",
-      "price": "$8 / person (nonmember)",
+      "price": "$15 / person (nonmember)",
+      "level": "2.8–3.8 recommended",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f62b538-2c34-4652-8706-3ccc05203f6b",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c6d1e1b4-fe74-474d-b3b7-c331a0bccc5b",
       "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f62b538-2c34-4652-8706-3ccc05203f6b",
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c6d1e1b4-fe74-474d-b3b7-c331a0bccc5b",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
@@ -8016,6 +8017,31 @@
       "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/3a5f8096-68a4-4c85-b9de-c6ee151bb50d",
       "signup": {
         "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/3a5f8096-68a4-4c85-b9de-c6ee151bb50d",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-12",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-8f62b538-2c34-4652-8706-3ccc05203f6b",
+      "date": "2026-11-12",
+      "start": "22:00",
+      "end": "24:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Unrestricted Open Play (10PM-12AM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f62b538-2c34-4652-8706-3ccc05203f6b",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f62b538-2c34-4652-8706-3ccc05203f6b",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
@@ -12176,6 +12202,7 @@
       "level": "All levels",
       "price": "$6",
       "note": "Hosted by Austin Lawn Club, every Sunday.",
+      "canceled": true,
       "capacity": 16,
       "signup": {
         "url": "https://reclub.co/m/V7JN1R",
@@ -12188,7 +12215,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-12",
       "venueId": "mueller-lake-park",
-      "status": "scheduled"
+      "status": "cancelled"
     },
     {
       "id": "daysmart-chaparralice-346707",

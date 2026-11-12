@@ -2,13 +2,13 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        285,
         286,
         285,
         285,
         285,
         285,
         285,
+        281,
         281,
         281,
         281
@@ -38,9 +38,9 @@
         143,
         143,
         143,
-        143
+        144
       ],
-      "sessions": 143,
+      "sessions": 144,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 603
+      "failStreak": 604
     },
     "atxbeach": {
       "counts": [
@@ -326,6 +326,19 @@
         "sport.name",
         "sport.setsTerm",
         "sport.slug",
+        "sport.stats[]",
+        "sport.stats[].category",
+        "sport.stats[].formula",
+        "sport.stats[].id",
+        "sport.stats[].key",
+        "sport.stats[].measurementUnit",
+        "sport.stats[].order",
+        "sport.stats[].pointValue",
+        "sport.stats[].rankValue",
+        "sport.stats[].scope",
+        "sport.stats[].sportId",
+        "sport.stats[].type",
+        "sport.stats[].unit",
         "sport.sublocationType",
         "sport.validTeamSizes[]",
         "sportConfig",
@@ -528,10 +541,10 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 312
+      "failStreak": 313
     },
     "leander-pickleball": {
-      "failStreak": 312
+      "failStreak": 313
     },
     "manual": {
       "counts": [
