@@ -6,11 +6,11 @@
         285,
         285,
         285,
-        285,
         281,
         281,
         281,
         281,
+        279,
         279
       ],
       "sessions": 279,
@@ -36,11 +36,11 @@
         143,
         143,
         143,
-        143,
         144,
-        144
+        144,
+        145
       ],
-      "sessions": 144,
+      "sessions": 145,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 606
+      "failStreak": 607
     },
     "atxbeach": {
       "counts": [
@@ -326,19 +326,6 @@
         "sport.name",
         "sport.setsTerm",
         "sport.slug",
-        "sport.stats[]",
-        "sport.stats[].category",
-        "sport.stats[].formula",
-        "sport.stats[].id",
-        "sport.stats[].key",
-        "sport.stats[].measurementUnit",
-        "sport.stats[].order",
-        "sport.stats[].pointValue",
-        "sport.stats[].rankValue",
-        "sport.stats[].scope",
-        "sport.stats[].sportId",
-        "sport.stats[].type",
-        "sport.stats[].unit",
         "sport.sublocationType",
         "sport.validTeamSizes[]",
         "sportConfig",
@@ -541,10 +528,10 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 315
+      "failStreak": 316
     },
     "leander-pickleball": {
-      "failStreak": 315
+      "failStreak": 316
     },
     "manual": {
       "counts": [

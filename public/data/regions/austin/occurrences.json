@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-12T18:53:30.164Z",
+  "generatedAt": "2026-11-12T19:16:43.312Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -10442,6 +10442,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-9c55756d-e4d5-4417-b985-9c2f93960a1c",
+      "session_id": "opencourt-9c55756d-e4d5-4417-b985-9c2f93960a1c",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Women's Doubles – Elite 4.2+ (Gated)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "4.2–6 required",
+      "price": "$15 / person (nonmember)",
+      "starts_at": "2026-11-18T23:00:00.000Z",
+      "ends_at": "2026-11-19T01:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/9c55756d-e4d5-4417-b985-9c2f93960a1c",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-12",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
       "status": "scheduled",
       "previous_starts_at": null
     },
