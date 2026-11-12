@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-12T13:16:30.581Z",
+  "generatedAt": "2026-11-12T14:16:29.271Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,8 +14,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T13:13:15.913Z",
-      "count": 286
+      "checkedAt": "2026-11-12T14:13:31.573Z",
+      "count": 285
     },
     {
       "id": "austin-picklehaus",
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T13:13:15.913Z",
+      "checkedAt": "2026-11-12T14:13:31.573Z",
       "count": 143
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T13:13:15.913Z",
+      "checkedAt": "2026-11-12T14:13:31.573Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T13:13:15.913Z",
+      "checkedAt": "2026-11-12T14:13:31.573Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-12T13:13:15.914Z",
+      "checkedAt": "2026-11-12T14:13:31.574Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-12T13:13:15.914Z",
+      "checkedAt": "2026-11-12T14:13:31.574Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T13:13:15.941Z",
+      "checkedAt": "2026-11-12T14:13:31.652Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-12T13:13:16.269Z",
+      "checkedAt": "2026-11-12T14:13:32.712Z",
       "count": 19
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-12T13:13:19.246Z",
+      "checkedAt": "2026-11-12T14:13:33.526Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,40 +136,12 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-12T13:13:19.309Z",
+      "checkedAt": "2026-11-12T14:13:33.707Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-pickle-pit-stop-4f85ceffefc0a533",
-      "date": "2026-11-12",
-      "start": "06:00",
-      "end": "08:00",
-      "sport": "pickleball",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99)",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 12, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://app.courtreserve.com/Online/Events/Details/15273/4SFHO3X15273654?resId=60942245",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-12",
-      "venueId": "austin-pickle-pit-stop",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-austin-pickle-ranch-01a17009-eaa5-7bbd-9712-d7cca147427c",
       "date": "2026-11-12",
@@ -9543,7 +9515,7 @@
       "start": "07:00",
       "end": "10:00",
       "sport": "pickleball",
-      "title": "Austin PickleHaus · Men's Moneyball",
+      "title": "Austin PickleHaus · Men's Rise & Rally",
       "venue": "Austin PickleHaus",
       "city": "Pflugerville",
       "surface": "indoor",
