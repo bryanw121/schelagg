@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-13T21:16:26.296Z",
+  "generatedAt": "2026-11-13T21:46:56.280Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -330,62 +330,6 @@
         "capacity": 250
       },
       "venue_id": "crossover-ice",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a1c2b0-cef7-7cc9-95a5-e636bd8b579f",
-      "session_id": "openplay-eastside-paddle-club-01a1c2b0-cef7-7cc9-95a5-e636bd8b579f",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": " Level 3 Session (Intermediate Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "level": "Intermediate",
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-13T19:00:00.000Z",
-      "ends_at": "2026-11-13T21:00:00.000Z",
-      "signup_url": "https://espc.podplay.app/community/events/01a1c2b0-cef7-7cc9-95a5-e636bd8b579f",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 13, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-13",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-eastside-paddle",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a1c922-e6ab-7665-8ddf-7ebc0afbcb1d",
-      "session_id": "openplay-eastside-paddle-club-01a1c922-e6ab-7665-8ddf-7ebc0afbcb1d",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Level 1 Session (Beginner Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "level": "Beginner",
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-13T19:00:00.000Z",
-      "ends_at": "2026-11-13T21:00:00.000Z",
-      "signup_url": "https://espc.podplay.app/community/events/01a1c922-e6ab-7665-8ddf-7ebc0afbcb1d",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 13, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-13",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-eastside-paddle",
       "status": "scheduled",
       "previous_starts_at": null
     },
