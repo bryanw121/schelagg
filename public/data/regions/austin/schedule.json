@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-13T02:16:28.882Z",
+  "generatedAt": "2026-11-13T02:46:24.672Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,8 +14,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:13:19.505Z",
-      "count": 271
+      "checkedAt": "2026-11-13T02:43:17.206Z",
+      "count": 269
     },
     {
       "id": "austin-picklehaus",
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:13:19.506Z",
+      "checkedAt": "2026-11-13T02:43:17.206Z",
       "count": 146
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:13:19.506Z",
+      "checkedAt": "2026-11-13T02:43:17.206Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:13:19.506Z",
+      "checkedAt": "2026-11-13T02:43:17.206Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-13T02:13:19.507Z",
+      "checkedAt": "2026-11-13T02:43:17.207Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:13:19.551Z",
+      "checkedAt": "2026-11-13T02:43:17.207Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:13:19.953Z",
+      "checkedAt": "2026-11-13T02:43:17.236Z",
       "count": 19
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-13T02:13:21.960Z",
+      "checkedAt": "2026-11-13T02:43:18.567Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,66 +136,12 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-13T02:13:22.015Z",
+      "checkedAt": "2026-11-13T02:43:18.610Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-eastside-paddle-club-01a17e8d-882c-7338-8b23-76e736ae538a",
-      "date": "2026-11-12",
-      "start": "18:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": " Level 3 Session (Intermediate Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 12, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e8d-882c-7338-8b23-76e736ae538a",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-12",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e8e-6c60-7338-8b2c-e11fa1e6ce9b",
-      "date": "2026-11-12",
-      "start": "18:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": "4.0+ DUPR Session (Advanced Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "4.0+",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 12, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e8e-6c60-7338-8b2c-e11fa1e6ce9b",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-12",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-austin-pickle-ranch-01a170c6-c263-7bbd-9934-106f7d550a01",
       "date": "2026-11-12",
