@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-13T02:46:24.672Z",
+  "generatedAt": "2026-11-13T03:16:25.845Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:43:17.206Z",
+      "checkedAt": "2026-11-13T03:13:17.814Z",
       "count": 269
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:43:17.206Z",
+      "checkedAt": "2026-11-13T03:13:17.814Z",
       "count": 146
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:43:17.206Z",
+      "checkedAt": "2026-11-13T03:13:17.815Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:43:17.206Z",
+      "checkedAt": "2026-11-13T03:13:17.815Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-13T02:43:17.207Z",
+      "checkedAt": "2026-11-13T03:13:17.816Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,8 +85,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-13T02:13:19.508Z",
-      "count": 5
+      "checkedAt": "2026-11-13T03:13:17.816Z",
+      "count": 6
     },
     {
       "id": "chaparral-ice",
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:43:17.207Z",
+      "checkedAt": "2026-11-13T03:13:17.869Z",
       "count": 33
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-13T02:43:17.236Z",
+      "checkedAt": "2026-11-13T03:13:18.478Z",
       "count": 19
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-13T02:43:18.567Z",
+      "checkedAt": "2026-11-13T03:13:21.680Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-13T02:43:18.610Z",
+      "checkedAt": "2026-11-13T03:13:21.715Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -11198,31 +11198,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-2aaa9092-b184-4d0a-971e-3065b4662aae",
-      "date": "2026-11-12",
-      "start": "19:00",
-      "end": "21:00",
-      "sport": "pickleball",
-      "title": "Holy Pickle · Open Play",
-      "venue": "Holy Pickle",
-      "city": "Austin",
-      "surface": "outdoor",
-      "type": "Open play",
-      "price": "$10 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/2aaa9092-b184-4d0a-971e-3065b4662aae",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/2aaa9092-b184-4d0a-971e-3065b4662aae",
-        "label": "View event & book"
-      },
-      "sourceId": "holy-pickle",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-12",
-      "venueId": "austin-holy-pickle",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-d62fa69c-4814-4e46-bcf6-19b8048e29d3",
       "date": "2026-11-13",
       "start": "08:00",
@@ -11388,6 +11363,31 @@
       "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/f462af60-b143-4953-882f-bae8023d0f82",
       "signup": {
         "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/f462af60-b143-4953-882f-bae8023d0f82",
+        "label": "View event & book"
+      },
+      "sourceId": "holy-pickle",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-12",
+      "venueId": "austin-holy-pickle",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-2aaa9092-b184-4d0a-971e-3065b4662aae",
+      "date": "2026-11-12",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Holy Pickle · Open Play",
+      "venue": "Holy Pickle",
+      "city": "Austin",
+      "surface": "outdoor",
+      "type": "Open play",
+      "price": "$10 / person (nonmember)",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/2aaa9092-b184-4d0a-971e-3065b4662aae",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/2aaa9092-b184-4d0a-971e-3065b4662aae",
         "label": "View event & book"
       },
       "sourceId": "holy-pickle",
@@ -11911,6 +11911,33 @@
         "label": "Sign up on Reclub"
       },
       "source": "https://reclub.co/m/06TS6L",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-12",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-7M8TNU",
+      "date": "2026-11-19",
+      "start": "20:30",
+      "end": "23:30",
+      "title": "Qilin B/BB Thursday Men’s Net Volleyball",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "B/BB · men",
+      "price": "$12",
+      "note": "Hosted by Vex Volleyball, every Thursday.",
+      "capacity": 36,
+      "signup": {
+        "url": "https://reclub.co/m/7M8TNU",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/7M8TNU",
       "sourceId": "reclub",
       "sport": "volleyball",
       "region": "austin",
