@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        270,
         277,
         271,
         271,
@@ -11,13 +10,14 @@
         269,
         264,
         264,
-        259
+        259,
+        266
       ],
-      "sessions": 259,
+      "sessions": 266,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.69,
+        "level": 0.7,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -38,9 +38,9 @@
         146,
         146,
         146,
-        146
+        155
       ],
-      "sessions": 146,
+      "sessions": 155,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -92,9 +92,9 @@
         11,
         11,
         11,
-        11
+        12
       ],
-      "sessions": 11,
+      "sessions": 12,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 627
+      "failStreak": 628
     },
     "atxbeach": {
       "counts": [
@@ -232,12 +232,12 @@
         5,
         5,
         5,
-        5,
         6,
         6,
-        6
+        6,
+        5
       ],
-      "sessions": 6,
+      "sessions": 5,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -290,7 +290,6 @@
         "participants[]",
         "participants[].createdAt",
         "participants[].externalReference",
-        "participants[].externalReference.gender",
         "participants[].externalReference.level",
         "participants[].externalReference.name",
         "participants[].id",
@@ -370,9 +369,9 @@
         33,
         33,
         33,
-        33
+        35
       ],
-      "sessions": 33,
+      "sessions": 35,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -437,9 +436,9 @@
         19,
         19,
         19,
-        19
+        21
       ],
-      "sessions": 19,
+      "sessions": 21,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -528,10 +527,10 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 336
+      "failStreak": 337
     },
     "leander-pickleball": {
-      "failStreak": 336
+      "failStreak": 337
     },
     "manual": {
       "counts": [
