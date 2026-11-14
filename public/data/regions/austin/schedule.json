@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-14T14:46:46.792Z",
+  "generatedAt": "2026-11-14T15:16:49.577Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T14:43:28.316Z",
+      "checkedAt": "2026-11-14T15:13:14.307Z",
       "count": 279
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T14:43:28.317Z",
+      "checkedAt": "2026-11-14T15:13:14.307Z",
       "count": 153
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T14:43:28.317Z",
+      "checkedAt": "2026-11-14T15:13:14.307Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T14:43:28.317Z",
+      "checkedAt": "2026-11-14T15:13:14.307Z",
       "count": 12
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-14T14:43:28.318Z",
+      "checkedAt": "2026-11-14T15:13:14.308Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-14T14:13:17.958Z",
+      "checkedAt": "2026-11-14T15:13:14.308Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T14:43:28.318Z",
+      "checkedAt": "2026-11-14T15:13:14.347Z",
       "count": 34
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T14:43:28.415Z",
+      "checkedAt": "2026-11-14T15:13:14.699Z",
       "count": 22
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T14:43:28.851Z",
+      "checkedAt": "2026-11-14T15:13:15.513Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T14:43:29.060Z",
+      "checkedAt": "2026-11-14T15:13:15.723Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -7689,32 +7689,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-5a114a68-b964-4811-a5c9-a9a0906b294a",
-      "date": "2026-11-14",
-      "start": "07:00",
-      "end": "09:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Sip & Smash (7AM-9AM)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "2.8–3.8 recommended",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/5a114a68-b964-4811-a5c9-a9a0906b294a",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/5a114a68-b964-4811-a5c9-a9a0906b294a",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-90ed31ae-b6dd-4c5b-8ba6-e746ca50c0ad",
       "date": "2026-11-14",
       "start": "09:00",
@@ -7949,6 +7923,32 @@
       "status": "scheduled"
     },
     {
+      "id": "opencourt-491cb3ef-e8a7-464d-8d87-22132e0753aa",
+      "date": "2026-11-14",
+      "start": "19:00",
+      "end": "21:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · DUPR Trooper Miester Play 3.6+",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$15 / person (nonmember)",
+      "level": "3.6–6 required",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/491cb3ef-e8a7-464d-8d87-22132e0753aa",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/491cb3ef-e8a7-464d-8d87-22132e0753aa",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
       "id": "opencourt-dd96af2f-27ca-481a-bcc0-782fbc4c884c",
       "date": "2026-11-14",
       "start": "21:00",
@@ -7974,22 +7974,22 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-491cb3ef-e8a7-464d-8d87-22132e0753aa",
+      "id": "opencourt-5a114a68-b964-4811-a5c9-a9a0906b294a",
       "date": "2026-11-14",
-      "start": "19:00",
-      "end": "21:00",
+      "start": "07:00",
+      "end": "09:00",
       "sport": "pickleball",
-      "title": "Austin PickleHaus · DUPR Trooper Miester Play 3.6+",
+      "title": "Austin PickleHaus · Sip & Smash (7AM-9AM)",
       "venue": "Austin PickleHaus",
       "city": "Pflugerville",
       "surface": "indoor",
       "type": "Open play",
       "price": "$15 / person (nonmember)",
-      "level": "3.6–6 required",
+      "level": "2.8–3.8 recommended",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/491cb3ef-e8a7-464d-8d87-22132e0753aa",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/5a114a68-b964-4811-a5c9-a9a0906b294a",
       "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/491cb3ef-e8a7-464d-8d87-22132e0753aa",
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/5a114a68-b964-4811-a5c9-a9a0906b294a",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
