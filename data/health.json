@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 661
+      "failStreak": 662
     },
     "atxbeach": {
       "counts": [
@@ -529,13 +529,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 370
+      "failStreak": 371
     },
     "leander-pickleball": {
-      "failStreak": 370
+      "failStreak": 371
     },
     "dallas-reclub": {
-      "failStreak": 2
+      "failStreak": 3
     },
     "manual": {
       "counts": [
@@ -568,6 +568,7 @@
   "manual": {},
   "reported": [
     "aces:failing",
+    "dallas-reclub:failing",
     "georgetown-pickleball:failing",
     "leander-pickleball:failing",
     "manual:aces-mon-6s-indoor:unverified",
@@ -582,8 +583,8 @@
     "manual:beecave-on-ice-sun:changed:2026-11-12",
     "manual:beecave-on-ice-tue:changed:2026-11-12",
     "manual:four-seasons-ice-rodeo:changed:2026-11-13",
+    "manual:hanovers-open:changed:2026-11-09",
     "manual:hanovers-open:unverified",
-    "manual:hanovers-open:watch",
     "manual:ssc-crossover-mon-sand:changed:2026-11-11",
     "manual:ssc-crossover-mon-sand:unverified"
   ]
