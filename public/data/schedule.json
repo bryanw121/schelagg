@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-14T02:17:04.759Z",
+  "generatedAt": "2026-11-14T02:47:58.571Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T02:13:26.284Z",
+      "checkedAt": "2026-11-14T02:44:28.444Z",
       "count": 262
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T02:13:26.285Z",
+      "checkedAt": "2026-11-14T02:44:28.444Z",
       "count": 155
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T02:13:26.285Z",
+      "checkedAt": "2026-11-14T02:44:28.444Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T02:13:26.285Z",
+      "checkedAt": "2026-11-14T02:44:28.444Z",
       "count": 12
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-14T02:13:26.286Z",
+      "checkedAt": "2026-11-14T02:44:28.445Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T02:13:26.382Z",
+      "checkedAt": "2026-11-14T02:44:28.445Z",
       "count": 35
     },
     {
@@ -100,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T02:13:26.553Z",
+      "checkedAt": "2026-11-14T02:44:28.472Z",
       "count": 21
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T02:13:28.440Z",
+      "checkedAt": "2026-11-14T02:44:28.751Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -131,7 +131,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T02:13:28.485Z",
+      "checkedAt": "2026-11-14T02:44:28.961Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     },
@@ -142,7 +142,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-14T02:13:28.542Z",
+      "checkedAt": "2026-11-14T02:44:29.107Z",
       "error": "No Reclub meets found",
       "kept": 0
     }
@@ -11458,6 +11458,7 @@
       "surface": "indoor",
       "type": "Open play",
       "level": "Adults · Jesus",
+      "full": true,
       "capacity": 12,
       "spotsLeft": 8,
       "classId": "1ZMld3tCstpKmrSMBvPj",
