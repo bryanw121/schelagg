@@ -1,32 +1,33 @@
-// Temporary probe 4 (branch only): Vex's announcements — are leagues and tournaments posted there?
-import { get } from '../lib/http.js';
-import { nuxtData } from '../lib/devalue.js';
+// Temporary probe 5 (branch only): open Vex's club page as a signed-out visitor in a real browser,
+// record what it fetches from api.reclub.co, and look for announcements in those replies and the page.
+import { chromium } from 'playwright';
 import { writeFileSync } from 'node:fs';
 const out = []; const say = (s) => { out.push(s); console.log(s); };
-const short = (v) => JSON.stringify(v)?.slice(0, 300);
-for (const path of ['', '/announcements', '/posts', '/feed', '/about']) {
-  const url = `https://reclub.co/clubs/@vex_volleyball${path}`;
-  const r = await get(url, { timeoutMs: 20000 }).catch((e) => ({ status: e.message, text: '' }));
-  say(`\n## ${url}: HTTP ${r.status}`);
-  if (!r.ok) continue;
-  const d = nuxtData(r.text)?.data ?? {};
-  for (const [k, v] of Object.entries(d)) {
-    say(`- key ${k}: ${short(Object.keys(v ?? {}))}`);
-    const club = v?.club;
-    if (club) for (const ck of Object.keys(club)) if (/announ|post|news|pin|notice|compet|league/i.test(ck)) say(`  club.${ck}: ${short(club[ck])}`);
-    for (const vk of Object.keys(v ?? {})) if (/announ|post|news|notice/i.test(vk)) say(`  ${vk}: ${JSON.stringify(v[vk]).slice(0, 2500)}`);
-  }
-  const text = r.text.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-  for (const w of [/announc/i, /league/i, /tournament/i]) {
-    const m = text.match(w); if (m) say(`text ${w}: …${text.slice(Math.max(0, m.index - 150), m.index + 400)}…`);
-  }
-  // Announcement-like strings anywhere in the payload.
-  const raw = r.text.match(/id="__NUXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)?.[1] ?? '';
-  const strs = [...new Set((JSON.parse(raw || '[]')).filter((s) => typeof s === 'string' && /league|tournament|season|register|sign ?up/i.test(s)))];
-  say(`payload strings mentioning league/tournament/season/register: ${strs.length}`);
-  for (const s of strs.slice(0, 15)) say(`  > ${s.slice(0, 400).replace(/\n/g, ' ⏎ ')}`);
-  // API-looking links in the page (announcement endpoints).
-  const api = [...new Set([...r.text.matchAll(/https:\/\/api\.reclub\.co\/[^"'\s<]{0,80}/g)].map((m) => m[0]))];
-  if (api.length) say(`api links: ${api.slice(0, 10).join(' ')}`);
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+const calls = [];
+page.on('response', async (r) => {
+  const u = r.url();
+  if (!/api\.reclub\.co/.test(u)) return;
+  let body = ''; try { body = await r.text(); } catch {}
+  calls.push({ u, status: r.status(), body });
+});
+await page.goto('https://reclub.co/clubs/@vex_volleyball', { waitUntil: 'networkidle', timeout: 60000 });
+for (let i = 0; i < 6; i++) { await page.mouse.wheel(0, 1500); await page.waitForTimeout(1200); }
+// Click anything that looks like an announcements tab.
+for (const name of [/announcement/i, /posts?/i, /news/i]) {
+  const el = page.getByText(name).first();
+  if (await el.count()) { say(`clicking "${await el.innerText().catch(() => '')}"`); await el.click({ timeout: 5000 }).catch((e) => say(`  click failed: ${e.message.split('\n')[0]}`)); await page.waitForTimeout(3000); }
 }
+say(`## ${calls.length} api.reclub.co calls (signed out)`);
+for (const c of calls) {
+  const hit = /league|tournament|season|announc/i.test(c.body);
+  say(`- ${c.status} ${c.u.slice(0, 160)} (${c.body.length} bytes)${hit ? ' ← mentions league/tournament/announcement' : ''}`);
+  if (/announc|post|news|bulletin/i.test(c.u) || hit) say('  ' + c.body.slice(0, 1500).replace(/\s+/g, ' '));
+}
+const text = (await page.innerText('body')).replace(/\s+/g, ' ');
+say(`\n## Page text mentions: announcement ${/announc/i.test(text)}, league ${/league/i.test(text)}, tournament ${/tournament/i.test(text)}`);
+for (const w of [/announc/i, /league/i, /tournament/i]) { const m = text.match(w); if (m) say(`${w}: …${text.slice(Math.max(0, m.index - 200), m.index + 500)}…`); }
+await page.screenshot({ path: 'vex.png', fullPage: true });
+await browser.close();
 writeFileSync(process.env.GITHUB_STEP_SUMMARY || 'probe.md', out.join('\n') + '\n', { flag: 'a' });
