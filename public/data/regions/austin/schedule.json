@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-14T04:16:46.588Z",
+  "generatedAt": "2026-11-14T04:21:21.003Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T04:13:14.494Z",
+      "checkedAt": "2026-11-14T04:17:40.430Z",
       "count": 255
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T04:13:14.494Z",
+      "checkedAt": "2026-11-14T04:17:40.431Z",
       "count": 155
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T04:13:14.494Z",
+      "checkedAt": "2026-11-14T04:17:40.431Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T04:13:14.494Z",
+      "checkedAt": "2026-11-14T04:17:40.431Z",
       "count": 12
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-14T04:13:14.496Z",
+      "checkedAt": "2026-11-14T04:17:40.432Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-14T01:01:55.238Z",
+      "checkedAt": "2026-11-14T04:17:40.432Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-14T01:01:55.301Z",
+      "checkedAt": "2026-11-14T04:17:40.464Z",
       "count": 8
     },
     {
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-14T04:13:14.496Z",
+      "checkedAt": "2026-11-14T04:17:40.712Z",
       "count": 5
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T04:13:14.542Z",
+      "checkedAt": "2026-11-14T04:17:41.951Z",
       "count": 35
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T04:13:14.783Z",
+      "checkedAt": "2026-11-14T04:17:42.106Z",
       "count": 21
     },
     {
@@ -115,7 +115,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-14T01:01:57.528Z",
+      "checkedAt": "2026-11-14T04:17:42.687Z",
       "count": 13
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T04:13:17.181Z",
+      "checkedAt": "2026-11-14T04:17:42.985Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T04:13:17.399Z",
+      "checkedAt": "2026-11-14T04:17:43.032Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -13833,7 +13833,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-09",
+      "watchError": "HTTP 403",
       "venueId": "hanovers",
       "status": "scheduled"
     },
