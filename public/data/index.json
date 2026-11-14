@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T00:46:49.092Z",
+  "generatedAt": "2026-11-14T00:54:21.900Z",
   "regions": [
     {
       "id": "austin",
@@ -14,8 +14,22 @@
         "pickleball",
         "volleyball"
       ],
-      "sessions": 534,
+      "sessions": 537,
       "venues": 30
+    },
+    {
+      "id": "dallas",
+      "name": "Dallas–Fort Worth, TX",
+      "timezone": "America/Chicago",
+      "center": [
+        32.8,
+        -96.95
+      ],
+      "sports": [
+        "volleyball"
+      ],
+      "sessions": 0,
+      "venues": 0
     }
   ]
 }

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T00:54:21.900Z",
+  "region": {
+    "id": "dallas",
+    "name": "Dallas–Fort Worth, TX",
+    "timezone": "America/Chicago"
+  },
+  "sources": [
+    {
+      "id": "dallas-reclub",
+      "name": "Reclub · DFW",
+      "sport": "volleyball",
+      "region": "dallas",
+      "cadence": "1h",
+      "ok": false,
+      "checkedAt": "2026-11-14T00:51:12.560Z",
+      "error": "No Reclub meets found",
+      "kept": 0
+    }
+  ],
+  "sessions": [],
+  "publicCourts": null,
+  "venues": []
+}

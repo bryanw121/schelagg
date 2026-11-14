@@ -1,41 +1,47 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-13T22:38:45.014Z",
+ "generatedAt": "2026-11-14T00:54:24.303Z",
  "sources": [
   {
    "id": "aces",
    "ok": true,
-   "checkedAt": "2026-11-13T22:38:45.014Z",
-   "count": 23
+   "checkedAt": "2026-11-14T00:54:24.303Z",
+   "count": 21
   },
   {
    "id": "austin-ssc",
    "ok": true,
-   "checkedAt": "2026-11-13T22:38:45.014Z",
+   "checkedAt": "2026-11-14T00:54:24.303Z",
    "count": 39
   },
   {
    "id": "meanwhile",
    "ok": true,
-   "checkedAt": "2026-11-13T22:38:45.014Z",
+   "checkedAt": "2026-11-14T00:54:24.303Z",
    "count": 4
+  },
+  {
+   "id": "lonestar-ssc",
+   "ok": true,
+   "checkedAt": "2026-11-14T00:54:24.303Z",
+   "count": 11
   },
   {
    "id": "nagva-tx",
    "ok": true,
-   "checkedAt": "2026-11-13T22:38:45.014Z",
+   "checkedAt": "2026-11-14T00:54:24.303Z",
    "count": 1
   },
   {
    "id": "reclub",
    "ok": true,
-   "checkedAt": "2026-11-13T22:38:45.014Z",
+   "checkedAt": "2026-11-14T00:54:24.303Z",
    "count": 0
   },
   {
    "id": "texasao",
    "ok": true,
-   "checkedAt": "2026-11-13T22:38:45.014Z",
+   "checkedAt": "2026-11-14T00:54:24.303Z",
    "count": 1
   }
  ],
@@ -75,7 +81,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/13cdafb6-b9ed-4b7b-b33a-2dce01f6dfdc",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108285",
@@ -119,95 +125,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108285/details",
    "source_url": "https://austinssc.leaguelab.com/league/108285/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
-  },
-  {
-   "id": "aces-f606373f-8375-413b-9e31-0e33b1709a72",
-   "kind": "tournament",
-   "sport": "volleyball",
-   "surface": "sand",
-   "region": "austin",
-   "state": "TX",
-   "series": null,
-   "org": "ACES",
-   "source_id": "aces",
-   "title": "Autumn Sets Co-Ed 2's (B & BB) Sand Volleyball Tourney @ CTX Beach (Buda) - November 14",
-   "venue": "CTX Beach",
-   "city": "Buda",
-   "address": "2448 Main St, Buda, TX 78610, USA",
-   "lat": 30.0892281,
-   "lng": -97.8091664,
-   "format": "Co-Ed 2's · Coed",
-   "level": null,
-   "divisions": [
-    {
-     "name": "B"
-    },
-    {
-     "name": "BB"
-    }
-   ],
-   "starts_on": "2026-11-14",
-   "ends_on": "2026-11-14",
-   "weekdays": [
-    "Saturday"
-   ],
-   "registration_opens": "2026-10-20",
-   "registration_deadline": "2026-11-14",
-   "waitlist_on": null,
-   "team_price": "$80",
-   "individual_price": "$45",
-   "price_note": null,
-   "price_changes_on": null,
-   "status": "open",
-   "signup_url": "https://members.acesintexas.com/leagues/f606373f-8375-413b-9e31-0e33b1709a72",
-   "source_url": "https://members.acesintexas.com/leagues",
-   "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
-  },
-  {
-   "id": "aces-f52eba4c-0f72-4645-922b-e0ede7662ac5",
-   "kind": "tournament",
-   "sport": "volleyball",
-   "surface": "sand",
-   "region": "austin",
-   "state": "TX",
-   "series": null,
-   "org": "ACES",
-   "source_id": "aces",
-   "title": "Autumn Spikes Co-Ed Blind Draw 4s Sand Volleyball Tourney @ CTX Beach (Buda) - November 14",
-   "venue": "CTX Beach",
-   "city": "Buda",
-   "address": "2448 Main St, Buda, TX 78610, USA",
-   "lat": 30.0892281,
-   "lng": -97.8091664,
-   "format": "Blind Draw 4s · Coed",
-   "level": null,
-   "divisions": [
-    {
-     "name": "B"
-    },
-    {
-     "name": "BB"
-    }
-   ],
-   "starts_on": "2026-11-14",
-   "ends_on": "2026-11-14",
-   "weekdays": [
-    "Saturday"
-   ],
-   "registration_opens": "2026-11-07",
-   "registration_deadline": "2026-11-14",
-   "waitlist_on": null,
-   "team_price": null,
-   "individual_price": "$45",
-   "price_note": null,
-   "price_changes_on": null,
-   "status": "open",
-   "signup_url": "https://members.acesintexas.com/leagues/f52eba4c-0f72-4645-922b-e0ede7662ac5",
-   "source_url": "https://members.acesintexas.com/leagues",
-   "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108279",
@@ -248,7 +166,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108279/details",
    "source_url": "https://austinssc.leaguelab.com/league/108279/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108288",
@@ -289,7 +207,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108288/details",
    "source_url": "https://austinssc.leaguelab.com/league/108288/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108287",
@@ -333,7 +251,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108287/details",
    "source_url": "https://austinssc.leaguelab.com/league/108287/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108404",
@@ -374,7 +292,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108404/details",
    "source_url": "https://austinssc.leaguelab.com/league/108404/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108402",
@@ -415,7 +333,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108402/details",
    "source_url": "https://austinssc.leaguelab.com/league/108402/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108403",
@@ -456,7 +374,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108403/details",
    "source_url": "https://austinssc.leaguelab.com/league/108403/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108364",
@@ -497,7 +415,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108364/details",
    "source_url": "https://austinssc.leaguelab.com/league/108364/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108406",
@@ -541,7 +459,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108406/details",
    "source_url": "https://austinssc.leaguelab.com/league/108406/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-e719fb8e-ab8c-419a-b1a1-8de75633e8f5",
@@ -578,7 +496,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/e719fb8e-ab8c-419a-b1a1-8de75633e8f5",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108539",
@@ -619,7 +537,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108539/details",
    "source_url": "https://austinssc.leaguelab.com/league/108539/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-108537",
@@ -660,7 +578,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/108537/details",
    "source_url": "https://austinssc.leaguelab.com/league/108537/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-4a9c9f09-8cb5-40d5-8700-83cdd5c3fb99",
@@ -704,7 +622,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/4a9c9f09-8cb5-40d5-8700-83cdd5c3fb99",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-499efe2c-3f30-45cf-b788-07ba737be50b",
@@ -748,7 +666,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/499efe2c-3f30-45cf-b788-07ba737be50b",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-99ab7223-875c-4a9e-8a36-dac6767c37e6",
@@ -785,7 +703,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/99ab7223-875c-4a9e-8a36-dac6767c37e6",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-7a75d5b9-1782-4400-9431-c24ac50181ce",
@@ -829,7 +747,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/7a75d5b9-1782-4400-9431-c24ac50181ce",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-25d99255-363c-4802-a56c-374591b26835",
@@ -873,7 +791,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/25d99255-363c-4802-a56c-374591b26835",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-meanwhile-108661",
@@ -910,7 +828,7 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108661/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108661/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-meanwhile-108662",
@@ -947,7 +865,7 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108662/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108662/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-meanwhile-108663",
@@ -984,7 +902,7 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108663/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108663/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-meanwhile-108664",
@@ -1021,7 +939,7 @@
    "signup_url": "https://meanwhile.leaguelab.com/league/108664/details",
    "source_url": "https://meanwhile.leaguelab.com/league/108664/details",
    "feed_source": "meanwhile",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-89803c93-522f-4937-aaa9-997584a8e85e",
@@ -1065,7 +983,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/89803c93-522f-4937-aaa9-997584a8e85e",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-23eb227c-3d47-424e-b2f7-427a71d2bd11",
@@ -1109,7 +1027,48 @@
    "signup_url": "https://members.acesintexas.com/leagues/23eb227c-3d47-424e-b2f7-427a71d2bd11",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109725",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": null,
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Thursday Arena Volleyball January 2027 (Fort Worth-Billy Bob's)",
+   "venue": "Billy Bob's Texas",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 8 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-07",
+   "ends_on": "2027-02-18",
+   "weekdays": [
+    "Thursday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2026-12-25",
+   "waitlist_on": null,
+   "team_price": "$379",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-11",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109725/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109725/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-315b6a93-f050-4e73-82a6-454832aae406",
@@ -1146,7 +1105,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/315b6a93-f050-4e73-82a6-454832aae406",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-29b6c985-6e98-452c-97a1-92b8a1a76ac1",
@@ -1183,7 +1142,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/29b6c985-6e98-452c-97a1-92b8a1a76ac1",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-6712bd02-91a4-41df-b437-c130ec184183",
@@ -1227,7 +1186,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/6712bd02-91a4-41df-b437-c130ec184183",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-d673c008-45f4-4d88-a98a-7dbe335fc589",
@@ -1264,7 +1223,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/d673c008-45f4-4d88-a98a-7dbe335fc589",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-12cf52a9-4eba-41ea-b02d-572aef5860c4",
@@ -1301,7 +1260,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/12cf52a9-4eba-41ea-b02d-572aef5860c4",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-c1de57a9-9074-4005-9a9c-f7fa7f61b143",
@@ -1345,7 +1304,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/c1de57a9-9074-4005-9a9c-f7fa7f61b143",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-7bae735b-400a-4bf2-9c23-ec4aff6be5ad",
@@ -1389,7 +1348,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/7bae735b-400a-4bf2-9c23-ec4aff6be5ad",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109567",
@@ -1433,7 +1392,48 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109567/details",
    "source_url": "https://austinssc.leaguelab.com/league/109567/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109610",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Monday Indoor Volleyball January 2027 (Dallas - North)",
+   "venue": "RYSE Energy StarCenter Multisport",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 8 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-11",
+   "ends_on": "2027-02-22",
+   "weekdays": [
+    "Monday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-01",
+   "waitlist_on": null,
+   "team_price": "$529",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-18",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109610/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109610/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109535",
@@ -1477,7 +1477,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109535/details",
    "source_url": "https://austinssc.leaguelab.com/league/109535/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109537",
@@ -1518,7 +1518,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109537/details",
    "source_url": "https://austinssc.leaguelab.com/league/109537/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109541",
@@ -1559,7 +1559,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109541/details",
    "source_url": "https://austinssc.leaguelab.com/league/109541/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109545",
@@ -1600,7 +1600,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109545/details",
    "source_url": "https://austinssc.leaguelab.com/league/109545/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109549",
@@ -1641,7 +1641,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109549/details",
    "source_url": "https://austinssc.leaguelab.com/league/109549/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109550",
@@ -1685,7 +1685,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109550/details",
    "source_url": "https://austinssc.leaguelab.com/league/109550/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109221",
@@ -1729,7 +1729,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109221/details",
    "source_url": "https://austinssc.leaguelab.com/league/109221/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109538",
@@ -1773,7 +1773,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109538/details",
    "source_url": "https://austinssc.leaguelab.com/league/109538/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109542",
@@ -1817,7 +1817,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109542/details",
    "source_url": "https://austinssc.leaguelab.com/league/109542/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109546",
@@ -1858,7 +1858,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109546/details",
    "source_url": "https://austinssc.leaguelab.com/league/109546/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109551",
@@ -1902,7 +1902,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109551/details",
    "source_url": "https://austinssc.leaguelab.com/league/109551/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109539",
@@ -1946,7 +1946,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109539/details",
    "source_url": "https://austinssc.leaguelab.com/league/109539/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109543",
@@ -1987,7 +1987,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109543/details",
    "source_url": "https://austinssc.leaguelab.com/league/109543/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109547",
@@ -2028,7 +2028,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109547/details",
    "source_url": "https://austinssc.leaguelab.com/league/109547/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109544",
@@ -2069,7 +2069,51 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109544/details",
    "source_url": "https://austinssc.leaguelab.com/league/109544/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109620",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Thursday Sand Volleyball January 2027 (FORO-North Dallas)",
+   "venue": "FORO Sports Club",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 9 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "6v6 REC+"
+    },
+    {
+     "name": "6v6 INTER+"
+    }
+   ],
+   "starts_on": "2027-01-14",
+   "ends_on": "2027-02-25",
+   "weekdays": [
+    "Thursday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-01",
+   "waitlist_on": null,
+   "team_price": "$349",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-18",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109620/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109620/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-2907dea3-7d53-4c7c-b830-fb4452ec0aa0",
@@ -2113,7 +2157,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/2907dea3-7d53-4c7c-b830-fb4452ec0aa0",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-604d7d83-d62d-4cf3-8370-9dabafd6cbd8",
@@ -2157,7 +2201,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/604d7d83-d62d-4cf3-8370-9dabafd6cbd8",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109435",
@@ -2201,7 +2245,92 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109435/details",
    "source_url": "https://austinssc.leaguelab.com/league/109435/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109724",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Friday Sand Volleyball 4s January 2027 (BS Tavern-Uptown Dallas)",
+   "venue": "Bryan Street Tavern",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "4v4 · Rosters up to 6 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-15",
+   "ends_on": "2027-02-26",
+   "weekdays": [
+    "Friday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-08",
+   "waitlist_on": null,
+   "team_price": "$399",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-25",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109724/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109724/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109644",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Friday Sand Volleyball January 2027 (The Pond-Plano)",
+   "venue": "The Pond",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "4v4 & 6v6 · Rosters up to 9 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "4v4 REC+"
+    },
+    {
+     "name": "6v6 REC+"
+    }
+   ],
+   "starts_on": "2027-01-15",
+   "ends_on": "2027-02-26",
+   "weekdays": [
+    "Friday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-08",
+   "waitlist_on": null,
+   "team_price": "$379",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-25",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109644/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109644/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109562",
@@ -2245,7 +2374,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109562/details",
    "source_url": "https://austinssc.leaguelab.com/league/109562/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109563",
@@ -2289,7 +2418,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109563/details",
    "source_url": "https://austinssc.leaguelab.com/league/109563/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109559",
@@ -2330,7 +2459,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109559/details",
    "source_url": "https://austinssc.leaguelab.com/league/109559/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109553",
@@ -2374,7 +2503,48 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109553/details",
    "source_url": "https://austinssc.leaguelab.com/league/109553/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109612",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Wednesday Indoor Volleyball January 2027 (Dallas - North)",
+   "venue": "Greenhill",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 8 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-20",
+   "ends_on": "2027-03-03",
+   "weekdays": [
+    "Wednesday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-08",
+   "waitlist_on": null,
+   "team_price": "$529",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-25",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109612/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109612/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109560",
@@ -2418,7 +2588,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109560/details",
    "source_url": "https://austinssc.leaguelab.com/league/109560/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109566",
@@ -2462,7 +2632,48 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109566/details",
    "source_url": "https://austinssc.leaguelab.com/league/109566/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109692",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Thursday Sand Volleyball 4s January 2027 (BS Tavern-Uptown Dallas)",
+   "venue": "Bryan Street Tavern",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "4v4 · Rosters up to 6 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-21",
+   "ends_on": "2027-03-04",
+   "weekdays": [
+    "Thursday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-08",
+   "waitlist_on": null,
+   "team_price": "$399",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2026-12-25",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109692/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109692/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109561",
@@ -2503,7 +2714,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109561/details",
    "source_url": "https://austinssc.leaguelab.com/league/109561/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109548",
@@ -2544,7 +2755,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109548/details",
    "source_url": "https://austinssc.leaguelab.com/league/109548/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109554",
@@ -2588,7 +2799,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109554/details",
    "source_url": "https://austinssc.leaguelab.com/league/109554/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-8272aa44-a772-4f10-a142-d334b537abfe",
@@ -2632,7 +2843,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/8272aa44-a772-4f10-a142-d334b537abfe",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-b251cfa2-95a2-4674-901b-77dadb10b697",
@@ -2676,7 +2887,7 @@
    "signup_url": "https://members.acesintexas.com/leagues/b251cfa2-95a2-4674-901b-77dadb10b697",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "aces-1ad1e335-c294-4808-9a6f-991f3156746a",
@@ -2713,7 +2924,174 @@
    "signup_url": "https://members.acesintexas.com/leagues/1ad1e335-c294-4808-9a6f-991f3156746a",
    "source_url": "https://members.acesintexas.com/leagues",
    "feed_source": "aces",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109616",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "indoor",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Friday Indoor Volleyball January 2027 (Dallas - North)",
+   "venue": "Greenhill",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 8 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-22",
+   "ends_on": "2027-03-05",
+   "weekdays": [
+    "Friday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-15",
+   "waitlist_on": null,
+   "team_price": "$529",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2027-01-01",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109616/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109616/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109734",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": null,
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Sunday Arena Volleyball January 2027 (Fort Worth-Billy Bob's)",
+   "venue": "Billy Bob's Texas",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 8 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-24",
+   "ends_on": "2027-03-07",
+   "weekdays": [
+    "Sunday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-15",
+   "waitlist_on": null,
+   "team_price": "$379",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2027-01-01",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109734/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109734/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109658",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Sunday Sand Volleyball January 2027 The Pond (Plano-MadSand)",
+   "venue": "The Pond",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "6v6 · Rosters up to 9 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "4v4 REC+"
+    },
+    {
+     "name": "6v6 REC+"
+    }
+   ],
+   "starts_on": "2027-01-24",
+   "ends_on": "2027-03-14",
+   "weekdays": [
+    "Sunday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-15",
+   "waitlist_on": null,
+   "team_price": "$379",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2027-01-01",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109658/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109658/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
+  },
+  {
+   "id": "leaguelab-lonestarssc-109702",
+   "kind": "league",
+   "sport": "volleyball",
+   "surface": "sand",
+   "region": "dallas",
+   "state": "TX",
+   "series": null,
+   "org": "Lone Star Sports & Social Club",
+   "source_id": "leaguelab",
+   "title": "Wednesday Sand Volleyball 4s January 2027 (BS Tavern-Uptown Dallas)",
+   "venue": "Bryan Street Tavern",
+   "city": null,
+   "address": null,
+   "lat": null,
+   "lng": null,
+   "format": "4v4 · Rosters up to 9 Players",
+   "level": null,
+   "divisions": [
+    {
+     "name": "REC+"
+    }
+   ],
+   "starts_on": "2027-01-27",
+   "ends_on": "2027-03-10",
+   "weekdays": [
+    "Wednesday"
+   ],
+   "registration_opens": null,
+   "registration_deadline": "2027-01-15",
+   "waitlist_on": null,
+   "team_price": "$399",
+   "individual_price": "$79",
+   "price_note": "Early bird",
+   "price_changes_on": "2027-01-01",
+   "status": "open",
+   "signup_url": "https://lonestarssc.leaguelab.com/league/109702/details",
+   "source_url": "https://lonestarssc.leaguelab.com/league/109702/details",
+   "feed_source": "lonestar-ssc",
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109556",
@@ -2754,7 +3132,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109556/details",
    "source_url": "https://austinssc.leaguelab.com/league/109556/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "leaguelab-austinssc-109557",
@@ -2798,7 +3176,7 @@
    "signup_url": "https://austinssc.leaguelab.com/league/109557/details",
    "source_url": "https://austinssc.leaguelab.com/league/109557/details",
    "feed_source": "austin-ssc",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "texasao-2026-11-14",
@@ -2838,7 +3216,7 @@
    "signup_url": "https://texasao.org/registration/",
    "source_url": "https://texasao.org/",
    "feed_source": "texasao",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   },
   {
    "id": "nagva-88ed8a81-48c0-4aaa-ba5c-25847f6a309a",
@@ -2894,7 +3272,7 @@
    "signup_url": "https://www.nagva.org/tournaments-1/battle-of-the-alamo-2026",
    "source_url": "https://www.nagva.org/tournaments-1/battle-of-the-alamo-2026",
    "feed_source": "nagva-tx",
-   "checked_at": "2026-11-13T22:38:45.014Z"
+   "checked_at": "2026-11-14T00:54:24.303Z"
   }
  ]
 }
