@@ -6,7 +6,7 @@ import { moneyRange, upcomingDate, monthDay, clean, regionAt, notAfter } from '.
 import { parseAces } from '../lib/programs/aces.js';
 import { parseLeagueLab } from '../lib/programs/leaguelab.js';
 import { parseNagva, confirmedCounts, tournamentRecords, feeSchedule } from '../lib/programs/nagva.js';
-import { competitionOf, competitionUrls, parseCompetition } from '../lib/programs/reclub.js';
+import { clubCompetitions, competitionOf, competitionUrls, parseCompetition, read as readReclub } from '../lib/programs/reclub.js';
 import { buildFeed, isDue, runSources, DUE_AFTER_MS, REQUIRED } from '../lib/programs/feed.js';
 import { dateRange, parseTexasAO } from '../lib/programs/texasao.js';
 
@@ -113,6 +113,32 @@ test('NAGVA: upcoming Texas tournaments only, with the current fee and confirmed
   assert.equal(early.price_note, 'Current fee');
   // From the waitlist date, new teams wait.
   assert.equal(parseNagva(html, { now: Date.parse('2026-12-16T18:00:00Z'), regions: REGIONS })[0].status, 'waitlist');
+});
+
+test('Reclub: a club page gives its open-competition count; club links are read before the sitemap', async () => {
+  // A club page as Reclub serves it: the club record in the Nuxt payload, plus any competition links.
+  const clubPage = (active, body = '') => `<html><body>${body}<script type="application/json" id="__NUXT_DATA__">${JSON.stringify(
+    [{ data: 1 }, { 'club-@vex': 2 }, { club: 3 }, { name: 4, counts: 5 }, 'Vex Volleyball', { activeCompetitions: 6, pastCompetitions: 7 }, active, 13])}</script></body></html>`;
+  const id = '01a178f5-367b-7a23-9ab3-22b8e93c63d6';
+  assert.deepEqual(clubCompetitions(clubPage(1, `<a href="/c/${id}">League</a>`)), { name: 'Vex Volleyball', active: 1, links: [`https://reclub.co/c/${id}`] });
+  assert.deepEqual(clubCompetitions('<html></html>'), { name: null, active: null, links: [] });
+
+  const pages = {
+    'https://reclub.co/clubs/@vex': clubPage(1, `<a href="/c/${id}">League</a>`),
+    'https://reclub.co/clubs/@quiet': clubPage(2),
+    [`https://reclub.co/c/${id}`]: fx('reclub-competition.html'),
+  };
+  const asked = [];
+  const get = async (u) => { asked.push(u); return pages[u] ? { ok: true, status: 200, text: pages[u] } : { ok: false, status: 503, text: '' }; };
+  const logs = [];
+  // The sitemap is down: the club's linked league is still read, and a club with unlinked ones is logged.
+  const out = await readReclub({ get, now: Date.parse('2026-11-01T17:00:00Z'), regions: REGIONS,
+    options: { clubs: ['https://reclub.co/clubs/@vex', 'https://reclub.co/clubs/@quiet'] }, log: (m) => logs.push(m) });
+  assert.deepEqual(out.map((p) => p.id), [`reclub-${id}`]);
+  assert.equal(asked[0], 'https://reclub.co/clubs/@vex');
+  assert.deepEqual(logs, ['Reclub: Vex Volleyball has 2 open competition(s), 0 linked on its page']);
+  // Nothing reachable at all: an error, so the feed keeps the last good rows.
+  await assert.rejects(readReclub({ get: async () => ({ ok: false, status: 503 }), regions: REGIONS, options: { clubs: ['https://reclub.co/clubs/@x'] } }));
 });
 
 test('Reclub: sitemap competitions, and a volleyball league near Austin', () => {
