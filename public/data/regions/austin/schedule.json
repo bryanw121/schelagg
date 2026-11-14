@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-14T21:26:10.769Z",
+  "generatedAt": "2026-11-14T21:46:54.018Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,8 +14,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T21:13:14.610Z",
-      "count": 270
+      "checkedAt": "2026-11-14T21:43:22.828Z",
+      "count": 268
     },
     {
       "id": "austin-picklehaus",
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T21:13:14.610Z",
+      "checkedAt": "2026-11-14T21:43:22.829Z",
       "count": 153
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T21:13:14.610Z",
+      "checkedAt": "2026-11-14T21:43:22.829Z",
       "count": 8
     },
     {
@@ -44,8 +44,8 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T21:13:14.610Z",
-      "count": 12
+      "checkedAt": "2026-11-14T21:43:22.829Z",
+      "count": 11
     },
     {
       "id": "aces",
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-14T21:26:08.096Z",
+      "checkedAt": "2026-11-14T21:43:22.830Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T21:13:14.651Z",
+      "checkedAt": "2026-11-14T21:43:22.830Z",
       "count": 34
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-14T21:13:14.930Z",
+      "checkedAt": "2026-11-14T21:43:22.923Z",
       "count": 22
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T21:26:08.096Z",
+      "checkedAt": "2026-11-14T21:43:23.134Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,64 +136,12 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T21:26:08.096Z",
+      "checkedAt": "2026-11-14T21:43:23.215Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-austin-pickle-ranch-01a17532-30ff-7aad-a326-ee7e286eb4bd",
-      "date": "2026-11-14",
-      "start": "13:00",
-      "end": "15:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 14, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17532-30ff-7aad-a326-ee7e286eb4bd",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17538-f1bd-7bbd-9e3e-e0bc4ea132ec",
-      "date": "2026-11-14",
-      "start": "13:00",
-      "end": "15:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 14, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17538-f1bd-7bbd-9e3e-e0bc4ea132ec",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-pickle-pit-stop-8f27e891150530f3",
       "date": "2026-11-14",
@@ -11625,33 +11573,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-14",
       "venueId": "volleyworld-pflugerville",
-      "status": "scheduled"
-    },
-    {
-      "id": "volleyworld-2026-11-15-20:30-georgetown",
-      "date": "2026-11-15",
-      "start": "20:30",
-      "end": "22:00",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Georgetown)",
-      "city": "Georgetown",
-      "surface": "indoor",
-      "type": "Training",
-      "level": "Adults · Paty & Jesus",
-      "capacity": 12,
-      "spotsLeft": 12,
-      "classId": "f69y5PcBFofgLu4wYVwJ",
-      "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
-        "label": "Book on Volleyworld"
-      },
-      "source": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "sourceId": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
-      "venueId": "volleyworld-georgetown",
       "status": "scheduled"
     },
     {

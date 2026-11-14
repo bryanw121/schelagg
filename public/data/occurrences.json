@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-14T21:26:10.769Z",
+  "generatedAt": "2026-11-14T21:46:54.018Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -221,62 +221,6 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17532-30ff-7aad-a326-ee7e286eb4bd",
-      "session_id": "openplay-austin-pickle-ranch-01a17532-30ff-7aad-a326-ee7e286eb4bd",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-14T19:00:00.000Z",
-      "ends_at": "2026-11-14T21:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17532-30ff-7aad-a326-ee7e286eb4bd",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 14, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-14",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17538-f1bd-7bbd-9e3e-e0bc4ea132ec",
-      "session_id": "openplay-austin-pickle-ranch-01a17538-f1bd-7bbd-9e3e-e0bc4ea132ec",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-14T19:00:00.000Z",
-      "ends_at": "2026-11-14T21:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17538-f1bd-7bbd-9e3e-e0bc4ea132ec",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 14, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-14",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2421,36 +2365,6 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "volleyworld-2026-11-15-20:30-georgetown",
-      "session_id": "volleyworld-2026-11-15-20:30-georgetown",
-      "source_id": "volleyworld",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Adult Volleyball Training",
-      "venue": "Volleyworld (Georgetown)",
-      "city": "Georgetown",
-      "level": "Adults · Paty & Jesus",
-      "price": null,
-      "starts_at": "2026-11-16T02:30:00.000Z",
-      "ends_at": "2026-11-16T04:00:00.000Z",
-      "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
-      "signup_label": "Book on Volleyworld",
-      "note": null,
-      "canceled": false,
-      "verified_at": "2026-11-14",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Training",
-        "capacity": 12,
-        "spotsLeft": 12,
-        "classId": "f69y5PcBFofgLu4wYVwJ"
-      },
-      "venue_id": "volleyworld-georgetown",
       "status": "scheduled",
       "previous_starts_at": null
     },
