@@ -3,7 +3,7 @@ on:
   push:
     branches: [probe/reclub-comps]
 permissions:
-  contents: read
+  contents: write
 jobs:
   probe:
     runs-on: ubuntu-latest
@@ -15,6 +15,9 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: node probe/reclub-comps.mjs
+      - run: |
+          git config user.name volley-atx-bot; git config user.email volley-atx-bot@users.noreply.github.com
+          git add probe/vex && git commit -qm 'Vex pages' && git push -q origin HEAD:probe/vex-pages -f
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: vex, path: vex.png }
