@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-14T21:16:49.024Z",
+  "generatedAt": "2026-11-14T21:26:10.769Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-14T21:13:14.611Z",
+      "checkedAt": "2026-11-14T21:26:08.096Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T21:13:17.173Z",
+      "checkedAt": "2026-11-14T21:26:08.096Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -136,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-14T21:13:17.381Z",
+      "checkedAt": "2026-11-14T21:26:08.096Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
