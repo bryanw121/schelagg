@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-14T23:17:00.314Z",
+  "generatedAt": "2026-11-14T23:46:17.053Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -304,34 +304,6 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a1b275-c82a-744a-a20b-8f1a879ca20c",
-      "session_id": "openplay-austin-pickle-ranch-01a1b275-c82a-744a-a20b-8f1a879ca20c",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-14T21:00:00.000Z",
-      "ends_at": "2026-11-14T23:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a1b275-c82a-744a-a20b-8f1a879ca20c",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 14, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-14",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
       "status": "scheduled",
       "previous_starts_at": null
     },
