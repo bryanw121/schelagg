@@ -49,6 +49,17 @@ test('the 2027 Winter League: Sundays, Jan 24 to the Mar 7 playoffs, $480 early 
   assert.equal(p.signup_url, 'https://forms.gle/6mPzfASej54AiLQ29');
 });
 
+test('a future event whose title never says "tournament" (the Qilin division page, next season)', () => {
+  const next = page('qilin').replace('September 12th, 2026', 'March 13th, 2027').replace(/ends on 8\/29\/2026/, 'ends on 2/27/2027');
+  const p = parseVexPage(next, { url: `${ORIGIN}/qilin`, now: NOW });
+  assert.equal(p.kind, 'tournament');
+  assert.equal(p.title, 'Vex · Fall Qilin (B/BB)');
+  assert.equal(p.level, 'B/BB');
+  assert.equal(p.starts_on, '2027-03-13');
+  assert.equal(p.team_price, '$360');
+  assert.equal(p.price_changes_on, '2027-02-27');
+});
+
 test('past tournaments and pages that are not events are left out', () => {
   for (const f of ['qilin', 'koi', '6-feet-and-under-1', 'tournaments-2']) assert.equal(parseVexPage(page(f), { url: f, now: NOW }), null, f);
   assert.equal(parseVexPage('<main><h1>FAQs</h1></main>', { now: NOW }), null);
