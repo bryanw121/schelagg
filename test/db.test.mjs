@@ -395,7 +395,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
     out: join(dir, 'schedule.json'), feed: join(dir, 'occurrences.json'), watch: join(dir, 'watch.json'),
     failures: join(dir, 'scrape-failures.md'), health: join(dir, 'health.json'), changes: join(dir, 'c.md'), changesJson: join(dir, 'c.json'),
   });
-  const apiOnly = loadSources().sources.filter((s) => s.adapter.needsBrowser === false); // volleyworld, reclub and the two rinks
+  const apiOnly = loadSources().sources.filter((s) => s.region === 'austin' && s.adapter.needsBrowser === false); // volleyworld, reclub and the two rinks (Austin's captured responses)
   const result = await runScrape({ sources: apiOnly, paths, fetch: network, now: () => NOW, log: () => {}, launchBrowser: async () => { throw new Error('no browser'); } });
 
   await withDb(async (db) => {

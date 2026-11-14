@@ -1,0 +1,51 @@
+{
+  "_doc": "Sources for this region. 'adapter' names a module in scripts/adapters; platform adapters (reclub, aces, daysmart) take their venues/pages from 'options'. region and timezone come from region.json; sport from 'defaults' unless a source sets its own. 'cadence' is how often a source is scraped (30m, 1h, 6h, 1d; default 30m): the scrape clock ticks every 30 minutes by day and hourly overnight, and each tick runs only the sources that are due. Add a venue on an existing platform here; a new platform needs an adapter in scripts/adapters and a line in lib/registry.js.",
+  "schemaVersion": 2,
+  "defaults": {
+    "sport": "volleyball"
+  },
+  "sources": [
+    {
+      "id": "dallas-reclub",
+      "name": "Reclub · DFW",
+      "adapter": "reclub",
+      "cadence": "1h",
+      "options": {
+        "clubs": [
+          "https://reclub.co/clubs/@ync-volleyball-dallas-texas-usa-95"
+        ],
+        "venues": [],
+        "fallbackVenue": {
+          "city": "Dallas",
+          "surface": "indoor"
+        },
+        "discover": {
+          "_doc": "Weekly discovery of DFW volleyball clubs on Reclub not in clubs (scripts/discover-reclub.mjs); same rules as Austin's.",
+          "sport": "volleyball",
+          "community": "Dallas, TX, USA",
+          "center": [
+            32.8,
+            -96.95
+          ],
+          "radiusKm": 60,
+          "queries": [
+            "site:reclub.co volleyball Dallas",
+            "site:reclub.co volleyball \"Dallas, Tx\"",
+            "site:reclub.co/clubs volleyball Dallas",
+            "site:reclub.co volleyball Plano OR Frisco OR Richardson",
+            "site:reclub.co volleyball \"Fort Worth\"",
+            "site:reclub.co volleyball Irving OR Arlington OR Carrollton"
+          ],
+          "budget": {
+            "brave": 60,
+            "claude": 10
+          }
+        }
+      }
+    }
+  ],
+  "manual": {
+    "file": "manual.json",
+    "cadence": "1d"
+  }
+}

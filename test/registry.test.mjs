@@ -4,13 +4,13 @@ import { loadSources, resolveSources } from '../lib/registry.js';
 import { tagSession, validateSessions } from '../lib/session.js';
 
 test('the real config loads: every source has an adapter, sport, region and time zone', () => {
-  const { sources, manual } = loadSources();
+  const { sources, manuals } = loadSources();
   assert.ok(sources.length >= 5);
   for (const s of sources) {
     assert.equal(typeof s.adapter.scrape, 'function', s.id);
     assert.ok(s.sport && s.region && s.timezone, s.id);
   }
-  assert.equal(manual.id, 'manual');
+  assert.ok(manuals.length >= 1 && manuals.every((m) => m.id === 'manual'));
 });
 
 test('defaults apply and a source can override them (another sport or city)', () => {
