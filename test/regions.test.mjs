@@ -26,14 +26,14 @@ function twoRegions() {
   return dir;
 }
 
-test('the real config has the Austin region with every source tagged by it', () => {
-  assert.deepEqual(regionIds(), ['austin']);
+test('the real config has Austin and Dallas–Fort Worth, every source tagged by its region', () => {
+  assert.deepEqual(regionIds(), ['austin', 'dallas']);
   const { sources, manuals, manual, regions } = loadSources();
-  assert.ok(sources.length >= 7);
-  for (const s of sources) assert.deepEqual([s.region, s.timezone], ['austin', 'America/Chicago'], s.id);
-  assert.equal(manuals.length, 1);
-  assert.equal(manual.file, 'config/regions/austin/manual.json');
-  assert.deepEqual(regions.map((r) => r.id), ['austin']);
+  assert.ok(sources.filter((s) => s.region === 'austin').length >= 7);
+  for (const s of sources) assert.deepEqual([['austin', 'dallas'].includes(s.region), s.timezone], [true, 'America/Chicago'], s.id);
+  assert.deepEqual(manuals.map((m) => m.file), ['config/regions/austin/manual.json', 'config/regions/dallas/manual.json']);
+  assert.equal(manual, null, 'with more than one region there is no single manual');
+  assert.deepEqual(regions.map((r) => r.id), ['austin', 'dallas']);
 });
 
 test('regions: sources take the region and time zone from region.json; ids must be unique across regions', () => {

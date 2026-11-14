@@ -20,7 +20,10 @@ import { page, directory, holyHome, holyDetail, holyId, holySchedule } from './f
 const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
 const REF = '2026-10-25';
-const { sources: SOURCES, manual: MANUAL } = loadSources();
+const { sources: ALL_SOURCES, manuals: MANUALS } = loadSources();
+// These tests replay Austin's captured responses; other regions' sources are checked below.
+const SOURCES = ALL_SOURCES.filter((s) => s.region === 'austin');
+const MANUAL = MANUALS.find((m) => m.region === 'austin' || /\/austin\//.test(m.file));
 const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
 const SPORT_OF = { 'austin-club-openplay': 'pickleball', 'austin-picklehaus': 'pickleball', 'holy-pickle': 'pickleball', 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball', 'georgetown-pickleball': 'pickleball', 'leander-pickleball': 'pickleball' }; // everything else: volleyball
 const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
@@ -209,8 +212,9 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.ok(schedule.venues.some((v) => v.id === 'crossover-ice' && v.parent === 'crossover'));
   // A place not in its region's venues.json is a warning (manual sessions report through the health check).
   assert.ok(r.logs.some((l) => /warn  manual: venue "Zilker Park" isn't in its region's venues\.json/.test(l)));
-  // Calendar files per sport, next to the feed.
-  const ics = readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8');
+  // Calendar files per sport: every region next to the feed, and each region's own (what the site links).
+  assert.match(readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8'), /X-WR-CALNAME:Schelagg · public skating/);
+  const ics = readFileSync(join(r.ws.dir, 'regions/austin/ice_skating.ics'), 'utf8');
   assert.match(ics, /X-WR-CALNAME:Schelagg · Austin public skating/);
   assert.match(ics, /UID:daysmart-chaparralice-345508@schelagg/);
   assert.match(readFileSync(join(r.ws.dir, 'volleyball.ics'), 'utf8'), /UID:reclub-VONMM8@schelagg/);
@@ -508,4 +512,11 @@ test('build-courts: with no local file, the last good copy comes from the live s
   const empty = await buildCourts({ venues: VENUES, out: join(dir, 'b.json'), fetch: skedda({ down: allDown }), now: () => NOW, log: () => {} });
   assert.deepEqual(empty.venues, []);
   assert.deepEqual(readJson(join(dir, 'b.json')).venues, []);
+});
+
+test('config: the Dallas–Fort Worth region loads with its own sources, time zone and no shared ids', () => {
+  const dallas = ALL_SOURCES.filter((s) => s.region === 'dallas');
+  assert.deepEqual(dallas.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['dallas-reclub', 'reclub', 'America/Chicago', 'volleyball']]);
+  const ids = ALL_SOURCES.map((s) => s.id);
+  assert.equal(new Set(ids).size, ids.length, 'source ids are unique across regions');
 });
