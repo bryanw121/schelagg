@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         271,
-        271,
         262,
         262,
         262,
@@ -11,9 +10,10 @@
         255,
         255,
         255,
-        255
+        255,
+        263
       ],
-      "sessions": 255,
+      "sessions": 263,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -38,13 +38,13 @@
         155,
         155,
         155,
-        155
+        153
       ],
-      "sessions": 155,
+      "sessions": 153,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.87,
+        "level": 0.88,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 670
+      "failStreak": 671
     },
     "atxbeach": {
       "counts": [
@@ -230,9 +230,9 @@
         5,
         5,
         5,
+        7,
+        7,
         5,
-        7,
-        7,
         5,
         5,
         5
@@ -367,9 +367,9 @@
         35,
         35,
         35,
-        35
+        34
       ],
-      "sessions": 35,
+      "sessions": 34,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -384,6 +384,12 @@
       },
       "shape": [
         "best_description",
+        "best_description.has_afternoon_events",
+        "best_description.has_evening_events",
+        "best_description.has_morning_events",
+        "best_description.league_id",
+        "best_description.open_teams",
+        "best_description.team_count",
         "booking_id",
         "create_d",
         "create_u",
@@ -434,9 +440,9 @@
         21,
         21,
         21,
-        21
+        22
       ],
-      "sessions": 21,
+      "sessions": 22,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -525,13 +531,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 379
+      "failStreak": 380
     },
     "leander-pickleball": {
-      "failStreak": 379
+      "failStreak": 380
     },
     "dallas-reclub": {
-      "failStreak": 11
+      "failStreak": 12
     },
     "manual": {
       "counts": [
@@ -579,8 +585,8 @@
     "manual:beecave-on-ice-sun:changed:2026-11-12",
     "manual:beecave-on-ice-tue:changed:2026-11-12",
     "manual:four-seasons-ice-rodeo:changed:2026-11-13",
+    "manual:hanovers-open:changed:2026-11-09",
     "manual:hanovers-open:unverified",
-    "manual:hanovers-open:watch",
     "manual:ssc-crossover-mon-sand:changed:2026-11-11",
     "manual:ssc-crossover-mon-sand:unverified"
   ]
