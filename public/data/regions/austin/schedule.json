@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T16:43:21.616Z",
+  "generatedAt": "2026-11-15T17:07:29.128Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:05.115Z",
+      "checkedAt": "2026-11-15T17:03:56.081Z",
       "count": 274
     },
     {
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:05.116Z",
+      "checkedAt": "2026-11-15T17:03:56.081Z",
       "count": 155
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:05.116Z",
+      "checkedAt": "2026-11-15T17:03:56.082Z",
       "count": 8
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:05.116Z",
+      "checkedAt": "2026-11-15T17:03:56.082Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-15T16:43:16.541Z",
+      "checkedAt": "2026-11-15T17:03:56.083Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -202,7 +202,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:08.019Z",
+      "checkedAt": "2026-11-15T17:03:56.083Z",
       "count": 35
     },
     {
@@ -215,7 +215,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:09.019Z",
+      "checkedAt": "2026-11-15T17:03:56.115Z",
       "count": 24
     },
     {
@@ -241,7 +241,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-15T16:43:16.542Z",
+      "checkedAt": "2026-11-15T17:03:56.431Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -256,7 +256,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-15T16:43:16.542Z",
+      "checkedAt": "2026-11-15T17:03:56.641Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -11926,7 +11926,7 @@
       "type": "Training",
       "level": "Adults · Adan",
       "capacity": 12,
-      "spotsLeft": 12,
+      "spotsLeft": 11,
       "classId": "uWYFtjB2lxZrUViT33w3",
       "signup": {
         "url": "https://app.arketa.co/iframe/volleyworld/schedule",
