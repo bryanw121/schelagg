@@ -11,18 +11,23 @@ import { loadSources } from '../lib/registry.js';
 import { repoPath } from '../lib/paths.js';
 import { validateSessions, SCHEMA_VERSION, SPORT_ATTRIBUTES } from '../lib/session.js';
 import { FEED_VERSION } from '../lib/occurrences.js';
-import { VENUES } from '../lib/skedda.js';
+import { VENUES as ALL_COURT_VENUES } from '../lib/skedda.js';
+const VENUES = ALL_COURT_VENUES.filter((v) => !v.system); // the Skedda ones; OpenCourt has its own tests
 import { runScrape, scrapePaths, buildCourts, HORIZON_DAYS, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
 import { judgeFix } from '../lib/health.js';
+import { page, directory, holyHome, holyDetail, holyId, holySchedule } from './fixtures/public-calendars.mjs';
 
 const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
 const NOW = new Date('2026-10-25T20:00:00Z'); // Sunday 3pm in Austin
 const REF = '2026-10-25';
-const { sources: SOURCES, manual: MANUAL } = loadSources();
+const { sources: ALL_SOURCES, manuals: MANUALS } = loadSources();
+// These tests replay Austin's captured responses; other regions' sources are checked below.
+const SOURCES = ALL_SOURCES.filter((s) => s.region === 'austin');
+const MANUAL = MANUALS.find((m) => m.region === 'austin' || /\/austin\//.test(m.file));
+const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'sweatpals', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
+const SPORT_OF = { 'austin-club-openplay': 'pickleball', 'austin-picklehaus': 'pickleball', 'holy-pickle': 'pickleball', 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball', 'georgetown-pickleball': 'pickleball', 'leander-pickleball': 'pickleball' }; // everything else: volleyball
 // Velocity's WordPress REST API: the captured pages, filtered to the slugs asked for.
 const velocityPages = (u) => JSON.stringify(JSON.parse(fixture('velocity-wp-pages.json')).filter((p) => (u.searchParams.get('slug') ?? '').split(',').includes(p.slug)));
-const ADAPTER_IDS = ['volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field'];
-const SPORT_OF = { 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating' }; // everything else: volleyball
 const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
 // DaySmart's events API for the rink sources: one page per company (paging is covered in daysmart.test.mjs).
 const daysmartEvents = (fixture, company) => {
@@ -100,6 +105,13 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
     calls.push(u.href);
     const res = (body, status = 200) => new Response(body, { status });
     if (down.has(u.hostname)) return res('down', 503);
+    if (u.hostname === 'openplaymap.com') return res(page(directory));
+    if (u.hostname === 'app.getopencourt.com') {
+      const haus = u.pathname.includes('austinpicklehaus');
+      if (u.pathname.startsWith('/api/club/')) return new Response(JSON.stringify(holySchedule(u.searchParams.get('date'))).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId));
+      const fixture = page(u.pathname.includes('/schedule/event/') ? holyDetail : holyHome).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId).replaceAll('holy-pickle', haus ? 'austinpicklehaus' : 'holy-pickle');
+      return res(fixture);
+    }
     if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return res(arketa ?? fixture('arketa-volleyworld-schedule.json'));
     if (u.hostname === 'reclub.co') {
       if (CLUBS[u.pathname]) return res(fixture(CLUBS[u.pathname]));
@@ -108,6 +120,10 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
     }
     if (u.hostname === 'apps.daysmartrecreation.com') return res(daysmartEvents(fixture, u.searchParams.get('company')));
     if (u.hostname === 'www.austinvelocity.com') return res(velocityPages(u));
+    if (u.hostname === 'sweatpals.com') return res(fixture(`sweatpals-host-${u.pathname.split('/').pop()}.html`));
+    if (u.hostname === 'www.austintexas.gov') return res(fixture('austin-pickleball.html'));
+    if (u.hostname === 'parks.georgetown.org') return res(fixture('georgetown-pickleball.html'));
+    if (u.hostname === 'www.leandertx.gov') return res(fixture('leander-pickleball.html'));
     if (u.hostname === 'example.test') {
       if (u.pathname === '/broken') return res('oops', 500);
       return res(pages[u.pathname] ?? '<html><body><h1>Sunday Sand Social</h1><p>7pm, $10</p><script>var t=1</script></body></html>');
@@ -198,8 +214,9 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.ok(schedule.venues.some((v) => v.id === 'crossover-ice' && v.parent === 'crossover'));
   // A place not in its region's venues.json is a warning (manual sessions report through the health check).
   assert.ok(r.logs.some((l) => /warn  manual: venue "Zilker Park" isn't in its region's venues\.json/.test(l)));
-  // Calendar files per sport, next to the feed.
-  const ics = readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8');
+  // Calendar files per sport: every region next to the feed, and each region's own (what the site links).
+  assert.match(readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8'), /X-WR-CALNAME:Schelagg · public skating/);
+  const ics = readFileSync(join(r.ws.dir, 'regions/austin/ice_skating.ics'), 'utf8');
   assert.match(ics, /X-WR-CALNAME:Schelagg · Austin public skating/);
   assert.match(ics, /UID:daysmart-chaparralice-345508@schelagg/);
   assert.match(readFileSync(join(r.ws.dir, 'volleyball.ics'), 'utf8'), /UID:reclub-VONMM8@schelagg/);
@@ -317,7 +334,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['volleyworld', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'velocity', 'reclub', 'sweatpals', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));
@@ -457,7 +474,7 @@ function skedda({ down = new Set(), site } = {}) {
 
 test('build-courts: writes courts.json for every venue from Skedda', async () => {
   const out = join(tempDir(), 'courts.json');
-  const body = await buildCourts({ out, fetch: skedda(), now: () => NOW, log: () => {} });
+  const body = await buildCourts({ venues: VENUES, out, fetch: skedda(), now: () => NOW, log: () => {} });
   const file = readJson(out);
   assert.deepEqual(file, body);
   assert.deepEqual([file.from, file.days, file.fetchedAt, file.errors], [REF, 14, NOW.toISOString(), []]);
@@ -473,10 +490,10 @@ test('build-courts: writes courts.json for every venue from Skedda', async () =>
 
 test('build-courts: a failing venue keeps the last good copy from the local file, marked stale', async () => {
   const out = join(tempDir(), 'courts.json');
-  await buildCourts({ out, fetch: skedda(), now: () => NOW, log: () => {} });
+  await buildCourts({ venues: VENUES, out, fetch: skedda(), now: () => NOW, log: () => {} });
   const good = readJson(out).venues.find((v) => v.id === 'treehouse');
   const logs = [];
-  const body = await buildCourts({ out, fetch: skedda({ down: new Set(['treehousegym.skedda.com']) }), now: () => new Date(NOW.getTime() + 900e3), log: (l) => logs.push(l) });
+  const body = await buildCourts({ venues: VENUES, out, fetch: skedda({ down: new Set(['treehousegym.skedda.com']) }), now: () => new Date(NOW.getTime() + 900e3), log: (l) => logs.push(l) });
   assert.deepEqual(body.errors.map((e) => [e.venue, e.calendar]), [['treehouse', 'https://treehousegym.skedda.com/booking']]);
   assert.deepEqual(body.venues.find((v) => v.id === 'treehouse'), { ...good, stale: true });
   assert.equal(body.venues.find((v) => v.id === 'velocity').stale, undefined);
@@ -488,13 +505,22 @@ test('build-courts: with no local file, the last good copy comes from the live s
   const live = { venues: [{ id: 'velocity', calendar: 'https://austinvelocity.skedda.com/booking', hours: [], facilities: [] }] };
   const allDown = new Set(VENUES.map((v) => v.host));
   const fetch = skedda({ down: allDown, site: { base: 'https://example.test/schelagg/data/courts.json', body: live } });
-  const body = await buildCourts({ out: join(dir, 'a.json'), siteUrl: 'https://example.test/schelagg', fetch, now: () => NOW, log: () => {} });
+  const body = await buildCourts({ venues: VENUES, out: join(dir, 'a.json'), siteUrl: 'https://example.test/schelagg', fetch, now: () => NOW, log: () => {} });
   assert.ok(fetch.calls.includes('https://example.test/schelagg/data/courts.json'));
   assert.deepEqual(body.venues, [{ ...live.venues[0], stale: true }]);
   assert.equal(body.errors.length, 2);
 
   // No local file, no site copy, every venue down: nothing usable (the script exits 1 on this).
-  const empty = await buildCourts({ out: join(dir, 'b.json'), fetch: skedda({ down: allDown }), now: () => NOW, log: () => {} });
+  const empty = await buildCourts({ venues: VENUES, out: join(dir, 'b.json'), fetch: skedda({ down: allDown }), now: () => NOW, log: () => {} });
   assert.deepEqual(empty.venues, []);
   assert.deepEqual(readJson(join(dir, 'b.json')).venues, []);
+});
+
+test('config: the Dallas–Fort Worth region loads with its own sources, time zone and no shared ids', () => {
+  const dallas = ALL_SOURCES.filter((s) => s.region === 'dallas');
+  assert.deepEqual(dallas.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['dallas-reclub', 'reclub', 'America/Chicago', 'volleyball'], ['dallas-meetup', 'ical', 'America/Chicago', 'volleyball']]);
+  const houston = ALL_SOURCES.filter((s) => s.region === 'houston');
+  assert.deepEqual(houston.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['houston-reclub', 'reclub', 'America/Chicago', 'volleyball']]);
+  const ids = ALL_SOURCES.map((s) => s.id);
+  assert.equal(new Set(ids).size, ids.length, 'source ids are unique across regions');
 });

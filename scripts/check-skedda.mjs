@@ -4,7 +4,7 @@ import { VENUES, loadVenue } from '../lib/skedda.js';
 import { today } from '../lib/time.js';
 
 const from = today();
-for (const v of VENUES) {
+for (const v of VENUES.filter((x) => !x.system || x.system === 'skedda')) {
   try {
     const r = await loadVenue(v, from, 2);
     const courts = r.facilities.flatMap((f) => f.courts);

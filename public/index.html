@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Schelagg</title>
-<meta name="description" content="Where to play today: volleyball open play, training, leagues and live court availability, plus public ice skating, with sign-up links.">
+<meta name="description" content="Where to play today: volleyball, pickleball open play and public ice skating, with schedules, venue directions and sign-up links, plus leagues and tournaments open for sign-up.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
@@ -12,37 +12,48 @@
 <body>
 <header>
   <div class="wrap">
+    <!-- Brand row: the sport (opens a sheet) and 📍; under it the city and how fresh the data is. -->
     <div class="brand">
       <h1>Schel<span>agg</span></h1>
-      <span class="region"><span id="regionName"></span><select id="regionPick" aria-label="City" hidden></select><button type="button" id="nearest" class="nearest" title="Nearest city to me" aria-label="Nearest city to me" hidden>📍</button></span>
-      <span class="asof" id="asof">Loading…</span>
+      <button type="button" id="sportBtn" class="pill-btn sport-btn" data-sheet="sportSheet" aria-haspopup="dialog"></button>
+      <button type="button" id="nearest" class="nearest" title="Nearest city to me" aria-label="Nearest city to me" hidden><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></button>
     </div>
-    <div class="tabs sports" role="group" aria-label="Sport" id="sports"></div>
-    <div class="tabs" role="group" aria-label="Surface" id="tabs"></div>
-    <div class="days" role="group" aria-label="Day" id="days"></div>
+    <div class="sub"><span class="region"><span id="regionName"></span><select id="regionPick" aria-label="City" hidden></select></span><span class="asof" id="asof">Loading…</span></div>
+    <div id="filters" class="filters">
+      <div class="days" role="group" aria-label="Day" id="days"></div>
+      <div class="chips-row">
+        <div class="seg" role="group" aria-label="What to find" id="calendarModes"></div>
+        <button type="button" id="levelBtn" class="pill-btn chip-btn" data-sheet="levelSheet" aria-haspopup="dialog" hidden></button>
+      </div>
+    </div>
   </div>
 </header>
 
+<!-- Bottom sheets: tap an option and it applies at once (Esc, ✕ or a tap outside closes). -->
+<dialog class="sheet" id="sportSheet" aria-labelledby="sportSheetTitle">
+  <div class="sheet-in">
+    <div class="sheet-head"><h2 id="sportSheetTitle">Sport</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
+    <div class="opts" role="group" aria-label="Sport" id="sports"></div>
+  </div>
+</dialog>
+<dialog class="sheet" id="levelSheet" aria-labelledby="levelSheetTitle">
+  <div class="sheet-in">
+    <div class="sheet-head"><h2 id="levelSheetTitle">Level</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
+    <p class="note" id="levelNote"></p>
+    <div class="opts" role="group" aria-label="Level" id="tabs"></div>
+  </div>
+</dialog>
+
+<!-- List / Map: one floating button for the other view. -->
+<div class="layout-fab" id="layout" hidden></div>
+
 <main>
   <div class="wrap">
-    <section class="card" id="glance">
-      <div class="dayhead"><h3 id="calTitle">Day at a glance</h3></div>
-      <div class="key">
-        <span><i style="background:var(--indoor)"></i>Indoor session</span>
-        <span><i style="background:var(--sand)"></i>Sand session</span>
-        <span><i class="hatch"></i>Court booked</span>
-        <span><i style="background:var(--accent)"></i>Booked for a sign-up meet</span>
-        <span><i style="background:var(--open);border:1px solid var(--line)"></i>Open to rent</span>
-        <span><i style="background:var(--closed)"></i>Closed</span>
-        <span><i style="background:var(--ink);opacity:.55;width:2px"></i>Closing time</span>
-        <span><i style="background:var(--bad);width:2px"></i>Now</span>
-      </div>
-      <div class="gantt" id="cal"><p class="loading">Loading court calendars…</p></div>
-      <div id="calErrors"></div>
-      <p class="note" style="margin:0" id="calNote"></p>
+    <section class="card map-card" id="mapCard" hidden>
+      <div class="dayhead"><h3 id="mapTitle">Map</h3></div>
+      <div class="map-wrap"><div id="map" class="map" role="region" aria-label="Map of the day's places"></div><div id="mapPanel" class="map-panel" aria-live="polite"></div></div>
     </section>
-
-    <div>
+    <div id="sessionsPanel">
       <div class="dayhead">
         <h2 id="dayTitle">Today</h2>
         <label class="toggle"><input type="checkbox" id="showAll"> Show ended &amp; unconfirmed</label>
@@ -50,13 +61,47 @@
       <div class="list" id="list"><p class="loading">Loading schedules…</p></div>
     </div>
 
+    <!-- Leagues / Tournaments: open for registration (data/programs.json, twice a day), filtered by host. -->
+    <div id="signupsPanel" hidden>
+      <div class="chips-row kinds" role="group" aria-label="Host" id="hosts"></div>
+      <p class="vh" id="programsCount" role="status"></p>
+      <div class="programs" id="programs"><p class="loading">Loading leagues and tournaments…</p></div>
+      <p class="note" id="programsNote"></p>
+    </div>
+
+    <section class="card" id="glance">
+      <div class="dayhead"><h3 id="calTitle">Day at a glance</h3></div>
+      <div class="key">
+        <span><i style="background:color-mix(in srgb,var(--ok) 72%,var(--panel))"></i>All free</span>
+        <span><i style="background:color-mix(in srgb,var(--ok) 30%,var(--panel))"></i>Some free</span>
+        <span><i class="hatch"></i>Booked</span>
+        <span><i style="background:var(--accent)"></i>Open to join</span>
+        <span><i style="background:var(--closed)"></i>Closed</span>
+      </div>
+      <div class="gantt" id="cal"><p class="loading">Loading court calendars…</p></div>
+      <div id="calErrors"></div>
+      <p class="note" style="margin:0" id="calNote"></p>
+    </section>
+
+    <section class="card" id="bookingCalendarsCard" hidden>
+      <h3>Book a court</h3>
+      <p class="note" id="bookingIntro">Reserve a court for your own group on the venue's site, where you'll see open times and prices.</p>
+      <div id="bookingCalendars"></div>
+    </section>
+
+    <section class="card" id="venueCalendarsCard" hidden>
+      <h3>Venue hours, prices &amp; calendars</h3>
+      <p class="note">Opening hours describe the facility. Use the dated sessions above for open play, and confirm final prices and eligibility when booking.</p>
+      <div id="venueCalendars"></div>
+    </section>
+
     <section class="card" id="courtsCard">
       <h3 id="courtsTitle">Free public courts</h3>
       <p class="note" style="margin:0" id="courtsNote"></p>
       <div class="courts" id="courts"></div>
     </section>
 
-    <section class="card">
+    <section class="card" id="sessionFreshness">
       <h3>How fresh is this?</h3>
       <div class="legend">
         <span><span class="pill fresh">Verified</span> checked within 7 days</span>

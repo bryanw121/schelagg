@@ -44,6 +44,24 @@ jobs:
         continue-on-error: true
         env:
           SITE_URL: ${{ steps.pages.outputs.base_url }}
+      # The Map view's map (public/maps): cut once a month, or when the venues move, and cached in
+      # between; a failure only hides the Map button (scripts/build-maps.mjs).
+      - id: month
+        run: echo "month=$(date -u +%Y-%m)" >> "$GITHUB_OUTPUT"
+      - id: maps-cache
+        uses: actions/cache@v4
+        with:
+          path: public/maps
+          key: maps-${{ steps.month.outputs.month }}-${{ hashFiles('config/regions/*/region.json', 'config/regions/*/venues.json', 'scripts/build-maps.mjs', 'lib/map-area.js') }}
+      - name: Build the maps
+        if: steps.maps-cache.outputs.cache-hit != 'true'
+        continue-on-error: true
+        run: |
+          gh release download -R protomaps/go-pmtiles -p '*Linux_x86_64.tar.gz' -O "$RUNNER_TEMP/pmtiles.tgz"
+          tar xzf "$RUNNER_TEMP/pmtiles.tgz" -C "$RUNNER_TEMP" pmtiles
+          node scripts/build-maps.mjs --pmtiles "$RUNNER_TEMP/pmtiles" --maxzoom 14
+        env:
+          GH_TOKEN: ${{ github.token }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public

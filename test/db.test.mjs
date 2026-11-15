@@ -11,6 +11,7 @@ import { PGlite } from '@electric-sql/pglite';
 import { loadSources } from '../lib/registry.js';
 import { runScrape, scrapePaths, FEED_HORIZON_DAYS } from '../lib/pipeline.js';
 import { toOccurrences } from '../lib/occurrences.js';
+import { page, directory, holyHome, holyDetail, holyId, holySchedule } from './fixtures/public-calendars.mjs';
 import {
   wrapPglite, migrate, writeRun, persistRun, planRun, diffFields, sessionRow, occurrenceRow, sourceRows,
   canonical, feedOrder, isPast, redact, queryOccurrences, loadPublishedFromDb, UNTRACKED_FIELDS,
@@ -365,7 +366,17 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
   const CLUBS = { '/clubs/@vex_volleyball': 'reclub-club-vex_volleyball.html', '/clubs/@austin-lawn-club': 'reclub-club-austin-lawn-club.html' };
   const network = async (url) => {
     const u = new URL(String(url));
+    if (u.hostname === 'openplaymap.com') return new Response(page(directory));
+    if (u.hostname === 'app.getopencourt.com') {
+      const haus = u.pathname.includes('austinpicklehaus');
+      if (u.pathname.startsWith('/api/club/')) return new Response(JSON.stringify(holySchedule(u.searchParams.get('date'))).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId));
+      const fixture = page(u.pathname.includes('/schedule/event/') ? holyDetail : holyHome).replaceAll(holyId, haus ? '00000000-0000-0000-0000-000000000004' : holyId).replaceAll('holy-pickle', haus ? 'austinpicklehaus' : 'holy-pickle');
+      return new Response(fixture);
+    }
     if (u.hostname === 'widget-api-tkaeguucxq-uc.a.run.app') return new Response(fixture('arketa-volleyworld-schedule.json'));
+    if (u.hostname === 'www.austintexas.gov') return new Response(fixture('austin-pickleball.html'));
+    if (u.hostname === 'parks.georgetown.org') return new Response(fixture('georgetown-pickleball.html'));
+    if (u.hostname === 'www.leandertx.gov') return new Response(fixture('leander-pickleball.html'));
     if (u.hostname === 'apps.daysmartrecreation.com') {
       // One page per company here; paging is covered in daysmart.test.mjs.
       if (u.searchParams.get('company') === 'iceandfield') return new Response(fixture('daysmart-iceandfield-events.json'));
@@ -376,6 +387,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
       const slugs = (u.searchParams.get('slug') ?? '').split(',');
       return new Response(JSON.stringify(JSON.parse(fixture('velocity-wp-pages.json')).filter((p) => slugs.includes(p.slug))));
     }
+    if (u.hostname === 'sweatpals.com') return new Response(fixture(`sweatpals-host-${u.pathname.split('/').pop()}.html`));
     if (u.hostname === 'reclub.co') {
       if (CLUBS[u.pathname]) return new Response(fixture(CLUBS[u.pathname]));
       const code = u.pathname.match(/^\/m\/(\w+)$/)?.[1];
@@ -388,12 +400,12 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
     out: join(dir, 'schedule.json'), feed: join(dir, 'occurrences.json'), watch: join(dir, 'watch.json'),
     failures: join(dir, 'scrape-failures.md'), health: join(dir, 'health.json'), changes: join(dir, 'c.md'), changesJson: join(dir, 'c.json'),
   });
-  const apiOnly = loadSources().sources.filter((s) => s.adapter.needsBrowser === false); // volleyworld, velocity, reclub and the two rinks
+  const apiOnly = loadSources().sources.filter((s) => s.region === 'austin' && s.adapter.needsBrowser === false); // volleyworld, velocity, reclub, sweatpals and the two rinks (Austin's captured responses)
   const result = await runScrape({ sources: apiOnly, paths, fetch: network, now: () => NOW, log: () => {}, launchBrowser: async () => { throw new Error('no browser'); } });
 
   await withDb(async (db) => {
     const logs = [];
-    const r = await persistRun({ url: 'pglite://test', result, startedAt: NOW, failuresFile: paths.failures, adapters: { volleyworld: 'volleyworld', velocity: 'velocity', reclub: 'reclub', 'chaparral-ice': 'daysmart', 'ice-and-field': 'daysmart' }, open: async () => ({ ...db, end: async () => {} }), log: (l) => logs.push(l) });
+    const r = await persistRun({ url: 'pglite://test', result, startedAt: NOW, failuresFile: paths.failures, adapters: { volleyworld: 'volleyworld', velocity: 'velocity', reclub: 'reclub', sweatpals: 'sweatpals', 'chaparral-ice': 'daysmart', 'ice-and-field': 'daysmart' }, open: async () => ({ ...db, end: async () => {} }), log: (l) => logs.push(l) });
     assert.equal(r.ok, true, r.error);
     assert.match(logs[0], /^db    run 1: \d+ sessions/);
     assert.equal(readFileSync(paths.failures, 'utf8'), '', 'nothing to report');
@@ -403,7 +415,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
     const published = await loadPublishedFromDb(db);
     assert.deepEqual(new Map(schedule.sessions.map((s) => [s.id, s])), published);
     // Each sport's query returns exactly that sport's part of the feed.
-    for (const sport of ['volleyball', 'ice_skating']) {
+    for (const sport of ['volleyball', 'ice_skating', 'pickleball']) {
       const q = await queryOccurrences(db, { sport, region: 'austin', from: '2026-10-25', to: '2026-11-30' });
       assert.ok(q.occurrences.length > 0, sport);
       assert.deepEqual(q.occurrences, feed.occurrences.filter((o) => o.sport === sport), sport);

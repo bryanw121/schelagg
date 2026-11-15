@@ -10,7 +10,8 @@ import { loadVenues } from '../lib/consolidate.js';
 
 const DISCOVERY = loadDiscovery();
 const PLATFORMS = loadPlatforms();
-const VENUES = loadVenues();
+// The real registry, with Chaparral's coordinates cleared so the "fill gaps, never overwrite" cases have a gap to fill.
+const VENUES = loadVenues().map((v) => (v.id === 'chaparral-northcross' ? { ...v, lat: null, lng: null } : v));
 
 const OVERPASS = { elements: [
   { type: 'way', id: 11, center: { lat: 30.37, lon: -97.73 }, tags: { leisure: 'ice_rink', name: 'Chaparral Ice', website: 'https://example.test/chaparral', sport: 'ice_skating;ice_hockey', building: 'yes' } },

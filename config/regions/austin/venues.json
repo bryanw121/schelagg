@@ -1,6 +1,350 @@
 {
-  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates come from OSM.",
+  "_doc": "Canonical venues (#20). Sessions are matched to a venue by name or alias (case and punctuation ignored); a session at a name not listed here is reported as a source warning so it can be added. `parent` nests a sub-facility (a rink inside a sports complex). External ids (osm, googlePlaceId) and coordinates are filled in by discovery (#21) or by hand; leave them null rather than guessing. Only place ids may be stored from Google (refresh yearly); coordinates never come from Google. lat/lng (Nov 2026) are the US Census geocoder's match for the address (public domain), or OpenStreetMap Nominatim's (© OpenStreetMap contributors, ODbL) where Census had no match: austin-pickle-ranch and atx-beach (11000 Middle Fiskville Rd), leander-activity-center, mueller-lake-park (sand courts at Mary Elizabeth Branch Park) and austin-bouldin-braker. The site uses them only for the 📍 distance order. `short` (optional, up to 24 characters) is the name on map pins when the full name is long; otherwise the site shortens it.",
   "venues": [
+    {
+      "id": "austin-pickleland",
+      "name": "Pickleland",
+      "city": "Pflugerville",
+      "address": "21427 Martin Ln, Pflugerville, TX 78660",
+      "addressSource": "https://pickleland.com/calendar",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.48954,
+      "lng": -97.55618,
+      "bookingLink": {
+        "sport": "pickleball",
+        "surface": "indoor",
+        "url": "https://play.pickleland.com/book/pickleland",
+        "note": "Nine indoor courts. Court rental $24–44/hr by time of day (members $17–31/hr); check the selected slot for the final price.",
+        "price": "$24–44/hr",
+        "source": "https://pickleland.com/pricing",
+        "reviewBy": "2027-01-31"
+      },
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://pickleland.com/calendar",
+        "note": "Use the venue calendar for current open play. General opening hours are not scheduled open-play sessions; dated sessions are not yet imported.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Mon–Fri 8am–10pm; Sat–Sun 8am–8pm.",
+            "url": "https://pickleland.com/calendar"
+          }
+        ]
+      }
+    },
+    {
+      "id": "austin-picklehaus",
+      "name": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "address": "18629 Weiss Ln, Building 2, Pflugerville, TX 78660",
+      "addressSource": "https://www.austinpicklehaus.com/",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.44797,
+      "lng": -97.56099,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/events",
+        "note": "Seven indoor courts in Pflugerville. Sessions above come from the venue's public event pages. The homepage preview is limited; the full calendar may list more sessions. General opening hours are not continuous open play.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Daily 7am–midnight.",
+            "url": "https://www.austinpicklehaus.com/"
+          },
+          {
+            "label": "Open-play price",
+            "text": "Published nonmember rates: $8 off-peak; $15 peak. Each dated session carries its own price. Peak hours are 4–10pm; off-peak is 7am–4pm and 10pm–midnight.",
+            "url": "https://app.getopencourt.com/club/austinpicklehaus"
+          }
+        ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/book",
+        "note": "Court reservation $20/hr off-peak, $40/hr peak.",
+        "price": "$20–40/hr",
+        "source": "https://app.getopencourt.com/club/austinpicklehaus",
+        "reviewBy": "2027-01-31"
+      }
+    },
+    {
+      "id": "austin-pickle-pit-stop",
+      "name": "Pickle Pit Stop",
+      "city": "Austin",
+      "address": "12915 Nutty Brown Rd, Austin, TX 78737",
+      "addressSource": "https://picklepitstop.com/",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.19321,
+      "lng": -97.97165,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
+        "note": "Three indoor courts. Dated sessions are listed by the independent OpenPlay directory; confirm skill level and availability in CourtReserve. Venue rates are labeled separately from event-specific prices.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Sun–Thu 6am–10pm; Fri–Sat 6am–11pm. Members have 24/7 access.",
+            "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/"
+          },
+          {
+            "label": "Open-play price",
+            "text": "$18/person for a two-hour session; included for members. Confirm the final charge when booking.",
+            "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/"
+          }
+        ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://app.courtreserve.com/Online/PublicBookings/15273/Landing",
+        "note": "Off-peak (weekdays 6am–5pm) $30; peak (weekdays after 5pm, weekends and holidays) $40.",
+        "price": "$30–40/hr",
+        "source": "https://picklepitstop.com/",
+        "reviewBy": "2027-01-31"
+      }
+    },
+    {
+      "id": "austin-pickle-ranch",
+      "name": "Austin Pickle Ranch",
+      "city": "Austin",
+      "address": "11000 Middle Fiskville Rd, Building B, Austin, TX 78753",
+      "addressSource": "https://austinpickleranch.com/",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.37374,
+      "lng": -97.67913,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://austinpickleranch.podplay.app/community/events",
+        "note": "Sessions above are listed by the independent OpenPlay directory. Book at your skill level; some sessions require a verified DUPR rating. Opening hours below are facility hours, not continuous open play.",
+        "reviewedOn": "2026-11-02",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Mon 7am–11pm; Tue–Fri 7am–midnight; Sat 8am–midnight; Sun 8am–11pm.",
+            "url": "https://austinpickleranch.com/plan-a-visit/braker"
+          },
+          {
+            "label": "Open-play price",
+            "text": "Listed per session above. The venue says prices vary by time and duration; confirm the final charge when booking.",
+            "url": "https://austinpickleranch.com/faq/how-much-does-it-cost-to-play"
+          },
+          {
+            "label": "Membership",
+            "text": "Wrangler $99/month: daily off-peak open play. Trailboss $149/month plus $299 initiation: daily peak/off-peak open play. Limit one 2-hour open-play session per day; booking rules apply.",
+            "url": "https://austinpickleranch.com/membership"
+          }
+        ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://austinpickleranch.podplay.app/book/braker",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+      }
+    },
+    {
+      "id": "austin-eastside-paddle",
+      "name": "Eastside Paddle Club",
+      "city": "Austin",
+      "address": "979 Springdale Rd, Suite 120, Austin, TX 78702",
+      "addressSource": "https://eastsidepaddleclub.com/openplay",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.26137,
+      "lng": -97.69818,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://espc.podplay.app/community/events",
+        "note": "Sessions above are listed by the independent OpenPlay directory. Some require a verified DUPR rating. Opening hours below are facility hours, not continuous open play.",
+        "reviewedOn": "2026-11-02",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Opening hours",
+            "text": "Mon–Fri 6am–10pm; Sat 7am–10pm; Sun 7am–8pm.",
+            "url": "https://eastsidepaddleclub.com/openplay"
+          },
+          {
+            "label": "Open-play price",
+            "text": "Venue FAQ: $15–$18/session for nonmembers; included for members. Directory listings also show $12 sessions. Check each event's final booking price.",
+            "url": "https://eastsidepaddleclub.com/faq"
+          },
+          {
+            "label": "Court rental / equipment",
+            "text": "Private courts $20–$40/hour; nonmember paddle rental $5. Court rental is separate from an open-play spot.",
+            "url": "https://eastsidepaddleclub.com/faq"
+          }
+        ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://espc.podplay.app/book/springdale",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+      }
+    },
+    {
+      "id": "austin-holy-pickle",
+      "name": "Holy Pickle",
+      "city": "Austin",
+      "address": "7001 Burnet Rd, Austin, TX 78757",
+      "addressSource": "https://app.getopencourt.com/club/holy-pickle",
+      "aliases": [
+        "Holy Pickleball"
+      ],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.34676,
+      "lng": -97.73652,
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/holy-pickle/events",
+        "note": "Outdoor courts. Upcoming open-play sessions and nonmember prices are read from Holy Pickle's public event pages. Its homepage shows a limited selection; check the full venue calendar for additional events. General opening hours are not published in the booking page.",
+        "reviewedOn": "2026-11-02",
+        "reviewBy": "2026-11-30",
+        "details": [
+          {
+            "label": "Open-play price",
+            "text": "Currently published events are $10/person. Each session above carries its own checked price; final charges are confirmed at booking.",
+            "url": "https://app.getopencourt.com/club/holy-pickle"
+          }
+        ]
+      },
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://app.getopencourt.com/club/holy-pickle/book",
+        "note": "Reserve a private court with the venue. Check its current availability and rental price; opening hours do not guarantee an available court."
+      }
+    },
+    {
+      "id": "austin-alamo-rec",
+      "name": "Alamo Recreation Center",
+      "address": "2100 Alamo St, Austin, TX 78722",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.2822,
+      "lng": -97.71979,
+      "addressSource": "https://www.austintexas.gov/parks/alamo-recreation-center"
+    },
+    {
+      "id": "austin-dottie-jordan-rec",
+      "name": "Dottie Jordan Recreation Center",
+      "short": "Dottie Jordan Rec",
+      "address": "2803 Loyola Lane, Austin, TX 78723",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.31487,
+      "lng": -97.67401,
+      "addressSource": "https://www.austintexas.gov/parks/dottie-jordan-recreation-center"
+    },
+    {
+      "id": "austin-montopolis-rec",
+      "name": "Montopolis Recreation and Community Center",
+      "short": "Montopolis Rec",
+      "address": "1200 Montopolis Dr, Austin, TX 78741",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.23232,
+      "lng": -97.6989,
+      "addressSource": "https://www.austintexas.gov/parks/locations/montopolis-recreation-and-community-center"
+    },
+    {
+      "id": "austin-northwest-rec",
+      "name": "Northwest Recreation Center",
+      "address": "2913 Northland Dr, Austin, TX 78757",
+      "city": "Austin",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.33458,
+      "lng": -97.75173,
+      "addressSource": "https://www.austintexas.gov/parks/locations/northwest-recreation-center"
+    },
+    {
+      "id": "austin-dove-springs-rec",
+      "name": "George Morales Dove Springs Recreation Center",
+      "short": "Dove Springs Rec",
+      "address": "5801 Ainez Dr, Austin, TX 78744",
+      "city": "Austin",
+      "aliases": [
+        "Dove Springs Recreation Center"
+      ],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.18754,
+      "lng": -97.73957,
+      "addressSource": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center"
+    },
+    {
+      "id": "austin-gus-garcia-rec",
+      "name": "Gus Garcia Recreation Center",
+      "address": "1201 E Rundberg Ln, Austin, TX 78753",
+      "city": "Austin",
+      "aliases": [
+        "Gustavo Gus L. Garcia Recreation Center"
+      ],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.35443,
+      "lng": -97.68222,
+      "addressSource": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center"
+    },
+    {
+      "id": "georgetown-rec-center",
+      "name": "Georgetown Recreation Center",
+      "address": "1003 N Austin Ave, Georgetown, TX 78626",
+      "city": "Georgetown",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.65101,
+      "lng": -97.67498,
+      "addressSource": "https://parks.georgetown.org/?p=18244"
+    },
+    {
+      "id": "georgetown-tennis-center",
+      "name": "Georgetown Tennis Center",
+      "address": "400 Serenada Dr, Georgetown, TX 78628",
+      "city": "Georgetown",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.68653,
+      "lng": -97.68544,
+      "addressSource": "https://parks.georgetown.org/?p=18244"
+    },
+    {
+      "id": "leander-activity-center",
+      "name": "Leander Activity Center",
+      "short": "Leander Activity Ctr",
+      "address": "11880 Hero Way W, Suite 600, Leander, TX",
+      "city": "Leander",
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.57837,
+      "lng": -97.87053,
+      "addressSource": "https://www.leandertx.gov/981/Leander-Activity-Center"
+    },
     {
       "id": "volleyworld-georgetown",
       "name": "Volleyworld (Georgetown)",
@@ -10,8 +354,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.70273,
+      "lng": -97.83485
     },
     {
       "id": "volleyworld-pflugerville",
@@ -22,8 +366,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.48951,
+      "lng": -97.55618
     },
     {
       "id": "atx-beach",
@@ -34,8 +378,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.37374,
+      "lng": -97.67913
     },
     {
       "id": "crossover",
@@ -48,12 +392,13 @@
       "skeddaFacility": "crossover",
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.55084,
+      "lng": -97.81646
     },
     {
       "id": "crossover-ice",
       "name": "Ice & Field at The Crossover",
+      "short": "Ice & Field",
       "city": "Cedar Park",
       "parent": "crossover",
       "aliases": [
@@ -63,8 +408,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.55084,
+      "lng": -97.81646
     },
     {
       "id": "high-point",
@@ -77,12 +422,13 @@
       "skeddaFacility": "highpoint",
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.52876,
+      "lng": -97.84146
     },
     {
       "id": "treehouse",
       "name": "Roots · Treehouse Gym",
+      "short": "Treehouse",
       "city": "N. Austin",
       "aliases": [
         "Treehouse Gym",
@@ -92,8 +438,8 @@
       "skeddaFacility": "treehouse",
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.45395,
+      "lng": -97.67648
     },
     {
       "id": "mueller-lake-park",
@@ -102,20 +448,33 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
+      "lat": 30.30074,
+      "lng": -97.70275
+    },
+    {
+      "id": "bailey-park",
+      "name": "Bailey Park",
+      "city": "Central Austin",
+      "aliases": [
+        "Bailey Neighborhood Park"
+      ],
+      "osm": null,
+      "googlePlaceId": null,
       "lat": null,
       "lng": null
     },
     {
       "id": "hanovers",
       "name": "Hanovers Draught Haus",
+      "short": "Hanovers",
       "city": "Pflugerville",
       "aliases": [
         "Hanovers"
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.44075,
+      "lng": -97.62029
     },
     {
       "id": "chaparral-northcross",
@@ -127,8 +486,8 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.35739,
+      "lng": -97.73384
     },
     {
       "id": "bee-cave-on-ice",
@@ -137,8 +496,8 @@
       "aliases": [],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.30789,
+      "lng": -97.94026
     },
     {
       "id": "four-seasons-austin",
@@ -150,8 +509,70 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.26265,
+      "lng": -97.74219
+    },
+    {
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.31145,
+      "lng": -97.63869,
+      "id": "austin-atc",
+      "name": "Austin Tennis & Pickleball Center",
+      "short": "Tennis Center",
+      "city": "Austin",
+      "bookingLink": {
+        "sport": "pickleball",
+        "surface": "outdoor",
+        "url": "https://playtennis.usta.com/austintenniscenter/Booking/BookByDate",
+        "note": "Pickleball court fee: $5 per person. Up to 90 minutes for singles or 120 minutes for doubles. Reserve through the venue’s USTA booking system.",
+        "source": "https://playtennis.usta.com/austintenniscenter/Booking/CourtPricing",
+        "reviewBy": "2026-11-30",
+        "price": "$5/person"
+      }
+    },
+    {
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.39127,
+      "lng": -97.70497,
+      "id": "austin-bouldin-braker",
+      "name": "Bouldin Acres · Braker",
+      "short": "Bouldin Acres",
+      "city": "Austin",
+      "address": "1806 W Braker Ln, Austin, TX 78758",
+      "addressSource": "https://braker.bouldinacres.com/pickleball",
+      "bookingLink": {
+        "sport": "pickleball",
+        "url": "https://braker.bouldinacres.com/pickleball",
+        "note": "Court rental: Mon–Thu 11am–6pm $10/half-hour; evenings and Fri–Sun $20/half-hour. Monday/Wednesday 6–10pm reserved for leagues. Book up to one week ahead; customer reservations required. Early 7–11am bookings apply only to South Lamar.",
+        "reviewBy": "2026-11-30",
+        "price": "$20–40/hr"
+      }
+    },
+    {
+      "aliases": [],
+      "osm": null,
+      "googlePlaceId": null,
+      "lat": 30.55084,
+      "lng": -97.81646,
+      "id": "crossover-diamond",
+      "name": "The Crossover Diamond Courts",
+      "short": "Crossover Diamond",
+      "city": "Cedar Park",
+      "parent": "crossover",
+      "address": "1717 Scottsdale Dr, Cedar Park, TX 78641",
+      "addressSource": "https://www.austinvelocity.com/rentals/pickleball",
+      "calendarLink": {
+        "sport": "pickleball",
+        "url": "https://www.austinvelocity.com/rentals/pickleball",
+        "note": "Venue-published recurring open play: Tuesday and Thursday 8am–noon, $5 drop-in. Six indoor courts; no registration required. Bring a paddle; waiver on arrival. Tournaments and facility events can change this schedule; check before going.",
+        "reviewedOn": "2026-11-03",
+        "reviewBy": "2026-11-30",
+        "details": []
+      }
     }
   ]
 }
