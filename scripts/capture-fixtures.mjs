@@ -41,5 +41,10 @@ for (const club of ['vex_volleyball', 'austin-lawn-club']) {
   for (const l of links) await grab(`reclub-meet-${l.slice(3)}.html`, `https://reclub.co${l}`);
 }
 
+// Sweatpals hosts with Austin volleyball (host pages carry their upcoming events in __NEXT_DATA__).
+for (const host of ['ATXBeach', 'atxsandsocial', 'letsvolleyatx']) {
+  await grab(`sweatpals-host-${host}.html`, `https://sweatpals.com/host/${host}`, { headers: { accept: 'text/html' } });
+}
+
 // The repo is public: strip people (hosts, participants, notes, tokens) before anything is committed.
 await sanitizeAll(OUT);

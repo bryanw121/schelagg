@@ -24,7 +24,7 @@ const { sources: ALL_SOURCES, manuals: MANUALS } = loadSources();
 // These tests replay Austin's captured responses; other regions' sources are checked below.
 const SOURCES = ALL_SOURCES.filter((s) => s.region === 'austin');
 const MANUAL = MANUALS.find((m) => m.region === 'austin' || /\/austin\//.test(m.file));
-const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
+const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'sweatpals', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
 const SPORT_OF = { 'austin-club-openplay': 'pickleball', 'austin-picklehaus': 'pickleball', 'holy-pickle': 'pickleball', 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball', 'georgetown-pickleball': 'pickleball', 'leander-pickleball': 'pickleball' }; // everything else: volleyball
 const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
 // DaySmart's events API for the rink sources: one page per company (paging is covered in daysmart.test.mjs).
@@ -119,6 +119,7 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
       return MEETS[code] ? res(fixture(MEETS[code])) : res('Not found', 404); // 2O9PDP has no fixture
     }
     if (u.hostname === 'apps.daysmartrecreation.com') return res(daysmartEvents(fixture, u.searchParams.get('company')));
+    if (u.hostname === 'sweatpals.com') return res(fixture(`sweatpals-host-${u.pathname.split('/').pop()}.html`));
     if (u.hostname === 'www.austintexas.gov') return res(fixture('austin-pickleball.html'));
     if (u.hostname === 'parks.georgetown.org') return res(fixture('georgetown-pickleball.html'));
     if (u.hostname === 'www.leandertx.gov') return res(fixture('leander-pickleball.html'));
@@ -332,7 +333,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'reclub', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'reclub', 'sweatpals', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));

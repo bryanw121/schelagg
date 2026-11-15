@@ -2,28 +2,6 @@
   "_readme": "Sessions no scraper covers. When you re-check one, update verifiedAt. The nightly job watches each source page and flags the session if the page changes.",
   "sessions": [
     {
-      "id": "atx-sand-social-sun",
-      "days": [
-        "Sun"
-      ],
-      "start": "19:00",
-      "end": "22:00",
-      "title": "ATX Sand Social · Sunday Funday",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "surface": "sand",
-      "type": "Open play",
-      "level": "Intermediate to competitive",
-      "price": "$10",
-      "verifiedAt": "2026-10-24",
-      "note": "Weekly RSVP posts on Sweatpals.",
-      "signup": {
-        "url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-        "label": "RSVP on Sweatpals"
-      },
-      "source": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18"
-    },
-    {
       "id": "aces-open-mon",
       "days": [
         "Mon"

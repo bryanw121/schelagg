@@ -4,6 +4,7 @@
     { "id": "daysmart", "label": "DaySmart Recreation", "hosts": ["apps.daysmartrecreation.com", "dashplatform.com"], "adapter": "daysmart", "company": "/online/([a-z0-9_-]+)" },
     { "id": "skedda", "label": "Skedda", "hosts": ["skedda.com"], "company": "//([a-z0-9-]+)\\.skedda\\.com" },
     { "id": "reclub", "label": "Reclub", "hosts": ["reclub.co"], "adapter": "reclub", "company": "/clubs/@([A-Za-z0-9_.-]+)" },
+    { "id": "sweatpals", "label": "Sweatpals", "hosts": ["sweatpals.com"], "adapter": "sweatpals", "company": "/host/([A-Za-z0-9_.-]+)" },
     { "id": "arketa", "label": "Arketa", "hosts": ["arketa.co"], "company": "/iframe/([a-z0-9_-]+)" },
     { "id": "courtreserve", "label": "CourtReserve", "hosts": ["courtreserve.com"], "loginOnly": true },
     { "id": "playbypoint", "label": "PlayByPoint", "hosts": ["playbypoint.com"], "loginOnly": true },

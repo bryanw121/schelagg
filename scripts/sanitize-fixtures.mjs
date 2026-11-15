@@ -106,6 +106,36 @@ export function sanitizeReclubClub(html) {
   return `<!doctype html>\n<html><head><meta charset="utf-8"></head><body>\n${codes.map((c) => `<a href="/m/${c}">${c}</a>`).join('\n')}\n</body></html>\n`;
 }
 
+// --- Sweatpals host pages ------------------------------------------------------------------
+
+// Event fields the sweatpals adapter reads. Everything about people (hosts' accounts, attendees,
+// leaders, chat ids, payment accounts) and free text (descriptions) is dropped.
+const SWEATPALS_EVENT = ['id', 'alias', 'name', 'startDate', 'endDate', 'tzid', 'rrule', 'upcomingDays', 'upcomingDaysTotal',
+  'addressName', 'addressLat', 'addressLng', 'isOnlineEvent', 'publishingState', 'fitnessTypeName', 'isPaid', 'eventType',
+  'deletedAt', 'calculated_is_serial', 'isSingleEvent'];
+const SWEATPALS_PRICE = ['priceAmount', 'currency', 'tierName', 'isBaseTier', 'order'];
+const NEXT_DATA = /<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/;
+
+/** A Sweatpals host page reduced to the event lists in its __NEXT_DATA__ (no people). */
+export function sanitizeSweatpalsHost(html) {
+  const m = String(html).match(NEXT_DATA);
+  const queries = m ? JSON.parse(m[1])?.props?.pageProps?.dehydratedState?.queries ?? [] : [];
+  const kept = queries.filter((q) => q.queryKey?.[0] === 'events').map((q) => ({
+    queryKey: q.queryKey,
+    state: { data: { pages: (q.state?.data?.pages ?? []).map((p) => ({
+      totalCount: p.totalCount, hasMore: p.hasMore,
+      data: (p.data ?? []).map((e) => ({
+        ...pick(e, SWEATPALS_EVENT),
+        addressName: scrubText(e.addressName ?? ''),
+        city: e.city ? { name: e.city.name } : null,
+        prices: (e.prices ?? []).map((x) => pick(x, SWEATPALS_PRICE)),
+      })),
+    })) } },
+  }));
+  const data = JSON.stringify({ props: { pageProps: { dehydratedState: { queries: kept } } }, page: '/host/[hostId]' });
+  return `<!doctype html>\n<html><head><meta charset="utf-8"></head><body>\n<script id="__NEXT_DATA__" type="application/json">${data}</script>\n</body></html>\n`;
+}
+
 // --- anything else --------------------------------------------------------------------------
 
 /** Last-resort scrub for free text (e.g. ACES WordPress pages): emails and phone numbers. */
@@ -118,6 +148,7 @@ export function sanitize(name, text) {
   if (name.startsWith('arketa-')) return JSON.stringify(sanitizeArketa(JSON.parse(text)), null, 1) + '\n';
   if (name.startsWith('reclub-meet-')) return sanitizeReclubMeet(text);
   if (name.startsWith('reclub-club-')) return sanitizeReclubClub(text);
+  if (name.startsWith('sweatpals-host-')) return sanitizeSweatpalsHost(text);
   return scrubText(text);
 }
 
