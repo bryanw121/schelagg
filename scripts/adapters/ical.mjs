@@ -2,7 +2,7 @@
 // Today that's Meetup groups (www.meetup.com/<group>/events/ical/, Meetup's own export for
 // calendar subscriptions; robots.txt leaves it open). One source can list several feeds:
 //
-//   options.feeds: [{ url, host, venue, city, surface, include?, exclude?, note?, signupLabel?, eventVenues? }]
+//   options.feeds: [{ url, host, venue, city, surface (pickleball: 'outdoor' / 'unspecified'), include?, exclude?, note?, signupLabel?, eventVenues? }]
 //
 // Meetup's feed has no LOCATION, but each event page names its venue with coordinates (the page's
 // own data, "venue":{name,address,city,lat,lng}). With `eventVenues: true` (on by default for
@@ -17,6 +17,7 @@ import { addDays, localDateTime } from '../../lib/time.js';
 
 /** Dated sessions this far ahead, like the schedule (lib/pipeline.js HORIZON_DAYS). */
 const HORIZON_DAYS = 14;
+const VOLLEYBALL_SURFACES = ['indoor', 'sand', 'grass'];
 
 export const id = 'ical';
 export const needsBrowser = false;
@@ -85,7 +86,10 @@ export function feedSessions(text, feed, { timezone = 'America/Chicago', today =
     const end = icsTime(ev.DTEND, timezone);
     const desc = unescape(ev.DESCRIPTION?.value);
     const named = desc.match(/@\s*([A-Z][^.\n(]{2,60}?)\s*(?:\(|\.|\n|$)/)?.[1]?.trim();
-    const surface = /\bsand\b|\bbeach\b/i.test(`${title} ${desc}`) ? 'sand' : /\bgrass\b/i.test(title) ? 'grass' : feed.surface ?? 'indoor';
+    // Sand / grass are read from the text for volleyball; another sport's feed names its own
+    // surface ('outdoor', 'unspecified') and keeps it.
+    const surface = feed.surface && !VOLLEYBALL_SURFACES.includes(feed.surface) ? feed.surface
+      : /\bsand\b|\bbeach\b/i.test(`${title} ${desc}`) ? 'sand' : /\bgrass\b/i.test(title) ? 'grass' : feed.surface ?? 'indoor';
     const url = /^https?:\/\//.test(ev.URL?.value ?? '') ? ev.URL.value : feed.url;
     const uid = (ev.UID?.value ?? `${start.date}-${start.time}-${title}`).replace(/@.*$/, '').replace(/[^A-Za-z0-9_-]+/g, '-');
     out.push({

@@ -42,6 +42,12 @@ test('include / exclude filter titles; feed venue and city win', () => {
   assert.deepEqual(feedSessions(ICS, { url: 'u', include: 'sand' }, { today: TODAY }).map((x) => x.date), ['2026-11-20']);
 });
 
+test('a pickleball feed keeps its own surface, even when the text says sand', () => {
+  const s = feedSessions(ICS, { url: 'u', surface: 'unspecified', exclude: 'clinic|training|skills' }, { today: TODAY });
+  assert.ok(s.length >= 3);
+  assert.ok(s.every((x) => x.surface === 'unspecified' && x.type === 'Open play'));
+});
+
 test('scrape: a feed that fails is a warning; all failing is an error; an empty feed is fine', async () => {
   const feeds = [{ url: 'https://a/ical' }, { url: 'https://b/ical' }];
   const pages = { 'https://a/ical': ICS, 'https://b/ical': 'BEGIN:VCALENDAR\nEND:VCALENDAR' };

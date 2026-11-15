@@ -65,6 +65,11 @@ test('ACTIVE scrape follows the listing\'s pages until one lists nothing, and ke
   assert.ok(r.sessions.length >= 1);
   // Leagues listed under the same category are not open play.
   assert.deepEqual(active.programLinks('<a href="/fort-worth-tx/volleyball/volleyball-classes/fall-indoor-volleyball-b-bb-coed-6s-on-tuesdays-2026-110000001">x</a>'), []);
+  // Fort Worth lists its pickleball open plays under the same category: the default leaves them
+  // out, the pickleball source's include keeps only them.
+  const mixed = '<a href="/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110185888">x</a><a href="/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-109915602">x</a><a href="/fort-worth-tx/volleyball/volleyball-classes/volleyball-open-play-eugene-mccray-2026-110185229">x</a>';
+  assert.deepEqual(active.programLinks(mixed).map((u) => u.split('-').pop()), ['110185229']);
+  assert.deepEqual(active.programLinks(mixed, '^(?=.*pickle)(?=.*(?:open-play|drop-in))').map((u) => u.split('-').pop()), ['110185888', '109915602']);
 });
 
 test('FORO: weekday and weekend sand open play hours, $10 registered', () => {
