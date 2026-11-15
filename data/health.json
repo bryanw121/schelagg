@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         266,
-        266,
         265,
         265,
         278,
@@ -11,9 +10,10 @@
         274,
         274,
         274,
-        274
+        274,
+        270
       ],
-      "sessions": 274,
+      "sessions": 270,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -31,7 +31,7 @@
       "counts": [
         150,
         150,
-        150,
+        152,
         152,
         152,
         152,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 710
+      "failStreak": 711
     },
     "atxbeach": {
       "counts": [
@@ -223,7 +223,7 @@
         "signup": 1
       },
       "contentHash": "aac23a55d895318e",
-      "failStreak": 2
+      "failStreak": 3
     },
     "reclub": {
       "counts": [
@@ -508,7 +508,7 @@
         11,
         11,
         11,
-        11,
+        13,
         13,
         13,
         13,
@@ -532,16 +532,16 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 419
+      "failStreak": 420
     },
     "leander-pickleball": {
-      "failStreak": 419
+      "failStreak": 420
     },
     "dallas-reclub": {
-      "failStreak": 51
+      "failStreak": 52
     },
     "houston-reclub": {
-      "failStreak": 2
+      "failStreak": 3
     },
     "manual": {
       "counts": [
@@ -576,6 +576,7 @@
     "aces:failing",
     "dallas-reclub:failing",
     "georgetown-pickleball:failing",
+    "houston-reclub:failing",
     "leander-pickleball:failing",
     "manual:aces-mon-6s-indoor:unverified",
     "manual:aces-mon-6s-indoor:watch",
@@ -589,9 +590,10 @@
     "manual:beecave-on-ice-sun:changed:2026-11-12",
     "manual:beecave-on-ice-tue:changed:2026-11-12",
     "manual:four-seasons-ice-rodeo:changed:2026-11-14",
-    "manual:hanovers-open:changed:2026-11-14",
     "manual:hanovers-open:unverified",
+    "manual:hanovers-open:watch",
     "manual:ssc-crossover-mon-sand:changed:2026-11-14",
-    "manual:ssc-crossover-mon-sand:unverified"
+    "manual:ssc-crossover-mon-sand:unverified",
+    "velocity:failing"
   ]
 }
