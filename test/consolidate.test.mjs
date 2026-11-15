@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { loadRegions } from '../lib/regions.js';
 import { loadVenues, resolveVenues, sourceVenues, markMoves, dedupe, sameSession, titleSimilarity } from '../lib/consolidate.js';
 import { toIcs, fold, escapeText } from '../lib/ics.js';
 import { toOccurrences } from '../lib/occurrences.js';
@@ -22,8 +23,13 @@ test('venues: the real registry loads; bad entries are rejected', () => {
   assert.throws(bad([{ id: 'a1', name: 'x', lat: 130, lng: -97 }]), /bad coordinates/);
   assert.throws(bad([{ id: 'a1', name: 'x', lat: '30.2', lng: '-97.7' }]), /bad coordinates/);
   assert.equal(bad([{ id: 'a1', name: 'x', lat: 30.2672, lng: -97.7431 }, { id: 'a2', name: 'y', lat: null, lng: null }])().length, 2);
-  // Every coordinate in the real registry is in its region's area (Central Texas for Austin).
-  for (const v of VENUES.filter((x) => x.lat != null)) assert.ok(Math.abs(v.lat - 30.4) < 1 && Math.abs(v.lng + 97.75) < 1, `${v.id} is far from Austin`);
+  // Every coordinate in the real registry is within its region's radius of its center.
+  const regions = Object.fromEntries(loadRegions().map((r) => [r.info.id, r.info]));
+  const km = ([a, b], [c, d]) => { const r = Math.PI / 180, x = Math.sin(((c - a) * r) / 2) ** 2 + Math.cos(a * r) * Math.cos(c * r) * Math.sin(((d - b) * r) / 2) ** 2; return 12742 * Math.asin(Math.sqrt(x)); };
+  for (const v of VENUES.filter((x) => x.lat != null)) {
+    const r = regions[v.region];
+    assert.ok(r && km(r.center, [v.lat, v.lng]) <= r.radiusKm + 25, `${v.id} is far from ${r?.name ?? v.region}`);
+  }
   rmSync(dir, { recursive: true, force: true });
 });
 

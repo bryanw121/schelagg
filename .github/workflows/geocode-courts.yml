@@ -1,6 +1,6 @@
 name: Geocode public courts
 
-# Free public courts (config/regions/<id>/public-courts.json) need coordinates to show on the map.
+# Free public courts (config/regions/<id>/public-courts.json) and venues (venues.json) need coordinates to show on the map.
 # When that file changes on main (or on demand), give every court without lat/lng a point from its
 # street address (scripts/geocode-courts.mjs: US Census geocoder) and open one review pull request
 # (geocode/public-courts) with the coordinates, or, where Actions may not open pull requests, a link to open it. Courts that already have coordinates are left alone,
@@ -8,7 +8,7 @@ name: Geocode public courts
 on:
   push:
     branches: [main]
-    paths: ['config/regions/*/public-courts.json']
+    paths: ['config/regions/*/public-courts.json', 'config/regions/*/venues.json']
   workflow_dispatch:
 
 permissions:

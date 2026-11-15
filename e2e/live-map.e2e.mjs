@@ -59,6 +59,8 @@ test('live: each region\'s map loads its tiles, draws, and pins this week\'s ven
       await page.waitForTimeout(600);
       mostPins = Math.max(mostPins, await page.locator('#map .pin').count());
     }
+    const sessions = (schedule.sessions ?? []).length;
+    assert.ok(!sessions || pinnable > 0, `${region.id}: ${sessions} sessions, but none at a venue with coordinates, so the map can't pin any (add addresses to its venues.json)`);
     if (pinnable > 0) assert.ok(mostPins > 0, `${region.id}: ${pinnable} sessions are at venues with coordinates, but no day this week shows a pin`);
     assert.deepEqual(errors, [], `${region.id}: script errors`);
     console.log(`${region.id}: tiles ${[...new Set(tileStatus)].join('/')}, up to ${mostPins} pins a day, ${pinnable} pinnable sessions`);
