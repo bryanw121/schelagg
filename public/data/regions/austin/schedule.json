@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T20:46:39.537Z",
+  "generatedAt": "2026-11-15T20:50:52.861Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:26.103Z",
+      "checkedAt": "2026-11-15T20:47:16.980Z",
       "count": 273
     },
     {
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:26.103Z",
+      "checkedAt": "2026-11-15T20:47:16.981Z",
       "count": 155
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:26.103Z",
+      "checkedAt": "2026-11-15T20:47:16.981Z",
       "count": 8
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:26.103Z",
+      "checkedAt": "2026-11-15T20:47:16.981Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-15T20:43:26.104Z",
+      "checkedAt": "2026-11-15T20:47:16.982Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -84,7 +84,7 @@
       "kind": "Venue's schedule page",
       "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "ok": true,
-      "checkedAt": "2026-11-15T19:38:56.759Z",
+      "checkedAt": "2026-11-15T20:47:16.982Z",
       "count": 2
     },
     {
@@ -97,7 +97,7 @@
       "kind": "Venue's schedule page",
       "site": "https://www.austinvelocity.com",
       "ok": true,
-      "checkedAt": "2026-11-15T19:38:56.819Z",
+      "checkedAt": "2026-11-15T20:47:17.007Z",
       "count": 2
     },
     {
@@ -124,7 +124,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:26.104Z",
+      "checkedAt": "2026-11-15T20:47:17.273Z",
       "count": 6
     },
     {
@@ -151,7 +151,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:26.174Z",
+      "checkedAt": "2026-11-15T20:47:18.066Z",
       "count": 3
     },
     {
@@ -170,7 +170,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T19:38:58.336Z",
+      "checkedAt": "2026-11-15T20:47:18.647Z",
       "count": 3
     },
     {
@@ -189,8 +189,27 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T19:38:59.033Z",
+      "checkedAt": "2026-11-15T20:47:19.003Z",
       "count": 2
+    },
+    {
+      "id": "austin-pickleball-meetup",
+      "name": "Meetup · Austin pickleball groups",
+      "sport": "pickleball",
+      "region": "austin",
+      "cadence": "6h",
+      "adapter": "ical",
+      "kind": "Meetup group calendars",
+      "site": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/",
+      "links": [
+        {
+          "name": "North Austin Pickleball Community",
+          "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/"
+        }
+      ],
+      "ok": true,
+      "checkedAt": "2026-11-15T20:47:19.571Z",
+      "count": 10
     },
     {
       "id": "chaparral-ice",
@@ -202,7 +221,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:27.185Z",
+      "checkedAt": "2026-11-15T20:47:20.074Z",
       "count": 35
     },
     {
@@ -215,7 +234,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-15T20:43:27.805Z",
+      "checkedAt": "2026-11-15T20:47:20.293Z",
       "count": 24
     },
     {
@@ -228,7 +247,7 @@
       "kind": "City parks schedule",
       "site": "https://www.austintexas.gov/parks/alamo-recreation-center",
       "ok": true,
-      "checkedAt": "2026-11-15T19:39:02.279Z",
+      "checkedAt": "2026-11-15T20:47:22.543Z",
       "count": 13
     },
     {
@@ -241,7 +260,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-15T20:43:30.837Z",
+      "checkedAt": "2026-11-15T20:47:23.130Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -256,7 +275,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-15T20:43:31.257Z",
+      "checkedAt": "2026-11-15T20:47:23.183Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -12642,6 +12661,266 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "austin-montopolis-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317152245-2026-11-15",
+      "date": "2026-11-15",
+      "start": "17:00",
+      "end": "20:00",
+      "title": "Weekend 5pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317152245/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317152245/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317165060-2026-11-16",
+      "date": "2026-11-16",
+      "start": "14:00",
+      "end": "16:00",
+      "title": "2pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317165060/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317165060/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317169859-2026-11-16",
+      "date": "2026-11-16",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "8pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317169859/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317169859/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317180856-2026-11-17",
+      "date": "2026-11-17",
+      "start": "16:00",
+      "end": "18:00",
+      "title": "4pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317180856/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317180856/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317193700-2026-11-18",
+      "date": "2026-11-18",
+      "start": "12:00",
+      "end": "14:00",
+      "title": "12pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317193700/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317193700/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317220154-2026-11-20",
+      "date": "2026-11-20",
+      "start": "08:00",
+      "end": "10:00",
+      "title": "8am Pickleball - Start the Day Strong 💪",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317220154/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317220154/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317439274-2026-11-20",
+      "date": "2026-11-20",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Pickleland Perreo Pickle 🔥",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317439274/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317439274/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317241130-2026-11-21",
+      "date": "2026-11-21",
+      "start": "11:00",
+      "end": "14:00",
+      "title": "Weekend 11am Pickleball + Friends",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317241130/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317241130/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317243971-2026-11-21",
+      "date": "2026-11-21",
+      "start": "14:00",
+      "end": "17:00",
+      "title": "Weekend 2pm Pickleball Vibes - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317243971/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317243971/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-pickleland-event_317245805-2026-11-21",
+      "date": "2026-11-21",
+      "start": "17:00",
+      "end": "20:00",
+      "title": "Weekend 5pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317245805/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317245805/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-pickleland",
       "status": "scheduled"
     },
     {

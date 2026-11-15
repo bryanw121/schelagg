@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-15T20:46:39.537Z",
+  "generatedAt": "2026-11-15T20:50:52.861Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -552,6 +552,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-pickleland-event_317152245-2026-11-15",
+      "session_id": "meetup-pickleland-event_317152245-2026-11-15",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Weekend 5pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-15T23:00:00.000Z",
+      "ends_at": "2026-11-16T02:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317152245/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1218,6 +1245,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110202485-2026-11-16",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-16T12:00:00.000Z",
+      "ends_at": "2026-11-16T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-pickle-pit-stop-eb075b3bb0c074d3",
       "session_id": "openplay-pickle-pit-stop-eb075b3bb0c074d3",
       "source_id": "austin-club-openplay",
@@ -1608,6 +1662,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110189828-2026-11-16",
+      "session_id": "active-110189828",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-16T16:00:00.000Z",
+      "ends_at": "2026-11-16T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110189828",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-martin-luther-king-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "daysmart-chaparralice-346712",
       "session_id": "daysmart-chaparralice-346712",
       "source_id": "chaparral-ice",
@@ -1942,6 +2023,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110034404-2026-11-16",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-16T16:30:00.000Z",
+      "ends_at": "2026-11-16T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "pickleball-austin-northwest-rec-0-2026-11-16",
       "session_id": "pickleball-austin-northwest-rec-0-2026-11-16",
       "source_id": "austin-city-pickleball",
@@ -2190,6 +2298,33 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-pickleland-event_317165060-2026-11-16",
+      "session_id": "meetup-pickleland-event_317165060-2026-11-16",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "2pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-16T20:00:00.000Z",
+      "ends_at": "2026-11-16T22:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317165060/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2856,7 +2991,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3051,6 +3186,33 @@
         "type": "Open play"
       },
       "venue_id": "sports-garden",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-109915602-2026-11-16",
+      "session_id": "active-109915602",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Riverside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T00:30:00.000Z",
+      "ends_at": "2026-11-17T01:30:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-109915602",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "fw-riverside",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3354,7 +3516,34 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-pickleland-event_317169859-2026-11-16",
+      "session_id": "meetup-pickleland-event_317169859-2026-11-16",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "8pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T02:00:00.000Z",
+      "ends_at": "2026-11-17T04:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317169859/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3629,6 +3818,33 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110202485-2026-11-17",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T12:00:00.000Z",
+      "ends_at": "2026-11-17T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3964,6 +4180,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110185888-2026-11-17",
+      "session_id": "active-110185888",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Handley Meadowbrook Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T16:00:00.000Z",
+      "ends_at": "2026-11-17T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110185888",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-handley-meadowbrook-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "opencourt-86975ec0-4bd7-44e9-b07b-48fe7e5da071",
       "session_id": "opencourt-86975ec0-4bd7-44e9-b07b-48fe7e5da071",
       "source_id": "austin-picklehaus",
@@ -4183,6 +4426,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-17",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T16:30:00.000Z",
+      "ends_at": "2026-11-17T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -4718,6 +4988,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "meetup-pickleland-event_317180856-2026-11-17",
+      "session_id": "meetup-pickleland-event_317180856-2026-11-17",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "4pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T22:00:00.000Z",
+      "ends_at": "2026-11-18T00:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317180856/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "opencourt-d51a438f-aa98-40dd-b7e5-65d6bc563ddf",
       "session_id": "opencourt-d51a438f-aa98-40dd-b7e5-65d6bc563ddf",
       "source_id": "austin-picklehaus",
@@ -5130,7 +5427,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5266,7 +5563,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5853,6 +6150,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110202485-2026-11-18",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-18T12:00:00.000Z",
+      "ends_at": "2026-11-18T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-pickle-pit-stop-12117cf1ebacb6a6",
       "session_id": "openplay-pickle-pit-stop-12117cf1ebacb6a6",
       "source_id": "austin-club-openplay",
@@ -6213,6 +6537,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110189828-2026-11-18",
+      "session_id": "active-110189828",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-18T16:00:00.000Z",
+      "ends_at": "2026-11-18T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110189828",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-martin-luther-king-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "daysmart-chaparralice-346716",
       "session_id": "daysmart-chaparralice-346716",
       "source_id": "chaparral-ice",
@@ -6492,6 +6843,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110034404-2026-11-18",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-18T16:30:00.000Z",
+      "ends_at": "2026-11-18T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "pickleball-austin-northwest-rec-0-2026-11-18",
       "session_id": "pickleball-austin-northwest-rec-0-2026-11-18",
       "source_id": "austin-city-pickleball",
@@ -6517,6 +6895,33 @@
         "reviewBy": "2026-11-30"
       },
       "venue_id": "austin-northwest-rec",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-pickleland-event_317193700-2026-11-18",
+      "session_id": "meetup-pickleland-event_317193700-2026-11-18",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "12pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-18T18:00:00.000Z",
+      "ends_at": "2026-11-18T20:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317193700/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6630,6 +7035,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110213158-2026-11-18",
+      "session_id": "active-110213158",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "R.D. Evans Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-18T19:00:00.000Z",
+      "ends_at": "2026-11-18T21:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110213158",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7406,7 +7838,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7680,7 +8112,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7874,7 +8306,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8099,6 +8531,33 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110202485-2026-11-19",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-19T12:00:00.000Z",
+      "ends_at": "2026-11-19T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8351,6 +8810,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110185888-2026-11-19",
+      "session_id": "active-110185888",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Handley Meadowbrook Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-19T16:00:00.000Z",
+      "ends_at": "2026-11-19T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110185888",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-handley-meadowbrook-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "opencourt-60f85ffe-d80b-41d4-9c57-6ea4f50eb07e",
       "session_id": "opencourt-60f85ffe-d80b-41d4-9c57-6ea4f50eb07e",
       "source_id": "austin-picklehaus",
@@ -8486,6 +8972,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-19",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-19T16:30:00.000Z",
+      "ends_at": "2026-11-19T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9154,7 +9667,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9372,7 +9885,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9679,6 +10192,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "meetup-pickleland-event_317220154-2026-11-20",
+      "session_id": "meetup-pickleland-event_317220154-2026-11-20",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "8am Pickleball - Start the Day Strong 💪",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-20T14:00:00.000Z",
+      "ends_at": "2026-11-20T16:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317220154/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "opencourt-771c6d67-a25a-4631-90a2-7c561cf37c26",
       "session_id": "opencourt-771c6d67-a25a-4631-90a2-7c561cf37c26",
       "source_id": "holy-pickle",
@@ -9843,6 +10383,33 @@
         "reviewBy": "2026-11-30"
       },
       "venue_id": "austin-dove-springs-rec",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110189828-2026-11-20",
+      "session_id": "active-110189828",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-20T16:00:00.000Z",
+      "ends_at": "2026-11-20T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110189828",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10038,6 +10605,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-20",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-20T16:30:00.000Z",
+      "ends_at": "2026-11-20T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10923,6 +11517,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "meetup-pickleland-event_317439274-2026-11-20",
+      "session_id": "meetup-pickleland-event_317439274-2026-11-20",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Pickleland Perreo Pickle 🔥",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T02:00:00.000Z",
+      "ends_at": "2026-11-21T04:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317439274/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "opencourt-25a15302-306f-4200-95ac-e6e3812d9665",
       "session_id": "opencourt-25a15302-306f-4200-95ac-e6e3812d9665",
       "source_id": "austin-picklehaus",
@@ -11199,6 +11820,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110202467-2026-11-21",
+      "session_id": "active-110202467",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T14:00:00.000Z",
+      "ends_at": "2026-11-21T19:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202467",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "opencourt-1409fcb9-2eac-4889-b119-aaf26cc6a0a3",
       "session_id": "opencourt-1409fcb9-2eac-4889-b119-aaf26cc6a0a3",
       "source_id": "holy-pickle",
@@ -11334,7 +11982,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11564,6 +12212,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "meetup-pickleland-event_317241130-2026-11-21",
+      "session_id": "meetup-pickleland-event_317241130-2026-11-21",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Weekend 11am Pickleball + Friends",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T17:00:00.000Z",
+      "ends_at": "2026-11-21T20:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317241130/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-eastside-paddle-club-01a17ee0-7e15-7338-8b9c-a2747b677b56",
       "session_id": "openplay-eastside-paddle-club-01a17ee0-7e15-7338-8b9c-a2747b677b56",
       "source_id": "austin-club-openplay",
@@ -11702,6 +12377,33 @@
         "capacity": 250
       },
       "venue_id": "crossover-ice",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-pickleland-event_317243971-2026-11-21",
+      "session_id": "meetup-pickleland-event_317243971-2026-11-21",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Weekend 2pm Pickleball Vibes - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T20:00:00.000Z",
+      "ends_at": "2026-11-21T23:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317243971/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11867,6 +12569,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-pickleland-event_317245805-2026-11-21",
+      "session_id": "meetup-pickleland-event_317245805-2026-11-21",
+      "source_id": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Weekend 5pm Pickleball - Make New Friends & Learn How to Play!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T23:00:00.000Z",
+      "ends_at": "2026-11-22T02:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317245805/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Austin Pickleball Community.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "unspecified",
+        "type": "Open play"
+      },
+      "venue_id": "austin-pickleland",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13173,6 +13902,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110202485-2026-11-23",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-23T12:00:00.000Z",
+      "ends_at": "2026-11-23T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-eastside-paddle-club-01a178fd-5098-755d-959f-91a706770b5c",
       "session_id": "openplay-eastside-paddle-club-01a178fd-5098-755d-959f-91a706770b5c",
       "source_id": "austin-club-openplay",
@@ -13253,6 +14009,33 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110189828-2026-11-23",
+      "session_id": "active-110189828",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-23T16:00:00.000Z",
+      "ends_at": "2026-11-23T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110189828",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13338,6 +14121,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-23",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-23T16:30:00.000Z",
+      "ends_at": "2026-11-23T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13757,7 +14567,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13842,6 +14652,33 @@
         "type": "Open play"
       },
       "venue_id": "sports-garden",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-109915602-2026-11-23",
+      "session_id": "active-109915602",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Riverside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-24T00:30:00.000Z",
+      "ends_at": "2026-11-24T01:30:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-109915602",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "fw-riverside",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13979,7 +14816,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14008,6 +14845,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110202485-2026-11-24",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-24T12:00:00.000Z",
+      "ends_at": "2026-11-24T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14096,6 +14960,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110185888-2026-11-24",
+      "session_id": "active-110185888",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Handley Meadowbrook Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-24T16:00:00.000Z",
+      "ends_at": "2026-11-24T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110185888",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-handley-meadowbrook-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "daysmart-chaparralice-346726",
       "session_id": "daysmart-chaparralice-346726",
       "source_id": "chaparral-ice",
@@ -14177,6 +15068,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-24",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-24T16:30:00.000Z",
+      "ends_at": "2026-11-24T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14600,7 +15518,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14739,7 +15657,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14770,6 +15688,33 @@
         "classId": "jwsIOTSUhPNCVbVn9W1t"
       },
       "venue_id": "volleyworld-georgetown",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110202485-2026-11-25",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-25T12:00:00.000Z",
+      "ends_at": "2026-11-25T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14831,6 +15776,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110189828-2026-11-25",
+      "session_id": "active-110189828",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-25T16:00:00.000Z",
+      "ends_at": "2026-11-25T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110189828",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-martin-luther-king-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "daysmart-chaparralice-346729",
       "session_id": "daysmart-chaparralice-346729",
       "source_id": "chaparral-ice",
@@ -14884,6 +15856,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-25",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-25T16:30:00.000Z",
+      "ends_at": "2026-11-25T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14942,6 +15941,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110213158-2026-11-25",
+      "session_id": "active-110213158",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "R.D. Evans Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-25T19:00:00.000Z",
+      "ends_at": "2026-11-25T21:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110213158",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15136,7 +16162,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15246,7 +16272,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15329,7 +16355,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15364,6 +16390,60 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110202485-2026-11-26",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-26T12:00:00.000Z",
+      "ends_at": "2026-11-26T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110185888-2026-11-26",
+      "session_id": "active-110185888",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Handley Meadowbrook Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-26T16:00:00.000Z",
+      "ends_at": "2026-11-26T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110185888",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-handley-meadowbrook-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-pickle-pit-stop-0bd9df3b3d048b9f",
       "session_id": "openplay-pickle-pit-stop-0bd9df3b3d048b9f",
       "source_id": "austin-club-openplay",
@@ -15389,6 +16469,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-26",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-26T16:30:00.000Z",
+      "ends_at": "2026-11-26T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15611,7 +16718,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15694,7 +16801,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15785,6 +16892,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110189828-2026-11-27",
+      "session_id": "active-110189828",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickle Ball",
+      "venue": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-27T16:00:00.000Z",
+      "ends_at": "2026-11-27T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110189828",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-martin-luther-king-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "daysmart-chaparralice-346731",
       "session_id": "daysmart-chaparralice-346731",
       "source_id": "chaparral-ice",
@@ -15867,6 +17001,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110034404-2026-11-27",
+      "session_id": "active-110034404",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Northside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-27T16:30:00.000Z",
+      "ends_at": "2026-11-27T20:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16348,6 +17509,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110202467-2026-11-28",
+      "session_id": "active-110202467",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-28T14:00:00.000Z",
+      "ends_at": "2026-11-28T19:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202467",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-pickle-pit-stop-5dd16e98ef70f080",
       "session_id": "openplay-pickle-pit-stop-5dd16e98ef70f080",
       "source_id": "austin-club-openplay",
@@ -16428,7 +17616,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17233,6 +18421,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110202485-2026-11-30",
+      "session_id": "active-110202485",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-30T12:00:00.000Z",
+      "ends_at": "2026-11-30T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-victory-forest-community-center",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "beecave-on-ice-mwth-2026-11-30",
       "session_id": "beecave-on-ice-mwth",
       "source_id": "manual",
@@ -17336,7 +18551,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17364,6 +18579,33 @@
         "type": "Open play"
       },
       "venue_id": "sports-garden",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-109915602-2026-11-30",
+      "session_id": "active-109915602",
+      "source_id": "dfw-city-active-pickleball",
+      "sport": "pickleball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Pickleball",
+      "venue": "Riverside Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-12-01T00:30:00.000Z",
+      "ends_at": "2026-12-01T01:30:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-109915602",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "fw-riverside",
       "status": "scheduled",
       "previous_starts_at": null
     },

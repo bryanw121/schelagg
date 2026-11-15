@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        274,
         271,
         278,
         278,
@@ -11,6 +10,7 @@
         275,
         275,
         275,
+        273,
         273
       ],
       "sessions": 273,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 750
+      "failStreak": 751
     },
     "atxbeach": {
       "counts": [
@@ -229,9 +229,9 @@
         6,
         6,
         6,
+        7,
+        7,
         6,
-        7,
-        7,
         6,
         6,
         6,
@@ -671,7 +671,7 @@
         2,
         2,
         2,
-        2,
+        3,
         3,
         3,
         3,
@@ -707,6 +707,24 @@
         2
       ],
       "sessions": 2,
+      "coverage": {
+        "end": 1,
+        "price": 0,
+        "level": 1,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      }
+    },
+    "austin-pickleball-meetup": {
+      "counts": [
+        10
+      ],
+      "sessions": 10,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -895,16 +913,17 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 459
+      "failStreak": 460
     },
     "leander-pickleball": {
-      "failStreak": 459
+      "failStreak": 460
     },
     "dallas-reclub": {
-      "failStreak": 91
+      "failStreak": 92
     },
     "sportsgarden": {
       "counts": [
+        4,
         4,
         4,
         4,
@@ -934,6 +953,7 @@
       "counts": [
         2,
         2,
+        2,
         2
       ],
       "sessions": 2,
@@ -961,9 +981,28 @@
         2,
         6,
         6,
+        6,
         6
       ],
       "sessions": 6,
+      "coverage": {
+        "end": 1,
+        "price": 0,
+        "level": 1,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      }
+    },
+    "dfw-city-active-pickleball": {
+      "counts": [
+        7
+      ],
+      "sessions": 7,
       "coverage": {
         "end": 1,
         "price": 0,
