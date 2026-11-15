@@ -90,82 +90,42 @@ Includes access to $20 Friday Night Open Play & Pizza from 7 PM-11 PM, plus any 
   assert.deepEqual([s[1].start, s[1].end, s[1].price], ['19:00', '23:00', '$20']);
 });
 
-test('Velocity: season window and both nights', () => {
-  const text = `Adult Open Play Volleyball
-Season Dates: May 20 – August 14, 2026
-Wednesday Open Play
-Time: 8PM – Midnight
-Courts: 5 Courts
-Level: Beginner & Intermediate
-Friday Open Play
-Time: 8PM – Midnight
-Courts: 5 Courts
-Level: Intermediate & Advanced`;
-  const s = vel.parse(text, REF);
-  assert.equal(s.length, 2);
+test('Velocity: the season page lists each Sunday, skipping the ones it leaves out', () => {
+  const pages = fixtureJson('velocity-wp-pages.json');
+  assert.deepEqual(vel.seasonSlugs(pages.find((p) => p.slug === 'adult-volleyball-2').content.rendered), ['fall-winter-adult-open-gym']);
+  const s = vel.parse(pages, '2026-10-31', 90);
+  // Nov 29 and Jan 10 aren't on the schedule.
+  assert.deepEqual(s.map((x) => x.date), ['2026-11-15', '2026-11-22', '2026-12-06', '2026-12-13', '2026-12-20', '2026-12-27', '2027-01-03', '2027-01-17']);
+  assert.deepEqual([s[0].id, s[0].start, s[0].end, s[0].venue, s[0].type, s[0].surface], ['velocity-2026-11-15', '17:00', '20:00', 'The Crossover', 'Open play', 'indoor']);
+  assert.deepEqual([s[0].title, s[0].price, s[0].capacity, s[0].level], ['Austin Velocity Fall/Winter Adult Open Gym', '$10 online · $12 door', 42, 'Competitive · 17+']);
+  assert.match(s[0].signup.url, /^https:\/\/app\.acuityscheduling\.com\/schedule\.php\?owner=\d+&appointmentType=\d+$/);
+  // With the schedule's 14-day horizon: past dates drop off, later ones wait.
+  assert.deepEqual(vel.parse(pages, '2026-11-22').map((x) => x.id), ['velocity-2026-11-22', 'velocity-2026-12-06']);
+  // Before the season comes into the horizon it's a weekly window, so the source isn't empty.
+  assert.deepEqual(vel.parse(pages, '2026-10-25').map((x) => [x.id, x.startsOn, x.validUntil]), [['velocity-sun', '2026-11-15', '2027-01-17']]);
+  // After the season, nothing.
+  assert.throws(() => vel.parse(pages, '2027-01-18'), /No current or upcoming/);
+  assert.equal(validateSessions(s.map((x) => tagSession(x, SRC))).warnings.length, 0);
+});
+
+test('Velocity: with only the hub page, the season is a weekly window', () => {
+  const hub = fixtureJson('velocity-wp-pages.json').filter((p) => p.slug === 'adult-volleyball-2');
+  const [s] = vel.parse(hub, '2026-11-20');
+  assert.deepEqual([s.id, s.days, s.start, s.end, s.startsOn, s.validUntil], ['velocity-sun', ['Sun'], '17:00', '20:00', '2026-11-15', '2027-01-17']);
+});
+
+test('Velocity: the summer format (season dates, then one block per night) still parses', () => {
+  const html = `<h1>Adult Open Play Volleyball</h1><p>Season Dates: May 20 &ndash; August 14, 2026</p>
+<h3>Wednesday Open Play</h3><p>Time: 8PM &ndash; Midnight<br>Courts: 5 Courts<br>Level: Beginner &amp; Intermediate</p>
+<h3>Friday Open Play</h3><p>Time: 8PM &ndash; Midnight<br>Courts: 5 Courts<br>Level: Intermediate &amp; Advanced</p>`;
+  const s = vel.parse([{ slug: 'adult-volleyball-2', link: 'https://www.austinvelocity.com/rentals/adult-volleyball-2/', content: { rendered: html } }], '2026-06-01');
+  assert.deepEqual(s.map((x) => x.id), ['velocity-wed', 'velocity-fri']);
   assert.deepEqual([s[0].start, s[0].end, s[0].startsOn, s[0].validUntil], ['20:00', '24:00', '2026-05-20', '2026-08-14']);
   assert.equal(s[1].level, 'Intermediate & Advanced');
 });
 
-// The fall/winter 2026-27 season page (text from the live page, Nov 1, 2026): Sundays with two skipped.
-const VELOCITY_SEASON_PAGE = `FALL/WINTER ADULT OPEN GYM
-Sundays • 5PM–8PM • Indoor Open Play
-Season Dates: November 15, 2026 – January 17, 2027
-Eight Sunday evenings of competitive adult volleyball at The Crossover. Buy the season pass or drop in for a single night. Ages 17 and up.
-LOCATION
-The Crossover
-SESSION DATES
-November 15 & 22
-December 6, 13, 20 & 27
-January 3 & 17
-Sundays, 5:00–8:00PM
-8-SESSION PASS
-$40 with code OPENPLAY40, through November 15
-$50 from November 16
-SINGLE SESSION
-$10 reserved online in advance
-$12 at the door
-Any Sunday on the schedule
-Drop in for one night. Space is capped at 42 players per session, so booking ahead is the safest way to get on a court.`;
-
-test('Velocity: the season page lists each Sunday, across the new year, skipping the off weeks', () => {
-  const url = 'https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym';
-  const s = vel.parse(VELOCITY_SEASON_PAGE, '2026-11-01', url);
-  assert.deepEqual(s.map((x) => x.date), ['2026-11-15', '2026-11-22', '2026-12-06', '2026-12-13', '2026-12-20', '2026-12-27', '2027-01-03', '2027-01-17']);
-  assert.deepEqual([s[0].start, s[0].end, s[0].price, s[0].capacity, s[0].id], ['17:00', '20:00', '$10 online · $12 door', 42, 'velocity-2026-11-15']);
-  assert.equal(s[0].signup.url, url);
-  const { ok, warnings } = validateSessions(s.map((x) => tagSession(x, SRC)));
-  assert.equal(ok.length, 8);
-  assert.deepEqual(warnings, []);
-});
-
-test('Velocity: a season page without a date list runs weekly across the season', () => {
-  const s = vel.parse('Sundays • 5PM–8PM\nSeason Dates: November 15, 2026 – January 17, 2027', '2026-11-01');
-  assert.deepEqual([s[0].days, s[0].start, s[0].end, s[0].startsOn, s[0].validUntil], [['Sun'], '17:00', '20:00', '2026-11-15', '2027-01-17']);
-});
-
-test('Velocity: scrape follows the adult page\'s "See Dates & Pricing" link to the season page', async () => {
-  const pages = {
-    'https://www.austinvelocity.com/rentals/adult-volleyball-2': 'NOW BOOKING\nFALL/WINTER ADULT OPEN GYM\nSundays • 5PM–8PM • November 15, 2026 – January 17, 2027\nSee Dates & Pricing',
-    'https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym': VELOCITY_SEASON_PAGE,
-  };
-  let url = null;
-  const page = {
-    goto: async (u) => { url = u; },
-    locator: (sel) => ({
-      innerText: async () => pages[url],
-      first: () => ({ getAttribute: async () => (sel === 'a' ? '/rentals/fall-winter-adult-open-gym' : null) }),
-    }),
-    close: async () => {},
-  };
-  const r = await vel.scrape({ browser: { newPage: async () => page }, ref: '2026-11-01' });
-  assert.equal(r.sessions.length, 8);
-  assert.equal(r.sessions[0].source, 'https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym');
-  assert.ok(r.contentHash);
-});
-
-test('Velocity: no season posted is an error', () => {
-  assert.throws(() => vel.parse('ADULT VOLLEYBALL\nOpen gym and open play for ages 17 and up', '2026-11-01'), /Season dates not found/);
+test('Velocity: a page with no season says so', () => {
+  assert.throws(() => vel.parse([{ slug: 'adult-volleyball-2', content: { rendered: '<p>Check back soon!</p>' } }], REF), /No current or upcoming open-play season/);
 });
 
 import * as reclub from '../scripts/adapters/reclub.mjs';

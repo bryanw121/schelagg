@@ -40,7 +40,7 @@ sessions and status untouched.
 | Calendar feeds (DFW Meetup groups: DFW Volleyball, North Texas Adult Volleyball, The Program) | `scripts/adapters/ical.mjs`: each group's own iCal export (time, title, link; descriptions not published) | 6h |
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
 | ATX Beach open play | TeamUp membership page | 6h |
-| Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
+| Austin Velocity adult open gym (The Crossover) | Their adult page and the season page it links to, through WordPress's public REST API (no browser): each listed date within 14 days, else the season's weekly window, so it switches itself on/off | 1d |
 | Austin city pickleball | Reviewed recreation-center blocks on the city's public page; bounded dated sessions and holiday holds | 1d |
 | Georgetown and Leander pickleball | `scripts/adapters/official-schedule.mjs`: reviewed slots per venue, emitted only while that venue's block on the official city page keeps its reviewed fingerprint; bounded dated sessions and holiday holds | 1d |
 | Hand-checked sessions (Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
@@ -242,7 +242,7 @@ or cmd; nothing needs bash. Optional settings go in a `.env` file (copy `.env.ex
 
 ```bash
 npm install
-npx playwright install chromium   # only needed for npm run scrape (ACES, ATX Beach, Velocity pages)
+npx playwright install chromium   # only needed for npm run scrape (ACES, ATX Beach pages)
 npm test                          # unit + integration tests (parsers, API handlers, scrape pipeline), all offline
 npm run test:e2e                  # the site in Chromium against server.js, with fixture data (needs playwright's chromium)
 npm run check:skedda              # checks the court calendars respond to a plain script
