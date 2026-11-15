@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T11:16:23.257Z",
+  "generatedAt": "2026-11-15T12:17:19.481Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:19.930Z",
+      "checkedAt": "2026-11-15T12:13:51.765Z",
       "count": 277
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:19.931Z",
+      "checkedAt": "2026-11-15T12:13:51.765Z",
       "count": 155
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:19.931Z",
+      "checkedAt": "2026-11-15T12:13:51.766Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:19.931Z",
+      "checkedAt": "2026-11-15T12:13:51.766Z",
       "count": 11
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T11:13:19.932Z",
+      "checkedAt": "2026-11-15T12:13:51.767Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -60,7 +60,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:27.494Z",
+      "checkedAt": "2026-11-15T12:13:51.768Z",
       "count": 2
     },
     {
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:19.932Z",
+      "checkedAt": "2026-11-15T12:13:51.824Z",
       "count": 6
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:20.974Z",
+      "checkedAt": "2026-11-15T12:13:52.033Z",
       "count": 3
     },
     {
@@ -100,8 +100,8 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:29.219Z",
-      "count": 2
+      "checkedAt": "2026-11-15T12:13:53.299Z",
+      "count": 3
     },
     {
       "id": "austin-meetup",
@@ -110,7 +110,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:29.278Z",
+      "checkedAt": "2026-11-15T12:13:53.504Z",
       "count": 2
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:22.117Z",
+      "checkedAt": "2026-11-15T12:13:53.737Z",
       "count": 35
     },
     {
@@ -130,7 +130,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:22.849Z",
+      "checkedAt": "2026-11-15T12:13:55.458Z",
       "count": 24
     },
     {
@@ -150,7 +150,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T11:13:24.110Z",
+      "checkedAt": "2026-11-15T12:13:57.096Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -161,7 +161,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T11:13:24.278Z",
+      "checkedAt": "2026-11-15T12:13:57.148Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     },
@@ -172,7 +172,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T11:13:24.447Z",
+      "checkedAt": "2026-11-15T12:13:57.218Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -203,7 +203,7 @@
       "region": "dallas",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:37.222Z",
+      "checkedAt": "2026-11-15T12:13:58.346Z",
       "count": 12,
       "warnings": [
         "meetup-ntav-event_317170126-2026-11-16: no venue name",
@@ -225,7 +225,7 @@
       "region": "houston",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T11:13:26.491Z",
+      "checkedAt": "2026-11-15T12:13:59.597Z",
       "count": 20,
       "warnings": [
         "reclub-FAL015: no surface",
@@ -12285,7 +12285,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -12313,7 +12313,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -12636,7 +12636,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "austin-sports-center-central",
       "status": "scheduled"
     },
@@ -12662,7 +12662,33 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-sports-center-central",
+      "status": "scheduled"
+    },
+    {
+      "id": "leagueapps-5185729",
+      "date": "2026-11-29",
+      "start": "19:00",
+      "end": "21:00",
+      "title": "Volleyball Austin Open Play",
+      "venue": "Austin Sports Center - Central",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels · social and skilled courts",
+      "price": "$12 + fee",
+      "note": "Hosted by Volleyball Austin (NAGVA club; everyone welcome).",
+      "signup": {
+        "url": "https://volleyballaustin.leagueapps.com/events/5185729-nov.-29-2026-sunday",
+        "label": "Register on LeagueApps"
+      },
+      "source": "https://volleyballaustin.leagueapps.com/events/5185729-nov.-29-2026-sunday",
+      "sourceId": "volleyball-austin",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
       "venueId": "austin-sports-center-central",
       "status": "scheduled"
     },
@@ -12688,7 +12714,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -12714,7 +12740,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -14780,7 +14806,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -14806,7 +14832,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -14832,7 +14858,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -14857,7 +14883,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -14882,7 +14908,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -14907,7 +14933,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -14932,7 +14958,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -14957,7 +14983,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -14982,7 +15008,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -15007,7 +15033,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -15032,7 +15058,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -15057,7 +15083,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
