@@ -28,6 +28,17 @@
       }
     },
     {
+      "id": "volleyball-austin",
+      "name": "Volleyball Austin",
+      "reader": "leagueapps",
+      "options": {
+        "sites": [
+          { "url": "https://volleyballaustin.leagueapps.com/leagues", "kind": "league", "org": "Volleyball Austin", "region": "austin", "state": "TX", "city": "Austin", "idPrefix": "vba", "titlePrefix": "Volleyball Austin" },
+          { "url": "https://volleyballaustin.leagueapps.com/tournaments", "kind": "tournament", "org": "Volleyball Austin", "region": "austin", "state": "TX", "city": "Austin", "idPrefix": "vba", "titlePrefix": "Volleyball Austin" }
+        ]
+      }
+    },
+    {
       "id": "meanwhile",
       "name": "Meanwhile Brewing",
       "reader": "leaguelab",
