@@ -61,4 +61,8 @@ test('render: sports first, then leagues; failing sources say since when and why
   assert.match(html, /NAGVA[\s\S]*1 tournament across the state/);
   assert.doesNotMatch(html, /Austin SSC/);
   assert.ok(html.indexOf('open play') < html.indexOf('Leagues &amp; tournaments'));
+  // Working sources first (most first), broken ones last; a broken one says so where the count goes.
+  assert.ok(html.indexOf('data-source="meetup"') < html.indexOf('data-source="reclub"'));
+  assert.match(html, /data-source="reclub"[^]*?<span class="count">Not working<\/span>/);
+  assert.ok(html.indexOf('data-source="lonestar"') < html.indexOf('data-source="nagva"'));
 });

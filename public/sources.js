@@ -22,10 +22,17 @@ const day = (iso, tz) => new Date(iso).toLocaleDateString('en-US', { month: 'sho
 const today = (tz, now = Date.now()) => new Date(now).toLocaleDateString('en-CA', { timeZone: tz });
 const plusDays = (ymd, n) => new Date(Date.parse(`${ymd}T12:00:00Z`) + n * 86400e3).toISOString().slice(0, 10);
 
+const datedIn = (sessions, from, to) => sessions.filter((x) => x.date && x.date >= from && x.date <= to).length;
+const weeklyIn = (sessions, from, to) => sessions.filter((x) => !x.date && x.days?.length && (!x.validUntil || x.validUntil >= from) && (!x.startsOn || x.startsOn <= to)).length;
+/** Sessions a source gives this week, weekly time slots counted once a day they run. */
+const weight = (sessions, from, to) => datedIn(sessions, from, to) + sessions.filter((x) => !x.date && x.days?.length).reduce((n, x) => n + x.days.length, 0);
+/** Working sources first, the ones giving the most first; broken ones last. */
+const byPriority = (a, b) => (b.ok - a.ok) || (b.n - a.n) || a.name.localeCompare(b.name);
+
 /** What a source gives, in words: "10 sessions this week", "4 weekly time slots", both, or none. */
 export function gives(sessions, from, to) {
-  const dated = sessions.filter((x) => x.date && x.date >= from && x.date <= to).length;
-  const weekly = sessions.filter((x) => !x.date && x.days?.length && (!x.validUntil || x.validUntil >= from) && (!x.startsOn || x.startsOn <= to)).length;
+  const dated = datedIn(sessions, from, to);
+  const weekly = weeklyIn(sessions, from, to);
   const parts = [dated && plural(dated, 'session') + ' this week', weekly && plural(weekly, 'weekly time slot')].filter(Boolean);
   return parts.length ? parts.join(' · ') : 'None posted right now';
 }
@@ -40,20 +47,25 @@ export function offers(programs) {
 
 /** A source's status line. */
 function status(s, tz) {
-  if (s.ok) return `<span class="status"><span class="dot"></span><span>Working · checked ${esc(ago(s.checkedAt))}</span></span>`;
+  if (s.ok) return `<span class="status">Working · checked ${esc(ago(s.checkedAt))}</span>`;
   const since = s.failingSince ?? s.failedAt ?? s.checkedAt;
   const why = String(s.error ?? '').replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim().slice(0, 90);
   const kept = s.kept || s.count ? ` · showing ${plural(s.kept ?? s.count, 'listing')} from its last good check` : '';
-  return `<span class="status"><span class="dot"></span><span>Not working since ${esc(day(since, tz))}${why ? ` · ${esc(why)}` : ''}${esc(kept)}</span></span>`;
+  return `<span class="status">Not working since ${esc(day(since, tz))}${why ? ` · ${esc(why)}` : ''}${esc(kept)}</span>`;
 }
 
+/**
+ * One source: by default a single line (status dot, name, what it gives; a broken source says so in
+ * red); its kind, its groups or clubs and its full status show with "See details".
+ */
 function row(s, what, tz) {
-  // A source that reads several groups or clubs links each of them, not its name.
+  // A source that reads several groups or clubs links each of them (in its details), not its name.
   const several = (s.links ?? []).length > 1;
   const name = s.site && !several ? `<a href="${esc(s.site)}" target="_blank" rel="noopener">${esc(s.name)}</a>` : `<span class="name">${esc(s.name)}</span>`;
   const links = several || (s.links?.length === 1 && !s.site)
     ? `<span class="links">${s.links.map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.name)}</a>`).join(' · ')}</span>` : '';
-  return `<div class="src${s.ok ? '' : ' bad'}" data-source="${esc(s.id)}">${name}<span class="count">${esc(what)}</span><span class="kind">${esc(s.kind ?? '')}</span>${links}${status(s, tz)}</div>`;
+  const label = s.ok ? 'Working' : 'Not working';
+  return `<div class="src${s.ok ? '' : ' bad'}" data-source="${esc(s.id)}"><span class="dot" role="img" aria-label="${label}" title="${label}"></span>${name}<span class="count">${esc(s.ok ? what : 'Not working')}</span><div class="more"><span class="kind">${esc(s.kind ?? '')}${s.ok ? '' : ` · ${esc(what)}`}</span>${links}${status(s, tz)}</div></div>`;
 }
 
 export function render({ region, schedule, programs, sport, now = Date.now() }) {
@@ -67,7 +79,7 @@ export function render({ region, schedule, programs, sport, now = Date.now() }) 
     const ofSource = (id) => (schedule.sessions ?? []).filter((x) => x.sourceId === id);
     const week = (schedule.sessions ?? []).filter((x) => (x.sport ?? 'volleyball') === sp);
     const [label, what] = SPORTS[sp] ?? [sp, 'open play'];
-    out.push(`<section class="src-group" data-sport="${esc(sp)}"><h3>${esc(label)} · ${esc(what)} <span class="n">${esc(plural(list.length, 'source'))} · ${esc(gives(week, from, to).replace('None posted right now', 'nothing this week'))}</span></h3>${list.map((s) => row(s, gives(ofSource(s.id), from, to), tz)).join('')}</section>`);
+    out.push(`<section class="src-group" data-sport="${esc(sp)}"><h3>${esc(label)} · ${esc(what)} <span class="n">${esc(plural(list.length, 'source'))}</span></h3>${list.map((s) => ({ ...s, ok: !!s.ok, name: s.name ?? s.id, n: weight(ofSource(s.id), from, to) })).sort(byPriority).map((s) => row(s, gives(ofSource(s.id), from, to), tz)).join('')}</section>`);
   }
   // Leagues & tournaments: sources for this city (by config or by what they list here), and
   // statewide ones (NAGVA, Texas Asian Olympics) with what they list across the state.
@@ -79,13 +91,24 @@ export function render({ region, schedule, programs, sport, now = Date.now() }) 
     if (!mine.length && !(s.regions ?? []).includes(region.id) && !statewide) continue;
     if (statewide && !progs.some((p) => p.feed_source === s.id)) continue;
     const what = statewide ? `${offers(progs.filter((p) => p.feed_source === s.id)).replace('open for sign-up', 'across the state')}` : offers(mine);
-    rows.push(row({ ...s, name: s.name ?? s.id }, what, tz));
+    rows.push({ ...s, ok: !!s.ok, name: s.name ?? s.id, n: statewide ? 0 : mine.length, what });
   }
-  if (rows.length) out.push(`<section class="src-group" data-sport="programs"><h3>Leagues &amp; tournaments <span class="n">${esc(plural(rows.length, 'source'))}</span></h3>${rows.join('')}</section>`);
+  if (rows.length) out.push(`<section class="src-group" data-sport="programs"><h3>Leagues &amp; tournaments <span class="n">${esc(plural(rows.length, 'source'))}</span></h3>${rows.sort(byPriority).map((s) => row(s, s.what, tz)).join('')}</section>`);
   return out.join('') || '<p class="src-lede">No sources for this city yet.</p>';
 }
 
+/** "See details" shows every source's kind, groups and status; "Hide details" puts them away. */
+function details() {
+  const btn = $('details');
+  btn.addEventListener('click', () => {
+    const open = document.body.classList.toggle('src-details');
+    btn.textContent = open ? 'Hide details' : 'See details';
+    btn.setAttribute('aria-expanded', String(open));
+  });
+}
+
 async function main() {
+  details();
   const params = new URLSearchParams(location.search);
   const sport = SPORTS[params.get('sport')] ? params.get('sport') : 'volleyball';
   try {
@@ -102,6 +125,7 @@ async function main() {
     document.title = `Schelagg · Sources · ${region.name}`;
     const [schedule, programs] = await Promise.all([getJson(`${DATA}regions/${region.id}/schedule.json`), getJson(`${DATA}programs.json`).catch(() => null)]);
     $('groups').innerHTML = render({ region, schedule, programs, sport });
+    $('details').hidden = false;
   } catch (e) {
     $('groups').innerHTML = `<div class="error">Couldn't load the sources right now (${esc(e.message)}).</div>`;
   }

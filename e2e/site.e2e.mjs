@@ -1190,6 +1190,12 @@ test('sources page: opens from "N sources" on the schedule, lists each source wi
   await page.locator('.src').first().waitFor();
   const rows = page.locator('.src');
   assert.equal(await rows.count(), 3);
+  // One line per source until "See details"; working ones first, the broken one last.
+  assert.deepEqual(await rows.evaluateAll((els) => els.map((e) => e.dataset.source)), ['sportsgarden', 'dallas-reclub', 'lonestar-ssc']);
+  assert.equal(await page.locator('.src[data-source="sportsgarden"] .more').isVisible(), false);
+  assert.equal(await page.locator('.src[data-source="dallas-reclub"] .count').textContent(), 'Not working');
+  await page.locator('#details').click();
+  assert.equal(await page.locator('#details').textContent(), 'Hide details');
   const sg = page.locator('.src[data-source="sportsgarden"]');
   assert.equal(await sg.locator('a').first().getAttribute('href'), 'https://sportsgardendfw.com/open-play/');
   assert.equal(await sg.locator('.count').textContent(), '1 weekly time slot');
