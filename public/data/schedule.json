@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T14:51:20.420Z",
+  "generatedAt": "2026-11-15T15:16:43.953Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:47.352Z",
+      "checkedAt": "2026-11-15T15:13:14.783Z",
       "count": 276
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:47.353Z",
+      "checkedAt": "2026-11-15T15:13:14.784Z",
       "count": 155
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:47.353Z",
+      "checkedAt": "2026-11-15T15:13:14.784Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:47.354Z",
+      "checkedAt": "2026-11-15T15:13:14.784Z",
       "count": 11
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T14:47:47.355Z",
+      "checkedAt": "2026-11-15T15:13:14.784Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:50.080Z",
+      "checkedAt": "2026-11-15T15:13:14.785Z",
       "count": 35
     },
     {
@@ -130,7 +130,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:51.750Z",
+      "checkedAt": "2026-11-15T15:13:14.810Z",
       "count": 24
     },
     {
@@ -150,7 +150,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T14:47:54.475Z",
+      "checkedAt": "2026-11-15T15:13:15.100Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -161,7 +161,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T14:47:54.670Z",
+      "checkedAt": "2026-11-15T15:13:15.173Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     },
@@ -172,7 +172,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T14:47:54.675Z",
+      "checkedAt": "2026-11-15T15:13:15.278Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -7708,32 +7708,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-1e25766e-b4d3-4955-bc56-f61fe04a994d",
-      "date": "2026-11-15",
-      "start": "07:00",
-      "end": "09:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Sip & Smash (7AM-9AM)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "2.8–3.8 recommended",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/1e25766e-b4d3-4955-bc56-f61fe04a994d",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/1e25766e-b4d3-4955-bc56-f61fe04a994d",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-201b9c36-3268-4ac6-bca0-10ef0e41a183",
       "date": "2026-11-15",
       "start": "09:00",
@@ -7968,6 +7942,58 @@
       "status": "scheduled"
     },
     {
+      "id": "opencourt-10442b73-7caa-4084-8152-782d8270cc30",
+      "date": "2026-11-15",
+      "start": "17:00",
+      "end": "19:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Gated Level 1  Neuling Play",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "level": "2–2.9 required",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/10442b73-7caa-4084-8152-782d8270cc30",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/10442b73-7caa-4084-8152-782d8270cc30",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-1e25766e-b4d3-4955-bc56-f61fe04a994d",
+      "date": "2026-11-15",
+      "start": "07:00",
+      "end": "09:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Sip & Smash (7AM-9AM)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$15 / person (nonmember)",
+      "level": "2.8–3.8 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/1e25766e-b4d3-4955-bc56-f61fe04a994d",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/1e25766e-b4d3-4955-bc56-f61fe04a994d",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
       "id": "opencourt-21d45837-44fc-4697-8b44-1ec32561f9f0",
       "date": "2026-11-15",
       "start": "17:00",
@@ -8087,32 +8113,6 @@
       "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/dc807c7e-7665-4d59-82d0-6c8af9b85c9d",
       "signup": {
         "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/dc807c7e-7665-4d59-82d0-6c8af9b85c9d",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-10442b73-7caa-4084-8152-782d8270cc30",
-      "date": "2026-11-15",
-      "start": "17:00",
-      "end": "19:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Gated Level 1  Neuling Play",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$8 / person (nonmember)",
-      "level": "2–2.9 required",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/10442b73-7caa-4084-8152-782d8270cc30",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/10442b73-7caa-4084-8152-782d8270cc30",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
@@ -14873,7 +14873,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -14899,7 +14898,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -14925,7 +14923,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -14951,7 +14948,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -14977,7 +14973,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15003,7 +14998,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15029,7 +15023,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15055,7 +15048,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15081,7 +15073,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15107,7 +15098,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15132,7 +15122,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -15157,7 +15146,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -15182,7 +15170,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15207,7 +15194,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15232,7 +15218,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -15257,7 +15242,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-wakefield-crowbar",
       "status": "scheduled"
     },
     {
@@ -15282,7 +15266,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -15307,7 +15290,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-emancipation-park",
       "status": "scheduled"
     },
     {
@@ -15332,7 +15314,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15357,7 +15338,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15382,7 +15362,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15407,7 +15386,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-blastros",
       "status": "scheduled"
     },
     {
@@ -15432,7 +15410,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -15457,7 +15434,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -15482,7 +15458,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15507,7 +15482,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15532,7 +15506,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15557,7 +15530,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16759,105 +16731,6 @@
       "lat": 32.69886,
       "lng": -97.25003,
       "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
-      "region": "dallas"
-    },
-    {
-      "id": "src-absolute-volleyball-academy-and-absolute-beach",
-      "name": "Absolute Volleyball Academy and Absolute Beach",
-      "city": null,
-      "address": "380 Green Wing St, Webster, Tx",
-      "lat": 29.536505,
-      "lng": -95.1123,
-      "region": "houston"
-    },
-    {
-      "id": "src-skyline-volleyball-academy",
-      "name": "Skyline Volleyball Academy",
-      "city": null,
-      "address": "23363 Clay Road, Katy, Tx",
-      "lat": 29.82756,
-      "lng": -95.77629,
-      "region": "houston"
-    },
-    {
-      "id": "src-tellepsen-family-downtown-ymca",
-      "name": "Tellepsen Family Downtown YMCA",
-      "city": null,
-      "address": "808 Pease St, Houston, TX",
-      "lat": 29.7521,
-      "lng": -95.3703,
-      "region": "houston"
-    },
-    {
-      "id": "src-katy-sports-center",
-      "name": "Katy Sports Center",
-      "city": null,
-      "address": "535 Applewhite Drive, Katy, TX 77450, USA",
-      "lat": 29.77552,
-      "lng": -95.754074,
-      "region": "houston"
-    },
-    {
-      "id": "src-wakefield-crowbar",
-      "name": "Wakefield Crowbar",
-      "city": null,
-      "address": "954 Wakefield Drive, Houston, TX 77018, USA",
-      "lat": 29.821991,
-      "lng": -95.42305,
-      "region": "houston"
-    },
-    {
-      "id": "src-emancipation-park",
-      "name": "Emancipation Park",
-      "city": null,
-      "address": "3018 Emancipation Avenue, Houston, Tx",
-      "lat": 29.73524,
-      "lng": -95.36563,
-      "region": "houston"
-    },
-    {
-      "id": "src-champion-forest-baptist-church-champions-campus",
-      "name": "Champion Forest Baptist Church - Champions Campus",
-      "city": null,
-      "address": "15555 Stuebner Airline Road, Houston, Tx",
-      "lat": 30.002792,
-      "lng": -95.51335,
-      "region": "houston"
-    },
-    {
-      "id": "src-blastros",
-      "name": "Blastros",
-      "city": null,
-      "address": "6922 Cotton Drive, Houston, TX 77092, USA",
-      "lat": 29.836542,
-      "lng": -95.49406,
-      "region": "houston"
-    },
-    {
-      "id": "src-t4-court-rentals",
-      "name": "T4 Court Rentals",
-      "city": null,
-      "address": "1419 Vander Wilt Lane, Katy, Tx",
-      "lat": 29.7893,
-      "lng": -95.7427,
-      "region": "houston"
-    },
-    {
-      "id": "src-collins-park",
-      "name": "Collins Park",
-      "city": null,
-      "address": "6727 Cypresswood Drive, Spring, TX",
-      "lat": 30.011,
-      "lng": -95.5077,
-      "region": "houston"
     }
   ]
 }

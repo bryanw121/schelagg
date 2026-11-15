@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T14:51:20.420Z",
+  "generatedAt": "2026-11-15T15:16:43.953Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -14,7 +14,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T14:47:54.675Z",
+      "checkedAt": "2026-11-15T15:13:15.278Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -309,7 +309,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -335,7 +334,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -361,7 +359,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -387,7 +384,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -413,7 +409,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -439,7 +434,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -465,7 +459,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -491,7 +484,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -517,7 +509,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -543,7 +534,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     }
   ],
@@ -583,15 +573,6 @@
       "address": "4932 Wilbarger Street, Fort Worth, TX 76119",
       "lat": 32.69886,
       "lng": -97.25003,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
       "region": "dallas"
     }
   ]
