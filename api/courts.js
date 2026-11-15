@@ -1,6 +1,6 @@
-// GET /api/courts?days=7  -> live court bookings + opening hours for High Point, Crossover and Treehouse.
+// GET /api/courts?days=7  -> live court bookings + opening hours from every court calendar (Skedda, OpenCourt).
 // Runs as a Vercel serverless function; also mounted by server.js for local dev.
-import { VENUES, loadVenue } from '../lib/skedda.js';
+import { VENUES, loadCourtVenue } from '../lib/courts.js';
 import { today } from '../lib/time.js';
 
 // Booking views want near-live data: refresh at most once a minute (here and at the CDN).
@@ -33,11 +33,11 @@ export function createHandler({ venues = VENUES, fetch, now = () => new Date(), 
 
     let hit = cache.get(key);
     if (!hit || at.getTime() - hit.at > ttlMs) {
-      const results = await Promise.allSettled(venues.map((v) => loadVenue(v, from, days, opts)));
+      const results = await Promise.allSettled(venues.map((v) => loadCourtVenue(v, from, days, opts)));
       const ok = [], errors = [];
       results.forEach((r, i) => {
         if (r.status === 'fulfilled') ok.push(r.value);
-        else errors.push({ venue: venues[i].id, calendar: venues[i].calendar, message: r.reason?.message || String(r.reason) });
+        else errors.push({ venue: venues[i].id, sport: venues[i].sport || 'volleyball', calendar: venues[i].calendar, message: r.reason?.message || String(r.reason) });
       });
       // If a venue failed but we served it recently, keep the old copy rather than show nothing.
       if (hit) for (const e of errors) {

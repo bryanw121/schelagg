@@ -18,6 +18,12 @@ test('venues: the real registry loads; bad entries are rejected', () => {
   assert.throws(bad([{ id: 'Bad Id', name: 'x' }]), /bad id/);
   assert.throws(bad([{ id: 'a1', name: 'x' }, { id: 'a1', name: 'y' }]), /duplicate/);
   assert.throws(bad([{ id: 'a1', name: 'x', parent: 'nope' }]), /unknown parent/);
+  assert.throws(bad([{ id: 'a1', name: 'x', lat: 30.2 }]), /both lat and lng/);
+  assert.throws(bad([{ id: 'a1', name: 'x', lat: 130, lng: -97 }]), /bad coordinates/);
+  assert.throws(bad([{ id: 'a1', name: 'x', lat: '30.2', lng: '-97.7' }]), /bad coordinates/);
+  assert.equal(bad([{ id: 'a1', name: 'x', lat: 30.2672, lng: -97.7431 }, { id: 'a2', name: 'y', lat: null, lng: null }])().length, 2);
+  // Every coordinate in the real registry is in its region's area (Central Texas for Austin).
+  for (const v of VENUES.filter((x) => x.lat != null)) assert.ok(Math.abs(v.lat - 30.4) < 1 && Math.abs(v.lng + 97.75) < 1, `${v.id} is far from Austin`);
   rmSync(dir, { recursive: true, force: true });
 });
 

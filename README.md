@@ -3,6 +3,22 @@
 Where to play volleyball in Austin: open play, adult training, leagues and Reclub meets, split into indoor / sand / grass,
 plus court availability at High Point, The Crossover and Roots' Treehouse Gym. Every session links to its sign-up.
 Also public ice skating (the site's sport switcher; `?sport=ice_skating` links straight to it).
+Austin pickleball open play is available at `?sport=pickleball`, with indoor/outdoor filters,
+venue addresses, Google/Apple directions and copy-address controls.
+
+### Austin pickleball pilot
+
+The city adapter checks six reviewed recreation centers daily: Alamo, Dottie Jordan,
+George Morales Dove Springs, Gus Garcia, Montopolis and Northwest. The `official-schedule` adapter does the same
+for the Georgetown Recreation Center, the Georgetown Tennis Center and the Leander Activity Center (outside Austin
+city limits, inside the Austin region; sessions carry their own `city`). Both generate seven days of dated sessions
+from published open-play programs, not court rentals, park opening hours or live capacity. Changed venue blocks are
+withheld until reviewed. See [source review](docs/austin-pickleball.md).
+The pilot has a November 30, 2026 editorial review deadline and excludes official city holidays
+pending venue confirmation. Successful fetches never extend the review deadline. Club calendar
+links for Austin Pickle Ranch and Eastside are shown separately from actual sessions.
+The ordinary scrape publishes pickleball in the regional index, occurrence feed and `.ics` calendar.
+No new API key or database migration is required. Courts remain volleyball-only in this pilot.
 
 Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional extras are a Postgres database on Neon
 (see [Database (Neon)](#database-neon)) and the Vercel API.
@@ -21,9 +37,12 @@ sessions and status untouched.
 | Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs`: each rink's public DaySmart events API, published public/adult skate types only | 30m; live via `/api/check` |
 | Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages | 1h; live via `/api/check` |
 | Sweatpals hosts (ATX Beach lunch open play, ATX Sand Social, Let's Volley ATX) | `scripts/adapters/sweatpals.mjs`: each host's public page, whose `__NEXT_DATA__` lists its upcoming events with exact times, address and prices; volleyball events only (per-host `include`) | 1h |
+| Calendar feeds (DFW Meetup groups: DFW Volleyball, North Texas Adult Volleyball, The Program) | `scripts/adapters/ical.mjs`: each group's own iCal export (time, title, link; descriptions not published) | 6h |
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
 | ATX Beach open play | TeamUp membership page | 6h |
 | Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
+| Austin city pickleball | Reviewed recreation-center blocks on the city's public page; bounded dated sessions and holiday holds | 1d |
+| Georgetown and Leander pickleball | `scripts/adapters/official-schedule.mjs`: reviewed slots per venue, emitted only while that venue's block on the official city page keeps its reviewed fingerprint; bounded dated sessions and holiday holds | 1d |
 | Hand-checked sessions (Hanovers, leagues, seasonal rinks) | `config/regions/austin/manual.json`; each source page is watched and flagged if it changes | page watched daily; `verifiedAt` age |
 | New Reclub clubs | `scripts/discover-reclub.mjs` (see [Discovering Reclub clubs](#discovering-reclub-clubs)) | Weekly |
 
@@ -172,10 +191,14 @@ drop some; add a name or OSM id to the sport's `ignore` list to never see it aga
 
 ### Discovering Reclub clubs
 
-Reclub only lets you browse clubs and meets by sport and location inside its app, so the scraper only reads the clubs
-listed in `options.clubs`. Discovery fills that gap from the outside: `scripts/discover-reclub.mjs` runs the web
-searches in `options.discover.queries` (Brave Search API), collects the reclub.co meet and club pages they turn up, and
-reads each unknown club's meets. A club qualifies when one of its meets is volleyball (`sport`) and is in Reclub's
+The scraper only reads the clubs listed in `options.clubs`. Discovery fills that gap: `scripts/discover-reclub.mjs`
+first reads Reclub's public community pages listed in `options.discover.communities`
+(`https://reclub.co/communities/us/texas/austin` and nearby cities, then the Texas page), which list the clubs based in
+each city. That costs one page per city and no search, so it doesn't get more expensive as clubs are added. At most
+`communityClubsPerRun` (10) undecided clubs are taken from them per run, nearest cities first, so a long state page is
+worked through over a few weeks. Then it runs the web searches in `options.discover.queries` (Brave Search API) for
+clubs the community pages miss (clubs filed under another city), collects the reclub.co meet and club pages they turn
+up, and reads each unknown club's meets. A club qualifies when one of its meets is volleyball (`sport`) and is in Reclub's
 `community` (its city grouping, `"Austin, TX, USA"`) or within `radiusKm` of `center`. It reads at most 40 Reclub
 pages a run, a second apart.
 
@@ -232,6 +255,23 @@ npm run dev                       # http://localhost:5173 (+ live /api/courts, /
 `api/courts.js`, `api/check.js`, `api/sessions.js` + `vercel.json` also let the same repo deploy to Vercel with on-request data (see
 [Live API](#live-api)).
 
+### Map view
+
+**List / Map** shows the day's places on an OpenStreetMap map: one pin per venue (open play shows the first
+session's time, Court booking shows the court price), and a tap shows that venue's day with sign-ups, Book and
+directions. It's free and needs no key:
+- **Map file:** `scripts/build-maps.mjs` cuts each region's map (a box around its venues, zoom 0–14, about 25 MB
+  for Austin) out of [Protomaps](https://protomaps.com)' daily OpenStreetMap build into `public/maps/<region>.pmtiles`.
+  It also copies the label fonts and map icons it uses. The deploy (`pages.yml`) runs it once a month, or when venues
+  change, and caches it between runs. Viewers download only the part of the file they look at (HTTP range requests).
+- **Libraries:** MapLibre GL, pmtiles and the Protomaps basemap style are vendored in `public/vendor/map` and load
+  only when someone opens Map.
+- **Fallback:** with no WebGL, or no map for the region, the Map button doesn't appear.
+
+`public/maps` isn't committed. To try the map locally, install the [pmtiles CLI](https://github.com/protomaps/go-pmtiles)
+and run `node scripts/build-maps.mjs --pmtiles <path to pmtiles> --maxzoom 14`. Map data © OpenStreetMap
+contributors (ODbL).
+
 ## Independence and the public feed
 
 Schelagg owns its data and knows nothing about the apps that use it. It has no credentials to any consumer's
@@ -249,17 +289,30 @@ database and never writes into one. Instead it publishes a feed, and consumers p
   `previous_starts_at` (where a rescheduled session was). `canceled` stays for existing consumers.
 - **`public/data/<sport>.ics`** (`volleyball.ics`, `ice_skating.ics`): the same occurrences as calendar subscriptions.
   Cancelled sessions stay in with `STATUS:CANCELLED` and every occurrence keeps its UID, so a move shows as a move.
+- **`public/data/programs.json`** (`https://bryanw121.github.io/schelagg/data/programs.json`): leagues and
+  tournaments open for sign-up, every sport and region, built twice a day by `scripts/programs.mjs` from the readers in
+  `lib/programs/` (sources in `config/programs.json`: ACES's members site, LeagueLab for Austin Sports & Social Club
+  and Meanwhile, NAGVA's Texas tournaments, Reclub competitions (from the Texas volleyball clubs listed in `config/programs.json` and Reclub's sitemap), Vex Volleyball's league and tournaments (vexvolleyball.com), the Texas Asian Olympics at texasao.org). `{ feedVersion, generatedAt, sources: [{ id, ok,
+  checkedAt, count, error? }], programs: [...] }`; each program has `id`, `kind` (`league` / `tournament`), `sport`,
+  `surface`, `region` (null outside every region circle, e.g. NAGVA tournaments elsewhere in the state), `state`,
+  `series` (`nagva` or null), `org`, `title`, `venue`, `city`, `address`, `lat`, `lng`, `format`, `divisions`
+  (`[{ name, cap?, confirmed? }]`: confirmed team counts only, never who), `starts_on`, `ends_on`, `weekdays`,
+  `registration_opens`, `registration_deadline`, `waitlist_on`, `team_price`, `individual_price`, `price_note`,
+  `price_changes_on` (the last day of the current price), `status` (`open` / `waitlist` / `full` / `closed`),
+  `signup_url`, `source_url`, `checked_at`. Dates are `YYYY-MM-DD` in the region's zone; anything the organizer's
+  page doesn't state is null. A source that fails keeps its last good rows (its `sources` entry says so), and rows
+  whose deadline or last day has passed are dropped, so mirror the feed: delete rows no longer in it.
 - A session missing from a run is gone at the source, so a consumer that mirrors the feed should delete upcoming
   rows that are no longer in it (that's how cancellations propagate) and treat a feed whose `generatedAt` is many
   hours old as stale.
 
 vteam (the volleyball app) is one such consumer: a scheduled function in its own Supabase project pulls this feed
-hourly and keeps only `sport: volleyball`, `region: austin`. Keep it that way: nothing in this repo should depend on
+hourly and keeps only `sport: volleyball`, `region: austin`; another pulls `programs.json` twice a day. Keep it that way: nothing in this repo should depend on
 vteam or its database.
 
 ### Live API
 
-Scheduled refreshes push their output (`public/data/schedule.json`, `occurrences.json`, `data/watch.json`, `data/health.json`) to the **`data` branch**, never `main` (`scripts/data-branch.sh`). Vercel deploys `main` only (`git.deploymentEnabled` in `vercel.json` turns the `data` branch off), so a refresh never uses a Vercel deployment: every push Vercel builds counts against its daily limit, even a skipped build. GitHub Pages is built from `main` with the `data` branch laid over it, and `/api/check` reads the latest published schedule from Pages (falling back to the copy bundled with the function). The copies of those files on `main` are only a seed for local development.
+Scheduled refreshes push their output (`public/data/schedule.json`, `occurrences.json`, `data/watch.json`, `data/health.json`) to the **`data` branch**, never `main` (`scripts/data-branch.sh`). Vercel deploys `main` only (`git.deploymentEnabled` in `vercel.json` turns the `data` branch off), so a refresh never uses a Vercel deployment: every push Vercel builds counts against its daily limit, even a skipped build. The same goes for throwaway branches: `probe/**` (one-off checks run on GitHub Actions) and `rm-*` are off too. On 7 Nov 2026 dozens of probe-branch pushes used up the Hobby plan's 100 deployments a day, and Vercel silently skipped a production deploy of `main`. A skipped deploy posts no status to GitHub; the Vercel dashboard shows it. GitHub Pages is built from `main` with the `data` branch laid over it, and `/api/check` reads the latest published schedule from Pages (falling back to the copy bundled with the function). The copies of those files on `main` are only a seed for local development.
 
 Small JSON endpoints for views that need fresher data than the hourly feed (e.g. a booking screen) or one window of it. They run as
 Vercel functions (`api/*.js`, deployed with `vercel.json`; GitHub Pages only serves the static feed, so the API exists
@@ -430,13 +483,19 @@ Each city is a folder, `config/regions/<id>/` (`lib/regions.js`):
 | `sources.json` | what to scrape: `defaults.sport`, then `sources` (each with `id`, `name`, `adapter`, `cadence`, `options`) and `manual` |
 | `venues.json` | canonical venues (name, aliases, external ids) that sessions are matched to |
 | `manual.json` | hand-checked sessions |
-| `public-courts.json` | free public courts (optional) |
+| `public-courts.json` | free public courts (optional): park, street address, surface, courts, lights. Each needs `lat`/`lng` to be pinned on the map (Court booking); the Geocode public courts workflow fills them in from the address (US Census geocoder) and opens a review PR. Coordinates already there are never changed, so a pin placed by hand stays. |
 | `courts.json` | Skedda court calendars (optional), with an optional `note` per venue shown under the chart |
 
 Sources get their `region` and `timezone` from `region.json`. Source and venue ids must be unique across all regions
 (the scrape checks). The site loads `data/index.json` and then only the chosen region's folder
 (`data/regions/<id>/`); with more than one region it shows a city menu (and a "nearest" button), and `?region=<id>`
-links to one.
+links to one. The 📍 button (shown whenever the browser has location) picks the nearest city when there are several,
+and puts the calendar's venues in distance order, nearest first, with each one's straight-line miles under its name.
+Venues whose listings are all unconfirmed or couldn't be rechecked count 2 miles farther; venues without coordinates come
+last. Nothing changes until someone taps it: no location prompt on load, the position stays on that device (rounded to
+about 100 m, kept for a day) and is never sent anywhere, and tapping 📍 again goes back to the usual order (first session
+of the day). The session list stays in time order. Coordinates are `lat`/`lng` in each region's `venues.json` (its `_doc`
+says where they came from).
 
 - **A new city**: copy `config/regions/austin/` to `config/regions/<id>/`, set `region.json`, and empty the lists. Run
   the **Discover venues** workflow to fill `venues.json` (one pull request per sport); add sources for venues on

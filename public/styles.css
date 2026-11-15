@@ -25,26 +25,32 @@
   --ok:#4cc483; --warn:#e0a83a; --bad:#ef7b70; --changed:#b294f0; --dim:#7f8d9a; color-scheme:dark}
 
 *{box-sizing:border-box}
+.location{color:var(--muted);font-size:13px;margin:4px 0 8px;overflow-wrap:anywhere}
+.copy-address{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:underline}
+.copy-status{font-size:12px}
+.venue-calendar{padding:12px 0;border-top:1px solid var(--line);overflow-wrap:break-word}
+.venue-calendar:first-child{border-top:0}
 html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--body);margin:0}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
 .wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
 header .wrap{padding-block:14px 10px;display:grid;gap:10px}
-.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-h1{font:800 30px/1 var(--display);letter-spacing:.01em;margin:0;text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:8px}
+h1{font:800 26px/1 var(--display);letter-spacing:.01em;margin:0 auto 0 0;text-transform:uppercase}
 h1 span{color:var(--accent)}
 .asof{font:500 12px var(--mono);color:var(--muted)}
-.tabs{display:flex;gap:6px}
+/* Tabs wrap to a second line rather than push the page wider when a screen (or a fallback font) is too narrow. */
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
 .tab{flex:1;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:8px 6px;font:700 16px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
-.tab .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent))}
+.tab .dot{flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent))}
 .tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .tab .n{font:600 11px var(--mono);opacity:.7}
 /* The sport switcher sits above the surface tabs; the chosen sport is filled with the accent. */
 .tabs.sports .tab{padding:6px}
 .tabs.sports .tab[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.day{border:1px solid transparent;background:none;color:var(--ink);border-radius:8px;padding:6px 0 5px;cursor:pointer;display:grid;gap:2px;justify-items:center}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.day{min-width:0;border:1px solid transparent;background:none;color:var(--ink);border-radius:8px;padding:6px 0 5px;cursor:pointer;display:grid;gap:2px;justify-items:center}
 .day .dn{font:700 13px var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 .day .dd{font:600 17px var(--mono)}
 .day .pips{display:flex;gap:2px;height:5px}
@@ -64,9 +70,10 @@ h2{font:700 22px/1.1 var(--display);text-transform:uppercase;letter-spacing:.03e
 .time{font:600 14px/1.25 var(--mono);font-variant-numeric:tabular-nums}
 .time small{display:block;font-weight:500;color:var(--muted);font-size:12px}
 .body{min-width:0;display:grid;gap:4px}
-.t1{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
-.title{font-weight:600}
-.venue{font-size:13px;color:var(--muted)}
+/* The status pill moves under the title when both don't fit; the title wraps, never pushing the row wider. */
+.t1{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:flex-start;justify-content:space-between}
+.title{font-weight:600;flex:1 1 12ch;min-width:0;overflow-wrap:break-word}
+.venue{font-size:13px;color:var(--muted);overflow-wrap:break-word}
 .venue b{color:var(--ink);font-weight:500}
 .meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
 .chip{border:1px solid var(--line);border-radius:4px;padding:1px 6px;font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
@@ -92,6 +99,7 @@ section.card{background:var(--panel);border:1px solid var(--line);border-radius:
 h3{font:700 16px var(--display);text-transform:uppercase;letter-spacing:.06em;margin:0;color:var(--muted)}
 .courts{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 18px}
 .court{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+.court span:first-child{min-width:0;overflow-wrap:break-word}
 .court span:last-child{font:500 12px var(--mono);color:var(--muted);white-space:nowrap}
 .court.closed span:first-child{text-decoration:line-through;color:var(--dim)}
 .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;color:var(--muted)}
@@ -101,13 +109,25 @@ footer{font-size:12px;color:var(--muted)}
 .key i{display:inline-block;width:14px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
 .hatch{background:repeating-linear-gradient(135deg,var(--muted) 0 3px,transparent 3px 6px);opacity:.75}
 .gantt{display:grid;gap:4px;overflow-x:auto;padding-right:6px}
-.g-row{display:grid;grid-template-columns:92px minmax(230px,1fr);gap:8px;align-items:center}
-.g-lab{font:500 12px/1.2 var(--body);color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Narrow enough at 320px that the chart fits the card without scrolling sideways (bars fit their times, #67). */
+.g-row{display:grid;grid-template-columns:minmax(92px,34%) minmax(140px,1fr);gap:8px;align-items:center}
+@media (min-width:700px){.g-row{grid-template-columns:170px minmax(260px,1fr)}}
+/* Phones: each hour gets 64px, about five hours on screen, so bars and their times read at a glance
+   (as booking apps do on phones); the chart scrolls sideways to the rest of the day, with the venue
+   names pinned on the left and the view starting at the current time or first session. */
+@media (max-width:699px){
+  .g-row{grid-template-columns:92px minmax(max(140px,calc(var(--hours, 18) * 64px)),1fr)}
+  .g-lab{position:sticky;left:0;z-index:3;background:var(--panel);box-shadow:8px 0 6px -6px var(--panel)}
+  .gantt{scroll-behavior:auto;overscroll-behavior-x:contain}
+  .g-group{position:sticky;left:0;z-index:3}
+}
+/* Venue names and the line under them wrap onto more lines instead of being cut off. */
+.g-lab{font:500 12px/1.2 var(--body);color:var(--ink);min-width:0;overflow-wrap:break-word;padding:2px 0}
 .g-lab small{display:block;color:var(--muted);font-size:11px}
 .g-track{position:relative;height:26px;border-radius:4px;background:
-  repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/18)),var(--bg)}
+  repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100% / var(--hours, 18))),var(--bg)}
 /* A court lane: time it's open to rent is tinted green, closed time is solid gray (.g-closed), bookings hatched. */
-.g-track.lane{background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/18)),var(--open)}
+.g-track.lane{background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100% / var(--hours, 18))),var(--open)}
 .g-bar{position:absolute;top:3px;bottom:3px;border-radius:3px;background:var(--c);color:#fff;font:600 10.5px/20px var(--mono);padding:0 5px;overflow:hidden;white-space:nowrap;text-decoration:none}
 a.g-bar:hover{filter:brightness(1.12)}
 .g-book{position:absolute;top:3px;bottom:3px;border-radius:2px;background:repeating-linear-gradient(135deg,var(--muted) 0 3px,transparent 3px 6px);opacity:.75;border:1px solid var(--muted)}
@@ -120,12 +140,17 @@ a.g-bar:hover{filter:brightness(1.12)}
 .g-axis .g-track span{position:absolute;top:2px;font:600 11px var(--mono);color:var(--muted);transform:translateX(-50%);white-space:nowrap}
 .g-axis .g-track span.first{transform:none}.g-axis .g-track span.last{transform:translateX(-100%)}
 .g-axis .g-lab{font:600 10.5px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.g-group{font:700 13px var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.g-group{font:700 13px var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:8px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;overflow-wrap:break-word}
 .g-group small{font:500 12px var(--body);text-transform:none;letter-spacing:0}
 .g-group small b{color:var(--ok);font-weight:600}
 .g-group small b.full{color:var(--bad)}
 .book{font:600 12px var(--body);color:var(--accent);text-decoration:none}
 @media (max-width:440px){.row{grid-template-columns:70px 1fr}.tab{font-size:14px}}
+/* 320–360px phones: tabs and the week strip fit the screen instead of pushing the page sideways. */
+@media (max-width:360px){.days{gap:2px}.tab{font-size:13px;letter-spacing:.02em;padding:7px 4px;gap:4px}.day .dn{font-size:11px;letter-spacing:0}.day .dd{font-size:15px}}
+/* More hours off to the side: the edge fades, so it's clear the chart scrolls. */
+.gantt.more-right{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),transparent)}
+.gantt.more-left .g-lab{box-shadow:10px 0 8px -6px rgba(0,0,0,.18)}
 @media (prefers-reduced-motion:no-preference){.row{transition:opacity .15s}}
 
 /* Per-source freshness list and calendar link in "How fresh is this?" */
@@ -138,7 +163,204 @@ a.src.also{color:var(--muted)}
 #subscribe a{color:var(--accent);font-weight:600}
 .cap{color:var(--muted)}.cap.full{color:var(--bad);font-weight:600}
 
-/* Region (city): a label with one region, a menu with more (#52). */
-.brand .region{display:flex;align-items:center;gap:6px;margin-right:auto;font:700 15px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
-.brand .region select{font:700 15px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 6px}
-.brand .nearest{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:3px 6px;cursor:pointer;font-size:14px;line-height:1}
+/* Region (city): a label with one region, a menu with more (#52), on the small line under the brand. */
+.sub{display:flex;align-items:center;gap:6px 10px;flex-wrap:wrap;margin-top:-4px;min-height:20px}
+.sub .region{display:flex;align-items:center;gap:6px;font:700 14px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+/* 16px: iOS zooms into smaller form fields. */
+.sub .region select{font:700 16px var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:4px 6px;min-height:36px}
+.brand .nearest{flex-shrink:0;width:40px;height:40px;border:1px solid var(--line);background:var(--bg);color:var(--accent);border-radius:999px;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+/* On: venues are in distance order (tap again to turn off). 44px tap area on touch screens. */
+.brand .nearest[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
+@media (pointer:coarse){.brand .nearest{width:44px;height:44px}}
+
+/* Fine print folded under a tap-to-open Details (a real button; nothing is hover-only). */
+details.more{font-size:13px}
+details.more summary{cursor:pointer;color:var(--accent);font-weight:600;list-style:none;display:inline-flex;align-items:center;gap:4px;min-height:32px;touch-action:manipulation}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::after{content:"▾";font-size:11px}
+details.more[open] summary::after{content:"▴"}
+details.more > *:not(summary){margin-top:6px}
+/* Book a court: one line per venue, a Book button on the right. */
+.book-row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.book-row:first-child{border-top:0}
+.book-name{min-width:0;overflow-wrap:break-word}
+.book-name span{display:block;font-size:13px;color:var(--muted)}
+.book-row details.more{grid-column:1/-1}
+.book-row .signup{min-height:44px;box-sizing:border-box}
+/* Chart blocks are buttons: tap one to list its sessions under the venue's row. */
+button.g-bar{border:0;cursor:pointer;text-align:left;touch-action:manipulation}
+button.g-bar:hover{filter:brightness(1.12)}
+button.g-bar[aria-expanded="true"]{outline:2px solid var(--ink);outline-offset:1px}
+button.g-bar:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.g-pop{position:sticky;left:0;z-index:4;box-sizing:border-box;width:var(--vis,auto);max-width:100%;display:grid;gap:2px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin:2px 0 6px}
+.pop-item{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;padding:6px 0;border-top:1px dashed var(--line);font-size:13px}
+.pop-item:first-child{border-top:0}
+.pop-t{font:600 12px var(--mono);white-space:nowrap}
+.pop-w{min-width:0;overflow-wrap:break-word}.pop-w small{display:block;color:var(--muted);font-size:12px}
+.pop-a .signup{padding:8px 10px;font-size:12px;min-height:36px;box-sizing:border-box}
+@media (pointer:coarse){.pop-a .signup{min-height:44px}}
+#tabs .tab{white-space:nowrap}
+@media (max-width:699px){.pop-item{grid-template-columns:auto 1fr}.pop-a{grid-column:2}}
+@media (max-width:699px){.g-group{width:var(--vis,auto);box-sizing:border-box}}
+/* iOS Safari enlarges text in wide blocks on its own ("text inflation"); keep the sizes we set. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Court booking: one row per venue. Shading says how many courts are free; blue is a public session. */
+.g-venue{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding-top:12px;font:700 15px/1.25 var(--body);color:var(--ink)}
+.g-venue .v-name{min-width:0;overflow-wrap:break-word}
+.g-venue small{display:block;font:500 12.5px/1.4 var(--body);color:var(--muted);margin-top:2px}
+.g-venue small b{color:var(--ok);font-weight:600}.g-venue small b.full{color:var(--bad)}
+.g-venue .v-book{flex-shrink:0;padding:8px 12px;font-size:12px;min-height:36px;box-sizing:border-box}
+@media (pointer:coarse){.g-venue .v-book{min-height:44px}}
+@media (max-width:699px){.g-venue{position:sticky;left:0;z-index:3;width:var(--vis,auto);box-sizing:border-box}}
+.g-track.avail{background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100% / var(--hours, 18)));min-height:30px}
+.g-avail{position:absolute;inset:0}
+.g-seg{position:absolute;top:3px;bottom:3px}
+.g-seg.all{background:color-mix(in srgb,var(--ok) 72%,var(--panel))}
+.g-seg.some{background:color-mix(in srgb,var(--ok) 30%,var(--panel))}
+.g-seg.none{background:repeating-linear-gradient(135deg,var(--muted) 0 3px,transparent 3px 6px);opacity:.6}
+.g-track.avail .g-meet{z-index:2}
+button.g-toggle{border:0;background:none;color:var(--accent);font:600 12px var(--body);text-align:left;cursor:pointer;padding:6px 0;min-height:36px;touch-action:manipulation}
+@media (pointer:coarse){button.g-toggle{min-height:44px}}
+button.g-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.g-lanes{display:grid;gap:4px}
+.g-row.court .g-lab{color:var(--muted);padding-left:8px}
+.book-name .price,.g-venue small .price{color:var(--ink);font-weight:700}
+/* Map view: the day's places as pins on an OpenStreetMap map, the picked place's day beside or below it. */
+.map-wrap{display:grid;gap:12px}
+/* Its own stacking context, so pins never draw over the sticky header. */
+.map{position:relative;z-index:0;isolation:isolate;height:min(62vh,560px);min-height:320px;border-radius:10px;overflow:hidden;background:var(--bg)}
+.map-panel .map-hint{margin:0;color:var(--muted);font-size:14px}.map-panel .map-hint b{color:var(--ink)}
+.map-place .g-venue{position:static;width:auto;padding-top:0}
+.map-sessions{position:static;width:auto;margin-top:8px}
+.map-place .location{margin-top:10px}
+.map-panel .pop-item{grid-template-columns:auto 1fr}.map-panel .pop-a{grid-column:2}
+.pin{display:flex;flex-direction:column;align-items:flex-start;gap:2px;max-width:160px;border:0;border-radius:999px;padding:6px 10px;background:var(--accent);color:#0b1220;box-shadow:0 2px 6px rgba(0,0,0,.35);cursor:pointer;text-align:left;touch-action:manipulation}
+.pin[hidden]{display:none}
+.pin b{font:700 12px/1.15 var(--body);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pin span{font:600 11px/1.1 var(--body);opacity:.85;white-space:nowrap}
+.pin .more{font:700 10px/1.1 var(--body);font-style:normal;opacity:.8;white-space:nowrap}
+.pin.book{background:#fff;color:#111}
+.pin.free{background:#d7f5e1;color:#0b3d1f}
+.pin.sel,.pin[aria-pressed="true"]{background:#111;color:#fff;outline:2px solid #fff;z-index:5}
+.pin:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+@media (pointer:coarse){.pin{padding:7px 10px;min-height:40px;justify-content:center}}
+.you{width:14px;height:14px;border-radius:50%;background:#3b82f6;border:3px solid #fff;box-shadow:0 0 0 8px rgba(59,130,246,.2)}
+.pin.done{background:var(--panel);color:var(--muted);box-shadow:0 0 0 1px var(--line)}
+.map-panel .pop-item.past{opacity:.55}
+.place-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.place-row{display:grid;grid-template-columns:1fr auto;grid-template-areas:"name go" "status go";gap:2px 10px;width:100%;text-align:left;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:10px 12px;cursor:pointer;min-height:44px;touch-action:manipulation}
+.place-row:hover{border-color:var(--accent)}.place-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.place-row.dim{opacity:.6}
+.pr-name{grid-area:name;font:700 14px/1.25 var(--body)}.pr-name small{font-weight:500;color:var(--muted);margin-left:6px}
+.pr-status{grid-area:status;font:500 13px/1.3 var(--body);color:var(--ok)}.place-row.dim .pr-status{color:var(--muted)}
+.pr-go{grid-area:go;align-self:center;font-size:22px;color:var(--muted)}
+.map-back{border:0;background:none;color:var(--accent);font:600 13px var(--body);padding:4px 0 8px;cursor:pointer;min-height:36px}
+.map-status{margin:0 0 8px;font:600 13px/1.3 var(--body);color:var(--ok)}
+.noprice{color:var(--muted);font-style:italic}
+.copy-cal{border:0;background:none;padding:0;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer;touch-action:manipulation}
+.copy-box{font:13px var(--mono);width:100%;max-width:420px;margin-top:6px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+
+/* ---------- Mobile-first header: sport pill, day strip, one row of chips (sheets for the choices) ---------- */
+.pill-btn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:600 14px/1 var(--body);cursor:pointer;white-space:nowrap;touch-action:manipulation}
+.pill-btn .caret{font-size:11px;color:var(--muted)}
+.pill-btn:disabled{cursor:default;opacity:1}
+@media (hover:hover){.pill-btn:hover:not(:disabled){border-color:var(--accent)}.tab.opt:hover{border-color:var(--accent)}.day:not([aria-pressed="true"]):hover{border-color:var(--line)}}
+@media (pointer:coarse){.pill-btn{height:44px}}
+.chip-btn.on{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 16%,var(--panel));font-weight:700}
+.chips-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;padding:3px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.seg:empty{display:none}
+.seg-btn{border:0;border-radius:999px;background:none;color:var(--ink);font:600 14px/1 var(--body);padding:0 14px;height:34px;cursor:pointer;white-space:nowrap;touch-action:manipulation}
+.seg-btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);font-weight:700}
+@media (pointer:coarse){.seg-btn{height:44px}}
+.day{border-radius:12px;min-height:52px;touch-action:manipulation}
+
+/* Bottom sheets (native <dialog>: focus stays inside, Esc closes). Full width on phones, a centred card on desktop. */
+dialog.sheet{border:0;padding:0;margin:auto 0 0;width:100%;max-width:100%;max-height:min(86dvh,100%);background:var(--panel);color:var(--ink);border-radius:20px 20px 0 0;box-shadow:0 -10px 30px rgba(0,0,0,.35)}
+dialog.sheet::backdrop{background:rgba(5,9,13,.55)}
+.sheet-in{padding:10px max(16px,env(safe-area-inset-left,0px)) calc(20px + env(safe-area-inset-bottom,0px));display:grid;gap:8px;max-width:560px;margin:0 auto}
+.sheet-in::before{content:"";width:40px;height:4px;border-radius:2px;background:var(--line);justify-self:center}
+.sheet-head{display:flex;align-items:center;justify-content:space-between}
+.sheet-head h2{font-size:24px}
+.sheet-x{width:44px;height:44px;border:0;background:none;color:var(--ink);font-size:18px;cursor:pointer;border-radius:999px}
+.sheet .note{margin:0 0 4px}
+.opts{display:grid;gap:8px}
+.tab.opt{flex:none;justify-content:flex-start;gap:12px;min-height:56px;padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:none;font:600 16px/1.25 var(--body);text-transform:none;letter-spacing:0;text-align:left;touch-action:manipulation}
+.tab.opt .lbl{flex:1;display:grid;gap:2px}
+.tab.opt .lbl small{font:500 13px/1.3 var(--body);color:var(--muted)}
+.tab.opt .n{font:600 13px var(--mono);opacity:1;color:var(--muted)}
+.tab.opt[aria-pressed="true"]{background:color-mix(in srgb,var(--accent) 16%,var(--panel));color:var(--ink);border:2px solid var(--accent)}
+.tab.opt[aria-pressed="true"] .lbl small{color:var(--ink);opacity:.8}
+@media (min-width:700px){dialog.sheet{margin:auto;width:min(480px,calc(100% - 32px));border-radius:16px}}
+@media (prefers-reduced-motion:no-preference){dialog.sheet[open]{animation:sheet-up .18s ease-out}@media (min-width:700px){dialog.sheet[open]{animation:none}}}
+@keyframes sheet-up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+html:has(dialog.sheet[open]),body:has(dialog.sheet[open]){overflow:hidden}
+dialog.sheet{overscroll-behavior:contain}
+
+/* List / Map: one floating button over the bottom of the screen. */
+.layout-fab{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:6}
+.fab{display:flex;align-items:center;gap:8px;height:48px;padding:0 20px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font:700 15px var(--body);box-shadow:0 6px 20px rgba(0,0,0,.35);cursor:pointer;touch-action:manipulation}
+.fab:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+main .wrap{padding-bottom:96px}
+
+/* Sessions as cards; open play lists first, court booking puts the live court chart first. */
+.list{gap:10px;border-top:0}
+.row{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.row .signup{min-height:40px}
+@media (pointer:coarse){.row .signup{min-height:44px}}
+.now{color:var(--ok);padding:4px 0 0}
+.now::after{background:color-mix(in srgb,var(--ok) 40%,transparent);height:1px}
+details.earlier{display:grid;gap:10px}
+details.earlier summary{cursor:pointer;list-style:none;color:var(--muted);font:600 13px var(--body);min-height:44px;display:flex;align-items:center;gap:6px;border:1px dashed var(--line);border-radius:12px;padding:0 14px;touch-action:manipulation}
+details.earlier summary::-webkit-details-marker{display:none}
+details.earlier summary::after{content:"▾";margin-left:auto}
+details.earlier[open] summary::after{content:"▴"}
+details.earlier[open]{margin-bottom:4px}
+details.earlier .row{margin-top:10px}
+/* The floating List button sits over the map's bottom edge: lift the map's credit and controls clear of it. */
+/* Phones: the map fills the screen under the header (less the card's title and padding), so its bottom
+   edge, credit and controls line up with the floating button rather than running off-screen. */
+@media (max-width:699px){body.layout-map .map{height:max(280px,calc(100dvh - var(--hdr,200px) - 92px))}}
+body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibregl-ctrl-bottom-left{margin-bottom:60px}
+/* Nothing in the chips row (skating): no empty row in the header. */
+.chips-row:not(:has(> :not([hidden]))){display:none}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.linkish{border:0;background:none;padding:0 2px;color:var(--accent);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;min-height:44px;touch-action:manipulation}
+@media (max-width:360px){.pill-btn{padding:0 10px}.seg-btn{padding:0 10px;font-size:13px}h1{font-size:22px}}
+/* Sign-ups: leagues and tournaments (renderSignups in app.js) */
+#signupsPanel{display:grid;gap:12px}
+#signupsPanel[hidden]{display:none}
+.kinds{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+.kinds::-webkit-scrollbar{display:none}
+.kinds .pill-btn{flex:0 0 auto}
+@media (pointer:coarse){.kinds .pill-btn{height:44px}}
+.programs{display:grid;gap:10px}
+.p-group{margin:8px 0 0;font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ok);display:flex;gap:8px;align-items:baseline}
+.p-group.hot{color:var(--warn)}.p-group.quiet{color:var(--muted)}
+.p-group .n{color:var(--muted);font-weight:500}
+.prog{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:6px;min-width:0}
+.prog.dim{opacity:.7}
+.p-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.p-kind{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.p-badge{font:700 12px/1.4 var(--body);color:var(--accent-ink);background:var(--warn);border-radius:999px;padding:1px 8px}
+.p-title{margin:0;font:700 16px/1.3 var(--body);text-transform:none;letter-spacing:0;color:var(--ink);overflow-wrap:anywhere}
+.p-org,.p-when{margin:0;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.p-when{font-size:14px;color:var(--ink)}
+.p-when b{font-weight:700}
+.p-foot{display:flex;justify-content:space-between;align-items:baseline;gap:6px 12px;flex-wrap:wrap;font-size:14px}
+.p-price{color:var(--muted)}.p-price b{color:var(--ink)}
+.p-dl{font-size:13px;font-weight:600;color:var(--muted)}.p-dl.hot{color:var(--warn)}
+.prog .signup{min-height:44px;box-sizing:border-box}
+.divs{margin:4px 0;padding-left:18px;font-size:13px;color:var(--muted)}
+.divs b{color:var(--ink)}
+.heads-up{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;margin:10px 0;padding:10px 12px;border:1px solid var(--warn);border-radius:10px;background:color-mix(in srgb,var(--warn) 12%,var(--panel));color:var(--ink);font:500 14px/1.35 var(--body);text-align:left;cursor:pointer;touch-action:manipulation}
+.heads-up b{color:var(--warn)}
+.heads-up span{margin-left:auto;font-size:18px;color:var(--warn)}
+.prog details.more summary{min-height:44px;display:flex;align-items:center}
+.prog .src{min-height:44px;display:inline-flex;align-items:center}
+.kinds .pill-btn .n{font:600 11px var(--mono);opacity:.7}
+/* Four views: on a phone the control spans the row and its buttons share it. */
+@media (max-width:520px){#calendarModes{display:flex;width:100%;max-width:100%;box-sizing:border-box;overflow-x:auto;scrollbar-width:none}#calendarModes::-webkit-scrollbar{display:none}#calendarModes .seg-btn{flex:1 0 auto;padding:0 6px}}
+@media (max-width:360px){#calendarModes .seg-btn{font-size:13px;padding:0 4px;letter-spacing:-.01em}}
+.kinds .pill-btn{position:relative}
+header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}

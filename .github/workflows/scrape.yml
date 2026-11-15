@@ -1,6 +1,18 @@
 name: Refresh schedules
 
 on:
+  # Publish new or changed sources with their code deployment, so a new sport is
+  # available in the data index without waiting for the next scrape-clock tick.
+  push:
+    branches: [main]
+    paths:
+      - 'config/regions/**'
+      - 'config/programs.json'
+      - 'scripts/programs.mjs'
+      - 'scripts/adapters/**'
+      - 'scripts/scrape.mjs'
+      - 'lib/**'
+      - '.github/workflows/scrape.yml'
   schedule:
     # Backup only. .github/workflows/scrape-clock.yml starts the real schedule (every 30 minutes
     # from 8am to 10pm Austin time, hourly overnight), because GitHub drops many cron runs.
@@ -42,7 +54,7 @@ jobs:
       # of them needs Chromium, so a tick of API-only sources skips the browser install.
       - name: Plan this run
         id: plan
-        run: node scripts/scrape.mjs --plan ${{ inputs.all && '--all' || '' }}
+        run: node scripts/scrape.mjs --plan ${{ (github.event_name == 'push' || inputs.all) && '--all' || '' }}
       - name: Install Chromium
         if: steps.plan.outputs.browser == 'true'
         run: npx playwright install --with-deps chromium
@@ -54,11 +66,21 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: node scripts/db-migrate.mjs
-      - run: npm run scrape -- ${{ inputs.all && '--all' || '' }}
+      - run: npm run scrape -- ${{ (github.event_name == 'push' || inputs.all) && '--all' || '' }}
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           # Requests to one host are queued and spaced this far apart (lib/http.js).
           SCHELAGG_HOST_GAP_MS: 300
+      # Leagues and tournaments (public/data/programs.json): built twice a day, so most ticks
+      # skip it (--if-due). Before the commit, so it rides the same data-branch push.
+      - name: Leagues and tournaments
+        continue-on-error: true
+        # Never let it hold up the data push below (the job has 20 minutes in all).
+        timeout-minutes: 7
+        env:
+          SCHELAGG_HOST_GAP_MS: 300
+        # (An empty string is false in a GitHub expression, so the always-build case needs a word of its own.)
+        run: node scripts/programs.mjs ${{ (github.event_name == 'push' || inputs.all) && '--now' || '--if-due' }}
       # To the data branch, never main: a push to main is a Vercel deployment.
       - name: Commit updated data
         run: |
