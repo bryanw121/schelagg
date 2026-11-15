@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-15T21:16:56.399Z",
+  "generatedAt": "2026-11-15T21:41:31.481Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -217,62 +217,6 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17535-6248-7bbd-9e2e-ef13ffd0287e",
-      "session_id": "openplay-austin-pickle-ranch-01a17535-6248-7bbd-9e2e-ef13ffd0287e",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-15T19:00:00.000Z",
-      "ends_at": "2026-11-15T21:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17535-6248-7bbd-9e2e-ef13ffd0287e",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17537-90fa-7aad-a32f-d0c4b52f8f1d",
-      "session_id": "openplay-austin-pickle-ranch-01a17537-90fa-7aad-a32f-d0c4b52f8f1d",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-15T19:00:00.000Z",
-      "ends_at": "2026-11-15T21:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17537-90fa-7aad-a32f-d0c4b52f8f1d",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -854,7 +798,7 @@
         "type": "Open play",
         "capacity": 32
       },
-      "venue_id": null,
+      "venue_id": "src-blastros",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1129,7 +1073,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1267,7 +1211,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1684,7 +1628,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2045,7 +1989,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2991,7 +2935,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3239,7 +3183,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3435,7 +3379,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3489,7 +3433,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3516,7 +3460,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3763,7 +3707,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3844,7 +3788,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -4202,7 +4146,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -4452,7 +4396,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5427,7 +5371,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5482,7 +5426,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5536,7 +5480,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5563,7 +5507,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6172,7 +6116,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6559,7 +6503,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6865,7 +6809,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7061,7 +7005,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7838,7 +7782,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8085,7 +8029,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8112,7 +8056,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8306,7 +8250,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8557,7 +8501,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8832,7 +8776,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8998,7 +8942,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9667,7 +9611,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9750,7 +9694,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9804,7 +9748,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9885,7 +9829,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10409,7 +10353,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10631,7 +10575,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11264,7 +11208,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11512,7 +11456,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-wakefield-crowbar",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11706,7 +11650,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11842,7 +11786,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11982,7 +11926,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12732,7 +12676,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12759,7 +12703,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13924,7 +13868,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14035,7 +13979,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14147,7 +14091,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14567,7 +14511,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14762,7 +14706,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14816,7 +14760,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14871,7 +14815,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14982,7 +14926,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15094,7 +15038,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15518,7 +15462,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15657,7 +15601,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15714,7 +15658,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15798,7 +15742,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15882,7 +15826,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15967,7 +15911,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16162,7 +16106,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16272,7 +16216,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16355,7 +16299,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16412,7 +16356,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16439,7 +16383,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16495,7 +16439,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16718,7 +16662,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16801,7 +16745,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16914,7 +16858,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17027,7 +16971,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17504,7 +17448,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17531,7 +17475,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17616,7 +17560,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -18443,7 +18387,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -18551,7 +18495,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
