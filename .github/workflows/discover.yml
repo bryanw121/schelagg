@@ -95,11 +95,15 @@ jobs:
             name=$(jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .name' discover-candidates.json)
             jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .body' discover-candidates.json > "$RUNNER_TEMP/body.md"
             git checkout -q -B "$branch" "$GITHUB_SHA"
-            node scripts/discover-reclub.mjs --apply "$slug"
+            region=$(jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .region // "austin"' discover-candidates.json)
+            node scripts/discover-reclub.mjs --apply "$slug" "$region"
             git commit -qam "Add Reclub club @$slug (found by discovery)"
             git push -q -f origin "$branch"
-            gh pr create --base main --head "$branch" --title "Add Reclub club: $name (@$slug)" \
-              --body-file "$RUNNER_TEMP/body.md" --assignee "$GITHUB_REPOSITORY_OWNER"
+            if ! gh pr create --base main --head "$branch" --title "Add Reclub club ($region): $name (@$slug)" \
+              --body-file "$RUNNER_TEMP/body.md" --assignee "$GITHUB_REPOSITORY_OWNER"; then
+              # This repo doesn't let Actions open pull requests: leave the branch and say where to open one.
+              echo "::notice::@$slug ($region) is on the $branch branch. Open the pull request: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/compare/main...$branch"
+            fi
           done
       # Only after the pull requests are open: a run that failed to open one is retried next time.
       - name: Save discovery state

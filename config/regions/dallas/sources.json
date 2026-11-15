@@ -20,7 +20,7 @@
           "surface": "indoor"
         },
         "discover": {
-          "_doc": "Weekly discovery of DFW volleyball clubs on Reclub not in clubs (scripts/discover-reclub.mjs); same rules as Austin's.",
+          "_doc": "Weekly discovery of DFW volleyball clubs on Reclub not in clubs (scripts/discover-reclub.mjs); same rules as Austin's; candidates come first from the Reclub community pages in communities (core city, then suburbs, then the Texas page).",
           "sport": "volleyball",
           "community": "Dallas, TX, USA",
           "center": [
@@ -39,7 +39,23 @@
           "budget": {
             "brave": 60,
             "claude": 10
-          }
+          },
+          "communities": [
+            "https://reclub.co/communities/us/texas/dallas",
+            "https://reclub.co/communities/us/texas/plano",
+            "https://reclub.co/communities/us/texas/frisco",
+            "https://reclub.co/communities/us/texas/richardson",
+            "https://reclub.co/communities/us/texas/fort-worth",
+            "https://reclub.co/communities/us/texas/irving",
+            "https://reclub.co/communities/us/texas/arlington",
+            "https://reclub.co/communities/us/texas/carrollton",
+            "https://reclub.co/communities/us/texas/mckinney",
+            "https://reclub.co/communities/us/texas/garland",
+            "https://reclub.co/communities/us/texas/allen",
+            "https://reclub.co/communities/us/texas/lewisville",
+            "https://reclub.co/communities/us/texas/denton",
+            "https://reclub.co/communities/us/texas"
+          ]
         }
       }
     }

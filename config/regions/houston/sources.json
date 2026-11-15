@@ -21,7 +21,7 @@
           "surface": "indoor"
         },
         "discover": {
-          "_doc": "Weekly discovery of Houston-area volleyball clubs on Reclub not in clubs (scripts/discover-reclub.mjs); same rules as Austin's.",
+          "_doc": "Weekly discovery of Houston-area volleyball clubs on Reclub not in clubs (scripts/discover-reclub.mjs); same rules as Austin's; candidates come first from the Reclub community pages in communities (core city, then suburbs, then the Texas page).",
           "sport": "volleyball",
           "community": "Houston, TX, USA",
           "center": [
@@ -40,7 +40,20 @@
           "budget": {
             "brave": 60,
             "claude": 10
-          }
+          },
+          "communities": [
+            "https://reclub.co/communities/us/texas/houston",
+            "https://reclub.co/communities/us/texas/katy",
+            "https://reclub.co/communities/us/texas/sugar-land",
+            "https://reclub.co/communities/us/texas/the-woodlands",
+            "https://reclub.co/communities/us/texas/pearland",
+            "https://reclub.co/communities/us/texas/cypress",
+            "https://reclub.co/communities/us/texas/spring",
+            "https://reclub.co/communities/us/texas/missouri-city",
+            "https://reclub.co/communities/us/texas/league-city",
+            "https://reclub.co/communities/us/texas/pasadena",
+            "https://reclub.co/communities/us/texas"
+          ]
         }
       }
     }
