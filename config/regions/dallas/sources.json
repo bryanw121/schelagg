@@ -12,7 +12,8 @@
       "cadence": "1h",
       "options": {
         "clubs": [
-          "https://reclub.co/clubs/@ync-volleyball-dallas-texas-usa-95"
+          "https://reclub.co/clubs/@ync-volleyball-dallas-texas-usa-95",
+          "https://reclub.co/clubs/@recreational-dfw-dallas-texas-usa-18"
         ],
         "venues": [],
         "fallbackVenue": {
@@ -57,6 +58,35 @@
             "https://reclub.co/communities/us/texas"
           ]
         }
+      }
+    },
+    {
+      "id": "dallas-meetup",
+      "name": "Meetup · DFW volleyball groups",
+      "adapter": "ical",
+      "cadence": "6h",
+      "options": {
+        "_doc": "Meetup groups' own calendar feeds (www.meetup.com/<group>/events/ical/). Add a group as one more feed.",
+        "feeds": [
+          {
+            "url": "https://www.meetup.com/dfwvolleyballdallas/events/ical/",
+            "idPrefix": "meetup-dfwvb",
+            "host": "DFW Volleyball (Dallas Region)"
+          },
+          {
+            "url": "https://www.meetup.com/north-texas-adult-volleyball/events/ical/",
+            "idPrefix": "meetup-ntav",
+            "host": "North Texas Adult Volleyball",
+            "city": "Lewisville",
+            "note": "Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in."
+          },
+          {
+            "url": "https://www.meetup.com/the-program-adult-volleyball-training/events/ical/",
+            "idPrefix": "meetup-program",
+            "host": "The Program",
+            "city": "Dallas"
+          }
+        ]
       }
     }
   ],

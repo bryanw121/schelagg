@@ -1,0 +1,54 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Meetup//RemoteApi//EN
+X-WR-CALNAME:DFW volleyball sample (trimmed from Meetup feeds, Nov 14 2026; names removed)
+BEGIN:VEVENT
+UID:event_316813545
+DTSTART;TZID=America/Chicago:20261120T183000
+DTEND;TZID=America/Chicago:20261120T213000
+SUMMARY:Friday - Sand Volleyball (South Location)
+DESCRIPTION:DFW Volleyball (Dallas Region)\nSand. Volleyball. 6:30 @ Sport
+ s Garden DFW (South Side).
+URL;VALUE=URI:https://www.meetup.com/dfwvolleyballdallas/events/316813545/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:event_400000001
+DTSTART;TZID=America/Chicago:20261116T200000
+DTEND;TZID=America/Chicago:20261116T220000
+SUMMARY:Adult Beginner Open Gym Volleyball Lewisville
+DESCRIPTION:Our Beginner open gyms are fair and properly managed.\nYOU MUST
+  REGISTER AND PAY IN OUR APP\, REGISTERING HERE WONT ALLOW YOU ENTRY.
+URL;VALUE=URI:https://www.meetup.com/north-texas-adult-volleyball/events/400000001/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:event_400000002
+DTSTART;TZID=America/Chicago:20261117T190000
+DTEND;TZID=America/Chicago:20261117T200000
+SUMMARY:Adult Volleyball Skills Clinic and Training
+DESCRIPTION:Work on your development\, split into groups by skill.
+URL;VALUE=URI:https://www.meetup.com/north-texas-adult-volleyball/events/400000002/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:event_400000003
+DTSTART:20261121T010000Z
+DTEND:20261121T030000Z
+SUMMARY:Friday Night Open Gym
+URL;VALUE=URI:https://www.meetup.com/x/events/400000003/
+STATUS:CANCELLED
+END:VEVENT
+BEGIN:VEVENT
+UID:event_300000000
+DTSTART;TZID=America/Chicago:20261101T183000
+SUMMARY:Past Sand Volleyball
+END:VEVENT
+BEGIN:VEVENT
+UID:event_400000004
+DTSTART:20261122T003000Z
+DTEND:20261122T023000Z
+SUMMARY:Saturday Open Gym
+URL;VALUE=URI:https://www.meetup.com/x/events/400000004/
+END:VEVENT
+END:VCALENDAR

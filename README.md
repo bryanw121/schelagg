@@ -36,6 +36,7 @@ sessions and status untouched.
 | Volleyworld adult sessions | Arketa's public schedule API, incl. cancellations and spots left | 30m; live via `/api/check` |
 | Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs`: each rink's public DaySmart events API, published public/adult skate types only | 30m; live via `/api/check` |
 | Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages | 1h; live via `/api/check` |
+| Calendar feeds (DFW Meetup groups: DFW Volleyball, North Texas Adult Volleyball, The Program) | `scripts/adapters/ical.mjs`: each group's own iCal export (time, title, link; descriptions not published) | 6h |
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
 | ATX Beach open play | TeamUp membership page | 6h |
 | Austin Velocity adult open play | Season dates on their adult page, so it switches itself on/off | 1d |
