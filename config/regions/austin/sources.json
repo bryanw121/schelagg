@@ -13,12 +13,29 @@
       "cadence": "30m",
       "options": {
         "venues": [
-          { "slug": "austin-pickle-ranch", "name": "Austin Pickle Ranch", "bookingHost": "austinpickleranch.podplay.app" },
-          { "slug": "eastside-paddle-club", "name": "Eastside Paddle Club", "bookingHost": "espc.podplay.app" },
           {
-            "slug": "pickle-pit-stop", "name": "Pickle Pit Stop", "city": "Austin", "surface": "indoor",
-            "bookingHost": "app.courtreserve.com", "bookingPathPrefix": "/Online/Events/Details/15273/",
-            "openPlayRate": { "amount": 18, "minutes": 120, "reviewBy": "2026-11-30", "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/" }
+            "slug": "austin-pickle-ranch",
+            "name": "Austin Pickle Ranch",
+            "bookingHost": "austinpickleranch.podplay.app"
+          },
+          {
+            "slug": "eastside-paddle-club",
+            "name": "Eastside Paddle Club",
+            "bookingHost": "espc.podplay.app"
+          },
+          {
+            "slug": "pickle-pit-stop",
+            "name": "Pickle Pit Stop",
+            "city": "Austin",
+            "surface": "indoor",
+            "bookingHost": "app.courtreserve.com",
+            "bookingPathPrefix": "/Online/Events/Details/15273/",
+            "openPlayRate": {
+              "amount": 18,
+              "minutes": 120,
+              "reviewBy": "2026-11-30",
+              "url": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/"
+            }
           }
         ]
       }
@@ -29,7 +46,12 @@
       "adapter": "opencourt",
       "sport": "pickleball",
       "cadence": "30m",
-      "options": { "slug": "austinpicklehaus", "venue": "Austin PickleHaus", "city": "Pflugerville", "surface": "indoor" }
+      "options": {
+        "slug": "austinpicklehaus",
+        "venue": "Austin PickleHaus",
+        "city": "Pflugerville",
+        "surface": "indoor"
+      }
     },
     {
       "id": "holy-pickle",
@@ -37,7 +59,12 @@
       "adapter": "opencourt",
       "sport": "pickleball",
       "cadence": "30m",
-      "options": { "slug": "holy-pickle", "venue": "Holy Pickle", "city": "Austin", "surface": "outdoor" }
+      "options": {
+        "slug": "holy-pickle",
+        "venue": "Holy Pickle",
+        "city": "Austin",
+        "surface": "outdoor"
+      }
     },
     {
       "id": "volleyworld",
@@ -87,7 +114,8 @@
       "options": {
         "clubs": [
           "https://reclub.co/clubs/@vex_volleyball",
-          "https://reclub.co/clubs/@austin-lawn-club"
+          "https://reclub.co/clubs/@austin-lawn-club",
+          "https://reclub.co/clubs/@volleyworld-gym"
         ],
         "venues": [
           {
@@ -178,18 +206,83 @@
       "options": {
         "_doc": "Sweatpals hosts that post Austin volleyball (scripts/adapters/sweatpals.mjs). Each host page lists its upcoming events; an event is kept when its name or sport type matches `include` (a host's own `include` wins, e.g. \".\" for a host whose events are all volleyball). Venues are matched on the event's address.",
         "hosts": [
-          { "slug": "ATXBeach" },
-          { "slug": "atxsandsocial", "include": "." },
-          { "slug": "letsvolleyatx" }
+          {
+            "slug": "ATXBeach"
+          },
+          {
+            "slug": "atxsandsocial",
+            "include": "."
+          },
+          {
+            "slug": "letsvolleyatx"
+          }
         ],
         "include": "volley|🏐",
         "venues": [
-          { "match": "11000 Middle Fiskville", "venue": "ATX Beach", "city": "North Austin", "surface": "sand" },
-          { "match": "Mueller Lake Park", "venue": "Mueller Lake Park", "city": "Austin", "surface": "grass" },
-          { "match": "Bailey (Neighborhood )?Park|1101 W 33rd", "venue": "Bailey Park", "city": "Central Austin", "surface": "grass" },
-          { "match": "Park", "venue": null, "city": "Austin", "surface": "grass" }
+          {
+            "match": "11000 Middle Fiskville",
+            "venue": "ATX Beach",
+            "city": "North Austin",
+            "surface": "sand"
+          },
+          {
+            "match": "Mueller Lake Park",
+            "venue": "Mueller Lake Park",
+            "city": "Austin",
+            "surface": "grass"
+          },
+          {
+            "match": "Bailey (Neighborhood )?Park|1101 W 33rd",
+            "venue": "Bailey Park",
+            "city": "Central Austin",
+            "surface": "grass"
+          },
+          {
+            "match": "Park",
+            "venue": null,
+            "city": "Austin",
+            "surface": "grass"
+          }
         ],
-        "fallbackVenue": { "city": "Austin", "surface": null }
+        "fallbackVenue": {
+          "city": "Austin",
+          "surface": null
+        }
+      }
+    },
+    {
+      "id": "volleyball-austin",
+      "name": "Volleyball Austin open plays",
+      "adapter": "leagueapps",
+      "cadence": "6h",
+      "options": {
+        "series": [
+          {
+            "url": "https://volleyballaustin.leagueapps.com/events/1647613-open-plays",
+            "title": "Volleyball Austin Open Play",
+            "host": "Volleyball Austin (NAGVA club; everyone welcome)",
+            "city": "Austin",
+            "level": "All levels · social and skilled courts"
+          }
+        ]
+      }
+    },
+    {
+      "id": "austin-meetup",
+      "name": "Meetup · Austin volleyball groups",
+      "adapter": "ical",
+      "cadence": "6h",
+      "options": {
+        "_doc": "Meetup groups' own calendar feeds (www.meetup.com/<group>/events/ical/). Add a group as one more feed.",
+        "feeds": [
+          {
+            "url": "https://www.meetup.com/austin-indoor-volleyball-meetup-group/events/ical/",
+            "idPrefix": "meetup-aiv",
+            "host": "Austin Indoor Volleyball Meetup",
+            "venue": "Montopolis Recreation and Community Center",
+            "city": "Austin"
+          }
+        ]
       }
     },
     {
@@ -355,9 +448,28 @@
             "url": "https://parks.georgetown.org/?p=18244",
             "note": "Six indoor courts; drop-in only at these times, first come first served, no reservations. Tue/Thu: 4 courts from 9am; Wed and Sun: 3 courts. Paddles to borrow at the front desk.",
             "slots": [
-              { "days": ["Tue", "Thu"], "start": "08:00", "end": "12:00" },
-              { "days": ["Wed"], "start": "18:00", "end": "20:45" },
-              { "days": ["Sun"], "start": "12:00", "end": "15:00" }
+              {
+                "days": [
+                  "Tue",
+                  "Thu"
+                ],
+                "start": "08:00",
+                "end": "12:00"
+              },
+              {
+                "days": [
+                  "Wed"
+                ],
+                "start": "18:00",
+                "end": "20:45"
+              },
+              {
+                "days": [
+                  "Sun"
+                ],
+                "start": "12:00",
+                "end": "15:00"
+              }
             ]
           },
           {
@@ -372,8 +484,25 @@
             "url": "https://parks.georgetown.org/?p=18244",
             "note": "Outdoor courts set aside for drop-in play: 4 courts Mon–Thu, 6 courts Fri–Sun. Other courts are reservable rentals, not open play.",
             "slots": [
-              { "days": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], "start": "18:00", "end": "20:00" },
-              { "days": ["Sun"], "start": "14:30", "end": "17:30" }
+              {
+                "days": [
+                  "Mon",
+                  "Tue",
+                  "Wed",
+                  "Thu",
+                  "Fri",
+                  "Sat"
+                ],
+                "start": "18:00",
+                "end": "20:00"
+              },
+              {
+                "days": [
+                  "Sun"
+                ],
+                "start": "14:30",
+                "end": "17:30"
+              }
             ]
           }
         ]
@@ -408,7 +537,14 @@
             "url": "https://www.leandertx.gov/981/Leander-Activity-Center",
             "note": "All ages and levels; no registration. The city notes its courts are slightly larger than regulation size.",
             "slots": [
-              { "days": ["Mon", "Wed"], "start": "17:00", "end": "21:00" }
+              {
+                "days": [
+                  "Mon",
+                  "Wed"
+                ],
+                "start": "17:00",
+                "end": "21:00"
+              }
             ]
           }
         ]

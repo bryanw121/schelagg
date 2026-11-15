@@ -24,7 +24,7 @@ const { sources: ALL_SOURCES, manuals: MANUALS } = loadSources();
 // These tests replay Austin's captured responses; other regions' sources are checked below.
 const SOURCES = ALL_SOURCES.filter((s) => s.region === 'austin');
 const MANUAL = MANUALS.find((m) => m.region === 'austin' || /\/austin\//.test(m.file));
-const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'sweatpals', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
+const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'sweatpals', 'volleyball-austin', 'austin-meetup', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
 const SPORT_OF = { 'austin-club-openplay': 'pickleball', 'austin-picklehaus': 'pickleball', 'holy-pickle': 'pickleball', 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball', 'georgetown-pickleball': 'pickleball', 'leander-pickleball': 'pickleball' }; // everything else: volleyball
 // Velocity's WordPress REST API: the captured pages, filtered to the slugs asked for.
 const velocityPages = (u) => JSON.stringify(JSON.parse(fixture('velocity-wp-pages.json')).filter((p) => (u.searchParams.get('slug') ?? '').split(',').includes(p.slug)));
@@ -98,6 +98,7 @@ const MANUAL_SESSIONS = [
  * The network as the adapters see it. `down` lists hostnames that answer 503; `pages`
  * overrides example.test bodies (the manual watcher).
  */
+const shiftNov = (t) => t.replace(/202611(\d\d)/g, (m, d) => (+d <= 21 ? `202610${+d + 10}` : m)); // the sample's Nov dates into the replay's Oct 25 – Nov 8 window
 function network({ down = new Set(), pages = {}, arketa } = {}) {
   const calls = [];
   const f = async (url) => {
@@ -121,6 +122,8 @@ function network({ down = new Set(), pages = {}, arketa } = {}) {
     if (u.hostname === 'apps.daysmartrecreation.com') return res(daysmartEvents(fixture, u.searchParams.get('company')));
     if (u.hostname === 'www.austinvelocity.com') return res(velocityPages(u));
     if (u.hostname === 'sweatpals.com') return res(fixture(`sweatpals-host-${u.pathname.split('/').pop()}.html`));
+    if (u.hostname === 'www.meetup.com') return res(shiftNov(fixture('meetup-sample.ics')));
+    if (u.hostname === 'volleyballaustin.leagueapps.com') return res(/1647613/.test(u.pathname) ? fixture('leagueapps-series.html') : fixture('leagueapps-event.html').replace(/Nov&nbsp;15/g, 'Nov&nbsp;1'));
     if (u.hostname === 'www.austintexas.gov') return res(fixture('austin-pickleball.html'));
     if (u.hostname === 'parks.georgetown.org') return res(fixture('georgetown-pickleball.html'));
     if (u.hostname === 'www.leandertx.gov') return res(fixture('leander-pickleball.html'));
@@ -334,7 +337,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'velocity', 'reclub', 'sweatpals', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'velocity', 'reclub', 'sweatpals', 'volleyball-austin', 'austin-meetup', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));

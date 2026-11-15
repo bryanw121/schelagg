@@ -362,6 +362,7 @@ test('persistRun: inert without a URL; a failed write is reported, never thrown'
 
 test('persistRun: the real scrape pipeline on fixtures lands in the database and matches its files', async () => {
   const fixture = (name) => readFileSync(new URL(`./fixtures/sources/${name}`, import.meta.url), 'utf8');
+const shiftNov = (t) => t.replace(/202611(\d\d)/g, (m, d) => (+d <= 21 ? `202610${+d + 10}` : m)); // the sample's Nov dates into the replay's Oct 25 – Nov 8 window
   const MEETS = { UEY4HO: 'reclub-meet-UEY4HO.html', '1QX0YR': 'reclub-meet-1QX0YR.html', VONMM8: 'reclub-meet-VONMM8.html', '5X380N': 'reclub-meet-5X380N.html' };
   const CLUBS = { '/clubs/@vex_volleyball': 'reclub-club-vex_volleyball.html', '/clubs/@austin-lawn-club': 'reclub-club-austin-lawn-club.html' };
   const network = async (url) => {
@@ -388,6 +389,8 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
       return new Response(JSON.stringify(JSON.parse(fixture('velocity-wp-pages.json')).filter((p) => slugs.includes(p.slug))));
     }
     if (u.hostname === 'sweatpals.com') return new Response(fixture(`sweatpals-host-${u.pathname.split('/').pop()}.html`));
+    if (u.hostname === 'www.meetup.com') return new Response(shiftNov(fixture('meetup-sample.ics')));
+    if (u.hostname === 'volleyballaustin.leagueapps.com') return new Response(/1647613/.test(u.pathname) ? fixture('leagueapps-series.html') : fixture('leagueapps-event.html').replace(/Nov&nbsp;15/g, 'Nov&nbsp;1'));
     if (u.hostname === 'reclub.co') {
       if (CLUBS[u.pathname]) return new Response(fixture(CLUBS[u.pathname]));
       const code = u.pathname.match(/^\/m\/(\w+)$/)?.[1];
@@ -405,7 +408,7 @@ test('persistRun: the real scrape pipeline on fixtures lands in the database and
 
   await withDb(async (db) => {
     const logs = [];
-    const r = await persistRun({ url: 'pglite://test', result, startedAt: NOW, failuresFile: paths.failures, adapters: { volleyworld: 'volleyworld', velocity: 'velocity', reclub: 'reclub', sweatpals: 'sweatpals', 'chaparral-ice': 'daysmart', 'ice-and-field': 'daysmart' }, open: async () => ({ ...db, end: async () => {} }), log: (l) => logs.push(l) });
+    const r = await persistRun({ url: 'pglite://test', result, startedAt: NOW, failuresFile: paths.failures, adapters: { volleyworld: 'volleyworld', velocity: 'velocity', reclub: 'reclub', sweatpals: 'sweatpals', 'volleyball-austin': 'leagueapps', 'austin-meetup': 'ical', 'chaparral-ice': 'daysmart', 'ice-and-field': 'daysmart' }, open: async () => ({ ...db, end: async () => {} }), log: (l) => logs.push(l) });
     assert.equal(r.ok, true, r.error);
     assert.match(logs[0], /^db    run 1: \d+ sessions/);
     assert.equal(readFileSync(paths.failures, 'utf8'), '', 'nothing to report');
