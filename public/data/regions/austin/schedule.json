@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T05:28:12.373Z",
+  "generatedAt": "2026-11-15T05:34:26.581Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:28.340Z",
+      "checkedAt": "2026-11-15T05:31:06.223Z",
       "count": 266
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:28.341Z",
+      "checkedAt": "2026-11-15T05:31:06.224Z",
       "count": 152
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:28.341Z",
+      "checkedAt": "2026-11-15T05:31:06.224Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:28.341Z",
+      "checkedAt": "2026-11-15T05:31:06.228Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T05:24:28.342Z",
+      "checkedAt": "2026-11-15T05:31:06.229Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:28.342Z",
+      "checkedAt": "2026-11-15T05:31:06.229Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:28.396Z",
+      "checkedAt": "2026-11-15T05:31:06.263Z",
       "count": 2
     },
     {
@@ -85,7 +85,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:28.593Z",
+      "checkedAt": "2026-11-15T05:31:06.643Z",
       "count": 7
     },
     {
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:29.888Z",
+      "checkedAt": "2026-11-15T05:31:07.717Z",
       "count": 3
     },
     {
@@ -105,7 +105,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:30.020Z",
+      "checkedAt": "2026-11-15T05:31:08.069Z",
       "count": 2
     },
     {
@@ -115,7 +115,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:30.314Z",
+      "checkedAt": "2026-11-15T05:31:08.508Z",
       "count": 2
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:30.750Z",
+      "checkedAt": "2026-11-15T05:31:08.885Z",
       "count": 34
     },
     {
@@ -135,7 +135,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:31.610Z",
+      "checkedAt": "2026-11-15T05:31:11.028Z",
       "count": 22
     },
     {
@@ -145,7 +145,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T05:24:33.842Z",
+      "checkedAt": "2026-11-15T05:31:12.147Z",
       "count": 13
     },
     {
@@ -155,7 +155,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T05:24:34.494Z",
+      "checkedAt": "2026-11-15T05:31:12.456Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -166,7 +166,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T05:24:34.574Z",
+      "checkedAt": "2026-11-15T05:31:12.515Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -14262,7 +14262,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 403",
+      "sourceChanged": "2026-11-14",
       "venueId": "hanovers",
       "status": "scheduled"
     },
