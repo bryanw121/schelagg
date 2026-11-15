@@ -88,9 +88,12 @@ after(async () => {
 /** A fresh page (own localStorage) with data answered by `data` and the clock fixed. */
 const titlesWithVenue = () => page.locator('#list .row .venue b').allTextContents();
 
+let pageErrors = [];
 async function open({ programs = null, schedule = SCHEDULE, courts = COURTS, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, maps = null, url = '/', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null } = {}) {
   context = await browser.newContext({ timezoneId, locale: 'en-US', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}) }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
+  pageErrors = [];
+  page.on('pageerror', (e) => pageErrors.push(e.message));
   await page.clock.setFixedTime(clock);
   apiCalls = [];
   await page.route('**/*', (route) => {
@@ -1143,4 +1146,28 @@ test('site: Leagues work when the day\'s schedule can\'t load; a price step gets
   assert.match(await page.locator('#list .heads-up').textContent(), /Last day at today's price:\s*Early Bird Cup/);
   await page.locator('#list .heads-up').click();
   assert.equal(await page.locator('#calendarModes [data-view="tournaments"]').getAttribute('aria-pressed'), 'true');
+});
+
+test('site: a session with no venue name (a Meetup event) renders on every day, in List and Map, with no script errors', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago', center: [32.8, -96.95], sports: ['volleyball'] }] };
+  const MAPS = { maps: [{ region: 'dallas', bbox: [-97.6, 32.4, -96.3, 33.3], maxzoom: 14 }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago' };
+  sched.venues = [{ id: 'src-t4-court-rentals', name: 'Sports Garden', city: 'Coppell', lat: 32.96, lng: -96.99, region: 'dallas' }];
+  const at = (id, date, venue, venueId) => ({ ...base, region: 'dallas', id, sourceId: 'dallas-meetup', date, start: '20:00', end: '22:00', title: `Adult Open Gym Volleyball ${id}`, venue, ...(venueId ? { venueId } : {}), city: 'Lewisville', surface: 'indoor', type: 'Open play', signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
+  const day = (n) => new Date(Date.parse(`${TODAY}T12:00:00Z`) + n * 86400e3).toISOString().slice(0, 10);
+  sched.sessions = [0, 1, 2, 3, 4, 5, 6].flatMap((n) => [at(`nv${n}`, day(n), null), at(`sg${n}`, day(n), 'Sports Garden', 'src-t4-court-rentals')]);
+  await open({ index: INDEX, regions: { dallas: sched }, maps: MAPS, url: '/?region=dallas' });
+  for (const layout of ['list', 'map']) {
+    if (layout === 'map') await page.locator('#layout [data-layout="map"]').click();
+    for (let di = 0; di < 7; di++) {
+      await page.locator(`#days [data-di="${di}"]`).click();
+      if (layout === 'list') assert.ok((await titles()).some((t) => /Adult Open Gym Volleyball nv/.test(t)), `day ${di}: the venue-less session is listed`);
+      else {
+        await page.locator('#map .pin').first().waitFor();
+        assert.equal(await page.locator('#map .pin').count(), 1, `day ${di}: one pin (the placed venue); the venue-less session is in the list`);
+      }
+    }
+  }
+  assert.deepEqual(pageErrors, []);
 });

@@ -76,10 +76,16 @@ export function parseMeet(html, url, { venues = [], fallback = {}, timezone = 'A
     note: [club && `Hosted by ${club}${weekly ? `, every ${weekly}` : ''}.`, v.facility && 'Runs on a privately booked court.'].filter(Boolean).join(' ') || null,
     canceled: meet.isCancelled === true || undefined,
     capacity,
+    ...placeOf(meet.venue?.location),
     signup: { url, label: 'Sign up on Reclub' },
     source: url,
   };
 }
+
+/** A venue's coordinates and address as the source gives them (lib/consolidate.js sourceVenues pins them). */
+const placeOf = (loc) => (Number.isFinite(loc?.latitude) && Number.isFinite(loc?.longitude)
+  ? { venueLat: loc.latitude, venueLng: loc.longitude, ...(loc.address ? { venueAddress: String(loc.address).replace(/, United States$/, '') } : {}) }
+  : {});
 
 const opts = (options = {}) => ({ venues: compileVenues(options.venues), fallback: options.fallbackVenue ?? {} });
 

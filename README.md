@@ -171,6 +171,10 @@ The computer needs to be awake: set it not to sleep while plugged in.
   from OpenStreetMap (and Google Places with `GOOGLE_PLACES_API_KEY`) and where each publishes its schedule.
 - **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
   plus the site e2e in Chromium on Linux.
+- **Deploy site → Check the live map** (`.github/workflows/pages.yml`, job `verify-map`): after every deploy, opens the
+  published Map view for each region with the real map files and today's data (`e2e/live-map.e2e.mjs`; locally
+  `SITE_URL=<site> npm run test:live-map`). Fails when a region has no map, its `.pmtiles` doesn't load, the page
+  throws, or a region with placed venues shows no pins all week.
 
 First-time setup: **Settings → Pages → Source: GitHub Actions**, then run both workflows once from the Actions tab.
 

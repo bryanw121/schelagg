@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { loadVenues, resolveVenues, markMoves, dedupe, sameSession, titleSimilarity } from '../lib/consolidate.js';
+import { loadVenues, resolveVenues, sourceVenues, markMoves, dedupe, sameSession, titleSimilarity } from '../lib/consolidate.js';
 import { toIcs, fold, escapeText } from '../lib/ics.js';
 import { toOccurrences } from '../lib/occurrences.js';
 
@@ -96,4 +96,24 @@ test('ics: one calendar per sport, cancellations kept as CANCELLED, text escaped
   assert.equal(fold('x'.repeat(80)), `${'x'.repeat(75)}\r\n ${'x'.repeat(5)}`);
   assert.equal(fold('é'.repeat(40)).split('\r\n')[0], 'é'.repeat(37)); // 2-byte characters aren't split
   assert.equal(escapeText('a\\b;c,d\ne'), 'a\\\\b\\;c\\,d\\ne');
+});
+
+test('sourceVenues: a venue the source placed becomes a pinned venue; known names, far-off points and no coordinates do not', () => {
+  const venues = [{ id: 'atx-beach', name: 'ATX Beach', aliases: [], region: 'austin' }];
+  const regions = { houston: { center: [29.76, -95.37], radiusKm: 60 }, austin: { center: [30.27, -97.74], radiusKm: 60 } };
+  const at = (id, venue, region, lat, lng, extra = {}) => ({ id, sourceId: 'reclub', venue, region, city: 'Katy', ...(lat != null ? { venueLat: lat, venueLng: lng } : {}), ...extra });
+  const { venues: added, sessions } = sourceVenues([
+    at('a', 'T4 Court Rentals', 'houston', 29.7893, -95.7427, { venueAddress: '1419 Vander Wilt Lane, Katy, Tx' }),
+    at('b', 'T4 Court Rentals', 'houston', 29.7893, -95.7427), // same place again: one venue
+    at('c', 'ATX Beach', 'austin', 30.3, -97.7), // already in venues.json
+    at('d', 'Somewhere Far', 'houston', 32.8, -96.95), // Dallas coordinates on a Houston session
+    at('e', 'No Coords Gym', 'houston', null, null),
+  ], venues, regions);
+  assert.deepEqual(added, [{ id: 'src-t4-court-rentals', name: 'T4 Court Rentals', city: 'Katy', address: '1419 Vander Wilt Lane, Katy, Tx', lat: 29.7893, lng: -95.7427, aliases: [], region: 'houston', located: 'source' }]);
+  assert.ok(sessions.every((x) => !('venueLat' in x) && !('venueAddress' in x)));
+  // Resolving against the combined list stamps the new venue on its sessions.
+  const r = resolveVenues(sessions, [...venues, ...added]);
+  assert.deepEqual(r.sessions.map((x) => x.venueId ?? null), ['src-t4-court-rentals', 'src-t4-court-rentals', 'atx-beach', null, null]);
+  // An id already taken gets a suffix.
+  assert.equal(sourceVenues([at('x', 'T4 Court Rentals', 'houston', 29.79, -95.74)], [{ id: 'src-t4-court-rentals', name: 'Other', aliases: [] }], regions).venues[0].id, 'src-t4-court-rentals-2');
 });

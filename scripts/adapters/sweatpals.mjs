@@ -89,6 +89,7 @@ export function parseHost(html, host, { venues = [], fallback = {}, include = 'v
           surface: v.surface ?? surfaceOf(e) ?? fallback.surface ?? null, facility: v.facility,
           type: typeOf(name), level: null, price: priceOf(e),
           note: `Hosted on Sweatpals${e.rrule ? ', weekly' : ''}.`,
+          ...(Number.isFinite(+e.addressLat) && Number.isFinite(+e.addressLng) && e.addressLat !== null ? { venueLat: +e.addressLat, venueLng: +e.addressLng, ...(address ? { venueAddress: address } : {}) } : {}),
           signup: { url: eventUrl(e.alias, date), label: 'RSVP on Sweatpals' },
           source: hostUrl(host.slug),
         });

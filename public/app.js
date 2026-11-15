@@ -568,7 +568,7 @@ const fmtMiles = (mi) => (mi < 0.95 ? '<1 mi' : `${mi < 9.95 ? mi.toFixed(1) : M
  * the first, so bars never cover each other.
  */
 /** A session's title without a leading repeat of its venue's name ("Gus Garcia Recreation Center · Pickleball open play" → "Pickleball open play"). */
-const ownTitle = (x) => x.title.replace(new RegExp(`^${x.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[·:–—-]?\\s*`, 'i'), '').trim();
+const ownTitle = (x) => (!x.venue ? x.title : x.title.replace(new RegExp(`^${x.venue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*[·:–—-]?\\s*`, 'i'), '').trim());
 /** The sessions behind a tapped chart block: time, title, level, price, and each one's sign-up. */
 const popHtml = (items, id) => `<div class="g-pop" id="${id}">${items.map((x) => `<div class="pop-item"><span class="pop-t">${fmtT(x.start)}–${fmtT(x.end)}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('')}</div>`;
 let openBlock = null; // the chart block whose sessions are listed (tap again to close); reset with the day
