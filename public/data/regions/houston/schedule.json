@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T03:04:42.094Z",
+  "region": {
+    "id": "houston",
+    "name": "Houston, TX",
+    "timezone": "America/Chicago"
+  },
+  "sources": [
+    {
+      "id": "houston-reclub",
+      "name": "Reclub · Houston",
+      "sport": "volleyball",
+      "region": "houston",
+      "cadence": "1h",
+      "ok": false,
+      "checkedAt": "2026-11-15T03:01:12.528Z",
+      "error": "No Reclub meets found",
+      "kept": 0
+    }
+  ],
+  "sessions": [],
+  "publicCourts": null,
+  "venues": []
+}

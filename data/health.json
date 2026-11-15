@@ -2,13 +2,13 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        268,
         266,
         266,
         265,
         265,
         278,
         278,
+        274,
         274,
         274,
         274
@@ -29,10 +29,10 @@
     },
     "austin-picklehaus": {
       "counts": [
-        149,
         150,
         150,
         150,
+        152,
         152,
         152,
         152,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 708
+      "failStreak": 709
     },
     "atxbeach": {
       "counts": [
@@ -222,7 +222,8 @@
         "spotsLeft": 0,
         "signup": 1
       },
-      "contentHash": "aac23a55d895318e"
+      "contentHash": "aac23a55d895318e",
+      "failStreak": 1
     },
     "reclub": {
       "counts": [
@@ -528,16 +529,20 @@
         "spotsLeft": 0,
         "signup": 1
       },
-      "contentHash": "1a56c3b727a58c8f"
+      "contentHash": "1a56c3b727a58c8f",
+      "failStreak": 1
     },
     "georgetown-pickleball": {
-      "failStreak": 417
+      "failStreak": 418
     },
     "leander-pickleball": {
-      "failStreak": 417
+      "failStreak": 418
     },
     "dallas-reclub": {
-      "failStreak": 49
+      "failStreak": 50
+    },
+    "houston-reclub": {
+      "failStreak": 1
     },
     "manual": {
       "counts": [
@@ -584,10 +589,10 @@
     "manual:beecave-on-ice-sat:changed:2026-11-12",
     "manual:beecave-on-ice-sun:changed:2026-11-12",
     "manual:beecave-on-ice-tue:changed:2026-11-12",
-    "manual:four-seasons-ice-rodeo:changed:2026-11-13",
-    "manual:hanovers-open:changed:2026-11-09",
+    "manual:four-seasons-ice-rodeo:changed:2026-11-14",
+    "manual:hanovers-open:changed:2026-11-14",
     "manual:hanovers-open:unverified",
-    "manual:ssc-crossover-mon-sand:changed:2026-11-11",
+    "manual:ssc-crossover-mon-sand:changed:2026-11-14",
     "manual:ssc-crossover-mon-sand:unverified"
   ]
 }

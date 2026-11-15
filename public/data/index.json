@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T02:46:55.361Z",
+  "generatedAt": "2026-11-15T03:04:42.094Z",
   "regions": [
     {
       "id": "austin",
@@ -24,6 +24,20 @@
       "center": [
         32.8,
         -96.95
+      ],
+      "sports": [
+        "volleyball"
+      ],
+      "sessions": 0,
+      "venues": 0
+    },
+    {
+      "id": "houston",
+      "name": "Houston, TX",
+      "timezone": "America/Chicago",
+      "center": [
+        29.76,
+        -95.37
       ],
       "sports": [
         "volleyball"
