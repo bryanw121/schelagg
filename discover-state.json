@@ -1,54 +1,197 @@
 {
-  "queries": {
-    "site:reclub.co volleyball Austin": {
-      "lastRun": "2026-11-15",
-      "empty": 2
+  "regions": {
+    "austin": {
+      "queries": {
+        "site:reclub.co volleyball Austin": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co volleyball \"Austin, Tx\"": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co/clubs volleyball Austin": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co Treehouse Gym": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co Volleyworld": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co Crossover Cedar Park volleyball": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co High Point Leander volleyball": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co ATX Beach volleyball": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        },
+        "site:reclub.co volleyball Round Rock OR Pflugerville OR Georgetown": {
+          "lastRun": "2026-11-15",
+          "empty": 2
+        }
+      },
+      "clubs": {
+        "volleyworld-gym": "2026-11-15"
+      },
+      "skipped": {
+        "skillsetvolleyball-sacramento": {
+          "on": "2026-10-27",
+          "reason": "2352 km away (Sacramento, CA, USA)"
+        },
+        "htxers-vball": {
+          "on": "2026-11-15",
+          "reason": "266 km away"
+        },
+        "skyline-academy": {
+          "on": "2026-11-15",
+          "reason": "196 km away"
+        }
+      },
+      "meets": {
+        "G2OPH3": "skillsetvolleyball-sacramento",
+        "E5VX0J": "skillsetvolleyball-sacramento",
+        "CA6QWJ": "skillsetvolleyball-sacramento",
+        "5MUVC7": "vex_volleyball",
+        "BV9GNY": "vex_volleyball",
+        "XHFPPV": "volleyworld-gym",
+        "DJK96A": "volleyworld-gym",
+        "YBYJV8": "volleyworld-gym",
+        "7GW4KD": "htxers-vball",
+        "FAL015": "htxers-vball",
+        "HAHH2E": "htxers-vball",
+        "L2WLH8": "skyline-academy"
+      }
     },
-    "site:reclub.co volleyball \"Austin, Tx\"": {
-      "lastRun": "2026-11-15",
-      "empty": 2
+    "dallas": {
+      "queries": {
+        "site:reclub.co volleyball Dallas": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co volleyball \"Dallas, Tx\"": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co/clubs volleyball Dallas": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co volleyball Plano OR Frisco OR Richardson": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co volleyball \"Fort Worth\"": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co volleyball Irving OR Arlington OR Carrollton": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        }
+      },
+      "clubs": {},
+      "skipped": {
+        "dallas-dink-divas": {
+          "on": "2026-11-15",
+          "reason": "sport is pickleball"
+        },
+        "htxers-vball": {
+          "on": "2026-11-15",
+          "reason": "403 km away"
+        },
+        "skyline-academy": {
+          "on": "2026-11-15",
+          "reason": "349 km away"
+        },
+        "culturaldiversityvolleyballsocial": {
+          "on": "2026-11-15",
+          "reason": "355 km away"
+        }
+      },
+      "meets": {
+        "1UF4QD": "dallas-dink-divas",
+        "7GW4KD": "htxers-vball",
+        "FAL015": "htxers-vball",
+        "HAHH2E": "htxers-vball",
+        "L2WLH8": "skyline-academy",
+        "RRZ3Q0": "culturaldiversityvolleyballsocial",
+        "P07IQT": "culturaldiversityvolleyballsocial",
+        "K9D10X": "culturaldiversityvolleyballsocial"
+      }
     },
-    "site:reclub.co/clubs volleyball Austin": {
-      "lastRun": "2026-11-15",
-      "empty": 2
-    },
-    "site:reclub.co Treehouse Gym": {
-      "lastRun": "2026-11-15",
-      "empty": 2
-    },
-    "site:reclub.co Volleyworld": {
-      "lastRun": "2026-11-15",
-      "empty": 2
-    },
-    "site:reclub.co Crossover Cedar Park volleyball": {
-      "lastRun": "2026-11-15",
-      "empty": 2
-    },
-    "site:reclub.co High Point Leander volleyball": {
-      "lastRun": "2026-11-15",
-      "empty": 2
-    },
-    "site:reclub.co ATX Beach volleyball": {
-      "lastRun": "2026-11-15",
-      "empty": 2
-    },
-    "site:reclub.co volleyball Round Rock OR Pflugerville OR Georgetown": {
-      "lastRun": "2026-11-15",
-      "empty": 2
+    "houston": {
+      "queries": {
+        "site:reclub.co volleyball Houston": {
+          "lastRun": "2026-11-15",
+          "empty": 0,
+          "lastFound": "2026-11-15"
+        },
+        "site:reclub.co volleyball \"Houston, Tx\"": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co/clubs volleyball Houston": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co volleyball Katy OR Sugar Land OR Cypress": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co volleyball \"The Woodlands\" OR Spring OR Pearland": {
+          "lastRun": "2026-11-15",
+          "empty": 1
+        },
+        "site:reclub.co volleyball \"open gym\" Houston": {
+          "lastRun": "2026-11-15",
+          "empty": 0,
+          "lastFound": "2026-11-15"
+        }
+      },
+      "clubs": {
+        "houston-stars-adults": "2026-11-15",
+        "htxers-vball": "2026-11-15",
+        "culturaldiversityvolleyballsocial": "2026-11-15",
+        "emancipation-park-volleyball": "2026-11-15",
+        "htx-meet-up": "2026-11-15",
+        "htx-volleyball": "2026-11-15"
+      },
+      "skipped": {
+        "the-coresportsplex": {
+          "on": "2026-11-15",
+          "reason": "74 km away"
+        }
+      },
+      "meets": {
+        "7GW4KD": "htxers-vball",
+        "FAL015": "htxers-vball",
+        "HAHH2E": "htxers-vball",
+        "RRZ3Q0": "culturaldiversityvolleyballsocial",
+        "P07IQT": "culturaldiversityvolleyballsocial",
+        "K9D10X": "culturaldiversityvolleyballsocial",
+        "R9HE9A": "emancipation-park-volleyball",
+        "565DSM": "htx-meet-up",
+        "VK88UG": "htx-meet-up",
+        "OS2O5W": "htx-meet-up",
+        "2GI7BR": "htx-volleyball",
+        "0NBWW2": "houston-stars-adults",
+        "OVTCJA": "htxers-vball",
+        "SQJ14B": "htxers-vball",
+        "ARTP7A": "htxers-vball",
+        "C9DJXW": "the-coresportsplex",
+        "R9OVES": "the-coresportsplex",
+        "D75VOW": "the-coresportsplex",
+        "K1HTXF": "vex_volleyball"
+      }
     }
-  },
-  "clubs": {},
-  "skipped": {
-    "skillsetvolleyball-sacramento": {
-      "on": "2026-10-27",
-      "reason": "2352 km away (Sacramento, CA, USA)"
-    }
-  },
-  "meets": {
-    "G2OPH3": "skillsetvolleyball-sacramento",
-    "E5VX0J": "skillsetvolleyball-sacramento",
-    "CA6QWJ": "skillsetvolleyball-sacramento",
-    "5MUVC7": "vex_volleyball",
-    "BV9GNY": "vex_volleyball"
   }
 }
