@@ -10,7 +10,7 @@
         277,
         277,
         277,
-        277,
+        276,
         276
       ],
       "sessions": 276,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 733
+      "failStreak": 734
     },
     "atxbeach": {
       "counts": [
@@ -201,7 +201,7 @@
         8,
         8,
         8,
-        8,
+        2,
         2,
         2,
         2,
@@ -227,7 +227,7 @@
     "reclub": {
       "counts": [
         7,
-        7,
+        6,
         6,
         6,
         6,
@@ -673,6 +673,7 @@
         2,
         2,
         2,
+        3,
         3
       ],
       "sessions": 3,
@@ -691,6 +692,7 @@
     },
     "austin-meetup": {
       "counts": [
+        2,
         2,
         2,
         2,
@@ -887,16 +889,17 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 442
+      "failStreak": 443
     },
     "leander-pickleball": {
-      "failStreak": 442
+      "failStreak": 443
     },
     "dallas-reclub": {
-      "failStreak": 74
+      "failStreak": 75
     },
     "sportsgarden": {
       "counts": [
+        4,
         4,
         4,
         4,
@@ -919,6 +922,7 @@
     },
     "dfw-city-active": {
       "counts": [
+        2,
         2,
         2,
         2,
@@ -948,6 +952,7 @@
         12,
         12,
         12,
+        12,
         12
       ],
       "sessions": 12,
@@ -955,8 +960,8 @@
         "end": 1,
         "price": 0,
         "level": 1,
-        "venue": 0.17,
-        "city": 0.83,
+        "venue": 1,
+        "city": 1,
         "surface": 1,
         "type": 1,
         "capacity": 0,
@@ -967,7 +972,7 @@
     "houston-reclub": {
       "counts": [
         21,
-        21,
+        20,
         20,
         20,
         20,
@@ -1129,16 +1134,6 @@
   "manual": {},
   "reported": [
     "aces:failing",
-    "dallas-meetup:warning:meetup-ntav-event_317170126-2026-11-16: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317183553-2026-11-17: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317199325-2026-11-18: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317200240-2026-11-18: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317214652-2026-11-19: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317279856-2026-11-23: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317293352-2026-11-24: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317307880-2026-11-25: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317308722-2026-11-25: no venue name",
-    "dallas-meetup:warning:meetup-ntav-event_317322232-2026-11-26: no venue name",
     "dallas-reclub:failing",
     "georgetown-pickleball:failing",
     "houston-reclub:warning:reclub-2GI7BR: no surface",

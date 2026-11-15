@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T14:46:50.602Z",
+  "generatedAt": "2026-11-15T14:51:20.420Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -14,7 +14,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T14:43:20.659Z",
+      "checkedAt": "2026-11-15T14:47:54.675Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -25,7 +25,7 @@
       "region": "dallas",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:35.026Z",
+      "checkedAt": "2026-11-15T14:47:54.799Z",
       "count": 4
     },
     {
@@ -35,7 +35,7 @@
       "region": "dallas",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:35.342Z",
+      "checkedAt": "2026-11-15T14:47:55.131Z",
       "count": 2
     },
     {
@@ -45,20 +45,8 @@
       "region": "dallas",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T12:13:58.346Z",
-      "count": 12,
-      "warnings": [
-        "meetup-ntav-event_317170126-2026-11-16: no venue name",
-        "meetup-ntav-event_317183553-2026-11-17: no venue name",
-        "meetup-ntav-event_317199325-2026-11-18: no venue name",
-        "meetup-ntav-event_317200240-2026-11-18: no venue name",
-        "meetup-ntav-event_317214652-2026-11-19: no venue name",
-        "meetup-ntav-event_317279856-2026-11-23: no venue name",
-        "meetup-ntav-event_317293352-2026-11-24: no venue name",
-        "meetup-ntav-event_317307880-2026-11-25: no venue name",
-        "meetup-ntav-event_317308722-2026-11-25: no venue name",
-        "meetup-ntav-event_317322232-2026-11-26: no venue name"
-      ]
+      "checkedAt": "2026-11-15T14:47:56.911Z",
+      "count": 12
     }
   ],
   "sessions": [
@@ -91,7 +79,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -120,7 +108,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -149,7 +137,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -182,7 +170,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -212,7 +200,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "fw-riverside",
       "status": "scheduled"
     },
@@ -242,7 +230,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "fw-eugene-mccray",
       "status": "scheduled"
     },
@@ -253,7 +241,7 @@
       "end": "21:30",
       "title": "Friday - Sand Volleyball (South Location)",
       "venue": "Sports Garden DFW",
-      "city": null,
+      "city": "Coppell",
       "surface": "sand",
       "type": "Open play",
       "level": "All levels",
@@ -279,7 +267,7 @@
       "end": "21:30",
       "title": "Friday - Sand Volleyball (South Location)",
       "venue": "Sports Garden DFW",
-      "city": null,
+      "city": "Coppell",
       "surface": "sand",
       "type": "Open play",
       "level": "All levels",
@@ -304,7 +292,7 @@
       "start": "20:00",
       "end": "22:00",
       "title": "Adult Beginner Open Gym Volleyball Lewisville",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Open play",
@@ -321,6 +309,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -329,7 +318,7 @@
       "start": "19:00",
       "end": "20:00",
       "title": "Adult Volleyball Skills Clinic and Training",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Clinic",
@@ -346,6 +335,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -354,7 +344,7 @@
       "start": "19:00",
       "end": "20:00",
       "title": "Adult Volleyball Skills Clinic and Training",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Clinic",
@@ -371,6 +361,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -379,7 +370,7 @@
       "start": "20:00",
       "end": "22:00",
       "title": "Adult Beginner Open Gym Volleyball Lewisville",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Open play",
@@ -396,6 +387,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -404,7 +396,7 @@
       "start": "20:00",
       "end": "22:00",
       "title": "Adult Open Gym Volleyball Lewisville",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Open play",
@@ -421,6 +413,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -429,7 +422,7 @@
       "start": "20:00",
       "end": "22:00",
       "title": "Adult Beginner Open Gym Volleyball Lewisville",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Open play",
@@ -446,6 +439,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -454,7 +448,7 @@
       "start": "19:00",
       "end": "20:00",
       "title": "Adult Volleyball Skills Clinic and Training",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Clinic",
@@ -471,6 +465,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -479,7 +474,7 @@
       "start": "19:00",
       "end": "20:00",
       "title": "Adult Volleyball Skills Clinic and Training",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Clinic",
@@ -496,6 +491,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -504,7 +500,7 @@
       "start": "20:00",
       "end": "22:00",
       "title": "Adult Beginner Open Gym Volleyball Lewisville",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Open play",
@@ -521,6 +517,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -529,7 +526,7 @@
       "start": "20:00",
       "end": "22:00",
       "title": "Adult Open Gym Volleyball Lewisville",
-      "venue": null,
+      "venue": "USSPT",
       "city": "Lewisville",
       "surface": "indoor",
       "type": "Open play",
@@ -546,6 +543,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     }
   ],
@@ -585,6 +583,15 @@
       "address": "4932 Wilbarger Street, Fort Worth, TX 76119",
       "lat": 32.69886,
       "lng": -97.25003,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
       "region": "dallas"
     }
   ]
