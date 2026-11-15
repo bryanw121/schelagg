@@ -171,6 +171,9 @@ The computer needs to be awake: set it not to sleep while plugged in.
   from OpenStreetMap (and Google Places with `GOOGLE_PLACES_API_KEY`) and where each publishes its schedule.
 - **Test** (`.github/workflows/test.yml`): unit + integration tests and script checks on Linux, macOS and Windows,
   plus the site e2e in Chromium on Linux.
+- **Sources page** (`public/sources.html`, opened from "N sources" next to the city): per city, every source with a
+  link to it (`site` in config, or the groups/clubs it reads), what kind it is, what it gives this week, and whether it
+  works (failing ones in red with the date they started failing). Fields come from `lib/sources.js`.
 - **Deploy site → Check the live map** (`.github/workflows/pages.yml`, job `verify-map`): after every deploy, opens the
   published Map view for each region with the real map files and today's data (`e2e/live-map.e2e.mjs`; locally
   `SITE_URL=<site> npm run test:live-map`). Fails when a region has no map, its `.pmtiles` doesn't load, the page

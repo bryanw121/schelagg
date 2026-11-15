@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Schelagg · Sources</title>
+<meta name="description" content="Where Schelagg's open play, leagues and tournaments come from, city by city, and whether each source is working.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><h1>Schel<span>agg</span></h1><a class="back" id="back" href="./">← Schedule</a></div>
+    <div class="sub"><label class="region src-city">Sources for <select id="city" aria-label="City"></select></label></div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="src-head"><h2>Where this comes from</h2></div>
+    <p class="src-lede">Schelagg reads these pages and feeds on its own and shows what they list. Times can change: the sign-up link always goes to the source.</p>
+    <div id="groups" aria-live="polite"><p class="src-lede">Loading…</p></div>
+    <p class="src-foot">Know a place that posts its open play online? <a id="suggest" href="https://github.com/bryanw121/schelagg/issues/new" target="_blank" rel="noopener">Suggest a source</a>.</p>
+  </div>
+</main>
+<script type="module" src="sources.js"></script>
+</body>
+</html>

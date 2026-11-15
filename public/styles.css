@@ -364,3 +364,26 @@ body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibr
 @media (max-width:360px){#calendarModes .seg-btn{font-size:13px;padding:0 4px;letter-spacing:-.01em}}
 .kinds .pill-btn{position:relative}
 header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
+
+/* Sources page (sources.html): one card per sport, then leagues & tournaments; a row per source. */
+.back{font:600 14px var(--body);color:var(--accent);text-decoration:none}
+.src-city select{font:600 15px var(--body);padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);max-width:100%}
+.src-head{margin:18px 0 6px}
+.src-head h2{font:800 24px/1 var(--display);text-transform:uppercase;margin:0}
+.src-lede{color:var(--muted);margin:0 0 14px;font-size:14px}
+.src-group{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:0 0 14px;overflow:hidden}
+.src-group h3{font:700 15px/1.1 var(--display);text-transform:uppercase;letter-spacing:.05em;margin:0;padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.src-group h3 .n{font:600 12px var(--mono);color:var(--muted);text-transform:none;letter-spacing:0}
+.src{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 14px;border-top:1px solid var(--line)}
+.src:first-of-type{border-top:0}
+.src > a,.src > .name{color:var(--ink);font-weight:600;text-decoration:none;overflow-wrap:anywhere}
+.src > a::after,.src .links a::after{content:" ↗";color:var(--muted);font-weight:400}
+.src .count{font:600 13px var(--mono);text-align:right;color:var(--accent);max-width:46vw}
+.src .kind{color:var(--muted);font-size:13px;grid-column:1/-1}
+.src .links{grid-column:1/-1;font-size:13px;overflow-wrap:anywhere}
+.src .links a{color:var(--ink)}
+.src .status{grid-column:1/-1;font:500 12px var(--mono);color:var(--muted)}
+.src .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px;vertical-align:1px}
+.src.bad .dot{background:var(--bad)} .src.bad .status{color:var(--bad)}
+.src-foot{color:var(--muted);font-size:13px;margin:4px 0 32px}
+.sources-link{font:600 12px var(--mono);color:var(--accent);margin-left:8px}
