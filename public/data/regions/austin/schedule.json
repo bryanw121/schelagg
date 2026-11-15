@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T04:34:25.641Z",
+  "generatedAt": "2026-11-15T04:41:22.606Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:32.838Z",
+      "checkedAt": "2026-11-15T04:37:38.678Z",
       "count": 270
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:32.838Z",
+      "checkedAt": "2026-11-15T04:37:38.679Z",
       "count": 152
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:32.839Z",
+      "checkedAt": "2026-11-15T04:37:38.680Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:32.839Z",
+      "checkedAt": "2026-11-15T04:37:38.681Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T04:30:32.839Z",
+      "checkedAt": "2026-11-15T04:37:38.683Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:32.840Z",
+      "checkedAt": "2026-11-15T04:37:38.683Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:32.998Z",
+      "checkedAt": "2026-11-15T04:37:38.743Z",
       "count": 2
     },
     {
@@ -85,8 +85,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:33.299Z",
-      "count": 5
+      "checkedAt": "2026-11-15T04:37:38.954Z",
+      "count": 7
     },
     {
       "id": "sweatpals",
@@ -95,8 +95,28 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:34.734Z",
+      "checkedAt": "2026-11-15T04:37:40.360Z",
       "count": 3
+    },
+    {
+      "id": "volleyball-austin",
+      "name": "Volleyball Austin open plays",
+      "sport": "volleyball",
+      "region": "austin",
+      "cadence": "6h",
+      "ok": true,
+      "checkedAt": "2026-11-15T04:37:40.394Z",
+      "count": 2
+    },
+    {
+      "id": "austin-meetup",
+      "name": "Meetup · Austin volleyball groups",
+      "sport": "volleyball",
+      "region": "austin",
+      "cadence": "6h",
+      "ok": true,
+      "checkedAt": "2026-11-15T04:37:40.439Z",
+      "count": 2
     },
     {
       "id": "chaparral-ice",
@@ -105,7 +125,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:34.746Z",
+      "checkedAt": "2026-11-15T04:37:40.800Z",
       "count": 34
     },
     {
@@ -115,7 +135,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:34.940Z",
+      "checkedAt": "2026-11-15T04:37:42.304Z",
       "count": 22
     },
     {
@@ -125,7 +145,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T04:30:38.291Z",
+      "checkedAt": "2026-11-15T04:37:44.337Z",
       "count": 13
     },
     {
@@ -135,7 +155,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:30:38.667Z",
+      "checkedAt": "2026-11-15T04:37:44.793Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -146,7 +166,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:30:38.762Z",
+      "checkedAt": "2026-11-15T04:37:44.846Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -12141,6 +12161,60 @@
       "status": "cancelled"
     },
     {
+      "id": "reclub-DJK96A",
+      "date": "2026-11-14",
+      "start": "21:00",
+      "end": "24:00",
+      "title": "Saturday Open Gym",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Volleyworld Gym, every Saturday.",
+      "capacity": 2,
+      "signup": {
+        "url": "https://reclub.co/m/DJK96A",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/DJK96A",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-YBYJV8",
+      "date": "2026-11-20",
+      "start": "21:00",
+      "end": "24:00",
+      "title": "Friday Open Gym",
+      "venue": "Volleyworld (Pflugerville)",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Volleyworld Gym, every Friday.",
+      "capacity": 2,
+      "signup": {
+        "url": "https://reclub.co/m/YBYJV8",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/YBYJV8",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "volleyworld-pflugerville",
+      "status": "scheduled"
+    },
+    {
       "id": "sweatpals-friday-lunch-open-play-2026-11-20-1100",
       "date": "2026-11-20",
       "start": "11:00",
@@ -12216,6 +12290,110 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-14",
       "venueId": "atx-beach",
+      "status": "scheduled"
+    },
+    {
+      "id": "leagueapps-5185722",
+      "date": "2026-11-15",
+      "start": "19:00",
+      "end": "21:00",
+      "title": "Volleyball Austin Open Play",
+      "venue": "Austin Sports Center - Central",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels · social and skilled courts",
+      "price": "$12 + fee",
+      "note": "Hosted by Volleyball Austin (NAGVA club; everyone welcome).",
+      "signup": {
+        "url": "https://volleyballaustin.leagueapps.com/events/5185722-nov.-15-2026-sunday",
+        "label": "Register on LeagueApps"
+      },
+      "source": "https://volleyballaustin.leagueapps.com/events/5185722-nov.-15-2026-sunday",
+      "sourceId": "volleyball-austin",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "austin-sports-center-central",
+      "status": "scheduled"
+    },
+    {
+      "id": "leagueapps-5185727",
+      "date": "2026-11-22",
+      "start": "19:00",
+      "end": "21:00",
+      "title": "Volleyball Austin Open Play",
+      "venue": "Austin Sports Center - Central",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels · social and skilled courts",
+      "price": "$12 + fee",
+      "note": "Hosted by Volleyball Austin (NAGVA club; everyone welcome).",
+      "signup": {
+        "url": "https://volleyballaustin.leagueapps.com/events/5185727-nov.-22-2026-sunday",
+        "label": "Register on LeagueApps"
+      },
+      "source": "https://volleyballaustin.leagueapps.com/events/5185727-nov.-22-2026-sunday",
+      "sourceId": "volleyball-austin",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "austin-sports-center-central",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-aiv-event_317198282-2026-11-18",
+      "date": "2026-11-18",
+      "start": "18:00",
+      "end": "20:30",
+      "title": "Wednesday Night Indoor Volleyball | Montopolis | 6v6",
+      "venue": "Montopolis Recreation and Community Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by Austin Indoor Volleyball Meetup.",
+      "signup": {
+        "url": "https://www.meetup.com/austin-indoor-volleyball-meetup-group/events/317198282/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/austin-indoor-volleyball-meetup-group/events/317198282/",
+      "sourceId": "austin-meetup",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "austin-montopolis-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-aiv-event_317306862-2026-11-25",
+      "date": "2026-11-25",
+      "start": "18:00",
+      "end": "20:30",
+      "title": "Wednesday Night Indoor Volleyball | Montopolis | 6v6",
+      "venue": "Montopolis Recreation and Community Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by Austin Indoor Volleyball Meetup.",
+      "signup": {
+        "url": "https://www.meetup.com/austin-indoor-volleyball-meetup-group/events/317306862/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/austin-indoor-volleyball-meetup-group/events/317306862/",
+      "sourceId": "austin-meetup",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
     {
@@ -14190,7 +14368,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-14",
+      "watchError": "HTTP 403",
       "venueId": "hanovers",
       "status": "scheduled"
     },
@@ -15203,6 +15381,13 @@
         "details": []
       },
       "parent": "crossover",
+      "region": "austin"
+    },
+    {
+      "id": "austin-sports-center-central",
+      "name": "Austin Sports Center - Central",
+      "short": "ASC Central",
+      "city": "Austin",
       "region": "austin"
     }
   ]

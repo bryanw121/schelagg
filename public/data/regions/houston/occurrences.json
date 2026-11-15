@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-15T04:34:25.641Z",
+  "generatedAt": "2026-11-15T04:41:22.606Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -139,6 +139,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "reclub-9QFCTQ",
+      "session_id": "reclub-9QFCTQ",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Volleyball Pickup with Kimberly",
+      "venue": "Collins Park",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T01:30:00.000Z",
+      "ends_at": "2026-11-17T04:00:00.000Z",
+      "signup_url": "https://reclub.co/m/9QFCTQ",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by The Volleyball Hangout, every Monday.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 30
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "reclub-HAHH2E",
       "session_id": "reclub-HAHH2E",
       "source_id": "houston-reclub",
@@ -214,6 +241,33 @@
       "attributes": {
         "type": "Open play",
         "capacity": 20
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-6AL5A9",
+      "session_id": "reclub-6AL5A9",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Volleyball Practice with Kimberly",
+      "venue": "Collins Park",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-19T00:30:00.000Z",
+      "ends_at": "2026-11-19T03:00:00.000Z",
+      "signup_url": "https://reclub.co/m/6AL5A9",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by The Volleyball Hangout, every Wednesday.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 30
       },
       "venue_id": null,
       "status": "scheduled",
@@ -328,6 +382,87 @@
       "previous_starts_at": null
     },
     {
+      "id": "reclub-40RJ8U",
+      "session_id": "reclub-40RJ8U",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Friday Night Volleyball",
+      "venue": "T4 Court Rentals",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T03:00:00.000Z",
+      "ends_at": "2026-11-21T06:00:00.000Z",
+      "signup_url": "https://reclub.co/m/40RJ8U",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by T4 Late Nights, every Friday.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 18
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-5E0DAN",
+      "session_id": "reclub-5E0DAN",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "The Volleyball Hangout",
+      "venue": "Collins Park",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T23:00:00.000Z",
+      "ends_at": "2026-11-22T03:00:00.000Z",
+      "signup_url": "https://reclub.co/m/5E0DAN",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by The Volleyball Hangout, every Saturday.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 30
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-6TSHGM",
+      "session_id": "reclub-6TSHGM",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "The Volleyball Hangout",
+      "venue": "Collins Park",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T23:00:00.000Z",
+      "ends_at": "2026-11-22T03:00:00.000Z",
+      "signup_url": "https://reclub.co/m/6TSHGM",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by The Volleyball Hangout, every Saturday.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 30
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "reclub-K9D10X",
       "session_id": "reclub-K9D10X",
       "source_id": "houston-reclub",
@@ -349,6 +484,33 @@
       "attributes": {
         "type": "Open play",
         "capacity": 40
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-T02HQF",
+      "session_id": "reclub-T02HQF",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Friday Night Volleyball",
+      "venue": "T4 Court Rentals",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-28T03:00:00.000Z",
+      "ends_at": "2026-11-28T06:00:00.000Z",
+      "signup_url": "https://reclub.co/m/T02HQF",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by T4 Late Nights, every Friday.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 18
       },
       "venue_id": null,
       "status": "scheduled",
