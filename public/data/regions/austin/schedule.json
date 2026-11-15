@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T03:25:46.300Z",
+  "generatedAt": "2026-11-15T03:47:14.010Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:21:58.678Z",
+      "checkedAt": "2026-11-15T03:43:30.220Z",
       "count": 270
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:21:58.678Z",
+      "checkedAt": "2026-11-15T03:43:30.220Z",
       "count": 152
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:21:58.679Z",
+      "checkedAt": "2026-11-15T03:43:30.220Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:21:58.679Z",
+      "checkedAt": "2026-11-15T03:43:30.221Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T03:21:58.682Z",
+      "checkedAt": "2026-11-15T03:43:30.225Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:21:58.722Z",
+      "checkedAt": "2026-11-15T03:43:30.225Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -96,7 +96,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:22:00.209Z",
+      "checkedAt": "2026-11-15T03:43:30.254Z",
       "count": 34
     },
     {
@@ -106,7 +106,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:22:00.489Z",
+      "checkedAt": "2026-11-15T03:43:30.496Z",
       "count": 22
     },
     {
@@ -126,7 +126,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:22:05.947Z",
+      "checkedAt": "2026-11-15T03:43:31.599Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -137,7 +137,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:22:06.163Z",
+      "checkedAt": "2026-11-15T03:43:31.795Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
