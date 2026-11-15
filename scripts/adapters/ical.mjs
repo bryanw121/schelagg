@@ -2,7 +2,12 @@
 // Today that's Meetup groups (www.meetup.com/<group>/events/ical/, Meetup's own export for
 // calendar subscriptions; robots.txt leaves it open). One source can list several feeds:
 //
-//   options.feeds: [{ url, host, venue, city, surface, include?, exclude?, note?, signupLabel? }]
+//   options.feeds: [{ url, host, venue, city, surface, include?, exclude?, note?, signupLabel?, eventVenues? }]
+//
+// Meetup's feed has no LOCATION, but each event page names its venue with coordinates (the page's
+// own data, "venue":{name,address,city,lat,lng}). With `eventVenues: true` (on by default for
+// meetup.com feeds) the venue is read from the event pages, one page per distinct event title per
+// run, so sessions get a venue name and a map pin (lib/consolidate.js sourceVenues).
 //
 // Each event becomes a dated session: its time, title and link. Descriptions are not published
 // (they name organizers and coaches); they're only read to tell sand from indoor and to find a
@@ -52,6 +57,19 @@ export function icsTime(prop, timezone) {
   return { date: `${m[1]}-${m[2]}-${m[3]}`, time: `${m[4]}:${m[5]}` };
 }
 
+/** The venue on a Meetup event page: { venue, city, venueAddress, venueLat, venueLng }, or null. */
+export function meetupVenue(html) {
+  const m = String(html).match(/"venue":\{"__typename":"Venue"[^{}]*\}/);
+  if (!m) return null;
+  let v;
+  try { v = JSON.parse(m[0].slice(8)); } catch { return null; }
+  if (!v?.name || /^online/i.test(v.name)) return null;
+  const out = { venue: v.name, city: v.city ?? null };
+  if (v.address) out.venueAddress = [v.address, v.city, v.state?.toUpperCase()].filter(Boolean).join(', ');
+  if (Number.isFinite(v.lat) && Number.isFinite(v.lng) && (v.lat || v.lng)) Object.assign(out, { venueLat: v.lat, venueLng: v.lng });
+  return out;
+}
+
 /** One feed's events → sessions (today onward). */
 export function feedSessions(text, feed, { timezone = 'America/Chicago', today = localDateTime(Date.now(), timezone).date, horizonDays = null } = {}) {
   const until = horizonDays ? addDays(today, horizonDays) : null;
@@ -94,7 +112,19 @@ export async function scrape({ options, timezone, fetch, ref }) {
       const res = await get(feed.url, { fetch });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       if (!/BEGIN:VCALENDAR/.test(res.text)) throw new Error('not a calendar feed');
-      sessions.push(...feedSessions(res.text, feed, { timezone, ...(ref ? { today: ref, horizonDays: HORIZON_DAYS } : {}) }));
+      const found = feedSessions(res.text, feed, { timezone, ...(ref ? { today: ref, horizonDays: HORIZON_DAYS } : {}) });
+      if (feed.eventVenues ?? /(^|\.)meetup\.com$/.test(new URL(feed.url).hostname)) {
+        // One event page per distinct title (a weekly series shares its venue); the feed's own venue wins.
+        const byTitle = new Map();
+        for (const x of found) if (!feed.venue && !byTitle.has(x.title) && x.signup?.url && x.signup.url !== feed.url) byTitle.set(x.title, x.signup.url);
+        for (const [title, url] of [...byTitle].slice(0, 8)) {
+          const page = await get(url, { fetch }).catch(() => null);
+          const v = page?.ok ? meetupVenue(page.text) : null;
+          if (!v) { warnings.push(`${url}: no venue on the event page`); continue; }
+          for (const x of found) if (x.title === title) Object.assign(x, v, feed.city ? { city: feed.city } : {});
+        }
+      }
+      sessions.push(...found);
     } catch (e) { warnings.push(`${feed.url}: ${e.message}`); }
   }
   if (!sessions.length && warnings.length === feeds.length) throw new Error(warnings.join('; '));

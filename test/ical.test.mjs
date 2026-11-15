@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { feedSessions, icsTime, parseIcs, scrape } from '../scripts/adapters/ical.mjs';
+import { feedSessions, icsTime, meetupVenue, parseIcs, scrape } from '../scripts/adapters/ical.mjs';
 
 const ICS = readFileSync(new URL('./fixtures/sources/meetup-sample.ics', import.meta.url), 'utf8');
 const TODAY = '2026-11-14';
@@ -53,4 +53,23 @@ test('scrape: a feed that fails is a warning; all failing is an error; an empty 
   assert.ok(r.sessions.some((x) => x.id === 'ical-event_316813545-2099-11-20'));
   assert.deepEqual(r.warnings, []);
   await assert.rejects(scrape({ options: { feeds: [{ url: 'https://c/ical' }] }, timezone: 'America/Chicago', fetch }));
+});
+
+test('Meetup event pages give the venue and its coordinates; sessions with the same title share it', async () => {
+  const page = readFileSync(new URL('./fixtures/sources/meetup-event.html', import.meta.url), 'utf8');
+  assert.deepEqual(meetupVenue(page), { venue: 'USSPT', city: 'Lewisville', venueAddress: '1501 Fairway Dr suite 200, Lewisville, TX', venueLat: 33.06454, venueLng: -97.005745 });
+  assert.equal(meetupVenue('<html></html>'), null);
+  const feed = ICS.replace(/2026112/g, '2099112').replace(/https:\/\/www\.meetup\.com\/x\//g, 'https://www.meetup.com/north-texas-adult-volleyball/');
+  const asked = [];
+  const fetch = async (u) => { asked.push(u); return /\/events\/ical\/$/.test(u) ? new Response(feed) : /\/events\/\d+\/$/.test(u) ? new Response(page) : new Response('', { status: 404 }); };
+  const r = await scrape({ options: { feeds: [{ url: 'https://www.meetup.com/north-texas-adult-volleyball/events/ical/' }] }, timezone: 'America/Chicago', fetch });
+  const beginner = r.sessions.find((x) => /Beginner/.test(x.title));
+  assert.deepEqual([beginner.venue, beginner.city, beginner.venueLat], ['USSPT', 'Lewisville', 33.06454]);
+  // One page per distinct title, never the feed itself again.
+  assert.equal(asked.filter((u) => /\/events\/\d+\/$/.test(u)).length, new Set(r.sessions.map((x) => x.title)).size);
+  // A feed with its own venue keeps it and reads no event pages.
+  asked.length = 0;
+  const own = await scrape({ options: { feeds: [{ url: 'https://www.meetup.com/x/events/ical/', venue: 'The Gym' }] }, timezone: 'America/Chicago', fetch: async (u) => { asked.push(u); return new Response(feed); } });
+  assert.ok(own.sessions.every((x) => x.venue === 'The Gym'));
+  assert.equal(asked.length, 1);
 });
