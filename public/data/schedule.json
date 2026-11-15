@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T03:47:14.010Z",
+  "generatedAt": "2026-11-15T04:13:16.699Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:43:30.220Z",
+      "checkedAt": "2026-11-15T04:09:33.000Z",
       "count": 270
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:43:30.220Z",
+      "checkedAt": "2026-11-15T04:09:33.001Z",
       "count": 152
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:43:30.220Z",
+      "checkedAt": "2026-11-15T04:09:33.001Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:43:30.221Z",
+      "checkedAt": "2026-11-15T04:09:33.001Z",
       "count": 11
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T03:43:30.225Z",
+      "checkedAt": "2026-11-15T04:09:33.003Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -60,7 +60,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T03:21:58.682Z",
+      "checkedAt": "2026-11-15T04:09:33.003Z",
       "count": 2
     },
     {
@@ -70,7 +70,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:43:30.225Z",
+      "checkedAt": "2026-11-15T04:09:33.032Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -81,7 +81,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T03:21:59.011Z",
+      "checkedAt": "2026-11-15T04:09:33.998Z",
       "count": 5
     },
     {
@@ -91,7 +91,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:43:30.254Z",
+      "checkedAt": "2026-11-15T04:09:34.648Z",
       "count": 34
     },
     {
@@ -101,7 +101,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T03:43:30.496Z",
+      "checkedAt": "2026-11-15T04:09:34.712Z",
       "count": 22
     },
     {
@@ -111,7 +111,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T03:22:05.559Z",
+      "checkedAt": "2026-11-15T04:09:39.380Z",
       "count": 13
     },
     {
@@ -121,7 +121,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:43:31.599Z",
+      "checkedAt": "2026-11-15T04:09:39.908Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -132,7 +132,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:43:31.795Z",
+      "checkedAt": "2026-11-15T04:09:39.961Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     },
@@ -143,9 +143,32 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T03:43:32.154Z",
+      "checkedAt": "2026-11-15T04:09:40.056Z",
       "error": "No Reclub meets found",
       "kept": 0
+    },
+    {
+      "id": "dallas-meetup",
+      "name": "Meetup · DFW volleyball groups",
+      "sport": "volleyball",
+      "region": "dallas",
+      "cadence": "6h",
+      "ok": true,
+      "checkedAt": "2026-11-15T04:09:45.224Z",
+      "count": 15,
+      "warnings": [
+        "meetup-ntav-event_317170126-2026-11-16: no venue name",
+        "meetup-ntav-event_317183553-2026-11-17: no venue name",
+        "meetup-ntav-event_317199325-2026-11-18: no venue name",
+        "meetup-ntav-event_317200240-2026-11-18: no venue name",
+        "meetup-ntav-event_317214652-2026-11-19: no venue name",
+        "meetup-ntav-event_317279856-2026-11-23: no venue name",
+        "meetup-ntav-event_317293352-2026-11-24: no venue name",
+        "meetup-ntav-event_317307880-2026-11-25: no venue name",
+        "meetup-ntav-event_317308722-2026-11-25: no venue name",
+        "meetup-ntav-event_317322232-2026-11-26: no venue name",
+        "venue \"Sports Garden DFW\" isn't in its region's venues.json"
+      ]
     },
     {
       "id": "houston-reclub",
@@ -154,7 +177,7 @@
       "region": "houston",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T03:22:08.648Z",
+      "checkedAt": "2026-11-15T04:09:46.768Z",
       "count": 15,
       "warnings": [
         "reclub-7GW4KD: no surface",
@@ -14002,6 +14025,306 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-14",
       "venueId": "austin-gus-garcia-rec",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-dfwvb-event_316813545-2026-11-20",
+      "date": "2026-11-20",
+      "start": "18:30",
+      "end": "21:30",
+      "title": "Friday - Sand Volleyball (South Location)",
+      "venue": "Sports Garden DFW",
+      "city": null,
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by DFW Volleyball (Dallas Region).",
+      "signup": {
+        "url": "https://www.meetup.com/dfwvolleyballdallas/events/316813545/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/dfwvolleyballdallas/events/316813545/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-dfwvb-event_316813546-2026-11-27",
+      "date": "2026-11-27",
+      "start": "18:30",
+      "end": "21:30",
+      "title": "Friday - Sand Volleyball (South Location)",
+      "venue": "Sports Garden DFW",
+      "city": null,
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by DFW Volleyball (Dallas Region).",
+      "signup": {
+        "url": "https://www.meetup.com/dfwvolleyballdallas/events/316813546/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/dfwvolleyballdallas/events/316813546/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317170126-2026-11-16",
+      "date": "2026-11-16",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Adult Beginner Open Gym Volleyball Lewisville",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Beginner",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317170126/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317170126/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317183553-2026-11-17",
+      "date": "2026-11-17",
+      "start": "19:00",
+      "end": "20:00",
+      "title": "Adult Volleyball Skills Clinic and Training",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Clinic",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317183553/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317183553/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317199325-2026-11-18",
+      "date": "2026-11-18",
+      "start": "19:00",
+      "end": "20:00",
+      "title": "Adult Volleyball Skills Clinic and Training",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Clinic",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317199325/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317199325/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317200240-2026-11-18",
+      "date": "2026-11-18",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Adult Beginner Open Gym Volleyball Lewisville",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Beginner",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317200240/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317200240/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317214652-2026-11-19",
+      "date": "2026-11-19",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Adult Open Gym Volleyball Lewisville",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317214652/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317214652/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317279856-2026-11-23",
+      "date": "2026-11-23",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Adult Beginner Open Gym Volleyball Lewisville",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Beginner",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317279856/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317279856/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317293352-2026-11-24",
+      "date": "2026-11-24",
+      "start": "19:00",
+      "end": "20:00",
+      "title": "Adult Volleyball Skills Clinic and Training",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Clinic",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317293352/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317293352/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317307880-2026-11-25",
+      "date": "2026-11-25",
+      "start": "19:00",
+      "end": "20:00",
+      "title": "Adult Volleyball Skills Clinic and Training",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Clinic",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317307880/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317307880/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317308722-2026-11-25",
+      "date": "2026-11-25",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Adult Beginner Open Gym Volleyball Lewisville",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Beginner",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317308722/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317308722/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317322232-2026-11-26",
+      "date": "2026-11-26",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Adult Open Gym Volleyball Lewisville",
+      "venue": null,
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317322232/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317322232/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
       "status": "scheduled"
     },
     {

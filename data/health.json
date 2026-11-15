@@ -2,13 +2,13 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        265,
         278,
         278,
         274,
         274,
         274,
         274,
+        270,
         270,
         270,
         270
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 713
+      "failStreak": 714
     },
     "atxbeach": {
       "counts": [
@@ -223,7 +223,7 @@
         "signup": 1
       },
       "contentHash": "aac23a55d895318e",
-      "failStreak": 5
+      "failStreak": 6
     },
     "reclub": {
       "counts": [
@@ -506,7 +506,7 @@
     "austin-city-pickleball": {
       "counts": [
         11,
-        11,
+        13,
         13,
         13,
         13,
@@ -532,16 +532,35 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 422
+      "failStreak": 423
     },
     "leander-pickleball": {
-      "failStreak": 422
+      "failStreak": 423
     },
     "dallas-reclub": {
-      "failStreak": 54
+      "failStreak": 55
+    },
+    "dallas-meetup": {
+      "counts": [
+        15
+      ],
+      "sessions": 15,
+      "coverage": {
+        "end": 1,
+        "price": 0,
+        "level": 1,
+        "venue": 0.33,
+        "city": 0.67,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      }
     },
     "houston-reclub": {
       "counts": [
+        15,
         15
       ],
       "sessions": 15,
@@ -696,6 +715,17 @@
   "manual": {},
   "reported": [
     "aces:failing",
+    "dallas-meetup:warning:meetup-ntav-event_317170126-2026-11-16: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317183553-2026-11-17: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317199325-2026-11-18: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317200240-2026-11-18: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317214652-2026-11-19: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317279856-2026-11-23: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317293352-2026-11-24: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317307880-2026-11-25: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317308722-2026-11-25: no venue name",
+    "dallas-meetup:warning:meetup-ntav-event_317322232-2026-11-26: no venue name",
+    "dallas-meetup:warning:venue \"Sports Garden DFW\" isn't in its region's venues.json",
     "dallas-reclub:failing",
     "georgetown-pickleball:failing",
     "houston-reclub:warning:reclub-2GI7BR: no surface",
