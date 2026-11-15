@@ -1,0 +1,52 @@
+{
+  "_doc": "Sources for this region. 'adapter' names a module in scripts/adapters; platform adapters (reclub, aces, daysmart) take their venues/pages from 'options'. region and timezone come from region.json; sport from 'defaults' unless a source sets its own. 'cadence' is how often a source is scraped (30m, 1h, 6h, 1d; default 30m): the scrape clock ticks every 30 minutes by day and hourly overnight, and each tick runs only the sources that are due. Add a venue on an existing platform here; a new platform needs an adapter in scripts/adapters and a line in lib/registry.js.",
+  "schemaVersion": 2,
+  "defaults": {
+    "sport": "volleyball"
+  },
+  "sources": [
+    {
+      "id": "houston-reclub",
+      "name": "Reclub · Houston",
+      "adapter": "reclub",
+      "cadence": "1h",
+      "options": {
+        "clubs": [
+          "https://reclub.co/clubs/@cinco-ranch-volleyball-club",
+          "https://reclub.co/clubs/@north-houston"
+        ],
+        "venues": [],
+        "fallbackVenue": {
+          "city": "Houston",
+          "surface": "indoor"
+        },
+        "discover": {
+          "_doc": "Weekly discovery of Houston-area volleyball clubs on Reclub not in clubs (scripts/discover-reclub.mjs); same rules as Austin's.",
+          "sport": "volleyball",
+          "community": "Houston, TX, USA",
+          "center": [
+            29.76,
+            -95.37
+          ],
+          "radiusKm": 60,
+          "queries": [
+            "site:reclub.co volleyball Houston",
+            "site:reclub.co volleyball \"Houston, Tx\"",
+            "site:reclub.co/clubs volleyball Houston",
+            "site:reclub.co volleyball Katy OR Sugar Land OR Cypress",
+            "site:reclub.co volleyball \"The Woodlands\" OR Spring OR Pearland",
+            "site:reclub.co volleyball \"open gym\" Houston"
+          ],
+          "budget": {
+            "brave": 60,
+            "claude": 10
+          }
+        }
+      }
+    }
+  ],
+  "manual": {
+    "file": "manual.json",
+    "cadence": "1d"
+  }
+}

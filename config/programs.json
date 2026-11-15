@@ -5,6 +5,8 @@
     { "id": "austin-ssc", "reader": "leaguelab", "options": { "sites": [{ "url": "https://austinssc.leaguelab.com/leagues?v=upcoming", "org": "Austin Sports & Social Club", "region": "austin", "state": "TX", "sports": ["Volleyball", "Pickleball"] }] } },
     { "id": "meanwhile", "reader": "leaguelab", "options": { "sites": [{ "url": "https://meanwhile.leaguelab.com/leagues?sport=Sand+Volleyball", "org": "Meanwhile Brewing", "region": "austin", "state": "TX", "sports": ["Volleyball"] }] } },
     { "id": "lonestar-ssc", "reader": "leaguelab", "options": { "sites": [{ "url": "https://lonestarssc.leaguelab.com/leagues?v=upcoming", "org": "Lone Star Sports & Social Club", "region": "dallas", "state": "TX", "sports": ["Volleyball"] }] } },
+    { "id": "houston-ssc", "reader": "leaguelab", "options": { "sites": [{ "url": "https://houstonssc.leaguelab.com/leagues?v=upcoming", "org": "Houston Sports & Social Club", "region": "houston", "state": "TX", "sports": ["Volleyball"] }] } },
+    { "id": "sportsmonkey", "reader": "leaguelab", "options": { "sites": [{ "url": "https://sportsmonkey.leaguelab.com/leagues?v=upcoming", "org": "SportsMonkey", "region": "houston", "state": "TX", "sports": ["Volleyball"] }] } },
     { "id": "nagva-tx", "reader": "nagva", "options": { "state": "TX" } },
     { "id": "reclub", "reader": "reclub", "options": {
       "state": "TX", "max": 120,
