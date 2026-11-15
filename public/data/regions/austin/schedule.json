@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T04:58:10.777Z",
+  "generatedAt": "2026-11-15T05:13:24.104Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T04:54:31.019Z",
+      "checkedAt": "2026-11-15T05:13:18.791Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -155,7 +155,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:54:37.302Z",
+      "checkedAt": "2026-11-15T05:13:18.792Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -166,7 +166,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:54:37.351Z",
+      "checkedAt": "2026-11-15T05:13:18.792Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -14368,7 +14368,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 403",
+      "sourceChanged": "2026-11-14",
       "venueId": "hanovers",
       "status": "scheduled"
     },
