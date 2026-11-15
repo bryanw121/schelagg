@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T05:13:24.104Z",
+  "generatedAt": "2026-11-15T05:28:12.373Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -14,7 +14,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T05:13:18.792Z",
+      "checkedAt": "2026-11-15T05:24:34.627Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -25,7 +25,7 @@
       "region": "dallas",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T04:54:38.110Z",
+      "checkedAt": "2026-11-15T05:24:35.816Z",
       "count": 4
     },
     {
@@ -35,7 +35,7 @@
       "region": "dallas",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T04:54:38.297Z",
+      "checkedAt": "2026-11-15T05:24:35.955Z",
       "count": 2,
       "warnings": [
         "venue \"Eugene McCray Community Center\" isn't in its region's venues.json"
@@ -48,7 +48,7 @@
       "region": "dallas",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:54:39.999Z",
+      "checkedAt": "2026-11-15T05:24:37.345Z",
       "count": 12,
       "warnings": [
         "meetup-ntav-event_317170126-2026-11-16: no venue name",
@@ -201,7 +201,6 @@
       "title": "Open Play: Legends Volleyball",
       "venue": "Riverside Community Center",
       "city": "Fort Worth",
-      "address": "3700 East Belknap Street, Fort Worth, TX, 76111",
       "surface": "indoor",
       "type": "Open play",
       "level": "Ages 45+",
@@ -232,7 +231,6 @@
       "title": "Volleyball - Open Play - Eugene McCray",
       "venue": "Eugene McCray Community Center",
       "city": "Fort Worth",
-      "address": "4932 Wilbarger Street, Fort Worth, TX, 76119",
       "surface": "indoor",
       "type": "Open play",
       "level": "All levels",

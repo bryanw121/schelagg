@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         274,
-        274,
         270,
         270,
         270,
@@ -11,13 +10,14 @@
         270,
         270,
         270,
-        270
+        270,
+        266
       ],
-      "sessions": 270,
+      "sessions": 266,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.7,
+        "level": 0.71,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 719
+      "failStreak": 720
     },
     "atxbeach": {
       "counts": [
@@ -204,7 +204,7 @@
         8,
         8,
         8,
-        8,
+        2,
         2,
         2,
         2
@@ -233,7 +233,7 @@
         5,
         5,
         5,
-        5,
+        7,
         7,
         7
       ],
@@ -358,6 +358,7 @@
     },
     "sweatpals": {
       "counts": [
+        3,
         3,
         3,
         3,
@@ -663,6 +664,7 @@
     "volleyball-austin": {
       "counts": [
         2,
+        2,
         2
       ],
       "sessions": 2,
@@ -681,6 +683,7 @@
     },
     "austin-meetup": {
       "counts": [
+        2,
         2,
         2
       ],
@@ -873,16 +876,17 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 428
+      "failStreak": 429
     },
     "leander-pickleball": {
-      "failStreak": 428
+      "failStreak": 429
     },
     "dallas-reclub": {
-      "failStreak": 60
+      "failStreak": 61
     },
     "sportsgarden": {
       "counts": [
+        4,
         4
       ],
       "sessions": 4,
@@ -902,6 +906,7 @@
     },
     "dfw-city-active": {
       "counts": [
+        2,
         2
       ],
       "sessions": 2,
@@ -923,6 +928,7 @@
         15,
         15,
         15,
+        12,
         12,
         12
       ],
@@ -947,12 +953,13 @@
         15,
         15,
         22,
-        22
+        22,
+        21
       ],
-      "sessions": 22,
+      "sessions": 21,
       "coverage": {
         "end": 1,
-        "price": 0.5,
+        "price": 0.48,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1077,7 +1084,7 @@
         13,
         13,
         13,
-        13,
+        12,
         12,
         12,
         12,
@@ -1121,7 +1128,6 @@
     "houston-reclub:warning:reclub-5E0DAN: no surface",
     "houston-reclub:warning:reclub-6AL5A9: no surface",
     "houston-reclub:warning:reclub-6TSHGM: no surface",
-    "houston-reclub:warning:reclub-7GW4KD: no surface",
     "houston-reclub:warning:reclub-8TBKMU: no surface",
     "houston-reclub:warning:reclub-9QFCTQ: no surface",
     "houston-reclub:warning:reclub-FAL015: no surface",
@@ -1137,17 +1143,6 @@
     "houston-reclub:warning:reclub-VK88UG: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",
-    "houston-reclub:warning:venue \"Absolute Volleyball Academy and Absolute Beach\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Blastros\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Champion Forest Baptist Church - Champions Campus\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Collins Park\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Emancipation Park\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Houston Stars\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Katy Sports Center\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Skyline Volleyball Academy\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"T4 Court Rentals\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Tellepsen Family Downtown YMCA\" isn't in its region's venues.json",
-    "houston-reclub:warning:venue \"Wakefield Crowbar\" isn't in its region's venues.json",
     "leander-pickleball:failing",
     "manual:aces-mon-6s-indoor:unverified",
     "manual:aces-mon-6s-indoor:watch",
@@ -1160,8 +1155,8 @@
     "manual:beecave-on-ice-sun:changed:2026-11-12",
     "manual:beecave-on-ice-tue:changed:2026-11-12",
     "manual:four-seasons-ice-rodeo:changed:2026-11-14",
-    "manual:hanovers-open:changed:2026-11-14",
     "manual:hanovers-open:unverified",
+    "manual:hanovers-open:watch",
     "manual:ssc-crossover-mon-sand:changed:2026-11-14",
     "manual:ssc-crossover-mon-sand:unverified",
     "velocity:count"
