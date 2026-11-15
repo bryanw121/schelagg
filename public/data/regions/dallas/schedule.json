@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T19:42:31.630Z",
+  "generatedAt": "2026-11-15T19:44:58.448Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-15T19:39:02.746Z",
+      "checkedAt": "2026-11-15T19:44:53.395Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -374,7 +374,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-greenbriar-community-center",
       "status": "scheduled"
     },
     {
@@ -434,7 +433,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
     {
@@ -464,7 +462,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-southwest-community-center",
       "status": "scheduled"
     },
     {
@@ -542,7 +539,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -568,7 +564,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -594,7 +589,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -620,7 +614,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -646,7 +639,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -672,7 +664,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -698,7 +689,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -724,7 +714,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -750,7 +739,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -776,7 +764,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
-      "venueId": "src-usspt",
       "status": "scheduled"
     }
   ],
@@ -842,42 +829,6 @@
       "address": "14719 Preston Road, Dallas, TX 75254",
       "lat": 32.94881,
       "lng": -96.80371,
-      "region": "dallas"
-    },
-    {
-      "id": "src-greenbriar-community-center",
-      "name": "Greenbriar Community Center",
-      "city": "Fort Worth",
-      "address": "5200 Hemphill Street, Fort Worth, TX, 76115",
-      "lat": 32.66901,
-      "lng": -97.33189,
-      "region": "dallas"
-    },
-    {
-      "id": "src-r-d-evans-community-center",
-      "name": "R.D. Evans Community Center",
-      "city": "Fort Worth",
-      "address": "3242 Lackland Road, Fort Worth, TX, 76116",
-      "lat": 32.72584,
-      "lng": -97.43475,
-      "region": "dallas"
-    },
-    {
-      "id": "src-southwest-community-center",
-      "name": "Southwest Community Center",
-      "city": "Fort Worth",
-      "address": "6300 Welch Avenue, Fort Worth, TX, 76133",
-      "lat": 32.6548,
-      "lng": -97.38199,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
       "region": "dallas"
     }
   ]
