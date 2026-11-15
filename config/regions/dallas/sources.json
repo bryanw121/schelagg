@@ -61,6 +61,25 @@
       }
     },
     {
+      "id": "sportsgarden",
+      "name": "The Sports Garden (Coppell) sand open play",
+      "adapter": "sportsgarden",
+      "cadence": "1d"
+    },
+    {
+      "id": "dfw-city-active",
+      "name": "City recreation programs on ACTIVE (Fort Worth)",
+      "adapter": "active",
+      "cadence": "1d",
+      "options": {
+        "_doc": "Listing pages on www.active.com; their volleyball programs become weekly sessions for each season. Add a city's listing page to cover it.",
+        "listings": [
+          "https://www.active.com/fort-worth-tx/volleyball",
+          "https://www.active.com/dallas-tx/volleyball"
+        ]
+      }
+    },
+    {
       "id": "dallas-meetup",
       "name": "Meetup · DFW volleyball groups",
       "adapter": "ical",
