@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T03:04:42.094Z",
+  "generatedAt": "2026-11-15T03:14:28.098Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T03:00:57.582Z",
+      "checkedAt": "2026-11-15T03:13:56.332Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -70,7 +70,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:00:57.618Z",
+      "checkedAt": "2026-11-15T03:13:56.332Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -110,10 +110,9 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "1d",
-      "ok": false,
-      "checkedAt": "2026-11-15T03:01:03.904Z",
-      "error": "Austin pickleball page: HTTP 503",
-      "kept": 12
+      "ok": true,
+      "checkedAt": "2026-11-15T03:13:56.333Z",
+      "count": 13
     },
     {
       "id": "georgetown-pickleball",
@@ -122,7 +121,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:01:09.568Z",
+      "checkedAt": "2026-11-15T03:13:56.333Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -133,7 +132,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T03:01:09.617Z",
+      "checkedAt": "2026-11-15T03:13:56.334Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     },
@@ -144,7 +143,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T03:01:09.804Z",
+      "checkedAt": "2026-11-15T03:13:56.334Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -155,7 +154,7 @@
       "region": "houston",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T03:01:12.528Z",
+      "checkedAt": "2026-11-15T03:13:56.363Z",
       "error": "No Reclub meets found",
       "kept": 0
     }
@@ -13759,9 +13758,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-alamo-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -13787,9 +13785,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-dottie-jordan-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -13815,9 +13812,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-montopolis-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -13843,9 +13839,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-montopolis-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -13871,9 +13866,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-northwest-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -13899,9 +13893,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-northwest-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -13927,9 +13920,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-dove-springs-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -13955,9 +13947,35 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-dove-springs-rec",
-      "checkFailed": "2026-11-14",
+      "status": "scheduled"
+    },
+    {
+      "id": "pickleball-austin-dove-springs-rec-2-2026-11-20",
+      "sport": "pickleball",
+      "date": "2026-11-20",
+      "start": "09:00",
+      "end": "12:00",
+      "title": "George Morales Dove Springs Recreation Center · Pickleball open play",
+      "venue": "George Morales Dove Springs Recreation Center",
+      "city": "Austin",
+      "surface": "indoor",
+      "type": "Open play",
+      "scheduleBasis": "published_recurring_hours",
+      "reviewBy": "2026-11-30",
+      "price": "Price not published — confirm with venue",
+      "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "signup": {
+        "url": "https://www.austintexas.gov/parks/locations/george-morales-dove-springs-recreation-center",
+        "label": "Venue details"
+      },
+      "source": "https://www.austintexas.gov/parks/programs/pickleball",
+      "sourceId": "austin-city-pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "austin-dove-springs-rec",
       "status": "scheduled"
     },
     {
@@ -13983,9 +14001,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-gus-garcia-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -14011,9 +14028,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-gus-garcia-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -14039,9 +14055,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-gus-garcia-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -14067,9 +14082,8 @@
       "sourceId": "austin-city-pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "austin-gus-garcia-rec",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
