@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T05:34:26.581Z",
+  "generatedAt": "2026-11-15T05:47:07.817Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -14,7 +14,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T05:31:12.618Z",
+      "checkedAt": "2026-11-15T05:43:33.912Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -25,7 +25,7 @@
       "region": "dallas",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T05:31:13.733Z",
+      "checkedAt": "2026-11-15T05:43:35.026Z",
       "count": 4
     },
     {
@@ -35,11 +35,8 @@
       "region": "dallas",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T05:31:14.287Z",
-      "count": 2,
-      "warnings": [
-        "venue \"Eugene McCray Community Center\" isn't in its region's venues.json"
-      ]
+      "checkedAt": "2026-11-15T05:43:35.342Z",
+      "count": 2
     },
     {
       "id": "dallas-meetup",
@@ -48,7 +45,7 @@
       "region": "dallas",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:31:16.392Z",
+      "checkedAt": "2026-11-15T05:43:37.222Z",
       "count": 12,
       "warnings": [
         "meetup-ntav-event_317170126-2026-11-16: no venue name",
@@ -246,6 +243,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-14",
+      "venueId": "fw-eugene-mccray",
       "status": "scheduled"
     },
     {
@@ -557,6 +555,9 @@
       "id": "sports-garden",
       "name": "The Sports Garden",
       "city": "Coppell",
+      "address": "1850 E Belt Line Rd, Coppell, TX 75019",
+      "lat": 32.95202,
+      "lng": -96.94529,
       "region": "dallas"
     },
     {
@@ -564,6 +565,8 @@
       "name": "Worth Heights Community Center",
       "city": "Fort Worth",
       "address": "3551 New York Avenue, Fort Worth, TX 76110",
+      "lat": 32.69739,
+      "lng": -97.31648,
       "region": "dallas"
     },
     {
@@ -571,6 +574,17 @@
       "name": "Riverside Community Center",
       "city": "Fort Worth",
       "address": "3700 East Belknap Street, Fort Worth, TX 76111",
+      "lat": 32.77761,
+      "lng": -97.29526,
+      "region": "dallas"
+    },
+    {
+      "id": "fw-eugene-mccray",
+      "name": "Eugene McCray Community Center",
+      "city": "Fort Worth",
+      "address": "4932 Wilbarger Street, Fort Worth, TX 76119",
+      "lat": 32.69886,
+      "lng": -97.25003,
       "region": "dallas"
     }
   ]

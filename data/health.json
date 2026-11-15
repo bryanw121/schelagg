@@ -9,7 +9,7 @@
         270,
         270,
         270,
-        270,
+        266,
         266,
         266
       ],
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 721
+      "failStreak": 722
     },
     "atxbeach": {
       "counts": [
@@ -202,7 +202,7 @@
         8,
         8,
         8,
-        8,
+        2,
         2,
         2,
         2,
@@ -231,7 +231,7 @@
         5,
         5,
         5,
-        5,
+        7,
         7,
         7,
         7,
@@ -358,6 +358,7 @@
     },
     "sweatpals": {
       "counts": [
+        3,
         3,
         3,
         3,
@@ -667,6 +668,7 @@
         2,
         2,
         2,
+        2,
         2
       ],
       "sessions": 2,
@@ -685,6 +687,7 @@
     },
     "austin-meetup": {
       "counts": [
+        2,
         2,
         2,
         2,
@@ -879,16 +882,17 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 430
+      "failStreak": 431
     },
     "leander-pickleball": {
-      "failStreak": 430
+      "failStreak": 431
     },
     "dallas-reclub": {
-      "failStreak": 62
+      "failStreak": 63
     },
     "sportsgarden": {
       "counts": [
+        4,
         4,
         4,
         4
@@ -912,6 +916,7 @@
       "counts": [
         2,
         2,
+        2,
         2
       ],
       "sessions": 2,
@@ -933,6 +938,7 @@
         15,
         15,
         15,
+        12,
         12,
         12,
         12,
@@ -960,6 +966,7 @@
         15,
         22,
         22,
+        21,
         21,
         21
       ],
@@ -1089,7 +1096,7 @@
       "counts": [
         13,
         13,
-        13,
+        12,
         12,
         12,
         12,
@@ -1127,7 +1134,6 @@
     "dallas-meetup:warning:meetup-ntav-event_317308722-2026-11-25: no venue name",
     "dallas-meetup:warning:meetup-ntav-event_317322232-2026-11-26: no venue name",
     "dallas-reclub:failing",
-    "dfw-city-active:warning:venue \"Eugene McCray Community Center\" isn't in its region's venues.json",
     "georgetown-pickleball:failing",
     "houston-reclub:warning:reclub-2GI7BR: no surface",
     "houston-reclub:warning:reclub-40RJ8U: no surface",
@@ -1165,7 +1171,6 @@
     "manual:hanovers-open:changed:2026-11-14",
     "manual:hanovers-open:unverified",
     "manual:ssc-crossover-mon-sand:changed:2026-11-14",
-    "manual:ssc-crossover-mon-sand:unverified",
-    "velocity:count"
+    "manual:ssc-crossover-mon-sand:unverified"
   ]
 }
