@@ -331,49 +331,67 @@ function warnIfOverBudget(plan) {
     + 'Add the BRAVE_SEARCH_API_KEY secret (budget 100, about 1,000 free searches a month) or raise options.discover.budget.');
 }
 
+/**
+ * Every region's Reclub source that has discovery settings, with the clubs configured in any
+ * region (so Austin's discovery never proposes a club Houston already follows).
+ */
+export function discoveryRegions(sources) {
+  const reclub = sources.filter((s) => (s.adapter?.id ?? s.adapter) === 'reclub');
+  const allClubs = [...new Set(reclub.flatMap((s) => s.options?.clubs ?? []))];
+  return reclub.filter((s) => s.options?.discover).map((s) => ({ region: s.region ?? 'austin', options: { ...s.options, clubs: allClubs } }));
+}
+
+/**
+ * Discovery state per region: { regions: { austin: {...}, dallas: {...} } }. A club one region
+ * turned down (too far from Austin) is still open for another (it may be in Houston). State from
+ * before regions (queries, clubs, skipped, meets at the top) is Austin's.
+ */
+export function regionStates(state = {}) {
+  if (state.regions && typeof state.regions === 'object') return { ...state.regions };
+  return Object.keys(state).length ? { austin: state } : {};
+}
+
 async function main(args) {
-  // The region whose sources.json holds the Reclub source.
-  const reclubSource = loadSources().sources.find((s) => s.adapter?.id === 'reclub');
-  const config = regionFile(reclubSource?.region ?? 'austin', 'sources.json');
   if (args[0] === '--apply') {
+    // --apply <slug> [region]: add the club to that region's Reclub source.
+    const config = regionFile(args[2] || 'austin', 'sources.json');
     writeFileSync(config, applyClub(readFileSync(config, 'utf8'), args[1] ?? ''));
     console.log(`Added ${clubUrl(args[1])} to ${config}`);
     return;
   }
   loadEnv();
-  const opts = reclubOptions(loadSources().sources);
-  const all = opts?.discover?.queries ?? [];
-  const state = readJson(STATE(), {});
+  const regions = discoveryRegions(loadSources().sources);
+  const saved = readJson(STATE(), {});
+  const states = regionStates(saved);
   const key = process.env.BRAVE_SEARCH_API_KEY;
   const via = args[0] === '--results' || args[0] === '--plan' ? 'claude' : 'brave';
   const today = todayUtc();
 
   if (args[0] === '--plan') {
-    // The workflow hands this batch to Claude, so Claude never sees more than the budget.
-    const plan = planQueries({ queries: all, state, today, budget: budgetFor(opts?.discover, 'claude') });
-    writeFileSync(BATCH(), `${JSON.stringify(plan.batch, null, 2)}\n`);
-    console.log(`::notice::Reclub discovery: ${plan.batch.length} queries this run (${plan.due} due of ${plan.total}, budget ${plan.budget})`);
-    warnIfOverBudget(plan);
+    // One batch for Claude, each region within its own budget, so Claude never sees more than that.
+    const batch = [];
+    for (const r of regions) {
+      const plan = planQueries({ queries: r.options.discover.queries ?? [], state: states[r.region] ?? {}, today, budget: budgetFor(r.options.discover, 'claude') });
+      batch.push(...plan.batch.filter((q) => !batch.includes(q)));
+      console.log(`::notice::Reclub discovery, ${r.region}: ${plan.batch.length} queries this run (${plan.due} due of ${plan.total}, budget ${plan.budget})`);
+      warnIfOverBudget(plan);
+    }
+    writeFileSync(BATCH(), `${JSON.stringify(batch, null, 2)}\n`);
     return;
   }
 
   const out = repoPath('discover-candidates.json');
-  let search, batch, extraUrls = [];
+  let search, claudeBatch = null, extraUrls = [];
   if (args[0] === '--results') {
     const { byQuery, extra } = readResults(readFileSync(args[1], 'utf8'));
-    batch = readJson(BATCH(), [...byQuery.keys()]);
+    claudeBatch = readJson(BATCH(), [...byQuery.keys()]);
     // A query Claude didn't report on counts as not searched (it stays due), not as "found nothing".
     search = async (q) => { if (!byQuery.has(q)) throw new Error('no results from Claude'); return byQuery.get(q); };
     extraUrls = extra;
   } else if (key) {
-    const plan = planQueries({ queries: all, state, today, budget: budgetFor(opts?.discover, via) });
-    batch = plan.batch;
-    warnIfOverBudget(plan);
     search = (q) => braveSearch(q, { key });
-  } else if (opts?.discover?.communities?.length) {
-    // No search: community pages alone.
+  } else if (regions.some((r) => r.options.discover.communities?.length)) {
     console.log('::notice::No BRAVE_SEARCH_API_KEY and no --results file: reading Reclub community pages only.');
-    batch = [];
     search = async () => [];
   } else {
     console.log('::notice::No BRAVE_SEARCH_API_KEY and no --results file; skipping Reclub club discovery.');
@@ -382,15 +400,28 @@ async function main(args) {
   }
   let seedClubs = [];
   try { seedClubs = seedsFromVenues(loadVenues()); } catch { /* no venues */ }
-  const result = await discover({ options: opts, search, queries: batch, extraUrls, seedClubs, state });
-  writeFileSync(STATE(), `${JSON.stringify(nextState(state, { queries: all, batch, result, today }), null, 2)}\n`);
-  const body = { ...result, meets: undefined, candidates: result.candidates.map((c) => ({ ...c, body: prBody(c) })) };
-  writeFileSync(out, `${JSON.stringify(body, null, 2)}\n`);
-  console.log(`::notice::Reclub discovery (${via}): searched ${result.searched} of ${all.length} queries, got ${result.urls} reclub.co links, ${result.fromCommunities} clubs to check from ${result.communityPages} community pages, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
-  console.log(`::notice::Links per query: ${Object.entries(result.perQuery).map(([q, n]) => `${n} ← ${q}`).join(' · ') || 'none'}`);
-  for (const c of result.candidates) console.log(`New club: ${c.name} (@${c.slug}), ${c.reason}; found by ${c.queries.join(' | ')}`);
-  for (const r of result.rejected) console.log(`Skipped @${r.club}: ${r.reason}`);
-  for (const w of result.warnings) console.log(`::warning::${w}`);
+  const candidates = [];
+  for (const r of regions) {
+    const all = r.options.discover.queries ?? [];
+    const state = states[r.region] ?? {};
+    let batch;
+    if (claudeBatch) batch = claudeBatch.filter((q) => all.includes(q));
+    else if (key) { const plan = planQueries({ queries: all, state, today, budget: budgetFor(r.options.discover, via) }); batch = plan.batch; warnIfOverBudget(plan); }
+    else batch = [];
+    // A club another region already proposed this run is left to that region.
+    const taken = candidates.map((c) => c.slug);
+    const result = await discover({ options: { ...r.options, clubs: [...r.options.clubs, ...taken.map(clubUrl)] }, search, queries: batch, extraUrls, seedClubs, state });
+    states[r.region] = nextState(state, { queries: all, batch, result, today });
+    candidates.push(...result.candidates.map((c) => ({ ...c, region: r.region, body: prBody(c) })));
+    const tag = `Reclub discovery, ${r.region} (${via})`;
+    console.log(`::notice::${tag}: searched ${result.searched} of ${all.length} queries, got ${result.urls} reclub.co links, ${result.fromCommunities} clubs to check from ${result.communityPages} community pages, read ${result.pagesRead} Reclub pages, ${result.candidates.length} new clubs.`);
+    console.log(`::notice::${tag}, links per query: ${Object.entries(result.perQuery).map(([q, n]) => `${n} ← ${q}`).join(' · ') || 'none'}`);
+    for (const c of result.candidates) console.log(`New club (${r.region}): ${c.name} (@${c.slug}), ${c.reason}; found by ${c.queries.join(' | ')}`);
+    for (const x of result.rejected) console.log(`Skipped @${x.club} for ${r.region}: ${x.reason}`);
+    for (const w of result.warnings) console.log(`::warning::${w}`);
+  }
+  writeFileSync(STATE(), `${JSON.stringify({ regions: states }, null, 2)}\n`);
+  writeFileSync(out, `${JSON.stringify({ candidates }, null, 2)}\n`);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {

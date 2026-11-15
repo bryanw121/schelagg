@@ -3,7 +3,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { applyClub, budgetFor, communityClubs, discover, distanceKm, intervalDays, judgeMeet, knownSlugs, nextState, planQueries, prBody, readResults, reclubLinks, reclubOptions, seedsFromVenues } from '../scripts/discover-reclub.mjs';
+import { applyClub, budgetFor, communityClubs, discover, distanceKm, intervalDays, judgeMeet, knownSlugs, nextState, planQueries, prBody, readResults, reclubLinks, reclubOptions, regionStates, discoveryRegions, seedsFromVenues } from '../scripts/discover-reclub.mjs';
 import { meetData } from '../scripts/adapters/reclub.mjs';
 import { loadSources } from '../lib/registry.js';
 
@@ -234,4 +234,26 @@ test('the Austin config lists Reclub community pages for discovery', () => {
   assert.ok(d.communities.length >= 1);
   assert.ok(d.communities.every((u) => /^https:\/\/reclub\.co\/communities\/us\/texas(\/[a-z-]+)?$/.test(u)));
   assert.equal(d.communities[0], 'https://reclub.co/communities/us/texas/austin');
+});
+
+test('discovery runs for every region with a Reclub source, each judged by its own area', () => {
+  const regions = discoveryRegions(loadSources().sources);
+  assert.deepEqual(regions.map((r) => [r.region, r.options.discover.community]), [['austin', 'Austin, TX, USA'], ['dallas', 'Dallas, TX, USA'], ['houston', 'Houston, TX, USA']]);
+  // Every region knows every configured club, so none proposes a club another region follows.
+  for (const r of regions) assert.ok(r.options.clubs.some((u) => /cinco-ranch/.test(u)) && r.options.clubs.some((u) => /vex_volleyball/.test(u)), r.region);
+  assert.ok(regions.find((r) => r.region === 'dallas').options.discover.communities.includes('https://reclub.co/communities/us/texas/plano'));
+  assert.ok(regions.find((r) => r.region === 'houston').options.discover.communities.includes('https://reclub.co/communities/us/texas/katy'));
+  // A source without discovery settings is not a discovery region.
+  assert.deepEqual(discoveryRegions([{ adapter: 'reclub', region: 'x', options: { clubs: ['https://reclub.co/clubs/@a'] } }]), []);
+});
+
+test('discovery state is kept per region; state from before regions is Austin\'s', () => {
+  const legacy = { queries: { q: { last: '2026-11-04' } }, skipped: { far_club: '2026-11-04' } };
+  assert.deepEqual(regionStates(legacy), { austin: legacy });
+  assert.deepEqual(regionStates({}), {});
+  const both = { regions: { austin: legacy, houston: { clubs: {} } } };
+  assert.deepEqual(Object.keys(regionStates(both)), ['austin', 'houston']);
+  // A club Austin skipped (too far) is still open for Houston.
+  const houston = regionStates(both).houston;
+  assert.equal(Object.keys(houston.skipped ?? {}).includes('far_club'), false);
 });
