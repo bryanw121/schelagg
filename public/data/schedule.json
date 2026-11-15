@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T17:07:29.128Z",
+  "generatedAt": "2026-11-15T17:46:54.592Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -12,8 +12,8 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-15T17:03:56.081Z",
-      "count": 274
+      "checkedAt": "2026-11-15T17:43:19.347Z",
+      "count": 271
     },
     {
       "id": "austin-picklehaus",
@@ -25,7 +25,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-15T17:03:56.081Z",
+      "checkedAt": "2026-11-15T17:43:19.347Z",
       "count": 155
     },
     {
@@ -38,7 +38,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-15T17:03:56.082Z",
+      "checkedAt": "2026-11-15T17:43:19.347Z",
       "count": 8
     },
     {
@@ -51,7 +51,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-15T17:03:56.082Z",
+      "checkedAt": "2026-11-15T17:43:19.347Z",
       "count": 11
     },
     {
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-15T17:03:56.083Z",
+      "checkedAt": "2026-11-15T17:43:19.348Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -119,8 +119,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:05.355Z",
-      "count": 6
+      "checkedAt": "2026-11-15T17:43:19.348Z",
+      "count": 7
     },
     {
       "id": "sweatpals",
@@ -146,7 +146,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:06.546Z",
+      "checkedAt": "2026-11-15T17:43:19.421Z",
       "count": 3
     },
     {
@@ -197,7 +197,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-15T17:03:56.083Z",
+      "checkedAt": "2026-11-15T17:43:19.732Z",
       "count": 35
     },
     {
@@ -210,7 +210,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-15T17:03:56.115Z",
+      "checkedAt": "2026-11-15T17:43:20.346Z",
       "count": 24
     },
     {
@@ -236,7 +236,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-15T17:03:56.431Z",
+      "checkedAt": "2026-11-15T17:43:21.104Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -251,7 +251,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-15T17:03:56.641Z",
+      "checkedAt": "2026-11-15T17:43:21.142Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -276,7 +276,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-15T17:03:56.826Z",
+      "checkedAt": "2026-11-15T17:43:21.216Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -390,7 +390,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:17.363Z",
+      "checkedAt": "2026-11-15T17:43:24.673Z",
       "count": 20,
       "warnings": [
         "reclub-FAL015: no surface",
@@ -417,84 +417,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-austin-pickle-ranch-01a17536-ace1-7bbd-9e33-70195b6cfebe",
-      "date": "2026-11-15",
-      "start": "09:00",
-      "end": "11:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17536-ace1-7bbd-9e33-70195b6cfebe",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17537-59c6-7bbd-9e36-3e3b050ebf80",
-      "date": "2026-11-15",
-      "start": "09:00",
-      "end": "11:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17537-59c6-7bbd-9e36-3e3b050ebf80",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17534-bb63-7aad-a329-fcd56d77cc38",
-      "date": "2026-11-15",
-      "start": "09:00",
-      "end": "11:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17534-bb63-7aad-a329-fcd56d77cc38",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-pickle-pit-stop-7dbf91dcc436a381",
       "date": "2026-11-15",
@@ -12592,6 +12514,33 @@
       "status": "cancelled"
     },
     {
+      "id": "reclub-UHDCOE",
+      "date": "2026-11-22",
+      "start": "10:00",
+      "end": "13:00",
+      "title": "Austin Lawn Club - Sunday Fun Day!",
+      "venue": "Mueller Lake Park",
+      "city": "Austin",
+      "surface": "grass",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$6",
+      "note": "Hosted by Austin Lawn Club, every Sunday.",
+      "capacity": 16,
+      "signup": {
+        "url": "https://reclub.co/m/UHDCOE",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/UHDCOE",
+      "sourceId": "reclub",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "mueller-lake-park",
+      "status": "scheduled"
+    },
+    {
       "id": "reclub-YBYJV8",
       "date": "2026-11-20",
       "start": "21:00",
@@ -15244,6 +15193,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -15268,6 +15218,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -15292,6 +15243,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15316,6 +15268,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15340,6 +15293,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -15364,6 +15318,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-wakefield-crowbar",
       "status": "scheduled"
     },
     {
@@ -15388,6 +15343,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -15412,6 +15368,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-emancipation-park",
       "status": "scheduled"
     },
     {
@@ -15436,6 +15393,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15460,6 +15418,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15484,6 +15443,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15508,6 +15468,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-blastros",
       "status": "scheduled"
     },
     {
@@ -15532,6 +15493,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -15556,6 +15518,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -15580,6 +15543,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15604,6 +15568,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15628,6 +15593,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15652,6 +15618,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16853,6 +16820,96 @@
       "lat": 32.69886,
       "lng": -97.25003,
       "region": "dallas"
+    },
+    {
+      "id": "src-absolute-volleyball-academy-and-absolute-beach",
+      "name": "Absolute Volleyball Academy and Absolute Beach",
+      "city": null,
+      "address": "380 Green Wing St, Webster, Tx",
+      "lat": 29.536505,
+      "lng": -95.1123,
+      "region": "houston"
+    },
+    {
+      "id": "src-skyline-volleyball-academy",
+      "name": "Skyline Volleyball Academy",
+      "city": null,
+      "address": "23363 Clay Road, Katy, Tx",
+      "lat": 29.82756,
+      "lng": -95.77629,
+      "region": "houston"
+    },
+    {
+      "id": "src-tellepsen-family-downtown-ymca",
+      "name": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "address": "808 Pease St, Houston, TX",
+      "lat": 29.7521,
+      "lng": -95.3703,
+      "region": "houston"
+    },
+    {
+      "id": "src-katy-sports-center",
+      "name": "Katy Sports Center",
+      "city": null,
+      "address": "535 Applewhite Drive, Katy, TX 77450, USA",
+      "lat": 29.77552,
+      "lng": -95.754074,
+      "region": "houston"
+    },
+    {
+      "id": "src-wakefield-crowbar",
+      "name": "Wakefield Crowbar",
+      "city": null,
+      "address": "954 Wakefield Drive, Houston, TX 77018, USA",
+      "lat": 29.821991,
+      "lng": -95.42305,
+      "region": "houston"
+    },
+    {
+      "id": "src-emancipation-park",
+      "name": "Emancipation Park",
+      "city": null,
+      "address": "3018 Emancipation Avenue, Houston, Tx",
+      "lat": 29.73524,
+      "lng": -95.36563,
+      "region": "houston"
+    },
+    {
+      "id": "src-champion-forest-baptist-church-champions-campus",
+      "name": "Champion Forest Baptist Church - Champions Campus",
+      "city": null,
+      "address": "15555 Stuebner Airline Road, Houston, Tx",
+      "lat": 30.002792,
+      "lng": -95.51335,
+      "region": "houston"
+    },
+    {
+      "id": "src-blastros",
+      "name": "Blastros",
+      "city": null,
+      "address": "6922 Cotton Drive, Houston, TX 77092, USA",
+      "lat": 29.836542,
+      "lng": -95.49406,
+      "region": "houston"
+    },
+    {
+      "id": "src-t4-court-rentals",
+      "name": "T4 Court Rentals",
+      "city": null,
+      "address": "1419 Vander Wilt Lane, Katy, Tx",
+      "lat": 29.7893,
+      "lng": -95.7427,
+      "region": "houston"
+    },
+    {
+      "id": "src-collins-park",
+      "name": "Collins Park",
+      "city": null,
+      "address": "6727 Cypresswood Drive, Spring, TX",
+      "lat": 30.011,
+      "lng": -95.5077,
+      "region": "houston"
     }
   ]
 }
