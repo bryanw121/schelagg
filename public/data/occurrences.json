@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-15T04:13:16.699Z",
+  "generatedAt": "2026-11-15T04:27:38.641Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1865,33 +1865,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "atx-sand-social-sun-2026-11-15",
-      "session_id": "atx-sand-social-sun",
-      "source_id": "manual",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "ATX Sand Social · Sunday Funday",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "level": "Intermediate to competitive",
-      "price": "$10",
-      "starts_at": "2026-11-16T01:00:00.000Z",
-      "ends_at": "2026-11-16T04:00:00.000Z",
-      "signup_url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-      "signup_label": "RSVP on Sweatpals",
-      "note": "Weekly RSVP posts on Sweatpals.",
-      "canceled": false,
-      "verified_at": "2026-10-24",
-      "attributes": {
-        "surface": "sand",
-        "type": "Open play"
-      },
-      "venue_id": "atx-beach",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "opencourt-851cab5f-e6d7-4d06-a453-880786580190",
       "session_id": "opencourt-851cab5f-e6d7-4d06-a453-880786580190",
       "source_id": "austin-picklehaus",
@@ -2082,6 +2055,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "sweatpals-sunday-funday-open-play-28-2026-11-15-1900",
+      "session_id": "sweatpals-sunday-funday-open-play-28-2026-11-15-1900",
+      "source_id": "sweatpals",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Sunday Funday open play",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "level": null,
+      "price": "$10",
+      "starts_at": "2026-11-16T01:00:00.000Z",
+      "ends_at": "2026-11-16T04:00:00.000Z",
+      "signup_url": "https://sweatpals.com/event/sunday-funday-open-play-28/2026-11-15",
+      "signup_label": "RSVP on Sweatpals",
+      "note": "Hosted on Sweatpals.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "atx-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10199,6 +10199,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "sweatpals-friday-lunch-open-play-2026-11-20-1100",
+      "session_id": "sweatpals-friday-lunch-open-play-2026-11-20-1100",
+      "source_id": "sweatpals",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Friday Lunch Open Play 🏐",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "level": null,
+      "price": "$10",
+      "starts_at": "2026-11-20T17:00:00.000Z",
+      "ends_at": "2026-11-20T20:00:00.000Z",
+      "signup_url": "https://sweatpals.com/event/friday-lunch-open-play/2026-11-20",
+      "signup_label": "RSVP on Sweatpals",
+      "note": "Hosted on Sweatpals, weekly.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-pickle-pit-stop-a0ebddeb1b074a4f",
       "session_id": "openplay-pickle-pit-stop-a0ebddeb1b074a4f",
       "source_id": "austin-club-openplay",
@@ -12536,33 +12563,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "atx-sand-social-sun-2026-11-22",
-      "session_id": "atx-sand-social-sun",
-      "source_id": "manual",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "ATX Sand Social · Sunday Funday",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "level": "Intermediate to competitive",
-      "price": "$10",
-      "starts_at": "2026-11-23T01:00:00.000Z",
-      "ends_at": "2026-11-23T04:00:00.000Z",
-      "signup_url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-      "signup_label": "RSVP on Sweatpals",
-      "note": "Weekly RSVP posts on Sweatpals.",
-      "canceled": false,
-      "verified_at": "2026-10-24",
-      "attributes": {
-        "surface": "sand",
-        "type": "Open play"
-      },
-      "venue_id": "atx-beach",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "openplay-pickle-pit-stop-aeab7938a4a4a918",
       "session_id": "openplay-pickle-pit-stop-aeab7938a4a4a918",
       "source_id": "austin-club-openplay",
@@ -14832,6 +14832,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "sweatpals-friday-lunch-open-play-2026-11-27-1100",
+      "session_id": "sweatpals-friday-lunch-open-play-2026-11-27-1100",
+      "source_id": "sweatpals",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Friday Lunch Open Play 🏐",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "level": null,
+      "price": "$10",
+      "starts_at": "2026-11-27T17:00:00.000Z",
+      "ends_at": "2026-11-27T20:00:00.000Z",
+      "signup_url": "https://sweatpals.com/event/friday-lunch-open-play/2026-11-27",
+      "signup_label": "RSVP on Sweatpals",
+      "note": "Hosted on Sweatpals, weekly.",
+      "canceled": false,
+      "verified_at": "2026-11-14",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "atx-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-pickle-pit-stop-8e7ebf600cc2fe12",
       "session_id": "openplay-pickle-pit-stop-8e7ebf600cc2fe12",
       "source_id": "austin-club-openplay",
@@ -15713,33 +15740,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "atx-sand-social-sun-2026-11-29",
-      "session_id": "atx-sand-social-sun",
-      "source_id": "manual",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "ATX Sand Social · Sunday Funday",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "level": "Intermediate to competitive",
-      "price": "$10",
-      "starts_at": "2026-11-30T01:00:00.000Z",
-      "ends_at": "2026-11-30T04:00:00.000Z",
-      "signup_url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-      "signup_label": "RSVP on Sweatpals",
-      "note": "Weekly RSVP posts on Sweatpals.",
-      "canceled": false,
-      "verified_at": "2026-10-24",
-      "attributes": {
-        "surface": "sand",
-        "type": "Open play"
-      },
-      "venue_id": "atx-beach",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "beecave-on-ice-mwth-2026-11-30",
       "session_id": "beecave-on-ice-mwth",
       "source_id": "manual",
@@ -16168,33 +16168,6 @@
         "type": "Open play"
       },
       "venue_id": "hanovers",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "atx-sand-social-sun-2026-12-06",
-      "session_id": "atx-sand-social-sun",
-      "source_id": "manual",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "ATX Sand Social · Sunday Funday",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "level": "Intermediate to competitive",
-      "price": "$10",
-      "starts_at": "2026-12-07T01:00:00.000Z",
-      "ends_at": "2026-12-07T04:00:00.000Z",
-      "signup_url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-      "signup_label": "RSVP on Sweatpals",
-      "note": "Weekly RSVP posts on Sweatpals.",
-      "canceled": false,
-      "verified_at": "2026-10-24",
-      "attributes": {
-        "surface": "sand",
-        "type": "Open play"
-      },
-      "venue_id": "atx-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },

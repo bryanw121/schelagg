@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T04:13:16.699Z",
+  "generatedAt": "2026-11-15T04:27:38.641Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:33.000Z",
+      "checkedAt": "2026-11-15T04:23:56.353Z",
       "count": 270
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:33.001Z",
+      "checkedAt": "2026-11-15T04:23:56.353Z",
       "count": 152
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:33.001Z",
+      "checkedAt": "2026-11-15T04:23:56.354Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:33.001Z",
+      "checkedAt": "2026-11-15T04:23:56.354Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T04:09:33.003Z",
+      "checkedAt": "2026-11-15T04:23:56.355Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -65,7 +65,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:33.003Z",
+      "checkedAt": "2026-11-15T04:23:56.355Z",
       "count": 2
     },
     {
@@ -75,7 +75,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:09:33.032Z",
+      "checkedAt": "2026-11-15T04:23:56.417Z",
       "error": "Season dates not found on Velocity adult page",
       "kept": 2
     },
@@ -86,8 +86,18 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:33.998Z",
+      "checkedAt": "2026-11-15T04:23:56.654Z",
       "count": 5
+    },
+    {
+      "id": "sweatpals",
+      "name": "Sweatpals",
+      "sport": "volleyball",
+      "region": "austin",
+      "cadence": "1h",
+      "ok": true,
+      "checkedAt": "2026-11-15T04:23:57.797Z",
+      "count": 3
     },
     {
       "id": "chaparral-ice",
@@ -96,7 +106,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:34.648Z",
+      "checkedAt": "2026-11-15T04:23:58.822Z",
       "count": 34
     },
     {
@@ -106,7 +116,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:34.712Z",
+      "checkedAt": "2026-11-15T04:23:59.335Z",
       "count": 22
     },
     {
@@ -116,7 +126,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T04:09:39.380Z",
+      "checkedAt": "2026-11-15T04:24:03.529Z",
       "count": 13
     },
     {
@@ -126,7 +136,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:09:39.908Z",
+      "checkedAt": "2026-11-15T04:24:04.042Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -137,7 +147,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:09:39.961Z",
+      "checkedAt": "2026-11-15T04:24:04.085Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -12134,6 +12144,84 @@
       "status": "cancelled"
     },
     {
+      "id": "sweatpals-friday-lunch-open-play-2026-11-20-1100",
+      "date": "2026-11-20",
+      "start": "11:00",
+      "end": "14:00",
+      "title": "Friday Lunch Open Play 🏐",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "Open play",
+      "level": null,
+      "price": "$10",
+      "note": "Hosted on Sweatpals, weekly.",
+      "signup": {
+        "url": "https://sweatpals.com/event/friday-lunch-open-play/2026-11-20",
+        "label": "RSVP on Sweatpals"
+      },
+      "source": "https://sweatpals.com/host/ATXBeach",
+      "sourceId": "sweatpals",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "atx-beach",
+      "status": "scheduled"
+    },
+    {
+      "id": "sweatpals-friday-lunch-open-play-2026-11-27-1100",
+      "date": "2026-11-27",
+      "start": "11:00",
+      "end": "14:00",
+      "title": "Friday Lunch Open Play 🏐",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "Open play",
+      "level": null,
+      "price": "$10",
+      "note": "Hosted on Sweatpals, weekly.",
+      "signup": {
+        "url": "https://sweatpals.com/event/friday-lunch-open-play/2026-11-27",
+        "label": "RSVP on Sweatpals"
+      },
+      "source": "https://sweatpals.com/host/ATXBeach",
+      "sourceId": "sweatpals",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "atx-beach",
+      "status": "scheduled"
+    },
+    {
+      "id": "sweatpals-sunday-funday-open-play-28-2026-11-15-1900",
+      "date": "2026-11-15",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Sunday Funday open play",
+      "venue": "ATX Beach",
+      "city": "North Austin",
+      "surface": "sand",
+      "type": "Open play",
+      "level": null,
+      "price": "$10",
+      "note": "Hosted on Sweatpals.",
+      "signup": {
+        "url": "https://sweatpals.com/event/sunday-funday-open-play-28/2026-11-15",
+        "label": "RSVP on Sweatpals"
+      },
+      "source": "https://sweatpals.com/host/atxsandsocial",
+      "sourceId": "sweatpals",
+      "sport": "volleyball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-14",
+      "venueId": "atx-beach",
+      "status": "scheduled"
+    },
+    {
       "id": "daysmart-chaparralice-346710",
       "date": "2026-11-14",
       "start": "13:00",
@@ -13964,35 +14052,6 @@
       "status": "scheduled"
     },
     {
-      "id": "atx-sand-social-sun",
-      "days": [
-        "Sun"
-      ],
-      "start": "19:00",
-      "end": "22:00",
-      "title": "ATX Sand Social · Sunday Funday",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "surface": "sand",
-      "type": "Open play",
-      "level": "Intermediate to competitive",
-      "price": "$10",
-      "verifiedAt": "2026-10-24",
-      "note": "Weekly RSVP posts on Sweatpals.",
-      "signup": {
-        "url": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-        "label": "RSVP on Sweatpals"
-      },
-      "source": "https://sweatpals.com/event/austin-sand-socials-sunday-funday-open-play/2026-10-18",
-      "sourceId": "manual",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-08",
-      "venueId": "atx-beach",
-      "status": "scheduled"
-    },
-    {
       "id": "aces-open-mon",
       "days": [
         "Mon"
@@ -14134,7 +14193,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-14",
+      "watchError": "HTTP 403",
       "venueId": "hanovers",
       "status": "scheduled"
     },
@@ -15054,6 +15113,12 @@
       "city": "Austin",
       "lat": 30.30074,
       "lng": -97.70275,
+      "region": "austin"
+    },
+    {
+      "id": "bailey-park",
+      "name": "Bailey Park",
+      "city": "Central Austin",
       "region": "austin"
     },
     {
