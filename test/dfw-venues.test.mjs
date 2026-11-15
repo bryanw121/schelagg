@@ -4,12 +4,13 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import * as active from '../scripts/adapters/active.mjs';
 import * as sg from '../scripts/adapters/sportsgarden.mjs';
+import * as foro from '../scripts/adapters/foro.mjs';
 import { tagSession, validateSessions } from '../lib/session.js';
 
 const fx = (f) => readFileSync(new URL(`./fixtures/sources/${f}`, import.meta.url), 'utf8');
 const SRC = { id: 'x', sport: 'volleyball', region: 'dallas', timezone: 'America/Chicago' };
 
-test('ACTIVE listing: volleyball programs only (not basketball, pickleball or table tennis)', () => {
+test('ACTIVE listing: volleyball open play only (not basketball, pickleball, table tennis or leagues)', () => {
   const links = active.programLinks(fx('active-listing.html'));
   assert.deepEqual(links.map((u) => u.split('-').pop()), ['109915599', '110117958', '110185229']);
 });
@@ -50,4 +51,31 @@ test('Sports Garden: daily North Side hours by day, South Side weekdays, price b
   assert.ok(s.every((x) => x.surface === 'sand' && x.city === 'Coppell'));
   assert.equal(validateSessions(s.map((x) => tagSession(x, SRC))).ok.length, 4);
   assert.throws(() => sg.parse('<p>Closed for the season</p>'), /hours not found/);
+});
+
+test('ACTIVE scrape follows the listing\'s pages until one lists nothing, and keeps volleyball open play from all of them', async () => {
+  const L = 'https://www.active.com/fort-worth-tx/volleyball';
+  const pages = { [L]: 'active-listing-p1.html', [`${L}?page=2`]: 'active-listing-p2.html', [`${L}?page=3`]: 'active-listing-p3.html', [`${L}?page=4`]: 'active-listing-p4.html' };
+  const asked = [];
+  const fetch = async (u) => { asked.push(u); return pages[u] ? new Response(fx(pages[u])) : /-\d{6,}$/.test(u) ? new Response(fx('active-program-openplay.html')) : new Response('', { status: 404 }); };
+  const r = await active.scrape({ options: { listings: [L] }, fetch, ref: '2026-11-15' });
+  const programs = asked.filter((u) => /-\d{6,}$/.test(u)).map((u) => u.split('-').pop()).sort();
+  assert.deepEqual(programs, ['109915599', '110117958', '110185229', '110213288', '110264694', '110291443']);
+  assert.ok(!asked.includes(`${L}?page=5`), 'stops after the empty page');
+  assert.ok(r.sessions.length >= 1);
+  // Leagues listed under the same category are not open play.
+  assert.deepEqual(active.programLinks('<a href="/fort-worth-tx/volleyball/volleyball-classes/fall-indoor-volleyball-b-bb-coed-6s-on-tuesdays-2026-110000001">x</a>'), []);
+});
+
+test('FORO: weekday and weekend sand open play hours, $10 registered', () => {
+  const s = foro.parse(fx('foro-open-play.html'));
+  assert.deepEqual(s.map((x) => [x.id, x.days.join(','), x.start, x.end, x.price]), [
+    ['foro-mon-0830', 'Mon,Tue,Wed,Thu', '08:30', '24:00', '$10'],
+    ['foro-sat-1000', 'Sat,Sun', '10:00', '20:00', '$10'],
+  ]);
+  assert.ok(s.every((x) => x.surface === 'sand' && x.venue === 'FORO Sports Club'));
+  assert.equal(validateSessions(s.map((x) => tagSession(x, SRC))).ok.length, 2);
+  // The soccer hours on the same page are not volleyball.
+  assert.ok(!s.some((x) => x.start === '21:00'));
+  assert.throws(() => foro.parse('<p>Open Play Soccer only</p>'), /hours not found/);
 });
