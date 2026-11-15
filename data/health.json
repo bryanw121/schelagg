@@ -4,16 +4,16 @@
       "counts": [
         276,
         276,
-        276,
         274,
         274,
         274,
         271,
         278,
         278,
-        278
+        278,
+        275
       ],
-      "sessions": 278,
+      "sessions": 275,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 744
+      "failStreak": 745
     },
     "atxbeach": {
       "counts": [
@@ -199,7 +199,7 @@
     "velocity": {
       "counts": [
         8,
-        8,
+        2,
         2,
         2,
         2,
@@ -233,11 +233,11 @@
         6,
         6,
         6,
-        6,
         7,
-        7
+        7,
+        6
       ],
-      "sessions": 7,
+      "sessions": 6,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -675,6 +675,7 @@
         2,
         3,
         3,
+        3,
         3
       ],
       "sessions": 3,
@@ -693,6 +694,7 @@
     },
     "austin-meetup": {
       "counts": [
+        2,
         2,
         2,
         2,
@@ -891,16 +893,17 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 453
+      "failStreak": 454
     },
     "leander-pickleball": {
-      "failStreak": 453
+      "failStreak": 454
     },
     "dallas-reclub": {
-      "failStreak": 85
+      "failStreak": 86
     },
     "sportsgarden": {
       "counts": [
+        4,
         4,
         4,
         4,
@@ -923,6 +926,25 @@
       },
       "contentHash": "3a65210715ab5a73"
     },
+    "foro": {
+      "counts": [
+        2
+      ],
+      "sessions": 2,
+      "coverage": {
+        "end": 1,
+        "price": 1,
+        "level": 1,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      },
+      "contentHash": "dcabe29b882b9fa5"
+    },
     "dfw-city-active": {
       "counts": [
         2,
@@ -930,9 +952,10 @@
         2,
         2,
         2,
-        2
+        2,
+        6
       ],
-      "sessions": 2,
+      "sessions": 6,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -949,7 +972,7 @@
     "dallas-meetup": {
       "counts": [
         15,
-        15,
+        12,
         12,
         12,
         12,
@@ -1017,6 +1040,7 @@
         "feeCurrency",
         "feeType",
         "flags",
+        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -1139,6 +1163,9 @@
   "reported": [
     "aces:failing",
     "dallas-reclub:failing",
+    "dfw-city-active:warning:venue \"Greenbriar Community Center\" isn't in its region's venues.json",
+    "dfw-city-active:warning:venue \"R.D. Evans Community Center\" isn't in its region's venues.json",
+    "dfw-city-active:warning:venue \"Southwest Community Center\" isn't in its region's venues.json",
     "georgetown-pickleball:failing",
     "houston-reclub:warning:reclub-2GI7BR: no surface",
     "houston-reclub:warning:reclub-40RJ8U: no surface",
@@ -1174,7 +1201,7 @@
     "manual:four-seasons-ice-rodeo:changed:2026-11-14",
     "manual:hanovers-open:changed:2026-11-14",
     "manual:hanovers-open:unverified",
-    "manual:ssc-crossover-mon-sand:changed:2026-11-14",
+    "manual:ssc-crossover-mon-sand:changed:2026-11-15",
     "manual:ssc-crossover-mon-sand:unverified"
   ]
 }

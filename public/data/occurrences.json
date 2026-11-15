@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-15T19:16:22.331Z",
+  "generatedAt": "2026-11-15T19:25:10.683Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -108,118 +108,6 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-V7JN1R",
-      "session_id": "reclub-V7JN1R",
-      "source_id": "reclub",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Austin Lawn Club - Sunday Fun Day!",
-      "venue": "Mueller Lake Park",
-      "city": "Austin",
-      "level": "All levels",
-      "price": "$6",
-      "starts_at": "2026-11-15T16:00:00.000Z",
-      "ends_at": "2026-11-15T19:00:00.000Z",
-      "signup_url": "https://reclub.co/m/V7JN1R",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Austin Lawn Club, every Sunday.",
-      "canceled": true,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "grass",
-        "type": "Open play",
-        "capacity": 16
-      },
-      "venue_id": "mueller-lake-park",
-      "status": "cancelled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17535-0483-7aad-a32b-195363869c5a",
-      "session_id": "openplay-austin-pickle-ranch-01a17535-0483-7aad-a32b-195363869c5a",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 1",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-15T17:00:00.000Z",
-      "ends_at": "2026-11-15T19:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17535-0483-7aad-a32b-195363869c5a",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17537-0b19-7bbd-9e34-e6e935069e4f",
-      "session_id": "openplay-austin-pickle-ranch-01a17537-0b19-7bbd-9e34-e6e935069e4f",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-15T17:00:00.000Z",
-      "ends_at": "2026-11-15T19:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17537-0b19-7bbd-9e34-e6e935069e4f",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17538-2e29-7aad-a332-f0a525adf1da",
-      "session_id": "openplay-austin-pickle-ranch-01a17538-2e29-7aad-a332-f0a525adf1da",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-15T17:00:00.000Z",
-      "ends_at": "2026-11-15T19:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17538-2e29-7aad-a332-f0a525adf1da",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -996,7 +884,7 @@
         "type": "Open play",
         "capacity": 32
       },
-      "venue_id": null,
+      "venue_id": "src-blastros",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1271,7 +1159,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2976,6 +2864,60 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110117958-2026-11-16",
+      "session_id": "active-110117958",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Worth Heights Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T00:00:00.000Z",
+      "ends_at": "2026-11-17T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110117958",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "fw-worth-heights",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110264694-2026-11-16",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-17T00:00:00.000Z",
+      "ends_at": "2026-11-17T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "opencourt-133aeb88-335e-476d-9eeb-6aaf4308c089",
       "session_id": "opencourt-133aeb88-335e-476d-9eeb-6aaf4308c089",
       "source_id": "austin-picklehaus",
@@ -3192,7 +3134,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3388,7 +3330,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3442,7 +3384,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3469,7 +3411,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3689,7 +3631,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5223,6 +5165,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110264694-2026-11-17",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-18T00:00:00.000Z",
+      "ends_at": "2026-11-18T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-eastside-paddle-club-01a17e6a-963f-7338-8abd-293825cd352b",
       "session_id": "openplay-eastside-paddle-club-01a17e6a-963f-7338-8abd-293825cd352b",
       "source_id": "austin-club-openplay",
@@ -5273,7 +5242,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5327,7 +5296,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5354,7 +5323,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7472,6 +7441,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110264694-2026-11-18",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-19T00:00:00.000Z",
+      "ends_at": "2026-11-19T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "meetup-aiv-event_317198282-2026-11-18",
       "session_id": "meetup-aiv-event_317198282-2026-11-18",
       "source_id": "austin-meetup",
@@ -7714,7 +7710,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7741,7 +7737,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7935,7 +7931,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9193,6 +9189,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110264694-2026-11-19",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-20T00:00:00.000Z",
+      "ends_at": "2026-11-20T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-eastside-paddle-club-01a17e8d-888f-7338-8b24-31e0feb8fc72",
       "session_id": "openplay-eastside-paddle-club-01a17e8d-888f-7338-8b24-31e0feb8fc72",
       "source_id": "austin-club-openplay",
@@ -9271,7 +9294,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9325,7 +9348,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9406,7 +9429,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10704,7 +10727,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10952,7 +10975,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-wakefield-crowbar",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11119,7 +11142,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11342,6 +11365,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110213288-2026-11-21",
+      "session_id": "active-110213288",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "R.D. Evans Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T15:00:00.000Z",
+      "ends_at": "2026-11-21T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110213288",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12010,7 +12060,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12037,7 +12087,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13715,6 +13765,60 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110117958-2026-11-23",
+      "session_id": "active-110117958",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Worth Heights Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-24T00:00:00.000Z",
+      "ends_at": "2026-11-24T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110117958",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "fw-worth-heights",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110264694-2026-11-23",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-24T00:00:00.000Z",
+      "ends_at": "2026-11-24T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-eastside-paddle-club-01a17e66-0bad-7338-8aa1-0fc1b67a0a3d",
       "session_id": "openplay-eastside-paddle-club-01a17e66-0bad-7338-8aa1-0fc1b67a0a3d",
       "source_id": "austin-club-openplay",
@@ -13878,7 +13982,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13932,7 +14036,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14531,6 +14635,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110264694-2026-11-24",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-25T00:00:00.000Z",
+      "ends_at": "2026-11-25T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "openplay-eastside-paddle-club-01a17e6a-96ce-7338-8abe-3fd09f6c2885",
       "session_id": "openplay-eastside-paddle-club-01a17e6a-96ce-7338-8abe-3fd09f6c2885",
       "source_id": "austin-club-openplay",
@@ -14665,7 +14796,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15040,6 +15171,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110264694-2026-11-25",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-26T00:00:00.000Z",
+      "ends_at": "2026-11-26T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "meetup-aiv-event_317306862-2026-11-25",
       "session_id": "meetup-aiv-event_317306862-2026-11-25",
       "source_id": "austin-meetup",
@@ -15145,7 +15303,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15228,7 +15386,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15488,6 +15646,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "active-110264694-2026-11-26",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-27T00:00:00.000Z",
+      "ends_at": "2026-11-27T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "sportsgarden-south-1800-2400-2026-11-26",
       "session_id": "sportsgarden-south-1800-2400",
       "source_id": "sportsgarden",
@@ -15566,7 +15751,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16215,7 +16400,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16274,6 +16459,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110213288-2026-11-28",
+      "session_id": "active-110213288",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "R.D. Evans Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-28T15:00:00.000Z",
+      "ends_at": "2026-11-28T18:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110213288",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17128,6 +17340,60 @@
         "type": "Public skate"
       },
       "venue_id": "four-seasons-austin",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110117958-2026-11-30",
+      "session_id": "active-110117958",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Worth Heights Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-12-01T00:00:00.000Z",
+      "ends_at": "2026-12-01T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110117958",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "fw-worth-heights",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "active-110264694-2026-11-30",
+      "session_id": "active-110264694",
+      "source_id": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-12-01T00:00:00.000Z",
+      "ends_at": "2026-12-01T02:00:00.000Z",
+      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "signup_label": "Details on ACTIVE",
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },

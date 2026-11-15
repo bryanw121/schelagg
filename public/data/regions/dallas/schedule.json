@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T19:16:22.331Z",
+  "generatedAt": "2026-11-15T19:25:10.683Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-15T19:13:18.367Z",
+      "checkedAt": "2026-11-15T19:21:42.117Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -42,8 +42,21 @@
       "kind": "Venue's open-play hours page",
       "site": "https://sportsgardendfw.com/open-play/",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:13.045Z",
+      "checkedAt": "2026-11-15T19:21:42.122Z",
       "count": 4
+    },
+    {
+      "id": "foro",
+      "name": "FORO Sports Club, North Dallas",
+      "sport": "volleyball",
+      "region": "dallas",
+      "cadence": "1d",
+      "adapter": "foro",
+      "kind": "Venue's open-play hours page",
+      "site": "https://www.forosportsclub.com/fridayopenplay",
+      "ok": true,
+      "checkedAt": "2026-11-15T19:21:42.415Z",
+      "count": 2
     },
     {
       "id": "dfw-city-active",
@@ -55,8 +68,13 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:13.209Z",
-      "count": 2
+      "checkedAt": "2026-11-15T19:21:42.531Z",
+      "count": 6,
+      "warnings": [
+        "venue \"Greenbriar Community Center\" isn't in its region's venues.json",
+        "venue \"R.D. Evans Community Center\" isn't in its region's venues.json",
+        "venue \"Southwest Community Center\" isn't in its region's venues.json"
+      ]
     },
     {
       "id": "dallas-meetup",
@@ -82,7 +100,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-15T16:29:15.251Z",
+      "checkedAt": "2026-11-15T19:21:46.647Z",
       "count": 12
     }
   ],
@@ -212,6 +230,66 @@
       "status": "scheduled"
     },
     {
+      "id": "foro-mon-0830",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu"
+      ],
+      "start": "08:30",
+      "end": "24:00",
+      "title": "Sand volleyball open play",
+      "venue": "FORO Sports Club",
+      "city": "Dallas",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Register ahead; limited space, subject to availability.",
+      "signup": {
+        "url": "https://www.forosportsclub.com/fridayopenplay",
+        "label": "Register on FORO"
+      },
+      "source": "https://www.forosportsclub.com/fridayopenplay",
+      "sourceId": "foro",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "foro",
+      "status": "scheduled"
+    },
+    {
+      "id": "foro-sat-1000",
+      "days": [
+        "Sat",
+        "Sun"
+      ],
+      "start": "10:00",
+      "end": "20:00",
+      "title": "Sand volleyball open play",
+      "venue": "FORO Sports Club",
+      "city": "Dallas",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Register ahead; limited space, subject to availability.",
+      "signup": {
+        "url": "https://www.forosportsclub.com/fridayopenplay",
+        "label": "Register on FORO"
+      },
+      "source": "https://www.forosportsclub.com/fridayopenplay",
+      "sourceId": "foro",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "foro",
+      "status": "scheduled"
+    },
+    {
       "id": "active-109915599",
       "days": [
         "Thu"
@@ -242,6 +320,68 @@
       "status": "scheduled"
     },
     {
+      "id": "active-110117958",
+      "days": [
+        "Mon"
+      ],
+      "start": "18:00",
+      "end": "20:00",
+      "startsOn": "2026-09-07",
+      "validUntil": "2026-11-30",
+      "title": "Open Play: Volleyball",
+      "venue": "Worth Heights Community Center",
+      "city": "Fort Worth",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "signup": {
+        "url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110117958",
+        "label": "Details on ACTIVE"
+      },
+      "source": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110117958",
+      "sourceId": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "venueId": "fw-worth-heights",
+      "status": "scheduled"
+    },
+    {
+      "id": "active-110264694",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu"
+      ],
+      "start": "18:00",
+      "end": "20:00",
+      "startsOn": "2026-11-02",
+      "validUntil": "2026-11-30",
+      "title": "Open Play: Volleyball",
+      "venue": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "signup": {
+        "url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+        "label": "Details on ACTIVE"
+      },
+      "source": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
+      "sourceId": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "status": "scheduled"
+    },
+    {
       "id": "active-110185229",
       "days": [
         "Tue"
@@ -269,6 +409,64 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "fw-eugene-mccray",
+      "status": "scheduled"
+    },
+    {
+      "id": "active-110213288",
+      "days": [
+        "Sat"
+      ],
+      "start": "09:00",
+      "end": "12:00",
+      "startsOn": "2026-09-05",
+      "validUntil": "2026-11-28",
+      "title": "Open Play: Volleyball",
+      "venue": "R.D. Evans Community Center",
+      "city": "Fort Worth",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "signup": {
+        "url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110213288",
+        "label": "Details on ACTIVE"
+      },
+      "source": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110213288",
+      "sourceId": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
+      "status": "scheduled"
+    },
+    {
+      "id": "active-110291443",
+      "days": [
+        "Fri"
+      ],
+      "start": "10:00",
+      "end": "18:00",
+      "startsOn": "2026-11-06",
+      "validUntil": "2026-11-27",
+      "title": "Open Play: Basketball/Volleyball",
+      "venue": "Southwest Community Center",
+      "city": "Fort Worth",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
+      "signup": {
+        "url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-basketball-volleyball-2026-110291443",
+        "label": "Details on ACTIVE"
+      },
+      "source": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-basketball-volleyball-2026-110291443",
+      "sourceId": "dfw-city-active",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-15",
       "status": "scheduled"
     },
     {
@@ -346,6 +544,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -371,6 +570,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -396,6 +596,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -421,6 +622,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -446,6 +648,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -471,6 +674,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -496,6 +700,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -521,6 +726,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -546,6 +752,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -571,10 +778,28 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     }
   ],
-  "publicCourts": null,
+  "publicCourts": {
+    "sourceId": "dallas-parks",
+    "note": "Free, first-come. City of Dallas parks with a sand volleyball court (Dallas Parks facility pages).",
+    "courts": [
+      {
+        "park": "Kiest Park",
+        "address": "3080 S Hampton Rd",
+        "lat": 32.71036,
+        "lng": -96.85692,
+        "located": "address",
+        "surface": "sand",
+        "courts": 1,
+        "lights": false,
+        "source": "https://www.dallasparks.org/facilities/facility/details/kiest-park-552",
+        "region": "dallas"
+      }
+    ]
+  },
   "venues": [
     {
       "id": "sports-garden",
@@ -610,6 +835,24 @@
       "address": "4932 Wilbarger Street, Fort Worth, TX 76119",
       "lat": 32.69886,
       "lng": -97.25003,
+      "region": "dallas"
+    },
+    {
+      "id": "foro",
+      "name": "FORO Sports Club",
+      "city": "Dallas",
+      "address": "14719 Preston Road, Dallas, TX 75254",
+      "lat": 32.94881,
+      "lng": -96.80371,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
       "region": "dallas"
     }
   ]
