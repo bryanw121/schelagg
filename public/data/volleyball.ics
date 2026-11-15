@@ -9,7 +9,7 @@ REFRESH-INTERVAL;VALUE=DURATION:PT1H
 X-PUBLISHED-TTL:PT1H
 BEGIN:VEVENT
 UID:volleyworld-2026-11-14-19:30-pflugerville@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261115T013000Z
 DTEND:20261115T030000Z
 SUMMARY:Adult Volleyball Training
@@ -21,7 +21,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-7GW4KD@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261115T020000Z
 DTEND:20261115T050000Z
 SUMMARY:AVA Open Gym - 8 courts
@@ -34,7 +34,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-DJK96A@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261115T030000Z
 DTEND:20261115T060000Z
 SUMMARY:Saturday Open Gym
@@ -47,7 +47,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-V7JN1R@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261115T160000Z
 DTEND:20261115T190000Z
 SUMMARY:Cancelled: Austin Lawn Club - Sunday Fun Day!
@@ -60,7 +60,7 @@ STATUS:CANCELLED
 END:VEVENT
 BEGIN:VEVENT
 UID:velocity-2026-11-15@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261115T230000Z
 DTEND:20261116T020000Z
 SUMMARY:Austin Velocity Fall/Winter Adult Open Gym
@@ -75,7 +75,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:hanovers-open-2026-11-15@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261116T000000Z
 DTEND:20261116T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -89,7 +89,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-2GI7BR@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261116T003000Z
 DTEND:20261116T043000Z
 SUMMARY:THE Blastros HTX VBALL
@@ -102,7 +102,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:leagueapps-5185722@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261116T010000Z
 DTEND:20261116T030000Z
 SUMMARY:Volleyball Austin Open Play
@@ -117,7 +117,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:sweatpals-sunday-funday-open-play-28-2026-11-15-1900@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261116T010000Z
 DTEND:20261116T040000Z
 SUMMARY:Sunday Funday open play
@@ -130,7 +130,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-FAL015@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261116T020000Z
 DTEND:20261116T040000Z
 SUMMARY:AVA Open Gym - 8 courts
@@ -142,8 +142,22 @@ URL:https://reclub.co/m/FAL015
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-16@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261117T000000Z
+DTEND:20261117T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:reclub-565DSM@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261117T004500Z
 DTEND:20261117T034500Z
 SUMMARY:Sand Volleyball 🏐 @Champions
@@ -156,7 +170,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-RRZ3Q0@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261117T010000Z
 DTEND:20261117T040000Z
 SUMMARY:45 pm)
@@ -169,7 +183,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:aces-open-mon-2026-11-16@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261117T013000Z
 DTEND:20261117T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -185,7 +199,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-9QFCTQ@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261117T013000Z
 DTEND:20261117T040000Z
 SUMMARY:Volleyball Pickup with Kimberly
@@ -198,7 +212,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-HAHH2E@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261117T030000Z
 DTEND:20261117T050000Z
 SUMMARY:Skyline Academy Open Gym
@@ -210,8 +224,23 @@ URL:https://reclub.co/m/HAHH2E
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:active-110185229-2026-11-17@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261117T170000Z
+DTEND:20261117T183000Z
+SUMMARY:Volleyball - Open Play - Eugene McCray
+LOCATION:Eugene McCray Community Center\, Fort Worth
+DESCRIPTION:Run by the City of Fort Worth. Check the city page for fees and
+  any skipped dates.\nDetails on ACTIVE: https://www.active.com/fort-worth-
+ tx/volleyball/volleyball-classes/volleyball-open-play-eugene-mccray-2026-1
+ 10185229\nFrom Schelagg\; times change\, check the source before you go.
+URL:https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/voll
+ eyball-open-play-eugene-mccray-2026-110185229
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:reclub-MTBP54@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261118T000000Z
 DTEND:20261118T023000Z
 SUMMARY:YMCA Open Gym-1 court
@@ -223,8 +252,22 @@ URL:https://reclub.co/m/MTBP54
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-17@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261118T000000Z
+DTEND:20261118T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:reclub-VK88UG@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261118T004500Z
 DTEND:20261118T034500Z
 SUMMARY:Sand Volleyball 🏐 @Champions
@@ -237,7 +280,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-06TS6L@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261118T023000Z
 DTEND:20261118T053000Z
 SUMMARY:Koi C/B Tuesday Coed Net Volleyball
@@ -250,7 +293,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-17-20:30-georgetown@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261118T023000Z
 DTEND:20261118T033000Z
 SUMMARY:Jesus - Adult Training including Open Gym
@@ -262,7 +305,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:meetup-aiv-event_317198282-2026-11-18@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261119T000000Z
 DTEND:20261119T023000Z
 SUMMARY:Wednesday Night Indoor Volleyball | Montopolis | 6v6
@@ -275,8 +318,22 @@ URL:https://www.meetup.com/austin-indoor-volleyball-meetup-group/events/317
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-18@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261119T000000Z
+DTEND:20261119T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:reclub-6AL5A9@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261119T003000Z
 DTEND:20261119T030000Z
 SUMMARY:Volleyball Practice with Kimberly
@@ -289,7 +346,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:aces-open-wed-2026-11-18@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261119T013000Z
 DTEND:20261119T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -305,7 +362,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-18-20:30-georgetown@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261119T023000Z
 DTEND:20261119T040000Z
 SUMMARY:Adult Volleyball Training
@@ -317,7 +374,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-18-21:00-pflugerville@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261119T030000Z
 DTEND:20261119T043000Z
 SUMMARY:Adult Volleyball Training
@@ -328,8 +385,23 @@ URL:https://app.arketa.co/iframe/volleyworld/schedule
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:active-109915599-2026-11-19@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261119T170000Z
+DTEND:20261119T200000Z
+SUMMARY:Open Play: Legends Volleyball
+LOCATION:Riverside Community Center\, Fort Worth
+DESCRIPTION:Run by the City of Fort Worth. Check the city page for fees and
+  any skipped dates.\nDetails on ACTIVE: https://www.active.com/fort-worth-
+ tx/volleyball/volleyball-classes/open-play-legends-volleyball-2026-1099155
+ 99\nFrom Schelagg\; times change\, check the source before you go.
+URL:https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open
+ -play-legends-volleyball-2026-109915599
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:reclub-8TBKMU@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261120T000000Z
 DTEND:20261120T023000Z
 SUMMARY:YMCA Open Gym-1 court
@@ -341,8 +413,22 @@ URL:https://reclub.co/m/8TBKMU
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-19@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261120T000000Z
+DTEND:20261120T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:reclub-OS2O5W@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261120T004500Z
 DTEND:20261120T034500Z
 SUMMARY:Sand Volleyball 🏐 @Champions
@@ -355,7 +441,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-7M8TNU@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261120T023000Z
 DTEND:20261120T053000Z
 SUMMARY:Qilin B/BB Thursday Men’s Net Volleyball
@@ -368,7 +454,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:sweatpals-friday-lunch-open-play-2026-11-20-1100@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261120T170000Z
 DTEND:20261120T200000Z
 SUMMARY:Friday Lunch Open Play 🏐
@@ -381,7 +467,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:hanovers-open-2026-11-20@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T000000Z
 DTEND:20261121T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -395,7 +481,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-R9HE9A@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T000000Z
 DTEND:20261121T030000Z
 SUMMARY:Emancipation meet
@@ -407,8 +493,22 @@ URL:https://reclub.co/m/R9HE9A
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-20@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261121T000000Z
+DTEND:20261121T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:meetup-dfwvb-event_316813545-2026-11-20@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T003000Z
 DTEND:20261121T033000Z
 SUMMARY:Friday - Sand Volleyball (South Location)
@@ -421,7 +521,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:atxbeach-friday-2026-11-20@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T010000Z
 DTEND:20261121T050000Z
 SUMMARY:Friday Night Open Play & Pizza
@@ -434,7 +534,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-2H8WD8@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T010000Z
 DTEND:20261121T040000Z
 SUMMARY:Qilin B/BB Friday Coed Net Volleyball
@@ -447,7 +547,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-ZTIPFD@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T010000Z
 DTEND:20261121T040000Z
 SUMMARY:Koi C/B Friday Coed Net Volleyball
@@ -460,7 +560,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-P07IQT@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T013000Z
 DTEND:20261121T050000Z
 SUMMARY:20 pm)
@@ -473,7 +573,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-20-20:30-georgetown@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T023000Z
 DTEND:20261121T033000Z
 SUMMARY:Jesus - Adult Training including Open Gym
@@ -485,7 +585,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-40RJ8U@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T030000Z
 DTEND:20261121T060000Z
 SUMMARY:Friday Night Volleyball
@@ -498,7 +598,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-YBYJV8@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T030000Z
 DTEND:20261121T060000Z
 SUMMARY:Friday Open Gym
@@ -511,7 +611,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-5E0DAN@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T230000Z
 DTEND:20261122T030000Z
 SUMMARY:The Volleyball Hangout
@@ -524,7 +624,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-6TSHGM@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261121T230000Z
 DTEND:20261122T030000Z
 SUMMARY:The Volleyball Hangout
@@ -537,7 +637,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-21-19:30-pflugerville@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261122T013000Z
 DTEND:20261122T030000Z
 SUMMARY:Adult Volleyball Training
@@ -549,7 +649,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:velocity-2026-11-22@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261122T230000Z
 DTEND:20261123T020000Z
 SUMMARY:Austin Velocity Fall/Winter Adult Open Gym
@@ -564,7 +664,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:hanovers-open-2026-11-22@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261123T000000Z
 DTEND:20261123T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -578,7 +678,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:leagueapps-5185727@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261123T010000Z
 DTEND:20261123T030000Z
 SUMMARY:Volleyball Austin Open Play
@@ -593,7 +693,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-22-20:30-georgetown@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261123T023000Z
 DTEND:20261123T040000Z
 SUMMARY:Adult Volleyball Training
@@ -604,8 +704,22 @@ URL:https://app.arketa.co/iframe/volleyworld/schedule
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-23@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261124T000000Z
+DTEND:20261124T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:reclub-K9D10X@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261124T010000Z
 DTEND:20261124T040000Z
 SUMMARY:45 pm)
@@ -618,7 +732,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:aces-open-mon-2026-11-23@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261124T013000Z
 DTEND:20261124T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -633,8 +747,22 @@ URL:https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pfluge
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-24@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261125T000000Z
+DTEND:20261125T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:volleyworld-2026-11-24-21:00-georgetown@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261125T030000Z
 DTEND:20261125T060000Z
 SUMMARY:Jesus - Open Gym
@@ -646,7 +774,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:meetup-aiv-event_317306862-2026-11-25@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261126T000000Z
 DTEND:20261126T023000Z
 SUMMARY:Wednesday Night Indoor Volleyball | Montopolis | 6v6
@@ -659,8 +787,22 @@ URL:https://www.meetup.com/austin-indoor-volleyball-meetup-group/events/317
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-25@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261126T000000Z
+DTEND:20261126T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:aces-open-wed-2026-11-25@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261126T013000Z
 DTEND:20261126T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -676,7 +818,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-25-20:30-georgetown@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261126T023000Z
 DTEND:20261126T040000Z
 SUMMARY:Adult Volleyball Training
@@ -687,8 +829,37 @@ URL:https://app.arketa.co/iframe/volleyworld/schedule
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:active-109915599-2026-11-26@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261126T170000Z
+DTEND:20261126T200000Z
+SUMMARY:Open Play: Legends Volleyball
+LOCATION:Riverside Community Center\, Fort Worth
+DESCRIPTION:Run by the City of Fort Worth. Check the city page for fees and
+  any skipped dates.\nDetails on ACTIVE: https://www.active.com/fort-worth-
+ tx/volleyball/volleyball-classes/open-play-legends-volleyball-2026-1099155
+ 99\nFrom Schelagg\; times change\, check the source before you go.
+URL:https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open
+ -play-legends-volleyball-2026-109915599
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-26@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261127T000000Z
+DTEND:20261127T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:sweatpals-friday-lunch-open-play-2026-11-27-1100@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261127T170000Z
 DTEND:20261127T200000Z
 SUMMARY:Friday Lunch Open Play 🏐
@@ -701,7 +872,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:hanovers-open-2026-11-27@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261128T000000Z
 DTEND:20261128T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -714,8 +885,22 @@ URL:https://www.planomato.com/en/austin/p/open-play-volleyball-austin
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-27@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261128T000000Z
+DTEND:20261128T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:meetup-dfwvb-event_316813546-2026-11-27@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261128T003000Z
 DTEND:20261128T033000Z
 SUMMARY:Friday - Sand Volleyball (South Location)
@@ -728,7 +913,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:atxbeach-friday-2026-11-27@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261128T010000Z
 DTEND:20261128T050000Z
 SUMMARY:Friday Night Open Play & Pizza
@@ -741,7 +926,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-27-20:30-georgetown@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261128T023000Z
 DTEND:20261128T033000Z
 SUMMARY:Jesus - Adult Training including Open Gym
@@ -753,7 +938,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:reclub-T02HQF@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261128T030000Z
 DTEND:20261128T060000Z
 SUMMARY:Friday Night Volleyball
@@ -766,7 +951,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:volleyworld-2026-11-28-19:30-pflugerville@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261129T013000Z
 DTEND:20261129T030000Z
 SUMMARY:Adult Volleyball Training
@@ -778,7 +963,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:hanovers-open-2026-11-29@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261130T000000Z
 DTEND:20261130T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -791,8 +976,22 @@ URL:https://www.planomato.com/en/austin/p/open-play-volleyball-austin
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-11-30@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261201T000000Z
+DTEND:20261201T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:aces-open-mon-2026-11-30@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261201T013000Z
 DTEND:20261201T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -807,8 +1006,36 @@ URL:https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pfluge
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-01@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261202T000000Z
+DTEND:20261202T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-02@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261203T000000Z
+DTEND:20261203T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:aces-open-wed-2026-12-02@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261203T013000Z
 DTEND:20261203T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -823,8 +1050,22 @@ URL:https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pfluger
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-03@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261204T000000Z
+DTEND:20261204T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:hanovers-open-2026-12-04@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261205T000000Z
 DTEND:20261205T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -837,8 +1078,22 @@ URL:https://www.planomato.com/en/austin/p/open-play-volleyball-austin
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-04@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261205T000000Z
+DTEND:20261205T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:atxbeach-friday-2026-12-04@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261205T010000Z
 DTEND:20261205T050000Z
 SUMMARY:Friday Night Open Play & Pizza
@@ -851,7 +1106,7 @@ STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
 UID:hanovers-open-2026-12-06@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261207T000000Z
 DTEND:20261207T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -864,8 +1119,22 @@ URL:https://www.planomato.com/en/austin/p/open-play-volleyball-austin
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-07@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261208T000000Z
+DTEND:20261208T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:aces-open-mon-2026-12-07@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261208T013000Z
 DTEND:20261208T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -880,8 +1149,36 @@ URL:https://acesintexas.com/ptx-monday-indoor-open-plays-volleyworld-pfluge
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-08@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261209T000000Z
+DTEND:20261209T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-09@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261210T000000Z
+DTEND:20261210T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:aces-open-wed-2026-12-09@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261210T013000Z
 DTEND:20261210T040000Z
 SUMMARY:ACES Indoor Open Play
@@ -896,8 +1193,22 @@ URL:https://acesintexas.com/wednesday-indoor-open-plays-volleyworld-pfluger
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-10@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261211T000000Z
+DTEND:20261211T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:hanovers-open-2026-12-11@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261212T000000Z
 DTEND:20261212T050000Z
 SUMMARY:Hanovers Open Play (21+)
@@ -910,8 +1221,22 @@ URL:https://www.planomato.com/en/austin/p/open-play-volleyball-austin
 STATUS:CONFIRMED
 END:VEVENT
 BEGIN:VEVENT
+UID:sportsgarden-south-1800-2400-2026-12-11@schelagg
+DTSTAMP:20261115T045810Z
+DTSTART:20261212T000000Z
+DTEND:20261212T060000Z
+SUMMARY:Sand open play (South Side)
+LOCATION:The Sports Garden\, Coppell
+DESCRIPTION:Price: $5 before 5 PM · $10 after\nFirst come\, first served\;
+  courts not guaranteed. Check the court calendar before you go.\nDrop in 
+ · court calendar: https://sportsgardendfw.com/open-play/\nFrom Schelagg\;
+  times change\, check the source before you go.
+URL:https://sportsgardendfw.com/open-play/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
 UID:atxbeach-friday-2026-12-11@schelagg
-DTSTAMP:20261115T044122Z
+DTSTAMP:20261115T045810Z
 DTSTART:20261212T010000Z
 DTEND:20261212T050000Z
 SUMMARY:Friday Night Open Play & Pizza
