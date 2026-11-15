@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T06:16:51.645Z",
+  "generatedAt": "2026-11-15T07:16:16.738Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -14,7 +14,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T06:13:23.573Z",
+      "checkedAt": "2026-11-15T07:13:16.966Z",
       "count": 277
     },
     {
@@ -24,7 +24,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T06:13:23.573Z",
+      "checkedAt": "2026-11-15T07:13:16.966Z",
       "count": 155
     },
     {
@@ -34,7 +34,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T06:13:23.573Z",
+      "checkedAt": "2026-11-15T07:13:16.966Z",
       "count": 8
     },
     {
@@ -44,7 +44,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T06:13:23.573Z",
+      "checkedAt": "2026-11-15T07:13:16.967Z",
       "count": 11
     },
     {
@@ -54,7 +54,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T06:13:23.574Z",
+      "checkedAt": "2026-11-15T07:13:16.968Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -85,8 +85,8 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:27.809Z",
-      "count": 7
+      "checkedAt": "2026-11-15T07:13:16.968Z",
+      "count": 6
     },
     {
       "id": "sweatpals",
@@ -95,7 +95,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T05:43:28.643Z",
+      "checkedAt": "2026-11-15T07:13:17.011Z",
       "count": 3
     },
     {
@@ -125,7 +125,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T06:13:23.574Z",
+      "checkedAt": "2026-11-15T07:13:17.951Z",
       "count": 35
     },
     {
@@ -135,7 +135,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T06:13:23.639Z",
+      "checkedAt": "2026-11-15T07:13:19.370Z",
       "count": 24
     },
     {
@@ -155,7 +155,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T06:13:23.897Z",
+      "checkedAt": "2026-11-15T07:13:19.815Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -166,7 +166,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T06:13:23.970Z",
+      "checkedAt": "2026-11-15T07:13:19.879Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -12314,7 +12314,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -12341,7 +12341,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -12369,7 +12369,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "treehouse",
       "status": "scheduled"
     },
@@ -12397,7 +12397,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "treehouse",
       "status": "scheduled"
     },
@@ -12425,7 +12425,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "mueller-lake-park",
       "status": "cancelled"
     },
@@ -12452,7 +12452,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "volleyworld-pflugerville",
       "status": "scheduled"
     },
@@ -12478,7 +12478,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -12504,7 +12504,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -12530,7 +12530,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-14",
+      "verifiedAt": "2026-11-15",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
