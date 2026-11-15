@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T16:16:28.309Z",
+  "generatedAt": "2026-11-15T16:32:35.747Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -9,33 +9,53 @@
   "sources": [
     {
       "id": "dallas-reclub",
-      "name": "Reclub · DFW",
+      "name": "Reclub · DFW clubs",
       "sport": "volleyball",
       "region": "dallas",
       "cadence": "1h",
+      "adapter": "reclub",
+      "kind": "Reclub club pages",
+      "site": "https://reclub.co/clubs/@ync-volleyball-dallas-texas-usa-95",
+      "links": [
+        {
+          "name": "YNC Volleyball",
+          "url": "https://reclub.co/clubs/@ync-volleyball-dallas-texas-usa-95"
+        },
+        {
+          "name": "Recreational DFW",
+          "url": "https://reclub.co/clubs/@recreational-dfw-dallas-texas-usa-18"
+        }
+      ],
       "ok": false,
-      "checkedAt": "2026-11-15T16:13:18.552Z",
+      "checkedAt": "2026-11-15T16:29:11.222Z",
+      "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
     {
       "id": "sportsgarden",
-      "name": "The Sports Garden (Coppell) sand open play",
+      "name": "The Sports Garden, Coppell",
       "sport": "volleyball",
       "region": "dallas",
       "cadence": "1d",
+      "adapter": "sportsgarden",
+      "kind": "Venue's open-play hours page",
+      "site": "https://sportsgardendfw.com/open-play/",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:54.799Z",
+      "checkedAt": "2026-11-15T16:29:13.045Z",
       "count": 4
     },
     {
       "id": "dfw-city-active",
-      "name": "City recreation programs on ACTIVE (Fort Worth)",
+      "name": "City of Fort Worth rec centers",
       "sport": "volleyball",
       "region": "dallas",
       "cadence": "1d",
+      "adapter": "active",
+      "kind": "City recreation programs (ACTIVE)",
+      "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:55.131Z",
+      "checkedAt": "2026-11-15T16:29:13.209Z",
       "count": 2
     },
     {
@@ -44,8 +64,25 @@
       "sport": "volleyball",
       "region": "dallas",
       "cadence": "6h",
+      "adapter": "ical",
+      "kind": "Meetup group calendars",
+      "site": "https://www.meetup.com/dfwvolleyballdallas/",
+      "links": [
+        {
+          "name": "DFW Volleyball (Dallas Region)",
+          "url": "https://www.meetup.com/dfwvolleyballdallas/"
+        },
+        {
+          "name": "North Texas Adult Volleyball",
+          "url": "https://www.meetup.com/north-texas-adult-volleyball/"
+        },
+        {
+          "name": "The Program",
+          "url": "https://www.meetup.com/the-program-adult-volleyball-training/"
+        }
+      ],
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:56.911Z",
+      "checkedAt": "2026-11-15T16:29:15.251Z",
       "count": 12
     }
   ],
@@ -309,6 +346,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -334,6 +372,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -359,6 +398,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -384,6 +424,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -409,6 +450,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -434,6 +476,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -459,6 +502,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -484,6 +528,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -509,6 +554,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -534,6 +580,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-usspt",
       "status": "scheduled"
     }
   ],
@@ -573,6 +620,15 @@
       "address": "4932 Wilbarger Street, Fort Worth, TX 76119",
       "lat": 32.69886,
       "lng": -97.25003,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
       "region": "dallas"
     }
   ]

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T16:16:28.309Z",
+  "generatedAt": "2026-11-15T16:32:35.747Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -13,8 +13,11 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "30m",
+      "adapter": "openplay-directory",
+      "kind": "OpenPlay club directory",
+      "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-15T16:13:17.927Z",
+      "checkedAt": "2026-11-15T16:29:05.115Z",
       "count": 274
     },
     {
@@ -23,8 +26,11 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "30m",
+      "adapter": "opencourt",
+      "kind": "OpenCourt booking calendar",
+      "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-15T16:13:17.927Z",
+      "checkedAt": "2026-11-15T16:29:05.116Z",
       "count": 155
     },
     {
@@ -33,8 +39,11 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "30m",
+      "adapter": "opencourt",
+      "kind": "OpenCourt booking calendar",
+      "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-15T16:13:17.928Z",
+      "checkedAt": "2026-11-15T16:29:05.116Z",
       "count": 8
     },
     {
@@ -43,8 +52,11 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "30m",
+      "adapter": "volleyworld",
+      "kind": "Venue's schedule page",
+      "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-15T16:13:17.928Z",
+      "checkedAt": "2026-11-15T16:29:05.116Z",
       "count": 11
     },
     {
@@ -53,8 +65,12 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "1h",
+      "adapter": "offsite:aces",
+      "kind": null,
+      "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-15T16:13:17.929Z",
+      "checkedAt": "2026-11-15T16:29:05.117Z",
+      "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -64,8 +80,11 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "6h",
+      "adapter": "atxbeach",
+      "kind": "Venue's schedule page",
+      "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:47.355Z",
+      "checkedAt": "2026-11-15T16:29:05.117Z",
       "count": 2
     },
     {
@@ -74,18 +93,38 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "1d",
+      "adapter": "velocity",
+      "kind": "Venue's schedule page",
+      "site": "https://www.austinvelocity.com",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:47.414Z",
+      "checkedAt": "2026-11-15T16:29:05.144Z",
       "count": 2
     },
     {
       "id": "reclub",
-      "name": "Reclub",
+      "name": "Reclub · Austin clubs",
       "sport": "volleyball",
       "region": "austin",
       "cadence": "1h",
+      "adapter": "reclub",
+      "kind": "Reclub club pages",
+      "site": "https://reclub.co/clubs/@vex_volleyball",
+      "links": [
+        {
+          "name": "Vex Volleyball",
+          "url": "https://reclub.co/clubs/@vex_volleyball"
+        },
+        {
+          "name": "Austin Lawn Club",
+          "url": "https://reclub.co/clubs/@austin-lawn-club"
+        },
+        {
+          "name": "Volleyworld Gym",
+          "url": "https://reclub.co/clubs/@volleyworld-gym"
+        }
+      ],
       "ok": true,
-      "checkedAt": "2026-11-15T15:43:25.521Z",
+      "checkedAt": "2026-11-15T16:29:05.355Z",
       "count": 6
     },
     {
@@ -94,8 +133,25 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "1h",
+      "adapter": "sweatpals",
+      "kind": "Sweatpals host pages",
+      "site": "https://sweatpals.com",
+      "links": [
+        {
+          "name": "ATXBeach",
+          "url": "https://sweatpals.com/host/ATXBeach"
+        },
+        {
+          "name": "atxsandsocial",
+          "url": "https://sweatpals.com/host/atxsandsocial"
+        },
+        {
+          "name": "letsvolleyatx",
+          "url": "https://sweatpals.com/host/letsvolleyatx"
+        }
+      ],
       "ok": true,
-      "checkedAt": "2026-11-15T15:43:25.641Z",
+      "checkedAt": "2026-11-15T16:29:06.546Z",
       "count": 3
     },
     {
@@ -104,8 +160,17 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "6h",
+      "adapter": "leagueapps",
+      "kind": "LeagueApps event pages",
+      "site": "https://volleyballaustin.leagueapps.com/events/1647613-open-plays",
+      "links": [
+        {
+          "name": "Volleyball Austin Open Play",
+          "url": "https://volleyballaustin.leagueapps.com/events/1647613-open-plays"
+        }
+      ],
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:49.320Z",
+      "checkedAt": "2026-11-15T16:29:06.653Z",
       "count": 3
     },
     {
@@ -114,8 +179,17 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "6h",
+      "adapter": "ical",
+      "kind": "Meetup group calendars",
+      "site": "https://www.meetup.com/austin-indoor-volleyball-meetup-group/",
+      "links": [
+        {
+          "name": "Austin Indoor Volleyball Meetup",
+          "url": "https://www.meetup.com/austin-indoor-volleyball-meetup-group/"
+        }
+      ],
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:49.716Z",
+      "checkedAt": "2026-11-15T16:29:07.456Z",
       "count": 2
     },
     {
@@ -124,8 +198,11 @@
       "sport": "ice_skating",
       "region": "austin",
       "cadence": "30m",
+      "adapter": "daysmart",
+      "kind": "Rink schedule (DaySmart)",
+      "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-15T16:13:17.929Z",
+      "checkedAt": "2026-11-15T16:29:08.019Z",
       "count": 35
     },
     {
@@ -134,8 +211,11 @@
       "sport": "ice_skating",
       "region": "austin",
       "cadence": "30m",
+      "adapter": "daysmart",
+      "kind": "Rink schedule (DaySmart)",
+      "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-15T16:13:17.971Z",
+      "checkedAt": "2026-11-15T16:29:09.019Z",
       "count": 24
     },
     {
@@ -144,8 +224,11 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "1d",
+      "adapter": "austin-pickleball",
+      "kind": "City parks schedule",
+      "site": "https://www.austintexas.gov/parks/alamo-recreation-center",
       "ok": true,
-      "checkedAt": "2026-11-15T14:47:53.789Z",
+      "checkedAt": "2026-11-15T16:29:10.590Z",
       "count": 13
     },
     {
@@ -154,8 +237,12 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "1d",
+      "adapter": "official-schedule",
+      "kind": "City parks schedule",
+      "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-15T16:13:18.374Z",
+      "checkedAt": "2026-11-15T16:29:11.106Z",
+      "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -165,8 +252,12 @@
       "sport": "pickleball",
       "region": "austin",
       "cadence": "1d",
+      "adapter": "official-schedule",
+      "kind": "City parks schedule",
+      "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-15T16:13:18.419Z",
+      "checkedAt": "2026-11-15T16:29:11.149Z",
+      "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
@@ -14633,7 +14724,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-14",
+      "watchError": "HTTP 403",
       "venueId": "hanovers",
       "status": "scheduled"
     },
