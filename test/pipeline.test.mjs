@@ -174,7 +174,9 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   assert.equal(schedule.schemaVersion, SCHEMA_VERSION);
   assert.equal(schedule.generatedAt, NOW.toISOString());
   const courts = readJson(repoPath('config/regions/austin/public-courts.json'));
-  assert.deepEqual(schedule.publicCourts, { ...courts, courts: courts.courts.map((c) => ({ ...c, region: 'austin' })) });
+  // The combined schedule lists every region's free courts, each tagged with its region.
+  assert.deepEqual(schedule.publicCourts.courts.filter((c) => c.region === 'austin'), courts.courts.map((c) => ({ ...c, region: 'austin' })));
+  assert.ok(schedule.publicCourts.courts.some((c) => c.region === 'dallas' && c.park === 'Kiest Park'));
 
   // One status per configured source, in config order, all ok.
   assert.deepEqual(schedule.sources.map((s) => s.id), ADAPTER_IDS);
@@ -521,7 +523,7 @@ test('build-courts: with no local file, the last good copy comes from the live s
 
 test('config: the Dallas–Fort Worth region loads with its own sources, time zone and no shared ids', () => {
   const dallas = ALL_SOURCES.filter((s) => s.region === 'dallas');
-  assert.deepEqual(dallas.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['dallas-reclub', 'reclub', 'America/Chicago', 'volleyball'], ['sportsgarden', 'sportsgarden', 'America/Chicago', 'volleyball'], ['dfw-city-active', 'active', 'America/Chicago', 'volleyball'], ['dallas-meetup', 'ical', 'America/Chicago', 'volleyball']]);
+  assert.deepEqual(dallas.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['dallas-reclub', 'reclub', 'America/Chicago', 'volleyball'], ['sportsgarden', 'sportsgarden', 'America/Chicago', 'volleyball'], ['foro', 'foro', 'America/Chicago', 'volleyball'], ['dfw-city-active', 'active', 'America/Chicago', 'volleyball'], ['dallas-meetup', 'ical', 'America/Chicago', 'volleyball']]);
   const houston = ALL_SOURCES.filter((s) => s.region === 'houston');
   assert.deepEqual(houston.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['houston-reclub', 'reclub', 'America/Chicago', 'volleyball']]);
   const ids = ALL_SOURCES.map((s) => s.id);

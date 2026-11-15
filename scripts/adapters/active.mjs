@@ -5,15 +5,18 @@
 // becomes a weekly session for its season, so a new season's page is picked up from the
 // listing by itself. robots.txt allows these pages.
 //
-//   options.listings: [url]; options.include: title regex (default: volleyball, not other sports)
+//   options.listings: [url] (each is read with its further pages, ?page=2…, until a page lists none);
+//   options.include: slug regex (default: open play / open gym / drop-in volleyball, not leagues)
 import { get } from '../../lib/http.js';
 
 export const id = 'active';
 export const needsBrowser = false;
 const ORIGIN = 'https://www.active.com';
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const DEFAULT_INCLUDE = 'volleyball';
-const OTHER_SPORTS = /basketball|pickle|table-tennis|tennis|soccer|badminton|futsal/i;
+// Open play only (leagues and classes are listed under the same category): "open-play-volleyball",
+// "volleyball-open-play-eugene-mccray", "open-play-basketball-volleyball".
+const DEFAULT_INCLUDE = '^(?=.*volleyball)(?=.*(?:open-play|open-gym|drop-in))';
+const MAX_PAGES = 6;
 
 /** Program links on a listing page (absolute), volleyball ones only, in order. */
 export function programLinks(html, include = DEFAULT_INCLUDE) {
@@ -21,7 +24,7 @@ export function programLinks(html, include = DEFAULT_INCLUDE) {
   const out = [];
   for (const m of String(html).matchAll(/href="(\/[a-z-]+-tx\/volleyball\/[a-z-]+\/[a-z0-9-]+-\d{6,})"/g)) {
     const slug = m[1].split('/').pop();
-    if (!want.test(slug) || OTHER_SPORTS.test(slug)) continue;
+    if (!want.test(slug)) continue;
     const u = ORIGIN + m[1];
     if (!out.includes(u)) out.push(u);
   }
@@ -67,9 +70,14 @@ export async function scrape({ options, fetch, ref }) {
   if (!listings.length) throw new Error('active: no listing pages configured');
   const links = [], warnings = [];
   for (const l of listings) {
-    const res = await get(l, { fetch });
-    if (!res.ok) { warnings.push(`${l}: HTTP ${res.status}`); continue; }
-    for (const u of programLinks(res.text, options.include)) if (!links.includes(u)) links.push(u);
+    for (let n = 1; n <= MAX_PAGES; n++) {
+      const url = n === 1 ? l : `${l}${l.includes('?') ? '&' : '?'}page=${n}`;
+      const res = await get(url, { fetch });
+      if (!res.ok) { if (n === 1) warnings.push(`${l}: HTTP ${res.status}`); break; }
+      // A page that lists no programs at all (of any kind) is past the end.
+      if (!/href="\/[a-z-]+-tx\/volleyball\/[a-z-]+\/[a-z0-9-]+-\d{6,}"/.test(res.text)) break;
+      for (const u of programLinks(res.text, options.include)) if (!links.includes(u)) links.push(u);
+    }
   }
   const sessions = [];
   for (const url of links.slice(0, options.max ?? 15)) {
@@ -81,7 +89,7 @@ export async function scrape({ options, fetch, ref }) {
       if (!ref || s.validUntil >= ref) sessions.push(s);
     } catch (e) { warnings.push(`${url}: ${e.message}`); }
   }
-  if (!sessions.length && warnings.length === listings.length + links.length && warnings.length) throw new Error(warnings.join('; '));
+  if (!sessions.length && warnings.length && warnings.length >= listings.length + links.length) throw new Error(warnings.join('; '));
   return { sessions, warnings };
 }
 
