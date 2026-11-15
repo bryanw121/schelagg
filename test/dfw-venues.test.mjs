@@ -79,3 +79,21 @@ test('FORO: weekday and weekend sand open play hours, $10 registered', () => {
   assert.ok(!s.some((x) => x.start === '21:00'));
   assert.throws(() => foro.parse('<p>Open Play Soccer only</p>'), /hours not found/);
 });
+
+test('ACTIVE: each venue address is geocoded once, so new rec centers get a pin', async () => {
+  const L = 'https://www.active.com/fort-worth-tx/volleyball';
+  const asked = [];
+  const census = { result: { addressMatches: [{ matchedAddress: '3551 NEW YORK AVE, FORT WORTH, TX, 76110', coordinates: { x: -97.31648, y: 32.69739 } }] } };
+  const fetch = async (u) => {
+    asked.push(u);
+    if (u === L) return new Response(fx('active-listing.html'));
+    if (/geocoding\.geo\.census\.gov/.test(u)) return new Response(JSON.stringify(census));
+    if (/110117958|110185229/.test(u)) return new Response(fx('active-program-openplay.html'));
+    return new Response('', { status: 404 });
+  };
+  const r = await active.scrape({ options: { listings: [L] }, fetch, ref: '2026-11-01' });
+  assert.ok(r.sessions.length >= 2);
+  assert.ok(r.sessions.every((x) => x.venueLat === 32.69739 && x.venueLng === -97.31648));
+  assert.equal(asked.filter((u) => /census/.test(u)).length, 1, 'one request for the shared address');
+  assert.match(new URL(asked.find((u) => /census/.test(u))).searchParams.get('address'), /^3551 New York Avenue, Fort Worth, TX/);
+});

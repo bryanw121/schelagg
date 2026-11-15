@@ -3,11 +3,14 @@
 // each program page has schema.org Event data (season start and end with times, the venue and
 // address) and names its weekday ("September 07 - November 30, 2026 Monday"). Each program
 // becomes a weekly session for its season, so a new season's page is picked up from the
-// listing by itself. robots.txt allows these pages.
+// listing by itself. robots.txt allows these pages. Program pages give the venue's street address
+// but no coordinates: each distinct address is geocoded (US Census geocoder, once per run) so the
+// map pins it (lib/consolidate.js sourceVenues; a venue already in venues.json keeps its own).
 //
 //   options.listings: [url] (each is read with its further pages, ?page=2…, until a page lists none);
 //   options.include: slug regex (default: open play / open gym / drop-in volleyball, not leagues)
 import { get } from '../../lib/http.js';
+import { censusUrl, parseCensus } from '../../lib/geocode.js';
 
 export const id = 'active';
 export const needsBrowser = false;
@@ -90,6 +93,22 @@ export async function scrape({ options, fetch, ref }) {
     } catch (e) { warnings.push(`${url}: ${e.message}`); }
   }
   if (!sessions.length && warnings.length && warnings.length >= listings.length + links.length) throw new Error(warnings.join('; '));
+  // Coordinates for each venue address (one geocoder request per distinct address).
+  const placed = new Map();
+  for (const s of sessions) {
+    if (!s.venueAddress || placed.has(s.venueAddress)) continue;
+    const m = s.venueAddress.match(/^(.*?),\s*([^,]+,\s*[A-Z]{2}\b.*)$/);
+    let hit = null;
+    try {
+      const r = m ? await get(censusUrl(m[1], m[2]), { fetch }) : null;
+      if (r?.ok) hit = parseCensus(JSON.parse(r.text));
+    } catch { /* no pin this run */ }
+    placed.set(s.venueAddress, hit);
+  }
+  for (const s of sessions) {
+    const hit = placed.get(s.venueAddress);
+    if (hit) Object.assign(s, { venueLat: hit.lat, venueLng: hit.lng });
+  }
   return { sessions, warnings };
 }
 
