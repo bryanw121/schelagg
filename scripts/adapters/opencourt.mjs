@@ -4,6 +4,8 @@ import { addDays } from '../../lib/time.js';
 import { eventTimes } from './openplay-directory.mjs';
 import { scheduleUrl } from '../../lib/opencourt-courts.js';
 
+export const id = 'opencourt';
+
 export const needsBrowser = false;
 export const clubUrl = (slug) => `https://app.getopencourt.com/club/${slug}`;
 const uuid = (v) => /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(v ?? '');

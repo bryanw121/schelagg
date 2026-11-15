@@ -7,7 +7,7 @@
   "sources": [
     {
       "id": "dallas-reclub",
-      "name": "Reclub · DFW",
+      "name": "Reclub · DFW clubs",
       "adapter": "reclub",
       "cadence": "1h",
       "options": {
@@ -62,13 +62,14 @@
     },
     {
       "id": "sportsgarden",
-      "name": "The Sports Garden (Coppell) sand open play",
+      "name": "The Sports Garden, Coppell",
+      "site": "https://sportsgardendfw.com/open-play/",
       "adapter": "sportsgarden",
       "cadence": "1d"
     },
     {
       "id": "dfw-city-active",
-      "name": "City recreation programs on ACTIVE (Fort Worth)",
+      "name": "City of Fort Worth rec centers",
       "adapter": "active",
       "cadence": "1d",
       "options": {

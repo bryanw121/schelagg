@@ -26,7 +26,7 @@ if (args.has('--if-due') && !isDue(previous, now)) {
 const config = JSON.parse(readFileSync(repoPath('config/programs.json'), 'utf8'));
 const regions = loadRegions().map((r) => r.info);
 const results = await runSources(config, { get, now, regions });
-const feed = buildFeed({ results, previous, now });
+const feed = buildFeed({ results, previous, now, config });
 
 for (const s of feed.sources) console.log(`${s.ok ? 'ok  ' : 'FAIL'} ${s.id}: ${s.count} programs${s.error ? ` (${s.error})` : ''}`);
 console.log(`${feed.programs.length} programs in all.`);

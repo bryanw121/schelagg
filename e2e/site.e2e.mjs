@@ -1171,3 +1171,37 @@ test('site: a session with no venue name (a Meetup event) renders on every day, 
   }
   assert.deepEqual(pageErrors, []);
 });
+
+test('sources page: opens from "N sources" on the schedule, lists each source with its link, what it gives and its status', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }, { id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago', center: [32.8, -96.95], sports: ['volleyball'] }] };
+  const dallas = structuredClone(SCHEDULE);
+  dallas.region = { id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago' };
+  dallas.sources = [
+    { id: 'sportsgarden', name: 'The Sports Garden, Coppell', sport: 'volleyball', region: 'dallas', ok: true, checkedAt: SCHEDULE.generatedAt, count: 1, kind: "Venue's open-play hours page", site: 'https://sportsgardendfw.com/open-play/' },
+    { id: 'dallas-reclub', name: 'Reclub · DFW clubs', sport: 'volleyball', region: 'dallas', ok: false, checkedAt: SCHEDULE.generatedAt, failingSince: '2026-10-20T12:00:00Z', error: 'No Reclub meets found', kept: 0, kind: 'Reclub club pages', links: [{ name: 'YNC Volleyball', url: 'https://reclub.co/clubs/@a' }, { name: 'Recreational DFW', url: 'https://reclub.co/clubs/@b' }] },
+  ];
+  dallas.sessions = [{ ...base, region: 'dallas', id: 'sg', sourceId: 'sportsgarden', days: ['Mon', 'Tue'], date: undefined, start: '15:00', end: '24:00', title: 'Sand open play', venue: 'The Sports Garden', surface: 'sand', type: 'Open play', signup: { url: `${SIGNUP}/sg` }, source: `${SIGNUP}/sg` }];
+  const programs = { generatedAt: SCHEDULE.generatedAt, sources: [{ id: 'lonestar-ssc', name: 'Lone Star Sports & Social Club', ok: true, checkedAt: SCHEDULE.generatedAt, site: 'https://lonestarssc.leaguelab.com/', kind: 'League sign-up pages (LeagueLab)', regions: ['dallas'] }], programs: [{ id: 'p1', feed_source: 'lonestar-ssc', region: 'dallas', kind: 'league', sport: 'volleyball', title: 'Coed 6s', org: 'Lone Star', starts_on: '2026-12-01' }] };
+  await open({ index: INDEX, regions: { austin: SCHEDULE, dallas }, programs, url: '/?region=dallas' });
+  const link = page.locator('#sourcesLink');
+  assert.equal(await link.textContent(), '2 sources');
+  await link.click();
+  await page.waitForURL(/sources\.html\?region=dallas/);
+  await page.locator('.src').first().waitFor();
+  const rows = page.locator('.src');
+  assert.equal(await rows.count(), 3);
+  const sg = page.locator('.src[data-source="sportsgarden"]');
+  assert.equal(await sg.locator('a').first().getAttribute('href'), 'https://sportsgardendfw.com/open-play/');
+  assert.equal(await sg.locator('.count').textContent(), '1 weekly time slot');
+  assert.match(await sg.locator('.status').textContent(), /^Working · checked/);
+  const rc = page.locator('.src[data-source="dallas-reclub"]');
+  assert.ok(await rc.evaluate((el) => el.classList.contains('bad')));
+  assert.match(await rc.locator('.status').textContent(), /Not working since Oct 20 · No Reclub meets found/);
+  assert.equal(await rc.locator('.links a').count(), 2);
+  assert.equal(await page.locator('.src[data-source="lonestar-ssc"] .count').textContent(), '1 league open for sign-up');
+  // The city picker switches cities; ← Schedule goes back to this city.
+  assert.match(await page.locator('#back').getAttribute('href'), /\?region=dallas$/);
+  await page.locator('#city').selectOption('austin');
+  await page.waitForURL(/region=austin/);
+  assert.deepEqual(pageErrors, []);
+});

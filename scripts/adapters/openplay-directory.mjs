@@ -3,6 +3,8 @@ import { pageObjects, findObject } from '../../lib/public-page-data.js';
 import { addDays, localDateTime } from '../../lib/time.js';
 import { contentHash } from '../../lib/health.js';
 
+export const id = 'openplay-directory';
+
 export const needsBrowser = false;
 export const SOURCE = 'https://openplaymap.com/open-play/austin';
 // Names that say a session is not open to every player (private bookings, ladies/men-only,

@@ -8,6 +8,7 @@
     {
       "id": "austin-club-openplay",
       "name": "OpenPlay directory · Austin clubs",
+      "site": "https://openplaymap.com/open-play/austin",
       "adapter": "openplay-directory",
       "sport": "pickleball",
       "cadence": "30m",
@@ -43,6 +44,7 @@
     {
       "id": "austin-picklehaus",
       "name": "Austin PickleHaus · OpenCourt",
+      "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "adapter": "opencourt",
       "sport": "pickleball",
       "cadence": "30m",
@@ -56,6 +58,7 @@
     {
       "id": "holy-pickle",
       "name": "Holy Pickle · OpenCourt",
+      "site": "https://app.getopencourt.com/club/holy-pickle",
       "adapter": "opencourt",
       "sport": "pickleball",
       "cadence": "30m",
@@ -69,12 +72,14 @@
     {
       "id": "volleyworld",
       "name": "Volleyworld",
+      "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "adapter": "volleyworld",
       "cadence": "30m"
     },
     {
       "id": "aces",
       "name": "ACES",
+      "site": "https://acesintexas.com",
       "adapter": "aces",
       "cadence": "1h",
       "options": {
@@ -97,18 +102,20 @@
     {
       "id": "atxbeach",
       "name": "ATX Beach",
+      "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "adapter": "atxbeach",
       "cadence": "6h"
     },
     {
       "id": "velocity",
       "name": "Austin Velocity",
+      "site": "https://www.austinvelocity.com",
       "adapter": "velocity",
       "cadence": "1d"
     },
     {
       "id": "reclub",
-      "name": "Reclub",
+      "name": "Reclub · Austin clubs",
       "adapter": "reclub",
       "cadence": "1h",
       "options": {
@@ -201,6 +208,7 @@
     {
       "id": "sweatpals",
       "name": "Sweatpals",
+      "site": "https://sweatpals.com",
       "adapter": "sweatpals",
       "cadence": "1h",
       "options": {

@@ -765,6 +765,19 @@ function renderGlance() {
   $('calErrors').innerHTML = errs.length ? `<div class="error">Couldn't load some court calendars right now${errs.map((e) => e.calendar ? ` · <a href="${esc(e.calendar)}" target="_blank" rel="noopener">open ${esc(e.venue)} calendar ↗</a>` : '').join('')}</div>` : '';
 }
 
+/** "6 sources" next to the city: opens the sources page for this city and sport. */
+function renderSourcesLink() {
+  const n = (schedule?.sources ?? []).filter((s) => (s.sport ?? 'volleyball') === state.sport).length;
+  const link = $('sourcesLink');
+  link.hidden = !n;
+  if (!n) return;
+  const u = new URL('sources.html', location.href);
+  if (region?.id) u.searchParams.set('region', region.id);
+  if (state.sport !== 'volleyball') u.searchParams.set('sport', state.sport);
+  link.href = u.pathname.split('/').pop() + u.search;
+  link.textContent = `${n} source${n === 1 ? '' : 's'}`;
+}
+
 function renderMeta() {
   if (!schedule) return;
   const courtAge = courts ? Math.round((Date.now() - Date.parse(courts.fetchedAt)) / 60000) : null;
@@ -772,6 +785,7 @@ function renderMeta() {
   const stamps = [schedule.generatedAt, courts?.fetchedAt].filter(Boolean);
   const oldest = stamps.reduce((a, b) => (Date.parse(a) <= Date.parse(b) ? a : b));
   $('asof').textContent = `Last updated ${ago(oldest)}`;
+  renderSourcesLink();
   $('asof').title = `Sessions ${clock(schedule.generatedAt)}${courts ? ` · court calendars ${clock(courts.fetchedAt)}` : ''}`;
   const places = regionCourts().flatMap((v) => v.facilities.map((f) => f.name));
   const notes = regionCourts().map((v) => v.note).filter(Boolean);
@@ -938,6 +952,7 @@ function signupsMeta() {
   const bad = (programs.sources || []).filter((x) => !x.ok);
   $('programsNote').textContent = `From each organizer's sign-up page, checked twice a day. Prices, caps and deadlines change: confirm on their page before you pay.${bad.length ? ` Last check couldn't read ${bad.map((x) => x.id).join(', ')}; their listings are from the check before.` : ''}`;
   $('asof').textContent = `Checked ${ago(programs.generatedAt)} · twice a day`;
+  renderSourcesLink();
   $('asof').title = `Leagues and tournaments checked ${clock(programs.generatedAt)}`;
   const orgs = [...new Set([...programsFor('league'), ...programsFor('tournament')].map((p) => p.org))];
   $('footer').innerHTML = orgs.length ? `Sources: ${esc(list(orgs))}. Sign up on the organizer's site; Schelagg only links to it.` : '';
