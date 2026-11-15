@@ -28,6 +28,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -67,3 +69,25 @@ jobs:
           path: public
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # The published Map view, with the real map files and today's data (e2e/live-map.e2e.mjs): every
+  # region has a map, its tiles load, it draws without errors, and venues get pins. A failure here
+  # means visitors see a broken or missing map; the e2e in test.yml only covers mocked data.
+  verify-map:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Check the live map
+        env:
+          SITE_URL: ${{ needs.deploy.outputs.page_url }}
+        run: npm run test:live-map

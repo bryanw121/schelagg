@@ -53,7 +53,7 @@ export function parseProgram(html, url) {
     id: `active-${pid}`,
     days: [...new Set(days)], start: from.time, end: until.time, startsOn: from.date, validUntil: until.date,
     title: name || 'Open play', venue: place.name ?? null, city: a.addressLocality ?? null,
-    address: [a.streetAddress, a.addressLocality, a.addressRegion, a.postalCode].filter(Boolean).join(', ') || null,
+    venueAddress: [a.streetAddress, a.addressLocality, a.addressRegion, a.postalCode].filter(Boolean).join(', ') || undefined,
     surface: 'indoor', type: 'Open play',
     level: ages && +ages[1] >= 40 ? `Ages ${ages[1]}+` : 'All levels',
     price: null,

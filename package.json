@@ -8,6 +8,7 @@
     "dev": "node server.js",
     "test": "node --test",
     "test:e2e": "node --test e2e/site.e2e.mjs",
+    "test:live-map": "node --test e2e/live-map.e2e.mjs",
     "scrape": "node scripts/scrape.mjs",
     "courts": "node scripts/build-courts.mjs",
     "check:skedda": "node scripts/check-skedda.mjs",
