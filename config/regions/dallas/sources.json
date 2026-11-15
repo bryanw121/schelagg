@@ -88,6 +88,21 @@
       }
     },
     {
+      "id": "dfw-city-active-pickleball",
+      "name": "City of Fort Worth rec centers · pickleball",
+      "adapter": "active",
+      "sport": "pickleball",
+      "cadence": "1d",
+      "options": {
+        "_doc": "The city lists its community-center pickleball open plays under ACTIVE's volleyball category, so this reads the same listing pages as dfw-city-active and keeps the pickleball ones.",
+        "listings": [
+          "https://www.active.com/fort-worth-tx/volleyball",
+          "https://www.active.com/dallas-tx/volleyball"
+        ],
+        "include": "^(?=.*pickle)(?=.*(?:open-play|drop-in))"
+      }
+    },
+    {
       "id": "dallas-meetup",
       "name": "Meetup · DFW volleyball groups",
       "adapter": "ical",

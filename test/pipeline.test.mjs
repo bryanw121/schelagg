@@ -24,8 +24,8 @@ const { sources: ALL_SOURCES, manuals: MANUALS } = loadSources();
 // These tests replay Austin's captured responses; other regions' sources are checked below.
 const SOURCES = ALL_SOURCES.filter((s) => s.region === 'austin');
 const MANUAL = MANUALS.find((m) => m.region === 'austin' || /\/austin\//.test(m.file));
-const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'sweatpals', 'volleyball-austin', 'austin-meetup', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
-const SPORT_OF = { 'austin-club-openplay': 'pickleball', 'austin-picklehaus': 'pickleball', 'holy-pickle': 'pickleball', 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball', 'georgetown-pickleball': 'pickleball', 'leander-pickleball': 'pickleball' }; // everything else: volleyball
+const ADAPTER_IDS = ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'aces', 'atxbeach', 'velocity', 'reclub', 'sweatpals', 'volleyball-austin', 'austin-meetup', 'austin-pickleball-meetup', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball'];
+const SPORT_OF = { 'austin-club-openplay': 'pickleball', 'austin-picklehaus': 'pickleball', 'holy-pickle': 'pickleball', 'austin-pickleball-meetup': 'pickleball', 'chaparral-ice': 'ice_skating', 'ice-and-field': 'ice_skating', 'austin-city-pickleball': 'pickleball', 'georgetown-pickleball': 'pickleball', 'leander-pickleball': 'pickleball' }; // everything else: volleyball
 // Velocity's WordPress REST API: the captured pages, filtered to the slugs asked for.
 const velocityPages = (u) => JSON.stringify(JSON.parse(fixture('velocity-wp-pages.json')).filter((p) => (u.searchParams.get('slug') ?? '').split(',').includes(p.slug)));
 const sportOf = (sourceId) => SPORT_OF[sourceId] ?? 'volleyball';
@@ -339,7 +339,7 @@ test('scrape pipeline: kept sessions that have since passed drop out of the hori
 
 test('scrape pipeline: Chromium only starts when a source needs it', async () => {
   const apiOnly = SOURCES.filter((s) => s.adapter.needsBrowser === false);
-  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'velocity', 'reclub', 'sweatpals', 'volleyball-austin', 'austin-meetup', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball']);
+  assert.deepEqual(apiOnly.map((s) => s.id), ['austin-club-openplay', 'austin-picklehaus', 'holy-pickle', 'volleyworld', 'velocity', 'reclub', 'sweatpals', 'volleyball-austin', 'austin-meetup', 'austin-pickleball-meetup', 'chaparral-ice', 'ice-and-field', 'austin-city-pickleball', 'georgetown-pickleball', 'leander-pickleball']);
   const r = await scrape({ sources: apiOnly });
   assert.deepEqual([r.browser.launched, r.browser.closed], [0, 0]);
   assert.ok(r.schedule.sources.every((s) => s.ok));
@@ -523,7 +523,7 @@ test('build-courts: with no local file, the last good copy comes from the live s
 
 test('config: the Dallas–Fort Worth region loads with its own sources, time zone and no shared ids', () => {
   const dallas = ALL_SOURCES.filter((s) => s.region === 'dallas');
-  assert.deepEqual(dallas.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['dallas-reclub', 'reclub', 'America/Chicago', 'volleyball'], ['sportsgarden', 'sportsgarden', 'America/Chicago', 'volleyball'], ['foro', 'foro', 'America/Chicago', 'volleyball'], ['dfw-city-active', 'active', 'America/Chicago', 'volleyball'], ['dallas-meetup', 'ical', 'America/Chicago', 'volleyball']]);
+  assert.deepEqual(dallas.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['dallas-reclub', 'reclub', 'America/Chicago', 'volleyball'], ['sportsgarden', 'sportsgarden', 'America/Chicago', 'volleyball'], ['foro', 'foro', 'America/Chicago', 'volleyball'], ['dfw-city-active', 'active', 'America/Chicago', 'volleyball'], ['dfw-city-active-pickleball', 'active', 'America/Chicago', 'pickleball'], ['dallas-meetup', 'ical', 'America/Chicago', 'volleyball']]);
   const houston = ALL_SOURCES.filter((s) => s.region === 'houston');
   assert.deepEqual(houston.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['houston-reclub', 'reclub', 'America/Chicago', 'volleyball']]);
   const ids = ALL_SOURCES.map((s) => s.id);

@@ -294,6 +294,27 @@
       }
     },
     {
+      "id": "austin-pickleball-meetup",
+      "name": "Meetup · Austin pickleball groups",
+      "adapter": "ical",
+      "sport": "pickleball",
+      "cadence": "6h",
+      "options": {
+        "_doc": "Meetup groups' own calendar feeds (www.meetup.com/<group>/events/ical/). Add a group as one more feed. Clinics and lessons are not open play: leave those groups out or exclude them by title.",
+        "feeds": [
+          {
+            "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/ical/",
+            "idPrefix": "meetup-pickleland",
+            "host": "North Austin Pickleball Community",
+            "venue": "Pickleland",
+            "city": "Austin",
+            "surface": "unspecified",
+            "exclude": "clinic|lesson|training|skills"
+          }
+        ]
+      }
+    },
+    {
       "id": "chaparral-ice",
       "name": "Chaparral Ice",
       "adapter": "daysmart",
