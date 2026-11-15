@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T16:32:35.747Z",
+  "generatedAt": "2026-11-15T16:43:21.616Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-15T16:29:05.117Z",
+      "checkedAt": "2026-11-15T16:43:16.541Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -241,7 +241,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-15T16:29:11.106Z",
+      "checkedAt": "2026-11-15T16:43:16.542Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -256,7 +256,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-15T16:29:11.149Z",
+      "checkedAt": "2026-11-15T16:43:16.542Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -14724,7 +14724,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 403",
+      "sourceChanged": "2026-11-14",
       "venueId": "hanovers",
       "status": "scheduled"
     },
