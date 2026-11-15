@@ -35,9 +35,10 @@ sessions and status untouched.
 | Court bookings + opening hours (High Point, Crossover, Treehouse) | `scripts/build-courts.mjs` reads their public Skedda calendars | With each refresh |
 | Volleyworld adult sessions | Arketa's public schedule API, incl. cancellations and spots left | 30m; live via `/api/check` |
 | Ice skating: Chaparral Ice, Ice & Field at the Crossover | `scripts/adapters/daysmart.mjs`: each rink's public DaySmart events API, published public/adult skate types only | 30m; live via `/api/check` |
-| Reclub meets (Vex Volleyball, Austin Lawn Club) | Plain fetch of each club page and its meet pages | 1h; live via `/api/check` |
+| Reclub meets (Vex Volleyball, Austin Lawn Club, Volleyworld Gym) | Plain fetch of each club page and its meet pages | 1h; live via `/api/check` |
 | Sweatpals hosts (ATX Beach lunch open play, ATX Sand Social, Let's Volley ATX) | `scripts/adapters/sweatpals.mjs`: each host's public page, whose `__NEXT_DATA__` lists its upcoming events with exact times, address and prices; volleyball events only (per-host `include`) | 1h |
-| Calendar feeds (DFW Meetup groups: DFW Volleyball, North Texas Adult Volleyball, The Program) | `scripts/adapters/ical.mjs`: each group's own iCal export (time, title, link; descriptions not published) | 6h |
+| Calendar feeds (Meetup groups: Austin Indoor Volleyball; DFW Volleyball, North Texas Adult Volleyball, The Program) | `scripts/adapters/ical.mjs`: each group's own iCal export (time, title, link; descriptions not published) | 6h |
+| Volleyball Austin open plays (Austin Sports Center Central) | `scripts/adapters/leagueapps.mjs`: the LeagueApps series page, then each dated event page (date, time, fee) | 6h |
 | ACES open play (Volleyworld) | Headless browser reads each ACES open-play page | 1h |
 | ATX Beach open play | TeamUp membership page | 6h |
 | Austin Velocity adult open gym (The Crossover) | Their adult page and the season page it links to, through WordPress's public REST API (no browser): each listed date within 14 days, else the season's weekly window, so it switches itself on/off | 1d |

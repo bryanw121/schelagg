@@ -8,7 +8,10 @@
 // (they name organizers and coaches); they're only read to tell sand from indoor and to find a
 // venue named "@ <venue>". `include` / `exclude` are regexes on the title (e.g. leave out socials).
 import { get } from '../../lib/http.js';
-import { localDateTime } from '../../lib/time.js';
+import { addDays, localDateTime } from '../../lib/time.js';
+
+/** Dated sessions this far ahead, like the schedule (lib/pipeline.js HORIZON_DAYS). */
+const HORIZON_DAYS = 14;
 
 export const id = 'ical';
 export const needsBrowser = false;
@@ -50,7 +53,8 @@ export function icsTime(prop, timezone) {
 }
 
 /** One feed's events → sessions (today onward). */
-export function feedSessions(text, feed, { timezone = 'America/Chicago', today = localDateTime(Date.now(), timezone).date } = {}) {
+export function feedSessions(text, feed, { timezone = 'America/Chicago', today = localDateTime(Date.now(), timezone).date, horizonDays = null } = {}) {
+  const until = horizonDays ? addDays(today, horizonDays) : null;
   const include = feed.include ? new RegExp(feed.include, 'i') : null;
   const exclude = feed.exclude ? new RegExp(feed.exclude, 'i') : null;
   const out = [];
@@ -59,7 +63,7 @@ export function feedSessions(text, feed, { timezone = 'America/Chicago', today =
     if (!title || (include && !include.test(title)) || (exclude && exclude.test(title))) continue;
     if (/^CANCELLED$/i.test(ev.STATUS?.value ?? '')) continue;
     const start = icsTime(ev.DTSTART, timezone);
-    if (!start?.time || start.date < today) continue;
+    if (!start?.time || start.date < today || (until && start.date > until)) continue;
     const end = icsTime(ev.DTEND, timezone);
     const desc = unescape(ev.DESCRIPTION?.value);
     const named = desc.match(/@\s*([A-Z][^.\n(]{2,60}?)\s*(?:\(|\.|\n|$)/)?.[1]?.trim();
@@ -81,7 +85,7 @@ export function feedSessions(text, feed, { timezone = 'America/Chicago', today =
   return out;
 }
 
-export async function scrape({ options, timezone, fetch }) {
+export async function scrape({ options, timezone, fetch, ref }) {
   const feeds = options?.feeds ?? [];
   if (!feeds.length) throw new Error('ical: no feeds configured');
   const sessions = [], warnings = [];
@@ -90,7 +94,7 @@ export async function scrape({ options, timezone, fetch }) {
       const res = await get(feed.url, { fetch });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       if (!/BEGIN:VCALENDAR/.test(res.text)) throw new Error('not a calendar feed');
-      sessions.push(...feedSessions(res.text, feed, { timezone }));
+      sessions.push(...feedSessions(res.text, feed, { timezone, ...(ref ? { today: ref, horizonDays: HORIZON_DAYS } : {}) }));
     } catch (e) { warnings.push(`${feed.url}: ${e.message}`); }
   }
   if (!sessions.length && warnings.length === feeds.length) throw new Error(warnings.join('; '));
