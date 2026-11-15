@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T09:17:32.066Z",
+  "generatedAt": "2026-11-15T10:16:50.370Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:23.921Z",
+      "checkedAt": "2026-11-15T10:13:17.900Z",
       "count": 277
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:23.921Z",
+      "checkedAt": "2026-11-15T10:13:17.901Z",
       "count": 155
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:23.921Z",
+      "checkedAt": "2026-11-15T10:13:17.901Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:23.921Z",
+      "checkedAt": "2026-11-15T10:13:17.901Z",
       "count": 11
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T09:17:27.111Z",
+      "checkedAt": "2026-11-15T10:13:17.902Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -80,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:23.922Z",
+      "checkedAt": "2026-11-15T10:13:17.902Z",
       "count": 6
     },
     {
@@ -90,7 +90,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:23.992Z",
+      "checkedAt": "2026-11-15T10:13:17.936Z",
       "count": 3
     },
     {
@@ -120,7 +120,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:24.224Z",
+      "checkedAt": "2026-11-15T10:13:18.207Z",
       "count": 35
     },
     {
@@ -130,7 +130,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:25.572Z",
+      "checkedAt": "2026-11-15T10:13:20.068Z",
       "count": 24
     },
     {
@@ -150,7 +150,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T09:17:27.111Z",
+      "checkedAt": "2026-11-15T10:13:20.632Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -161,7 +161,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T09:17:27.111Z",
+      "checkedAt": "2026-11-15T10:13:20.758Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     },
@@ -172,7 +172,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T09:17:27.112Z",
+      "checkedAt": "2026-11-15T10:13:20.921Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -225,7 +225,7 @@
       "region": "houston",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T09:13:29.303Z",
+      "checkedAt": "2026-11-15T10:13:23.414Z",
       "count": 20,
       "warnings": [
         "reclub-FAL015: no surface",
@@ -15082,6 +15082,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -15106,6 +15107,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -15130,6 +15132,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15154,6 +15157,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15178,6 +15182,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -15202,6 +15207,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-wakefield-crowbar",
       "status": "scheduled"
     },
     {
@@ -15226,6 +15232,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -15250,6 +15257,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-emancipation-park",
       "status": "scheduled"
     },
     {
@@ -15274,6 +15282,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15298,6 +15307,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15322,6 +15332,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -15346,6 +15357,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-blastros",
       "status": "scheduled"
     },
     {
@@ -15370,6 +15382,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -15394,6 +15407,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -15418,6 +15432,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15442,6 +15457,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15466,6 +15482,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -15490,6 +15507,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16691,6 +16709,96 @@
       "lat": 32.69886,
       "lng": -97.25003,
       "region": "dallas"
+    },
+    {
+      "id": "src-absolute-volleyball-academy-and-absolute-beach",
+      "name": "Absolute Volleyball Academy and Absolute Beach",
+      "city": null,
+      "address": "380 Green Wing St, Webster, Tx",
+      "lat": 29.536505,
+      "lng": -95.1123,
+      "region": "houston"
+    },
+    {
+      "id": "src-skyline-volleyball-academy",
+      "name": "Skyline Volleyball Academy",
+      "city": null,
+      "address": "23363 Clay Road, Katy, Tx",
+      "lat": 29.82756,
+      "lng": -95.77629,
+      "region": "houston"
+    },
+    {
+      "id": "src-tellepsen-family-downtown-ymca",
+      "name": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "address": "808 Pease St, Houston, TX",
+      "lat": 29.7521,
+      "lng": -95.3703,
+      "region": "houston"
+    },
+    {
+      "id": "src-katy-sports-center",
+      "name": "Katy Sports Center",
+      "city": null,
+      "address": "535 Applewhite Drive, Katy, TX 77450, USA",
+      "lat": 29.77552,
+      "lng": -95.754074,
+      "region": "houston"
+    },
+    {
+      "id": "src-wakefield-crowbar",
+      "name": "Wakefield Crowbar",
+      "city": null,
+      "address": "954 Wakefield Drive, Houston, TX 77018, USA",
+      "lat": 29.821991,
+      "lng": -95.42305,
+      "region": "houston"
+    },
+    {
+      "id": "src-emancipation-park",
+      "name": "Emancipation Park",
+      "city": null,
+      "address": "3018 Emancipation Avenue, Houston, Tx",
+      "lat": 29.73524,
+      "lng": -95.36563,
+      "region": "houston"
+    },
+    {
+      "id": "src-champion-forest-baptist-church-champions-campus",
+      "name": "Champion Forest Baptist Church - Champions Campus",
+      "city": null,
+      "address": "15555 Stuebner Airline Road, Houston, Tx",
+      "lat": 30.002792,
+      "lng": -95.51335,
+      "region": "houston"
+    },
+    {
+      "id": "src-blastros",
+      "name": "Blastros",
+      "city": null,
+      "address": "6922 Cotton Drive, Houston, TX 77092, USA",
+      "lat": 29.836542,
+      "lng": -95.49406,
+      "region": "houston"
+    },
+    {
+      "id": "src-t4-court-rentals",
+      "name": "T4 Court Rentals",
+      "city": null,
+      "address": "1419 Vander Wilt Lane, Katy, Tx",
+      "lat": 29.7893,
+      "lng": -95.7427,
+      "region": "houston"
+    },
+    {
+      "id": "src-collins-park",
+      "name": "Collins Park",
+      "city": null,
+      "address": "6727 Cypresswood Drive, Spring, TX",
+      "lat": 30.011,
+      "lng": -95.5077,
+      "region": "houston"
     }
   ]
 }
