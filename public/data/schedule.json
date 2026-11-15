@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-15T04:27:38.641Z",
+  "generatedAt": "2026-11-15T04:34:25.641Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -9,7 +9,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:56.353Z",
+      "checkedAt": "2026-11-15T04:30:32.838Z",
       "count": 270
     },
     {
@@ -19,7 +19,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:56.353Z",
+      "checkedAt": "2026-11-15T04:30:32.838Z",
       "count": 152
     },
     {
@@ -29,7 +29,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:56.354Z",
+      "checkedAt": "2026-11-15T04:30:32.839Z",
       "count": 8
     },
     {
@@ -39,7 +39,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:56.354Z",
+      "checkedAt": "2026-11-15T04:30:32.839Z",
       "count": 11
     },
     {
@@ -49,7 +49,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T04:23:56.355Z",
+      "checkedAt": "2026-11-15T04:30:32.839Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
     },
@@ -60,7 +60,7 @@
       "region": "austin",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:56.355Z",
+      "checkedAt": "2026-11-15T04:30:32.840Z",
       "count": 2
     },
     {
@@ -69,10 +69,9 @@
       "sport": "volleyball",
       "region": "austin",
       "cadence": "1d",
-      "ok": false,
-      "checkedAt": "2026-11-15T04:23:56.417Z",
-      "error": "Season dates not found on Velocity adult page",
-      "kept": 2
+      "ok": true,
+      "checkedAt": "2026-11-15T04:30:32.998Z",
+      "count": 2
     },
     {
       "id": "reclub",
@@ -81,7 +80,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:56.654Z",
+      "checkedAt": "2026-11-15T04:30:33.299Z",
       "count": 5
     },
     {
@@ -91,7 +90,7 @@
       "region": "austin",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:57.797Z",
+      "checkedAt": "2026-11-15T04:30:34.734Z",
       "count": 3
     },
     {
@@ -101,7 +100,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:58.822Z",
+      "checkedAt": "2026-11-15T04:30:34.746Z",
       "count": 34
     },
     {
@@ -111,7 +110,7 @@
       "region": "austin",
       "cadence": "30m",
       "ok": true,
-      "checkedAt": "2026-11-15T04:23:59.335Z",
+      "checkedAt": "2026-11-15T04:30:34.940Z",
       "count": 22
     },
     {
@@ -121,7 +120,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": true,
-      "checkedAt": "2026-11-15T04:24:03.529Z",
+      "checkedAt": "2026-11-15T04:30:38.291Z",
       "count": 13
     },
     {
@@ -131,7 +130,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:24:04.042Z",
+      "checkedAt": "2026-11-15T04:30:38.667Z",
       "error": "fetch failed",
       "kept": 0
     },
@@ -142,7 +141,7 @@
       "region": "austin",
       "cadence": "1d",
       "ok": false,
-      "checkedAt": "2026-11-15T04:24:04.085Z",
+      "checkedAt": "2026-11-15T04:30:38.762Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     },
@@ -153,7 +152,7 @@
       "region": "dallas",
       "cadence": "1h",
       "ok": false,
-      "checkedAt": "2026-11-15T04:24:04.188Z",
+      "checkedAt": "2026-11-15T04:30:39.055Z",
       "error": "No Reclub meets found",
       "kept": 0
     },
@@ -164,7 +163,7 @@
       "region": "dallas",
       "cadence": "6h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:24:09.220Z",
+      "checkedAt": "2026-11-15T04:30:40.179Z",
       "count": 15,
       "warnings": [
         "meetup-ntav-event_317170126-2026-11-16: no venue name",
@@ -187,7 +186,7 @@
       "region": "houston",
       "cadence": "1h",
       "ok": true,
-      "checkedAt": "2026-11-15T04:24:10.603Z",
+      "checkedAt": "2026-11-15T04:30:41.571Z",
       "count": 15,
       "warnings": [
         "reclub-7GW4KD: no surface",
@@ -12014,59 +12013,57 @@
       "status": "scheduled"
     },
     {
+      "id": "velocity-2026-11-15",
+      "date": "2026-11-15",
       "start": "17:00",
       "end": "20:00",
-      "title": "Austin Velocity Adult Open Gym",
+      "title": "Austin Velocity Fall/Winter Adult Open Gym",
       "venue": "The Crossover",
       "city": "Cedar Park",
       "surface": "indoor",
       "type": "Open play",
-      "level": "Ages 17+ · competitive, self-called",
+      "level": "Competitive · 17+",
       "price": "$10 online · $12 door",
       "capacity": 42,
-      "note": "Season pass or drop in. Updates post on Instagram @austinvelocityadults.",
+      "note": "Self-called, no referees. Updates post on Instagram @austinvelocityadults.",
       "signup": {
-        "url": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
-        "label": "Book on Austin Velocity"
+        "url": "https://app.acuityscheduling.com/schedule.php?owner=19750684&appointmentType=99989782",
+        "label": "Book a session"
       },
       "source": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
-      "id": "velocity-2026-11-15",
-      "date": "2026-11-15",
       "sourceId": "velocity",
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "crossover",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
+      "id": "velocity-2026-11-22",
+      "date": "2026-11-22",
       "start": "17:00",
       "end": "20:00",
-      "title": "Austin Velocity Adult Open Gym",
+      "title": "Austin Velocity Fall/Winter Adult Open Gym",
       "venue": "The Crossover",
       "city": "Cedar Park",
       "surface": "indoor",
       "type": "Open play",
-      "level": "Ages 17+ · competitive, self-called",
+      "level": "Competitive · 17+",
       "price": "$10 online · $12 door",
       "capacity": 42,
-      "note": "Season pass or drop in. Updates post on Instagram @austinvelocityadults.",
+      "note": "Self-called, no referees. Updates post on Instagram @austinvelocityadults.",
       "signup": {
-        "url": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
-        "label": "Book on Austin Velocity"
+        "url": "https://app.acuityscheduling.com/schedule.php?owner=19750684&appointmentType=99989782",
+        "label": "Book a session"
       },
       "source": "https://www.austinvelocity.com/rentals/fall-winter-adult-open-gym",
-      "id": "velocity-2026-11-22",
-      "date": "2026-11-22",
       "sourceId": "velocity",
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-13",
+      "verifiedAt": "2026-11-14",
       "venueId": "crossover",
-      "checkFailed": "2026-11-14",
       "status": "scheduled"
     },
     {
@@ -14869,7 +14866,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "watchError": "HTTP 403",
+      "sourceChanged": "2026-11-14",
       "venueId": "hanovers",
       "status": "scheduled"
     },
