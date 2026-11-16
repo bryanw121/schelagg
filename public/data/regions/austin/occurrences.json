@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-16T17:16:17.366Z",
+  "generatedAt": "2026-11-16T17:46:40.307Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -10335,35 +10335,6 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "daysmart-chaparralice-348129",
-      "session_id": "daysmart-chaparralice-348129",
-      "source_id": "chaparral-ice",
-      "sport": "ice_skating",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Public Skate",
-      "venue": "Chaparral Ice",
-      "city": "N. Austin (Northcross)",
-      "level": null,
-      "price": null,
-      "starts_at": "2026-11-22T01:15:00.000Z",
-      "ends_at": "2026-11-22T03:15:00.000Z",
-      "signup_url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-      "signup_label": "Rink calendar",
-      "note": "No reservation needed. Skate rental at the rink.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Public skate",
-        "rink": "Northcross Rink",
-        "capacity": 200
-      },
-      "venue_id": "chaparral-northcross",
       "status": "scheduled",
       "previous_starts_at": null
     },
