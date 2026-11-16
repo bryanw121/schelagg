@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-16T01:16:39.060Z",
+  "generatedAt": "2026-11-16T01:46:43.516Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -468,91 +468,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "openplay-austin-pickle-ranch-01a17528-6b13-7aad-a2d5-bb4b25ed0e98",
-      "session_id": "openplay-austin-pickle-ranch-01a17528-6b13-7aad-a2d5-bb4b25ed0e98",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-15T23:00:00.000Z",
-      "ends_at": "2026-11-16T01:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a17528-6b13-7aad-a2d5-bb4b25ed0e98",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a1bca0-0887-755d-b4b6-210a9ebbeb57",
-      "session_id": "openplay-austin-pickle-ranch-01a1bca0-0887-755d-b4b6-210a9ebbeb57",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "level": null,
-      "price": "$12 / person (listed)",
-      "starts_at": "2026-11-15T23:00:00.000Z",
-      "ends_at": "2026-11-16T01:00:00.000Z",
-      "signup_url": "https://austinpickleranch.podplay.app/community/events/01a1bca0-0887-755d-b4b6-210a9ebbeb57",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-pickle-pit-stop-86b514076933726f",
-      "session_id": "openplay-pickle-pit-stop-86b514076933726f",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play- Advanced (Suggested DUPR 4.00-5.00)",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "level": "4.00–5.00",
-      "price": "$18 / person (venue rate; confirm)",
-      "starts_at": "2026-11-15T23:00:00.000Z",
-      "ends_at": "2026-11-16T01:00:00.000Z",
-      "signup_url": "https://app.courtreserve.com/Online/Events/Details/15273/8LYZLGF15273108?resId=56120116",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 15, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-15",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play",
-        "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-pit-stop",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "velocity-2026-11-15",
       "session_id": "velocity-2026-11-15",
       "source_id": "velocity",
@@ -658,7 +573,7 @@
         "type": "Open play",
         "capacity": 32
       },
-      "venue_id": null,
+      "venue_id": "src-blastros",
       "status": "cancelled",
       "previous_starts_at": null
     },
@@ -933,7 +848,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3043,7 +2958,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3239,7 +3154,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3456,7 +3371,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-harvest-time-church",
       "status": "rescheduled",
       "previous_starts_at": "2026-11-17T01:30:00.000Z"
     },
@@ -3567,7 +3482,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5286,7 +5201,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5340,7 +5255,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7889,7 +7804,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9722,7 +9637,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9776,7 +9691,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11236,7 +11151,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11484,7 +11399,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-wakefield-crowbar",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11678,7 +11593,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12704,7 +12619,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12731,7 +12646,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14734,7 +14649,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17560,7 +17475,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },

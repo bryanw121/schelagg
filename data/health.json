@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        273,
         271,
         271,
         271,
@@ -11,9 +10,10 @@
         267,
         267,
         275,
-        275
+        275,
+        272
       ],
-      "sessions": 275,
+      "sessions": 272,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 762
+      "failStreak": 763
     },
     "atxbeach": {
       "counts": [
@@ -915,13 +915,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 471
+      "failStreak": 472
     },
     "leander-pickleball": {
-      "failStreak": 471
+      "failStreak": 472
     },
     "dallas-reclub": {
-      "failStreak": 103
+      "failStreak": 104
     },
     "sportsgarden": {
       "counts": [
@@ -1116,6 +1116,7 @@
         "participants[]",
         "participants[].createdAt",
         "participants[].externalReference",
+        "participants[].externalReference.level",
         "participants[].externalReference.name",
         "participants[].id",
         "participants[].isCoach",
