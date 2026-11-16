@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-16T18:46:46.824Z",
+  "generatedAt": "2026-11-16T19:16:42.236Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1575,7 +1575,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1771,7 +1771,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1988,7 +1988,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-harvest-time-church",
       "status": "rescheduled",
       "previous_starts_at": "2026-11-17T01:30:00.000Z"
     },
@@ -2099,7 +2099,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2126,7 +2126,7 @@
         "type": "Open play",
         "capacity": 120
       },
-      "venue_id": null,
+      "venue_id": "src-houston-stars",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3845,7 +3845,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3899,7 +3899,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6394,7 +6394,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8264,60 +8264,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "opencourt-bef44305-ff4a-45dc-9e02-04b4a73c7ca3",
-      "session_id": "opencourt-bef44305-ff4a-45dc-9e02-04b4a73c7ca3",
-      "source_id": "austin-picklehaus",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Austin PickleHaus · Level 2 Mittel Play – Upper (3.0+)",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "level": "3–3.59 recommended",
-      "price": "$15 / person (nonmember)",
-      "starts_at": "2026-11-19T23:00:00.000Z",
-      "ends_at": "2026-11-20T01:00:00.000Z",
-      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/bef44305-ff4a-45dc-9e02-04b4a73c7ca3",
-      "signup_label": "View event & book",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "austin-picklehaus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "opencourt-c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
-      "session_id": "opencourt-c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
-      "source_id": "austin-picklehaus",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Austin PickleHaus · Level 2 Mittel Play",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "level": "2.5–3.59 recommended",
-      "price": "$15 / person (nonmember)",
-      "starts_at": "2026-11-19T23:00:00.000Z",
-      "ends_at": "2026-11-20T01:00:00.000Z",
-      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
-      "signup_label": "View event & book",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "austin-picklehaus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "active-110264694-2026-11-19",
       "session_id": "active-110264694",
       "source_id": "dfw-city-active",
@@ -8343,6 +8289,60 @@
       "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
+    },
+    {
+      "id": "opencourt-bef44305-ff4a-45dc-9e02-04b4a73c7ca3",
+      "session_id": "opencourt-bef44305-ff4a-45dc-9e02-04b4a73c7ca3",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Level 2 Mittel Play – Upper (3.0+)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "3–3.59 recommended",
+      "price": "$15 / person (nonmember)",
+      "starts_at": "2026-11-20T00:00:00.000Z",
+      "ends_at": "2026-11-20T02:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/bef44305-ff4a-45dc-9e02-04b4a73c7ca3",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-16",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
+      "status": "rescheduled",
+      "previous_starts_at": "2026-11-19T23:00:00.000Z"
+    },
+    {
+      "id": "opencourt-c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
+      "session_id": "opencourt-c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
+      "source_id": "austin-picklehaus",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Austin PickleHaus · Level 2 Mittel Play",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "level": "2.5–3.59 recommended",
+      "price": "$15 / person (nonmember)",
+      "starts_at": "2026-11-20T00:00:00.000Z",
+      "ends_at": "2026-11-20T02:00:00.000Z",
+      "signup_url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
+      "signup_label": "View event & book",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "canceled": false,
+      "verified_at": "2026-11-16",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "austin-picklehaus",
+      "status": "rescheduled",
+      "previous_starts_at": "2026-11-19T23:00:00.000Z"
     },
     {
       "id": "openplay-eastside-paddle-club-01a17e8d-888f-7338-8b24-31e0feb8fc72",
@@ -8423,7 +8423,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8477,7 +8477,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9937,7 +9937,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10352,7 +10352,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11378,7 +11378,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11405,7 +11405,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11572,7 +11572,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13892,7 +13892,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17021,7 +17021,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -18463,7 +18463,7 @@
         "type": "Open play",
         "capacity": 45
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
