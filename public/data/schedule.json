@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T15:47:25.301Z",
+  "generatedAt": "2026-11-16T16:16:52.562Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -12,7 +12,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-16T15:44:16.061Z",
+      "checkedAt": "2026-11-16T16:13:44.268Z",
       "count": 276
     },
     {
@@ -25,7 +25,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-16T15:44:16.062Z",
+      "checkedAt": "2026-11-16T16:13:44.269Z",
       "count": 160
     },
     {
@@ -38,7 +38,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-16T15:44:16.062Z",
+      "checkedAt": "2026-11-16T16:13:44.269Z",
       "count": 8
     },
     {
@@ -51,7 +51,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-16T15:44:16.062Z",
+      "checkedAt": "2026-11-16T16:13:44.269Z",
       "count": 11
     },
     {
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-16T15:44:16.063Z",
+      "checkedAt": "2026-11-16T16:13:44.270Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -119,7 +119,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T15:13:25.244Z",
+      "checkedAt": "2026-11-16T16:13:44.270Z",
       "count": 6
     },
     {
@@ -146,7 +146,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T15:13:25.320Z",
+      "checkedAt": "2026-11-16T16:13:44.372Z",
       "count": 2
     },
     {
@@ -216,7 +216,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-16T15:44:17.362Z",
+      "checkedAt": "2026-11-16T16:13:44.806Z",
       "count": 38
     },
     {
@@ -229,7 +229,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-16T15:44:17.573Z",
+      "checkedAt": "2026-11-16T16:13:46.205Z",
       "count": 24
     },
     {
@@ -255,7 +255,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-16T15:44:18.053Z",
+      "checkedAt": "2026-11-16T16:13:48.055Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -270,7 +270,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-16T15:44:18.251Z",
+      "checkedAt": "2026-11-16T16:13:48.276Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -295,7 +295,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-16T15:44:18.358Z",
+      "checkedAt": "2026-11-16T16:13:48.349Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -435,7 +435,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T15:13:30.241Z",
+      "checkedAt": "2026-11-16T16:13:48.731Z",
       "count": 19,
       "warnings": [
         "reclub-MG2YXV: no surface",
@@ -7932,57 +7932,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-8f7cb640-ed9c-4701-9b33-880f4f41adc0",
-      "date": "2026-11-16",
-      "start": "07:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Men's Rise & Rally",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$8 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f7cb640-ed9c-4701-9b33-880f4f41adc0",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f7cb640-ed9c-4701-9b33-880f4f41adc0",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-b8ed8b64-5644-4e25-a231-4dff305f4641",
-      "date": "2026-11-16",
-      "start": "07:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Gated Miester Play 3.7+",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$8 / person (nonmember)",
-      "level": "3.7–6 required",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b8ed8b64-5644-4e25-a231-4dff305f4641",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b8ed8b64-5644-4e25-a231-4dff305f4641",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-5eeeb64b-746f-46dd-9ef4-de73a28c4a28",
       "date": "2026-11-16",
       "start": "09:00",
@@ -8163,6 +8112,84 @@
       "status": "scheduled"
     },
     {
+      "id": "opencourt-b644199a-1483-4765-a66e-7a2b7b7c8830",
+      "date": "2026-11-16",
+      "start": "16:00",
+      "end": "18:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Level 1 Neuling Play",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$15 / person (nonmember)",
+      "level": "0–2.49 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b644199a-1483-4765-a66e-7a2b7b7c8830",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b644199a-1483-4765-a66e-7a2b7b7c8830",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-16",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-d0748308-82f5-413e-a17a-b0654f7bd752",
+      "date": "2026-11-16",
+      "start": "16:00",
+      "end": "18:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Level 2 Mittel Play – Upper (3.0+)",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$15 / person (nonmember)",
+      "level": "3–3.59 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d0748308-82f5-413e-a17a-b0654f7bd752",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d0748308-82f5-413e-a17a-b0654f7bd752",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-16",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-b8ed8b64-5644-4e25-a231-4dff305f4641",
+      "date": "2026-11-16",
+      "start": "07:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Gated Miester Play 3.7+",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$8 / person (nonmember)",
+      "level": "3.7–6 required",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b8ed8b64-5644-4e25-a231-4dff305f4641",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b8ed8b64-5644-4e25-a231-4dff305f4641",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-16",
+      "venueId": "austin-picklehaus",
+      "status": "scheduled"
+    },
+    {
       "id": "opencourt-e0469269-0bbc-4355-8721-367f3008cd03",
       "date": "2026-11-16",
       "start": "16:00",
@@ -8266,22 +8293,21 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-d0748308-82f5-413e-a17a-b0654f7bd752",
+      "id": "opencourt-8f7cb640-ed9c-4701-9b33-880f4f41adc0",
       "date": "2026-11-16",
-      "start": "16:00",
-      "end": "18:00",
+      "start": "07:00",
+      "end": "10:00",
       "sport": "pickleball",
-      "title": "Austin PickleHaus · Level 2 Mittel Play – Upper (3.0+)",
+      "title": "Austin PickleHaus · Men's Rise & Rally",
       "venue": "Austin PickleHaus",
       "city": "Pflugerville",
       "surface": "indoor",
       "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "3–3.59 recommended",
+      "price": "$8 / person (nonmember)",
       "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d0748308-82f5-413e-a17a-b0654f7bd752",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f7cb640-ed9c-4701-9b33-880f4f41adc0",
       "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/d0748308-82f5-413e-a17a-b0654f7bd752",
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/8f7cb640-ed9c-4701-9b33-880f4f41adc0",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
@@ -8359,32 +8385,6 @@
       "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/03356ec1-4a43-47ca-af75-6808f35f5a66",
       "signup": {
         "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/03356ec1-4a43-47ca-af75-6808f35f5a66",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-b644199a-1483-4765-a66e-7a2b7b7c8830",
-      "date": "2026-11-16",
-      "start": "16:00",
-      "end": "18:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Level 1 Neuling Play",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "0–2.49 recommended",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b644199a-1483-4765-a66e-7a2b7b7c8830",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/b644199a-1483-4765-a66e-7a2b7b7c8830",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
@@ -12070,31 +12070,6 @@
       "status": "scheduled"
     },
     {
-      "id": "opencourt-88508bcf-8263-4b5b-bc7f-cd4cc2cfd8c3",
-      "date": "2026-11-16",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Holy Pickle · Open Play",
-      "venue": "Holy Pickle",
-      "city": "Austin",
-      "surface": "outdoor",
-      "type": "Open play",
-      "price": "$10 / person (nonmember)",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/88508bcf-8263-4b5b-bc7f-cd4cc2cfd8c3",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/88508bcf-8263-4b5b-bc7f-cd4cc2cfd8c3",
-        "label": "View event & book"
-      },
-      "sourceId": "holy-pickle",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "austin-holy-pickle",
-      "status": "scheduled"
-    },
-    {
       "id": "opencourt-68c95865-53de-4778-a647-d5543c76b326",
       "date": "2026-11-17",
       "start": "19:00",
@@ -12260,6 +12235,31 @@
       "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/56803e13-eedd-41eb-b3b8-e92fb31c2059",
       "signup": {
         "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/56803e13-eedd-41eb-b3b8-e92fb31c2059",
+        "label": "View event & book"
+      },
+      "sourceId": "holy-pickle",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-16",
+      "venueId": "austin-holy-pickle",
+      "status": "scheduled"
+    },
+    {
+      "id": "opencourt-88508bcf-8263-4b5b-bc7f-cd4cc2cfd8c3",
+      "date": "2026-11-16",
+      "start": "08:00",
+      "end": "10:00",
+      "sport": "pickleball",
+      "title": "Holy Pickle · Open Play",
+      "venue": "Holy Pickle",
+      "city": "Austin",
+      "surface": "outdoor",
+      "type": "Open play",
+      "price": "$10 / person (nonmember)",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/holy-pickle/schedule/event/88508bcf-8263-4b5b-bc7f-cd4cc2cfd8c3",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/holy-pickle/schedule/event/88508bcf-8263-4b5b-bc7f-cd4cc2cfd8c3",
         "label": "View event & book"
       },
       "sourceId": "holy-pickle",
@@ -15848,7 +15848,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15874,7 +15873,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15900,7 +15898,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15926,7 +15923,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15952,7 +15948,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15978,7 +15973,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -16004,7 +15998,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -16030,7 +16023,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -16056,7 +16048,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -16082,7 +16073,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -16107,6 +16097,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-houston-stars",
       "status": "scheduled"
     },
     {
@@ -16131,6 +16122,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -16155,6 +16147,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -16179,6 +16172,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -16203,6 +16197,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -16227,6 +16222,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -16251,6 +16247,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -16275,6 +16272,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -16299,6 +16297,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-emancipation-park",
       "status": "scheduled"
     },
     {
@@ -16323,6 +16322,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16347,6 +16347,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16371,6 +16372,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16395,6 +16397,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -16419,6 +16422,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -16443,6 +16447,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-harvest-time-church",
       "status": "rescheduled",
       "previousStart": "2026-11-16 19:30"
     },
@@ -16468,6 +16473,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16492,6 +16498,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16516,6 +16523,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -17740,13 +17748,94 @@
       "region": "dallas"
     },
     {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
-      "region": "dallas"
+      "id": "src-houston-stars",
+      "name": "Houston Stars",
+      "city": null,
+      "address": "6942 Cotton Drive, Houston, Tx",
+      "lat": 29.836397,
+      "lng": -95.49456,
+      "region": "houston"
+    },
+    {
+      "id": "src-skyline-volleyball-academy",
+      "name": "Skyline Volleyball Academy",
+      "city": null,
+      "address": "23363 Clay Road, Katy, Tx",
+      "lat": 29.82756,
+      "lng": -95.77629,
+      "region": "houston"
+    },
+    {
+      "id": "src-tellepsen-family-downtown-ymca",
+      "name": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "address": "808 Pease St, Houston, TX",
+      "lat": 29.7521,
+      "lng": -95.3703,
+      "region": "houston"
+    },
+    {
+      "id": "src-absolute-volleyball-academy-and-absolute-beach",
+      "name": "Absolute Volleyball Academy and Absolute Beach",
+      "city": null,
+      "address": "380 Green Wing St, Webster, Tx",
+      "lat": 29.536505,
+      "lng": -95.1123,
+      "region": "houston"
+    },
+    {
+      "id": "src-katy-sports-center",
+      "name": "Katy Sports Center",
+      "city": null,
+      "address": "535 Applewhite Drive, Katy, TX 77450, USA",
+      "lat": 29.77552,
+      "lng": -95.754074,
+      "region": "houston"
+    },
+    {
+      "id": "src-emancipation-park",
+      "name": "Emancipation Park",
+      "city": null,
+      "address": "3018 Emancipation Avenue, Houston, Tx",
+      "lat": 29.73524,
+      "lng": -95.36563,
+      "region": "houston"
+    },
+    {
+      "id": "src-champion-forest-baptist-church-champions-campus",
+      "name": "Champion Forest Baptist Church - Champions Campus",
+      "city": null,
+      "address": "15555 Stuebner Airline Road, Houston, Tx",
+      "lat": 30.002792,
+      "lng": -95.51335,
+      "region": "houston"
+    },
+    {
+      "id": "src-t4-court-rentals",
+      "name": "T4 Court Rentals",
+      "city": null,
+      "address": "1419 Vander Wilt Lane, Katy, Tx",
+      "lat": 29.7893,
+      "lng": -95.7427,
+      "region": "houston"
+    },
+    {
+      "id": "src-harvest-time-church",
+      "name": "Harvest Time Church",
+      "city": null,
+      "address": "Imperial Valley Drive, Houston, TX",
+      "lat": 29.955013,
+      "lng": -95.39814,
+      "region": "houston"
+    },
+    {
+      "id": "src-collins-park",
+      "name": "Collins Park",
+      "city": null,
+      "address": "6727 Cypresswood Drive, Spring, TX",
+      "lat": 30.011,
+      "lng": -95.5077,
+      "region": "houston"
     }
   ]
 }
