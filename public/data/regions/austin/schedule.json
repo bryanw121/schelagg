@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T04:16:45.833Z",
+  "generatedAt": "2026-11-16T05:16:53.106Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-16T04:13:29.956Z",
+      "checkedAt": "2026-11-16T05:13:15.960Z",
       "count": 267
     },
     {
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-16T04:13:29.956Z",
+      "checkedAt": "2026-11-16T05:13:15.960Z",
       "count": 155
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-16T04:13:29.957Z",
+      "checkedAt": "2026-11-16T05:13:15.960Z",
       "count": 8
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-16T04:13:29.957Z",
+      "checkedAt": "2026-11-16T05:13:15.960Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-16T04:13:29.957Z",
+      "checkedAt": "2026-11-16T05:13:15.961Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -124,7 +124,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T03:43:48.911Z",
+      "checkedAt": "2026-11-16T05:13:15.962Z",
       "count": 6
     },
     {
@@ -151,8 +151,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T03:43:49.181Z",
-      "count": 3
+      "checkedAt": "2026-11-16T05:13:16.006Z",
+      "count": 2
     },
     {
       "id": "volleyball-austin",
@@ -221,7 +221,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-16T04:13:29.958Z",
+      "checkedAt": "2026-11-16T05:13:16.377Z",
       "count": 35
     },
     {
@@ -234,7 +234,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-16T04:13:30.073Z",
+      "checkedAt": "2026-11-16T05:13:17.639Z",
       "count": 24
     },
     {
@@ -260,7 +260,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-16T04:13:30.443Z",
+      "checkedAt": "2026-11-16T05:13:17.751Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -275,7 +275,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-16T04:13:30.645Z",
+      "checkedAt": "2026-11-16T05:13:17.955Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -12339,32 +12339,6 @@
         "label": "RSVP on Sweatpals"
       },
       "source": "https://sweatpals.com/host/ATXBeach",
-      "sourceId": "sweatpals",
-      "sport": "volleyball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "atx-beach",
-      "status": "scheduled"
-    },
-    {
-      "id": "sweatpals-sunday-funday-open-play-28-2026-11-15-1900",
-      "date": "2026-11-15",
-      "start": "19:00",
-      "end": "22:00",
-      "title": "Sunday Funday open play",
-      "venue": "ATX Beach",
-      "city": "North Austin",
-      "surface": "sand",
-      "type": "Open play",
-      "level": null,
-      "price": "$10",
-      "note": "Hosted on Sweatpals.",
-      "signup": {
-        "url": "https://sweatpals.com/event/sunday-funday-open-play-28/2026-11-15",
-        "label": "RSVP on Sweatpals"
-      },
-      "source": "https://sweatpals.com/host/atxsandsocial",
       "sourceId": "sweatpals",
       "sport": "volleyball",
       "region": "austin",
