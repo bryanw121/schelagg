@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-16T00:16:41.287Z",
+  "generatedAt": "2026-11-16T00:46:43.903Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -26,7 +26,7 @@
         "type": "Open play",
         "capacity": 32
       },
-      "venue_id": null,
+      "venue_id": "src-blastros",
       "status": "cancelled",
       "previous_starts_at": null
     },
@@ -53,7 +53,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -80,7 +80,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -107,7 +107,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -119,11 +119,11 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "title": "Volleyball Pickup with Kimberly",
-      "venue": "Collins Park",
+      "venue": "Harvest Time Church",
       "city": null,
       "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-17T01:30:00.000Z",
+      "price": "$8",
+      "starts_at": "2026-11-17T02:00:00.000Z",
       "ends_at": "2026-11-17T04:00:00.000Z",
       "signup_url": "https://reclub.co/m/9QFCTQ",
       "signup_label": "Sign up on Reclub",
@@ -134,9 +134,9 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
+      "venue_id": "src-harvest-time-church",
+      "status": "rescheduled",
+      "previous_starts_at": "2026-11-17T01:30:00.000Z"
     },
     {
       "id": "reclub-HAHH2E",
@@ -161,7 +161,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -188,7 +188,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -215,7 +215,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -242,7 +242,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -269,7 +269,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -296,7 +296,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -323,7 +323,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -350,7 +350,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-wakefield-crowbar",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -377,7 +377,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -404,7 +404,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -431,7 +431,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -458,7 +458,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -485,7 +485,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     }
