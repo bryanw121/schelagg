@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         276,
-        276,
         277,
         277,
         277,
@@ -11,6 +10,7 @@
         276,
         276,
         276,
+        270,
         270
       ],
       "sessions": 270,
@@ -38,13 +38,13 @@
         160,
         160,
         160,
-        160
+        158
       ],
-      "sessions": 160,
+      "sessions": 158,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.86,
+        "level": 0.85,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 785
+      "failStreak": 786
     },
     "atxbeach": {
       "counts": [
@@ -918,13 +918,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 494
+      "failStreak": 495
     },
     "leander-pickleball": {
-      "failStreak": 494
+      "failStreak": 495
     },
     "dallas-reclub": {
-      "failStreak": 126
+      "failStreak": 127
     },
     "sportsgarden": {
       "counts": [
@@ -1060,7 +1060,7 @@
         20,
         20,
         20,
-        20,
+        19,
         19,
         19,
         19
@@ -1097,6 +1097,7 @@
         "feeType",
         "flags",
         "flags.GROUP_PROMOTED",
+        "flags.PROXIMITY_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",

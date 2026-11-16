@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T16:46:54.617Z",
+  "generatedAt": "2026-11-16T17:16:17.366Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-16T16:43:28.156Z",
+      "checkedAt": "2026-11-16T17:13:20.286Z",
       "count": 270
     },
     {
@@ -30,8 +30,8 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-16T16:43:28.156Z",
-      "count": 160
+      "checkedAt": "2026-11-16T17:13:20.286Z",
+      "count": 158
     },
     {
       "id": "holy-pickle",
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-16T16:43:28.156Z",
+      "checkedAt": "2026-11-16T17:13:20.287Z",
       "count": 8
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-16T16:43:28.156Z",
+      "checkedAt": "2026-11-16T17:13:20.287Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-16T16:43:28.157Z",
+      "checkedAt": "2026-11-16T17:13:20.288Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -124,7 +124,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T16:13:44.270Z",
+      "checkedAt": "2026-11-16T17:13:20.288Z",
       "count": 6
     },
     {
@@ -151,7 +151,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T16:13:44.372Z",
+      "checkedAt": "2026-11-16T17:13:20.332Z",
       "count": 2
     },
     {
@@ -221,7 +221,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-16T16:43:28.157Z",
+      "checkedAt": "2026-11-16T17:13:21.284Z",
       "count": 38
     },
     {
@@ -234,7 +234,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-16T16:43:28.267Z",
+      "checkedAt": "2026-11-16T17:13:23.161Z",
       "count": 24
     },
     {
@@ -260,7 +260,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-16T16:43:28.490Z",
+      "checkedAt": "2026-11-16T17:13:23.241Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -275,7 +275,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-16T16:43:28.658Z",
+      "checkedAt": "2026-11-16T17:13:23.451Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -8164,7 +8164,7 @@
       "start": "19:00",
       "end": "22:00",
       "sport": "pickleball",
-      "title": "Austin PickleHaus · Men's Doubles Round Robin – Miester 3.7+ (Gated)",
+      "title": "Austin PickleHaus · Miester 3.7+ Open play (Gated)",
       "venue": "Austin PickleHaus",
       "city": "Pflugerville",
       "surface": "indoor",
@@ -8331,58 +8331,6 @@
       "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/fd5acda7-ff30-46a6-ba9c-29111816a3dc",
       "signup": {
         "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/fd5acda7-ff30-46a6-ba9c-29111816a3dc",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-657ee4c0-70d3-4226-b91f-70667568f5be",
-      "date": "2026-11-17",
-      "start": "19:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Gated Miester Play 3.7+",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "3.7–6 required",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/657ee4c0-70d3-4226-b91f-70667568f5be",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/657ee4c0-70d3-4226-b91f-70667568f5be",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "austin-picklehaus",
-      "status": "scheduled"
-    },
-    {
-      "id": "opencourt-bc0afb76-a015-43e4-ab58-14d10c8990a3",
-      "date": "2026-11-17",
-      "start": "20:00",
-      "end": "22:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Gated Miester Play 3.7+",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "3.7–6 required",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/bc0afb76-a015-43e4-ab58-14d10c8990a3",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/bc0afb76-a015-43e4-ab58-14d10c8990a3",
         "label": "View event & book"
       },
       "sourceId": "austin-picklehaus",
