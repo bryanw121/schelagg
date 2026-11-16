@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         270,
-        270,
         268,
         268,
         268,
@@ -11,13 +10,14 @@
         264,
         264,
         264,
-        264
+        264,
+        257
       ],
-      "sessions": 264,
+      "sessions": 257,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.73,
+        "level": 0.74,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 797
+      "failStreak": 798
     },
     "atxbeach": {
       "counts": [
@@ -919,13 +919,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 506
+      "failStreak": 507
     },
     "leander-pickleball": {
-      "failStreak": 506
+      "failStreak": 507
     },
     "dallas-reclub": {
-      "failStreak": 138
+      "failStreak": 139
     },
     "sportsgarden": {
       "counts": [
@@ -978,7 +978,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 2
+      "failStreak": 3
     },
     "dfw-city-active": {
       "counts": [
@@ -1226,6 +1226,7 @@
     "aces:failing",
     "dallas-meetup:warning:venue \"Intentional Sports\" isn't in its region's venues.json",
     "dallas-reclub:failing",
+    "foro:failing",
     "georgetown-pickleball:failing",
     "houston-reclub:warning:reclub-3YV72K: no surface",
     "houston-reclub:warning:reclub-40RJ8U: no surface",
