@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T13:16:32.231Z",
+  "generatedAt": "2026-11-16T14:17:02.255Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -12,7 +12,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:19.203Z",
+      "checkedAt": "2026-11-16T14:13:27.688Z",
       "count": 277
     },
     {
@@ -25,7 +25,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:19.203Z",
+      "checkedAt": "2026-11-16T14:13:27.689Z",
       "count": 160
     },
     {
@@ -38,7 +38,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:19.204Z",
+      "checkedAt": "2026-11-16T14:13:27.689Z",
       "count": 8
     },
     {
@@ -51,7 +51,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:19.204Z",
+      "checkedAt": "2026-11-16T14:13:27.689Z",
       "count": 11
     },
     {
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-16T13:13:19.205Z",
+      "checkedAt": "2026-11-16T14:13:27.690Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -119,7 +119,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:19.205Z",
+      "checkedAt": "2026-11-16T14:13:27.690Z",
       "count": 6
     },
     {
@@ -146,7 +146,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:19.235Z",
+      "checkedAt": "2026-11-16T14:13:27.757Z",
       "count": 2
     },
     {
@@ -216,7 +216,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:19.601Z",
+      "checkedAt": "2026-11-16T14:13:27.946Z",
       "count": 38
     },
     {
@@ -229,7 +229,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:20.738Z",
+      "checkedAt": "2026-11-16T14:13:29.476Z",
       "count": 24
     },
     {
@@ -255,7 +255,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-16T13:13:22.862Z",
+      "checkedAt": "2026-11-16T14:13:29.569Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -270,7 +270,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-16T13:13:23.059Z",
+      "checkedAt": "2026-11-16T14:13:29.627Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -295,7 +295,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-16T13:13:23.160Z",
+      "checkedAt": "2026-11-16T14:13:29.664Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -435,8 +435,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:24.274Z",
-      "count": 20,
+      "checkedAt": "2026-11-16T14:13:32.503Z",
+      "count": 19,
       "warnings": [
         "reclub-MG2YXV: no surface",
         "reclub-HAHH2E: no surface",
@@ -444,7 +444,6 @@
         "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
         "reclub-RRZ3Q0: no surface",
-        "reclub-P07IQT: no surface",
         "reclub-K9D10X: no surface",
         "reclub-WQR08J: no surface",
         "reclub-Y2CRUB: no surface",
@@ -16255,31 +16254,6 @@
       "status": "scheduled"
     },
     {
-      "id": "reclub-P07IQT",
-      "date": "2026-11-20",
-      "start": "19:30",
-      "end": "23:00",
-      "title": "20 pm)",
-      "venue": "Wakefield Crowbar",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$5",
-      "note": "Hosted by Cultural Diversity Volleyball Social.",
-      "capacity": 40,
-      "signup": {
-        "url": "https://reclub.co/m/P07IQT",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/P07IQT",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "src-wakefield-crowbar",
-      "status": "scheduled"
-    },
-    {
       "id": "reclub-K9D10X",
       "date": "2026-11-23",
       "start": "19:00",
@@ -17844,15 +17818,6 @@
       "address": "535 Applewhite Drive, Katy, TX 77450, USA",
       "lat": 29.77552,
       "lng": -95.754074,
-      "region": "houston"
-    },
-    {
-      "id": "src-wakefield-crowbar",
-      "name": "Wakefield Crowbar",
-      "city": null,
-      "address": "954 Wakefield Drive, Houston, TX 77018, USA",
-      "lat": 29.821991,
-      "lng": -95.42305,
       "region": "houston"
     },
     {

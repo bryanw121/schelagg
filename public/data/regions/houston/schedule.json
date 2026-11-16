@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T13:16:32.231Z",
+  "generatedAt": "2026-11-16T14:17:02.255Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -63,8 +63,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T13:13:24.274Z",
-      "count": 20,
+      "checkedAt": "2026-11-16T14:13:32.503Z",
+      "count": 19,
       "warnings": [
         "reclub-MG2YXV: no surface",
         "reclub-HAHH2E: no surface",
@@ -72,7 +72,6 @@
         "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
         "reclub-RRZ3Q0: no surface",
-        "reclub-P07IQT: no surface",
         "reclub-K9D10X: no surface",
         "reclub-WQR08J: no surface",
         "reclub-Y2CRUB: no surface",
@@ -238,31 +237,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
       "venueId": "src-katy-sports-center",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-P07IQT",
-      "date": "2026-11-20",
-      "start": "19:30",
-      "end": "23:00",
-      "title": "20 pm)",
-      "venue": "Wakefield Crowbar",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$5",
-      "note": "Hosted by Cultural Diversity Volleyball Social.",
-      "capacity": 40,
-      "signup": {
-        "url": "https://reclub.co/m/P07IQT",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/P07IQT",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "src-wakefield-crowbar",
       "status": "scheduled"
     },
     {
@@ -612,15 +586,6 @@
       "address": "535 Applewhite Drive, Katy, TX 77450, USA",
       "lat": 29.77552,
       "lng": -95.754074,
-      "region": "houston"
-    },
-    {
-      "id": "src-wakefield-crowbar",
-      "name": "Wakefield Crowbar",
-      "city": null,
-      "address": "954 Wakefield Drive, Houston, TX 77018, USA",
-      "lat": 29.821991,
-      "lng": -95.42305,
       "region": "houston"
     },
     {
