@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-16T05:16:53.106Z",
+  "generatedAt": "2026-11-16T06:16:52.510Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -2285,6 +2285,33 @@
       "price": "$5 before 5 PM · $10 after",
       "starts_at": "2026-12-12T00:00:00.000Z",
       "ends_at": "2026-12-12T06:00:00.000Z",
+      "signup_url": "https://sportsgardendfw.com/open-play/",
+      "signup_label": "Drop in · court calendar",
+      "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
+      "canceled": false,
+      "verified_at": "2026-11-15",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "sports-garden",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "sportsgarden-south-1800-2400-2026-12-14",
+      "session_id": "sportsgarden-south-1800-2400",
+      "source_id": "sportsgarden",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Sand open play (South Side)",
+      "venue": "The Sports Garden",
+      "city": "Coppell",
+      "level": "All levels",
+      "price": "$5 before 5 PM · $10 after",
+      "starts_at": "2026-12-15T00:00:00.000Z",
+      "ends_at": "2026-12-15T06:00:00.000Z",
       "signup_url": "https://sportsgardendfw.com/open-play/",
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
