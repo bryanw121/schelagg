@@ -5,11 +5,11 @@
         270,
         270,
         270,
-        270,
         268,
         268,
         268,
         268,
+        264,
         264,
         264
       ],
@@ -29,7 +29,7 @@
     },
     "austin-picklehaus": {
       "counts": [
-        160,
+        158,
         158,
         158,
         158,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 795
+      "failStreak": 796
     },
     "atxbeach": {
       "counts": [
@@ -207,9 +207,9 @@
         2,
         2,
         2,
-        2
+        1
       ],
-      "sessions": 2,
+      "sessions": 1,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -675,7 +675,7 @@
         3,
         3,
         3,
-        3,
+        2,
         2,
         2
       ],
@@ -727,6 +727,7 @@
         10,
         10,
         10,
+        10,
         10
       ],
       "sessions": 10,
@@ -746,7 +747,7 @@
     "chaparral-ice": {
       "counts": [
         38,
-        38,
+        37,
         37,
         37,
         37,
@@ -918,13 +919,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 504
+      "failStreak": 505
     },
     "leander-pickleball": {
-      "failStreak": 504
+      "failStreak": 505
     },
     "dallas-reclub": {
-      "failStreak": 136
+      "failStreak": 137
     },
     "sportsgarden": {
       "counts": [
@@ -976,14 +977,15 @@
         "spotsLeft": 0,
         "signup": 1
       },
-      "contentHash": "dcabe29b882b9fa5"
+      "contentHash": "dcabe29b882b9fa5",
+      "failStreak": 1
     },
     "dfw-city-active": {
       "counts": [
         2,
         2,
         2,
-        2,
+        6,
         6,
         6,
         6,
@@ -1007,6 +1009,7 @@
     },
     "dfw-city-active-pickleball": {
       "counts": [
+        7,
         7,
         7,
         7
@@ -1036,9 +1039,9 @@
         12,
         12,
         12,
-        12
+        13
       ],
-      "sessions": 12,
+      "sessions": 13,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -1221,6 +1224,7 @@
   "manual": {},
   "reported": [
     "aces:failing",
+    "dallas-meetup:warning:venue \"Intentional Sports\" isn't in its region's venues.json",
     "dallas-reclub:failing",
     "georgetown-pickleball:failing",
     "houston-reclub:warning:reclub-3YV72K: no surface",
@@ -1253,10 +1257,10 @@
     "manual:beecave-on-ice-sat:changed:2026-11-12",
     "manual:beecave-on-ice-sun:changed:2026-11-12",
     "manual:beecave-on-ice-tue:changed:2026-11-12",
-    "manual:four-seasons-ice-rodeo:changed:2026-11-15",
+    "manual:four-seasons-ice-rodeo:changed:2026-11-16",
     "manual:hanovers-open:changed:2026-11-14",
     "manual:hanovers-open:unverified",
-    "manual:ssc-crossover-mon-sand:changed:2026-11-15",
+    "manual:ssc-crossover-mon-sand:changed:2026-11-16",
     "manual:ssc-crossover-mon-sand:unverified"
   ]
 }

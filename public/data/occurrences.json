@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-16T21:16:45.468Z",
+  "generatedAt": "2026-11-16T21:46:40.194Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -21,12 +21,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -211,7 +211,7 @@
       "signup_label": "Venue details",
       "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -240,12 +240,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -376,12 +376,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -403,7 +403,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -1182,7 +1182,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -1209,12 +1209,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1374,7 +1374,7 @@
       "signup_label": "Venue details",
       "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -1403,7 +1403,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -1430,7 +1430,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -1462,7 +1462,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": "src-champion-forest-baptist-church-champions-campus",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1658,7 +1658,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": "src-katy-sports-center",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1712,7 +1712,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1875,7 +1875,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": "src-harvest-time-church",
+      "venue_id": null,
       "status": "rescheduled",
       "previous_starts_at": "2026-11-17T01:30:00.000Z"
     },
@@ -1986,7 +1986,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": "src-skyline-volleyball-academy",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2013,7 +2013,7 @@
         "type": "Open play",
         "capacity": 120
       },
-      "venue_id": "src-houston-stars",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2089,12 +2089,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2447,12 +2447,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2697,12 +2697,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2724,7 +2724,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -2778,7 +2778,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -3672,12 +3672,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3732,7 +3732,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": "src-tellepsen-family-downtown-ymca",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3754,7 +3754,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -3786,7 +3786,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": "src-champion-forest-baptist-church-champions-campus",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -3813,7 +3813,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -4363,12 +4363,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -4750,12 +4750,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5056,12 +5056,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -5083,7 +5083,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -5252,12 +5252,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6029,12 +6029,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6220,7 +6220,7 @@
       "signup_label": "Venue details",
       "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -6249,7 +6249,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -6281,7 +6281,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": "src-collins-park",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6308,7 +6308,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6558,7 +6558,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6888,12 +6888,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7219,12 +7219,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7525,12 +7525,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -7552,7 +7552,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -7606,7 +7606,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -8083,7 +8083,7 @@
       "signup_label": "Venue details",
       "note": "Covered outdoor pavilion with temporary court markers. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play",
@@ -8112,7 +8112,7 @@
       "signup_label": "Venue details",
       "note": "Outdoor tennis courts. Equipment checkout ends at 6pm, before play ends. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "outdoor",
         "type": "Open play",
@@ -8168,12 +8168,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8310,7 +8310,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": "src-tellepsen-family-downtown-ymca",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8332,7 +8332,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -8364,7 +8364,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": "src-champion-forest-baptist-church-champions-campus",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8445,7 +8445,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -8935,7 +8935,7 @@
       "signup_label": "Venue details",
       "note": "Three indoor courts. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -8964,12 +8964,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9186,12 +9186,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9824,7 +9824,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": "src-emancipation-park",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9846,7 +9846,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -10239,7 +10239,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": "src-t4-court-rentals",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10370,12 +10370,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10510,12 +10510,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -10704,7 +10704,7 @@
       "signup_label": "Venue details",
       "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -10733,7 +10733,7 @@
       "signup_label": "Venue details",
       "note": "Two pickleball courts in the multi-purpose gym. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -10937,6 +10937,33 @@
         "type": "Open play"
       },
       "venue_id": "austin-pickleland",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-program-event_317459335-2026-11-21",
+      "session_id": "meetup-program-event_317459335-2026-11-21",
+      "source_id": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Saturday - $10 Open Gym Volleyball - Intentional Sports",
+      "venue": "Intentional Sports",
+      "city": "Dallas",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-21T20:00:00.000Z",
+      "ends_at": "2026-11-21T22:00:00.000Z",
+      "signup_url": "https://www.meetup.com/the-program-adult-volleyball-training/events/317459335/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by The Program.",
+      "canceled": false,
+      "verified_at": "2026-11-16",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11265,7 +11292,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": "src-collins-park",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11292,7 +11319,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": "src-collins-park",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11459,7 +11486,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11854,6 +11881,35 @@
       "previous_starts_at": null
     },
     {
+      "id": "pickleball-austin-gus-garcia-rec-3-2026-11-22",
+      "session_id": "pickleball-austin-gus-garcia-rec-3-2026-11-22",
+      "source_id": "austin-city-pickleball",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "title": "Gus Garcia Recreation Center · Pickleball open play",
+      "venue": "Gus Garcia Recreation Center",
+      "city": "Austin",
+      "level": null,
+      "price": "Price not published — confirm with venue",
+      "starts_at": "2026-11-22T19:00:00.000Z",
+      "ends_at": "2026-11-22T20:30:00.000Z",
+      "signup_url": "https://www.austintexas.gov/parks/locations/gustavo-gus-l-garcia-recreation-center",
+      "signup_label": "Venue details",
+      "note": "Three pickleball courts on one multi-purpose indoor court. City-published recurring hours, not a live reservation. Confirm changes and access before going. Holiday dates are withheld pending venue confirmation.",
+      "canceled": false,
+      "verified_at": "2026-11-16",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play",
+        "scheduleBasis": "published_recurring_hours",
+        "reviewBy": "2026-11-30"
+      },
+      "venue_id": "austin-gus-garcia-rec",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "daysmart-iceandfield-2387",
       "session_id": "daysmart-iceandfield-2387",
       "source_id": "ice-and-field",
@@ -12201,7 +12257,7 @@
       "signup_label": "Book a session",
       "note": "Self-called, no referees. Updates post on Instagram @austinvelocityadults.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play",
@@ -12477,12 +12533,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12723,12 +12779,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12916,12 +12972,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13471,7 +13527,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -13498,12 +13554,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13663,7 +13719,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -13690,7 +13746,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -13779,7 +13835,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": "src-katy-sports-center",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -13833,7 +13889,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14018,12 +14074,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14129,12 +14185,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14241,12 +14297,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14665,12 +14721,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14720,7 +14776,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -14809,7 +14865,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14917,12 +14973,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15057,12 +15113,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15169,12 +15225,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15282,12 +15338,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15561,12 +15617,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15615,7 +15671,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -15676,7 +15732,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15759,7 +15815,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15811,12 +15867,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15838,12 +15894,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-handley-meadowbrook-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15894,12 +15950,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15921,7 +15977,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -16117,12 +16173,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16144,7 +16200,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -16205,7 +16261,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16313,12 +16369,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-martin-luther-king-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16426,12 +16482,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-northside-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16677,7 +16733,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -16908,7 +16964,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": "src-t4-court-rentals",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16930,12 +16986,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17015,12 +17071,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-r-d-evans-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17842,12 +17898,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-victory-forest-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -18151,7 +18207,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -18178,12 +18234,12 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": null,
+      "venue_id": "src-greenbriar-community-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -18234,7 +18290,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -18261,7 +18317,7 @@
       "signup_label": "Details on ACTIVE",
       "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -18350,7 +18406,7 @@
         "type": "Open play",
         "capacity": 45
       },
-      "venue_id": "src-katy-sports-center",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -18453,7 +18509,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -18534,7 +18590,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -18642,7 +18698,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -18723,7 +18779,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -18912,7 +18968,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -19020,7 +19076,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -19101,7 +19157,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -19209,7 +19265,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -19290,7 +19346,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -19479,7 +19535,7 @@
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
-      "verified_at": "2026-11-15",
+      "verified_at": "2026-11-16",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
