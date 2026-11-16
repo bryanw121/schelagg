@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-16T09:16:51.696Z",
+  "generatedAt": "2026-11-16T09:37:54.767Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-16T09:13:21.342Z",
+      "checkedAt": "2026-11-16T09:34:48.572Z",
       "count": 276
     },
     {
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-16T09:13:21.342Z",
+      "checkedAt": "2026-11-16T09:34:48.573Z",
       "count": 160
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-16T09:13:21.343Z",
+      "checkedAt": "2026-11-16T09:34:48.573Z",
       "count": 8
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-16T09:13:21.343Z",
+      "checkedAt": "2026-11-16T09:34:48.573Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-16T09:13:21.344Z",
+      "checkedAt": "2026-11-16T09:34:48.574Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -84,7 +84,7 @@
       "kind": "Venue's schedule page",
       "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "ok": true,
-      "checkedAt": "2026-11-16T03:43:48.872Z",
+      "checkedAt": "2026-11-16T09:34:48.574Z",
       "count": 2
     },
     {
@@ -170,8 +170,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T03:43:50.229Z",
-      "count": 3
+      "checkedAt": "2026-11-16T09:34:48.637Z",
+      "count": 2
     },
     {
       "id": "austin-meetup",
@@ -189,7 +189,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T03:43:50.351Z",
+      "checkedAt": "2026-11-16T09:34:49.786Z",
       "count": 2
     },
     {
@@ -208,7 +208,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-16T03:43:50.902Z",
+      "checkedAt": "2026-11-16T09:34:50.198Z",
       "count": 10
     },
     {
@@ -221,7 +221,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-16T09:13:21.809Z",
+      "checkedAt": "2026-11-16T09:34:50.637Z",
       "count": 38
     },
     {
@@ -234,7 +234,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-16T09:13:22.764Z",
+      "checkedAt": "2026-11-16T09:34:50.891Z",
       "count": 24
     },
     {
@@ -260,7 +260,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-16T09:13:23.765Z",
+      "checkedAt": "2026-11-16T09:34:51.123Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -275,7 +275,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-16T09:13:23.832Z",
+      "checkedAt": "2026-11-16T09:34:51.280Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -12418,7 +12418,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -12446,7 +12446,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "atx-beach",
       "status": "scheduled"
     },
@@ -12715,7 +12715,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-sports-center-central",
       "status": "scheduled"
     },
@@ -12741,7 +12741,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-sports-center-central",
       "status": "scheduled"
     },
@@ -12767,7 +12767,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -12793,7 +12793,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-montopolis-rec",
       "status": "scheduled"
     },
@@ -12819,7 +12819,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -12845,7 +12845,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -12871,7 +12871,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -12897,7 +12897,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -12923,7 +12923,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -12949,7 +12949,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -12975,7 +12975,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -13001,7 +13001,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -13027,7 +13027,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
@@ -13053,7 +13053,7 @@
       "sport": "pickleball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
+      "verifiedAt": "2026-11-16",
       "venueId": "austin-pickleland",
       "status": "scheduled"
     },
