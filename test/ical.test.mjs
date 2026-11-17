@@ -65,7 +65,10 @@ test('Meetup event pages give the venue and its coordinates; sessions with the s
   const page = readFileSync(new URL('./fixtures/sources/meetup-event.html', import.meta.url), 'utf8');
   assert.deepEqual(meetupVenue(page), { venue: 'USSPT', city: 'Lewisville', venueAddress: '1501 Fairway Dr suite 200, Lewisville, TX', venueLat: 33.06454, venueLng: -97.005745 });
   assert.equal(meetupVenue('<html></html>'), null);
-  const feed = ICS.replace(/2026112/g, '2099112').replace(/https:\/\/www\.meetup\.com\/x\//g, 'https://www.meetup.com/north-texas-adult-volleyball/');
+  // Far-future dates, so the test doesn't depend on today: shift every upcoming November
+  // event (Nov 10-29) to 2099, but leave the intentionally-past Nov 1 event where it is.
+  // The shift has to cover the Nov 16 Beginner event, not just the Nov 20+ ones.
+  const feed = ICS.replace(/202611([12]\d)/g, '209911$1').replace(/https:\/\/www\.meetup\.com\/x\//g, 'https://www.meetup.com/north-texas-adult-volleyball/');
   const asked = [];
   const fetch = async (u) => { asked.push(u); return /\/events\/ical\/$/.test(u) ? new Response(feed) : /\/events\/\d+\/$/.test(u) ? new Response(page) : new Response('', { status: 404 }); };
   const r = await scrape({ options: { feeds: [{ url: 'https://www.meetup.com/north-texas-adult-volleyball/events/ical/' }] }, timezone: 'America/Chicago', fetch });
