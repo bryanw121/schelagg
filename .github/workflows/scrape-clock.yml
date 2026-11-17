@@ -2,8 +2,8 @@ name: Scrape clock
 
 # GitHub's own cron drops most hourly runs when it's busy (Oct 26–27, 2026: about 4 of 19
 # scheduled scrapes ran, so the site went 7+ hours without a refresh). This job keeps the time
-# itself: it starts "Refresh schedules" every 30 minutes from 8am to 10pm Austin time and
-# hourly overnight (10pm to 8am), sleeping in between, and just before GitHub's 6-hour job limit it starts its own next run, so
+# itself: it starts "Refresh schedules" four times a day, at 8:13, 12:13, 16:13 and 20:13 Austin
+# time, sleeping in between, and just before GitHub's 6-hour job limit it starts its own next run, so
 # the clock runs continuously. Times are worked out in America/Chicago, so DST needs no edits.
 #
 # workflow_dispatch from GITHUB_TOKEN is allowed to start workflows, so this needs no extra
@@ -35,8 +35,9 @@ jobs:
     steps:
       - name: Start the scrape on schedule
         run: |
-          # Every 30 minutes (:13 and :43) from 8am to 10pm Austin time, and hourly (:13) from 10pm
-          # to 8am. Austin's UTC offset is whole hours, so :13 UTC is :13 local.
+          # Four times a day, at 8:13, 12:13, 16:13 and 20:13 Austin time. The loop still wakes
+          # every 30 minutes; only those ticks start a scrape. Austin's UTC offset is whole
+          # hours, so :13 UTC is :13 local.
           stop=$(( $(date +%s) + 5 * 3600 + 30 * 60 ))
           offset=$(( 13 * 60 ))
           while :; do
@@ -46,9 +47,10 @@ jobs:
             sleep $(( next - now ))
 
             hour=$(TZ=America/Chicago date +%-H); min=$(TZ=America/Chicago date +%-M)
-            if { [ "$hour" -lt 8 ] || [ "$hour" -ge 22 ]; } && [ "$min" -ge 15 ]; then
-              continue # 10pm to 8am: only the :13 tick
-            fi
+            case "$hour:$min" in
+              8:13|12:13|16:13|20:13) ;;
+              *) continue ;; # only the 8:13, 12:13, 16:13 and 20:13 Austin ticks run the scrape
+            esac
             # Skip if a scrape started in the last 10 minutes (GitHub's cron, a manual run, an
             # auto-fix re-run), so sources aren't hit twice in one slot.
             last=$(gh run list --workflow scrape.yml --limit 1 --json createdAt --jq '.[0].createdAt // empty')
