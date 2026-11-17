@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T05:16:49.593Z",
+  "generatedAt": "2026-11-17T06:16:42.940Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-17T05:13:32.308Z",
+      "checkedAt": "2026-11-17T06:13:18.289Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -55,7 +55,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-17T05:13:34.420Z",
+      "checkedAt": "2026-11-17T06:13:21.423Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -271,7 +271,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "foro",
-      "checkFailed": "2026-11-16",
+      "checkFailed": "2026-11-17",
       "status": "scheduled"
     },
     {
@@ -301,7 +301,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "foro",
-      "checkFailed": "2026-11-16",
+      "checkFailed": "2026-11-17",
       "status": "scheduled"
     },
     {
@@ -748,31 +748,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
       "venueId": "sports-garden",
-      "status": "scheduled"
-    },
-    {
-      "id": "meetup-ntav-event_317170126-2026-11-16",
-      "date": "2026-11-16",
-      "start": "20:00",
-      "end": "22:00",
-      "title": "Adult Beginner Open Gym Volleyball Lewisville",
-      "venue": "USSPT",
-      "city": "Lewisville",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "Beginner",
-      "price": null,
-      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
-      "signup": {
-        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317170126/",
-        "label": "Details and RSVP"
-      },
-      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317170126/",
-      "sourceId": "dallas-meetup",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
       "status": "scheduled"
     },
     {
