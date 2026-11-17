@@ -1,8 +1,10 @@
 name: Discover Reclub clubs
 
 # Weekly: search the web for Reclub volleyball meets in the area from clubs the region's
-# sources.json doesn't list (scripts/discover-reclub.mjs), and open one pull request per new club. Merge to
-# start scraping it; close to skip it for good. Which queries run is planned from the last runs
+# sources.json doesn't list (scripts/discover-reclub.mjs), and commit new clubs straight to
+# main — no review pull requests (the owner doesn't review them; the script's own checks are
+# the gate: a club has to be volleyball and in the area, and the hourly scrape opens an issue
+# if a new source breaks). Which queries run is planned from the last runs
 # (discover-state.json on the discover-state branch): productive queries weekly, quiet ones less
 # often, new ones first, at most budget.brave / budget.claude per run. Search uses the BRAVE_SEARCH_API_KEY secret if
 # set, otherwise Claude Code's web search with the CLAUDE_CODE_OAUTH_TOKEN secret the auto-fix
@@ -14,7 +16,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
   id-token: write # claude-code-action
 
 concurrency: discover
@@ -79,33 +80,27 @@ jobs:
         run: |
           echo "::notice::Set BRAVE_SEARCH_API_KEY or CLAUDE_CODE_OAUTH_TOKEN to run Reclub club discovery."
           echo '{"candidates":[]}' > discover-candidates.json
-      - name: Open a pull request per new club
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Add new clubs straight to main
         run: |
           git config user.name "volley-atx-bot"
           git config user.email "volley-atx-bot@users.noreply.github.com"
+          git checkout -q -B main "$GITHUB_SHA"
           for slug in $(jq -r '.candidates[].slug' discover-candidates.json); do
-            branch="discover/reclub-$slug"
-            # Any earlier pull request for this club, merged or closed, means it's been decided.
-            if [ -n "$(gh pr list --state all --head "$branch" --json number --jq '.[0].number')" ]; then
-              echo "@$slug already proposed; skipping."
+            region=$(jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .region // "austin"' discover-candidates.json)
+            # The script only proposes clubs it hasn't decided on (not in sources.json and not
+            # in discover-state.json), and --apply is a no-op if the club is already listed.
+            node scripts/discover-reclub.mjs --apply "$slug" "$region"
+            if git diff --quiet -- "config/regions/$region/sources.json"; then
+              echo "@$slug already listed; skipping."
               continue
             fi
-            name=$(jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .name' discover-candidates.json)
-            jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .body' discover-candidates.json > "$RUNNER_TEMP/body.md"
-            git checkout -q -B "$branch" "$GITHUB_SHA"
-            region=$(jq -r --arg s "$slug" '.candidates[] | select(.slug == $s) | .region // "austin"' discover-candidates.json)
-            node scripts/discover-reclub.mjs --apply "$slug" "$region"
-            git commit -qam "Add Reclub club @$slug (found by discovery)"
-            git push -q -f origin "$branch"
-            if ! gh pr create --base main --head "$branch" --title "Add Reclub club ($region): $name (@$slug)" \
-              --body-file "$RUNNER_TEMP/body.md" --assignee "$GITHUB_REPOSITORY_OWNER"; then
-              # This repo doesn't let Actions open pull requests: leave the branch and say where to open one.
-              echo "::notice::@$slug ($region) is on the $branch branch. Open the pull request: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/compare/main...$branch"
-            fi
+            # Commit only this region's sources.json: the run also writes discover-state.json
+            # and the discover-*.json artifacts, which live on their own branches, not main.
+            git commit -qm "Add Reclub club @$slug ($region) (found by discovery)" -- "config/regions/$region/sources.json"
+            git push -q origin main
           done
-      # Only after the pull requests are open: a run that failed to open one is retried next time.
+      # Only after the adds are pushed: a failed push fails this step, so the state below is
+      # not saved and the club is proposed again next time.
       - name: Save discovery state
         if: steps.search.outputs.via != 'none'
         run: scripts/state-branch.sh push discover-state discover-state.json "Reclub discovery state $(date -u +%F)"
