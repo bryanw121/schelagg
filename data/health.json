@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         256,
-        256,
         267,
         267,
         267,
@@ -11,6 +10,7 @@
         259,
         257,
         257,
+        251,
         251
       ],
       "sessions": 251,
@@ -33,8 +33,8 @@
         158,
         158,
         158,
-        158,
         159,
+        158,
         158,
         158,
         158,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 809
+      "failStreak": 810
     },
     "atxbeach": {
       "counts": [
@@ -923,13 +923,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 518
+      "failStreak": 519
     },
     "leander-pickleball": {
-      "failStreak": 518
+      "failStreak": 519
     },
     "dallas-reclub": {
-      "failStreak": 150
+      "failStreak": 151
     },
     "sportsgarden": {
       "counts": [
@@ -982,7 +982,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 14
+      "failStreak": 15
     },
     "dfw-city-active": {
       "counts": [
@@ -1067,12 +1067,12 @@
         19,
         19,
         19,
-        19,
         20,
         23,
-        23
+        23,
+        21
       ],
-      "sessions": 23,
+      "sessions": 21,
       "coverage": {
         "end": 1,
         "price": 0.57,
@@ -1103,8 +1103,6 @@
         "feeCurrency",
         "feeType",
         "flags",
-        "flags.GROUP_PROMOTED",
-        "flags.PROXIMITY_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -1136,7 +1134,6 @@
         "participants[].createdAt",
         "participants[].externalReference",
         "participants[].externalReference.age",
-        "participants[].externalReference.level",
         "participants[].externalReference.name",
         "participants[].id",
         "participants[].isCoach",
@@ -1243,22 +1240,20 @@
     "houston-reclub:warning:reclub-230JCQ: no surface",
     "houston-reclub:warning:reclub-3YV72K: no surface",
     "houston-reclub:warning:reclub-40RJ8U: no surface",
-    "houston-reclub:warning:reclub-565DSM: no surface",
     "houston-reclub:warning:reclub-5E0DAN: no surface",
     "houston-reclub:warning:reclub-6AL5A9: no surface",
     "houston-reclub:warning:reclub-6TSHGM: no surface",
     "houston-reclub:warning:reclub-8SFAT2: no surface",
     "houston-reclub:warning:reclub-8TBKMU: no surface",
-    "houston-reclub:warning:reclub-9QFCTQ: no surface",
     "houston-reclub:warning:reclub-DWL75Q: no surface",
     "houston-reclub:warning:reclub-HAHH2E: no surface",
     "houston-reclub:warning:reclub-K9D10X: no surface",
     "houston-reclub:warning:reclub-MG2YXV: no surface",
     "houston-reclub:warning:reclub-MTBP54: no surface",
     "houston-reclub:warning:reclub-NJKPQA: no surface",
+    "houston-reclub:warning:reclub-OKAE7P: no surface",
     "houston-reclub:warning:reclub-OS2O5W: no surface",
     "houston-reclub:warning:reclub-R9HE9A: no surface",
-    "houston-reclub:warning:reclub-RRZ3Q0: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
     "houston-reclub:warning:reclub-VK88UG: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",

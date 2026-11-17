@@ -1,89 +1,8 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-17T03:47:47.353Z",
+  "generatedAt": "2026-11-17T04:16:17.314Z",
   "horizonDays": 28,
   "occurrences": [
-    {
-      "id": "reclub-565DSM",
-      "session_id": "reclub-565DSM",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "Sand Volleyball 🏐 @Champions",
-      "venue": "Champion Forest Baptist Church - Champions Campus",
-      "city": null,
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-17T00:45:00.000Z",
-      "ends_at": "2026-11-17T03:45:00.000Z",
-      "signup_url": "https://reclub.co/m/565DSM",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by HTX - Social, every Monday.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 20
-      },
-      "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-RRZ3Q0",
-      "session_id": "reclub-RRZ3Q0",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "45 pm)",
-      "venue": "Katy Sports Center",
-      "city": null,
-      "level": "All levels",
-      "price": "$10",
-      "starts_at": "2026-11-17T01:00:00.000Z",
-      "ends_at": "2026-11-17T04:00:00.000Z",
-      "signup_url": "https://reclub.co/m/RRZ3Q0",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Cultural Diversity Volleyball Social.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 30
-      },
-      "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-9QFCTQ",
-      "session_id": "reclub-9QFCTQ",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "Volleyball Pickup with Kimberly",
-      "venue": "Harvest Time Church",
-      "city": null,
-      "level": "All levels",
-      "price": "$8",
-      "starts_at": "2026-11-17T02:00:00.000Z",
-      "ends_at": "2026-11-17T04:00:00.000Z",
-      "signup_url": "https://reclub.co/m/9QFCTQ",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by The Volleyball Hangout, every Monday.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 30
-      },
-      "venue_id": null,
-      "status": "rescheduled",
-      "previous_starts_at": "2026-11-17T01:30:00.000Z"
-    },
     {
       "id": "reclub-HAHH2E",
       "session_id": "reclub-HAHH2E",
@@ -107,7 +26,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -134,7 +53,7 @@
         "type": "Open play",
         "capacity": 120
       },
-      "venue_id": null,
+      "venue_id": "src-houston-stars",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -161,7 +80,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -188,7 +107,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -215,7 +134,7 @@
         "type": "Open play",
         "capacity": 48
       },
-      "venue_id": null,
+      "venue_id": "src-houston-stars",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -242,7 +161,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -269,7 +188,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -296,7 +215,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -323,7 +242,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -350,7 +269,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -377,7 +296,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -404,7 +323,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -431,7 +350,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -458,7 +377,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -485,7 +404,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -512,7 +431,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -539,7 +458,34 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-OKAE7P",
+      "session_id": "reclub-OKAE7P",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Skyline Academy Open Gym",
+      "venue": "Skyline Volleyball Academy",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-24T03:00:00.000Z",
+      "ends_at": "2026-11-24T05:00:00.000Z",
+      "signup_url": "https://reclub.co/m/OKAE7P",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Houston Vball, every Monday.",
+      "canceled": false,
+      "verified_at": "2026-11-16",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 10
+      },
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -566,7 +512,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -593,7 +539,7 @@
         "type": "Open play",
         "capacity": 45
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     }
