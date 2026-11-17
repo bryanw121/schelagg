@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T20:16:53.341Z",
+  "generatedAt": "2026-11-17T20:46:45.371Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -63,10 +63,11 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-17T19:39:28.255Z",
-      "count": 20,
+      "checkedAt": "2026-11-17T20:43:36.409Z",
+      "count": 21,
       "warnings": [
         "reclub-DWL75Q: no surface",
+        "reclub-ZFA5B2: no surface",
         "reclub-MTBP54: no surface",
         "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
@@ -112,6 +113,32 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-houston-stars",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-ZFA5B2",
+      "date": "2026-11-19",
+      "start": "21:00",
+      "end": "24:00",
+      "title": "Men’s Advanced (BB+) King of the Court",
+      "venue": "Houston Stars",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Houston Stars (Adults), every Thursday.",
+      "capacity": 48,
+      "signup": {
+        "url": "https://reclub.co/m/ZFA5B2",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/ZFA5B2",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-17",
+      "venueId": "src-houston-stars",
       "status": "scheduled"
     },
     {
@@ -136,6 +163,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -160,6 +188,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -184,6 +213,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -208,6 +238,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -232,6 +263,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -256,6 +288,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-the-zone",
       "status": "scheduled"
     },
     {
@@ -280,6 +313,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -304,6 +338,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -328,6 +363,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-emancipation-park",
       "status": "scheduled"
     },
     {
@@ -352,6 +388,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -376,6 +413,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -400,6 +438,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -424,6 +463,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -448,6 +488,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -472,6 +513,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -496,6 +538,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -520,6 +563,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -544,9 +588,101 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     }
   ],
   "publicCourts": null,
-  "venues": []
+  "venues": [
+    {
+      "id": "src-houston-stars",
+      "name": "Houston Stars",
+      "city": null,
+      "address": "6942 Cotton Drive, Houston, Tx",
+      "lat": 29.836397,
+      "lng": -95.49456,
+      "region": "houston"
+    },
+    {
+      "id": "src-tellepsen-family-downtown-ymca",
+      "name": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "address": "808 Pease St, Houston, TX",
+      "lat": 29.7521,
+      "lng": -95.3703,
+      "region": "houston"
+    },
+    {
+      "id": "src-absolute-volleyball-academy-and-absolute-beach",
+      "name": "Absolute Volleyball Academy and Absolute Beach",
+      "city": null,
+      "address": "380 Green Wing St, Webster, Tx",
+      "lat": 29.536505,
+      "lng": -95.1123,
+      "region": "houston"
+    },
+    {
+      "id": "src-skyline-volleyball-academy",
+      "name": "Skyline Volleyball Academy",
+      "city": null,
+      "address": "23363 Clay Road, Katy, Tx",
+      "lat": 29.82756,
+      "lng": -95.77629,
+      "region": "houston"
+    },
+    {
+      "id": "src-the-zone",
+      "name": "The Zone",
+      "city": null,
+      "address": "10371 Stella Link Road 2nd Floor, Houston, TX 77025",
+      "lat": 29.66943,
+      "lng": -95.43757,
+      "region": "houston"
+    },
+    {
+      "id": "src-katy-sports-center",
+      "name": "Katy Sports Center",
+      "city": null,
+      "address": "535 Applewhite Drive, Katy, TX 77450, USA",
+      "lat": 29.77552,
+      "lng": -95.754074,
+      "region": "houston"
+    },
+    {
+      "id": "src-emancipation-park",
+      "name": "Emancipation Park",
+      "city": null,
+      "address": "3018 Emancipation Avenue, Houston, Tx",
+      "lat": 29.73524,
+      "lng": -95.36563,
+      "region": "houston"
+    },
+    {
+      "id": "src-champion-forest-baptist-church-champions-campus",
+      "name": "Champion Forest Baptist Church - Champions Campus",
+      "city": null,
+      "address": "15555 Stuebner Airline Road, Houston, Tx",
+      "lat": 30.002792,
+      "lng": -95.51335,
+      "region": "houston"
+    },
+    {
+      "id": "src-t4-court-rentals",
+      "name": "T4 Court Rentals",
+      "city": null,
+      "address": "1419 Vander Wilt Lane, Katy, Tx",
+      "lat": 29.7893,
+      "lng": -95.7427,
+      "region": "houston"
+    },
+    {
+      "id": "src-collins-park",
+      "name": "Collins Park",
+      "city": null,
+      "address": "6727 Cypresswood Drive, Spring, TX",
+      "lat": 30.011,
+      "lng": -95.5077,
+      "region": "houston"
+    }
+  ]
 }

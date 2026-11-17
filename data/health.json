@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        273,
         269,
         269,
         269,
@@ -11,9 +10,10 @@
         272,
         272,
         272,
-        272
+        272,
+        269
       ],
-      "sessions": 272,
+      "sessions": 269,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 834
+      "failStreak": 835
     },
     "atxbeach": {
       "counts": [
@@ -926,13 +926,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 543
+      "failStreak": 544
     },
     "leander-pickleball": {
-      "failStreak": 543
+      "failStreak": 544
     },
     "dallas-reclub": {
-      "failStreak": 175
+      "failStreak": 176
     },
     "sportsgarden": {
       "counts": [
@@ -985,7 +985,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 39
+      "failStreak": 40
     },
     "dfw-city-active": {
       "counts": [
@@ -1071,17 +1071,17 @@
         19,
         19,
         19,
-        19,
         20,
         20,
         20,
         20,
-        20
+        20,
+        21
       ],
-      "sessions": 20,
+      "sessions": 21,
       "coverage": {
         "end": 1,
-        "price": 0.55,
+        "price": 0.57,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1255,6 +1255,7 @@
     "houston-reclub:warning:reclub-VK88UG: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",
+    "houston-reclub:warning:reclub-ZFA5B2: no surface",
     "leander-pickleball:failing",
     "manual:aces-mon-6s-indoor:unverified",
     "manual:aces-mon-6s-indoor:watch",
