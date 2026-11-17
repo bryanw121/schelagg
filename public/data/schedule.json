@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T03:46:37.473Z",
+  "generatedAt": "2026-11-17T03:47:47.353Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-17T03:43:32.110Z",
+      "checkedAt": "2026-11-17T03:47:42.380Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -255,7 +255,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-17T03:43:33.857Z",
+      "checkedAt": "2026-11-17T03:47:42.380Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -270,7 +270,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-17T03:43:34.021Z",
+      "checkedAt": "2026-11-17T03:47:42.380Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -295,7 +295,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-17T03:43:34.168Z",
+      "checkedAt": "2026-11-17T03:47:42.380Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -323,7 +323,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-17T03:43:36.252Z",
+      "checkedAt": "2026-11-17T03:47:42.381Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -15138,7 +15138,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15164,7 +15163,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15190,7 +15188,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15216,7 +15213,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15242,7 +15238,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15268,7 +15263,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15294,7 +15288,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15320,7 +15313,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15346,7 +15338,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15372,7 +15363,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -17148,15 +17138,6 @@
       "address": "14719 Preston Road, Dallas, TX 75254",
       "lat": 32.94881,
       "lng": -96.80371,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
       "region": "dallas"
     }
   ]
