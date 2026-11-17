@@ -54,7 +54,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: public/maps
-          key: maps-${{ steps.month.outputs.month }}-${{ hashFiles('config/regions/*/region.json', 'config/regions/*/venues.json', 'scripts/build-maps.mjs', 'lib/map-area.js') }}
+          key: maps-${{ steps.month.outputs.month }}-${{ hashFiles('config/regions/*/region.json', 'config/regions/*/venues.json', 'scripts/build-maps.mjs', 'lib/map-area.js', 'public/data/events.json') }}
       - name: Build the maps
         if: steps.maps-cache.outputs.cache-hit != 'true'
         continue-on-error: true
