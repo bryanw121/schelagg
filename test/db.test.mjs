@@ -71,15 +71,15 @@ test('migrations: apply cleanly, and a second run applies nothing', async () => 
   const db = wrapPglite(new PGlite());
   try {
     const logs = [];
-    assert.deepEqual(await migrate(db, { log: (l) => logs.push(l) }), { applied: ['0001_init'] });
-    assert.deepEqual(logs, ['applied 0001_init.sql']);
+    assert.deepEqual(await migrate(db, { log: (l) => logs.push(l) }), { applied: ['0001_init', '0002_events'] });
+    assert.deepEqual(logs, ['applied 0001_init.sql', 'applied 0002_events.sql']);
     assert.deepEqual(await migrate(db, { log: (l) => logs.push(l) }), { applied: [] });
-    assert.equal(logs.length, 1);
+    assert.equal(logs.length, 2);
     const versions = await db.query('select version, checksum from schema_migrations');
-    assert.deepEqual(versions.map((r) => r.version), ['0001_init']);
+    assert.deepEqual(versions.map((r) => r.version), ['0001_init', '0002_events']);
     assert.match(versions[0].checksum, /^[0-9a-f]{64}$/);
     const tables = (await db.query(`select table_name from information_schema.tables where table_schema = 'public' order by 1`)).map((r) => r.table_name);
-    assert.deepEqual(tables, ['occurrences', 'schema_migrations', 'scrape_runs', 'session_changes', 'sessions', 'sources']);
+    assert.deepEqual(tables, ['events', 'occurrences', 'schema_migrations', 'scrape_runs', 'session_changes', 'sessions', 'sources']);
     const idx = (await db.query(`select indexdef from pg_indexes where tablename = 'occurrences'`)).map((r) => r.indexdef);
     assert.ok(idx.some((d) => /\(sport, region, starts_at\)/.test(d)), 'occurrences indexed on (sport, region, starts_at)');
 

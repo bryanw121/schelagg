@@ -1,0 +1,71 @@
+name: Load events into the database
+
+# Daily: load the Austin pop-up / seasonal / Asian-inspired events feed
+# (public/data/events.json, published by Muse's daily discovery run) into Neon.
+# Discovery runs in Muse, not here: Instagram is unreliable from Actions runners.
+# The feed is published on the data branch, so this loads whatever is latest there.
+
+on:
+  schedule:
+    - cron: '45 14 * * *' # 9:45am CDT, 8:45am CST — after the 9am Muse discovery run
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency: load-events
+
+jobs:
+  load:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # The latest feed (the discovery run commits it to the data branch).
+      - name: Load the latest data
+        run: scripts/data-branch.sh pull
+
+      # Schelagg's database (Neon). Without the DATABASE_URL secret this is a notice and
+      # the load is skipped. A database problem never stops the feed: a failed migration
+      # shows here, and a failed load goes in the issue below.
+      - name: Migrate the database
+        continue-on-error: true
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/db-migrate.mjs
+
+      - name: Load the events feed
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: node scripts/load-events.mjs
+
+      - name: Open an issue if the database load failed, close it when it recovers
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # One issue for the events load (scrape-failures/events.md). Commented on only
+          # when its failures change, not on every run of the same outage.
+          f=scrape-failures/events.md
+          title="Events load: database write failed"
+          open=$(gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number // empty')
+          if [ -s "$f" ]; then
+            if [ -n "$open" ]; then
+              last=$(gh issue view "$open" --json body,comments --jq '(.comments | last | .body) // .body')
+              if [ "$last" = "$(cat "$f")" ]; then
+                echo "same failures as the last report on #$open; not commenting."
+              else
+                gh issue comment "$open" --body-file "$f"
+              fi
+            else
+              gh issue create --title "$title $(date -u +%F)" --body-file "$f" --assignee "$GITHUB_REPOSITORY_OWNER"
+            fi
+          elif [ -n "$open" ]; then
+            gh issue close "$open" --comment "The events feed loaded successfully on $(date -u +'%F %H:%MZ')."
+          fi
