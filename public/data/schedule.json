@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T00:46:53.269Z",
+  "generatedAt": "2026-11-17T01:16:50.549Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -12,7 +12,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-17T00:43:15.626Z",
+      "checkedAt": "2026-11-17T01:13:35.596Z",
       "count": 267
     },
     {
@@ -25,7 +25,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-17T00:43:15.626Z",
+      "checkedAt": "2026-11-17T01:13:35.596Z",
       "count": 158
     },
     {
@@ -38,7 +38,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-17T00:43:15.627Z",
+      "checkedAt": "2026-11-17T01:13:35.596Z",
       "count": 8
     },
     {
@@ -51,7 +51,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-17T00:43:15.627Z",
+      "checkedAt": "2026-11-17T01:13:35.596Z",
       "count": 11
     },
     {
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-17T00:43:15.628Z",
+      "checkedAt": "2026-11-17T01:13:35.597Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -119,7 +119,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-17T00:13:30.342Z",
+      "checkedAt": "2026-11-17T01:13:35.597Z",
       "count": 6
     },
     {
@@ -146,7 +146,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-17T00:13:30.408Z",
+      "checkedAt": "2026-11-17T01:13:35.702Z",
       "count": 2
     },
     {
@@ -216,7 +216,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-17T00:43:15.628Z",
+      "checkedAt": "2026-11-17T01:13:36.086Z",
       "count": 37
     },
     {
@@ -229,7 +229,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-17T00:43:15.668Z",
+      "checkedAt": "2026-11-17T01:13:38.356Z",
       "count": 24
     },
     {
@@ -255,7 +255,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-17T00:43:16.630Z",
+      "checkedAt": "2026-11-17T01:13:38.573Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -270,7 +270,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-17T00:43:16.887Z",
+      "checkedAt": "2026-11-17T01:13:38.817Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -295,7 +295,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-17T00:43:17.088Z",
+      "checkedAt": "2026-11-17T01:13:38.907Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -323,7 +323,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-17T00:43:17.522Z",
+      "checkedAt": "2026-11-17T01:13:40.488Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -440,8 +440,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-17T00:13:36.010Z",
-      "count": 19,
+      "checkedAt": "2026-11-17T01:13:41.033Z",
+      "count": 20,
       "warnings": [
         "reclub-MG2YXV: no surface",
         "reclub-HAHH2E: no surface",
@@ -456,6 +456,7 @@
         "reclub-565DSM: no surface",
         "reclub-VK88UG: no surface",
         "reclub-OS2O5W: no surface",
+        "reclub-8SFAT2: no surface",
         "reclub-40RJ8U: no surface",
         "reclub-T02HQF: no surface",
         "reclub-9QFCTQ: no surface",
@@ -15837,6 +15838,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-houston-stars",
       "status": "scheduled"
     },
     {
@@ -15861,6 +15863,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -15885,6 +15888,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15909,6 +15913,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -15933,6 +15938,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -15957,6 +15963,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -15981,6 +15988,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -16005,6 +16013,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -16029,6 +16038,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-emancipation-park",
       "status": "scheduled"
     },
     {
@@ -16053,6 +16063,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16077,6 +16088,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16101,6 +16113,32 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-8SFAT2",
+      "date": "2026-11-23",
+      "start": "18:45",
+      "end": "21:45",
+      "title": "Sand Volleyball 🏐 @Champions",
+      "venue": "Champion Forest Baptist Church - Champions Campus",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by HTX - Social, every Monday.",
+      "capacity": 20,
+      "signup": {
+        "url": "https://reclub.co/m/8SFAT2",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/8SFAT2",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-16",
+      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16125,6 +16163,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -16149,6 +16188,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -16173,6 +16213,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-harvest-time-church",
       "status": "rescheduled",
       "previousStart": "2026-11-16 19:30"
     },
@@ -16198,6 +16239,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16222,6 +16264,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16246,6 +16289,7 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
+      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -17468,6 +17512,96 @@
       "lat": 32.94881,
       "lng": -96.80371,
       "region": "dallas"
+    },
+    {
+      "id": "src-houston-stars",
+      "name": "Houston Stars",
+      "city": null,
+      "address": "6942 Cotton Drive, Houston, Tx",
+      "lat": 29.836397,
+      "lng": -95.49456,
+      "region": "houston"
+    },
+    {
+      "id": "src-skyline-volleyball-academy",
+      "name": "Skyline Volleyball Academy",
+      "city": null,
+      "address": "23363 Clay Road, Katy, Tx",
+      "lat": 29.82756,
+      "lng": -95.77629,
+      "region": "houston"
+    },
+    {
+      "id": "src-tellepsen-family-downtown-ymca",
+      "name": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "address": "808 Pease St, Houston, TX",
+      "lat": 29.7521,
+      "lng": -95.3703,
+      "region": "houston"
+    },
+    {
+      "id": "src-absolute-volleyball-academy-and-absolute-beach",
+      "name": "Absolute Volleyball Academy and Absolute Beach",
+      "city": null,
+      "address": "380 Green Wing St, Webster, Tx",
+      "lat": 29.536505,
+      "lng": -95.1123,
+      "region": "houston"
+    },
+    {
+      "id": "src-katy-sports-center",
+      "name": "Katy Sports Center",
+      "city": null,
+      "address": "535 Applewhite Drive, Katy, TX 77450, USA",
+      "lat": 29.77552,
+      "lng": -95.754074,
+      "region": "houston"
+    },
+    {
+      "id": "src-emancipation-park",
+      "name": "Emancipation Park",
+      "city": null,
+      "address": "3018 Emancipation Avenue, Houston, Tx",
+      "lat": 29.73524,
+      "lng": -95.36563,
+      "region": "houston"
+    },
+    {
+      "id": "src-champion-forest-baptist-church-champions-campus",
+      "name": "Champion Forest Baptist Church - Champions Campus",
+      "city": null,
+      "address": "15555 Stuebner Airline Road, Houston, Tx",
+      "lat": 30.002792,
+      "lng": -95.51335,
+      "region": "houston"
+    },
+    {
+      "id": "src-t4-court-rentals",
+      "name": "T4 Court Rentals",
+      "city": null,
+      "address": "1419 Vander Wilt Lane, Katy, Tx",
+      "lat": 29.7893,
+      "lng": -95.7427,
+      "region": "houston"
+    },
+    {
+      "id": "src-harvest-time-church",
+      "name": "Harvest Time Church",
+      "city": null,
+      "address": "Imperial Valley Drive, Houston, TX",
+      "lat": 29.955013,
+      "lng": -95.39814,
+      "region": "houston"
+    },
+    {
+      "id": "src-collins-park",
+      "name": "Collins Park",
+      "city": null,
+      "address": "6727 Cypresswood Drive, Spring, TX",
+      "lat": 30.011,
+      "lng": -95.5077,
+      "region": "houston"
     }
   ]
 }
