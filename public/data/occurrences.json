@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-17T04:16:17.314Z",
+  "generatedAt": "2026-11-17T05:16:49.593Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1041,34 +1041,6 @@
       "previous_starts_at": null
     },
     {
-      "id": "openplay-eastside-paddle-club-01a17347-9e5a-7ee4-b41a-f3bb72a57a52",
-      "session_id": "openplay-eastside-paddle-club-01a17347-9e5a-7ee4-b41a-f3bb72a57a52",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Level 1 Beginner",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "level": "Beginner",
-      "price": "$18 / person (listed)",
-      "starts_at": "2026-11-17T02:00:00.000Z",
-      "ends_at": "2026-11-17T04:00:00.000Z",
-      "signup_url": "https://espc.podplay.app/community/events/01a17347-9e5a-7ee4-b41a-f3bb72a57a52",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 16, 6:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "surface": "unspecified",
-        "type": "Open play",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-eastside-paddle",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
       "id": "openplay-austin-pickle-ranch-01a1700e-99ba-7aad-9ba8-e77514bf8817",
       "session_id": "openplay-austin-pickle-ranch-01a1700e-99ba-7aad-9ba8-e77514bf8817",
       "source_id": "austin-club-openplay",
@@ -1149,33 +1121,6 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-ranch",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-HAHH2E",
-      "session_id": "reclub-HAHH2E",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "Skyline Academy Open Gym",
-      "venue": "Skyline Volleyball Academy",
-      "city": null,
-      "level": "All levels",
-      "price": "$10",
-      "starts_at": "2026-11-17T03:00:00.000Z",
-      "ends_at": "2026-11-17T05:00:00.000Z",
-      "signup_url": "https://reclub.co/m/HAHH2E",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Houston Vball, every Monday.",
-      "canceled": false,
-      "verified_at": "2026-11-16",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 10
-      },
-      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T04:16:17.314Z",
+  "generatedAt": "2026-11-17T05:16:49.593Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -63,12 +63,11 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-17T04:13:25.412Z",
-      "count": 21,
+      "checkedAt": "2026-11-17T05:13:35.161Z",
+      "count": 20,
       "warnings": [
         "reclub-MG2YXV: no surface",
         "reclub-DWL75Q: no surface",
-        "reclub-HAHH2E: no surface",
         "reclub-MTBP54: no surface",
         "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
@@ -139,31 +138,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-16",
       "venueId": "src-houston-stars",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-HAHH2E",
-      "date": "2026-11-16",
-      "start": "21:00",
-      "end": "23:00",
-      "title": "Skyline Academy Open Gym",
-      "venue": "Skyline Volleyball Academy",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$10",
-      "note": "Hosted by Houston Vball, every Monday.",
-      "capacity": 10,
-      "signup": {
-        "url": "https://reclub.co/m/HAHH2E",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/HAHH2E",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-16",
-      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -604,15 +578,6 @@
       "region": "houston"
     },
     {
-      "id": "src-skyline-volleyball-academy",
-      "name": "Skyline Volleyball Academy",
-      "city": null,
-      "address": "23363 Clay Road, Katy, Tx",
-      "lat": 29.82756,
-      "lng": -95.77629,
-      "region": "houston"
-    },
-    {
       "id": "src-tellepsen-family-downtown-ymca",
       "name": "Tellepsen Family Downtown YMCA",
       "city": null,
@@ -628,6 +593,15 @@
       "address": "380 Green Wing St, Webster, Tx",
       "lat": 29.536505,
       "lng": -95.1123,
+      "region": "houston"
+    },
+    {
+      "id": "src-skyline-volleyball-academy",
+      "name": "Skyline Volleyball Academy",
+      "city": null,
+      "address": "23363 Clay Road, Katy, Tx",
+      "lat": 29.82756,
+      "lng": -95.77629,
       "region": "houston"
     },
     {
