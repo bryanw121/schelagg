@@ -4,12 +4,12 @@
       "counts": [
         269,
         269,
+        272,
+        272,
+        272,
+        272,
+        272,
         269,
-        272,
-        272,
-        272,
-        272,
-        272,
         269,
         269
       ],
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 836
+      "failStreak": 837
     },
     "atxbeach": {
       "counts": [
@@ -926,13 +926,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 545
+      "failStreak": 546
     },
     "leander-pickleball": {
-      "failStreak": 545
+      "failStreak": 546
     },
     "dallas-reclub": {
-      "failStreak": 177
+      "failStreak": 178
     },
     "sportsgarden": {
       "counts": [
@@ -985,7 +985,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 41
+      "failStreak": 42
     },
     "dfw-city-active": {
       "counts": [
@@ -1070,12 +1070,12 @@
         19,
         19,
         19,
-        19,
         20,
         20,
         20,
         20,
         20,
+        21,
         21
       ],
       "sessions": 21,
@@ -1109,6 +1109,8 @@
         "feeCurrency",
         "feeType",
         "flags",
+        "flags.GROUP_PROMOTED",
+        "flags.PROXIMITY_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
