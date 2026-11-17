@@ -14,11 +14,12 @@ on:
       - 'lib/**'
       - '.github/workflows/scrape.yml'
   schedule:
-    # Backup only. .github/workflows/scrape-clock.yml starts the real schedule (every 30 minutes
-    # from 8am to 10pm Austin time, hourly overnight), because GitHub drops many cron runs.
-    # This hourly cron covers the clock being down; the clock skips a slot a scrape just ran in.
+    # Backup only. .github/workflows/scrape-clock.yml starts the real schedule (four times a
+    # day: 8:13, 12:13, 16:13 and 20:13 Austin time), because GitHub drops many cron runs.
+    # This four-times-a-day cron covers the clock being down; the clock skips a slot a scrape
+    # just ran in. The times are UTC, so they only approximate Austin time across DST.
     # Consumers (e.g. vteam) pull data/occurrences.json from GitHub Pages after each run.
-    - cron: '13 * * * *'
+    - cron: '13 2,8,14,20 * * *'
   workflow_dispatch:
     inputs:
       all:
