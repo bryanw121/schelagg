@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        264,
         257,
         256,
         256,
@@ -11,6 +10,7 @@
         267,
         259,
         259,
+        257,
         257
       ],
       "sessions": 257,
@@ -35,8 +35,8 @@
         158,
         158,
         158,
-        158,
         159,
+        158,
         158,
         158
       ],
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 806
+      "failStreak": 807
     },
     "atxbeach": {
       "counts": [
@@ -922,13 +922,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 515
+      "failStreak": 516
     },
     "leander-pickleball": {
-      "failStreak": 515
+      "failStreak": 516
     },
     "dallas-reclub": {
-      "failStreak": 147
+      "failStreak": 148
     },
     "sportsgarden": {
       "counts": [
@@ -981,7 +981,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 11
+      "failStreak": 12
     },
     "dfw-city-active": {
       "counts": [
@@ -1067,8 +1067,8 @@
         19,
         19,
         19,
-        19,
         20,
+        23,
         23
       ],
       "sessions": 23,
@@ -1116,6 +1116,14 @@
         "isPast",
         "keywordSearch",
         "matchConfig",
+        "matchConfig.limitRounds",
+        "matchConfig.participantIds[]",
+        "matchConfig.prioritizeLeastMatches",
+        "matchConfig.rankingCriteria",
+        "matchConfig.scheme",
+        "matchConfig.sublocations[]",
+        "matchConfig.teamIds[]",
+        "matchConfig.totalSetPoints",
         "maxSportLevelValue",
         "minSportLevelId",
         "minSportLevelValue",
