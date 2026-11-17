@@ -12,7 +12,8 @@
     "scrape": "node scripts/scrape.mjs",
     "courts": "node scripts/build-courts.mjs",
     "check:skedda": "node scripts/check-skedda.mjs",
-    "db:migrate": "node scripts/db-migrate.mjs"
+    "db:migrate": "node scripts/db-migrate.mjs",
+    "load:events": "node scripts/load-events.mjs"
   },
   "dependencies": {
     "postgres": "3.4.9"
