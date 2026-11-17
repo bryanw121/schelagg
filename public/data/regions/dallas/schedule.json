@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T15:46:58.820Z",
+  "generatedAt": "2026-11-17T16:17:45.819Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-17T15:43:26.416Z",
+      "checkedAt": "2026-11-17T16:14:15.461Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -55,7 +55,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-17T15:43:27.633Z",
+      "checkedAt": "2026-11-17T16:14:17.873Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -110,7 +110,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-17T10:14:04.592Z",
+      "checkedAt": "2026-11-17T16:14:18.180Z",
       "count": 13,
       "warnings": [
         "venue \"Intentional Sports\" isn't in its region's venues.json"
@@ -773,6 +773,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -798,6 +799,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -823,6 +825,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -848,6 +851,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -873,6 +877,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -898,6 +903,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -923,6 +929,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -948,6 +955,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -973,6 +981,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -998,6 +1007,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -1088,6 +1098,15 @@
       "address": "14719 Preston Road, Dallas, TX 75254",
       "lat": 32.94881,
       "lng": -96.80371,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
       "region": "dallas"
     }
   ]
