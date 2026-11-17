@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         251,
-        251,
         250,
         253,
         273,
@@ -11,9 +10,10 @@
         273,
         273,
         273,
-        273
+        273,
+        274
       ],
-      "sessions": 273,
+      "sessions": 274,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -31,7 +31,7 @@
       "counts": [
         158,
         158,
-        158,
+        161,
         161,
         161,
         161,
@@ -85,7 +85,7 @@
       "counts": [
         11,
         11,
-        11,
+        12,
         12,
         12,
         12,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 818
+      "failStreak": 819
     },
     "atxbeach": {
       "counts": [
@@ -754,7 +754,7 @@
       "counts": [
         37,
         37,
-        37,
+        36,
         36,
         36,
         36,
@@ -925,13 +925,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 527
+      "failStreak": 528
     },
     "leander-pickleball": {
-      "failStreak": 527
+      "failStreak": 528
     },
     "dallas-reclub": {
-      "failStreak": 159
+      "failStreak": 160
     },
     "sportsgarden": {
       "counts": [
@@ -984,7 +984,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 23
+      "failStreak": 24
     },
     "dfw-city-active": {
       "counts": [
@@ -1063,10 +1063,10 @@
     },
     "houston-reclub": {
       "counts": [
-        23,
         21,
         20,
         20,
+        19,
         19,
         19,
         19,
@@ -1127,6 +1127,8 @@
         "participants[]",
         "participants[].createdAt",
         "participants[].externalReference",
+        "participants[].externalReference.level",
+        "participants[].externalReference.name",
         "participants[].id",
         "participants[].isCoach",
         "participants[].isHost",
