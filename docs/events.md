@@ -78,8 +78,21 @@ node scripts/geocode-events.mjs --dry    # print what it would set, write nothin
 ## The site
 
 The site reads the same feed (`data/events.json`, overlaid from the `data` branch at
-deploy). The events UI itself is being redesigned as an events-first experience; the
-feed shape and coordinates above are what it builds on.
+deploy). The Events tab is the front page: a month-grouped list, 10 events to a page
+(`?page=`, `?cat=` deep links), with category chips (All / Pop-ups / Seasonal /
+Asian-inspired), a "Happening now" pill for events running today, and Source and
+directions links on every card. The Sports tab opens a dropdown of the sports; picking
+one loads that sport's schedules. The floating List/Map button switches to the map: one
+pin per venue (events at the same coordinates share it), a place list under it, and a
+tap shows that place's events.
+
+The map's tiles are cut per region by `scripts/build-maps.mjs` (in the deploy); the
+region's box folds in the feed's located points within the region's radius
+(`lib/map-area.js` `eventPointsForRegion`), so a venue just outside the venues-only box
+— Vista Brewing, just south of Austin's — is inside the tiles. The maps cache in
+`.github/workflows/pages.yml` is keyed on the region and venue files, `build-maps.mjs`
+and `map-area.js`; it does not yet include the feed, so a new event venue outside the
+current box only widens the tiles after the monthly cache turn (or a cache-key change).
 
 ## The database
 

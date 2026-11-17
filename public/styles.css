@@ -36,7 +36,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-bottom:1px solid var(--line)}
 header .wrap{padding-block:14px 10px;display:grid;gap:10px}
-.brand{display:flex;align-items:center;gap:8px}
+.brand{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative}
 h1{font:800 26px/1 var(--display);letter-spacing:.01em;margin:0 auto 0 0;text-transform:uppercase}
 h1 span{color:var(--accent)}
 .asof{font:500 12px var(--mono);color:var(--muted)}
@@ -326,10 +326,21 @@ body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibr
 .chips-row:not(:has(> :not([hidden]))){display:none}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .linkish{border:0;background:none;padding:0 2px;color:var(--accent);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;min-height:44px;touch-action:manipulation}
-@media (max-width:360px){.pill-btn{padding:0 10px}.seg-btn{padding:0 10px;font-size:13px}h1{font-size:22px}}
+@media (max-width:360px){.pill-btn{padding:0 10px}.seg-btn{padding:0 10px;font-size:13px}h1{font-size:20px}.brand{gap:6px}#topTabs .seg-btn{padding:0 8px}}
 /* Sign-ups: leagues and tournaments (renderSignups in app.js) */
 #signupsPanel{display:grid;gap:12px}
 #signupsPanel[hidden]{display:none}
+/* Events (renderEvents in app.js): the same month groups as the sign-ups, 10 to a page. */
+#eventsPanel{display:grid;gap:12px}
+#eventsPanel[hidden]{display:none}
+/* The pager: Prev, the page numbers, "Page X of N", Next — wrapping instead of pushing the page
+   wider on a 320px phone. */
+.pager{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-top:2px}
+.pager .seg{flex-wrap:wrap;max-width:100%}
+.pager .note{white-space:nowrap}
+/* The Sports menu: a card under the Sports tab (the sport picker now, not a sheet). On a phone
+   it spans the width less the page margins, so it never runs off the screen. */
+.sports-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:7;width:min(340px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.25);padding:12px 14px;display:grid;gap:8px}
 .kinds{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
 .kinds::-webkit-scrollbar{display:none}
 .kinds .pill-btn{flex:0 0 auto}
@@ -377,8 +388,8 @@ header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
 .src-group{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:0 0 14px;overflow:hidden}
 .src-group h3{font:700 15px/1.1 var(--display);text-transform:uppercase;letter-spacing:.05em;margin:0;padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px}
 .src-group h3 .n{font:600 12px var(--mono);color:var(--muted);text-transform:none;letter-spacing:0}
-.src{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:4px 10px;padding:12px 14px;border-top:1px solid var(--line)}
-.src:first-of-type{border-top:0}
+.src-group .src{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:4px 10px;padding:12px 14px;border-top:1px solid var(--line)}
+.src-group .src:first-of-type{border-top:0}
 .src .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);align-self:center}
 .src.bad .dot{background:var(--bad)}
 .src > a,.src > .name{color:var(--ink);font-weight:600;text-decoration:none;overflow-wrap:anywhere}
