@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T18:14:06.380Z",
+  "generatedAt": "2026-11-17T18:46:48.308Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -12,7 +12,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-17T18:10:13.305Z",
+      "checkedAt": "2026-11-17T18:43:33.633Z",
       "count": 272
     },
     {
@@ -25,7 +25,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-17T18:10:13.305Z",
+      "checkedAt": "2026-11-17T18:43:33.633Z",
       "count": 161
     },
     {
@@ -38,7 +38,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-17T18:10:13.306Z",
+      "checkedAt": "2026-11-17T18:43:33.633Z",
       "count": 8
     },
     {
@@ -51,7 +51,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-17T18:10:13.306Z",
+      "checkedAt": "2026-11-17T18:43:33.633Z",
       "count": 12
     },
     {
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-17T18:10:13.307Z",
+      "checkedAt": "2026-11-17T18:43:33.634Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -216,7 +216,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-17T18:10:18.641Z",
+      "checkedAt": "2026-11-17T18:43:33.634Z",
       "count": 36
     },
     {
@@ -229,7 +229,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-17T18:10:18.769Z",
+      "checkedAt": "2026-11-17T18:43:33.734Z",
       "count": 24
     },
     {
@@ -255,7 +255,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-17T18:10:20.811Z",
+      "checkedAt": "2026-11-17T18:43:34.085Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -270,7 +270,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-17T18:10:20.982Z",
+      "checkedAt": "2026-11-17T18:43:34.330Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -295,7 +295,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-17T18:10:21.170Z",
+      "checkedAt": "2026-11-17T18:43:34.399Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -323,7 +323,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-17T18:10:23.927Z",
+      "checkedAt": "2026-11-17T18:43:35.280Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -15396,7 +15396,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-greenbriar-community-center",
       "status": "scheduled"
     },
     {
@@ -15456,7 +15455,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
     {
@@ -15486,7 +15484,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-southwest-community-center",
       "status": "scheduled"
     },
     {
@@ -15520,7 +15517,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-northside-community-center",
       "status": "scheduled"
     },
     {
@@ -15583,7 +15579,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
     {
@@ -15613,7 +15608,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
     {
@@ -15645,7 +15639,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-martin-luther-king-community-center",
       "status": "scheduled"
     },
     {
@@ -15675,7 +15668,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
     {
@@ -15706,7 +15698,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-handley-meadowbrook-community-center",
       "status": "scheduled"
     },
     {
@@ -15784,7 +15775,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15810,7 +15800,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15836,7 +15825,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15862,7 +15850,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15888,7 +15875,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15914,7 +15900,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15940,7 +15925,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15966,7 +15950,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -15992,7 +15975,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -16018,7 +16000,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -16068,7 +16049,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-houston-stars",
       "status": "scheduled"
     },
     {
@@ -16093,7 +16073,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -16118,7 +16097,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled"
     },
     {
@@ -16143,7 +16121,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -16168,7 +16145,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled"
     },
     {
@@ -16193,7 +16169,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-skyline-volleyball-academy",
       "status": "scheduled"
     },
     {
@@ -16218,7 +16193,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-the-zone",
       "status": "scheduled"
     },
     {
@@ -16243,7 +16217,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -16268,7 +16241,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-katy-sports-center",
       "status": "scheduled"
     },
     {
@@ -16293,7 +16265,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-emancipation-park",
       "status": "scheduled"
     },
     {
@@ -16318,7 +16289,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16343,7 +16313,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16368,7 +16337,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -16393,7 +16361,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -16418,7 +16385,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-t4-court-rentals",
       "status": "scheduled"
     },
     {
@@ -16443,7 +16409,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16468,7 +16433,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16493,7 +16457,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -16518,7 +16481,6 @@
       "region": "houston",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
-      "venueId": "src-collins-park",
       "status": "scheduled"
     },
     {
@@ -17741,168 +17703,6 @@
       "lat": 32.94881,
       "lng": -96.80371,
       "region": "dallas"
-    },
-    {
-      "id": "src-greenbriar-community-center",
-      "name": "Greenbriar Community Center",
-      "city": "Fort Worth",
-      "address": "5200 Hemphill Street, Fort Worth, TX, 76115",
-      "lat": 32.66901,
-      "lng": -97.33189,
-      "region": "dallas"
-    },
-    {
-      "id": "src-r-d-evans-community-center",
-      "name": "R.D. Evans Community Center",
-      "city": "Fort Worth",
-      "address": "3242 Lackland Road, Fort Worth, TX, 76116",
-      "lat": 32.72584,
-      "lng": -97.43475,
-      "region": "dallas"
-    },
-    {
-      "id": "src-southwest-community-center",
-      "name": "Southwest Community Center",
-      "city": "Fort Worth",
-      "address": "6300 Welch Avenue, Fort Worth, TX, 76133",
-      "lat": 32.6548,
-      "lng": -97.38199,
-      "region": "dallas"
-    },
-    {
-      "id": "src-northside-community-center",
-      "name": "Northside Community Center",
-      "city": "Fort Worth",
-      "address": "1100 NW 18th Street, Fort Worth, TX, 76164",
-      "lat": 32.77874,
-      "lng": -97.36285,
-      "region": "dallas"
-    },
-    {
-      "id": "src-victory-forest-community-center",
-      "name": "Victory Forest Community Center",
-      "city": "Fort Worth",
-      "address": "3427 Hemphill Street, Fort Worth, TX, 76110",
-      "lat": 32.70016,
-      "lng": -97.33161,
-      "region": "dallas"
-    },
-    {
-      "id": "src-martin-luther-king-community-center",
-      "name": "Martin Luther King Community Center",
-      "city": "Fort Worth",
-      "address": "5565 Truman Drive, Fort Worth, TX, 76112",
-      "lat": 32.72472,
-      "lng": -97.23534,
-      "region": "dallas"
-    },
-    {
-      "id": "src-handley-meadowbrook-community-center",
-      "name": "Handley Meadowbrook Community Center",
-      "city": "Fort Worth",
-      "address": "6201 Beaty Street, Fort Worth, TX, 76112",
-      "lat": 32.73961,
-      "lng": -97.22325,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
-      "region": "dallas"
-    },
-    {
-      "id": "src-houston-stars",
-      "name": "Houston Stars",
-      "city": null,
-      "address": "6942 Cotton Drive, Houston, Tx",
-      "lat": 29.836397,
-      "lng": -95.49456,
-      "region": "houston"
-    },
-    {
-      "id": "src-tellepsen-family-downtown-ymca",
-      "name": "Tellepsen Family Downtown YMCA",
-      "city": null,
-      "address": "808 Pease St, Houston, TX",
-      "lat": 29.7521,
-      "lng": -95.3703,
-      "region": "houston"
-    },
-    {
-      "id": "src-absolute-volleyball-academy-and-absolute-beach",
-      "name": "Absolute Volleyball Academy and Absolute Beach",
-      "city": null,
-      "address": "380 Green Wing St, Webster, Tx",
-      "lat": 29.536505,
-      "lng": -95.1123,
-      "region": "houston"
-    },
-    {
-      "id": "src-skyline-volleyball-academy",
-      "name": "Skyline Volleyball Academy",
-      "city": null,
-      "address": "23363 Clay Road, Katy, Tx",
-      "lat": 29.82756,
-      "lng": -95.77629,
-      "region": "houston"
-    },
-    {
-      "id": "src-the-zone",
-      "name": "The Zone",
-      "city": null,
-      "address": "10371 Stella Link Road 2nd Floor, Houston, TX 77025",
-      "lat": 29.66943,
-      "lng": -95.43757,
-      "region": "houston"
-    },
-    {
-      "id": "src-katy-sports-center",
-      "name": "Katy Sports Center",
-      "city": null,
-      "address": "535 Applewhite Drive, Katy, TX 77450, USA",
-      "lat": 29.77552,
-      "lng": -95.754074,
-      "region": "houston"
-    },
-    {
-      "id": "src-emancipation-park",
-      "name": "Emancipation Park",
-      "city": null,
-      "address": "3018 Emancipation Avenue, Houston, Tx",
-      "lat": 29.73524,
-      "lng": -95.36563,
-      "region": "houston"
-    },
-    {
-      "id": "src-champion-forest-baptist-church-champions-campus",
-      "name": "Champion Forest Baptist Church - Champions Campus",
-      "city": null,
-      "address": "15555 Stuebner Airline Road, Houston, Tx",
-      "lat": 30.002792,
-      "lng": -95.51335,
-      "region": "houston"
-    },
-    {
-      "id": "src-t4-court-rentals",
-      "name": "T4 Court Rentals",
-      "city": null,
-      "address": "1419 Vander Wilt Lane, Katy, Tx",
-      "lat": 29.7893,
-      "lng": -95.7427,
-      "region": "houston"
-    },
-    {
-      "id": "src-collins-park",
-      "name": "Collins Park",
-      "city": null,
-      "address": "6727 Cypresswood Drive, Spring, TX",
-      "lat": 30.011,
-      "lng": -95.5077,
-      "region": "houston"
     }
   ]
 }
