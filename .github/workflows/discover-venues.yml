@@ -1,9 +1,10 @@
 name: Discover venues
 
 # Weekly (and on demand): for each sport, find venues around Austin in OpenStreetMap (and Google
-# Places when GOOGLE_PLACES_API_KEY is set), classify where each publishes its schedule, and keep
-# one pull request per sport (discover/venues-<sport>) that adds the new venues to
-# the region's venues.json (config/regions/<id>/venues.json) and fills gaps on known ones. See scripts/discover.mjs and #21.
+# Places when GOOGLE_PLACES_API_KEY is set), classify where each publishes its schedule, and commit
+# the new venues straight to main — no review pull requests (the owner doesn't review them; the
+# script's own checks are the gate: a venue has to have a readable schedule surface, and the
+# hourly scrape opens an issue if a new source breaks). See scripts/discover.mjs and #21.
 on:
   schedule:
     - cron: '27 14 * * 1' # Mondays, 9:27am CDT
@@ -15,7 +16,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency: discover-venues
 
@@ -30,39 +30,28 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Discover and propose
+      - name: Discover and commit
         env:
-          GH_TOKEN: ${{ github.token }}
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
           ONLY: ${{ inputs.sport }}
         run: |
           git config user.name "volley-atx-bot"
           git config user.email "volley-atx-bot@users.noreply.github.com"
+          git checkout -q -B main "$GITHUB_SHA"
           sports=$(jq -r '.sports | keys[]' config/discovery.json)
           [ -n "$ONLY" ] && sports="$ONLY"
-          # Every region (config/regions/<id>/) × every sport: one review pull request each.
+          # Every region (config/regions/<id>/) × every sport: commit new venues straight to main.
           for region in $(ls config/regions); do
             [ -f "config/regions/$region/region.json" ] || continue
             name=$(jq -r '.name // .id' "config/regions/$region/region.json")
             for sport in $sports; do
-              branch="discover/venues-$region-$sport"
-              git checkout -q -B "$branch" "$GITHUB_SHA"
               node scripts/discover.mjs "$sport" "$region" --apply || { echo "::warning::$region/$sport discovery failed"; continue; }
-              open=$(gh pr list --state open --head "$branch" --json number --jq '.[0].number' || true)
               if git diff --quiet -- config/regions; then
                 echo "$region/$sport: nothing new"
-                # No open review and nothing to propose: drop a leftover branch.
-                [ -z "$open" ] && git push -q origin --delete "$branch" 2>/dev/null || true
                 continue
               fi
               git commit -qm "Discovered $sport venues in $name" -- config/regions
-              git push -q -f origin "$branch"
-              if [ -n "$open" ]; then
-                out=$(gh pr edit "$open" --body-file "discovered-$sport.md" 2>&1) || echo "::error::$region/$sport: gh pr edit failed: $out"
-              else
-                out=$(gh pr create --base main --head "$branch" --title "Discovered $sport venues around $name" \
-                  --body-file "discovered-$sport.md" --assignee "$GITHUB_REPOSITORY_OWNER" 2>&1) || { echo "::error::$region/$sport: gh pr create failed: $out"; failed=1; }
-              fi
+              git push -q origin main || { echo "::error::$region/$sport: git push failed"; failed=1; }
             done
           done
           exit ${failed:-0}
