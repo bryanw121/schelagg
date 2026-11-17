@@ -8,9 +8,9 @@
 // Needs the pmtiles CLI (github.com/protomaps/go-pmtiles); it reads only the part of the planet
 // file inside each box, with HTTP range requests. Map data © OpenStreetMap contributors (ODbL).
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { loadRegions } from '../lib/regions.js';
-import { regionBox } from '../lib/map-area.js';
+import { eventPointsForRegion, regionBox } from '../lib/map-area.js';
 import { repoPath } from '../lib/paths.js';
 
 const arg = (name, fallback) => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : fallback; };
@@ -24,9 +24,14 @@ const planet = `https://build.protomaps.com/${latest}`;
 
 const out = repoPath('public/maps');
 mkdirSync(out, { recursive: true });
+// The events feed (public/data/events.json, overlaid from the data branch by data-branch.sh pull
+// before this runs in the deploy) also pins places on the map, so its points widen each region's
+// box: Vista Brewing sits just south of Austin's venue-only box. Absent locally, no widening.
+const feedPath = repoPath('public/data/events.json');
+const feed = existsSync(feedPath) ? JSON.parse(readFileSync(feedPath, 'utf8')) : null;
 const made = [];
 for (const r of loadRegions()) {
-  const box = regionBox({ center: r.info.center, venues: r.venues });
+  const box = regionBox({ center: r.info.center, venues: [...r.venues, ...eventPointsForRegion(feed, r.info)] });
   const file = `${out}/${r.info.id}.pmtiles`;
   execFileSync(PMTILES, ['extract', planet, file, `--bbox=${box.join(',')}`, `--maxzoom=${MAXZOOM}`], { stdio: 'inherit' });
   made.push({ region: r.info.id, bbox: box, maxzoom: +MAXZOOM, bytes: statSync(file).size });

@@ -34,6 +34,65 @@ publishes them as a JSON feed. This repo stores the feed and loads it into Neon.
 - `id` is deterministic: `evt-` + the first 16 hex chars of `sha256(sourceUrl|startDate)`,
   so the same event found again is the same row.
 - Unknown optional fields are omitted, not nulled. `city` is `Austin` unless a named suburb.
+- An event may also carry `lat`, `lng` and `located` (`address` | `manual` | `source`):
+  coordinates for the map pin. They ride through `buildFeed` and `eventRow` untouched,
+  and the whole feed event is stored in the `data` column, so the site and the database
+  see the same point.
+
+## Coordinates
+
+`scripts/geocode-events.mjs` gives every feed event coordinates, so the site's map can
+pin it. It runs after the discovery run (and the daily discovery cron invokes it):
+
+1. Read `public/data/events.json` and the cache, `public/data/event-venues.json`.
+2. For each event without coordinates, resolve its venue (`lib/event-venues.js`):
+   a hand-placed cache entry wins; otherwise the street-address portion of the venue
+   string ("The Eleanor, 307 W 5th St" → "307 W 5th St") goes to the US Census
+   geocoder, and a match outside the region (Austin center + 60 km) is refused.
+   An event with two venues in one string pins the first in v1.
+3. Write `lat`/`lng`/`located` onto the feed events and update the cache.
+
+The cache is keyed by the normalized venue string (lowercase, collapsed whitespace):
+
+```json
+{
+  "zilker park": { "lat": 30.2672, "lng": -97.7713, "located": "manual", "matched": "Zilker Park, Austin, TX" },
+  "somewhere, austin": { "unresolved": true, "lastTried": "2026-11-17T00:00:00.000Z" }
+}
+```
+
+- `located` is `address` (a Census match on the venue's street address), `manual`
+  (hand-placed — the only route for bare names like Zilker Park or Republic Square),
+  or `source` (coordinates from the event's own page).
+- `matched` is the address the coordinates came from (the Census match, or the
+  hand-placed note). `unresolved` means no address could be geocoded and no hand-placed
+  entry exists yet; the event stays list-only until one is added.
+- The cache lives under `public/data/`, so `scripts/data-branch.sh` overlays it onto
+  the `data` branch with the feed, and the site reads the coordinates from the feed.
+
+```sh
+node scripts/geocode-events.mjs          # fill in what's missing and write the files
+node scripts/geocode-events.mjs --dry    # print what it would set, write nothing
+```
+
+## The site
+
+The site reads the same feed (`data/events.json`, overlaid from the `data` branch at
+deploy). The Events tab is the front page: a month-grouped list, 10 events to a page
+(`?page=`, `?cat=` deep links), with category chips (All / Pop-ups / Seasonal /
+Asian-inspired), a "Happening now" pill for events running today, and Source and
+directions links on every card. The Sports tab opens a dropdown of the sports; picking
+one loads that sport's schedules. The floating List/Map button switches to the map: one
+pin per venue (events at the same coordinates share it), a place list under it, and a
+tap shows that place's events.
+
+The map's tiles are cut per region by `scripts/build-maps.mjs` (in the deploy); the
+region's box folds in the feed's located points within the region's radius
+(`lib/map-area.js` `eventPointsForRegion`), so a venue just outside the venues-only box
+— Vista Brewing, just south of Austin's — is inside the tiles. The maps cache in
+`.github/workflows/pages.yml` is keyed on the region and venue files, `build-maps.mjs`
+and `map-area.js`; it does not yet include the feed, so a new event venue outside the
+current box only widens the tiles after the monthly cache turn (or a cache-key change).
 
 ## The database
 
@@ -63,5 +122,6 @@ Without `DATABASE_URL` the load is skipped and the JSON feed stays the fallback.
 ```sh
 npm run db:migrate        # apply db/migrations/*.sql to DATABASE_URL
 npm run load:events       # load public/data/events.json into DATABASE_URL
-node --test test/events.test.mjs
+node scripts/geocode-events.mjs --dry   # preview coordinates for the feed's events
+node --test test/events.test.mjs test/event-venues.test.mjs
 ```

@@ -139,6 +139,20 @@ test('buildFeed: merges with the previous feed, drops past events, sorts', () =>
   assert.equal(spanning.events.length, 1);
 });
 
+test('buildFeed and eventRow: coordinates ride through untouched', () => {
+  const located = { ...EVENTS[0], lat: 30.26777, lng: -97.74569, located: 'address' };
+  const feed = buildFeed({ events: [located], previous: null, now: NOW });
+  assert.deepEqual([feed.events[0].lat, feed.events[0].lng, feed.events[0].located], [30.26777, -97.74569, 'address']);
+
+  // The whole feed event lands in the data column, coordinates included.
+  const row = eventRow(located);
+  assert.deepEqual([row.data.lat, row.data.lng, row.data.located], [30.26777, -97.74569, 'address']);
+
+  // An event without coordinates is untouched too (no nulls invented).
+  const plain = buildFeed({ events: [EVENTS[1]], previous: null, now: NOW });
+  assert.equal('lat' in plain.events[0], false);
+});
+
 // --- writeEvents ------------------------------------------------------------------------------
 
 test('writeEvents: first load inserts, a repeat changes nothing, edits and drops are tracked', async () => {

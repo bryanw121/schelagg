@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Schelagg</title>
-<meta name="description" content="Where to play today: volleyball, pickleball open play and public ice skating, with schedules, venue directions and sign-up links, plus leagues and tournaments open for sign-up.">
+<meta name="description" content="Where to play today: volleyball, pickleball open play and public ice skating, with schedules, venue directions and sign-up links, plus leagues and tournaments open for sign-up — and Austin pop-ups, seasonal events and Asian-inspired things.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="styles.css">
@@ -12,11 +12,16 @@
 <body>
 <header>
   <div class="wrap">
-    <!-- Brand row: the sport (opens a sheet) and 📍; under it the city and how fresh the data is. -->
+    <!-- Brand row: Events or Sports (Sports opens a menu of the sports) and 📍; under it the city and how fresh the data is. -->
     <div class="brand">
       <h1>Schel<span>agg</span></h1>
-      <button type="button" id="sportBtn" class="pill-btn sport-btn" data-sheet="sportSheet" aria-haspopup="dialog"></button>
+      <div class="seg" role="group" aria-label="Events or sports" id="topTabs"><button class="seg-btn" type="button" data-section="events" aria-pressed="true">Events</button><button class="seg-btn" type="button" data-section="sports" aria-pressed="false">Sports</button></div>
       <button type="button" id="nearest" class="nearest" title="Nearest city to me" aria-label="Nearest city to me" hidden><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></button>
+      <!-- The Sports menu: a card under the Sports tab, listing the sports (the sport picker). -->
+      <div id="sportsMenu" class="sports-menu" hidden>
+        <h3>Sports</h3>
+        <div class="opts" id="sportsOpts" role="group" aria-label="Sport"></div>
+      </div>
     </div>
     <div class="sub"><span class="region"><span id="regionName"></span><select id="regionPick" aria-label="City" hidden></select></span><span class="asof" id="asof">Loading…</span><a class="sources-link" id="sourcesLink" href="sources.html" hidden></a></div>
     <div id="filters" class="filters">
@@ -30,12 +35,6 @@
 </header>
 
 <!-- Bottom sheets: tap an option and it applies at once (Esc, ✕ or a tap outside closes). -->
-<dialog class="sheet" id="sportSheet" aria-labelledby="sportSheetTitle">
-  <div class="sheet-in">
-    <div class="sheet-head"><h2 id="sportSheetTitle">Sport</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
-    <div class="opts" role="group" aria-label="Sport" id="sports"></div>
-  </div>
-</dialog>
 <dialog class="sheet" id="levelSheet" aria-labelledby="levelSheetTitle">
   <div class="sheet-in">
     <div class="sheet-head"><h2 id="levelSheetTitle">Level</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
@@ -67,6 +66,16 @@
       <p class="vh" id="programsCount" role="status"></p>
       <div class="programs" id="programs"><p class="loading">Loading leagues and tournaments…</p></div>
       <p class="note" id="programsNote"></p>
+    </div>
+
+    <!-- Events: Austin pop-ups, seasonal events and Asian-inspired things (data/events.json),
+         10 to a page, grouped by the month they start in; the map pins them by venue. -->
+    <div id="eventsPanel" hidden>
+      <div class="chips-row kinds" role="group" aria-label="Category" id="eventCats"></div>
+      <p class="note" id="eventsCount" role="status"></p>
+      <div class="list" id="events"><p class="loading">Loading events…</p></div>
+      <div class="pager" id="eventsPager"></div>
+      <p class="note" id="eventsNote"></p>
     </div>
 
     <section class="card" id="glance">
