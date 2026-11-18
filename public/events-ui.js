@@ -106,6 +106,9 @@ export function eventPlaces(events, today) {
       id: `event:${first.lat.toFixed(5)},${first.lng.toFixed(5)}`,
       name: first.venue,
       short: eventPinName(first.venue),
+      // What the pin and its row are called: the event on now (or the soonest), and how many more.
+      title: shown.title,
+      more: n - 1,
       city: parts.slice(1).join(' · '),
       lat: first.lat,
       lng: first.lng,
@@ -115,7 +118,7 @@ export function eventPlaces(events, today) {
       status,
       detail: status,
       label: status,
-      aria: `${first.venue}: ${status}`,
+      aria: `${shown.title}${n > 1 ? ` and ${n - 1} more` : ''} at ${eventPinName(first.venue)}: ${status}`,
       done: false,
       full: false,
     };
