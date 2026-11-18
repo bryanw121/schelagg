@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        269,
         272,
         272,
         272,
@@ -11,13 +10,14 @@
         269,
         269,
         269,
-        269
+        269,
+        267
       ],
-      "sessions": 269,
+      "sessions": 267,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.72,
+        "level": 0.71,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -65,21 +65,10 @@
         8,
         8,
         8,
-        8
+        0
       ],
-      "sessions": 8,
-      "coverage": {
-        "end": 1,
-        "price": 1,
-        "level": 0,
-        "venue": 1,
-        "city": 1,
-        "surface": 1,
-        "type": 1,
-        "capacity": 0,
-        "spotsLeft": 0,
-        "signup": 1
-      }
+      "sessions": 0,
+      "coverage": {}
     },
     "volleyworld": {
       "counts": [
@@ -92,9 +81,9 @@
         12,
         12,
         12,
-        12
+        11
       ],
-      "sessions": 12,
+      "sessions": 11,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -166,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 838
+      "failStreak": 839
     },
     "atxbeach": {
       "counts": [
@@ -672,7 +661,7 @@
     },
     "volleyball-austin": {
       "counts": [
-        3,
+        2,
         2,
         2,
         2,
@@ -926,13 +915,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 547
+      "failStreak": 548
     },
     "leander-pickleball": {
-      "failStreak": 547
+      "failStreak": 548
     },
     "dallas-reclub": {
-      "failStreak": 179
+      "failStreak": 180
     },
     "sportsgarden": {
       "counts": [
@@ -985,7 +974,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 43
+      "failStreak": 44
     },
     "dfw-city-active": {
       "counts": [
@@ -1042,7 +1031,7 @@
       "counts": [
         12,
         12,
-        12,
+        13,
         13,
         13,
         13,
@@ -1069,16 +1058,16 @@
       "counts": [
         19,
         19,
-        19,
         20,
         20,
         20,
         20,
         20,
         21,
-        21
+        21,
+        23
       ],
-      "sessions": 21,
+      "sessions": 23,
       "coverage": {
         "end": 1,
         "price": 0.57,
@@ -1237,6 +1226,7 @@
     "dallas-reclub:failing",
     "foro:failing",
     "georgetown-pickleball:failing",
+    "holy-pickle:count",
     "houston-reclub:warning:reclub-230JCQ: no surface",
     "houston-reclub:warning:reclub-3YV72K: no surface",
     "houston-reclub:warning:reclub-40RJ8U: no surface",
@@ -1247,11 +1237,13 @@
     "houston-reclub:warning:reclub-8TBKMU: no surface",
     "houston-reclub:warning:reclub-DWL75Q: no surface",
     "houston-reclub:warning:reclub-EEUP4M: no surface",
+    "houston-reclub:warning:reclub-JMV5QT: no surface",
     "houston-reclub:warning:reclub-K9D10X: no surface",
     "houston-reclub:warning:reclub-MTBP54: no surface",
     "houston-reclub:warning:reclub-NJKPQA: no surface",
     "houston-reclub:warning:reclub-OKAE7P: no surface",
     "houston-reclub:warning:reclub-OS2O5W: no surface",
+    "houston-reclub:warning:reclub-PY6UV1: no surface",
     "houston-reclub:warning:reclub-R9HE9A: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
     "houston-reclub:warning:reclub-VK88UG: no surface",

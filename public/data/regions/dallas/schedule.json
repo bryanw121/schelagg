@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-17T22:16:47.497Z",
+  "generatedAt": "2026-11-18T02:16:50.783Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-17T22:13:17.613Z",
+      "checkedAt": "2026-11-18T02:13:46.824Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -55,7 +55,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-17T22:13:19.028Z",
+      "checkedAt": "2026-11-18T02:13:48.338Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -110,7 +110,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-17T19:39:23.372Z",
+      "checkedAt": "2026-11-18T02:13:49.288Z",
       "count": 13,
       "warnings": [
         "venue \"Intentional Sports\" isn't in its region's venues.json"
@@ -751,31 +751,6 @@
       "status": "scheduled"
     },
     {
-      "id": "meetup-ntav-event_317183553-2026-11-17",
-      "date": "2026-11-17",
-      "start": "19:00",
-      "end": "20:00",
-      "title": "Adult Volleyball Skills Clinic and Training",
-      "venue": "USSPT",
-      "city": "Lewisville",
-      "surface": "indoor",
-      "type": "Clinic",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
-      "signup": {
-        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317183553/",
-        "label": "Details and RSVP"
-      },
-      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317183553/",
-      "sourceId": "dallas-meetup",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-17",
-      "status": "scheduled"
-    },
-    {
       "id": "meetup-ntav-event_317199325-2026-11-18",
       "date": "2026-11-18",
       "start": "19:00",
@@ -798,6 +773,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -823,6 +799,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -848,6 +825,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -873,6 +851,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -898,6 +877,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -923,6 +903,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -948,6 +929,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -973,6 +955,7 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -998,6 +981,33 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317390514-2026-12-01",
+      "date": "2026-12-01",
+      "start": "19:00",
+      "end": "20:00",
+      "title": "Adult Volleyball Skills Clinic and Training",
+      "venue": "USSPT",
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Clinic",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317390514/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317390514/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-17",
+      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -1088,6 +1098,15 @@
       "address": "14719 Preston Road, Dallas, TX 75254",
       "lat": 32.94881,
       "lng": -96.80371,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
       "region": "dallas"
     }
   ]
