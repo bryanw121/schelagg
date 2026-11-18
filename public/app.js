@@ -1289,7 +1289,7 @@ function renderPlaceSheet(places, iso) {
   s.innerHTML = `<div class="ps-grab" aria-hidden="true"></div><button type="button" class="ps-x" data-pin="${esc(p.id)}" aria-label="Close ${esc(p.short || p.name)}">✕</button><div class="ps-body">${mapPanelHtml(places, iso, p.id)}</div>`;
   if (!was) s.focus({ preventScroll: true });
 }
-const closePlace = () => { if (mapPick) { mapPick = null; save(); renderMap(); } };
+const closePlace = () => { if (mapPick) { mapPick = null; save(); showPick(); } };
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mapPick && !document.querySelector('dialog.sheet[open]')) closePlace(); });
 // Swipe the sheet down by its handle or header to close it.
 {
@@ -1318,6 +1318,47 @@ function declutter() {
     (m.el.querySelector('.pin-t') ?? m.el).insertAdjacentHTML('beforeend', `<i class="more">+${group.length} more</i>`);
     m.el.setAttribute('aria-label', `${m.p.aria}. ${group.length} more here: ${group.map((p) => p.name).join(', ')}. Tap to zoom in.`);
   }
+}
+
+/**
+ * Bring the picked pin into the part of the map the place sheet leaves free (above it on a
+ * phone, right of it on a computer). A pin already in sight there doesn't move the map at all;
+ * otherwise the map pans, and zooms in only when its bounds wouldn't let it pan far enough —
+ * a zoom loads new map tiles, which is the slow part on a phone.
+ */
+function revealPick() {
+  const hidden = () => {
+    const m = mapMarkers.find((x) => x.p.id === mapPick);
+    if (!m || !mapView) return null;
+    const map = $('map').getBoundingClientRect(), sh = $('placeSheet').getBoundingClientRect(), pin = m.el.getBoundingClientRect();
+    const docked = matchMedia('(min-width: 760px)').matches;
+    const free = docked ? { left: sh.right + 8, right: map.right - 8, top: map.top + 8, bottom: map.bottom - 8 } : { left: map.left + 8, right: map.right - 8, top: map.top + 8, bottom: sh.top - 8 };
+    if (pin.left >= free.left && pin.right <= free.right && pin.top >= free.top && pin.bottom <= free.bottom) return null;
+    return { p: m.p, offset: [Math.round((free.left + free.right) / 2 - (map.left + map.width / 2)), Math.round((free.top + free.bottom) / 2 - (map.top + map.height / 2))] };
+  };
+  const first = hidden();
+  if (!first) return;
+  const pick = mapPick;
+  mapView.easeTo({ center: [first.p.lng, first.p.lat], offset: first.offset, duration: 200 });
+  mapView.once('moveend', () => {
+    const still = mapPick === pick ? hidden() : null;
+    if (still) mapView.easeTo({ center: [still.p.lng, still.p.lat], zoom: Math.min(mapView.getZoom() + 1.5, 13), offset: still.offset, duration: 250 });
+  });
+}
+
+/**
+ * A pick (or closing one) on a map that's already drawn: mark the pin and its row, fill the
+ * place sheet, and nothing else. The pins, the rows under the map and the map itself stay as
+ * they are (renderMap rebuilds all of them, which made a tap wait).
+ */
+function showPick() {
+  if (!mapView || !mapMarkers.length || $('mapCard').hidden) return renderMap();
+  for (const m of mapMarkers) { const on = m.p.id === mapPick; m.el.classList.toggle('sel', on); m.el.setAttribute('aria-pressed', String(on)); }
+  for (const r of $('mapPanel').querySelectorAll('.place-row')) { const on = r.dataset.pin === mapPick; r.classList.toggle('on', on); r.setAttribute('aria-pressed', String(on)); }
+  renderPlaceSheet(mapMarkers.map((m) => m.p), WEEK[state.di]);
+  if (mapPick && shownPick !== mapPick) revealPick();
+  shownPick = mapPick;
+  requestAnimationFrame(declutter); // the picked pin is never folded into a neighbour
 }
 
 async function renderMap() {
@@ -1356,7 +1397,9 @@ async function renderMap() {
       style: { version: 8, glyphs: `${base}fonts/{fontstack}/{range}.pbf`, sprite: `${base}sprites/${flavor}`,
         sources: { osm: { type: 'vector', url: `pmtiles://${base}${region.id}.pmtiles`, attribution: '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>' } },
         layers: window.basemaps.layers('osm', window.basemaps.namedFlavor(flavor), { lang: 'en' }) },
-      bounds: [[box[0], box[1]], [box[2], box[3]]], maxBounds: [[box[0] - 0.2, box[1] - 0.2], [box[2] + 0.2, box[3] + 0.2]],
+      // Room to pan past the region's edge: a picked pin near the edge can then slide clear of the place
+      // sheet without zooming (a zoom fetches new tiles; the blank margin sits behind the sheet).
+      bounds: [[box[0], box[1]], [box[2], box[3]]], maxBounds: [[box[0] - (box[2] - box[0]) * 0.6, box[1] - (box[3] - box[1]) * 0.75], [box[2] + (box[2] - box[0]) * 0.6, box[3] + (box[3] - box[1]) * 0.75]],
       attributionControl: { compact: true }, dragRotate: false, pitchWithRotate: false, cooperativeGestures: false,
     });
     mapView.touchZoomRotate.disableRotation();
@@ -1388,13 +1431,7 @@ async function renderMap() {
     if (p && !mapView.getBounds().contains([p.lng, p.lat])) mapView.easeTo({ center: [p.lng, p.lat] });
   }
   mapView.resize();
-  // A new pick moves the map so its pin sits clear of the sheet (above it on a phone, right of it on a computer).
-  if (mapPick && shownPick !== mapPick) {
-    const p = places.find((x) => x.id === mapPick);
-    const docked = matchMedia('(min-width: 760px)').matches, box = $('map').getBoundingClientRect();
-    // Zoomed out to the whole region the map can't pan (its bounds hold it), so a pick also zooms in a little.
-    if (p) mapView.easeTo({ center: [p.lng, p.lat], zoom: Math.max(mapView.getZoom(), 11), offset: docked ? [Math.round(box.width * 0.22), 0] : [0, -Math.round(box.height * 0.27)], duration: 300 });
-  }
+  if (mapPick && shownPick !== mapPick) revealPick();
   shownPick = mapPick;
   requestAnimationFrame(declutter);
 }
@@ -1480,7 +1517,7 @@ document.addEventListener('click', async (e) => {
       return;
     }
     mapPick = mapPick === pin.dataset.pin ? null : pin.dataset.pin;
-    renderMap();
+    showPick();
     if (mapPick && pin.closest('#mapPanel')) $('map').scrollIntoView({ block: 'center', behavior: 'smooth' });
     if (!mapPick) document.querySelector(`.pin[data-pin="${CSS.escape(pin.dataset.pin)}"]`)?.focus();
     return;
@@ -1584,3 +1621,6 @@ render();
 try { programs = await getJson(`${DATA}programs.json`); } catch (e) { programsError = e.message; }
 render();
 setInterval(() => { if (state.section === 'sports') renderMeta(); }, 60_000); // keep "x min ago" current while the page stays open (the events line is an absolute date)
+
+// Warm the map's libraries once the page is idle, so the first tap on Map doesn't wait for them.
+if (mapReady() && state.layout !== 'map') (window.requestIdleCallback ?? ((f) => setTimeout(f, 1500)))(() => { loadMapLibs().catch(() => { mapLibs = null; }); });

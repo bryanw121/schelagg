@@ -1465,19 +1465,24 @@ test('site: the place sheet in dark mode reads light-on-dark (the old popup was 
 
 test('site: on a phone the place sheet sits at the bottom of the map and the picked pin stays above it; on a computer it docks left', async () => {
   await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin', touch: true });
+  const zoom0 = await page.evaluate(() => window.__schelaggMap.getZoom());
+  // A pick keeps the pins and rows that are there (no rebuild): the same elements before and after.
+  await page.evaluate(() => { window.__pin0 = document.querySelector('#map .pin'); window.__row0 = document.querySelector('#mapPanel .place-row'); });
   for (const w of [390, 320]) {
     await page.setViewportSize({ width: w, height: 760 });
     await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
     const sheet = page.locator('#placeSheet');
     await sheet.waitFor();
-    await page.waitForTimeout(600); // the map eases the pin up
+    await page.waitForTimeout(900); // the map eases the pin up (a pan, then a zoom if the pan couldn't clear the sheet)
     const [m, s, p] = await page.evaluate(() => ['#map', '#placeSheet', '.pin.sel'].map((q) => { const r = document.querySelector(q).getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right }; }));
     assert.ok(Math.abs(s.bottom - m.bottom) < 2 && s.left >= m.left - 1 && s.right <= m.right + 1, `${w}px: the sheet sits inside the map, at its bottom`);
     assert.ok(p.bottom <= s.top, `${w}px: the picked pin is above the sheet (${p.bottom} ≤ ${s.top})`);
+    if (w === 390) assert.equal(await page.evaluate(() => window.__schelaggMap.getZoom()), zoom0, 'the map pans to clear the sheet; it does not zoom (a zoom loads new tiles)');
     assert.ok((await sheet.locator('.ps-x').evaluate((e) => e.getBoundingClientRect().height)) >= 44, `${w}px: ✕ is 44px`);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${w}px: the page fits`);
     await sheet.locator('.ps-x').click();
   }
+  assert.equal(await page.evaluate(() => window.__pin0.isConnected && window.__row0.isConnected), true, 'picking and closing left the pins and rows in place');
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
   const [m, s] = await page.evaluate(() => ['#map', '#placeSheet'].map((q) => { const r = document.querySelector(q).getBoundingClientRect(); return { top: r.top, left: r.left, width: r.width, height: r.height }; }));
