@@ -404,3 +404,17 @@ header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
 .src.bad .status{color:var(--bad)}
 .src-foot{color:var(--muted);font-size:13px;margin:4px 0 32px}
 .sources-link{font:600 12px var(--mono);color:var(--accent);margin-left:8px}
+
+/* The map popup that opens when a pin is tapped. */
+.map-pop .maplibregl-popup-content{padding:12px 14px 10px;border-radius:12px;font:400 14px/1.4 var(--body);color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.map-pop h4{font:700 15px/1.25 var(--body);margin:0;padding-right:20px}
+.map-pop .mp-sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.map-pop .mp-ev{display:grid;gap:2px;padding:8px 0;border-top:1px solid var(--line)}
+.map-pop .mp-ev:first-of-type{border-top:0;margin-top:6px}
+.map-pop .mp-t{font:600 12.5px var(--mono);color:var(--ok)}
+.map-pop .mp-n{font-weight:600}
+.map-pop .mp-n small{font-weight:500;color:var(--muted)}
+.map-pop .mp-a{font-size:12.5px}
+.map-pop .mp-more{color:var(--muted);font-size:12.5px;padding-top:6px}
+.map-pop .mp-act{display:block;margin-top:8px;border:0;background:none;padding:0;color:var(--accent);font:600 13px var(--body);cursor:pointer;text-align:left}
+.map-pop .maplibregl-popup-close-button{font-size:20px;line-height:1;color:var(--muted);padding:6px 8px}

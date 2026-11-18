@@ -1370,17 +1370,18 @@ test('site: Events map: one pin per venue, place list, tap for its events; share
   const pins = page.locator('#map .pin');
   await pins.first().waitFor();
   // Six events, five venues: Zilker Park hosts two, so one pin per venue, not per event.
+  // Each pin's status carries the full date range of the soonest (or happening) event.
   assert.deepEqual((await pins.evaluateAll((els) => els.map((e) => [e.dataset.pin, e.textContent, e.getAttribute('aria-label')]))).sort(), [
-    ['event:30.10485,-98.02175', 'Vista Brewing', 'Vista Brewing: 1 event · next Sun, Nov 15'],
-    ['event:30.26720,-97.77290', 'Zilker Park', 'Zilker Park: Happening now · 2 events'],
-    ['event:30.34000,-97.55000', 'Manor Market', 'Manor Market: 1 event · next Sun, Nov 29'],
-    ['event:30.44000,-97.62000', 'Pflugerville Plaza', 'Pflugerville Plaza: 1 event · next Wed, Oct 28'],
-    ['event:30.50500,-97.82000', 'Junbi', 'Junbi, Cedar Park: Happening now · 1 event'],
+    ['event:30.10485,-98.02175', 'Vista Brewing', 'Vista Brewing: 1 event · Sun, Nov 15'],
+    ['event:30.26720,-97.77290', 'Zilker Park', 'Zilker Park: Happening now · Oct 20 – 30'],
+    ['event:30.34000,-97.55000', 'Manor Market', 'Manor Market: 1 event · Sun, Nov 29'],
+    ['event:30.44000,-97.62000', 'Pflugerville Plaza', 'Pflugerville Plaza: 1 event · Wed, Oct 28'],
+    ['event:30.50500,-97.82000', 'Junbi', 'Junbi, Cedar Park: Happening now · Oct 25 – Nov 1'],
   ]);
   assert.match(await page.locator('#mapPanel .map-hint').textContent(), /^5 places with events coming up\. Tap one for its events\.$/);
   assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
   assert.deepEqual(await page.locator('#mapPanel .place-row .pr-name').evaluateAll((els) => els.map((e) => e.firstChild.textContent)), ['Junbi, Cedar Park', 'Manor Market', 'Pflugerville Plaza', 'Vista Brewing', 'Zilker Park']);
-  assert.equal(await page.locator('#mapPanel .place-row[data-pin="event:30.26720,-97.77290"] .pr-status').textContent(), 'Happening now · 2 events');
+  assert.equal(await page.locator('#mapPanel .place-row[data-pin="event:30.26720,-97.77290"] .pr-status').textContent(), 'Happening now · Oct 20 – 30');
   // Tap a pin: that place's events, with dates and source links.
   await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
   const panel = page.locator('#mapPanel');
@@ -1396,6 +1397,93 @@ test('site: Events map: one pin per venue, place list, tap for its events; share
   await page.locator('[data-layout="list"]').click();
   assert.equal(await page.locator('#mapCard').isHidden(), true);
   assert.equal(new URL(page.url()).searchParams.get('layout'), null);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: Events map: tapping a pin pops its events up on the map; closing it returns to the place list', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
+  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, events: EVENTS_MAP, url: '/?view=events', waitFor: '#events .row' });
+  await page.locator('#layout [data-layout="map"]').click();
+  await page.locator('#map .pin').first().waitFor();
+  // Tap the Zilker pin: a popup opens on the map with both events, dates and prices.
+  await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
+  const pop = page.locator('.maplibregl-popup');
+  await pop.waitFor();
+  assert.equal(await pop.locator('h4').textContent(), 'Zilker Park');
+  assert.deepEqual(await pop.locator('.mp-ev .mp-t').allTextContents(), ['Oct 20 – 30', 'Sun, Nov 1']);
+  assert.deepEqual(await pop.locator('.mp-ev .mp-n').evaluateAll((els) => els.map((e) => e.firstChild.textContent.trim())), ['Autumn Market', 'Dia de los Muertos']);
+  assert.equal(await pop.locator('.mp-ev .mp-n small').first().textContent(), '$10');
+  assert.equal(await pop.locator('.mp-ev a.src').first().getAttribute('href'), 'https://example.test/autumn');
+  assert.equal(await pop.locator('[data-scroll-panel]').textContent(), 'See details ↓');
+  // The panel below still shows the picked place's events.
+  assert.deepEqual(await page.locator('#mapPanel .pop-item .pop-t').allTextContents(), ['Oct 20 – 30', 'Sun, Nov 1']);
+  // The × closes the popup and the panel goes back to the place list.
+  await pop.locator('.maplibregl-popup-close-button').click();
+  await page.locator('#mapPanel .place-row').first().waitFor();
+  assert.equal(await page.locator('.maplibregl-popup').count(), 0);
+  assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
+  assert.equal(await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').getAttribute('aria-pressed'), 'false');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: Sports map: tapping a pin pops its sessions up on the map, with compact Book links', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
+  sched.venues = [
+    { id: 'gym', name: 'Austin North Gym', short: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7 },
+    { id: 'beach', name: 'ATX Beach', city: 'Austin', lat: 30.3, lng: -97.75 },
+  ];
+  const at = (id, venueId, venue, start, end, price) => ({ ...base, id, sourceId: 'manual', date: TODAY, start, end, title: `Session ${id}`, venueId, venue, city: 'Austin', surface: 'indoor', type: 'Open play', ...(price ? { price } : {}), signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
+  sched.sessions = [at('g1', 'gym', 'North Gym', '18:00', '20:00', '$10'), at('g2', 'gym', 'North Gym', '20:00', '22:00'), at('b1', 'beach', 'ATX Beach', '18:30', '20:00')];
+  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, url: '/?view=openplay' });
+  await page.locator('#layout [data-layout="map"]').click();
+  await page.locator('#map .pin').first().waitFor();
+  await page.locator('#map .pin[data-pin="gym"]').click();
+  const pop = page.locator('.maplibregl-popup');
+  await pop.waitFor();
+  assert.equal(await pop.locator('h4').textContent(), 'North Gym');
+  assert.deepEqual(await pop.locator('.mp-ev .mp-t').allTextContents(), ['6pm–8pm', '8pm–10pm']);
+  assert.deepEqual(await pop.locator('.mp-ev .mp-n').evaluateAll((els) => els.map((e) => e.firstChild.textContent.trim())), ['Session g1', 'Session g2']);
+  assert.equal(await pop.locator('.mp-ev .mp-n small').first().textContent(), '$10');
+  // Compact text links, not the full blue sign-up buttons.
+  assert.equal(await pop.locator('.mp-ev a.src', { hasText: 'Book ↗' }).count(), 2);
+  assert.equal(await pop.locator('.mp-ev a.signup').count(), 0);
+  assert.equal(await pop.locator('.mp-ev a.src').first().getAttribute('href'), `${SIGNUP}/g1`);
+  // Closing it returns the panel to the place list.
+  await pop.locator('.maplibregl-popup-close-button').click();
+  await page.locator('#mapPanel .place-row').first().waitFor();
+  assert.equal(await page.locator('.maplibregl-popup').count(), 0);
+  assert.equal(await page.locator('#mapPanel .place-row').count(), 2);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: Events map popup fits on a phone (390px and 320px)', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
+  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, events: EVENTS_MAP, url: '/?view=events', waitFor: '#events .row', touch: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('#layout [data-layout="map"]').click();
+  await page.locator('#map .pin').first().waitFor();
+  await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
+  const pop = page.locator('.maplibregl-popup');
+  await pop.waitFor();
+  const fits = async (w) => {
+    const b = await pop.evaluate((el) => { const r = el.getBoundingClientRect(); return { left: Math.round(r.left), right: Math.round(r.right) }; });
+    assert.ok(b.left >= 0 && b.right <= w, `popup fits at ${w}px (${b.left}–${b.right})`);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `page fits at ${w}px`);
+  };
+  await fits(390);
+  // 320px: the narrowest phone — the popup narrows rather than spilling off screen.
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.waitForTimeout(500); // the map and popup re-settle after the resize
+  await fits(320);
   assert.deepEqual(pageErrors, []);
 });
 

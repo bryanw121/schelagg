@@ -93,10 +93,16 @@ export function eventPlaces(events, today) {
   return [...byCoords.values()].map((list) => {
     const first = list[0];
     const parts = eventPlaceParts(first);
-    const happening = list.some((e) => e.startDate <= today && today <= (e.endDate ?? e.startDate));
+    const happeningList = list.filter((e) => e.startDate <= today && today <= (e.endDate ?? e.startDate));
+    const happening = happeningList.length > 0;
     const next = [...list].sort((a, b) => a.startDate.localeCompare(b.startDate))[0];
+    // The date shown is the full range of the soonest event (or, when something is on
+    // now, of the happening event that ends soonest) — not just its start date.
+    const shown = happening
+      ? [...happeningList].sort((a, b) => (a.endDate ?? a.startDate).localeCompare(b.endDate ?? b.startDate))[0]
+      : next;
     const n = list.length;
-    const status = happening ? `Happening now · ${n} event${n === 1 ? '' : 's'}` : `${n} event${n === 1 ? '' : 's'} · next ${eventDateRange(next).split(' – ')[0]}`;
+    const status = happening ? `Happening now · ${eventDateRange(shown)}` : `${n} event${n === 1 ? '' : 's'} · ${eventDateRange(next)}`;
     return {
       id: `event:${first.lat.toFixed(5)},${first.lng.toFixed(5)}`,
       name: first.venue,
