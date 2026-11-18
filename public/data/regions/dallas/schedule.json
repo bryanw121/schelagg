@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-18T18:00:23.391Z",
+  "generatedAt": "2026-11-18T18:13:24.601Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-18T17:57:17.706Z",
+      "checkedAt": "2026-11-18T18:13:19.775Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -55,7 +55,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-18T17:57:20.156Z",
+      "checkedAt": "2026-11-18T18:13:19.776Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -394,7 +394,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-greenbriar-community-center",
       "status": "scheduled"
     },
     {
@@ -424,7 +423,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
     {
@@ -454,7 +452,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-southwest-community-center",
       "status": "scheduled"
     },
     {
@@ -488,7 +485,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-northside-community-center",
       "status": "scheduled"
     },
     {
@@ -551,7 +547,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
     {
@@ -581,7 +576,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
     {
@@ -613,7 +607,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-martin-luther-king-community-center",
       "status": "scheduled"
     },
     {
@@ -643,7 +636,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
     {
@@ -674,7 +666,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-handley-meadowbrook-community-center",
       "status": "scheduled"
     },
     {
@@ -752,7 +743,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -778,7 +768,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -804,7 +793,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -830,7 +818,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -856,7 +843,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -882,7 +868,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -908,7 +893,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -934,7 +918,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -960,7 +943,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -986,7 +968,6 @@
       "region": "dallas",
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -1077,78 +1058,6 @@
       "address": "14719 Preston Road, Dallas, TX 75254",
       "lat": 32.94881,
       "lng": -96.80371,
-      "region": "dallas"
-    },
-    {
-      "id": "src-greenbriar-community-center",
-      "name": "Greenbriar Community Center",
-      "city": "Fort Worth",
-      "address": "5200 Hemphill Street, Fort Worth, TX, 76115",
-      "lat": 32.66901,
-      "lng": -97.33189,
-      "region": "dallas"
-    },
-    {
-      "id": "src-r-d-evans-community-center",
-      "name": "R.D. Evans Community Center",
-      "city": "Fort Worth",
-      "address": "3242 Lackland Road, Fort Worth, TX, 76116",
-      "lat": 32.72584,
-      "lng": -97.43475,
-      "region": "dallas"
-    },
-    {
-      "id": "src-southwest-community-center",
-      "name": "Southwest Community Center",
-      "city": "Fort Worth",
-      "address": "6300 Welch Avenue, Fort Worth, TX, 76133",
-      "lat": 32.6548,
-      "lng": -97.38199,
-      "region": "dallas"
-    },
-    {
-      "id": "src-northside-community-center",
-      "name": "Northside Community Center",
-      "city": "Fort Worth",
-      "address": "1100 NW 18th Street, Fort Worth, TX, 76164",
-      "lat": 32.77874,
-      "lng": -97.36285,
-      "region": "dallas"
-    },
-    {
-      "id": "src-victory-forest-community-center",
-      "name": "Victory Forest Community Center",
-      "city": "Fort Worth",
-      "address": "3427 Hemphill Street, Fort Worth, TX, 76110",
-      "lat": 32.70016,
-      "lng": -97.33161,
-      "region": "dallas"
-    },
-    {
-      "id": "src-martin-luther-king-community-center",
-      "name": "Martin Luther King Community Center",
-      "city": "Fort Worth",
-      "address": "5565 Truman Drive, Fort Worth, TX, 76112",
-      "lat": 32.72472,
-      "lng": -97.23534,
-      "region": "dallas"
-    },
-    {
-      "id": "src-handley-meadowbrook-community-center",
-      "name": "Handley Meadowbrook Community Center",
-      "city": "Fort Worth",
-      "address": "6201 Beaty Street, Fort Worth, TX, 76112",
-      "lat": 32.73961,
-      "lng": -97.22325,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
       "region": "dallas"
     }
   ]
