@@ -77,6 +77,10 @@ test('sameEvent and mergeEvents: one listing per event, the other copy\'s pin bo
   const affair = out[0];
   assert.equal(affair.source, 'Visit Austin', 'the listing wins');
   assert.deepEqual([affair.lat, affair.venue, affair.price], [30.26, 'Palmer Events Center, 900 Barton Springs Rd', '$25/day'], 'borrowed pin, address and price');
+  // A listing without a pin keeps the pin its last copy had, even from the same source.
+  const pep = { title: 'Peppermint in the Park', startDate: '2026-11-12', endDate: '2027-01-03', venue: 'COTALAND', source: 'Visit Austin', sourceUrl: 'https://www.austintexas.org/event/p/1/' };
+  const again = mergeEvents({ events: [{ ...pep, venue: 'COTALAND, 9201 Circuit of the Americas Blvd', lat: 30.13, lng: -97.64, located: 'address' }] }, [{ id: 'visit-austin', ok: true, events: [pep] }], TODAY, ['Visit Austin']);
+  assert.deepEqual([again.length, again[0].lat, again[0].venue], [1, 30.13, 'COTALAND, 9201 Circuit of the Americas Blvd']);
   // A source that failed keeps its last events.
   const kept = mergeEvents({ events: [{ ...brew, sourceId: 'allevents-austin' }] }, [{ id: 'allevents-austin', ok: false, events: [] }], TODAY, ['AllEvents']);
   assert.equal(kept.length, 1);
