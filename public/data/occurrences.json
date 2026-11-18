@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-18T14:16:52.226Z",
+  "generatedAt": "2026-11-18T17:15:58.785Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -27,35 +27,6 @@
         "type": "Open play"
       },
       "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-pickle-pit-stop-12117cf1ebacb6a6",
-      "session_id": "openplay-pickle-pit-stop-12117cf1ebacb6a6",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99)",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "starts_at": "2026-11-18T12:00:00.000Z",
-      "ends_at": "2026-11-18T14:00:00.000Z",
-      "signup_url": "https://app.courtreserve.com/Online/Events/Details/15273/9U2LR2F15273826?resId=60942250",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 18, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-18",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play",
-        "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-pit-stop",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1967,7 +1938,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -2217,7 +2188,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -4455,7 +4426,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -6949,6 +6920,33 @@
         "type": "Open play"
       },
       "venue_id": "austin-picklehaus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-XD4JXT",
+      "session_id": "reclub-XD4JXT",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Volleyball Pickup with Kimberly",
+      "venue": "Harvest Time Church",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-21T02:00:00.000Z",
+      "ends_at": "2026-11-21T05:00:00.000Z",
+      "signup_url": "https://reclub.co/m/XD4JXT",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by The Volleyball Hangout.",
+      "canceled": false,
+      "verified_at": "2026-11-18",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 30
+      },
+      "venue_id": "src-harvest-time-church",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -11271,7 +11269,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -12733,7 +12731,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14414,7 +14412,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -14524,7 +14522,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15218,7 +15216,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17613,7 +17611,7 @@
         "surface": "indoor",
         "type": "Open play"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -17976,7 +17974,7 @@
         "surface": "indoor",
         "type": "Clinic"
       },
-      "venue_id": "src-usspt",
+      "venue_id": null,
       "status": "scheduled",
       "previous_starts_at": null
     },

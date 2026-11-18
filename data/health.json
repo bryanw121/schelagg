@@ -5,15 +5,15 @@
         272,
         272,
         272,
-        272,
         269,
         269,
         269,
         269,
         267,
-        279
+        279,
+        278
       ],
-      "sessions": 279,
+      "sessions": 278,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -37,7 +37,7 @@
         161,
         161,
         161,
-        161,
+        160,
         160
       ],
       "sessions": 160,
@@ -63,7 +63,7 @@
         8,
         8,
         8,
-        8,
+        0,
         0,
         0
       ],
@@ -79,7 +79,7 @@
         12,
         12,
         12,
-        12,
+        11,
         11,
         11
       ],
@@ -155,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 841
+      "failStreak": 842
     },
     "atxbeach": {
       "counts": [
@@ -223,7 +223,7 @@
         6,
         6,
         6,
-        6,
+        7,
         7
       ],
       "sessions": 7,
@@ -749,7 +749,7 @@
         36,
         36,
         36,
-        36,
+        37,
         37
       ],
       "sessions": 37,
@@ -914,13 +914,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 550
+      "failStreak": 551
     },
     "leander-pickleball": {
-      "failStreak": 550
+      "failStreak": 551
     },
     "dallas-reclub": {
-      "failStreak": 182
+      "failStreak": 183
     },
     "sportsgarden": {
       "counts": [
@@ -973,7 +973,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 46
+      "failStreak": 47
     },
     "dfw-city-active": {
       "counts": [
@@ -1055,7 +1055,6 @@
     },
     "houston-reclub": {
       "counts": [
-        19,
         20,
         20,
         20,
@@ -1064,12 +1063,13 @@
         21,
         21,
         23,
-        20
+        20,
+        21
       ],
-      "sessions": 20,
+      "sessions": 21,
       "coverage": {
         "end": 1,
-        "price": 0.6,
+        "price": 0.62,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1097,6 +1097,7 @@
         "feeCurrency",
         "feeType",
         "flags",
+        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -1242,6 +1243,7 @@
     "houston-reclub:warning:reclub-R9HE9A: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
+    "houston-reclub:warning:reclub-XD4JXT: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",
     "leander-pickleball:failing",
     "manual:aces-mon-6s-indoor:unverified",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-18T14:16:52.226Z",
+  "generatedAt": "2026-11-18T17:15:58.785Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -63,8 +63,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-18T14:14:01.565Z",
-      "count": 20,
+      "checkedAt": "2026-11-18T17:12:39.622Z",
+      "count": 21,
       "warnings": [
         "reclub-C2PEOL: no surface",
         "reclub-8TBKMU: no surface",
@@ -83,6 +83,7 @@
         "reclub-T02HQF: no surface",
         "reclub-PY6UV1: no surface",
         "reclub-6AL5A9: no surface",
+        "reclub-XD4JXT: no surface",
         "reclub-6TSHGM: no surface",
         "reclub-5E0DAN: no surface",
         "reclub-230JCQ: no surface"
@@ -491,6 +492,31 @@
       "status": "scheduled"
     },
     {
+      "id": "reclub-XD4JXT",
+      "date": "2026-11-20",
+      "start": "20:00",
+      "end": "23:00",
+      "title": "Volleyball Pickup with Kimberly",
+      "venue": "Harvest Time Church",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by The Volleyball Hangout.",
+      "capacity": 30,
+      "signup": {
+        "url": "https://reclub.co/m/XD4JXT",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/XD4JXT",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-18",
+      "venueId": "src-harvest-time-church",
+      "status": "scheduled"
+    },
+    {
       "id": "reclub-6TSHGM",
       "date": "2026-11-21",
       "start": "17:00",
@@ -656,6 +682,15 @@
       "address": "6727 Cypresswood Drive, Spring, TX",
       "lat": 30.011,
       "lng": -95.5077,
+      "region": "houston"
+    },
+    {
+      "id": "src-harvest-time-church",
+      "name": "Harvest Time Church",
+      "city": null,
+      "address": "Imperial Valley Drive, Houston, TX",
+      "lat": 29.955013,
+      "lng": -95.39814,
       "region": "houston"
     }
   ]
