@@ -1,89 +1,8 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-18T02:23:52.249Z",
+  "generatedAt": "2026-11-18T14:16:52.226Z",
   "horizonDays": 28,
   "occurrences": [
-    {
-      "id": "reclub-MTBP54",
-      "session_id": "reclub-MTBP54",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "YMCA Open Gym-1 court",
-      "venue": "Tellepsen Family Downtown YMCA",
-      "city": null,
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-18T00:00:00.000Z",
-      "ends_at": "2026-11-18T02:30:00.000Z",
-      "signup_url": "https://reclub.co/m/MTBP54",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Houston Vball, every Tuesday.",
-      "canceled": false,
-      "verified_at": "2026-11-17",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 10
-      },
-      "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-VK88UG",
-      "session_id": "reclub-VK88UG",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "Sand Volleyball 🏐 @Champions",
-      "venue": "Champion Forest Baptist Church - Champions Campus",
-      "city": null,
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-18T00:45:00.000Z",
-      "ends_at": "2026-11-18T03:45:00.000Z",
-      "signup_url": "https://reclub.co/m/VK88UG",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by HTX - Social, every Tuesday.",
-      "canceled": false,
-      "verified_at": "2026-11-17",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 24
-      },
-      "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-DWL75Q",
-      "session_id": "reclub-DWL75Q",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "00PM / $7)",
-      "venue": "Houston Stars",
-      "city": null,
-      "level": "All levels",
-      "price": "$7",
-      "starts_at": "2026-11-18T02:00:00.000Z",
-      "ends_at": "2026-11-18T04:30:00.000Z",
-      "signup_url": "https://reclub.co/m/DWL75Q",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Houston Stars (Adults), every Tuesday.",
-      "canceled": false,
-      "verified_at": "2026-11-17",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 48
-      },
-      "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
     {
       "id": "reclub-6AL5A9",
       "session_id": "reclub-6AL5A9",
@@ -102,12 +21,39 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by The Volleyball Hangout, every Wednesday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-C2PEOL",
+      "session_id": "reclub-C2PEOL",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "30PM (prepay to play)",
+      "venue": "Houston Stars",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-19T03:30:00.000Z",
+      "ends_at": "2026-11-19T06:00:00.000Z",
+      "signup_url": "https://reclub.co/m/C2PEOL",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Houston Stars (Adults), every Wednesday.",
+      "canceled": false,
+      "verified_at": "2026-11-18",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 120
+      },
+      "venue_id": "src-houston-stars",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -129,12 +75,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Houston Vball, every Thursday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -156,39 +102,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by HTX - Social, every Thursday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-ZFA5B2",
-      "session_id": "reclub-ZFA5B2",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "Men’s Advanced (BB+) King of the Court",
-      "venue": "Houston Stars",
-      "city": null,
-      "level": "All levels",
-      "price": "$10",
-      "starts_at": "2026-11-20T03:00:00.000Z",
-      "ends_at": "2026-11-20T06:00:00.000Z",
-      "signup_url": "https://reclub.co/m/ZFA5B2",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Houston Stars (Adults), every Thursday.",
-      "canceled": false,
-      "verified_at": "2026-11-17",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 48
-      },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -210,12 +129,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Emancipation Park Indoor Volleyball, every Friday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -237,12 +156,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by T4 Late Nights, every Friday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -264,12 +183,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by The Volleyball Hangout, every Saturday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -291,12 +210,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by The Volleyball Hangout, every Saturday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -318,12 +237,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Cultural Diversity Volleyball Social.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 34
       },
-      "venue_id": null,
+      "venue_id": "src-the-zone",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -345,12 +264,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Houston Vball, every Saturday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -372,12 +291,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Houston Vball, every Sunday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -399,12 +318,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by HTX - Social, every Monday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -426,12 +345,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Cultural Diversity Volleyball Social.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -453,12 +372,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by The Volleyball Hangout, every Monday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -480,12 +399,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Houston Vball, every Monday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -507,12 +426,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by HTX - Social, every Tuesday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -534,12 +453,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by T4 Late Nights, every Friday.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -561,12 +480,12 @@
       "signup_label": "Sign up on Reclub",
       "note": "Hosted by Cultural Diversity Volleyball Social.",
       "canceled": false,
-      "verified_at": "2026-11-17",
+      "verified_at": "2026-11-18",
       "attributes": {
         "type": "Open play",
         "capacity": 45
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     }
