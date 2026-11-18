@@ -9,6 +9,8 @@ on:
       - 'config/regions/**'
       - 'config/programs.json'
       - 'scripts/programs.mjs'
+      - 'config/events.json'
+      - 'scripts/events.mjs'
       - 'scripts/adapters/**'
       - 'scripts/scrape.mjs'
       - 'lib/**'
@@ -82,6 +84,17 @@ jobs:
           SCHELAGG_HOST_GAP_MS: 300
         # (An empty string is false in a GitHub expression, so the always-build case needs a word of its own.)
         run: node scripts/programs.mjs ${{ (github.event_name == 'push' || inputs.all) && '--now' || '--if-due' }}
+      # Events from listing sites and organizers (config/events.json, into public/data/events.json),
+      # every 5+ hours (--if-due), then coordinates for any venue without them. Also before the
+      # commit, so it rides the same data-branch push.
+      - name: Events
+        continue-on-error: true
+        timeout-minutes: 5
+        env:
+          SCHELAGG_HOST_GAP_MS: 1000
+        run: |
+          node scripts/events.mjs ${{ (github.event_name == 'push' || inputs.all) && '--now' || '--if-due' }}
+          node scripts/geocode-events.mjs
       # To the data branch, never main: a push to main is a Vercel deployment.
       - name: Commit updated data
         run: |
