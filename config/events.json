@@ -1,0 +1,25 @@
+{
+  "_doc": "Pages read for the Events tab (lib/event-sources.js): each page's schema.org Event JSON-LD. Only pages robots.txt allows; never sites that block automated reading or need a sign-in. Add a page to a source's urls, or a source per site.",
+  "sources": [
+    {
+      "id": "allevents-austin",
+      "name": "AllEvents",
+      "region": "austin",
+      "urls": [
+        "https://allevents.in/austin/markets",
+        "https://allevents.in/austin/craft-fairs",
+        "https://allevents.in/austin/festivals",
+        "https://allevents.in/austin/food-drinks"
+      ]
+    },
+    {
+      "id": "visit-austin",
+      "name": "Visit Austin",
+      "region": "austin",
+      "urls": [
+        "https://www.austintexas.org/events/",
+        "https://www.austintexas.org/events/december-and-january/"
+      ]
+    }
+  ]
+}

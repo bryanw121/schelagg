@@ -1,5 +1,20 @@
 # Austin events: pop-ups, seasonal events, Asian-inspired things
 
+## Where the events come from
+
+- **Listing sites and organizers** (`config/events.json`, `lib/event-sources.js`,
+  `scripts/events.mjs`): the scrape workflow reads each page's schema.org Event JSON-LD every 5+
+  hours (AllEvents' Austin markets, craft fairs, festivals and food pages; Visit Austin's event
+  lists), keeps markets, pop-ups, fairs, festivals and seasonal things (classes, talks, concerts
+  and cooking classes are dropped), sorts each into a kind (popup / seasonal) and tags
+  (asian-inspired), and merges them into the feed: one copy of each event (dates overlapping,
+  titles alike, same place), the listing's link kept and the other copy's pin, price and times
+  borrowed. Only pages robots.txt allows; Do512, Eventbrite, the Austin Chronicle and the Lady
+  Bird Johnson Wildflower Center refuse automated reading, so they aren't read. Add a page to a
+  source's `urls` (or a new source) when it publishes Event JSON-LD.
+- **Other discovery runs** (Muse) may write events too: the merge keeps their events that the
+  listing sites don't already have.
+
 The daily discovery run (in Muse, not GitHub Actions — Instagram is unreliable from
 Actions runners) finds Austin pop-ups, seasonal events, and Asian-inspired things and
 publishes them as a JSON feed. This repo stores the feed and loads it into Neon.
