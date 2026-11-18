@@ -1432,6 +1432,25 @@ test('site: Events map: one pin per venue; a pin opens the place sheet (readable
   assert.deepEqual(pageErrors, []);
 });
 
+test('site: an event with a saved organizer picture shows it on its card, its map row and its pin; others are unchanged', async () => {
+  const feed = structuredClone(EVENTS_MAP);
+  Object.assign(feed.events[0], { account: 'examplemarket', avatar: 'avatars/examplemarket.jpg', sourceId: 'instagram' });
+  Object.assign(feed.events[1], { account: 'evil', avatar: 'https://evil.test/x.jpg' }); // not a saved picture: ignored
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: feed, url: '/?view=events', waitFor: '#events .row' });
+  const card = page.locator('#events .row', { hasText: feed.events[0].title });
+  assert.equal(await card.locator('.ev-by').textContent(), 'by @examplemarket');
+  assert.equal(await card.locator('.ev-by img.av').getAttribute('src'), 'data/avatars/examplemarket.jpg');
+  assert.equal(await card.locator('.ev-by img.av').getAttribute('alt'), '', 'decorative: the account is named beside it');
+  assert.equal(await page.locator('#events img.av').count(), 1, 'only the event with a saved picture');
+  assert.equal(await page.locator('#events .ev-by').count(), 1);
+  await page.locator('#layout [data-layout="map"]').click();
+  await page.locator('#map .pin').first().waitFor();
+  assert.equal(await page.locator('#map .pin img.av').count(), 1);
+  assert.equal(await page.locator('#map .pin.has-av img.av').getAttribute('src'), 'data/avatars/examplemarket.jpg');
+  assert.equal(await page.locator('#mapPanel .place-row img.av').count(), 1);
+  assert.deepEqual(pageErrors, []);
+});
+
 test('site: the place sheet in dark mode reads light-on-dark (the old popup was white with light text)', async () => {
   await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
   await page.emulateMedia({ colorScheme: 'dark' });

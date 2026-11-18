@@ -109,6 +109,8 @@ export function eventPlaces(events, today) {
       // What the pin and its row are called: the event on now (or the soonest), and how many more.
       title: shown.title,
       more: n - 1,
+      avatar: avatarPath(shown),
+      account: shown.account ?? null,
       city: parts.slice(1).join(' · '),
       lat: first.lat,
       lng: first.lng,
@@ -203,3 +205,6 @@ export function eventWhen(ev, today) {
 
 /** The card's main button: Instagram posts read "See the post", anything else "Event page". */
 export const eventCta = (ev) => (/(^|\.)instagram\.com$/i.test((() => { try { return new URL(ev.sourceUrl).hostname; } catch { return ''; } })()) ? 'See the post' : 'Event page');
+
+/** An event's saved organizer picture as a path under data/ ("avatars/<handle>.jpg"), or null. */
+export const avatarPath = (ev) => (/^avatars\/[a-z0-9._]{1,30}\.(jpg|png|webp)$/.test(ev?.avatar ?? '') && !ev.avatar.includes('..') ? ev.avatar : null);

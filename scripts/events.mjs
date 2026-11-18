@@ -14,6 +14,8 @@ import { repoPath } from '../lib/paths.js';
 import { loadRegions } from '../lib/regions.js';
 import { today as todayIn } from '../lib/time.js';
 import { mergeEvents, readEventSources } from '../lib/event-sources.js';
+import { handleOf, readInstagram } from '../lib/instagram.js';
+import { saveAvatars, stampAvatars } from '../lib/avatars.js';
 
 const args = new Set(process.argv.slice(2));
 const OUT = repoPath('public/data/events.json');
@@ -27,6 +29,22 @@ const config = JSON.parse(readFileSync(repoPath('config/events.json'), 'utf8'));
 const regions = loadRegions().map((r) => r.info);
 const today = todayIn(new Date(now));
 const results = await readEventSources(config, { get, today, regions });
+// Instagram organizers through Meta's official API, when its two secrets exist (lib/instagram.js).
+// Besides the configured accounts' posts, it looks up the profile picture of any account the feed
+// already credits and has no fresh picture for.
+const { IG_USER_ID, IG_ACCESS_TOKEN } = process.env;
+const AVATARS = repoPath('public/data/avatars');
+let profiles = {};
+if (IG_USER_ID && IG_ACCESS_TOKEN) {
+  const ig = JSON.parse(readFileSync(repoPath('config/instagram.json'), 'utf8'));
+  const index = existsSync(`${AVATARS}/index.json`) ? JSON.parse(readFileSync(`${AVATARS}/index.json`, 'utf8')) : {};
+  const stale = (h) => !index[h] || now - Date.parse(index[h].fetchedAt) > 7 * 864e5;
+  const credited = [...new Set((previous?.events ?? []).map((e) => handleOf(e.source)).filter(Boolean))].filter(stale);
+  const r = await readInstagram(ig, { get, today, igUserId: IG_USER_ID, token: IG_ACCESS_TOKEN, extraHandles: credited });
+  results.push({ id: 'instagram', ok: r.ok, error: r.error, events: r.events });
+  profiles = Object.fromEntries(Object.entries(r.profiles).filter(([h]) => stale(h)));
+  if (r.skipped.length) console.log(`Instagram: couldn't read ${r.skipped.map((h) => `@${h}`).join(', ')} (personal, private or renamed accounts).`);
+} else console.log('Instagram: IG_USER_ID / IG_ACCESS_TOKEN not set; skipped.');
 for (const r of results) for (const e of r.events) e.sourceId = r.id;
 const events = mergeEvents(previous, results, today, config.sources.map((s) => s.name));
 for (const r of results) console.log(`${r.ok ? 'ok  ' : 'FAIL'} ${r.id}: ${r.events.length} events${r.error ? ` (${r.error})` : ''}`);
@@ -35,6 +53,8 @@ if (args.has('--dry')) {
   for (const e of results.flatMap((r) => r.events)) console.log(`  ${e.startDate}${e.endDate ? `..${e.endDate}` : ''}  ${e.kind.padEnd(8)} ${e.tags.join(',').padEnd(14)} ${e.title} · ${e.venue}${Number.isFinite(e.lat) ? '' : ' (no pin)'}`);
   process.exit(0);
 }
+if (Object.keys(profiles).length) console.log(`Saved ${await saveAvatars(profiles, AVATARS, { now })} profile picture(s).`);
+stampAvatars(events, AVATARS);
 const feed = { ...(previous ?? {}), feedVersion: 1, generatedAt: new Date(now).toISOString(), listingsAt: new Date(now).toISOString(), sources: results.map((r) => ({ id: r.id, ok: r.ok, count: r.events.length, ...(r.error ? { error: r.error } : {}) })), events };
 mkdirSync(repoPath('public/data'), { recursive: true });
 writeFileSync(OUT, `${JSON.stringify(feed, null, 1)}\n`);

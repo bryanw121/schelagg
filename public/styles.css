@@ -452,3 +452,13 @@ header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
 /* Events map rows: the event's name, how many more are at that place, then the place under it. */
 .pr-more{font:600 11px var(--mono);color:var(--muted);white-space:nowrap}
 .pr-name small.pr-at{display:block;margin:2px 0 0}
+
+/* Organizer pictures (avatarImg): on an event card's by-line, a map row and a pin. */
+img.av{flex:none;border-radius:50%;object-fit:cover;background:var(--line)}
+.ev-by{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.ev-by b{color:var(--ink);font-weight:600}
+.place-row:has(> img.av){grid-template-columns:40px 1fr auto;grid-template-areas:"av name go" "av status go";column-gap:10px}
+.place-row > img.av{grid-area:av;align-self:center;border:1px solid var(--line)}
+.pin .pin-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pin.has-av{flex-direction:row;align-items:center;gap:6px;padding:4px 10px 4px 4px;max-width:184px}
+.pin.has-av img.av{border:1.5px solid #fff}
