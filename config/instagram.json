@@ -1,0 +1,20 @@
+{
+  "_doc": "Organizer accounts read through Meta's official Instagram API (lib/instagram.js), when the IG_USER_ID and IG_ACCESS_TOKEN secrets exist. Business and creator accounts only; aggregators and personal accounts are left out. `venue` is where the account's own events are when a caption names no place.",
+  "region": "austin",
+  "city": "Austin",
+  "accounts": [
+    { "handle": "vistabrewing", "venue": "Vista Brewing, Driftwood", "city": "Driftwood" },
+    { "handle": "goldenmeanaustin" },
+    { "handle": "righteousretro" },
+    { "handle": "moonchi.mochi" },
+    { "handle": "tillerystplantco" },
+    { "handle": "waterloorecords" },
+    { "handle": "littlehousemarket" },
+    { "handle": "milwoodmarket" },
+    { "handle": "movemountainsmarket" },
+    { "handle": "downtownaustin" },
+    { "handle": "alternativeent" },
+    { "handle": "quericotees" },
+    { "handle": "latincity" }
+  ]
+}

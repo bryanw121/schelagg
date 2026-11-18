@@ -12,6 +12,18 @@
   borrowed. Only pages robots.txt allows; Do512, Eventbrite, the Austin Chronicle and the Lady
   Bird Johnson Wildflower Center refuse automated reading, so they aren't read. Add a page to a
   source's `urls` (or a new source) when it publishes Event JSON-LD.
+- **Instagram, through Meta's official API** (`config/instagram.json`, `lib/instagram.js`): when
+  the Actions secrets `IG_USER_ID` and `IG_ACCESS_TOKEN` exist, the same step reads each listed
+  organizer's recent posts with Business Discovery (business and creator accounts only; nothing
+  is scraped and nobody signs in to instagram.com). A post becomes an event only when its caption
+  plainly gives an event word, a date after the post and a place (a 📍 line, "at <Place>", or the
+  account's `venue`); anything unclear is skipped. The event links to the post and carries our own
+  one-line description, never the caption. Without the secrets the step is skipped.
+- **Profile pictures** (`lib/avatars.js`): a small copy of each credited account's picture is kept
+  under `data/avatars/` (Instagram's links expire; refreshed weekly) and its path is stamped on
+  that account's events (`avatar`, `account`). The site shows it on the card ("by @x" for the
+  organizer's own post, "via @x" for a credited repost), the map row and the pin; events without
+  one look the same as before.
 - **Other discovery runs** (Muse) may write events too: the merge keeps their events that the
   listing sites don't already have.
 

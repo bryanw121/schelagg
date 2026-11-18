@@ -9,7 +9,7 @@
 // A visitor loads one region. Times are shown in the region's own time zone, wherever the viewer is.
 
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
-import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
+import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
 
 // Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
 // colors; none for a sport that doesn't need them), the glance chart's heading, and whether it has
@@ -883,6 +883,9 @@ const eventDirections = (ev) => {
   return `<a class="src" href="https://www.google.com/maps/dir/?api=1&amp;destination=${dest}" target="_blank" rel="noopener">Google Maps ↗</a><a class="src" href="https://maps.apple.com/directions?destination=${dest}&amp;mode=driving" target="_blank" rel="noopener">Apple Maps ↗</a>`;
 };
 const safeUrl = (u) => /^https:\/\//i.test(u || '');
+/** The crediting account's picture (a saved copy of its Instagram profile picture), when the event has one.
+ *  Cards say "by @x" for an organizer's own post (read through the API) and "via @x" for a credited repost. */
+const avatarImg = (x, size) => (avatarPath(x) ? `<img class="av" src="${DATA}${esc(avatarPath(x))}" alt="" width="${size}" height="${size}" loading="lazy" decoding="async">` : '');
 /** The event's kind and tags as chips: kinds solid outline, tags dashed. */
 const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}`;
 function eventCard(ev) {
@@ -896,6 +899,7 @@ function eventCard(ev) {
     <div class="time">${w.range ? `${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : ''}</div>
     <div class="body">
       <div class="t1"><span class="title">${esc(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
+      ${avatarPath(ev) && ev.account ? `<div class="ev-by">${avatarImg(ev, 26)}<span>${ev.sourceId === 'instagram' ? 'by' : 'via'} <b>@${esc(ev.account)}</b></span></div>` : ''}
       <div class="venue"><b>${esc(parts[0] ?? ev.venue)}</b>${parts.slice(1).map((p) => ` · ${esc(p)}`).join('')}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</div>
       <div class="meta">${eventChips(ev)}${ev.price ? `<span>${esc(ev.price)}</span>` : ''}</div>
       ${safeUrl(ev.sourceUrl) ? `<a class="signup ev-go" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}
@@ -1213,7 +1217,7 @@ function eventsPanelHtml(places, pickId) {
     const order = [...places].sort((a, b) => (placeMiles(a) ?? 1e9) - (placeMiles(b) ?? 1e9) || a.name.localeCompare(b.name));
     const rows = order.map((x) => {
       const mi = placeMiles(x);
-      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}"><span class="pr-name">${esc(x.title)}${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
+      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}">${avatarImg(x, 40)}<span class="pr-name">${esc(x.title)}${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
     }).join('');
     return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> with events coming up. Tap one for its events.</p><ul class="place-list">${rows}</ul>`;
   }
@@ -1311,7 +1315,7 @@ function declutter() {
   for (const { m, group } of kept) {
     if (!group.length) continue;
     m.el.dataset.group = [m.p, ...group].map((p) => p.id).join(',');
-    m.el.insertAdjacentHTML('beforeend', `<i class="more">+${group.length} more</i>`);
+    (m.el.querySelector('.pin-t') ?? m.el).insertAdjacentHTML('beforeend', `<i class="more">+${group.length} more</i>`);
     m.el.setAttribute('aria-label', `${m.p.aria}. ${group.length} more here: ${group.map((p) => p.name).join(', ')}. Tap to zoom in.`);
   }
 }
@@ -1366,7 +1370,8 @@ async function renderMap() {
     const el = document.createElement('button');
     Object.assign(el, { type: 'button', className: `pin${p.court ? ' free' : state.view === 'booking' ? ' book' : ''}${p.done || p.full ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}` });
     // Sports pins name the place; events pins name the event (and how many more are there).
-    el.innerHTML = p.title ? `<b>${esc(p.title)}</b>${p.more ? `<span>+${p.more} more here</span>` : ''}` : `<b>${esc(p.short)}</b>`; // (.more is the declutter's "+N more" for hidden neighbours)
+    if (p.avatar) el.classList.add('has-av');
+    el.innerHTML = p.title ? `${avatarImg(p, 24)}<span class="pin-t"><b>${esc(p.title)}</b>${p.more ? `<span>+${p.more} more here</span>` : ''}</span>` : `<b>${esc(p.short)}</b>`; // (.more is the declutter's "+N more" for hidden neighbours)
     el.dataset.pin = p.id; el.setAttribute('aria-label', p.aria); el.setAttribute('aria-pressed', String(p.id === mapPick));
     return { el, p, marker: new gl.Marker({ element: el, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(mapView) };
   });
