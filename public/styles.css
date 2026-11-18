@@ -330,17 +330,10 @@ body.layout-map .map .maplibregl-ctrl-bottom-right,body.layout-map .map .maplibr
 /* Sign-ups: leagues and tournaments (renderSignups in app.js) */
 #signupsPanel{display:grid;gap:12px}
 #signupsPanel[hidden]{display:none}
-/* Events (renderEvents in app.js): the same month groups as the sign-ups, 10 to a page. */
+/* Events (renderEvents in app.js): headings like the Sports days, a few cards each, Show more. */
 #eventsPanel{display:grid;gap:12px}
 #eventsPanel[hidden]{display:none}
-/* The pager: Prev, the page numbers, "Page X of N", Next — wrapping instead of pushing the page
    wider on a 320px phone. */
-.pager{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-top:2px}
-.pager .seg{flex-wrap:wrap;max-width:100%}
-.pager .note{white-space:nowrap}
-/* The Sports menu: a card under the Sports tab (the sport picker now, not a sheet). On a phone
-   it spans the width less the page margins, so it never runs off the screen. */
-.sports-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:7;width:min(340px,calc(100vw - 32px));background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.25);padding:12px 14px;display:grid;gap:8px}
 .kinds{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
 .kinds::-webkit-scrollbar{display:none}
 .kinds .pill-btn{flex:0 0 auto}
@@ -405,16 +398,53 @@ header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
 .src-foot{color:var(--muted);font-size:13px;margin:4px 0 32px}
 .sources-link{font:600 12px var(--mono);color:var(--accent);margin-left:8px}
 
-/* The map popup that opens when a pin is tapped. */
-.map-pop .maplibregl-popup-content{padding:12px 14px 10px;border-radius:12px;font:400 14px/1.4 var(--body);color:var(--ink);box-shadow:0 10px 28px rgba(0,0,0,.28)}
-.map-pop h4{font:700 15px/1.25 var(--body);margin:0;padding-right:20px}
-.map-pop .mp-sub{color:var(--muted);font-size:12.5px;margin-top:2px}
-.map-pop .mp-ev{display:grid;gap:2px;padding:8px 0;border-top:1px solid var(--line)}
-.map-pop .mp-ev:first-of-type{border-top:0;margin-top:6px}
-.map-pop .mp-t{font:600 12.5px var(--mono);color:var(--ok)}
-.map-pop .mp-n{font-weight:600}
-.map-pop .mp-n small{font-weight:500;color:var(--muted)}
-.map-pop .mp-a{font-size:12.5px}
-.map-pop .mp-more{color:var(--muted);font-size:12.5px;padding-top:6px}
-.map-pop .mp-act{display:block;margin-top:8px;border:0;background:none;padding:0;color:var(--accent);font:600 13px var(--body);cursor:pointer;text-align:left}
-.map-pop .maplibregl-popup-close-button{font-size:20px;line-height:1;color:var(--muted);padding:6px 8px}
+
+/* Events list: a heading per stretch of time (On now, This week, Next week, months), like the
+   Sports day title; cards are the sessions' .row with one main button and Details. */
+.ev-group{display:grid;gap:10px}
+.ev-day{font:800 24px/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:10px 0 0}
+.ev-day small{display:block;font:600 11px var(--mono);letter-spacing:.1em;color:var(--muted);margin-top:5px}
+.ev-row .time .ev-top{display:block;margin-bottom:1px}
+.ev-row .ev-go{justify-self:start;margin-top:4px;min-height:40px}
+.ev-row details.more .location{margin:6px 0 2px}
+.via{display:block;font:500 11.5px var(--mono);color:var(--muted);margin-top:6px}
+.chip.tag{border-style:dashed}
+.show-more{justify-self:center;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);font:600 14px var(--body);padding:0 18px;min-height:44px;cursor:pointer;touch-action:manipulation}
+.show-more:hover{border-color:var(--accent)}
+.ev-away{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 18px;display:grid;gap:10px;justify-items:start}
+.ev-away h2{font-size:24px}
+.ev-away p{margin:0;color:var(--muted);font-size:14px;max-width:52ch}
+.ev-away .signup{border:0;cursor:pointer;min-height:44px}
+#eventsCount:empty{display:none}
+#eventsOpts .opt-h{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
+#eventsOpts .tab.opt[aria-pressed="true"] .lbl small,#eventsOpts .tab.opt[aria-pressed="true"] .n{color:inherit;opacity:.8}
+.go-btn{margin-top:6px;min-height:48px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font:700 15px var(--body);cursor:pointer;touch-action:manipulation}
+
+/* The place sheet (renderPlaceSheet): what's on at the picked pin, over the map. A bottom
+   sheet on a phone; a panel docked inside the map from 760px. Theme colours throughout. */
+.map-box{position:relative}
+.place-sheet{position:absolute;z-index:3;left:0;right:0;bottom:0;max-height:62%;overflow:auto;overscroll-behavior:contain;background:var(--panel);color:var(--ink);border-top:1px solid var(--line);border-radius:18px 18px 10px 10px;box-shadow:0 -10px 30px rgba(0,0,0,.28);padding:6px 16px 16px;touch-action:pan-y}
+.place-sheet:focus{outline:none}.place-sheet:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.ps-grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:4px auto 6px;cursor:grab}
+.ps-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:17px;cursor:pointer;touch-action:manipulation}
+.place-sheet .g-venue{padding:0 52px 8px 0;border-bottom:1px solid var(--line)}
+.place-sheet .v-name{font:800 24px/1.02 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.place-sheet .v-name small{font:500 13px/1.4 var(--body);text-transform:none;letter-spacing:0;margin-top:4px}
+.place-sheet .map-sessions{background:none;border:0;border-radius:0;padding:0;margin:0}
+.place-sheet .pop-item{grid-template-columns:76px 1fr;gap:4px 10px;padding:10px 0;border-top:1px solid var(--line);font-size:15px;align-items:start}
+.place-sheet .pop-item:first-child{border-top:0}
+.place-sheet .pop-t{font:600 14px/1.25 var(--mono);white-space:normal}
+.place-sheet .pop-t small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.place-sheet .pop-w b{font-weight:600}
+.place-sheet .pop-w small{font-size:13px;margin-top:2px}
+.place-sheet .pop-a{grid-column:2;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.place-sheet .pop-a .src{font-size:14px;font-weight:600}
+.place-sheet .map-status{margin:8px 0 0}
+.place-sheet .location{margin:10px 0 0}
+.place-sheet .location .actions .src{font-size:14px;font-weight:600}
+.place-row.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+@media (min-width:760px){
+  .place-sheet{left:14px;top:14px;bottom:14px;right:auto;width:340px;max-height:none;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.22);padding:14px 16px}
+  .ps-grab{display:none}
+}
+@media (prefers-reduced-motion:no-preference){.place-sheet:not([hidden]){animation:ps-in .18s ease-out}@keyframes ps-in{from{transform:translateY(16px);opacity:0}}}

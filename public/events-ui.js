@@ -3,41 +3,40 @@
 // { feedVersion, generatedAt, events: [{ id, category, title, venue, area, city, startDate,
 // endDate, startTime, endTime, price, sourceUrl, source, description, lat, lng, located }] }.
 
-/** The category chips, in order; `all` is the unfiltered view. */
-export const EVENT_CATS = [
-  { id: 'all', label: 'All' },
-  { id: 'popup', label: 'Pop-ups' },
-  { id: 'seasonal', label: 'Seasonal' },
-  { id: 'asian-inspired', label: 'Asian-inspired' },
+/**
+ * What kind of event it is (one) and its tags (any number). The feed's `category` is one of
+ * popup / seasonal / asian-inspired; "Asian-inspired" is a theme, not a kind, so it reads as a
+ * tag (a feed may also send `kind` and `tags` directly).
+ */
+export const EVENT_KINDS = [
+  { id: 'popup', label: 'Pop-ups', one: 'Pop-up', hint: 'One-off shops, food and art' },
+  { id: 'seasonal', label: 'Seasonal', one: 'Seasonal', hint: 'Holiday markets, lights and bars' },
 ];
-export const isEventCat = (c) => EVENT_CATS.some((x) => x.id === c);
-/** The chip on a card: its label and its color (schelagg's palette, like the surface chips). */
-export const CAT_LABEL = { popup: 'Pop-up', seasonal: 'Seasonal', 'asian-inspired': 'Asian-inspired' };
-export const CAT_COLOR = { popup: 'var(--indoor)', seasonal: 'var(--grass)', 'asian-inspired': 'var(--changed)' };
-export const EVENTS_PER_PAGE = 10;
+export const EVENT_TAGS = [{ id: 'asian-inspired', label: 'Asian-inspired' }];
+export const isEventKind = (k) => k === 'all' || EVENT_KINDS.some((x) => x.id === k);
+export const isEventTag = (t) => EVENT_TAGS.some((x) => x.id === t);
+export const eventKind = (ev) => ev?.kind ?? (EVENT_KINDS.some((k) => k.id === ev?.category) ? ev.category : null);
+export const eventTags = (ev) => [...new Set([...(ev?.tags ?? []), ...(ev?.category && isEventTag(ev.category) ? [ev.category] : [])])];
+export const kindLabel = (k) => EVENT_KINDS.find((x) => x.id === k)?.one ?? null;
+export const tagLabel = (t) => EVENT_TAGS.find((x) => x.id === t)?.label ?? t;
+/** How many events each kind and tag has (plus `all`), for the filter sheet. */
+export function countEvents(events) {
+  const counts = { all: 0 };
+  for (const k of EVENT_KINDS) counts[k.id] = 0;
+  for (const g of EVENT_TAGS) counts[g.id] = 0;
+  for (const e of events ?? []) {
+    counts.all++;
+    const k = eventKind(e); if (k) counts[k]++;
+    for (const g of eventTags(e)) if (counts[g] != null) counts[g]++;
+  }
+  return counts;
+}
+/** A feed covers one region (`region` on the feed or on an event; the first feed is Austin's). */
+export const eventsForRegion = (feed, regionId) => (feed?.events ?? []).filter((e) => (e.region ?? feed?.region ?? 'austin') === regionId);
 
 /** The feed's order: soonest first, ties by title. */
 export const sortEvents = (events) => [...(events ?? [])].sort((a, b) =>
   (a.startDate || '').localeCompare(b.startDate || '') || (a.title || '').localeCompare(b.title || ''));
-
-/** How many events each chip counts (plus `all`). */
-export function countByCategory(events) {
-  const counts = { all: 0, popup: 0, seasonal: 0, 'asian-inspired': 0 };
-  for (const e of events ?? []) { counts.all++; if (counts[e.category] != null) counts[e.category]++; }
-  return counts;
-}
-
-/** A page of a list: the slice, and the "Showing X–Y of N" numbers (0 when empty). */
-export function paginate(items, page, perPage = EVENTS_PER_PAGE) {
-  const total = items?.length ?? 0;
-  const pageCount = Math.ceil(total / perPage);
-  const p = pageCount < 1 ? 1 : Math.min(Math.max(1, Math.floor(page) || 1), pageCount);
-  const start = total ? (p - 1) * perPage + 1 : 0;
-  return { items: (items ?? []).slice(start - 1, start - 1 + perPage), page: p, pageCount, total, start, end: total ? Math.min(start + perPage - 1, total) : 0 };
-}
-
-/** The page number a ?page= (or a remembered page) is allowed to be. */
-export const clampPage = (page, pageCount) => (pageCount < 1 ? 1 : Math.min(Math.max(1, Math.floor(page) || 1), pageCount));
 
 const WEEKDAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -137,8 +136,67 @@ export function groupByMonth(items) {
   });
 }
 
+const addDays = (iso, n) => { const d = parseDay(iso); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const lastDay = (ev) => ev.endDate ?? ev.startDate;
+/** On now: started and not over on `today`. */
+export const isOn = (ev, today) => ev.startDate <= today && today <= lastDay(ev);
+
 /**
- * The Sports dropdown's open state, as a pure transition: tapping Sports toggles it; picking a
- * sport, tapping Events, tapping outside it, or Esc closes it.
+ * The Events list's headings, like the Sports days: On now (ending soonest first), This
+ * weekend (Fri–Sun of this week, or the rest of it), Next week (Mon–Sun), then each later
+ * month. Each event sits under one heading, by when it starts; anything over is dropped.
  */
-export const dropdownNext = (open, action) => (action === 'toggle' ? !open : false);
+export function eventGroups(events, today) {
+  const dow = parseDay(today).getUTCDay(); // 0 Sun … 6 Sat
+  const fri = dow === 0 ? addDays(today, -2) : addDays(today, 5 - dow);
+  const sun = addDays(fri, 2);
+  const nextMon = addDays(sun, 1), nextSun = addDays(nextMon, 6);
+  const live = (events ?? []).filter((e) => lastDay(e) >= today);
+  const on = live.filter((e) => isOn(e, today)).sort((a, b) => lastDay(a).localeCompare(lastDay(b)) || a.title.localeCompare(b.title));
+  const later = sortEvents(live.filter((e) => !isOn(e, today)));
+  const groups = [];
+  if (on.length) groups.push({ key: 'now', label: 'On now', sub: `${on.length} event${on.length === 1 ? '' : 's'} · ending soonest first`, events: on });
+  const weekend = later.filter((e) => e.startDate <= sun);
+  const wkFrom = today > fri ? today : fri;
+  if (weekend.length) groups.push({ key: 'weekend', label: today >= fri || dow === 0 ? 'This weekend' : 'This week', sub: `${dayLabel(today < fri ? addDays(today, 1) : wkFrom)} – ${dayLabel(sun)} · ${weekend.length} event${weekend.length === 1 ? '' : 's'}`, events: weekend });
+  const next = later.filter((e) => e.startDate > sun && e.startDate <= nextSun);
+  if (next.length) groups.push({ key: 'next', label: 'Next week', sub: `${dayLabel(nextMon)} – ${dayLabel(nextSun)} · ${next.length} event${next.length === 1 ? '' : 's'}`, events: next });
+  const months = new Map();
+  for (const e of later.filter((x) => x.startDate > nextSun)) {
+    const k = e.startDate.slice(0, 7);
+    if (!months.has(k)) months.set(k, []);
+    months.get(k).push(e);
+  }
+  for (const [k, list] of months) {
+    const [y, m] = k.split('-').map(Number);
+    groups.push({ key: k, label: MONTH_LONG[m - 1], sub: `${y} · ${list.length} event${list.length === 1 ? '' : 's'}`, events: list });
+  }
+  return groups;
+}
+const dayLabel = (iso) => { const d = parseDay(iso); return `${WEEKDAY[d.getUTCDay()]} ${MONTH[d.getUTCMonth()]} ${d.getUTCDate()}`; };
+
+/** Fri–Sun of this week (or the rest of it on a weekend): for the This weekend pill. */
+export function weekendRange(today) {
+  const dow = parseDay(today).getUTCDay();
+  const fri = dow === 0 ? addDays(today, -2) : addDays(today, 5 - dow);
+  return { from: today > fri ? today : fri, to: addDays(fri, 2) };
+}
+
+/** The filters: a kind (or all), tags (all must match), and "this weekend" (on any day of it). */
+export function filterEvents(events, { kind = 'all', tags = [], weekend = false } = {}, today) {
+  const wk = weekend ? weekendRange(today) : null;
+  return (events ?? []).filter((e) => (kind === 'all' || eventKind(e) === kind)
+    && tags.every((g) => eventTags(e).includes(g))
+    && (!wk || (e.startDate <= wk.to && lastDay(e) >= wk.from)));
+}
+
+/** The left column of an event card: "Thru / Nov 23" when on now, "Sat / Nov 21", or "Nov 19 / to Nov 22". */
+export function eventWhen(ev, today) {
+  const end = lastDay(ev);
+  if (isOn(ev, today) && end !== ev.startDate) return { top: 'Thru', main: shortDay(end) };
+  if (end === ev.startDate) { const d = parseDay(ev.startDate); return { top: WEEKDAY[d.getUTCDay()], main: `${MONTH[d.getUTCMonth()]} ${d.getUTCDate()}` }; }
+  return { top: shortDay(ev.startDate), main: `to ${shortDay(end)}`, range: true };
+}
+
+/** The card's main button: Instagram posts read "See the post", anything else "Event page". */
+export const eventCta = (ev) => (/(^|\.)instagram\.com$/i.test((() => { try { return new URL(ev.sourceUrl).hostname; } catch { return ''; } })()) ? 'See the post' : 'Event page');
