@@ -1388,15 +1388,21 @@ test('site: Events map: one pin per venue; a pin opens the place sheet (readable
   assert.equal(await page.locator('#mapTitle').textContent(), 'Events · upcoming');
   const pins = page.locator('#map .pin');
   await pins.first().waitFor();
-  // Six events, five venues: Zilker Park hosts two, so one pin per venue, not per event.
+  // Six events, five venues: Zilker Park hosts two, so one pin per venue, named for its event
+  // (not its address), with "+1 more" where there are several.
   assert.deepEqual((await pins.evaluateAll((els) => els.map((e) => [e.dataset.pin, e.textContent, e.getAttribute('aria-label')]))).sort(), [
-    ['event:30.10485,-98.02175', 'Vista Brewing', 'Vista Brewing: 1 event · Sun, Nov 15'],
-    ['event:30.26720,-97.77290', 'Zilker Park', 'Zilker Park: Happening now · Oct 20 – 30'],
-    ['event:30.34000,-97.55000', 'Manor Market', 'Manor Market: 1 event · Sun, Nov 29'],
-    ['event:30.44000,-97.62000', 'Pflugerville Plaza', 'Pflugerville Plaza: 1 event · Wed, Oct 28'],
-    ['event:30.50500,-97.82000', 'Junbi', 'Junbi, Cedar Park: Happening now · Oct 25 – Nov 1'],
+    ['event:30.10485,-98.02175', 'Vintage Market', 'Vintage Market at Vista Brewing: 1 event · Sun, Nov 15'],
+    ['event:30.26720,-97.77290', 'Autumn Market+1 more here', 'Autumn Market and 1 more at Zilker Park: Happening now · Oct 20 – 30'],
+    ['event:30.34000,-97.55000', 'Tree Lighting', 'Tree Lighting at Manor Market: 1 event · Sun, Nov 29'],
+    ['event:30.44000,-97.62000', 'Night Market', 'Night Market at Pflugerville Plaza: 1 event · Wed, Oct 28'],
+    ['event:30.50500,-97.82000', 'Matcha Cart', 'Matcha Cart at Junbi: Happening now · Oct 25 – Nov 1'],
   ]);
   assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
+  // The rows under the map read the same way: the event, then the place.
+  const zilker = page.locator('#mapPanel .place-row[data-pin="event:30.26720,-97.77290"]');
+  assert.equal(await zilker.locator('.pr-name').evaluate((e) => e.firstChild.textContent.trim()), 'Autumn Market');
+  assert.equal(await zilker.locator('.pr-more').textContent(), '+1 more');
+  assert.equal(await zilker.locator('.pr-at').textContent(), 'Zilker Park · Austin');
   const sheet = page.locator('#placeSheet');
   assert.equal(await sheet.isHidden(), true);
   await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();

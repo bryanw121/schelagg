@@ -51,13 +51,15 @@ test('eventPlaces: one pin per venue, grouped; the status shows the full date ra
   assert.equal(palmer.short, 'Palmer Events Center');
   assert.equal(palmer.city, 'Zilker · Austin');
   assert.equal(palmer.status, '2 events · Nov 19 – 22', 'the soonest event\'s full range, not just its start');
-  assert.equal(palmer.aria, 'Palmer Events Center, 900 Barton Springs Rd: 2 events · Nov 19 – 22');
+  assert.deepEqual([palmer.title, palmer.more], ['A Christmas Affair', 1], 'named for the soonest event, and how many more');
+  assert.equal(palmer.aria, 'A Christmas Affair and 1 more at Palmer Events Center: 2 events · Nov 19 – 22');
   assert.deepEqual(palmer.sessions, [], 'the shared map machinery reads .sessions');
   assert.equal(palmer.done, false);
   const flower = places.find((p) => p.name.startsWith('1209'));
   assert.equal(flower.events.length, 2);
   assert.equal(flower.status, 'Happening now · Nov 16 – 18', 'Nov 12–23 and Nov 16–18 both cover Nov 17; the one ending soonest is shown');
   assert.equal(flower.short, '1209 E Cesar Chavez St');
+  assert.deepEqual([flower.title, flower.more], ['Flower Weekend', 1], 'the event on now that ends soonest names the pin, not the address');
 });
 
 test('groupByMonth: the page\'s events under month headers, in order', () => {

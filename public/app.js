@@ -1213,7 +1213,7 @@ function eventsPanelHtml(places, pickId) {
     const order = [...places].sort((a, b) => (placeMiles(a) ?? 1e9) - (placeMiles(b) ?? 1e9) || a.name.localeCompare(b.name));
     const rows = order.map((x) => {
       const mi = placeMiles(x);
-      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}"><span class="pr-name">${esc(x.short || x.name)}<small>${esc(x.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
+      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}"><span class="pr-name">${esc(x.title)}${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
     }).join('');
     return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> with events coming up. Tap one for its events.</p><ul class="place-list">${rows}</ul>`;
   }
@@ -1365,7 +1365,8 @@ async function renderMap() {
   mapMarkers = places.map((p) => {
     const el = document.createElement('button');
     Object.assign(el, { type: 'button', className: `pin${p.court ? ' free' : state.view === 'booking' ? ' book' : ''}${p.done || p.full ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}` });
-    el.innerHTML = `<b>${esc(p.short)}</b>`; // just the place: what's on there is in the list under the map
+    // Sports pins name the place; events pins name the event (and how many more are there).
+    el.innerHTML = p.title ? `<b>${esc(p.title)}</b>${p.more ? `<span>+${p.more} more here</span>` : ''}` : `<b>${esc(p.short)}</b>`; // (.more is the declutter's "+N more" for hidden neighbours)
     el.dataset.pin = p.id; el.setAttribute('aria-label', p.aria); el.setAttribute('aria-pressed', String(p.id === mapPick));
     return { el, p, marker: new gl.Marker({ element: el, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(mapView) };
   });
