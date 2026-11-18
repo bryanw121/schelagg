@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-18T20:06:03.342Z",
+  "generatedAt": "2026-11-18T21:56:43.096Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,8 +17,8 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:37.173Z",
-      "count": 274
+      "checkedAt": "2026-11-18T21:53:38.468Z",
+      "count": 270
     },
     {
       "id": "austin-picklehaus",
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:37.173Z",
+      "checkedAt": "2026-11-18T21:53:38.469Z",
       "count": 160
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:37.173Z",
+      "checkedAt": "2026-11-18T21:53:38.470Z",
       "count": 0
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:37.174Z",
+      "checkedAt": "2026-11-18T21:53:38.470Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-18T20:02:37.176Z",
+      "checkedAt": "2026-11-18T21:53:38.471Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -84,7 +84,7 @@
       "kind": "Venue's schedule page",
       "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:37.176Z",
+      "checkedAt": "2026-11-18T21:53:38.471Z",
       "count": 2
     },
     {
@@ -97,7 +97,7 @@
       "kind": "Venue's schedule page",
       "site": "https://www.austinvelocity.com",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:37.206Z",
+      "checkedAt": "2026-11-18T21:53:38.502Z",
       "count": 1
     },
     {
@@ -124,8 +124,11 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:37.462Z",
-      "count": 7
+      "checkedAt": "2026-11-18T21:53:38.814Z",
+      "count": 7,
+      "warnings": [
+        "https://reclub.co/m/V4DO6Q: HTTP 403"
+      ]
     },
     {
       "id": "sweatpals",
@@ -151,7 +154,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:38.569Z",
+      "checkedAt": "2026-11-18T21:53:39.932Z",
       "count": 3
     },
     {
@@ -170,7 +173,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:40.220Z",
+      "checkedAt": "2026-11-18T21:53:40.173Z",
       "count": 2
     },
     {
@@ -189,7 +192,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:40.786Z",
+      "checkedAt": "2026-11-18T21:53:40.766Z",
       "count": 3
     },
     {
@@ -208,7 +211,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:41.368Z",
+      "checkedAt": "2026-11-18T21:53:41.174Z",
       "count": 10
     },
     {
@@ -221,7 +224,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:41.409Z",
+      "checkedAt": "2026-11-18T21:53:41.941Z",
       "count": 37
     },
     {
@@ -234,7 +237,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:42.144Z",
+      "checkedAt": "2026-11-18T21:53:41.963Z",
       "count": 24
     },
     {
@@ -247,7 +250,7 @@
       "kind": "City parks schedule",
       "site": "https://www.austintexas.gov/parks/alamo-recreation-center",
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:44.473Z",
+      "checkedAt": "2026-11-18T21:53:44.718Z",
       "count": 13
     },
     {
@@ -260,7 +263,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-18T20:02:45.114Z",
+      "checkedAt": "2026-11-18T21:53:44.787Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -275,119 +278,13 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-18T20:02:45.250Z",
+      "checkedAt": "2026-11-18T21:53:44.886Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-austin-pickle-ranch-01a17012-74dd-7bbd-9748-d48aba39dc8f",
-      "date": "2026-11-18",
-      "start": "12:00",
-      "end": "14:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 18, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17012-74dd-7bbd-9748-d48aba39dc8f",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a19dc9-9ddc-766c-8623-45e4a7b9dc75",
-      "date": "2026-11-18",
-      "start": "12:00",
-      "end": "14:00",
-      "sport": "pickleball",
-      "title": "Level 1 Session (Beginner Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Beginner",
-      "price": "$18 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 18, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a19dc9-9ddc-766c-8623-45e4a7b9dc75",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a1704c-90ac-7bbd-9804-1390df1e3651",
-      "date": "2026-11-18",
-      "start": "12:00",
-      "end": "14:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 18, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a1704c-90ac-7bbd-9804-1390df1e3651",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a17e83-1cd0-7338-8b03-0339747e21c6",
-      "date": "2026-11-18",
-      "start": "13:00",
-      "end": "15:00",
-      "sport": "pickleball",
-      "title": "50+ Level 3 Session (Intermediate Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 18, 12:00 PM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a17e83-1cd0-7338-8b03-0339747e21c6",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-austin-pickle-ranch-01a1e590-6326-7887-b007-9f9b9506bab4",
       "date": "2026-11-18",
@@ -12718,6 +12615,32 @@
       "status": "scheduled"
     },
     {
+      "id": "meetup-pickleland-event_317487346-2026-11-21",
+      "date": "2026-11-21",
+      "start": "17:00",
+      "end": "20:00",
+      "title": "Pickleland Singles Dating Mixer!",
+      "venue": "Pickleland",
+      "city": "Austin",
+      "surface": "unspecified",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Austin Pickleball Community.",
+      "signup": {
+        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317487346/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317487346/",
+      "sourceId": "austin-pickleball-meetup",
+      "sport": "pickleball",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-18",
+      "venueId": "austin-pickleland",
+      "status": "scheduled"
+    },
+    {
       "id": "meetup-pickleland-event_317253516-2026-11-22",
       "date": "2026-11-22",
       "start": "08:00",
@@ -12813,32 +12736,6 @@
         "label": "Details and RSVP"
       },
       "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317274832/",
-      "sourceId": "austin-pickleball-meetup",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
-      "venueId": "austin-pickleland",
-      "status": "scheduled"
-    },
-    {
-      "id": "meetup-pickleland-event_317279617-2026-11-23",
-      "date": "2026-11-23",
-      "start": "20:00",
-      "end": "22:00",
-      "title": "8pm Pickleball - Make New Friends & Learn How to Play!",
-      "venue": "Pickleland",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by North Austin Pickleball Community.",
-      "signup": {
-        "url": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317279617/",
-        "label": "Details and RSVP"
-      },
-      "source": "https://www.meetup.com/north-austin-pickleball-community-at-pickleland/events/317279617/",
       "sourceId": "austin-pickleball-meetup",
       "sport": "pickleball",
       "region": "austin",
@@ -14955,7 +14852,7 @@
       "sport": "volleyball",
       "region": "austin",
       "timezone": "America/Chicago",
-      "sourceChanged": "2026-11-18",
+      "watchError": "HTTP 403",
       "venueId": "hanovers",
       "status": "scheduled"
     },

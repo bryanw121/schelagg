@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-18T20:06:03.342Z",
+  "generatedAt": "2026-11-18T21:56:43.096Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -27,6 +27,33 @@
         "capacity": 30
       },
       "venue_id": "src-collins-park",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-X8HWS8",
+      "session_id": "reclub-X8HWS8",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Wednesday Volleyball at HFBC",
+      "venue": "Fitness & Recreation Center",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-19T01:00:00.000Z",
+      "ends_at": "2026-11-19T04:00:00.000Z",
+      "signup_url": "https://reclub.co/m/X8HWS8",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by HFBC Wednesday Night Volleyball, every Wednesday.",
+      "canceled": false,
+      "verified_at": "2026-11-18",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 60
+      },
+      "venue_id": "src-fitness-recreation-center",
       "status": "scheduled",
       "previous_starts_at": null
     },

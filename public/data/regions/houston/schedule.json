@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-18T20:06:03.342Z",
+  "generatedAt": "2026-11-18T21:56:43.096Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -60,11 +60,15 @@
         {
           "name": "The Volleyball Hangout",
           "url": "https://reclub.co/clubs/@the-volleyball-hangout"
+        },
+        {
+          "name": "Hfbc Wednesday Night Volleyball",
+          "url": "https://reclub.co/clubs/@hfbc-wednesday-night-volleyball"
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-18T20:02:56.444Z",
-      "count": 21,
+      "checkedAt": "2026-11-18T21:53:56.337Z",
+      "count": 22,
       "warnings": [
         "reclub-C2PEOL: no surface",
         "reclub-8TBKMU: no surface",
@@ -86,7 +90,8 @@
         "reclub-XD4JXT: no surface",
         "reclub-6TSHGM: no surface",
         "reclub-5E0DAN: no surface",
-        "reclub-230JCQ: no surface"
+        "reclub-230JCQ: no surface",
+        "reclub-X8HWS8: no surface"
       ]
     }
   ],
@@ -590,6 +595,31 @@
       "verifiedAt": "2026-11-18",
       "venueId": "src-collins-park",
       "status": "scheduled"
+    },
+    {
+      "id": "reclub-X8HWS8",
+      "date": "2026-11-18",
+      "start": "19:00",
+      "end": "22:00",
+      "title": "Wednesday Volleyball at HFBC",
+      "venue": "Fitness & Recreation Center",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by HFBC Wednesday Night Volleyball, every Wednesday.",
+      "capacity": 60,
+      "signup": {
+        "url": "https://reclub.co/m/X8HWS8",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/X8HWS8",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-18",
+      "venueId": "src-fitness-recreation-center",
+      "status": "scheduled"
     }
   ],
   "publicCourts": null,
@@ -691,6 +721,15 @@
       "address": "Imperial Valley Drive, Houston, TX",
       "lat": 29.955013,
       "lng": -95.39814,
+      "region": "houston"
+    },
+    {
+      "id": "src-fitness-recreation-center",
+      "name": "Fitness & Recreation Center",
+      "city": null,
+      "address": "Fitness & Recreation Center, 7401 Katy Fwy, Houston, Tx",
+      "lat": 29.7822,
+      "lng": -95.45915,
       "region": "houston"
     }
   ]

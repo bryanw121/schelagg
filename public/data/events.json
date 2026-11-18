@@ -1,6 +1,6 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-18T20:08:10.445Z",
+ "generatedAt": "2026-11-18T21:58:38.446Z",
  "events": [
   {
    "id": "evt-8c24fae8b082bf2b",
@@ -781,23 +781,26 @@
    "located": "address"
   },
   {
-   "id": "evt-261dee49a3c1c069",
+   "id": "evt-305948e3cfcf35be",
    "category": "seasonal",
-   "title": "Markets for Makers",
-   "venue": "Fair Market, 1100 E 5th St",
-   "area": "East Austin",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "Markets for Makers Austin Holiday Market",
+   "venue": "1100 E 5th St",
    "city": "Austin",
    "startDate": "2026-12-12",
    "endDate": "2026-12-13",
+   "sourceUrl": "https://allevents.in/austin/markets-for-makers-austin-holiday-market/200031070030234",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.26395,
+   "lng": -97.7317,
+   "located": "source",
+   "sourceId": "allevents-austin",
    "startTime": "11:00",
    "endTime": "17:00",
    "price": "$6-$16",
-   "sourceUrl": "https://theaustinnewsletter.com/guides/austin-holiday-markets#pick-7",
-   "source": "The Austin Newsletter",
-   "description": "100+ independent makers; tickets by arrival time, includes tote bag and DIY stations.",
-   "lat": 30.26387,
-   "lng": -97.73185,
-   "located": "address"
+   "description": "100+ independent makers; tickets by arrival time, includes tote bag and DIY stations."
   },
   {
    "category": "seasonal",
@@ -884,12 +887,12 @@
    "sourceId": "allevents-austin"
   }
  ],
- "listingsAt": "2026-11-18T20:08:10.445Z",
+ "listingsAt": "2026-11-18T21:58:38.446Z",
  "sources": [
   {
    "id": "allevents-austin",
    "ok": true,
-   "count": 13
+   "count": 14
   },
   {
    "id": "visit-austin",

@@ -4,16 +4,16 @@
       "counts": [
         269,
         269,
-        269,
         267,
         279,
         278,
         273,
         273,
         273,
-        274
+        274,
+        270
       ],
-      "sessions": 274,
+      "sessions": 270,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -32,7 +32,7 @@
         161,
         161,
         161,
-        161,
+        160,
         160,
         160,
         160,
@@ -58,7 +58,7 @@
       "counts": [
         8,
         8,
-        8,
+        0,
         0,
         0,
         0,
@@ -74,7 +74,7 @@
       "counts": [
         12,
         12,
-        12,
+        11,
         11,
         11,
         11,
@@ -155,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 847
+      "failStreak": 848
     },
     "atxbeach": {
       "counts": [
@@ -188,7 +188,7 @@
     "velocity": {
       "counts": [
         2,
-        2,
+        1,
         1,
         1,
         1,
@@ -218,7 +218,7 @@
         6,
         6,
         6,
-        6,
+        7,
         7,
         7,
         7,
@@ -358,7 +358,7 @@
         2,
         2,
         2,
-        2,
+        3,
         3
       ],
       "sessions": 3,
@@ -691,7 +691,7 @@
         2,
         2,
         2,
-        2,
+        3,
         3,
         3,
         3,
@@ -744,7 +744,7 @@
         36,
         36,
         36,
-        36,
+        37,
         37,
         37,
         37,
@@ -914,13 +914,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 556
+      "failStreak": 557
     },
     "leander-pickleball": {
-      "failStreak": 556
+      "failStreak": 557
     },
     "dallas-reclub": {
-      "failStreak": 188
+      "failStreak": 189
     },
     "sportsgarden": {
       "counts": [
@@ -973,7 +973,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 52
+      "failStreak": 53
     },
     "dfw-city-active": {
       "counts": [
@@ -982,7 +982,7 @@
         6,
         6,
         6,
-        6,
+        5,
         5,
         5,
         5,
@@ -1058,7 +1058,6 @@
     },
     "houston-reclub": {
       "counts": [
-        20,
         21,
         21,
         23,
@@ -1067,12 +1066,13 @@
         21,
         21,
         21,
-        21
+        21,
+        22
       ],
-      "sessions": 21,
+      "sessions": 22,
       "coverage": {
         "end": 1,
-        "price": 0.62,
+        "price": 0.59,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1123,6 +1123,8 @@
         "participants[]",
         "participants[].createdAt",
         "participants[].externalReference",
+        "participants[].externalReference.age",
+        "participants[].externalReference.level",
         "participants[].externalReference.name",
         "participants[].id",
         "participants[].isCoach",
@@ -1245,6 +1247,7 @@
     "houston-reclub:warning:reclub-R9HE9A: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
+    "houston-reclub:warning:reclub-X8HWS8: no surface",
     "houston-reclub:warning:reclub-XD4JXT: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",
     "leander-pickleball:failing",
@@ -1259,9 +1262,10 @@
     "manual:beecave-on-ice-sun:changed:2026-11-12",
     "manual:beecave-on-ice-tue:changed:2026-11-12",
     "manual:four-seasons-ice-rodeo:changed:2026-11-18",
-    "manual:hanovers-open:changed:2026-11-18",
     "manual:hanovers-open:unverified",
+    "manual:hanovers-open:watch",
     "manual:ssc-crossover-mon-sand:changed:2026-11-18",
-    "manual:ssc-crossover-mon-sand:unverified"
+    "manual:ssc-crossover-mon-sand:unverified",
+    "reclub:warning:https://reclub.co/m/V4DO6Q: HTTP 403"
   ]
 }
