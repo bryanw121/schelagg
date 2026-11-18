@@ -10,7 +10,7 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { loadRegions } from '../lib/regions.js';
-import { eventPointsForRegion, regionBox } from '../lib/map-area.js';
+import { eventPointsForRegion, overviewBox, regionBox } from '../lib/map-area.js';
 import { repoPath } from '../lib/paths.js';
 
 const arg = (name, fallback) => { const i = process.argv.indexOf(`--${name}`); return i > 0 ? process.argv[i + 1] : fallback; };
@@ -37,6 +37,20 @@ for (const r of loadRegions()) {
   made.push({ region: r.info.id, bbox: box, maxzoom: +MAXZOOM, bytes: statSync(file).size });
   console.log(`ok    ${r.info.id}: ${(statSync(file).size / 1e6).toFixed(1)} MB, box ${box.join(',')}`);
 }
+// One light map of everything between the regions (zooms 0-8: highways, city names, water), so the
+// site's map can zoom out from one city and into another. A failure here only leaves the map as
+// it was: one city at a time.
+const OVERVIEW_MAXZOOM = 8;
+let overview = null;
+if (made.length > 1) {
+  try {
+    const box = overviewBox(made.map((m) => m.bbox));
+    const file = `${out}/overview.pmtiles`;
+    execFileSync(PMTILES, ['extract', planet, file, `--bbox=${box.join(',')}`, `--maxzoom=${OVERVIEW_MAXZOOM}`], { stdio: 'inherit' });
+    overview = { file: 'overview.pmtiles', bbox: box, maxzoom: OVERVIEW_MAXZOOM, bytes: statSync(file).size };
+    console.log(`ok    overview: ${(overview.bytes / 1e6).toFixed(1)} MB, box ${box.join(',')}`);
+  } catch (e) { console.log(`FAIL  overview: ${e.message}`); }
+}
 // Label fonts and map icons, copied next to the maps so the site loads nothing from elsewhere: the
 // three Noto Sans styles the basemap uses, for Latin text (0-511) and punctuation (8192-8447), and the
 // light and dark icon sheets. Text outside those ranges (rare in these cities) isn't labelled.
@@ -53,4 +67,4 @@ for (const font of ['Noto Sans Regular', 'Noto Sans Medium', 'Noto Sans Italic']
 for (const flavor of ['light', 'dark']) {
   for (const ext of ['.json', '.png', '@2x.json', '@2x.png']) await save(`${ASSETS}/sprites/v4/${flavor}${ext}`, `${out}/sprites/${flavor}${ext}`);
 }
-writeFileSync(`${out}/maps.json`, `${JSON.stringify({ source: latest, attribution: '© OpenStreetMap contributors', built: new Date().toISOString(), maps: made }, null, 2)}\n`);
+writeFileSync(`${out}/maps.json`, `${JSON.stringify({ source: latest, attribution: '© OpenStreetMap contributors', built: new Date().toISOString(), ...(overview ? { overview } : {}), maps: made }, null, 2)}\n`);

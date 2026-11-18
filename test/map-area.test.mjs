@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { eventPointsForRegion, regionBox } from '../lib/map-area.js';
+import { eventPointsForRegion, overviewBox, regionBox } from '../lib/map-area.js';
 import { loadRegions } from '../lib/regions.js';
 
 test('map area: a padded box around the venues and the center, ignoring venues without coordinates', () => {
@@ -40,4 +40,10 @@ test('map area: the events widen Austin\'s box south to Vista Brewing', () => {
   assert.ok(south < 30.10485, `south edge ${south} is below Vista Brewing`);
   const [, southVenuesOnly] = regionBox({ center: austin.info.center, venues: austin.venues });
   assert.ok(southVenuesOnly > 30.10485, 'venues alone leave Vista Brewing outside the box');
+});
+
+test('overviewBox: every region\'s box together, padded', () => {
+  assert.deepEqual(overviewBox([[-98.1, 30.0, -97.5, 30.8], [-97.4, 32.6, -96.7, 33.0], [-95.45, 29.68, -95.29, 29.84]]), [-98.7, 29.08, -94.69, 33.6]);
+  assert.deepEqual(overviewBox([[-98, 30, -97, 31]], 0), [-98, 30, -97, 31]);
+  assert.throws(() => overviewBox([]), /no regions/);
 });
