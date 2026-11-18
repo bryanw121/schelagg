@@ -1,47 +1,18 @@
-// The Events view's pure helpers (public/events-ui.js): pagination, date ranges, place lines,
-// map places, month groups, and the Sports dropdown's state. Nothing here touches the DOM.
+// The Events view's pure helpers (public/events-ui.js): kinds and tags, headings, filters, date
+// ranges, place lines and map places. Nothing here touches the DOM.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  CAT_COLOR, CAT_LABEL, EVENT_CATS, EVENTS_PER_PAGE, clampPage, countByCategory, dropdownNext,
-  eventDateRange, eventPinName, eventPlaceParts, eventPlaces, groupByMonth, isEventCat,
-  paginate, sortEvents,
+  EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPinName,
+  eventPlaceParts, eventPlaces, eventTags, eventWhen, eventsForRegion, filterEvents, groupByMonth,
+  isEventKind, isEventTag, isOn, sortEvents, weekendRange,
 } from '../public/events-ui.js';
 
 const ev = (over = {}) => ({ id: 'evt-x', category: 'seasonal', title: 'T', venue: 'V', city: 'Austin', startDate: '2026-12-05', ...over });
-const twelve = Array.from({ length: 12 }, (_, i) => ev({ id: `evt-${i}`, title: `Event ${String(i + 1).padStart(2, '0')}`, startDate: `2026-11-${String(10 + i).padStart(2, '0')}` }));
-
-test('paginate: 10 per page, clamped, with Showing numbers', () => {
-  assert.equal(EVENTS_PER_PAGE, 10);
-  const p1 = paginate(twelve, 1);
-  assert.deepEqual([p1.items.length, p1.page, p1.pageCount, p1.total, p1.start, p1.end], [10, 1, 2, 12, 1, 10]);
-  const p2 = paginate(twelve, 2);
-  assert.deepEqual([p2.items.length, p2.page, p2.start, p2.end], [2, 2, 11, 12]);
-  assert.equal(paginate(twelve, 0).page, 1, 'page 0 clamps to 1');
-  assert.equal(paginate(twelve, 99).page, 2, 'past the end clamps to the last page');
-  assert.equal(paginate(twelve, NaN).page, 1);
-  const empty = paginate([], 3);
-  assert.deepEqual([empty.items, empty.page, empty.pageCount, empty.total, empty.start, empty.end], [[], 1, 0, 0, 0, 0]);
-  assert.equal(clampPage(5, 3), 3);
-  assert.equal(clampPage(0, 3), 1);
-  assert.equal(clampPage(2, 0), 1, 'no pages yet: page 1');
-});
 
 test('sortEvents: soonest first, ties by title', () => {
   const sorted = sortEvents([ev({ title: 'B', startDate: '2026-12-05' }), ev({ title: 'A', startDate: '2026-12-05' }), ev({ title: 'C', startDate: '2026-11-12' })]);
   assert.deepEqual(sorted.map((e) => e.title), ['C', 'A', 'B']);
-});
-
-test('countByCategory: each chip and the total', () => {
-  assert.deepEqual(countByCategory([
-    ev({ category: 'popup' }), ev({ category: 'popup' }), ev({ category: 'seasonal' }), ev({ category: 'asian-inspired' }),
-  ]), { all: 4, popup: 2, seasonal: 1, 'asian-inspired': 1 });
-  assert.deepEqual(countByCategory([]), { all: 0, popup: 0, seasonal: 0, 'asian-inspired': 0 });
-  assert.deepEqual(EVENT_CATS.map((c) => c.id), ['all', 'popup', 'seasonal', 'asian-inspired']);
-  assert.equal(isEventCat('popup'), true);
-  assert.equal(isEventCat('nope'), false);
-  assert.deepEqual(CAT_LABEL, { popup: 'Pop-up', seasonal: 'Seasonal', 'asian-inspired': 'Asian-inspired' });
-  assert.deepEqual(CAT_COLOR, { popup: 'var(--indoor)', seasonal: 'var(--grass)', 'asian-inspired': 'var(--changed)' });
 });
 
 test('eventDateRange: one day, same month, across months, across years', () => {
@@ -97,11 +68,77 @@ test('groupByMonth: the page\'s events under month headers, in order', () => {
   assert.deepEqual(groupByMonth([]), []);
 });
 
-test('dropdownNext: Sports toggles it; a pick, Events, outside, or Esc closes it', () => {
-  assert.equal(dropdownNext(false, 'toggle'), true);
-  assert.equal(dropdownNext(true, 'toggle'), false);
-  for (const action of ['pick', 'outside', 'escape', 'events']) {
-    assert.equal(dropdownNext(true, action), false, action);
-    assert.equal(dropdownNext(false, action), false, `${action} when closed stays closed`);
-  }
+
+test('kinds and tags: Asian-inspired is a tag, not a kind; a feed may send kind and tags itself', () => {
+  assert.deepEqual(EVENT_KINDS.map((k) => k.id), ['popup', 'seasonal']);
+  assert.deepEqual(EVENT_TAGS.map((g) => g.id), ['asian-inspired']);
+  assert.equal(eventKind(ev({ category: 'popup' })), 'popup');
+  assert.equal(eventKind(ev({ category: 'asian-inspired' })), null);
+  assert.deepEqual(eventTags(ev({ category: 'asian-inspired' })), ['asian-inspired']);
+  assert.equal(eventKind(ev({ category: 'asian-inspired', kind: 'popup' })), 'popup');
+  assert.deepEqual(eventTags(ev({ category: 'popup', tags: ['asian-inspired'] })), ['asian-inspired']);
+  assert.ok(isEventKind('all') && isEventKind('seasonal') && !isEventKind('asian-inspired'));
+  assert.ok(isEventTag('asian-inspired') && !isEventTag('popup'));
+  assert.deepEqual(countEvents([ev({ category: 'popup' }), ev({ category: 'seasonal' }), ev({ category: 'asian-inspired' }), ev({ category: 'popup', tags: ['asian-inspired'] })]),
+    { all: 4, popup: 2, seasonal: 1, 'asian-inspired': 2 });
+});
+
+test('eventsForRegion: a feed is Austin\'s unless it or an event says otherwise', () => {
+  const feed = { events: [ev({ id: 'a' }), ev({ id: 'd', region: 'dallas' })] };
+  assert.deepEqual(eventsForRegion(feed, 'austin').map((e) => e.id), ['a']);
+  assert.deepEqual(eventsForRegion(feed, 'dallas').map((e) => e.id), ['d']);
+  assert.deepEqual(eventsForRegion({ region: 'houston', events: [ev()] }, 'houston').length, 1);
+  assert.deepEqual(eventsForRegion(null, 'austin'), []);
+});
+
+// Wed Nov 18 2026: Fri 20 – Sun 22 is this weekend; Mon 23 – Sun 29 is next week.
+const TODAY = '2026-11-18';
+const feed = [
+  ev({ title: 'Flower Shop', startDate: '2026-11-12', endDate: '2026-11-23' }),
+  ev({ title: 'Creek Show', startDate: '2026-11-13', endDate: '2026-11-21' }),
+  ev({ title: 'Gone', startDate: '2026-11-01', endDate: '2026-11-10' }),
+  ev({ title: 'Christmas Affair', startDate: '2026-11-19', endDate: '2026-11-22' }),
+  ev({ title: 'Witches Market', startDate: '2026-11-21' }),
+  ev({ title: 'Vista Market', startDate: '2026-11-27', endDate: '2026-12-20' }),
+  ev({ title: 'German Market', startDate: '2026-12-05' }),
+  ev({ title: 'New Year', startDate: '2027-01-02' }),
+];
+
+test('eventGroups: On now (ending soonest first), This week, Next week, then months; past events dropped', () => {
+  const g = eventGroups(feed, TODAY);
+  assert.deepEqual(g.map((x) => [x.key, x.label, x.events.map((e) => e.title)]), [
+    ['now', 'On now', ['Creek Show', 'Flower Shop']],
+    ['weekend', 'This week', ['Christmas Affair', 'Witches Market']],
+    ['next', 'Next week', ['Vista Market']],
+    ['2026-12', 'December', ['German Market']],
+    ['2027-01', 'January', ['New Year']],
+  ]);
+  assert.equal(g[1].sub, 'Thu Nov 19 – Sun Nov 22 · 2 events');
+  assert.equal(g[2].sub, 'Mon Nov 23 – Sun Nov 29 · 1 event');
+  assert.equal(g[3].sub, '2026 · 1 event');
+  assert.equal(eventGroups(feed, '2026-11-20')[1].label, 'This weekend', 'from Friday it is the weekend');
+  assert.deepEqual(eventGroups([], TODAY), []);
+});
+
+test('weekendRange and filterEvents: kind, tags, and on any day of this weekend', () => {
+  assert.deepEqual(weekendRange(TODAY), { from: '2026-11-20', to: '2026-11-22' });
+  assert.deepEqual(weekendRange('2026-11-21'), { from: '2026-11-21', to: '2026-11-22' });
+  assert.deepEqual(weekendRange('2026-11-22'), { from: '2026-11-22', to: '2026-11-22' });
+  const wk = filterEvents(feed, { weekend: true }, TODAY).map((e) => e.title);
+  assert.deepEqual(wk, ['Flower Shop', 'Creek Show', 'Christmas Affair', 'Witches Market']);
+  const mixed = [ev({ title: 'P', category: 'popup' }), ev({ title: 'S', category: 'seasonal' }), ev({ title: 'A', category: 'asian-inspired' }), ev({ title: 'PA', category: 'popup', tags: ['asian-inspired'] })];
+  assert.deepEqual(filterEvents(mixed, { kind: 'popup' }, TODAY).map((e) => e.title), ['P', 'PA']);
+  assert.deepEqual(filterEvents(mixed, { tags: ['asian-inspired'] }, TODAY).map((e) => e.title), ['A', 'PA']);
+  assert.deepEqual(filterEvents(mixed, { kind: 'popup', tags: ['asian-inspired'] }, TODAY).map((e) => e.title), ['PA']);
+});
+
+test('eventWhen and isOn: the card\'s date column; eventCta: what the button says', () => {
+  assert.deepEqual(eventWhen(feed[0], TODAY), { top: 'Thru', main: 'Nov 23' });
+  assert.deepEqual(eventWhen(feed[4], TODAY), { top: 'Sat', main: 'Nov 21' });
+  assert.deepEqual(eventWhen(feed[3], TODAY), { top: 'Nov 19', main: 'to Nov 22', range: true });
+  assert.ok(isOn(feed[0], TODAY) && !isOn(feed[3], TODAY) && !isOn(feed[2], TODAY));
+  assert.equal(eventCta({ sourceUrl: 'https://www.instagram.com/p/x/' }), 'See the post');
+  assert.equal(eventCta({ sourceUrl: 'https://www.austintexas.org/events/' }), 'Event page');
+  assert.equal(eventCta({ sourceUrl: 'https://notinstagram.com.evil.test/' }), 'Event page');
+  assert.equal(eventCta({}), 'Event page');
 });

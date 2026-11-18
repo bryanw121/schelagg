@@ -9,7 +9,7 @@
 // A visitor loads one region. Times are shown in the region's own time zone, wherever the viewer is.
 
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
-import { CAT_COLOR, CAT_LABEL, EVENT_CATS, EVENTS_PER_PAGE, clampPage, countByCategory, dropdownNext, eventDateRange, eventPlaceParts, eventPlaces, groupByMonth, isEventCat, paginate, sortEvents } from './events-ui.js';
+import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
 
 // Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
 // colors; none for a sport that doesn't need them), the glance chart's heading, and whether it has
@@ -213,7 +213,7 @@ const PROGRAM_VIEWS = { leagues: 'league', tournaments: 'tournament' };
 const viewFrom = (v, kind) => (v === 'signups' ? (kind === 'tournament' || kind === 'nagva' ? 'tournaments' : 'leagues') : VIEWS.includes(v) ? v : null);
 // The top level: Events (the default) or Sports. The events list pages 10 at a time (?page=),
 // filtered by category (?cat=); both are remembered and shareable.
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evCat: 'all', evPage: 1 };
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evKind: 'all', evTags: [], evWeekend: false };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -225,8 +225,8 @@ try {
   if (typeof s.host === 'string' && s.host) state.host = s.host;
   if (s.layout === 'map') state.layout = 'map';
   if (s.section === 'events' || s.section === 'sports') state.section = s.section;
-  if (isEventCat(s.evCat)) state.evCat = s.evCat;
-  if (Number.isFinite(+s.evPage) && +s.evPage >= 1) state.evPage = Math.floor(+s.evPage);
+  if (isEventKind(s.evKind)) state.evKind = s.evKind;
+  if (Array.isArray(s.evTags)) state.evTags = s.evTags.filter(isEventTag);
 } catch {}
 // A shared link (?region=austin&sport=ice_skating) wins over what was remembered.
 const params = new URLSearchParams(location.search);
@@ -244,10 +244,14 @@ if (params.has('view')) {
 if (params.get('kind') === 'nagva') state.host = 'NAGVA';
 if (params.get('host')) state.host = params.get('host');
 if (params.has('layout')) state.layout = params.get('layout') === 'map' ? 'map' : 'list';
-if (params.get('cat') && isEventCat(params.get('cat'))) state.evCat = params.get('cat');
-if (params.has('page')) state.evPage = Math.max(1, +params.get('page') || 1);
+// Events filters: ?type= (a kind), ?tag= (repeatable), ?weekend=1. ?cat= is the old link's
+// category (a kind, or asian-inspired, which is a tag now).
+for (const v of [params.get('type'), params.get('cat')]) if (v && v !== 'all' && isEventKind(v)) state.evKind = v;
+const urlTags = [...params.getAll('tag'), params.get('cat')].filter(isEventTag);
+if (urlTags.length) state.evTags = [...new Set(urlTags)];
+if (params.get('weekend') === '1') state.evWeekend = true;
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, host: state.host, section: state.section, evCat: state.evCat, evPage: state.evPage })); } catch {} };
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, host: state.host, section: state.section, evKind: state.evKind, evTags: state.evTags })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
   const u = new URL(location.href);
@@ -257,13 +261,15 @@ function syncUrl() {
   u.searchParams.delete('kind');
   if (state.section === 'events') {
     u.searchParams.set('view', 'events');
-    if (state.evCat !== 'all') u.searchParams.set('cat', state.evCat); else u.searchParams.delete('cat');
-    if (state.evPage > 1) u.searchParams.set('page', String(state.evPage)); else u.searchParams.delete('page');
+    if (state.evKind !== 'all') u.searchParams.set('type', state.evKind); else u.searchParams.delete('type');
+    u.searchParams.delete('tag'); for (const g of state.evTags) u.searchParams.append('tag', g);
+    if (state.evWeekend) u.searchParams.set('weekend', '1'); else u.searchParams.delete('weekend');
+    u.searchParams.delete('cat'); u.searchParams.delete('page');
     u.searchParams.delete('host');
   } else {
     if (state.view !== 'openplay') u.searchParams.set('view', state.view); else u.searchParams.delete('view');
     if (PROGRAM_VIEWS[state.view] && state.host !== 'all') u.searchParams.set('host', state.host); else u.searchParams.delete('host');
-    u.searchParams.delete('cat'); u.searchParams.delete('page');
+    for (const k of ['cat', 'page', 'type', 'tag', 'weekend']) u.searchParams.delete(k);
   }
   if (state.layout === 'map' && mapReady()) u.searchParams.set('layout', 'map'); else u.searchParams.delete('layout');
   if (u.href !== location.href) history.replaceState(null, '', u);
@@ -304,16 +310,6 @@ function signupHtml(x) {
   if (x.f.k === 'expired' || x.f.k === 'canceled') return '';
   const s = x.signup || {}, url = onDay(s.url, x.date || x.on); // a shared calendar link opens on this session's day
   if (url && !s.dropIn) return `<a class="signup" href="${esc(url)}" target="_blank" rel="noopener">${esc(s.label || 'Sign up')} ↗</a>`;
-  if (url) return `<span class="dropin">${esc(s.label || 'Drop in')}</span><a class="src" href="${esc(url)}" target="_blank" rel="noopener">Details ↗</a>`;
-  return s.label ? `<span class="dropin">${esc(s.label)}</span>` : '';
-}
-
-/** The popup's sign-up action: the same link as signupHtml, but a compact text link — the
- *  full button is too heavy for a popup. */
-function popupSignupHtml(x) {
-  if (x.f.k === 'expired' || x.f.k === 'canceled') return '';
-  const s = x.signup || {}, url = onDay(s.url, x.date || x.on);
-  if (url && !s.dropIn) return `<a class="src" href="${esc(url)}" target="_blank" rel="noopener">Book ↗</a>`;
   if (url) return `<span class="dropin">${esc(s.label || 'Drop in')}</span><a class="src" href="${esc(url)}" target="_blank" rel="noopener">Details ↗</a>`;
   return s.label ? `<span class="dropin">${esc(s.label)}</span>` : '';
 }
@@ -379,23 +375,20 @@ function renderRegion() {
   }
 }
 
-let sportsMenuOpen = false; // the Sports dropdown: transient, not remembered or shared
-/** The header's Events | Sports switch: Sports reads pressed while its dropdown is open, too. */
+/** The header's Events | Sports switch. Sports opens the sport sheet (the sport picker). */
 function renderTopTabs() {
   const tabs = $('topTabs');
-  tabs.querySelector('[data-section="events"]').setAttribute('aria-pressed', String(state.section === 'events' && !sportsMenuOpen));
-  tabs.querySelector('[data-section="sports"]').setAttribute('aria-pressed', String(state.section === 'sports' || sportsMenuOpen));
-  $('sportsMenu').hidden = !sportsMenuOpen;
+  tabs.querySelector('[data-section="events"]').setAttribute('aria-pressed', String(state.section === 'events'));
+  tabs.querySelector('[data-section="sports"]').setAttribute('aria-pressed', String(state.section === 'sports'));
 }
 
 function renderSports() {
   const today = (schedule?.sessions || []).filter((x) => !x.date || x.date >= NOW.iso);
   const offered = new Set(region?.sports ?? []);
   const list = Object.entries(SPORTS).filter(([k]) => k === state.sport || offered.has(k) || today.some((x) => sportOf(x) === k));
-  // The dropdown under the Sports tab lists the sports (the dropdown, not a sheet, is the
-  // sport picker now); a redraw while it's open keeps focus on the option that had it.
-  const focused = sportsMenuOpen && document.activeElement?.dataset.sport;
-  $('sportsOpts').innerHTML = list.map(([k, sp]) => `<button type="button" class="tab opt sport" aria-pressed="${state.sport === k}" data-sport="${k}"><span class="lbl">${esc(sp.label)}<small>${esc(sp.menu)}</small></span></button>`).join('');
+  // The sport sheet lists the sports; a redraw while it's open keeps focus on the option that had it.
+  const focused = $('sportSheet').open && document.activeElement?.dataset.sport;
+  $('sportsOpts').innerHTML = list.map(([k, sp]) => `<button type="button" class="tab opt sport" aria-pressed="${state.section === 'sports' && state.sport === k}" data-sport="${k}"><span class="lbl">${esc(sp.label)}<small>${esc(sp.menu)}</small></span></button>`).join('');
   if (focused) $('sportsOpts').querySelector(`[data-sport="${CSS.escape(focused)}"]`)?.focus();
 }
 
@@ -879,66 +872,94 @@ function render() {
 
 
 // ---------- events ----------
-// data/events.json (the daily discovery run): Austin pop-ups, seasonal events and
-// Asian-inspired things. The Events tab lists them, 10 to a page, grouped by the month they
-// start in; the map pins them by venue. The feed is the source of truth — no schedule needed.
+// data/events.json (the events feed): pop-ups and seasonal events for the regions that have a
+// feed (Austin today). Listed like the Sports days: On now, This week(end), Next week, then by
+// month, a few under each heading and Show more for the rest; the map pins them by venue.
+const EVENTS_SHOWN = 4; // cards under a heading before "Show N more"
+const evOpen = new Set(); // headings opened with Show more (not remembered)
 /** Directions to an event's venue, as a free-text destination (the venue string carries it). */
 const eventDirections = (ev) => {
   const dest = encodeURIComponent(`${ev.venue}${ev.city && !String(ev.venue).toLowerCase().includes(String(ev.city).toLowerCase()) ? `, ${ev.city}` : ''}, TX`);
   return `<a class="src" href="https://www.google.com/maps/dir/?api=1&amp;destination=${dest}" target="_blank" rel="noopener">Google Maps ↗</a><a class="src" href="https://maps.apple.com/directions?destination=${dest}&amp;mode=driving" target="_blank" rel="noopener">Apple Maps ↗</a>`;
 };
+const safeUrl = (u) => /^https:\/\//i.test(u || '');
+/** The event's kind and tags as chips: kinds solid outline, tags dashed. */
+const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}`;
 function eventCard(ev) {
   const parts = eventPlaceParts(ev);
-  const happening = ev.startDate <= NOW.iso && NOW.iso <= (ev.endDate ?? ev.startDate);
+  const on = isOn(ev, NOW.iso);
   const mi = here && Number.isFinite(ev.lat) && Number.isFinite(ev.lng) ? milesToCoords(ev.lat, ev.lng) : null;
-  const times = ev.startTime ? `${fmtT(ev.startTime)}${ev.endTime ? ` – ${fmtT(ev.endTime)}` : ''}` : '';
-  return `<article class="row">
-    <div class="time">${esc(eventDateRange(ev))}${times ? `<small>${esc(times)}</small>` : ''}</div>
+  const w = eventWhen(ev, NOW.iso);
+  const times = ev.startTime ? `${fmtT(ev.startTime)}${ev.endTime ? `–${fmtT(ev.endTime)}` : ''}` : '';
+  const via = ev.source ? `<span class="via">Found via ${esc(ev.source)}</span>` : '';
+  return `<article class="row ev-row">
+    <div class="time">${w.range ? `${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : ''}</div>
     <div class="body">
-      <div class="t1"><span class="title">${esc(ev.title)}</span><span class="chip surf" style="--c:${CAT_COLOR[ev.category] ?? 'var(--muted)'}">${esc(CAT_LABEL[ev.category] ?? ev.category)}</span>${happening ? '<span class="pill fresh">Happening now</span>' : ''}</div>
+      <div class="t1"><span class="title">${esc(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
       <div class="venue"><b>${esc(parts[0] ?? ev.venue)}</b>${parts.slice(1).map((p) => ` · ${esc(p)}`).join('')}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</div>
-      ${ev.price ? `<div class="meta"><span>${esc(ev.price)}</span></div>` : ''}
-      ${ev.description ? `<div class="note">${esc(ev.description)}</div>` : ''}
-      <div class="actions">${ev.sourceUrl ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">Source ↗</a>` : ''}${eventDirections(ev)}</div>
+      <div class="meta">${eventChips(ev)}${ev.price ? `<span>${esc(ev.price)}</span>` : ''}</div>
+      ${safeUrl(ev.sourceUrl) ? `<a class="signup ev-go" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}
+      <details class="more"><summary>Details</summary>${ev.description ? `<div class="note">${esc(ev.description)}</div>` : ''}<div class="location">${esc(parts.join(', '))}</div><div class="actions">${eventDirections(ev)}</div>${via}</details>
     </div></article>`;
 }
-/** Prev, the page numbers, "Page X of N", Next. Nothing when one page holds them all. */
-function pagerHtml(page) {
-  if (page.pageCount <= 1) return '';
-  const nums = Array.from({ length: page.pageCount }, (_, i) => i + 1).map((n) => `<button class="seg-btn" type="button" data-page="${n}" aria-pressed="${page.page === n}" aria-label="Page ${n}">${n}</button>`).join('');
-  return `<button type="button" class="pill-btn" data-page="prev" ${page.page === 1 ? 'disabled' : ''}>← Prev</button><div class="seg" role="group" aria-label="Page">${nums}</div><span class="note">Page ${page.page} of ${page.pageCount}</span><button type="button" class="pill-btn" data-page="next" ${page.page === page.pageCount ? 'disabled' : ''}>Next →</button>`;
+/** The events this region has, or null when it has no feed yet. */
+const regionEvents = () => (events ? eventsForRegion(events, region?.id ?? 'austin') : null);
+/** The filters' label on the pill that opens the sheet. */
+const filterLabel = () => [state.evKind === 'all' ? 'All events' : EVENT_KINDS.find((k) => k.id === state.evKind)?.label, ...state.evTags.map(tagLabel)].join(' · ');
+function renderEventsSheet(list) {
+  const counts = countEvents(list);
+  const opt = (attr, id, label, hint, n, on) => `<button type="button" class="tab opt" ${attr}="${id}" aria-pressed="${on}"><span class="lbl">${esc(label)}${hint ? `<small>${esc(hint)}</small>` : ''}</span><span class="n">${n}</span></button>`;
+  const shown = filterEvents(list, { kind: state.evKind, tags: state.evTags, weekend: state.evWeekend }, NOW.iso).length;
+  $('eventsOpts').innerHTML = `<h3 class="opt-h">Kind</h3>${opt('data-evkind', 'all', 'All events', '', counts.all, state.evKind === 'all')}${EVENT_KINDS.map((k) => opt('data-evkind', k.id, k.label, k.hint, counts[k.id], state.evKind === k.id)).join('')}
+    <h3 class="opt-h">Tags</h3>${EVENT_TAGS.map((g) => opt('data-evtag', g.id, g.label, '', counts[g.id], state.evTags.includes(g.id))).join('')}
+    <button type="button" class="go-btn" data-close>Show ${shown} event${shown === 1 ? '' : 's'}</button>`;
 }
 function renderEvents() {
   // Events aren't about a day or a sport: the day strip, the level filter, the charts and the
   // sports lists step aside (the map, when open, is handled by renderMap).
   for (const id of ['filters', 'sessionsPanel', 'glance', 'bookingCalendarsCard', 'venueCalendarsCard', 'courtsCard', 'sessionFreshness', 'signupsPanel']) $(id).hidden = true;
   $('eventsPanel').hidden = false;
-  document.body.classList.remove('layout-map', 'view-booking');
+  document.body.classList.remove('view-booking');
   $('sourcesLink').hidden = true; // the sources link is per sport
-  if (events?.generatedAt) {
-    $('asof').textContent = `Updated ${fmtDate(events.generatedAt.slice(0, 10), { month: 'short', day: 'numeric', year: 'numeric' })} · discovery runs daily`;
-    $('asof').title = `Events checked ${clock(events.generatedAt)}`;
-    $('footer').innerHTML = 'Sources: each event links to its own post or page. Discovery runs daily; dates and prices change — confirm on the source before you go.';
-  }
+  const list = regionEvents();
   if (!events) {
+    $('asof').textContent = eventsError ? '' : 'Loading…';
     $('eventCats').innerHTML = '';
     $('eventsCount').textContent = '';
     $('events').innerHTML = eventsError ? `<div class="error">Couldn't load events: ${esc(eventsError)}</div>` : '<p class="loading">Loading events…</p>';
-    $('eventsPager').innerHTML = '';
     $('eventsNote').textContent = '';
     return;
   }
-  const counts = countByCategory(events.events);
-  $('eventCats').innerHTML = EVENT_CATS.map((c) => `<button type="button" class="pill-btn chip-btn${state.evCat === c.id ? ' on' : ''}" data-evcat="${c.id}" aria-pressed="${state.evCat === c.id}">${esc(c.label)} <span class="n" aria-hidden="true">${counts[c.id]}</span><span class="vh">, ${counts[c.id]} events</span></button>`).join('');
-  const filtered = sortEvents((events.events || []).filter((e) => state.evCat === 'all' || e.category === state.evCat));
-  const page = paginate(filtered, state.evPage, EVENTS_PER_PAGE);
-  if (state.evPage !== page.page) { state.evPage = page.page; syncUrl(); save(); } // a shared ?page= past the end lands on the last page
-  $('eventsCount').textContent = page.total ? `Showing ${page.start}–${page.end} of ${page.total} events` : 'No events in this category';
-  $('events').innerHTML = page.items.length
-    ? groupByMonth(page.items).map((g) => `<h2 class="p-group">${esc(g.label)}<span class="n">${g.events.length} event${g.events.length === 1 ? '' : 's'}</span></h2>${g.events.map(eventCard).join('')}`).join('')
-    : '<div class="empty"><b>No pop-ups or seasonal events right now.</b> Discovery runs daily.</div>';
-  $('eventsPager').innerHTML = pagerHtml(page);
-  $('eventsNote').textContent = 'Dates and prices change — confirm on the source before you go.';
+  if (!list.length) {
+    // A region without an events feed yet: say so, and point to what it does have.
+    $('asof').textContent = '';
+    $('eventCats').innerHTML = '';
+    $('eventsCount').textContent = '';
+    $('events').innerHTML = `<div class="ev-away"><h2>Events are Austin-only for now</h2><p>Pop-ups and seasonal events come to ${esc(region?.name ?? 'this city')} next. Open play, leagues and tournaments are already here.</p><button type="button" class="signup" data-go-sports>See open play here →</button></div>`;
+    $('eventsNote').textContent = '';
+    return;
+  }
+  const upcoming = list.filter((e) => (e.endDate ?? e.startDate) >= NOW.iso);
+  $('asof').textContent = `${upcoming.length} events · checked ${fmtDate(events.generatedAt.slice(0, 10), { month: 'short', day: 'numeric' })}`;
+  $('asof').title = `Events checked ${clock(events.generatedAt)}`;
+  $('footer').innerHTML = 'Each event links to its own page or post. Dates and prices change, so check it before you go.';
+  const filtering = state.evKind !== 'all' || state.evTags.length > 0;
+  $('eventCats').innerHTML = `<button type="button" class="pill-btn chip-btn${filtering ? ' on' : ''}" data-sheet="eventsSheet" aria-haspopup="dialog">${esc(filterLabel())} <span class="caret" aria-hidden="true">▾</span></button>`
+    + `<button type="button" class="pill-btn chip-btn${state.evWeekend ? ' on' : ''}" data-evweekend aria-pressed="${state.evWeekend}">This weekend</button>`
+    + (navigator.geolocation ? `<button type="button" class="pill-btn chip-btn${here ? ' on' : ''}" data-evnear aria-pressed="${!!here}">Near me</button>` : '');
+  renderEventsSheet(upcoming);
+  const shown = filterEvents(upcoming, { kind: state.evKind, tags: state.evTags, weekend: state.evWeekend }, NOW.iso);
+  const groups = eventGroups(shown, NOW.iso);
+  // Near me: nearest first under each heading (On now keeps ending-soonest first).
+  if (here) for (const g of groups) if (g.key !== 'now') g.events.sort((a, b) => (milesToCoords(a.lat, a.lng) ?? 1e9) - (milesToCoords(b.lat, b.lng) ?? 1e9));
+  $('eventsCount').innerHTML = filtering || state.evWeekend ? `${shown.length} of ${upcoming.length} events · <button type="button" class="linkish" data-evclear>Clear filters</button>` : '';
+  $('events').innerHTML = groups.length
+    ? groups.map((g) => {
+      const open = evOpen.has(g.key), rest = g.events.length - EVENTS_SHOWN;
+      return `<section class="ev-group" data-group="${esc(g.key)}"><h2 class="ev-day">${esc(g.label)}<small>${esc(g.sub)}</small></h2>${(open ? g.events : g.events.slice(0, EVENTS_SHOWN)).map(eventCard).join('')}${rest > 0 && !open ? `<button type="button" class="show-more" data-evmore="${esc(g.key)}">Show ${rest} more</button>` : ''}</section>`;
+    }).join('')
+    : `<div class="empty"><b>Nothing matches.</b> <button type="button" class="linkish" data-evclear>Clear filters</button></div>`;
+  $('eventsNote').textContent = '';
 }
 
 // ---------- leagues and tournaments ----------
@@ -1115,7 +1136,7 @@ const webgl = (() => { try { const c = document.createElement('canvas'); return 
 let maps = null; // maps.json: which regions have a map
 let mapPick = null; // the venue whose day is shown under the map
 let mapView = null, mapMarkers = [], mapKey = '', mapLibs = null, youMarker = null;
-let mapPopup = null; // the popup open on the picked pin, if any
+let shownPick = null; // the pick the place sheet was last drawn for (to move the map once per pick)
 const mapReady = () => webgl && !!region && !!maps?.maps?.some((m) => m.region === region.id);
 
 function loadMapLibs() {
@@ -1185,28 +1206,34 @@ function mapPlaces(iso) {
   return [...out.values()];
 }
 
-/** What's under the events map: the picked place's events, or every place as a row. */
-function eventsPanelHtml(places) {
-  const p = places.find((x) => x.id === mapPick);
+/** The events map's place list, or (with `pickId`) that place's events for the place sheet. */
+function eventsPanelHtml(places, pickId) {
+  const p = places.find((x) => x.id === pickId);
   if (!p) {
     const order = [...places].sort((a, b) => (placeMiles(a) ?? 1e9) - (placeMiles(b) ?? 1e9) || a.name.localeCompare(b.name));
     const rows = order.map((x) => {
       const mi = placeMiles(x);
-      return `<li><button type="button" class="place-row" data-pin="${esc(x.id)}"><span class="pr-name">${esc(x.name)}<small>${esc(x.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
+      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}"><span class="pr-name">${esc(x.short || x.name)}<small>${esc(x.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
     }).join('');
     return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> with events coming up. Tap one for its events.</p><ul class="place-list">${rows}</ul>`;
   }
-  const mi = placeMiles(p);
-  const rows = p.events.map((ev) => `<div class="pop-item"><span class="pop-t">${esc(eventDateRange(ev))}</span><span class="pop-w">${esc(ev.title)}${ev.price ? `<small>${esc(ev.price)}</small>` : ''}</span><span class="pop-a">${ev.sourceUrl ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">Source ↗</a>` : ''}</span></div>`).join('');
-  return `<div class="map-place"><button type="button" class="map-back" data-pin="${esc(p.id)}">‹ All places</button><div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span></div>
+  const mi = placeMiles(p), n = p.events.length;
+  // Under the name: the rest of the venue string (its address) and the area, without repeating the name.
+  const rest = p.short && p.name.startsWith(p.short) ? p.name.slice(p.short.length).replace(/^[,\s]+/, '') : '';
+  const addr = [rest, ...eventPlaceParts(p.events[0]).slice(1)].filter(Boolean);
+  const rows = p.events.map((ev) => {
+    const w = eventWhen(ev, NOW.iso);
+    return `<div class="pop-item"><span class="pop-t">${w.range ? `${esc(w.top)}<small>${esc(w.main)}</small>` : `${esc(w.top)} ${esc(w.main)}`}</span><span class="pop-w"><b>${esc(ev.title)}</b>${isOn(ev, NOW.iso) ? ' <span class="pill fresh">Happening now</span>' : ''}<small>${[ev.price, kindLabel(eventKind(ev))].filter(Boolean).map(esc).join(' · ')}</small></span><span class="pop-a">${safeUrl(ev.sourceUrl) ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}</span></div>`;
+  }).join('');
+  return `<div class="map-place"><div class="g-venue"><span class="v-name">${esc(p.short || p.name)}<small>${esc([...addr, `${n} event${n === 1 ? '' : 's'}`, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span></div>
     <div class="g-pop map-sessions">${rows}</div>
-    <div class="location"><div>${esc(eventPlaceParts(p.events[0]).join(', '))}</div><div class="actions">${eventDirections(p.events[0])}</div></div></div>`;
+    <div class="location"><div class="actions">${eventDirections(p.events[0])}</div></div></div>`;
 }
 
-/** What's under the map: the picked place's day, or a line saying how many places there are. */
-function mapPanelHtml(places, iso) {
-  if (state.section === 'events') return eventsPanelHtml(places);
-  const p = places.find((x) => x.id === mapPick);
+/** What's under the map (every place as a row), or with `pickId` that place's day for the place sheet. */
+function mapPanelHtml(places, iso, pickId) {
+  if (state.section === 'events') return eventsPanelHtml(places, pickId);
+  const p = places.find((x) => x.id === pickId);
   const untimed = state.view === 'openplay' ? sessionsOn(iso).filter((y) => !hidden(y.f) && !(schedule?.venues || []).some((v) => v.id === y.venueId && Number.isFinite(v.lat))).length : 0;
   const unplaced = state.view === 'booking' ? publicCourts().filter((c) => !Number.isFinite(c.lat)).length : 0;
   const free = places.filter((x) => x.court).length;
@@ -1215,7 +1242,7 @@ function mapPanelHtml(places, iso) {
     const order = [...places].sort((a, b) => !!(a.done || a.full) - !!(b.done || b.full) || (milesTo(a.id) ?? 1e9) - (milesTo(b.id) ?? 1e9) || a.name.localeCompare(b.name));
     const rows = order.map((x) => {
       const mi = milesTo(x.id);
-      return `<li><button type="button" class="place-row${x.done || x.full ? ' dim' : ''}" data-pin="${esc(x.id)}"><span class="pr-name">${esc(x.name)}<small>${esc(x.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
+      return `<li><button type="button" class="place-row${x.done || x.full ? ' dim' : ''}${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}"><span class="pr-name">${esc(x.name)}<small>${esc(x.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
     }).join('');
     const booked = places.length - free;
     const what = state.view === 'booking'
@@ -1226,7 +1253,7 @@ function mapPanelHtml(places, iso) {
   if (p.court) {
     // A free court: no booking, no sessions; what's there, and how to get there.
     const mi = milesTo(p.id), c = p.court, destination = encodeURIComponent(`${c.park}, ${c.address}, ${region?.name || ''}`);
-    return `<div class="map-place"><button type="button" class="map-back" data-pin="${esc(p.id)}">‹ All places</button><p class="map-status">${esc(p.status)}</p><div class="g-venue"><span class="v-name">${esc(c.park)}<small>Free public court${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span></div>
+    return `<div class="map-place"><p class="map-status">${esc(p.status)}</p><div class="g-venue"><span class="v-name">${esc(c.park)}<small>Free public court${mi != null ? ` · ${fmtMiles(mi)}` : ''}</small></span></div>
       ${schedule?.publicCourts?.note ? `<p class="note">${esc(schedule.publicCourts.note)}</p>` : ''}
       <div class="location"><div>${esc(c.address)}</div><div class="actions">
       <a class="src" href="https://www.google.com/maps/dir/?api=1&amp;destination=${destination}" target="_blank" rel="noopener">Google Maps ↗</a>
@@ -1239,9 +1266,35 @@ function mapPanelHtml(places, iso) {
   const ended = (x) => state.di === 0 && x.end && mins(x.end) <= NOW.minutes;
   const rows = p.sessions.map((x) => `<div class="pop-item${ended(x) ? ' past' : ''}"><span class="pop-t">${x.start ? `${fmtT(x.start)}${x.end ? `–${fmtT(x.end)}` : ''}` : 'Any time'}</span><span class="pop-w">${esc(ownTitle(x) || x.title)}${x.level && !(ownTitle(x) || x.title).includes(x.level) ? ` · ${esc(x.level)}` : ''}${x.price ? `<small>${esc(x.price)}</small>` : ''}</span><span class="pop-a">${signupHtml(x)}</span></div>`).join('');
   const live = state.view === 'booking' ? `<p class="map-status">${esc(p.status)}</p>` : '';
-  return `<div class="map-place"><button type="button" class="map-back" data-pin="${esc(p.id)}">‹ All places</button>${live}<div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${state.view === 'booking' ? ` · ${priceHtml(cost)}` : ''}</small></span>${book}</div>
+  return `<div class="map-place">${live}<div class="g-venue"><span class="v-name">${esc(p.name)}<small>${esc(p.city)}${mi != null ? ` · ${fmtMiles(mi)}` : ''}${state.view === 'booking' ? ` · ${priceHtml(cost)}` : ''}</small></span>${book}</div>
     ${rows ? `<div class="g-pop map-sessions">${rows}</div>` : `<p class="note">${state.view === 'booking' ? 'No public sessions here on this day; book a court on the venue\'s site.' : 'Nothing else here on this day.'}</p>`}
     ${locationHtml({ venueId: p.id })}</div>`;
+}
+
+/**
+ * The place sheet: what's on at the picked pin, over the map (a bottom sheet on a phone, a panel
+ * docked inside the map on a computer). It replaces MapLibre's popup: themed, readable, never
+ * cut off. ✕, Esc, a tap on the map, or a swipe down closes it.
+ */
+function renderPlaceSheet(places, iso) {
+  const s = $('placeSheet'), p = places.find((x) => x.id === mapPick);
+  const was = !s.hidden;
+  s.hidden = !p;
+  if (!p) { s.innerHTML = ''; return; }
+  s.setAttribute('aria-label', p.short || p.name);
+  s.innerHTML = `<div class="ps-grab" aria-hidden="true"></div><button type="button" class="ps-x" data-pin="${esc(p.id)}" aria-label="Close ${esc(p.short || p.name)}">✕</button><div class="ps-body">${mapPanelHtml(places, iso, p.id)}</div>`;
+  if (!was) s.focus({ preventScroll: true });
+}
+const closePlace = () => { if (mapPick) { mapPick = null; save(); renderMap(); } };
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mapPick && !document.querySelector('dialog.sheet[open]')) closePlace(); });
+// Swipe the sheet down by its handle or header to close it.
+{
+  let y0 = null;
+  const sheet = $('placeSheet');
+  sheet.addEventListener('pointerdown', (e) => { if (e.target.closest('.ps-grab, .g-venue') && !matchMedia('(min-width: 760px)').matches) y0 = e.clientY; });
+  sheet.addEventListener('pointermove', (e) => { if (y0 != null && e.clientY - y0 > 0) sheet.style.transform = `translateY(${e.clientY - y0}px)`; });
+  const end = (e) => { if (y0 == null) return; const dy = e.clientY - y0; y0 = null; sheet.style.transform = ''; if (dy > 70) closePlace(); };
+  sheet.addEventListener('pointerup', end); sheet.addEventListener('pointercancel', () => { y0 = null; sheet.style.transform = ''; });
 }
 
 /** Hide the labels of pins that would sit on top of another (the busier place keeps its label). */
@@ -1264,8 +1317,10 @@ function declutter() {
 }
 
 async function renderMap() {
-  const on = state.layout === 'map' && mapReady() && (state.section === 'events' || !PROGRAM_VIEWS[state.view]);
-  $('layout').hidden = !mapReady() || (state.section === 'sports' && !!PROGRAM_VIEWS[state.view]);
+  // Events with nothing to pin here (a region without a feed yet) have no map.
+  const noEvents = state.section === 'events' && !(regionEvents() ?? []).some((e) => Number.isFinite(e.lat));
+  const on = state.layout === 'map' && mapReady() && !noEvents && (state.section === 'events' || !PROGRAM_VIEWS[state.view]);
+  $('layout').hidden = !mapReady() || noEvents || (state.section === 'sports' && !!PROGRAM_VIEWS[state.view]);
   // One floating button for the other view: "Map" on the list, "List" on the map.
   const LIST_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>';
   const MAP_ICON = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>';
@@ -1279,10 +1334,11 @@ async function renderMap() {
   for (const id of ['glance', 'sessionsPanel', 'bookingCalendarsCard', 'venueCalendarsCard']) if (on) $(id).hidden = true;
   if (!on) return;
   const iso = WEEK[state.di];
-  const places = state.section === 'events' ? eventPlaces(events?.events ?? [], NOW.iso) : mapPlaces(iso);
+  const places = state.section === 'events' ? eventPlaces(regionEvents() ?? [], NOW.iso) : mapPlaces(iso);
   if (mapPick && !places.some((p) => p.id === mapPick)) mapPick = null;
   $('mapTitle').textContent = state.section === 'events' ? 'Events · upcoming' : `${state.view === 'booking' ? 'Court booking' : 'Open play'} · ${state.di === 0 ? 'Today' : fmtDate(iso)}`;
-  $('mapPanel').innerHTML = mapPanelHtml(places, iso);
+  $('mapPanel').innerHTML = mapPanelHtml(places, iso, null);
+  renderPlaceSheet(places, iso);
   try { await loadMapLibs(); } catch { $('mapPanel').insertAdjacentHTML('afterbegin', '<p class="note">The map could not load. Switch to List.</p>'); return; }
   const gl = window.maplibregl;
   if (!mapView) {
@@ -1302,6 +1358,7 @@ async function renderMap() {
     mapView.touchZoomRotate.disableRotation();
     mapView.addControl(new gl.NavigationControl({ showCompass: false }), 'top-right');
     mapView.on('zoomend', declutter); mapView.on('moveend', declutter);
+    mapView.on('click', (e) => { if (!e.originalEvent?.target?.closest?.('.pin')) closePlace(); }); // a tap on the map itself closes the place sheet
     window.__schelaggMap = mapView; // for tests
   }
   for (const m of mapMarkers) m.marker.remove();
@@ -1324,33 +1381,15 @@ async function renderMap() {
     const p = places.find((x) => x.id === mapPick);
     if (p && !mapView.getBounds().contains([p.lng, p.lat])) mapView.easeTo({ center: [p.lng, p.lat] });
   }
-  // Tapping a pin pops the place up on the map itself, as well as in the panel below.
-  // The popup is MapLibre's own Popup, so it stays anchored to the pin as the map moves, and
-  // flips below the pin when there is no room above it.
-  mapPopup?.remove(); mapPopup = null;
-  if (mapPick) {
-    const p = places.find((x) => x.id === mapPick);
-    if (p) {
-      const items = p.events ?? p.sessions ?? [];
-      const rows = items.slice(0, 3).map((ev) => {
-        const when = state.section === 'events' ? eventDateRange(ev) : `${fmtT(ev.start)}${ev.end ? `–${fmtT(ev.end)}` : ''}`;
-        const name = state.section === 'events' ? ev.title : (ownTitle(ev) || ev.title);
-        const act = state.section === 'events'
-          ? (ev.sourceUrl ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">Source ↗</a>` : '')
-          : popupSignupHtml(ev);
-        return `<div class="mp-ev"><span class="mp-t">${esc(when)}</span><span class="mp-n">${esc(name)}${ev.price ? ` <small>${esc(ev.price)}</small>` : ''}</span><span class="mp-a">${act}</span></div>`;
-      }).join('');
-      // closeOnClick stays off: a tap on the map is how a pin is toggled, and MapLibre closing
-      // the popup first would re-pick the pin instead of clearing it. The × clears the pick.
-      mapPopup = new gl.Popup({ offset: 18, closeButton: true, closeOnClick: false, maxWidth: '300px', className: 'map-pop' })
-        .setLngLat([p.lng, p.lat])
-        .setHTML(`<h4>${esc(p.short || p.name)}</h4><div class="mp-sub">${esc(p.city || '')}</div>${rows}${items.length > 3 ? `<div class="mp-more">+ ${items.length - 3} more</div>` : ''}<button type="button" class="mp-act" data-scroll-panel>See details ↓</button>`)
-        .addTo(mapView);
-      mapPopup.on('close', () => { if (mapPick) { mapPick = null; save(); render(); } });
-      mapPopup.getElement().querySelector('[data-scroll-panel]')?.addEventListener('click', () => $('mapPanel').scrollIntoView({ behavior: 'smooth', block: 'start' }));
-    }
-  }
   mapView.resize();
+  // A new pick moves the map so its pin sits clear of the sheet (above it on a phone, right of it on a computer).
+  if (mapPick && shownPick !== mapPick) {
+    const p = places.find((x) => x.id === mapPick);
+    const docked = matchMedia('(min-width: 760px)').matches, box = $('map').getBoundingClientRect();
+    // Zoomed out to the whole region the map can't pan (its bounds hold it), so a pick also zooms in a little.
+    if (p) mapView.easeTo({ center: [p.lng, p.lat], zoom: Math.max(mapView.getZoom(), 11), offset: docked ? [Math.round(box.width * 0.22), 0] : [0, -Math.round(box.height * 0.27)], duration: 300 });
+  }
+  shownPick = mapPick;
   requestAnimationFrame(declutter);
 }
 
@@ -1386,22 +1425,7 @@ for (const d of sheets()) {
     if (e.clientY < r.top || e.clientY > r.bottom || e.clientX < r.left || e.clientX > r.right) d.close();
   });
 }
-// Esc closes the Sports dropdown (the sheets close themselves), returning focus to Sports.
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && sportsMenuOpen) {
-    sportsMenuOpen = false;
-    renderTopTabs();
-    document.querySelector('#topTabs [data-section="sports"]')?.focus();
-  }
-});
-
 document.addEventListener('click', async (e) => {
-  // The Sports dropdown closes on a tap outside it; a tap on Sports itself toggles it, and a tap
-  // on a sport picks it — those are handled below, not here.
-  if (sportsMenuOpen && !e.target.closest('#sportsMenu, [data-section="sports"]')) {
-    sportsMenuOpen = false;
-    renderTopTabs();
-  }
   const opener = e.target.closest('[data-sheet]');
   if (opener) { openSheet(opener.dataset.sheet, opener); return; }
   if (e.target.closest('[data-close]')) { e.target.closest('dialog')?.close(); return; }
@@ -1451,47 +1475,42 @@ document.addEventListener('click', async (e) => {
     }
     mapPick = mapPick === pin.dataset.pin ? null : pin.dataset.pin;
     renderMap();
-    if (mapPick && pin.closest('#mapPanel')) $('mapCard').scrollIntoView({ block: 'start' });
+    if (mapPick && pin.closest('#mapPanel')) $('map').scrollIntoView({ block: 'center', behavior: 'smooth' });
+    if (!mapPick) document.querySelector(`.pin[data-pin="${CSS.escape(pin.dataset.pin)}"]`)?.focus();
     return;
   }
-  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout],[data-host],[data-section],[data-evcat],[data-page]'); if (!t) return;
-  // The header switch: Sports toggles its dropdown (the list stays visible behind it); Events
-  // closes the dropdown and shows the events list.
-  if (t.dataset.section === 'sports') {
-    sportsMenuOpen = dropdownNext(sportsMenuOpen, 'toggle');
-    renderTopTabs();
-    if (sportsMenuOpen) ($('sportsOpts').querySelector('[aria-pressed="true"]') ?? $('sportsOpts').querySelector('button'))?.focus();
+  // Events filters: the sheet's kind and tags apply at once (the sheet stays open to pick more),
+  // This weekend and Near me toggle, Show more opens a heading, Clear filters resets.
+  const evk = e.target.closest('[data-evkind],[data-evtag]');
+  if (evk) {
+    if (evk.dataset.evkind) state.evKind = evk.dataset.evkind;
+    else { const g = evk.dataset.evtag; state.evTags = state.evTags.includes(g) ? state.evTags.filter((x) => x !== g) : [...state.evTags, g]; }
+    save(); render();
+    $('eventsOpts').querySelector(evk.dataset.evkind ? `[data-evkind="${CSS.escape(evk.dataset.evkind)}"]` : `[data-evtag="${CSS.escape(evk.dataset.evtag)}"]`)?.focus();
     return;
   }
+  if (e.target.closest('[data-evweekend]')) { state.evWeekend = !state.evWeekend; save(); render(); $('eventCats').querySelector('[data-evweekend]')?.focus(); return; }
+  if (e.target.closest('[data-evnear]')) { $('nearest').click(); return; }
+  if (e.target.closest('[data-evclear]')) { state.evKind = 'all'; state.evTags = []; state.evWeekend = false; save(); render(); $('eventCats').querySelector('button')?.focus(); return; }
+  const more = e.target.closest('[data-evmore]');
+  if (more) { const k = more.dataset.evmore; evOpen.add(k); renderEvents(); document.querySelector(`.ev-group[data-group="${CSS.escape(k)}"] .ev-row:nth-of-type(${EVENTS_SHOWN + 1}) a, .ev-group[data-group="${CSS.escape(k)}"] .ev-row:nth-of-type(${EVENTS_SHOWN + 1}) summary`)?.focus(); return; }
+  if (e.target.closest('[data-go-sports]')) { state.section = 'sports'; state.view = 'openplay'; mapPick = null; save(); render(); document.querySelector('#topTabs [data-section="sports"]').focus(); return; }
+  const t = e.target.closest('[data-sport],[data-tab],[data-di],[data-view],[data-layout],[data-host],[data-section]'); if (!t) return;
+  // The header switch: Sports opens the sport sheet; Events shows the events list.
+  if (t.dataset.section === 'sports') { openSheet('sportSheet', t); return; }
   if (t.dataset.section === 'events') {
-    sportsMenuOpen = false;
     if (state.section !== 'events') { state.section = 'events'; mapPick = null; save(); }
     render();
     document.querySelector('#topTabs [data-section="events"]').focus();
     return;
   }
-  // A sport picked in the dropdown: switch to Sports and load its schedules.
+  // A sport picked in the sheet: switch to Sports and load its schedules.
   if (t.dataset.sport) {
-    sportsMenuOpen = false;
-    state.section = 'sports'; state.sport = t.dataset.sport; state.tab = 'all'; mapPick = null; save();
+    closeSheets();
+    if (state.section !== 'sports' || state.sport !== t.dataset.sport) mapPick = null;
+    state.section = 'sports'; if (state.sport !== t.dataset.sport) state.tab = 'all'; state.sport = t.dataset.sport; save();
     render();
     document.querySelector('#topTabs [data-section="sports"]').focus();
-    return;
-  }
-  // An events category chip: filter, and start again on page 1.
-  if (t.dataset.evcat) {
-    state.evCat = t.dataset.evcat; state.evPage = 1; save(); render();
-    document.querySelector(`#eventCats [data-evcat="${CSS.escape(t.dataset.evcat)}"]`)?.focus();
-    return;
-  }
-  // The events pager: Prev, Next, or a page number; the new page starts at the top of the list.
-  if (t.dataset.page) {
-    const filtered = sortEvents((events?.events || []).filter((ev) => state.evCat === 'all' || ev.category === state.evCat));
-    const { pageCount } = paginate(filtered, state.evPage, EVENTS_PER_PAGE);
-    state.evPage = t.dataset.page === 'prev' ? clampPage(state.evPage - 1, pageCount) : t.dataset.page === 'next' ? clampPage(state.evPage + 1, pageCount) : clampPage(+t.dataset.page, pageCount);
-    save(); render();
-    $('eventsPanel').scrollIntoView();
-    document.querySelector(`#eventsPager [data-page="${CSS.escape(t.dataset.page)}"]`)?.focus();
     return;
   }
   if (t.dataset.host) { state.host = t.dataset.host; save(); }
@@ -1539,6 +1558,9 @@ async function chooseRegion(id) {
   render();
 }
 
+// The events feed starts first and in parallel (Events is the front page); it renders as soon as
+// it lands, whatever else is still loading.
+getJson(`${DATA}events.json`).then((d) => { events = d; }, (e) => { eventsError = e.message; }).then(() => { if (state.section === 'events') render(); });
 // The regions first, then the chosen region's schedule, then court calendars: the pre-built
 // file, or the live API when running locally. Without an index (data published before regions
 // existed) the combined data/schedule.json is the one region.
@@ -1554,8 +1576,5 @@ catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsE
 render();
 // Leagues and tournaments: one small file for every region, read after the day's schedule.
 try { programs = await getJson(`${DATA}programs.json`); } catch (e) { programsError = e.message; }
-render();
-// The events feed: one small file, read after the day's schedule so the Events tab is instant.
-try { events = await getJson(`${DATA}events.json`); } catch (e) { eventsError = e.message; }
 render();
 setInterval(() => { if (state.section === 'sports') renderMeta(); }, 60_000); // keep "x min ago" current while the page stays open (the events line is an absolute date)

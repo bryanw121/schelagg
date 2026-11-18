@@ -139,11 +139,11 @@ async function pick(k) {
   await tab(k).click();
   await page.locator('#levelSheet').waitFor({ state: 'hidden' });
 }
-/** A sport is picked in the dropdown under the Sports tab (it closes on the pick). */
+/** A sport is picked in the sheet the Sports tab opens (it closes on the pick). */
 async function pickSport(k) {
   await page.locator('#topTabs [data-section="sports"]').click();
   await page.locator(`#sportsOpts [data-sport="${k}"]`).click();
-  await page.locator('#sportsMenu').waitFor({ state: 'hidden' });
+  await page.locator('#sportSheet').waitFor({ state: 'hidden' });
 }
 /** Each option's name and count ("Beginner3"), without its description line. */
 const tabTexts = () => page.locator('#tabs .tab').evaluateAll((bs) => bs.map((b) => b.querySelector('.lbl').firstChild.textContent + b.querySelector('.n').textContent));
@@ -614,21 +614,28 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   assert.deepEqual(await page.locator('#mapPanel .place-row').evaluateAll((els) => els.map((e) => [e.dataset.pin, e.querySelector('.pr-status').textContent, e.classList.contains('dim')])), [
     ['beach', '1 session · next 6:30pm', false], ['rec', '1 session · next 7:30pm', false], ['gym', '2 sessions still to come · next 6pm', false], ['park', "Today's sessions have ended", true],
   ]);
-  // Tap a pin: that place's day, with each sign-up and the venue's Book (opened on this day).
+  // Tap a pin: the place sheet opens over the map with that place's day, each sign-up and
+  // the venue's Book (opened on this day); the list under the map stays and marks the pick.
   await page.locator('#map .pin[data-pin="gym"]').click();
-  const panel = page.locator('#mapPanel');
-  assert.match(await panel.locator('.g-venue small').textContent(), /^Austin$/, 'open play: no court price on the place');
-  assert.equal(await panel.locator('a.v-book, a.signup', { hasText: 'Book' }).first().getAttribute('href'), `https://club.podplay.app/book/main/${TODAY}`);
-  assert.deepEqual(await panel.locator('.pop-item a.signup').evaluateAll((els) => els.map((e) => e.getAttribute('href'))), [`${SIGNUP}/g0`, `${SIGNUP}/g1`, `${SIGNUP}/g2`]);
-  assert.deepEqual(await panel.locator('.pop-item').evaluateAll((els) => els.map((e) => e.classList.contains('past'))), [true, false, false], 'the ended session is dimmed');
+  const panel = page.locator('#mapPanel'), sheet = page.locator('#placeSheet');
+  await sheet.waitFor();
+  assert.match(await sheet.locator('.g-venue small').textContent(), /^Austin$/, 'open play: no court price on the place');
+  assert.equal(await sheet.locator('a.v-book, a.signup', { hasText: 'Book' }).first().getAttribute('href'), `https://club.podplay.app/book/main/${TODAY}`);
+  assert.deepEqual(await sheet.locator('.pop-item a.signup').evaluateAll((els) => els.map((e) => e.getAttribute('href'))), [`${SIGNUP}/g0`, `${SIGNUP}/g1`, `${SIGNUP}/g2`]);
+  assert.deepEqual(await sheet.locator('.pop-item').evaluateAll((els) => els.map((e) => e.classList.contains('past'))), [true, false, false], 'the ended session is dimmed');
   assert.equal(await page.locator('#map .pin[data-pin="gym"]').getAttribute('aria-pressed'), 'true');
-  await panel.locator('.map-back').click(); // back to all places
+  assert.equal(await panel.locator('.place-row[data-pin="gym"]').getAttribute('aria-pressed'), 'true');
+  await sheet.locator('.ps-x').click(); // ✕ closes the sheet
+  assert.equal(await sheet.isHidden(), true);
   assert.equal(await panel.locator('.place-row').count(), 4);
   await panel.locator('.place-row[data-pin="beach"]').click(); // a row picks its pin
   assert.equal(await page.locator('#map .pin[data-pin="beach"]').getAttribute('aria-pressed'), 'true');
-  assert.match(await panel.locator('.g-venue').textContent(), /ATX Beach/);
-  await page.locator('#map .pin[data-pin="beach"]').click(); // tap the pin again: back to the list
-  assert.equal(await panel.locator('.place-row').count(), 4);
+  assert.match(await sheet.locator('.g-venue').textContent(), /ATX Beach/);
+  await page.keyboard.press('Escape'); // Esc closes it too
+  assert.equal(await sheet.isHidden(), true);
+  await page.locator('#map .pin[data-pin="beach"]').click();
+  await page.locator('#map .pin[data-pin="beach"]').click(); // tapping the pin again closes it
+  assert.equal(await sheet.isHidden(), true);
   // Court booking: pins are the places to book, labelled with the price. The day and chips stay in the header.
   assert.equal(await page.locator('#filters').isVisible(), true);
   await page.locator('[data-view="booking"]').click();
@@ -636,8 +643,8 @@ test('site: Map view: one pin per place with the first session\'s time, tap for 
   assert.deepEqual(await page.locator('#map .pin').evaluateAll((els) => els.map((e) => [e.querySelector('b').textContent, e.getAttribute('aria-label')])), [['North Gym', 'Austin North Gym: Courts free 7pm–11pm · $30/hr']]);
   assert.equal(await panel.locator('.pr-status').textContent(), 'Courts free 7pm–11pm · $30/hr');
   await panel.locator('.place-row').click();
-  assert.equal(await panel.locator('.map-status').textContent(), 'Courts free 7pm–11pm · $30/hr');
-  await panel.locator('.map-back').click();
+  assert.equal(await sheet.locator('.map-status').textContent(), 'Courts free 7pm–11pm · $30/hr');
+  await sheet.locator('.ps-x').click();
   // The view is shareable and remembered; List brings the day's chart and lists back.
   await page.reload();
   await page.locator('#map .pin').first().waitFor();
@@ -669,10 +676,11 @@ test('site: Map view: free public courts with coordinates get their own pins in 
   const panel = page.locator('#mapPanel');
   assert.match(await panel.locator('.map-hint').textContent(), /^1 place to book a court and 2 free public courts today\. Tap one for its day, Book or directions\. 1 public court without a location is in the list\.$/);
   await page.locator('#map .pin[data-pin="court:pease-district-park"]').click();
-  assert.equal(await panel.locator('.map-status').textContent(), 'Free, first come · 3 sand courts, lit');
-  assert.match(await panel.locator('.g-venue').textContent(), /Pease District Park\s*Free public court/);
-  assert.match(await panel.locator('a', { hasText: 'Google Maps' }).getAttribute('href'), /destination=Pease%20District%20Park%2C%201100%20Kingsbury%20St/);
-  assert.equal(await panel.locator('a.signup').count(), 0, 'nothing to book at a free court');
+  const sheet = page.locator('#placeSheet');
+  assert.equal(await sheet.locator('.map-status').textContent(), 'Free, first come · 3 sand courts, lit');
+  assert.match(await sheet.locator('.g-venue').textContent(), /Pease District Park\s*Free public court/);
+  assert.match(await sheet.locator('a', { hasText: 'Google Maps' }).getAttribute('href'), /destination=Pease%20District%20Park%2C%201100%20Kingsbury%20St/);
+  assert.equal(await sheet.locator('a.signup').count(), 0, 'nothing to book at a free court');
   // Grass only: the sand courts leave the map.
   await page.locator('#map .pin[data-pin="court:pease-district-park"]').click();
 });
@@ -697,7 +705,7 @@ test('site: Map view: pins at the same spot fold into one "+N more" that zooms i
   await page.waitForFunction((z) => window.__schelaggMap.getZoom() > z + 2 && !window.__schelaggMap.isMoving(), before, { timeout: 8000 });
 });
 
-test('site: the level sheet and the sports dropdown apply on a tap and close by Esc, ✕ or a tap outside', async () => {
+test('site: the level sheet and the sport sheet apply on a tap and close by Esc, ✕ or a tap outside', async () => {
   await open();
   const btn = page.locator('#levelBtn'), sheet = page.locator('#levelSheet');
   assert.equal(await btn.textContent(), 'All courts ▾');
@@ -722,13 +730,13 @@ test('site: the level sheet and the sports dropdown apply on a tap and close by 
   // Counts follow the day being viewed: tomorrow has no sand.
   await page.locator('#days [data-di="1"]').click();
   assert.deepEqual(await page.locator('#tabs .tab .n').allTextContents(), ['2', '2', '', '']);
-  // The sport is a dropdown under the Sports tab (not a sheet): it opens, closes on a tap
-  // outside, and the current sport is the pressed option.
+  // The Sports tab opens the sport sheet: it closes on a tap outside, and the current sport is
+  // the pressed option.
   assert.equal(await page.locator('#sportsOpts [data-sport="volleyball"]').getAttribute('aria-pressed'), 'true');
   await page.locator('#topTabs [data-section="sports"]').click();
-  assert.equal(await page.locator('#sportsMenu').isVisible(), true);
+  assert.equal(await page.locator('#sportSheet').isVisible(), true);
   await page.mouse.click(10, 10);
-  assert.equal(await page.locator('#sportsMenu').isHidden(), true);
+  assert.equal(await page.locator('#sportSheet').isHidden(), true);
   await pickSport('ice_skating');
   assert.equal(await page.locator('#sportsOpts [data-sport="ice_skating"]').getAttribute('aria-pressed'), 'true');
   assert.equal(await btn.isHidden(), true, 'skating has no level or court type');
@@ -1249,128 +1257,138 @@ const EVENTS_MAP = { feedVersion: 1, generatedAt: '2026-10-25T21:00:00.000Z', ev
   { id: 'evt-tree-east', category: 'seasonal', title: 'Tree Lighting', venue: 'Manor Market', area: 'Manor', city: 'Manor', startDate: '2026-11-29', sourceUrl: 'https://example.test/tree', source: 'Example', description: 'Lights out east.', lat: 30.34, lng: -97.55, located: 'manual' },
 ] };
 
-test('site: Events is the front page: category chips with counts, month groups, ten per page', async () => {
+const AUSTIN_ONLY = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+const MAPS_AUSTIN = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
+const austinSched = () => { const s = structuredClone(SCHEDULE); s.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' }; return s; };
+const headings = () => page.locator('#events .ev-day').evaluateAll((els) => els.map((e) => [e.firstChild.textContent, e.querySelector('small').textContent]));
+
+test('site: Events is the front page: On now, Next week and months, a few under each, Show more', async () => {
+  // Sun Oct 25: three events are on now; Night Market and Dia de los Muertos are next week.
   await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
   assert.equal(await page.locator('#topTabs [data-section="events"]').getAttribute('aria-pressed'), 'true');
   assert.equal(await page.locator('#topTabs [data-section="sports"]').getAttribute('aria-pressed'), 'false');
-  assert.deepEqual(await page.locator('#eventCats .pill-btn .n').allTextContents(), ['12', '3', '6', '3']);
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 1–10 of 12 events');
-  assert.deepEqual(await page.locator('#events .p-group').evaluateAll((els) => els.map((e) => e.firstChild.textContent)), ['October 2026', 'November 2026']);
-  assert.deepEqual(await page.locator('#events .p-group .n').allTextContents(), ['4 events', '6 events']);
-  assert.equal(await page.locator('#events .row').count(), 10);
-  assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Autumn Market', 'Matcha Cart', 'Sunday Pop-up', 'Night Market', 'Dia de los Muertos', 'Ramen Pop-up', 'Flower Shop', 'Vintage Market', 'Front Market', 'Tree Lighting']);
-  assert.equal(await page.locator('#events .row .pill.fresh').count(), 3); // the three already running today
-  // A card: date range, category chip, price, description, source link.
-  const first = page.locator('#events .row').first();
-  assert.match(await first.locator('.time').textContent(), /Oct 20 – 30/);
-  assert.equal(await first.locator('.chip').textContent(), 'Seasonal');
-  assert.equal(await first.locator('.meta').textContent(), '$10');
-  assert.equal(await first.locator('.note').textContent(), 'Local makers and food trucks under the oaks.');
-  assert.equal(await first.locator('.actions a.src', { hasText: 'Source' }).getAttribute('href'), 'https://example.test/autumn');
-  assert.match(await first.locator('.actions').textContent(), /Google/);
-  // The pager: Prev off on page 1, Next on, "Page 1 of 2".
-  assert.equal(await page.locator('#eventsPager [data-page="prev"]').isDisabled(), true);
-  assert.equal(await page.locator('#eventsPager [data-page="next"]').isDisabled(), false);
-  assert.equal(await page.locator('#eventsPager .note').textContent(), 'Page 1 of 2');
-  assert.equal(await page.locator('#eventsPager [data-page="1"]').getAttribute('aria-pressed'), 'true');
-  assert.equal(await page.locator('#eventsPager [data-page="2"]').getAttribute('aria-pressed'), 'false');
+  assert.deepEqual(await headings(), [
+    ['On now', '3 events · ending soonest first'],
+    ['Next week', 'Mon Oct 26 – Sun Nov 1 · 2 events'],
+    ['November', '2026 · 5 events'],
+    ['December', '2026 · 2 events'],
+  ]);
+  assert.deepEqual(await page.locator('#events .ev-group[data-group="now"] .title').allTextContents(), ['Sunday Pop-up', 'Autumn Market', 'Matcha Cart'], 'ending soonest first');
+  assert.equal(await page.locator('#events .ev-group[data-group="now"] .pill.fresh').count(), 3);
+  // November has five: four shown, then Show 1 more.
+  const nov = page.locator('#events .ev-group[data-group="2026-11"]');
+  assert.equal(await nov.locator('.row').count(), 4);
+  await nov.locator('[data-evmore]').click();
+  assert.equal(await page.locator('#events .ev-group[data-group="2026-11"] .row').count(), 5);
+  assert.equal(await page.locator('#events .ev-group[data-group="2026-11"] [data-evmore]').count(), 0);
+  // A card: the date column, plain chips (a kind, a dashed tag), one main button, Details.
+  const autumn = page.locator('#events .row', { hasText: 'Autumn Market' });
+  assert.match(await autumn.locator('.time').textContent(), /^ThruOct 30/);
+  assert.deepEqual(await autumn.locator('.chip').allTextContents(), ['Seasonal']);
+  assert.equal(await autumn.locator('.chip.surf').count(), 0, 'no court-surface colours on events');
+  assert.equal(await autumn.locator('a.signup').textContent(), 'Event page ↗');
+  assert.equal(await autumn.locator('a.signup').getAttribute('href'), 'https://example.test/autumn');
+  assert.equal(await autumn.locator('details.more').getAttribute('open'), null);
+  await autumn.locator('details.more summary').click();
+  assert.equal(await autumn.locator('details.more .note').textContent(), 'Local makers and food trucks under the oaks.');
+  assert.match(await autumn.locator('details.more .actions').textContent(), /Google Maps/);
+  assert.equal(await autumn.locator('.via').textContent(), 'Found via Example');
+  const matcha = page.locator('#events .row', { hasText: 'Matcha Cart' });
+  assert.deepEqual(await matcha.locator('.chip').evaluateAll((els) => els.map((e) => [e.textContent, e.classList.contains('tag')])), [['Asian-inspired', true]]);
+  assert.equal(await page.locator('#eventsPager').count(), 0, 'no pager');
+  assert.equal(await page.locator('#asof').textContent(), '12 events · checked Oct 25');
   assert.deepEqual(pageErrors, []);
 });
 
-test('site: Events pager turns pages and ?page= / ?cat= deep-link', async () => {
-  await open({ events: EVENTS, url: '/?view=events', waitFor: '#events .row' });
-  await page.locator('#eventsPager [data-page="next"]').click();
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 11–12 of 12 events');
-  assert.equal(await page.locator('#eventsPager .note').textContent(), 'Page 2 of 2');
-  assert.equal(await page.locator('#eventsPager [data-page="next"]').isDisabled(), true);
-  assert.equal(await page.locator('#eventsPager [data-page="prev"]').isDisabled(), false);
-  assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['German Market', 'Night Market Finale']);
-  assert.deepEqual(await page.locator('#events .p-group').evaluateAll((els) => els.map((e) => e.firstChild.textContent)), ['December 2026']);
-  await page.locator('#eventsPager [data-page="1"]').click();
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 1–10 of 12 events');
-  // Deep links open on the right page and category; a past-the-end page clamps.
-  await open({ events: EVENTS, url: '/?view=events&page=2', waitFor: '#events .row' });
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 11–12 of 12 events');
-  await open({ events: EVENTS, url: '/?view=events&cat=seasonal', waitFor: '#events .row' });
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 1–6 of 6 events');
-  assert.equal(await page.locator('#eventsPager').innerHTML(), ''); // one page: no pager at all
-  await open({ events: EVENTS, url: '/?view=events&page=9', waitFor: '#events .row' });
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 11–12 of 12 events');
-  assert.equal(new URL(page.url()).searchParams.get('page'), '2');
-  assert.deepEqual(pageErrors, []);
-});
-
-test('site: Events chips filter by category and reset to page 1', async () => {
-  await open({ events: EVENTS, url: '/?view=events', waitFor: '#events .row' });
-  await page.locator('#eventsPager [data-page="next"]').click();
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 11–12 of 12 events');
-  await page.locator('#eventCats [data-evcat="seasonal"]').click();
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 1–6 of 6 events');
-  assert.equal(await page.locator('#eventsPager').innerHTML(), '');
-  assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Autumn Market', 'Dia de los Muertos', 'Flower Shop', 'Front Market', 'Tree Lighting', 'German Market']);
-  assert.equal(new URL(page.url()).searchParams.get('cat'), 'seasonal');
-  assert.equal(new URL(page.url()).searchParams.get('page'), null);
-  await page.locator('#eventCats [data-evcat="all"]').click();
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 1–10 of 12 events');
-  assert.equal(new URL(page.url()).searchParams.get('cat'), null);
-  assert.deepEqual(pageErrors, []);
-});
-
-test('site: the Sports dropdown opens under the Sports tab, closes on outside/Esc, and picks a sport', async () => {
-  // All three sports are offered: the region lists them (the dropdown only offers sports with data).
-  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball', 'pickleball', 'ice_skating'] }] };
-  const sched = structuredClone(SCHEDULE);
-  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
-  await open({ index: INDEX, regions: { austin: sched }, events: EVENTS, url: '/', waitFor: '#events .row' });
-  assert.equal(await page.locator('#sportsMenu').isHidden(), true);
-  await page.locator('#topTabs [data-section="sports"]').click();
-  assert.equal(await page.locator('#sportsMenu').isHidden(), false);
-  assert.equal(await page.locator('#topTabs [data-section="sports"]').getAttribute('aria-pressed'), 'true');
-  assert.deepEqual(await page.locator('#sportsOpts .tab.opt .lbl').evaluateAll((els) => els.map((e) => e.firstChild.textContent)), ['Volleyball', 'Pickleball', 'Ice skating']);
-  // The events list stays visible behind the open dropdown.
-  assert.equal(await page.locator('#eventsPanel').isVisible(), true);
-  assert.equal(await page.locator('#events .row').count(), 10);
-  // Esc closes the dropdown and returns focus to the Sports tab.
+test('site: Events filters: the sheet picks a kind and tags, This weekend narrows, links share them', async () => {
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  const pill = page.locator('#eventCats [data-sheet="eventsSheet"]');
+  assert.equal(await pill.textContent(), 'All events ▾');
+  await pill.click();
+  const sheet = page.locator('#eventsSheet');
+  assert.equal(await sheet.isVisible(), true);
+  assert.deepEqual(await sheet.locator('.tab.opt').evaluateAll((els) => els.map((e) => [e.querySelector('.lbl').firstChild.textContent, e.querySelector('.n').textContent, e.getAttribute('aria-pressed')])), [
+    ['All events', '12', 'true'], ['Pop-ups', '3', 'false'], ['Seasonal', '6', 'false'], ['Asian-inspired', '3', 'false'],
+  ]);
+  await sheet.locator('[data-evkind="seasonal"]').click();
+  assert.equal(await sheet.locator('.go-btn').textContent(), 'Show 6 events');
+  await sheet.locator('.go-btn').click();
+  assert.equal(await sheet.isHidden(), true);
+  assert.equal(await pill.textContent(), 'Seasonal ▾');
+  assert.equal(await page.locator('#events .row').count(), 6, 'no heading has more than four seasonal events, so all six show');
+  assert.match(await page.locator('#eventsCount').textContent(), /^6 of 12 events · Clear filters$/);
+  assert.equal(new URL(page.url()).searchParams.get('type'), 'seasonal');
+  // A tag on top of a kind: both must match (no seasonal event is Asian-inspired).
+  await pill.click();
+  await page.locator('#eventsSheet [data-evtag="asian-inspired"]').click();
+  assert.equal(await page.locator('#eventsSheet .go-btn').textContent(), 'Show 0 events');
+  await page.locator('#eventsSheet [data-evkind="all"]').click();
+  assert.equal(await page.locator('#eventsSheet .go-btn').textContent(), 'Show 3 events');
   await page.keyboard.press('Escape');
-  assert.equal(await page.locator('#sportsMenu').isHidden(), true);
-  assert.equal(await page.evaluate(() => document.activeElement?.dataset.section), 'sports');
-  // An outside click closes it too (tapping Sports again also closes it).
+  assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Matcha Cart', 'Ramen Pop-up', 'Night Market Finale']);
+  assert.deepEqual(new URL(page.url()).searchParams.getAll('tag'), ['asian-inspired']);
+  // Clear filters, then This weekend: on Sunday it's just today.
+  await page.locator('#eventsCount [data-evclear]').click();
+  assert.equal(await page.locator('#eventsCount').textContent(), '');
+  await page.locator('#eventCats [data-evweekend]').click();
+  assert.equal(await page.locator('#eventCats [data-evweekend]').getAttribute('aria-pressed'), 'true');
+  assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Sunday Pop-up', 'Autumn Market', 'Matcha Cart']);
+  assert.equal(new URL(page.url()).searchParams.get('weekend'), '1');
+  // Links open with their filters; an old ?cat= link still works (asian-inspired is a tag now).
+  await open({ events: EVENTS, url: '/?view=events&type=popup', waitFor: '#events .row' });
+  assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Sunday Pop-up', 'Night Market', 'Vintage Market']);
+  await open({ events: EVENTS, url: '/?view=events&cat=asian-inspired', waitFor: '#events .row' });
+  assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Matcha Cart', 'Ramen Pop-up', 'Night Market Finale']);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: the Sports tab opens the sport sheet; picking a sport loads it; Events is one tap back', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball', 'pickleball', 'ice_skating'] }] };
+  await open({ index: INDEX, regions: { austin: austinSched() }, events: EVENTS, url: '/', waitFor: '#events .row' });
+  const sheet = page.locator('#sportSheet');
+  assert.equal(await sheet.isHidden(), true);
   await page.locator('#topTabs [data-section="sports"]').click();
-  await page.locator('#eventsCount').click();
-  assert.equal(await page.locator('#sportsMenu').isHidden(), true);
-  await page.locator('#topTabs [data-section="sports"]').click();
-  await page.locator('#topTabs [data-section="sports"]').click();
-  assert.equal(await page.locator('#sportsMenu').isHidden(), true);
-  // Picking a sport loads that sport's schedules and closes the menu. (The 2pm session has
-  // ended, so it folds into the closed "ended earlier today" details; the rows are all there.)
+  assert.equal(await sheet.isVisible(), true);
+  assert.deepEqual(await page.locator('#sportsOpts .tab.opt .lbl').evaluateAll((els) => els.map((e) => e.firstChild.textContent)), ['Volleyball', 'Pickleball', 'Ice skating']);
+  await page.keyboard.press('Escape');
+  assert.equal(await sheet.isHidden(), true);
+  assert.equal(await page.locator('#topTabs [data-section="events"]').getAttribute('aria-pressed'), 'true', 'closing the sheet keeps Events');
   await page.locator('#topTabs [data-section="sports"]').click();
   await page.locator('#sportsOpts [data-sport="ice_skating"]').click();
-  assert.equal(await page.locator('#sportsMenu').isHidden(), true);
+  assert.equal(await sheet.isHidden(), true);
   assert.equal(await page.locator('#topTabs [data-section="sports"]').getAttribute('aria-pressed'), 'true');
   await page.locator('#list .row').first().waitFor({ state: 'attached' });
   assert.deepEqual(await page.locator('#list .row .title').allTextContents(), ['Public Skating', 'Evening Session', 'Holiday Rink', 'Adult Skate']);
-  // Events is one tap back.
   await page.locator('#topTabs [data-section="events"]').click();
   await page.locator('#events .row').first().waitFor();
-  assert.equal(await page.locator('#eventsCount').textContent(), 'Showing 1–10 of 12 events');
+  assert.equal((await headings())[0][0], 'On now');
   assert.deepEqual(pageErrors, []);
 });
 
-test('site: Events map: one pin per venue, place list, tap for its events; shareable', async () => {
-  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
-  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
-  const sched = structuredClone(SCHEDULE);
-  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
-  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, events: EVENTS_MAP, url: '/?view=events', waitFor: '#events .row' });
-  const layout = page.locator('#layout');
-  assert.equal(await layout.isVisible(), true);
-  await layout.locator('[data-layout="map"]').click();
-  assert.equal(await page.locator('#mapCard').isVisible(), true);
+test('site: Events in a city without an events feed: says so, no Austin events, no map, a way to its open play', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [
+    { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] },
+    { id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago', center: [32.78, -96.8], sports: ['volleyball'] },
+  ] };
+  const dallas = structuredClone(SCHEDULE); dallas.region = { id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago' };
+  const MAPS = { source: 'x', maps: [...MAPS_AUSTIN.maps, { region: 'dallas', bbox: [-97.5, 32.5, -96.5, 33.3], maxzoom: 14 }] };
+  await open({ index: INDEX, regions: { austin: austinSched(), dallas }, maps: MAPS, events: EVENTS, url: '/?region=dallas&view=events', waitFor: '#events .ev-away' });
+  assert.equal(await page.locator('#events .ev-away h2').textContent(), 'Events are Austin-only for now');
+  assert.equal(await page.locator('#events .row').count(), 0);
+  assert.equal(await page.locator('#layout').isHidden(), true, 'no map of Austin pins in Dallas');
+  await page.locator('[data-go-sports]').click();
+  await page.locator('#list .row').first().waitFor({ state: 'attached' });
+  assert.equal(await page.locator('#topTabs [data-section="sports"]').getAttribute('aria-pressed'), 'true');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: Events map: one pin per venue; a pin opens the place sheet (readable, closes by ✕, Esc or the map)', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events', waitFor: '#events .row' });
+  await page.locator('#layout [data-layout="map"]').click();
   assert.equal(await page.locator('#mapTitle').textContent(), 'Events · upcoming');
   const pins = page.locator('#map .pin');
   await pins.first().waitFor();
   // Six events, five venues: Zilker Park hosts two, so one pin per venue, not per event.
-  // Each pin's status carries the full date range of the soonest (or happening) event.
   assert.deepEqual((await pins.evaluateAll((els) => els.map((e) => [e.dataset.pin, e.textContent, e.getAttribute('aria-label')]))).sort(), [
     ['event:30.10485,-98.02175', 'Vista Brewing', 'Vista Brewing: 1 event · Sun, Nov 15'],
     ['event:30.26720,-97.77290', 'Zilker Park', 'Zilker Park: Happening now · Oct 20 – 30'],
@@ -1378,159 +1396,91 @@ test('site: Events map: one pin per venue, place list, tap for its events; share
     ['event:30.44000,-97.62000', 'Pflugerville Plaza', 'Pflugerville Plaza: 1 event · Wed, Oct 28'],
     ['event:30.50500,-97.82000', 'Junbi', 'Junbi, Cedar Park: Happening now · Oct 25 – Nov 1'],
   ]);
-  assert.match(await page.locator('#mapPanel .map-hint').textContent(), /^5 places with events coming up\. Tap one for its events\.$/);
   assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
-  assert.deepEqual(await page.locator('#mapPanel .place-row .pr-name').evaluateAll((els) => els.map((e) => e.firstChild.textContent)), ['Junbi, Cedar Park', 'Manor Market', 'Pflugerville Plaza', 'Vista Brewing', 'Zilker Park']);
-  assert.equal(await page.locator('#mapPanel .place-row[data-pin="event:30.26720,-97.77290"] .pr-status').textContent(), 'Happening now · Oct 20 – 30');
-  // Tap a pin: that place's events, with dates and source links.
+  const sheet = page.locator('#placeSheet');
+  assert.equal(await sheet.isHidden(), true);
   await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
-  const panel = page.locator('#mapPanel');
-  assert.deepEqual(await panel.locator('.pop-item .pop-w').evaluateAll((els) => els.map((e) => e.firstChild.textContent)), ['Autumn Market', 'Dia de los Muertos']);
-  assert.deepEqual(await panel.locator('.pop-item .pop-t').allTextContents(), ['Oct 20 – 30', 'Sun, Nov 1']);
-  assert.equal(await panel.locator('.pop-item a.src').first().getAttribute('href'), 'https://example.test/autumn');
-  await panel.locator('.map-back').click(); // back to all places
-  assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
+  await sheet.waitFor();
+  assert.equal(await sheet.locator('.v-name').evaluate((e) => e.firstChild.textContent), 'Zilker Park');
+  assert.equal(await sheet.locator('.v-name small').textContent(), 'Austin · 2 events', 'no repeat of the name ("Zilker" is in it)');
+  assert.deepEqual(await sheet.locator('.pop-item .pop-w b').allTextContents(), ['Autumn Market', 'Dia de los Muertos']);
+  assert.deepEqual(await sheet.locator('.pop-item .pop-t').allTextContents(), ['Thru Oct 30', 'Sun Nov 1']);
+  assert.equal(await sheet.locator('.pop-item a.src').first().getAttribute('href'), 'https://example.test/autumn');
+  assert.match(await sheet.locator('.location .actions').textContent(), /Google Maps/);
+  assert.equal(await page.locator('.maplibregl-popup').count(), 0, 'no MapLibre popup any more');
+  // Theme colours: the sheet's text and background come from the page's own tokens.
+  const colors = await sheet.evaluate((el) => { const s = getComputedStyle(el), b = getComputedStyle(document.body); return [s.color, b.color, s.backgroundColor]; });
+  assert.equal(colors[0], colors[1], 'sheet text is the page ink');
+  assert.notEqual(colors[2], 'rgba(0, 0, 0, 0)');
+  await sheet.locator('.ps-x').click();
+  assert.equal(await sheet.isHidden(), true);
+  await page.locator('#mapPanel .place-row[data-pin="event:30.26720,-97.77290"]').click();
+  await sheet.waitFor();
+  await page.keyboard.press('Escape');
+  assert.equal(await sheet.isHidden(), true);
   // The view is shareable and remembered; List brings the events list back.
   await page.reload();
   await page.locator('#map .pin').first().waitFor();
-  assert.equal(await page.locator('#mapCard').isVisible(), true);
   await page.locator('[data-layout="list"]').click();
   assert.equal(await page.locator('#mapCard').isHidden(), true);
-  assert.equal(new URL(page.url()).searchParams.get('layout'), null);
   assert.deepEqual(pageErrors, []);
 });
 
-test('site: Events map: tapping a pin pops its events up on the map; closing it returns to the place list', async () => {
-  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
-  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
-  const sched = structuredClone(SCHEDULE);
-  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
-  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, events: EVENTS_MAP, url: '/?view=events', waitFor: '#events .row' });
-  await page.locator('#layout [data-layout="map"]').click();
-  await page.locator('#map .pin').first().waitFor();
-  // Tap the Zilker pin: a popup opens on the map with both events, dates and prices.
+test('site: the place sheet in dark mode reads light-on-dark (the old popup was white with light text)', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  await page.emulateMedia({ colorScheme: 'dark' });
   await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
-  const pop = page.locator('.maplibregl-popup');
-  await pop.waitFor();
-  assert.equal(await pop.locator('h4').textContent(), 'Zilker Park');
-  assert.deepEqual(await pop.locator('.mp-ev .mp-t').allTextContents(), ['Oct 20 – 30', 'Sun, Nov 1']);
-  assert.deepEqual(await pop.locator('.mp-ev .mp-n').evaluateAll((els) => els.map((e) => e.firstChild.textContent.trim())), ['Autumn Market', 'Dia de los Muertos']);
-  assert.equal(await pop.locator('.mp-ev .mp-n small').first().textContent(), '$10');
-  assert.equal(await pop.locator('.mp-ev a.src').first().getAttribute('href'), 'https://example.test/autumn');
-  assert.equal(await pop.locator('[data-scroll-panel]').textContent(), 'See details ↓');
-  // The panel below still shows the picked place's events.
-  assert.deepEqual(await page.locator('#mapPanel .pop-item .pop-t').allTextContents(), ['Oct 20 – 30', 'Sun, Nov 1']);
-  // The × closes the popup and the panel goes back to the place list.
-  await pop.locator('.maplibregl-popup-close-button').click();
-  await page.locator('#mapPanel .place-row').first().waitFor();
-  assert.equal(await page.locator('.maplibregl-popup').count(), 0);
-  assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
-  assert.equal(await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').getAttribute('aria-pressed'), 'false');
+  const sheet = page.locator('#placeSheet');
+  await sheet.waitFor();
+  const lum = (c) => { const [r, g, b] = c.match(/\d+/g).map(Number); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
+  const [fg, bg] = await sheet.locator('.v-name').evaluate((el) => [getComputedStyle(el).color, getComputedStyle(el.closest('.place-sheet')).backgroundColor]);
+  assert.ok(lum(fg) - lum(bg) > 120, `light text on a dark sheet (${fg} on ${bg})`);
   assert.deepEqual(pageErrors, []);
 });
 
-test('site: Sports map: tapping a pin pops its sessions up on the map, with compact Book links', async () => {
-  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
-  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
-  const sched = structuredClone(SCHEDULE);
-  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
-  sched.venues = [
-    { id: 'gym', name: 'Austin North Gym', short: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7 },
-    { id: 'beach', name: 'ATX Beach', city: 'Austin', lat: 30.3, lng: -97.75 },
-  ];
-  const at = (id, venueId, venue, start, end, price) => ({ ...base, id, sourceId: 'manual', date: TODAY, start, end, title: `Session ${id}`, venueId, venue, city: 'Austin', surface: 'indoor', type: 'Open play', ...(price ? { price } : {}), signup: { url: `${SIGNUP}/${id}` }, source: `${SIGNUP}/${id}` });
-  sched.sessions = [at('g1', 'gym', 'North Gym', '18:00', '20:00', '$10'), at('g2', 'gym', 'North Gym', '20:00', '22:00'), at('b1', 'beach', 'ATX Beach', '18:30', '20:00')];
-  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, url: '/?view=openplay' });
-  await page.locator('#layout [data-layout="map"]').click();
-  await page.locator('#map .pin').first().waitFor();
-  await page.locator('#map .pin[data-pin="gym"]').click();
-  const pop = page.locator('.maplibregl-popup');
-  await pop.waitFor();
-  assert.equal(await pop.locator('h4').textContent(), 'North Gym');
-  assert.deepEqual(await pop.locator('.mp-ev .mp-t').allTextContents(), ['6pm–8pm', '8pm–10pm']);
-  assert.deepEqual(await pop.locator('.mp-ev .mp-n').evaluateAll((els) => els.map((e) => e.firstChild.textContent.trim())), ['Session g1', 'Session g2']);
-  assert.equal(await pop.locator('.mp-ev .mp-n small').first().textContent(), '$10');
-  // Compact text links, not the full blue sign-up buttons.
-  assert.equal(await pop.locator('.mp-ev a.src', { hasText: 'Book ↗' }).count(), 2);
-  assert.equal(await pop.locator('.mp-ev a.signup').count(), 0);
-  assert.equal(await pop.locator('.mp-ev a.src').first().getAttribute('href'), `${SIGNUP}/g1`);
-  // Closing it returns the panel to the place list.
-  await pop.locator('.maplibregl-popup-close-button').click();
-  await page.locator('#mapPanel .place-row').first().waitFor();
-  assert.equal(await page.locator('.maplibregl-popup').count(), 0);
-  assert.equal(await page.locator('#mapPanel .place-row').count(), 2);
-  assert.deepEqual(pageErrors, []);
-});
-
-test('site: Events map popup fits on a phone (390px and 320px)', async () => {
-  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
-  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
-  const sched = structuredClone(SCHEDULE);
-  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
-  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, events: EVENTS_MAP, url: '/?view=events', waitFor: '#events .row', touch: true });
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.locator('#layout [data-layout="map"]').click();
-  await page.locator('#map .pin').first().waitFor();
+test('site: on a phone the place sheet sits at the bottom of the map and the picked pin stays above it; on a computer it docks left', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin', touch: true });
+  for (const w of [390, 320]) {
+    await page.setViewportSize({ width: w, height: 760 });
+    await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
+    const sheet = page.locator('#placeSheet');
+    await sheet.waitFor();
+    await page.waitForTimeout(600); // the map eases the pin up
+    const [m, s, p] = await page.evaluate(() => ['#map', '#placeSheet', '.pin.sel'].map((q) => { const r = document.querySelector(q).getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right }; }));
+    assert.ok(Math.abs(s.bottom - m.bottom) < 2 && s.left >= m.left - 1 && s.right <= m.right + 1, `${w}px: the sheet sits inside the map, at its bottom`);
+    assert.ok(p.bottom <= s.top, `${w}px: the picked pin is above the sheet (${p.bottom} ≤ ${s.top})`);
+    assert.ok((await sheet.locator('.ps-x').evaluate((e) => e.getBoundingClientRect().height)) >= 44, `${w}px: ✕ is 44px`);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${w}px: the page fits`);
+    await sheet.locator('.ps-x').click();
+  }
+  await page.setViewportSize({ width: 1280, height: 900 });
   await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
-  const pop = page.locator('.maplibregl-popup');
-  await pop.waitFor();
-  const fits = async (w) => {
-    const b = await pop.evaluate((el) => { const r = el.getBoundingClientRect(); return { left: Math.round(r.left), right: Math.round(r.right) }; });
-    assert.ok(b.left >= 0 && b.right <= w, `popup fits at ${w}px (${b.left}–${b.right})`);
-    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `page fits at ${w}px`);
-  };
-  await fits(390);
-  // 320px: the narrowest phone — the popup narrows rather than spilling off screen.
-  await page.setViewportSize({ width: 320, height: 700 });
-  await page.waitForTimeout(500); // the map and popup re-settle after the resize
-  await fits(320);
+  const [m, s] = await page.evaluate(() => ['#map', '#placeSheet'].map((q) => { const r = document.querySelector(q).getBoundingClientRect(); return { top: r.top, left: r.left, width: r.width, height: r.height }; }));
+  assert.ok(s.width <= 350 && s.left - m.left < 20 && s.height > m.height * 0.8, 'computer: a panel docked at the map\'s left');
   assert.deepEqual(pageErrors, []);
 });
 
-test('site: Events on a phone: header, dropdown and pager fit; tap targets are 44px; the map FAB stays clear', async () => {
-  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
-  const MAPS = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78], maxzoom: 14 }] };
-  const sched = structuredClone(SCHEDULE);
-  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
-  await open({ index: INDEX, regions: { austin: sched }, maps: MAPS, events: EVENTS, url: '/', waitFor: '#events .row', touch: true });
+test('site: Events on a phone: header, filters and Show more fit; tap targets are 44px; the map FAB stays clear', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS, url: '/', waitFor: '#events .row', touch: true });
   const fits = () => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   const box = (sel) => page.locator(sel).first().evaluate((el) => { const r = el.getBoundingClientRect(); return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height }; });
-  // 390px: the page never scrolls sideways; the header seg fits; tap targets are 44px.
+  for (const w of [390, 320]) {
+    await page.setViewportSize({ width: w, height: 760 });
+    assert.equal(await fits(), true, `${w}px: the page fits`);
+    assert.ok((await box('#topTabs')).right <= w, `${w}px: the Events/Sports seg fits`);
+    assert.ok((await box('#topTabs .seg-btn')).height >= 44, 'coarse pointer: seg buttons are 44px');
+    assert.ok((await box('#eventCats .pill-btn')).height >= 44, 'coarse pointer: filter pills are 44px');
+    assert.ok((await box('#events .show-more')).height >= 44, 'Show more is 44px');
+    assert.ok((await box('#events a.signup')).height >= 40, 'the main button is a real button');
+  }
   await page.setViewportSize({ width: 390, height: 844 });
-  assert.equal(await fits(), true, '390px: the page fits');
-  assert.ok((await box('#topTabs')).right <= 390, '390px: the Events/Sports seg fits');
-  assert.ok((await box('#topTabs .seg-btn')).height >= 44, 'coarse pointer: seg buttons are 44px');
-  assert.ok((await box('#eventCats .pill-btn')).height >= 44, 'coarse pointer: category chips are 44px');
-  assert.ok((await box('#eventsPager .pill-btn')).height >= 44, 'coarse pointer: pager buttons are 44px');
-  // The dropdown fits the viewport, with the events list behind it.
-  await page.locator('#topTabs [data-section="sports"]').click();
-  const menu = await box('#sportsMenu');
-  assert.ok(menu.left >= 0 && menu.right <= 390, `390px: the dropdown fits (${menu.left}–${menu.right})`);
-  assert.ok((await box('#sportsOpts .tab.opt')).height >= 44, 'coarse pointer: sport options are 44px');
-  await page.keyboard.press('Escape');
-  // The map on a phone: the FAB is on screen, the place list is intact, and the FAB never covers it.
   await page.locator('#layout [data-layout="map"]').click();
   await page.locator('#map .pin').first().waitFor();
-  assert.equal(await page.locator('#mapCard').isVisible(), true);
-  assert.equal(await fits(), true, '390px map: the page fits');
   const fab = await box('#layout .fab');
   assert.ok(fab.height >= 44 && fab.right <= 390, '390px map: the FAB fits');
-  // Scrolled to the very bottom, the last place row sits above the FAB (96px of page padding).
   const lastRow = page.locator('#mapPanel .place-row').last();
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  const row = await lastRow.evaluate((el) => { const r = el.getBoundingClientRect(); return { top: r.top, bottom: r.bottom }; });
-  const fabNow = await box('#layout .fab');
-  assert.ok(row.bottom <= fabNow.top, '390px map: the last place row scrolls clear of the FAB');
-  await page.locator('[data-layout="list"]').click();
-  // 320px: the narrowest phone still fits — header, dropdown and pager included.
-  await page.setViewportSize({ width: 320, height: 700 });
-  assert.equal(await fits(), true, '320px: the page fits');
-  assert.ok((await box('#topTabs')).right <= 320, '320px: the Events/Sports seg fits');
-  await page.locator('#topTabs [data-section="sports"]').click();
-  const menu320 = await box('#sportsMenu');
-  assert.ok(menu320.left >= 0 && menu320.right <= 320, `320px: the dropdown fits (${menu320.left}–${menu320.right})`);
-  await page.keyboard.press('Escape');
-  const pager = await box('#eventsPager');
-  assert.ok(pager.right <= 320, '320px: the pager fits');
+  const row = await lastRow.evaluate((el) => { const r = el.getBoundingClientRect(); return { bottom: r.bottom }; });
+  assert.ok(row.bottom <= (await box('#layout .fab')).top, '390px map: the last place row scrolls clear of the FAB');
   assert.deepEqual(pageErrors, []);
 });
