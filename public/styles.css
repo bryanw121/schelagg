@@ -462,3 +462,9 @@ img.av{flex:none;border-radius:50%;object-fit:cover;background:var(--line)}
 .pin .pin-t{display:flex;flex-direction:column;gap:2px;min-width:0}
 .pin.has-av{flex-direction:row;align-items:center;gap:6px;padding:4px 10px 4px 4px;max-width:184px}
 .pin.has-av img.av{border:1.5px solid #fff}
+
+/* One map (renderCities): a bubble per city; far out, the current city's pins fold into its bubble. */
+.map.far .pin:not(.city){display:none}
+.pin.city{border-radius:16px;padding:8px 12px;align-items:center;text-align:center;font-size:13px;z-index:2;max-width:none}
+.pin.city b{max-width:none}
+.pin.city.quiet{background:var(--panel);color:var(--muted);border:1px solid var(--line);box-shadow:none}

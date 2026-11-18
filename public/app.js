@@ -1140,6 +1140,57 @@ const webgl = (() => { try { const c = document.createElement('canvas'); return 
 let maps = null; // maps.json: which regions have a map
 let mapPick = null; // the venue whose day is shown under the map
 let mapView = null, mapMarkers = [], mapKey = '', mapLibs = null, youMarker = null;
+let mapRegion = null, mapDriven = false, cityMarkers = [];
+const DETAIL_ZOOM = 9; // the city's detailed map draws from here up; the overview below it
+const FAR_ZOOM = 7.8; // under this the current city's pins fold into its bubble, like the other cities'
+/** A region's own bounds with room to pan a pin clear of the place sheet (the map before the overview). */
+const regionBounds = (box) => [[box[0] - (box[2] - box[0]) * 0.6, box[1] - (box[3] - box[1]) * 0.75], [box[2] + (box[2] - box[0]) * 0.6, box[3] + (box[3] - box[1]) * 0.75]];
+const occCache = new Map(); // region id → its occurrences.json (for the other cities' bubbles)
+/** How much is on in a region for what the map is showing: { n, label } or null when unknown. */
+function cityCount(r) {
+  if (state.section === 'events') { const n = (events ? eventsForRegion(events, r.id) : []).filter((e) => (e.endDate ?? e.startDate) >= NOW.iso).length; return { n, label: `${n} event${n === 1 ? '' : 's'}` }; }
+  if (state.view !== 'openplay') return null;
+  const occ = occCache.get(r.id);
+  if (!occ) {
+    if (!occCache.has(r.id)) { occCache.set(r.id, null); getJson(`${DATA}regions/${r.id}/occurrences.json`).then((d) => { occCache.set(r.id, d); renderCities(); }, () => {}); }
+    return null;
+  }
+  const iso = WEEK[state.di], day = new Intl.DateTimeFormat('en-CA', { timeZone: r.timezone ?? TZ });
+  const n = occ.occurrences.filter((o) => o.sport === state.sport && !o.canceled && day.format(new Date(o.starts_at)) === iso).length;
+  return { n, label: `${n} open play${n === 1 ? '' : 's'} ${state.di === 0 ? 'today' : fmtDate(iso, { weekday: 'short' })}` };
+}
+/**
+ * One bubble per city on the one map: every other city always (tap it to go there), and the
+ * current city too once the map is zoomed far out (its pins fold into it). A city with nothing
+ * on for this view is a plain name.
+ */
+function renderCities() {
+  for (const m of cityMarkers) m.remove();
+  cityMarkers = [];
+  if (!mapView || !maps?.overview || $('mapCard').hidden) return;
+  const far = mapView.getZoom() < FAR_ZOOM;
+  $('map').classList.toggle('far', far);
+  for (const r of index?.regions ?? []) {
+    if (!r.center || !maps.maps.some((m) => m.region === r.id) || (r.id === region.id && !far)) continue;
+    const c = cityCount(r), name = r.name.replace(/,\s*[A-Z]{2}$/, '');
+    // Events has nothing to show in a city without a feed: a plain name there, not a button.
+    const dead = state.section === 'events' && !c?.n;
+    const el = document.createElement(dead ? 'div' : 'button');
+    Object.assign(el, dead ? {} : { type: 'button' }, { className: `pin city${c && !c.n ? ' quiet' : ''}` });
+    if (!dead) el.dataset.city = r.id;
+    el.innerHTML = `<b>${esc(name)}</b>${c?.n ? `<span>${esc(c.label)}</span>` : ''}`;
+    if (!dead) el.setAttribute('aria-label', `${name}${c ? `: ${c.label}` : ''}. Show this city.`);
+    cityMarkers.push(new window.maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat([r.center[1], r.center[0]]).addTo(mapView));
+  }
+}
+/** The map was moved onto another city (zoomed in enough to mean it): that city becomes the current one, without moving the map. */
+function followMap(e) {
+  if (!maps?.overview || !e?.originalEvent || mapView.getZoom() < 8) return;
+  const c = mapView.getCenter();
+  const has = (id) => state.section !== 'events' || (events ? eventsForRegion(events, id) : []).some((ev) => (ev.endDate ?? ev.startDate) >= NOW.iso);
+  const hit = maps.maps.find((m) => m.region !== region.id && has(m.region) && c.lng >= m.bbox[0] && c.lng <= m.bbox[2] && c.lat >= m.bbox[1] && c.lat <= m.bbox[3] && index?.regions?.some((r) => r.id === m.region));
+  if (hit) { mapDriven = true; mapPick = null; chooseRegion(hit.region, { keepDay: true }); }
+}
 let shownPick = null; // the pick the place sheet was last drawn for (to move the map once per pick)
 const mapReady = () => webgl && !!region && !!maps?.maps?.some((m) => m.region === region.id);
 
@@ -1392,21 +1443,38 @@ async function renderMap() {
     const dark = document.documentElement.dataset.theme === 'dark' || (document.documentElement.dataset.theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
     const base = new URL(MAPS, location.href).href, flavor = dark ? 'dark' : 'light';
     const box = maps.maps.find((m) => m.region === region.id).bbox;
+    const ov = maps.overview ?? null, OSM = '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>';
+    const basemapLayers = (source) => window.basemaps.layers(source, window.basemaps.namedFlavor(flavor), { lang: 'en' });
     mapView = new gl.Map({
       container: 'map',
+      // One map for every city (when the build made the overview file): a light file of the whole
+      // area under zoom 9, and the current city's detailed file from zoom 9 up, drawn over it. The
+      // detail source's file follows the city the map is on (setUrl in renderMap).
       style: { version: 8, glyphs: `${base}fonts/{fontstack}/{range}.pbf`, sprite: `${base}sprites/${flavor}`,
-        sources: { osm: { type: 'vector', url: `pmtiles://${base}${region.id}.pmtiles`, attribution: '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>' } },
-        layers: window.basemaps.layers('osm', window.basemaps.namedFlavor(flavor), { lang: 'en' }) },
+        sources: { ...(ov ? { overview: { type: 'vector', url: `pmtiles://${base}${ov.file}`, attribution: OSM } } : {}), osm: { type: 'vector', url: `pmtiles://${base}${region.id}.pmtiles`, attribution: OSM } },
+        layers: ov
+          ? [...basemapLayers('overview').map((l) => (l.type === 'symbol' ? { ...l, maxzoom: Math.min(l.maxzoom ?? 24, DETAIL_ZOOM) } : l)),
+            ...basemapLayers('osm').filter((l) => l.type !== 'background').map((l) => ({ ...l, id: `d-${l.id}`, minzoom: Math.max(l.minzoom ?? 0, DETAIL_ZOOM) }))]
+          : basemapLayers('osm') },
       // Room to pan past the region's edge: a picked pin near the edge can then slide clear of the place
       // sheet without zooming (a zoom fetches new tiles; the blank margin sits behind the sheet).
-      bounds: [[box[0], box[1]], [box[2], box[3]]], maxBounds: [[box[0] - (box[2] - box[0]) * 0.6, box[1] - (box[3] - box[1]) * 0.75], [box[2] + (box[2] - box[0]) * 0.6, box[3] + (box[3] - box[1]) * 0.75]],
+      bounds: [[box[0], box[1]], [box[2], box[3]]], maxBounds: ov ? [[ov.bbox[0], ov.bbox[1]], [ov.bbox[2], ov.bbox[3]]] : regionBounds(box), ...(ov ? { minZoom: 4.5 } : {}),
       attributionControl: { compact: true }, dragRotate: false, pitchWithRotate: false, cooperativeGestures: false,
     });
     mapView.touchZoomRotate.disableRotation();
     mapView.addControl(new gl.NavigationControl({ showCompass: false }), 'top-right');
     mapView.on('zoomend', declutter); mapView.on('moveend', declutter);
+    mapView.on('moveend', followMap); mapView.on('zoomend', renderCities);
+    mapRegion = region.id;
     mapView.on('click', (e) => { if (!e.originalEvent?.target?.closest?.('.pin')) closePlace(); }); // a tap on the map itself closes the place sheet
     window.__schelaggMap = mapView; // for tests
+  }
+  if (mapRegion !== region.id) {
+    // Another city: its detailed file, and (without the overview) its own bounds.
+    mapRegion = region.id;
+    const box = maps.maps.find((m) => m.region === region.id).bbox;
+    mapView.getSource('osm')?.setUrl(`pmtiles://${new URL(MAPS, location.href).href}${region.id}.pmtiles`);
+    if (!maps.overview) mapView.setMaxBounds(regionBounds(box));
   }
   for (const m of mapMarkers) m.marker.remove();
   mapMarkers = places.map((p) => {
@@ -1422,10 +1490,15 @@ async function renderMap() {
   if (here) { const el = Object.assign(document.createElement('div'), { className: 'you', title: 'You (from 📍)' }); youMarker = new gl.Marker({ element: el }).setLngLat([here.lng, here.lat]).addTo(mapView); }
   // A new sport, view or day frames its places; picking a pin keeps the view and brings it into sight.
   const key = state.section === 'events' ? `${region.id}|events|all` : `${region.id}|${state.sport}|${state.view}|${state.di}|${state.tab}`;
-  if (key !== mapKey && places.length) {
+  if (key !== mapKey && mapDriven) { mapKey = key; mapDriven = false; } // the user moved the map to this city: leave it where they put it
+  else if (key !== mapKey && places.length) {
     mapKey = key;
     const lngs = places.map((p) => p.lng), lats = places.map((p) => p.lat);
     mapView.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: { top: 48, right: 48, left: 48, bottom: 96 }, maxZoom: 12, duration: 0 });
+  } else if (key !== mapKey && maps.overview) { // a city with nothing to pin for this view: still go to it
+    mapKey = key;
+    const b = maps.maps.find((m) => m.region === region.id).bbox;
+    mapView.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 24, duration: 0 });
   } else if (mapPick) {
     const p = places.find((x) => x.id === mapPick);
     if (p && !mapView.getBounds().contains([p.lng, p.lat])) mapView.easeTo({ center: [p.lng, p.lat] });
@@ -1433,6 +1506,7 @@ async function renderMap() {
   mapView.resize();
   if (mapPick && shownPick !== mapPick) revealPick();
   shownPick = mapPick;
+  renderCities();
   requestAnimationFrame(declutter);
 }
 
@@ -1505,6 +1579,12 @@ document.addEventListener('click', async (e) => {
     } catch {
       status.textContent = 'Could not copy. Select the address above to copy it manually.';
     }
+    return;
+  }
+  const cityPin = e.target.closest('[data-city]');
+  if (cityPin) { // a city's bubble: go there (its pins frame themselves)
+    if (cityPin.dataset.city === region?.id) { const b = maps.maps.find((m) => m.region === region.id).bbox; mapView.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 24 }); }
+    else { mapPick = null; chooseRegion(cityPin.dataset.city, { keepDay: true }); }
     return;
   }
   const pin = e.target.closest('[data-pin]');
@@ -1582,12 +1662,12 @@ async function getJson(url) { const r = await fetch(url, { cache: 'no-cache' });
 const regionData = () => (index && region ? `${DATA}regions/${region.id}/` : DATA);
 
 /** Switch to a region: its time zone, its schedule, a sport it has. */
-async function chooseRegion(id) {
+async function chooseRegion(id, { keepDay = false } = {}) {
   region = index?.regions?.find((r) => r.id === id) ?? index?.regions?.[0] ?? null;
   state.region = region?.id ?? null;
   TZ = region?.timezone ?? TZ;
   setClock();
-  state.di = 0;
+  if (!keepDay) state.di = 0;
   try {
     schedule = await getJson(`${regionData()}schedule.json`);
   } catch (e) {
@@ -1609,10 +1689,24 @@ getJson(`${DATA}events.json`).then((d) => { events = d; }, (e) => { eventsError 
 // existed) the combined data/schedule.json is the one region.
 try { index = await getJson(`${DATA}index.json`); } catch { index = null; }
 try { maps = await getJson(`${MAPS}maps.json`); } catch { maps = null; }
+const knewRegion = !!state.region; // a saved or linked city
 if (index?.regions?.length) await chooseRegion(state.region);
 else {
   try { schedule = await getJson(`${DATA}schedule.json`); save(); render(); }
   catch (e) { $('list').innerHTML = `<div class="error">Couldn't load schedules: ${esc(e.message)}</div>`; unfold(); }
+}
+// A first visit opens on the nearest city when the browser already shares its location with this
+// site (no prompt is ever raised here; 📍 is how someone chooses to share it).
+if (!knewRegion && (index?.regions?.length ?? 0) > 1 && navigator.permissions?.query && navigator.geolocation) {
+  navigator.permissions.query({ name: 'geolocation' }).then((p) => {
+    if (p.state !== 'granted') return;
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const at = [pos.coords.latitude, pos.coords.longitude];
+      const d = (c) => (c[0] - at[0]) ** 2 + ((c[1] - at[1]) * Math.cos((at[0] * Math.PI) / 180)) ** 2;
+      const best = index.regions.filter((r) => r.center).sort((a, b) => d(a.center) - d(b.center))[0];
+      if (best && best.id !== region?.id) chooseRegion(best.id);
+    }, () => {}, { maximumAge: 3600e3, timeout: 10e3 });
+  }, () => {});
 }
 try { courts = await getJson(`${DATA}courts.json`); }
 catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }

@@ -274,6 +274,13 @@ directions. It's free and needs no key:
   for Austin) out of [Protomaps](https://protomaps.com)' daily OpenStreetMap build into `public/maps/<region>.pmtiles`.
   It also copies the label fonts and map icons it uses. The deploy (`pages.yml`) runs it once a month, or when venues
   change, and caches it between runs. Viewers download only the part of the file they look at (HTTP range requests).
+- **One map for every city:** with more than one region the build also cuts `public/maps/overview.pmtiles`,
+  a light file (zooms 0-8) of the whole area between the regions (`overviewBox` in `lib/map-area.js`), listed as
+  `overview` in `maps.json`. The site draws it under zoom 9 and the current city's detailed file from zoom 9 up
+  (the detail source's file follows the city: `setUrl` in `renderMap`). Other cities show as bubbles with how much
+  is on (`renderCities`, counts from each region's `occurrences.json` or the events feed); tapping one, or moving
+  the map onto a city, makes it the current city (`followMap`). Far out, the current city's pins fold into its
+  bubble too. The map still opens on the visitor's own city. Without the overview file it is one city at a time.
 - **Libraries:** MapLibre GL, pmtiles and the Protomaps basemap style are vendored in `public/vendor/map` and load
   only when someone opens Map.
 - **Fallback:** with no WebGL, or no map for the region, the Map button doesn't appear.

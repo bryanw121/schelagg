@@ -92,7 +92,7 @@ let pageErrors = [];
 // The app defaults to Events; the sports tests open an explicit sports view (/?view=openplay
 // or a sport/region link, which the app also reads as sports). `waitFor` is what the page
 // shows when its data arrives (the events list in the Events view, the session list in Sports).
-async function open({ programs = null, schedule = SCHEDULE, courts = COURTS, events = null, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, maps = null, url = '/?view=openplay', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null, touch = false, waitFor = '#list .row, #list .error, #list .empty' } = {}) {
+async function open({ programs = null, schedule = SCHEDULE, courts = COURTS, events = null, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, occurrences = {}, maps = null, url = '/?view=openplay', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null, touch = false, waitFor = '#list .row, #list .error, #list .empty' } = {}) {
   context = await browser.newContext({ timezoneId, locale: 'en-US', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}), ...(touch ? { hasTouch: true } : {}) }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
   pageErrors = [];
@@ -112,6 +112,8 @@ async function open({ programs = null, schedule = SCHEDULE, courts = COURTS, eve
     if (u.pathname === '/data/index.json') return index ? json(index) : route.fulfill({ status: 404, body: 'Not found' });
     const reg = u.pathname.match(/^\/data\/regions\/([a-z-]+)\/schedule\.json$/);
     if (reg) return regions[reg[1]] ? json(regions[reg[1]]) : route.fulfill({ status: 404, body: 'Not found' });
+    const occ = u.pathname.match(/^\/data\/regions\/([a-z-]+)\/occurrences\.json$/);
+    if (occ) return occurrences[occ[1]] ? json(occurrences[occ[1]]) : route.fulfill({ status: 404, body: 'Not found' });
     if (u.pathname === '/data/schedule.json') return schedule ? json(schedule) : json('{"error":"nope"}', 500);
     if (u.pathname === '/data/courts.json') return courts ? json(courts) : route.fulfill({ status: 404, body: 'Not found' });
     if (u.pathname === '/data/programs.json') return programs ? json(programs) : route.fulfill({ status: 404, body: 'Not found' });
@@ -1448,6 +1450,55 @@ test('site: an event with a saved organizer picture shows it on its card, its ma
   assert.equal(await page.locator('#map .pin img.av').count(), 1);
   assert.equal(await page.locator('#map .pin.has-av img.av').getAttribute('src'), 'data/avatars/examplemarket.jpg');
   assert.equal(await page.locator('#mapPanel .place-row img.av').count(), 1);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: one map for every city: the other cities are bubbles, tapping or moving onto one switches to it, far out the pins fold into bubbles', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [
+    { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] },
+    { id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago', center: [32.8, -96.95], sports: ['volleyball'] },
+  ] };
+  const MAPS = { source: 'x', overview: { file: 'overview.pmtiles', bbox: [-98.7, 29.5, -96.1, 33.6], maxzoom: 8 }, maps: [...MAPS_AUSTIN.maps, { region: 'dallas', bbox: [-97.4, 32.6, -96.7, 33.05], maxzoom: 14 }] };
+  const venue = (id, name, lat, lng) => ({ id, name, city: name, lat, lng });
+  const sess = (id, venueId, venueName) => ({ ...SCHEDULE.sessions[0], id, date: TODAY, start: '18:00', end: '20:00', title: `Open gym ${id}`, venueId, venue: venueName, levelTag: 'all', sport: 'volleyball' });
+  const austin = austinSched(); austin.venues = [venue('a1', 'North Gym', 30.3, -97.75)]; austin.sessions = [sess('a', 'a1', 'North Gym')];
+  const dallas = structuredClone(SCHEDULE); dallas.region = { id: 'dallas', name: 'Dallas–Fort Worth, TX', timezone: 'America/Chicago' };
+  dallas.venues = [venue('d1', 'Dallas Gym', 32.8, -96.9)]; dallas.sessions = [sess('d', 'd1', 'Dallas Gym')];
+  const occ = (n) => ({ occurrences: Array.from({ length: n }, (_, i) => ({ id: `o${i}`, sport: 'volleyball', canceled: false, starts_at: `${TODAY}T18:00:00-06:00` })) });
+  await open({ index: INDEX, regions: { austin, dallas }, occurrences: { dallas: occ(4), austin: occ(1) }, maps: MAPS, url: '/?view=openplay&layout=map', waitFor: '#map .pin' });
+  // The map: a light file of the whole area, and the current city's detailed file from zoom 9.
+  const style = () => page.evaluate(() => { const s = window.__schelaggMap.getStyle(); return { sources: Object.fromEntries(Object.entries(s.sources).map(([k, v]) => [k, v.url.split('/').pop()])), detailMin: Math.min(...s.layers.filter((l) => l.source === 'osm').map((l) => l.minzoom)), backgrounds: s.layers.filter((l) => l.type === 'background').length }; });
+  assert.deepEqual(await style(), { sources: { overview: 'overview.pmtiles', osm: 'austin.pmtiles' }, detailMin: 9, backgrounds: 1 });
+  // Opens on its own city with that city's pins; the other city is a bubble that says how much is on.
+  assert.equal(await page.locator('#regionPick').inputValue(), 'austin');
+  assert.deepEqual(await page.locator('#map .pin:not(.city)').allTextContents(), ['North Gym']);
+  const bubble = page.locator('#map .pin.city');
+  await page.locator('#map .pin.city span').waitFor({ state: 'attached' });
+  assert.deepEqual(await bubble.evaluateAll((els) => els.map((e) => [e.dataset.city, e.querySelector('b').textContent, e.querySelector('span')?.textContent])), [['dallas', 'Dallas–Fort Worth', '4 open plays today']]);
+  // Far out, the current city's pins fold into its own bubble.
+  await page.evaluate(() => window.__schelaggMap.jumpTo({ zoom: 6 }));
+  await page.locator('#map .pin.city[data-city="austin"]').waitFor({ state: 'attached' });
+  assert.equal(await page.locator('#map').evaluate((e) => e.classList.contains('far')), true);
+  assert.equal(await page.locator('#map .pin:not(.city)').first().isVisible(), false);
+  assert.equal(await page.locator('#map .pin.city[data-city="austin"] span').textContent(), '1 open play today');
+  // Tap the other city's bubble: it becomes the city, with its pins and its detailed map.
+  await page.locator('#map .pin.city[data-city="dallas"]').dispatchEvent('click');
+  await page.locator('#map .pin:not(.city)', { hasText: 'Dallas Gym' }).waitFor();
+  assert.equal(await page.locator('#regionPick').inputValue(), 'dallas');
+  assert.equal((await style()).sources.osm, 'dallas.pmtiles');
+  assert.equal(await page.locator('#map .pin.city[data-city="austin"]').count(), 1, 'Austin is the bubble now');
+  // Moving the map onto another city (zoomed in) switches to it and leaves the map where it was put.
+  await page.evaluate(() => { const m = window.__schelaggMap; m.jumpTo({ center: [-97.74, 30.27], zoom: 10 }); m.fire('moveend', { originalEvent: {} }); });
+  await page.locator('#map .pin:not(.city)', { hasText: 'North Gym' }).waitFor({ state: 'attached' });
+  assert.equal(await page.locator('#regionPick').inputValue(), 'austin');
+  assert.deepEqual(await page.evaluate(() => { const m = window.__schelaggMap; return [m.getZoom(), +m.getCenter().lat.toFixed(2)]; }), [10, 30.27], 'the map stayed put');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: without the overview file the map is one city at a time, as before (no bubbles)', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  assert.deepEqual(await page.evaluate(() => Object.keys(window.__schelaggMap.getStyle().sources)), ['osm']);
+  assert.equal(await page.locator('#map .pin.city').count(), 0);
   assert.deepEqual(pageErrors, []);
 });
 
