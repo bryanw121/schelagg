@@ -78,13 +78,25 @@ node scripts/geocode-events.mjs --dry    # print what it would set, write nothin
 ## The site
 
 The site reads the same feed (`data/events.json`, overlaid from the `data` branch at
-deploy). The Events tab is the front page: a month-grouped list, 10 events to a page
-(`?page=`, `?cat=` deep links), with category chips (All / Pop-ups / Seasonal /
-Asian-inspired), a "Happening now" pill for events running today, and Source and
-directions links on every card. The Sports tab opens a dropdown of the sports; picking
-one loads that sport's schedules. The floating List/Map button switches to the map: one
-pin per venue (events at the same coordinates share it), a place list under it, and a
-tap shows that place's events.
+deploy), fetched first and in parallel with everything else, since Events is the front page.
+A feed covers one region (`region` on the feed or an event; Austin when neither says), and a
+city without one says "Events are Austin-only for now" and links to its open play.
+
+The list follows the Sports days: headings for **On now** (ending soonest first), **This
+week** / **This weekend**, **Next week**, then each month, four cards under each and "Show N
+more". A card is the sessions' `.row`: the date column ("Thru Nov 23", "Sat Nov 21"), a plain
+chip for the kind (Pop-up, Seasonal) and a dashed one for each tag (Asian-inspired is a tag:
+`category: "asian-inspired"` still works, or send `kind` and `tags`), one main button ("See the
+post" for Instagram, "Event page" otherwise), and Details ▾ for the description, directions and
+who it was found via. Filters: the "All events ▾" sheet (kind and tags), This weekend, Near me;
+links carry `?type=`, `?tag=`, `?weekend=1` (old `?cat=` links still work). Helpers are pure in
+`public/events-ui.js` (`eventGroups`, `filterEvents`, `eventWhen`, ...), tested in
+`test/events-ui.test.mjs`.
+
+The floating List/Map button switches to the map: one pin per venue. Tapping a pin (or its row
+under the map) opens the **place sheet** (`renderPlaceSheet` in `app.js`), in the page's own
+colours: a bottom sheet over the map on a phone, a panel docked at the map's left from 760px.
+✕, Esc, a tap on the map or a swipe down closes it. Sports pins use the same sheet.
 
 The map's tiles are cut per region by `scripts/build-maps.mjs` (in the deploy); the
 region's box folds in the feed's located points within the region's radius
