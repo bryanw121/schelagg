@@ -66,11 +66,12 @@ test('eventPinName: the name before the address; the whole string when that is a
   assert.equal(eventPinName('1209 E Cesar Chavez St'), '1209 E Cesar Chavez St');
 });
 
-test('eventPlaces: one pin per venue, grouped; happening now and the next date', () => {
+test('eventPlaces: one pin per venue, grouped; the status shows the full date range', () => {
   const places = eventPlaces([
     ev({ title: 'A Christmas Affair', venue: 'Palmer Events Center, 900 Barton Springs Rd', area: 'Zilker', startDate: '2026-11-19', endDate: '2026-11-22', lat: 30.26, lng: -97.77 }),
     ev({ title: 'Armadillo Christmas Bazaar', venue: 'Palmer Events Center, 900 Barton Springs Rd', area: 'Zilker', startDate: '2026-12-12', endDate: '2026-12-21', price: '$15', lat: 30.26, lng: -97.77 }),
     ev({ title: 'Flower Shop', venue: '1209 E Cesar Chavez St', area: 'East Austin', startDate: '2026-11-12', endDate: '2026-11-23', lat: 30.25979, lng: -97.7325 }),
+    ev({ title: 'Flower Weekend', venue: '1209 E Cesar Chavez St', area: 'East Austin', startDate: '2026-11-16', endDate: '2026-11-18', lat: 30.25979, lng: -97.7325 }),
     ev({ title: 'No point', venue: 'Nowhere' }),
   ], '2026-11-17');
   assert.equal(places.length, 2, 'the unlocated event has no pin');
@@ -78,12 +79,13 @@ test('eventPlaces: one pin per venue, grouped; happening now and the next date',
   assert.equal(palmer.events.length, 2, 'both events at the same venue share the pin');
   assert.equal(palmer.short, 'Palmer Events Center');
   assert.equal(palmer.city, 'Zilker · Austin');
-  assert.equal(palmer.status, '2 events · next Nov 19');
-  assert.equal(palmer.aria, 'Palmer Events Center, 900 Barton Springs Rd: 2 events · next Nov 19');
+  assert.equal(palmer.status, '2 events · Nov 19 – 22', 'the soonest event\'s full range, not just its start');
+  assert.equal(palmer.aria, 'Palmer Events Center, 900 Barton Springs Rd: 2 events · Nov 19 – 22');
   assert.deepEqual(palmer.sessions, [], 'the shared map machinery reads .sessions');
   assert.equal(palmer.done, false);
   const flower = places.find((p) => p.name.startsWith('1209'));
-  assert.equal(flower.status, 'Happening now · 1 event', 'Nov 12–23 covers Nov 17');
+  assert.equal(flower.events.length, 2);
+  assert.equal(flower.status, 'Happening now · Nov 16 – 18', 'Nov 12–23 and Nov 16–18 both cover Nov 17; the one ending soonest is shown');
   assert.equal(flower.short, '1209 E Cesar Chavez St');
 });
 

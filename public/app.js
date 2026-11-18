@@ -308,6 +308,16 @@ function signupHtml(x) {
   return s.label ? `<span class="dropin">${esc(s.label)}</span>` : '';
 }
 
+/** The popup's sign-up action: the same link as signupHtml, but a compact text link — the
+ *  full button is too heavy for a popup. */
+function popupSignupHtml(x) {
+  if (x.f.k === 'expired' || x.f.k === 'canceled') return '';
+  const s = x.signup || {}, url = onDay(s.url, x.date || x.on);
+  if (url && !s.dropIn) return `<a class="src" href="${esc(url)}" target="_blank" rel="noopener">Book ↗</a>`;
+  if (url) return `<span class="dropin">${esc(s.label || 'Drop in')}</span><a class="src" href="${esc(url)}" target="_blank" rel="noopener">Details ↗</a>`;
+  return s.label ? `<span class="dropin">${esc(s.label)}</span>` : '';
+}
+
 function locationHtml(x) {
   const venue = schedule?.venues?.find((v) => v.id === x.venueId);
   if (!venue?.address) return '';
@@ -1105,6 +1115,7 @@ const webgl = (() => { try { const c = document.createElement('canvas'); return 
 let maps = null; // maps.json: which regions have a map
 let mapPick = null; // the venue whose day is shown under the map
 let mapView = null, mapMarkers = [], mapKey = '', mapLibs = null, youMarker = null;
+let mapPopup = null; // the popup open on the picked pin, if any
 const mapReady = () => webgl && !!region && !!maps?.maps?.some((m) => m.region === region.id);
 
 function loadMapLibs() {
@@ -1312,6 +1323,32 @@ async function renderMap() {
   } else if (mapPick) {
     const p = places.find((x) => x.id === mapPick);
     if (p && !mapView.getBounds().contains([p.lng, p.lat])) mapView.easeTo({ center: [p.lng, p.lat] });
+  }
+  // Tapping a pin pops the place up on the map itself, as well as in the panel below.
+  // The popup is MapLibre's own Popup, so it stays anchored to the pin as the map moves, and
+  // flips below the pin when there is no room above it.
+  mapPopup?.remove(); mapPopup = null;
+  if (mapPick) {
+    const p = places.find((x) => x.id === mapPick);
+    if (p) {
+      const items = p.events ?? p.sessions ?? [];
+      const rows = items.slice(0, 3).map((ev) => {
+        const when = state.section === 'events' ? eventDateRange(ev) : `${fmtT(ev.start)}${ev.end ? `–${fmtT(ev.end)}` : ''}`;
+        const name = state.section === 'events' ? ev.title : (ownTitle(ev) || ev.title);
+        const act = state.section === 'events'
+          ? (ev.sourceUrl ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">Source ↗</a>` : '')
+          : popupSignupHtml(ev);
+        return `<div class="mp-ev"><span class="mp-t">${esc(when)}</span><span class="mp-n">${esc(name)}${ev.price ? ` <small>${esc(ev.price)}</small>` : ''}</span><span class="mp-a">${act}</span></div>`;
+      }).join('');
+      // closeOnClick stays off: a tap on the map is how a pin is toggled, and MapLibre closing
+      // the popup first would re-pick the pin instead of clearing it. The × clears the pick.
+      mapPopup = new gl.Popup({ offset: 18, closeButton: true, closeOnClick: false, maxWidth: '300px', className: 'map-pop' })
+        .setLngLat([p.lng, p.lat])
+        .setHTML(`<h4>${esc(p.short || p.name)}</h4><div class="mp-sub">${esc(p.city || '')}</div>${rows}${items.length > 3 ? `<div class="mp-more">+ ${items.length - 3} more</div>` : ''}<button type="button" class="mp-act" data-scroll-panel>See details ↓</button>`)
+        .addTo(mapView);
+      mapPopup.on('close', () => { if (mapPick) { mapPick = null; save(); render(); } });
+      mapPopup.getElement().querySelector('[data-scroll-panel]')?.addEventListener('click', () => $('mapPanel').scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    }
   }
   mapView.resize();
   requestAnimationFrame(declutter);
