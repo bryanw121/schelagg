@@ -239,3 +239,14 @@ test('persistEvents: skipped without a URL, and a failed write is reported, neve
   const { readFileSync } = await import('node:fs');
   assert.match(readFileSync(failuresFile, 'utf8'), /Events database load failed on 2026-11-17/);
 });
+
+test('missingListings: listing events another writer dropped come back; past and present ones do not', async () => {
+  const { missingListings } = await import('../lib/event-sources.js');
+  const ev = (title, startDate, extra = {}) => ({ title, startDate, venue: 'Somewhere', source: 'AllEvents', sourceId: 'allevents-austin', ...extra });
+  const cached = [ev('Night Market', '2026-11-21', { lat: 30.2, lng: -97.7 }), ev('Holiday Fair', '2026-12-05', { lat: 30.3, lng: -97.7 }), ev('Old Fair', '2026-11-01', { lat: 30.4, lng: -97.7 })];
+  // The other writer's file: its own find, plus one listing event it happened to keep.
+  const feed = [{ title: 'Matcha pop-up', startDate: '2026-11-22', venue: 'Cafe', source: 'Instagram @x' }, ev('Holiday Fair', '2026-12-05', { lat: 30.3, lng: -97.7 })];
+  assert.deepEqual(missingListings(feed, cached, '2026-11-19').map((e) => e.title), ['Night Market']);
+  assert.deepEqual(missingListings([...feed, cached[0]], cached, '2026-11-19'), [], 'nothing missing: nothing to do');
+  assert.deepEqual(missingListings(feed, undefined, '2026-11-19'), [], 'no cache yet');
+});
