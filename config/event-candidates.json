@@ -1,24 +1,37 @@
 {
-  "_doc": "Pages to try as Events sources (scripts/try-event-pages.mjs, the \"Try event pages\" workflow). A page that robots.txt allows and that lists events moves to config/events.json; one that doesn't is noted in docs/events.md so it isn't tried again.",
-  "urls": [
-    "https://allevents.in/austin/night-market",
-    "https://allevents.in/austin/pop-up",
-    "https://allevents.in/austin/christmas",
-    "https://allevents.in/austin/shopping",
-    "https://allevents.in/austin/exhibitions",
-    "https://allevents.in/austin/asian",
-    "https://www.austintexas.org/events/holiday-events/",
-    "https://downtownaustin.com/events/",
-    "https://domainnorthside.com/events/",
-    "https://www.muelleraustin.com/events/",
-    "https://2ndstreetdistrict.com/events/",
-    "https://www.hillcountrygalleria.com/events/",
-    "https://texasfarmersmarket.org/events/",
-    "https://www.bluegenieartbazaar.com/",
-    "https://www.vistabrewingtx.com/events",
-    "https://austin.culturemap.com/events/",
-    "https://www.austinmonthly.com/events/",
-    "https://lu.ma/austin",
-    "https://www.austintexas.gov/aarc"
-  ]
+  "_doc": "Pages to try as Events sources (scripts/try-event-pages.mjs, the \"Try event pages\" workflow). A page that robots.txt allows and that lists events moves to config/events.json; one that doesn't is noted under `tried` so it isn't tried again.",
+  "urls": [],
+  "tried": {
+    "2026-11-19": {
+      "added": [
+        "allevents.in/austin/pop-up",
+        "allevents.in/austin/christmas",
+        "allevents.in/austin/shopping",
+        "allevents.in/austin/exhibitions",
+        "allevents.in/austin/night-market"
+      ],
+      "no event data on the page (would need a reader of its own)": [
+        "downtownaustin.com/events/",
+        "domainnorthside.com/events/",
+        "muelleraustin.com/events/",
+        "2ndstreetdistrict.com/events/",
+        "hillcountrygalleria.com/events/",
+        "texasfarmersmarket.org/events/",
+        "bluegenieartbazaar.com",
+        "vistabrewingtx.com/events",
+        "austin.culturemap.com/events/",
+        "austinmonthly.com/events/",
+        "austintexas.gov/aarc"
+      ],
+      "lists events, none of the kinds we keep": [
+        "lu.ma/austin"
+      ],
+      "keeps unrelated events": [
+        "allevents.in/austin/asian"
+      ],
+      "not found": [
+        "austintexas.org/events/holiday-events/"
+      ]
+    }
+  }
 }
