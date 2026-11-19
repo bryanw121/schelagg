@@ -27,7 +27,7 @@ export const SEARCH_TAGS = [
   { id: 'makers-market', label: 'Makers market', words: ['makers market', 'maker s market', 'makers fair', 'artisan market', 'craft market', 'craft fair', 'handmade'] },
   { id: 'vintage', label: 'Vintage', words: ['vintage', 'thrift', 'flea market', 'flea'] },
   { id: 'matcha', label: 'Matcha', words: ['matcha'] },
-  { id: 'food', label: 'Food', incidental: true, words: ['food truck', 'food trucks', 'food pop up', 'food festival', 'tasting', 'ramen', 'bbq', 'barbecue', 'tacos', 'taco', 'bakery', 'bake sale', 'bread', 'loaf', 'dumplings', 'dumpling', 'boba', 'coffee', 'koffie', 'supper club', 'pizza', 'burgers', 'brunch', 'dessert', 'desserts', 'donuts', 'ice cream', 'noodles', 'sushi', 'omakase', 'chef', 'kitchen', 'eats', 'bites', 'bake'] },
+  { id: 'food', label: 'Food', incidental: true, words: ['food truck', 'food trucks', 'food pop up', 'food festival', 'tasting', 'ramen', 'bbq', 'barbecue', 'tacos', 'taco', 'bakery', 'bake sale', 'bread', 'loaf', 'dumplings', 'dumpling', 'boba', 'coffee', 'koffie', 'supper club', 'pizza', 'burgers', 'brunch', 'dessert', 'desserts', 'donuts', 'ice cream', 'noodles', 'sushi', 'omakase', 'chef', 'kitchen', 'eats', 'bites', 'bake', 'cook off', 'cookoff', 'chili', 'gumbo', 'tamales'] },
   { id: 'holiday', label: 'Holiday', words: ['holiday', 'holidays', 'christmas', 'xmas', 'santa', 'hanukkah', 'thanksgiving', 'winter market', 'trail of lights'] },
   { id: 'music', label: 'Music', incidental: true, words: ['live music', 'concert', 'dj set', 'live band', 'music festival'] },
   { id: 'free', label: 'Free', words: ['free admission', 'free entry', 'free to attend'] },

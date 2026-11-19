@@ -96,3 +96,12 @@ test('readEventSources: each page read, a source fails only when all its pages d
   assert.deepEqual([a.ok, a.events.length, b.ok, b.events.length], [true, 8, false, 0]);
   assert.match(b.error, /404/);
 });
+
+test('isWanted: food gatherings (cook-offs, supper clubs, food trucks) are kept; classes and sign-up pages are not', async () => {
+  const { isWanted } = await import('../lib/event-sources.js');
+  assert.equal(isWanted("BT's 12th Annual Gumbo Cookoff"), true);
+  assert.equal(isWanted('Sunday Supper Club at the Farm'), true);
+  assert.equal(isWanted('Food Truck Friday'), true);
+  assert.equal(isWanted("Jo's 20th Chili Cook-Off – Team Registration"), false, 'a sign-up page, not the event');
+  assert.equal(isWanted('In-person class: Pasta Fresca'), false);
+});
