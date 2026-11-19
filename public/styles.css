@@ -498,3 +498,6 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
 @media (pointer:coarse){button.chip-q{padding:6px 8px}}
 #searchTags{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
 #searchTags::-webkit-scrollbar{display:none}
+/* "Court bookings" is a longer label: the four tabs tighten so they still fit one row from 360px up (they scroll sideways below that). */
+@media (max-width:411px){#calendarModes .seg-btn{font-size:13px;padding:0 4px;letter-spacing:-.01em}}
+@media (max-width:360px){#calendarModes .seg-btn{font-size:12.5px;padding:0 3px}}
