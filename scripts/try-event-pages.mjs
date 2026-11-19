@@ -25,7 +25,7 @@ const region = austin && { ...austin, city: austin.name.split(',')[0] };
 const robots = new Map();
 const rows = [];
 for (const url of urls) {
-  const row = { url, robots: '', page: '', listed: 0, kept: 0, sample: '' };
+  const row = { url, robots: '', page: '', listed: 0, kept: 0, sample: '', left: '' };
   rows.push(row);
   let u;
   try { u = new URL(url); } catch { row.page = 'not a URL'; continue; }
@@ -40,9 +40,11 @@ for (const url of urls) {
   if (!r.ok) { row.page = `failed: ${r.status}`; continue; }
   const listed = jsonLdEvents(r.text);
   const kept = listed.map((o) => toFeedEvent(o, { source: u.hostname, region, today })).filter(Boolean);
+  // What the reader left out (other kinds of event, or past ones): for judging whether its rules miss something.
+  row.left = listed.filter((o) => !toFeedEvent(o, { source: u.hostname, region, today })).slice(0, 12).map((o) => String(o.name ?? '').slice(0, 60)).join('; ');
   Object.assign(row, { page: 'read', listed: listed.length, kept: kept.length, sample: kept.slice(0, 3).map((e) => `${e.startDate} ${e.title}`).join('; ') });
 }
-const md = ['| Page | robots.txt | Page | Events listed | Kept (pop-ups, markets, seasonal) | Examples |', '|---|---|---|---|---|---|',
-  ...rows.map((r) => `| ${r.url} | ${r.robots} | ${r.page} | ${r.listed} | ${r.kept} | ${r.sample.replace(/\|/g, '/')} |`)].join('\n');
+const md = ['| Page | robots.txt | Page | Events listed | Kept (pop-ups, markets, seasonal) | Examples | Left out (examples) |', '|---|---|---|---|---|---|---|',
+  ...rows.map((r) => `| ${r.url} | ${r.robots} | ${r.page} | ${r.listed} | ${r.kept} | ${r.sample.replace(/\|/g, '/')} | ${r.left.replace(/\|/g, '/')} |`)].join('\n');
 console.log(md);
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Event pages tried\n\n${md}\n`);

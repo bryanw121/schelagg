@@ -1286,7 +1286,7 @@ test('site: Events is the front page: On now, Next week and months, a few under 
   // A card: the date column, plain chips (a kind, a dashed tag), one main button, Details.
   const autumn = page.locator('#events .row', { hasText: 'Autumn Market' });
   assert.match(await autumn.locator('.time').textContent(), /^Thru FriOct 30/);
-  assert.deepEqual(await autumn.locator('.chip').allTextContents(), ['Seasonal', 'Food'], 'its kind, then the search tag its description earns (food trucks)');
+  assert.deepEqual(await autumn.locator('.chip').allTextContents(), ['Seasonal'], 'a market whose description mentions food trucks is not a food event');
   assert.equal(await autumn.locator('.chip.surf').count(), 0, 'no court-surface colours on events');
   assert.equal(await autumn.locator('a.signup').textContent(), 'Event page ↗');
   assert.equal(await autumn.locator('a.signup').getAttribute('href'), 'https://example.test/autumn');
@@ -1693,9 +1693,10 @@ test('site: search on Events: typing narrows the list, tags show once the box is
   for (const row of await page.locator('#events .row').all()) assert.ok((await row.locator('.chip-q').allTextContents()).includes('Food'), 'every event shown carries the tag');
   // A tag on a card searches for it too.
   await page.locator('#eventsCount [data-evclear]').click();
-  await page.locator('#events .row', { hasText: 'Autumn Market' }).locator('.chip-q', { hasText: 'Food' }).click();
+  await page.locator('#events .row', { hasText: 'Ramen Pop-up' }).locator('.chip-q', { hasText: 'Food' }).click();
   assert.equal(await box.inputValue(), 'Food');
-  assert.ok((await page.locator('#events .row .title').allTextContents()).includes('Autumn Market'));
+  const food = await page.locator('#events .row .title').allTextContents();
+  assert.ok(food.includes('Ramen Pop-up') && !food.includes('Autumn Market'), 'a market that merely has food trucks is not tagged Food');
   // A link opens with its search; a day that hides matches offers them.
   await open({ events: EVENTS, url: '/?view=events&q=night%20market&on=2026-10-25', waitFor: '#eventsCount' });
   assert.equal(await page.locator('#search').inputValue(), 'night market');
