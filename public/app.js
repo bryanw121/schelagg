@@ -1828,6 +1828,39 @@ function locating(on) {
   for (const b of [$('nearest'), document.querySelector('[data-evnear]')]) if (b) { if (on) b.setAttribute('aria-busy', 'true'); else b.removeAttribute('aria-busy'); }
 }
 
+// ---------- feedback ----------
+// The footer's "Send feedback": a few words to /api/feedback, which files them for the maintainer.
+// Where that isn't set up (or on the GitHub Pages copy, which has no API), the same words open as
+// a new issue on GitHub instead, and the sheet says that route is public and needs an account.
+const FEEDBACK_ISSUES = 'https://github.com/bryanw121/schelagg/issues/new';
+$('feedbackBtn').addEventListener('click', (e) => {
+  $('feedbackNote').textContent = ''; $('feedbackActs').innerHTML = '<button type="submit" class="go-btn" id="feedbackSend">Send</button>';
+  $('feedbackText').disabled = false;
+  openSheet('feedbackSheet', e.currentTarget);
+  $('feedbackText').focus();
+});
+$('feedbackForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const message = $('feedbackText').value.trim();
+  if (!message) { $('feedbackNote').textContent = 'Write something first.'; $('feedbackText').focus(); return; }
+  const btn = $('feedbackSend');
+  btn.disabled = true; btn.innerHTML = '<span class="spin" aria-hidden="true"></span> Sending…';
+  let r = null, out = null;
+  try { r = await fetch('api/feedback', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ message, page: location.href, website: $('feedbackWebsite').value }) }); out = await r.json(); } catch { /* no API here */ }
+  if (r?.ok && out?.ok) {
+    $('feedbackText').value = ''; $('feedbackText').disabled = true;
+    $('feedbackNote').textContent = 'Sent. Thank you!';
+    $('feedbackActs').innerHTML = '<button type="button" class="go-btn" data-close>Done</button>';
+    $('feedbackActs').querySelector('button').focus();
+    return;
+  }
+  if (r && r.status !== 501 && r.status !== 404 && out?.error) { // it answered, and said why not (too long, too many at once)
+    $('feedbackNote').textContent = out.error; btn.disabled = false; btn.textContent = 'Send'; return;
+  }
+  $('feedbackNote').textContent = "Couldn't send it from here. You can post it on GitHub instead: that needs a GitHub account, and what you write is public.";
+  $('feedbackActs').innerHTML = `<a class="go-btn" href="${esc(`${FEEDBACK_ISSUES}?${new URLSearchParams({ title: 'Feedback', body: message, labels: 'feedback' })}`)}" target="_blank" rel="noopener">Post on GitHub ↗</a><button type="submit" class="tab opt" id="feedbackSend">Try again</button>`;
+});
+
 // ---------- sheets ----------
 const sheets = () => document.querySelectorAll('dialog.sheet');
 function openSheet(id, opener) {
