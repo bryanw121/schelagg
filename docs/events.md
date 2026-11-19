@@ -164,3 +164,11 @@ npm run load:events       # load public/data/events.json into DATABASE_URL
 node scripts/geocode-events.mjs --dry   # preview coordinates for the feed's events
 node --test test/events.test.mjs test/event-venues.test.mjs
 ```
+
+## When
+
+The When pill on Events opens a sheet: a day (any, today, tomorrow, this weekend, or a date) and a time of day
+(morning, afternoon, evening, or a From and To). Links carry it as `?on=YYYY-MM-DD&from=HH:MM&to=HH:MM`. An event
+that lists hours shows when they overlap the window; one that lists only dates shows on its days, marked "Hours
+not listed". The list and the map use the same filters. Sports has the same time pill on open play (the day strip
+picks the day); the two tabs never mix. The rules are pure in `public/when.js`.

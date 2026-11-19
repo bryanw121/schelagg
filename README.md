@@ -20,6 +20,19 @@ links for Austin Pickle Ranch and Eastside are shown separately from actual sess
 The ordinary scrape publishes pickleball in the regional index, occurrence feed and `.ics` calendar.
 No new API key or database migration is required. Courts remain volleyball-only in this pilot.
 
+## Tenets
+
+Two rules decide design questions here. When a change trades against one of them, the tenet wins.
+
+1. **Fewest taps.** A person gets what they came for with as few interactions as possible. Every screen shows one
+   kind of thing (Events or one sport, never both mixed), opens on a useful default (their city, today), and
+   filters apply the moment they're tapped. A new control has to earn its place: if it adds a step for everyone
+   to help a few, it goes in a sheet, not on the page.
+2. **Consistent fetching.** The same source read a week apart gives the same kind of result. Reading is done by
+   deterministic code (adapters and fixed rules, tested against saved pages), never by something that may answer
+   differently each time. A source that fails keeps its last good rows, a source whose count swings is flagged
+   rather than published silently, and one feed never drops another feed's rows.
+
 Hosted on GitHub Pages. Everything runs on GitHub Actions; the only optional extras are a Postgres database on Neon
 (see [Database (Neon)](#database-neon)) and the Vercel API.
 

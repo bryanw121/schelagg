@@ -1,3 +1,4 @@
+import { inWindow } from './when.js';
 // The Events view's pure helpers (public/app.js imports these; node tests import them too,
 // so nothing here may touch the DOM or the network). The feed is public/data/events.json:
 // { feedVersion, generatedAt, events: [{ id, category, title, venue, area, city, startDate,
@@ -187,12 +188,17 @@ export function weekendRange(today) {
   return { from: today > fri ? today : fri, to: addDays(fri, 2) };
 }
 
-/** The filters: a kind (or all), tags (all must match), and "this weekend" (on any day of it). */
-export function filterEvents(events, { kind = 'all', tags = [], weekend = false } = {}, today) {
+/**
+ * The filters: a kind (or all), tags (all must match), "this weekend" (on any day of it), one
+ * day (on that day), and a time window (hours overlap it; events that list no hours stay).
+ */
+export function filterEvents(events, { kind = 'all', tags = [], weekend = false, day = null, window = null } = {}, today) {
   const wk = weekend ? weekendRange(today) : null;
   return (events ?? []).filter((e) => (kind === 'all' || eventKind(e) === kind)
     && tags.every((g) => eventTags(e).includes(g))
-    && (!wk || (e.startDate <= wk.to && lastDay(e) >= wk.from)));
+    && (!wk || (e.startDate <= wk.to && lastDay(e) >= wk.from))
+    && (!day || (e.startDate <= day && lastDay(e) >= day))
+    && inWindow(e.startTime, e.endTime, window));
 }
 
 /** The left column of an event card: "Thru / Nov 23" when on now, "Sat / Nov 21", or "Nov 19 / to Nov 22". */

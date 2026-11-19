@@ -1332,8 +1332,11 @@ test('site: Events filters: the sheet picks a kind and tags, This weekend narrow
   // Clear filters, then This weekend: on Sunday it's just today.
   await page.locator('#eventsCount [data-evclear]').click();
   assert.equal(await page.locator('#eventsCount').textContent(), '');
-  await page.locator('#eventCats [data-evweekend]').click();
-  assert.equal(await page.locator('#eventCats [data-evweekend]').getAttribute('aria-pressed'), 'true');
+  await page.locator('#whenBtn').click();
+  await page.locator('#whenSheet [data-evday="weekend"]').click();
+  assert.equal(await page.locator('#whenSheet [data-evday="weekend"]').getAttribute('aria-pressed'), 'true');
+  await page.locator('#whenSheet .go-btn').click();
+  assert.equal(await page.locator('#whenBtn').textContent(), 'This weekend ▾');
   assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Sunday Pop-up', 'Autumn Market', 'Matcha Cart']);
   assert.equal(new URL(page.url()).searchParams.get('weekend'), '1');
   // Links open with their filters; an old ?cat= link still works (asian-inspired is a tag now).
@@ -1563,5 +1566,61 @@ test('site: Events on a phone: header, filters and Show more fit; tap targets ar
   await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
   const row = await lastRow.evaluate((el) => { const r = el.getBoundingClientRect(); return { bottom: r.bottom }; });
   assert.ok(row.bottom <= (await box('#layout .fab')).top, '390px map: the last place row scrolls clear of the FAB');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: When on Events: a day and a time of day narrow the list, rows say how they fit, links carry it', async () => {
+  await open({ events: EVENTS, url: '/?view=events&on=2026-10-28&from=17:00&to=24:00', waitFor: '#events .row' });
+  assert.equal(await page.locator('#whenBtn').textContent(), 'Wed, Oct 28 · Evening ▾');
+  const evening = await page.locator('#events .row .title').allTextContents();
+  assert.ok(evening.includes('Night Market'), 'the 5pm market is on that evening');
+  assert.match(await page.locator('#eventsCount').textContent(), /^\d+ of 12 events · Wed, Oct 28 · Evening · Clear filters$/);
+  // Autumn Market runs 10am to 6pm on that day: it overlaps the evening and says so.
+  assert.equal(await page.locator('#events .row', { hasText: 'Autumn Market' }).locator('.fit').textContent(), 'Started at 10am');
+  // Morning instead: the evening market goes, the day stays.
+  await page.locator('#whenBtn').click();
+  assert.equal(await page.locator('#whenSheet [data-time="evening"]').getAttribute('aria-pressed'), 'true');
+  await page.locator('#whenSheet [data-time="morning"]').click();
+  await page.locator('#whenSheet .go-btn').click();
+  assert.equal(await page.locator('#whenBtn').textContent(), 'Wed, Oct 28 · Morning ▾');
+  assert.ok(!(await page.locator('#events .row .title').allTextContents()).includes('Night Market'));
+  assert.equal(new URL(page.url()).searchParams.get('from'), '00:00');
+  assert.equal(new URL(page.url()).searchParams.get('to'), '12:00');
+  // Clear filters puts everything back.
+  await page.locator('#eventsCount [data-evclear]').click();
+  assert.equal(await page.locator('#whenBtn').textContent(), 'When ▾');
+  assert.equal(new URL(page.url()).searchParams.has('on'), false);
+  assert.equal(new URL(page.url()).searchParams.has('from'), false);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: What time on Sports: open play narrows to the window; leagues ignore it', async () => {
+  const at = (id, start, end) => ({ ...SESSIONS[0], id, title: `Open gym ${id}`, date: TODAY, days: undefined, start, end });
+  await open({ schedule: { ...SCHEDULE, sessions: [at('am', '09:00', '11:00'), at('pm', '17:00', '19:00'), at('late', '20:00', '22:00')] }, url: '/?view=openplay', clock: new Date('2026-10-25T12:00:00Z') });
+  const btn = page.locator('#timeBtn');
+  assert.equal(await btn.textContent(), 'Any time ▾');
+  assert.equal(await rows().count(), 3);
+  await btn.click();
+  assert.equal(await page.locator('#whenSheetTitle').textContent(), 'What time?');
+  assert.equal(await page.locator('#whenSheet [data-evday]').count(), 0, 'the day strip picks the day');
+  await page.locator('#whenFrom').fill('14:00');
+  await page.locator('#whenTo').fill('18:00');
+  await page.locator('#whenTo').blur();
+  assert.equal(await page.locator('#whenSheet .go-btn').textContent(), 'Show 1 session');
+  await page.locator('#whenSheet .go-btn').click();
+  assert.equal(await btn.textContent(), '2pm–6pm ▾');
+  assert.deepEqual(await titles(), ['Open gym pm']);
+  assert.equal(await rows().locator('.fit').textContent(), 'Runs past 6pm');
+  assert.equal(new URL(page.url()).searchParams.get('from'), '14:00');
+  await btn.click();
+  await page.locator('#whenSheet [data-time="any"]').click();
+  await page.keyboard.press('Escape');
+  assert.equal(await rows().count(), 3);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: Events links never name a sport', async () => {
+  await open({ events: EVENTS, url: '/?view=events&sport=pickleball', waitFor: '#events .row' });
+  assert.equal(new URL(page.url()).searchParams.has('sport'), false);
   assert.deepEqual(pageErrors, []);
 });

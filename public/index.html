@@ -24,6 +24,7 @@
       <div class="chips-row">
         <div class="seg" role="group" aria-label="What to find" id="calendarModes"></div>
         <button type="button" id="levelBtn" class="pill-btn chip-btn" data-sheet="levelSheet" aria-haspopup="dialog" hidden></button>
+        <button type="button" id="timeBtn" class="pill-btn chip-btn" data-sheet="whenSheet" aria-haspopup="dialog" hidden></button>
       </div>
     </div>
   </div>
@@ -40,6 +41,12 @@
   <div class="sheet-in">
     <div class="sheet-head"><h2 id="eventsSheetTitle">Events</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
     <div class="opts" role="group" aria-label="Kind and tags" id="eventsOpts"></div>
+  </div>
+</dialog>
+<dialog class="sheet" id="whenSheet" aria-labelledby="whenSheetTitle">
+  <div class="sheet-in">
+    <div class="sheet-head"><h2 id="whenSheetTitle">When?</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
+    <div class="opts" id="whenOpts"></div>
   </div>
 </dialog>
 <dialog class="sheet" id="levelSheet" aria-labelledby="levelSheetTitle">

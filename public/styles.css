@@ -416,8 +416,8 @@ header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
 .ev-away p{margin:0;color:var(--muted);font-size:14px;max-width:52ch}
 .ev-away .signup{border:0;cursor:pointer;min-height:44px}
 #eventsCount:empty{display:none}
-#eventsOpts .opt-h{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
-#eventsOpts .tab.opt[aria-pressed="true"] .lbl small,#eventsOpts .tab.opt[aria-pressed="true"] .n{color:inherit;opacity:.8}
+.opts .opt-h{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
+#whenOpts .tab.opt[aria-pressed="true"] .lbl small,#eventsOpts .tab.opt[aria-pressed="true"] .lbl small,#eventsOpts .tab.opt[aria-pressed="true"] .n{color:inherit;opacity:.8}
 .go-btn{margin-top:6px;min-height:48px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font:700 15px var(--body);cursor:pointer;touch-action:manipulation}
 
 /* The place sheet (renderPlaceSheet): what's on at the picked pin, over the map. A bottom
@@ -468,3 +468,13 @@ img.av{flex:none;border-radius:50%;object-fit:cover;background:var(--line)}
 .pin.city{border-radius:16px;padding:8px 12px;align-items:center;text-align:center;font-size:13px;z-index:2;max-width:none}
 .pin.city b{max-width:none}
 .pin.city.quiet{background:var(--panel);color:var(--muted);border:1px solid var(--line);box-shadow:none}
+
+/* When sheet: a day (Events) and a time of day; quick options two across, then a date or From/To of one's own. */
+.when-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.when-range{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.when-field{display:grid;gap:4px;border:1px solid var(--line);border-radius:12px;padding:8px 12px;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.when-field.on,.when-range.on .when-field{border-color:var(--accent)}
+.when-field input{border:0;background:none;color:var(--ink);font:600 16px var(--body);min-height:28px;width:100%;padding:0;color-scheme:inherit}
+.when-field:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+.when-field input:focus{outline:0}
+.fit{font:600 12px var(--mono);color:var(--muted)}
