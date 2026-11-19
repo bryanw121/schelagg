@@ -594,3 +594,16 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
 /* An event with no hours from its source says where they are, quietly. */
 .time small.no-hrs{font-weight:500;font-size:11px;white-space:normal;max-width:9ch;margin-left:auto;text-align:right;line-height:1.25}
 .place-sheet .pop-t small.pop-hrs{color:var(--ink);font-weight:600;font-size:13px}
+
+/* Loading: one spinner everywhere something is being fetched (lists, the map's tiles, finding your location). */
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin,.loading::before,body.locating #nearest::after,body.locating [data-evnear]::after{content:"";display:inline-block;flex:none;width:16px;height:16px;border-radius:50%;border:2px solid color-mix(in srgb,currentColor 25%,transparent);border-top-color:currentColor;animation:spin .7s linear infinite}
+.loading{display:flex;align-items:center;gap:10px}
+.map-loading{position:absolute;z-index:3;left:50%;top:10px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border-radius:999px;background:var(--panel);color:var(--ink);border:1px solid var(--line);font:600 13px var(--body);box-shadow:0 2px 10px rgba(0,0,0,.25);pointer-events:none;white-space:nowrap}
+.map-loading[hidden]{display:none}
+body.layout-map.map-big .map-loading{position:fixed;z-index:21;top:calc(16px + env(safe-area-inset-top,0px))}
+body.locating [data-evnear]::after{margin-left:8px;width:14px;height:14px}
+body.locating #nearest{position:relative}
+body.locating #nearest>*{opacity:.25}
+body.locating #nearest::after{position:absolute;inset:0;margin:auto;width:18px;height:18px}
+@media (prefers-reduced-motion:reduce){.spin,.loading::before,body.locating #nearest::after,body.locating [data-evnear]::after{animation-duration:2.4s}}

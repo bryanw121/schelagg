@@ -1921,3 +1921,23 @@ test('site: the map\'s place sheet and rows show an event\'s hours, or say where
   assert.equal(await page.locator(`#eventsOpts [data-evtopic="${id}"]`).getAttribute('aria-pressed'), 'false');
   assert.deepEqual(pageErrors, []);
 });
+
+test('site: loading is shown: a spinner on the map while tiles download (gone once drawn), and on 📍 while the phone is found', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  await page.waitForFunction(() => window.__schelaggMap.loaded() && document.getElementById('mapLoading').hidden);
+  // Tiles being asked for: the chip appears after a moment, and goes when the map is idle again.
+  await page.evaluate(() => { window.__schelaggMap.areTilesLoaded = () => false; window.__schelaggMap.fire('dataloading'); });
+  await page.locator('#mapLoading').waitFor({ state: 'visible' });
+  assert.equal((await page.locator('#mapLoading').textContent()).trim(), 'Loading map…');
+  assert.equal(await page.locator('#mapLoading .spin').evaluate((e) => getComputedStyle(e).animationName), 'spin');
+  await page.evaluate(() => window.__schelaggMap.fire('idle'));
+  assert.equal(await page.locator('#mapLoading').isHidden(), true);
+  // Location: a lookup that hasn't answered yet spins on 📍 and stops when it does.
+  await page.evaluate(() => { navigator.geolocation.getCurrentPosition = (ok, fail) => { window.__geoFail = fail; }; });
+  await page.locator('#nearest').click();
+  assert.equal(await page.evaluate(() => document.body.classList.contains('locating')), true);
+  assert.equal(await page.locator('#nearest').getAttribute('aria-busy'), 'true');
+  await page.evaluate(() => window.__geoFail());
+  assert.equal(await page.evaluate(() => document.body.classList.contains('locating')), false);
+  assert.deepEqual(pageErrors, []);
+});
