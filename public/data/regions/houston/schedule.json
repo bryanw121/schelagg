@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T14:16:47.197Z",
+  "generatedAt": "2026-11-19T17:08:39.224Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,8 +67,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T14:13:44.834Z",
-      "count": 21,
+      "checkedAt": "2026-11-19T17:05:34.687Z",
+      "count": 24,
       "warnings": [
         "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
@@ -77,6 +77,9 @@
         "reclub-J533LP: no surface",
         "reclub-EEUP4M: no surface",
         "reclub-K9D10X: no surface",
+        "reclub-T3U8XJ: no surface",
+        "reclub-MCRPQ4: no surface",
+        "reclub-K9XO8G: no surface",
         "reclub-WQR08J: no surface",
         "reclub-Y2CRUB: no surface",
         "reclub-R9HE9A: no surface",
@@ -103,7 +106,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/houston-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T07:47:16.987Z",
+      "checkedAt": "2026-11-19T17:05:39.615Z",
       "count": 0
     },
     {
@@ -116,7 +119,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-19T14:13:44.900Z",
+      "checkedAt": "2026-11-19T17:05:39.944Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -279,7 +282,7 @@
       "date": "2026-11-23",
       "start": "19:00",
       "end": "22:00",
-      "title": "45 pm)",
+      "title": "50 pm)",
       "venue": "Katy Sports Center",
       "type": "Open play",
       "level": "All levels",
@@ -300,11 +303,86 @@
       "status": "scheduled"
     },
     {
+      "id": "reclub-T3U8XJ",
+      "date": "2026-11-25",
+      "start": "14:00",
+      "end": "17:00",
+      "title": "Wednesday Intermediate Level + Up INDOOR Volleyball (2 Courts) ($10) @ Katy Sports (2 pm - 5 pm)",
+      "venue": "Katy Sports Center",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "capacity": 40,
+      "signup": {
+        "url": "https://reclub.co/m/T3U8XJ",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/T3U8XJ",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-19",
+      "venueId": "src-katy-sports-center",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-MCRPQ4",
+      "date": "2026-11-27",
+      "start": "19:30",
+      "end": "22:30",
+      "title": "Friday Sand Volleyball ($10/person) @WAKEFIELD CROWBAR",
+      "venue": "Wakefield Crowbar",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "capacity": 40,
+      "signup": {
+        "url": "https://reclub.co/m/MCRPQ4",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/MCRPQ4",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-19",
+      "venueId": "src-wakefield-crowbar",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-K9XO8G",
+      "date": "2026-11-28",
+      "start": "16:00",
+      "end": "18:00",
+      "title": "50 pm)",
+      "venue": "The Zone",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "capacity": 40,
+      "signup": {
+        "url": "https://reclub.co/m/K9XO8G",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/K9XO8G",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-19",
+      "venueId": "src-the-zone",
+      "status": "scheduled"
+    },
+    {
       "id": "reclub-WQR08J",
       "date": "2026-11-30",
       "start": "19:00",
       "end": "22:00",
-      "title": "45 pm)",
+      "title": "MONDAY Intermediate Level + Up INDOOR Volleyball (2 Courts) ($10) @ Katy Sports",
       "venue": "Katy Sports Center",
       "type": "Open play",
       "level": "All levels",
@@ -670,6 +748,15 @@
       "address": "535 Applewhite Drive, Katy, TX 77450, USA",
       "lat": 29.77552,
       "lng": -95.754074,
+      "region": "houston"
+    },
+    {
+      "id": "src-wakefield-crowbar",
+      "name": "Wakefield Crowbar",
+      "city": null,
+      "address": "954 Wakefield Drive, Houston, TX 77018, USA",
+      "lat": 29.821991,
+      "lng": -95.42305,
       "region": "houston"
     },
     {

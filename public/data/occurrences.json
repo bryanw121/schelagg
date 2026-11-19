@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-19T14:16:47.197Z",
+  "generatedAt": "2026-11-19T17:08:39.224Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -27,35 +27,6 @@
         "type": "Open play"
       },
       "venue_id": "src-victory-forest-community-center",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "openplay-pickle-pit-stop-20b4d935a4ce0c26",
-      "session_id": "openplay-pickle-pit-stop-20b4d935a4ce0c26",
-      "source_id": "austin-club-openplay",
-      "sport": "pickleball",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "title": "Open Play- Intermediate (Suggested DUPR 3.00-3.99)",
-      "venue": "Pickle Pit Stop",
-      "city": "Austin",
-      "level": "3.00–3.99",
-      "price": "$18 / person (venue rate; confirm)",
-      "starts_at": "2026-11-19T12:00:00.000Z",
-      "ends_at": "2026-11-19T14:00:00.000Z",
-      "signup_url": "https://app.courtreserve.com/Online/Events/Details/15273/O5NEQEA15273869?resId=60942251",
-      "signup_label": "Book with venue",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 19, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play",
-        "priceSource": "https://picklepitstop.com/book-your-session/courtreserve-open-play-calendar/",
-        "scheduleBasis": "directory_listing"
-      },
-      "venue_id": "austin-pickle-pit-stop",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -9472,7 +9443,7 @@
       "sport": "volleyball",
       "region": "houston",
       "timezone": "America/Chicago",
-      "title": "45 pm)",
+      "title": "50 pm)",
       "venue": "Katy Sports Center",
       "city": null,
       "level": "All levels",
@@ -12220,6 +12191,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-pickle-pit-stop",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-T3U8XJ",
+      "session_id": "reclub-T3U8XJ",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Wednesday Intermediate Level + Up INDOOR Volleyball (2 Courts) ($10) @ Katy Sports (2 pm - 5 pm)",
+      "venue": "Katy Sports Center",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-25T20:00:00.000Z",
+      "ends_at": "2026-11-25T23:00:00.000Z",
+      "signup_url": "https://reclub.co/m/T3U8XJ",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "canceled": false,
+      "verified_at": "2026-11-19",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 40
+      },
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -15016,6 +15014,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "reclub-MCRPQ4",
+      "session_id": "reclub-MCRPQ4",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Friday Sand Volleyball ($10/person) @WAKEFIELD CROWBAR",
+      "venue": "Wakefield Crowbar",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-28T01:30:00.000Z",
+      "ends_at": "2026-11-28T04:30:00.000Z",
+      "signup_url": "https://reclub.co/m/MCRPQ4",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "canceled": false,
+      "verified_at": "2026-11-19",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 40
+      },
+      "venue_id": "src-wakefield-crowbar",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "volleyworld-2026-11-27-20:30-georgetown",
       "session_id": "volleyworld-2026-11-27-20:30-georgetown",
       "source_id": "volleyworld",
@@ -15634,6 +15659,33 @@
         "scheduleBasis": "directory_listing"
       },
       "venue_id": "austin-eastside-paddle",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-K9XO8G",
+      "session_id": "reclub-K9XO8G",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "50 pm)",
+      "venue": "The Zone",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-28T22:00:00.000Z",
+      "ends_at": "2026-11-29T00:00:00.000Z",
+      "signup_url": "https://reclub.co/m/K9XO8G",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "canceled": false,
+      "verified_at": "2026-11-19",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 40
+      },
+      "venue_id": "src-the-zone",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -16691,7 +16743,7 @@
       "sport": "volleyball",
       "region": "houston",
       "timezone": "America/Chicago",
-      "title": "45 pm)",
+      "title": "MONDAY Intermediate Level + Up INDOOR Volleyball (2 Courts) ($10) @ Katy Sports",
       "venue": "Katy Sports Center",
       "city": null,
       "level": "All levels",
