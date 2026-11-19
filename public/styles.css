@@ -616,3 +616,17 @@ body.locating #nearest::after{position:absolute;inset:0;margin:auto;width:18px;h
 .fb-trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 a.go-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
 .go-btn .spin{margin-right:6px;vertical-align:-3px}
+
+/* Footer: add a source. */
+.foot-act{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.foot-q{font-size:13px;color:var(--muted);flex:1 1 100%}
+.fb-field input[type=text],.fb-field select{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;padding:0 12px;background:var(--bg);color:var(--ink);font:600 16px var(--body)}
+.fb-field input[type=text]:focus-visible,.fb-field select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.add-seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.add-seg .tab.opt{justify-content:center;text-align:center}
+.add-res{display:grid;gap:4px;border-radius:12px;padding:12px;font-size:14px;border:1px solid var(--line)}
+.add-res[hidden]{display:none}
+.add-res b{font-size:15px;display:flex;align-items:center;gap:8px}
+.add-res.ok{background:color-mix(in srgb,var(--ok) 12%,var(--panel));border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.add-res.have,.add-res.busy{background:color-mix(in srgb,var(--accent) 10%,var(--panel));border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.add-res.no{background:color-mix(in srgb,var(--warn) 12%,var(--panel));border-color:color-mix(in srgb,var(--warn) 45%,transparent)}

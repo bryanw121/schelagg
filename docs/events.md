@@ -225,3 +225,14 @@ Loading is always shown with the same spinner: beside "Loading…" in a list, in
 ## Feedback
 
 "Send feedback" at the bottom of every page opens a short box (no account, no email). `api/feedback.js` files it as a GitHub issue labelled `feedback`, using the Vercel secret `GITHUB_FEEDBACK_TOKEN` (fine-grained token, Issues: read and write) on the repository in `FEEDBACK_REPO` (default this one; issues here are public, so point it at a private repository to keep feedback private). Without the token, or on the GitHub Pages copy, the sheet offers the same text as a new GitHub issue and says that route is public and needs an account.
+
+## Add a source
+
+"Add a source" in the footer takes a name or a link, what it is for (Events or the current sport) and the city. `POST /api/add-source` runs `checkSource` (`lib/add-source.js`) while the person waits:
+
+1. Already read (a club, host, group, page or venue in the config)? Says so.
+2. A Reclub club, Sweatpals host or Meetup group, by link or by trying the name as an account name, with this sport in this region? Added.
+3. For Events, a link whose page carries event data the listing reader keeps (robots.txt checked first)? Added.
+4. Any other link: follows it to a platform page from step 2, or says why not (sign-in only platform, nothing readable, site closed to automated reading).
+
+"Added" means an issue labelled `add-source` was opened with `GITHUB_FEEDBACK_TOKEN`; the "Add a source" workflow (only for issues opened by the repository owner, which is who the token is) runs the same check again on GitHub's side, writes the change with `applyPlan` (`config/regions/<id>/sources.json` or `config/events.json`), runs the tests and pushes. Sources that would need a new reader are filed as `source-request`. Without the token nothing is saved and the sheet hands the request to feedback. By hand: `node scripts/add-source.mjs '<name or link>' <events|sport> <region> [--dry]`.

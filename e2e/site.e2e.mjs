@@ -1977,3 +1977,46 @@ test('site: Send feedback in the footer: sends a few words, says so, and offers 
   await page.locator('#feedbackNote', { hasText: 'Too many at once' }).waitFor();
   assert.deepEqual(pageErrors, []);
 });
+
+test('site: Add a source in the footer: checks a name or link while you wait and says added, already there, or why not', async () => {
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  const asks = [];
+  let answer = null;
+  await page.route('**/api/add-source', async (route) => { asks.push(JSON.parse(route.request().postData())); await new Promise((r) => setTimeout(r, 150)); await route.fulfill({ status: answer.http ?? 200, contentType: 'application/json', body: JSON.stringify(answer.body) }); });
+  await page.locator('#addSourceBtn').click();
+  assert.equal(await page.locator('#addSheet').isVisible(), true);
+  assert.equal(await page.locator('#addFor [aria-pressed="true"]').textContent(), 'Events', 'filled in from the tab you were on');
+  assert.equal(await page.locator('#addRegion').inputValue(), 'austin');
+  await page.locator('#addSend').click();
+  assert.match(await page.locator('#addRes').textContent(), /Type a name or paste a link first/);
+  assert.equal(asks.length, 0);
+  // Added.
+  answer = { body: { status: 'ok', saved: true, title: 'Added. Found 6 events coming up.', detail: "They'll be on Skelly within the hour.", found: 6 } };
+  await page.locator('#addInput').fill('https://market.example/events');
+  await page.locator('#addSend').click();
+  await page.locator('#addRes.busy').waitFor();
+  assert.match(await page.locator('#addRes').textContent(), /Checking https:\/\/market\.example\/events…/);
+  await page.locator('#addRes.ok').waitFor();
+  assert.match(await page.locator('#addRes').textContent(), /Added\. Found 6 events coming up\./);
+  assert.deepEqual(asks[0], { input: 'https://market.example/events', target: 'events', region: 'austin', website: '' });
+  // Another one, for a sport: already there, then a no that asks for a link.
+  await page.locator('#addAnother').click();
+  await page.locator('#addFor [data-addfor="volleyball"]').click();
+  answer = { body: { status: 'have', title: 'We already have that one.', detail: "It's read through Reclub.", found: 0 } };
+  await page.locator('#addInput').fill('Vex Volleyball');
+  await page.locator('#addSend').click();
+  await page.locator('#addRes.have').waitFor();
+  assert.equal(asks[1].target, 'volleyball');
+  answer = { body: { status: 'no', title: "Couldn't add it.", detail: "Couldn't find a page for that name on Reclub, Sweatpals or Meetup. Paste a link to its schedule and it will be checked right away.", needsLink: true, found: 0 } };
+  await page.locator('#addInput').fill('Some Gym');
+  await page.locator('#addSend').click();
+  await page.locator('#addRes.no').waitFor();
+  assert.equal(await page.evaluate(() => document.activeElement.id), 'addInput', 'ready for the link');
+  // Checked out but not saved (or no API on this copy): hand it to feedback, already written.
+  answer = { body: { status: 'ok', saved: false, title: 'It checks out: 3 found.', detail: "But it couldn't be saved from here just now. Send it as feedback and it will be added.", found: 3 } };
+  await page.locator('#addSend').click();
+  await page.locator('#addToFeedback').click();
+  assert.equal(await page.locator('#feedbackSheet').isVisible(), true);
+  assert.equal(await page.locator('#feedbackText').inputValue(), 'Please add this source: Some Gym (for Volleyball, Austin, TX)');
+  assert.deepEqual(pageErrors, []);
+});
