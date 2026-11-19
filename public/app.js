@@ -913,6 +913,7 @@ const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'vol
 function render() {
   syncUrl(); renderRegion(); renderTopTabs(); renderSports();
   // Events: the feed is the source of truth, so the view works without the day's schedule.
+  renderFiltersSummary();
   if (state.section === 'events') { $('timeBtn').hidden = true; $('searchWrap').hidden = true; renderEvents(); renderMap(); fitHeader(); return; }
   $('eventsPanel').hidden = true;
   $('filters').hidden = false; // Events hides the day strip and the Open play / Courts switch; Sports brings them back
@@ -1258,6 +1259,26 @@ function headsUpHtml() {
 
 // ---------- header height ----------
 /** The header's height, so on a phone the map can end at the bottom of the screen (where the List button floats). */
+// Phones, Sports map: the day strip, the Open play / Court bookings switch and the filter pills
+// fold into one line that says what is chosen ("Today · Open play · Sand"), so the map isn't
+// pushed down the screen; a tap opens them, another closes them.
+let filtersOpen = false;
+function renderFiltersSummary() {
+  const b = $('filtersSummary');
+  b.hidden = state.section === 'events';
+  document.body.classList.toggle('filters-open', filtersOpen);
+  if (b.hidden) return;
+  const iso = WEEK[state.di];
+  const day = state.di === 0 ? 'Today' : state.di === 1 ? 'Tomorrow' : `${DAYS[dowOf(iso)]} ${+iso.slice(8)}`;
+  const views = { openplay: 'Open play', booking: 'Court bookings', leagues: 'Leagues', tournaments: 'Tournaments' };
+  const dayView = !PROGRAM_VIEWS[state.view];
+  const tab = dayView && state.tab !== 'all' ? tabsOf(state.sport)[state.tab]?.label : '';
+  const parts = [dayView ? day : '', views[state.view] ?? '', tab, state.view === 'openplay' && state.win ? windowLabel(state.win) : ''].filter(Boolean);
+  b.innerHTML = `<span class="fs-t">${parts.map(esc).join(' · ')}</span><span class="fs-a">${filtersOpen ? 'Done' : 'Change'} <span class="caret" aria-hidden="true">${filtersOpen ? '▴' : '▾'}</span></span>`;
+  b.setAttribute('aria-expanded', String(filtersOpen));
+  b.setAttribute('aria-label', `${parts.join(', ')}. ${filtersOpen ? 'Hide' : 'Change'} day and filters`);
+}
+$('filtersSummary').addEventListener('click', () => { filtersOpen = !filtersOpen; renderFiltersSummary(); fitHeader(); mapView?.resize(); });
 function fitHeader() { document.documentElement.style.setProperty('--hdr', `${document.querySelector('header').offsetHeight}px`); }
 addEventListener('resize', fitHeader);
 /** A failed load: show its error in the list, not a map of the last region. */

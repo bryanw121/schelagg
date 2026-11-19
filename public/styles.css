@@ -517,3 +517,19 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
 }
 /* The event a shared link points at. */
 .ev-row.linked{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
+
+/* Phones: "Expand map" is the whole screen (over the header too), with Show places at the bottom. */
+.filters-summary{display:none}
+@media (max-width:699px){
+  body.map-big{overflow:hidden}
+  body.layout-map.map-big .map-box{position:fixed;inset:0;z-index:20;background:var(--bg)}
+  body.layout-map.map-big .map{height:100dvh;min-height:0;border-radius:0}
+  body.layout-map.map-big .map .maplibregl-ctrl-top-right{margin-top:calc(10px + env(safe-area-inset-top,0px))}
+  body.layout-map.map-big .map-size{left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));height:48px;padding:0 20px;font-size:15px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+  body.layout-map.map-big .place-sheet{border-radius:18px 18px 0 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  /* Sports map: the day and filters fold into one line until it is tapped. */
+  body.layout-map .filters-summary:not([hidden]){display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:600 14px var(--body);text-align:left;cursor:pointer;touch-action:manipulation}
+  .filters-summary .fs-t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .filters-summary .fs-a{flex:none;color:var(--accent);font-weight:700;font-size:13px}
+  body.layout-map:not(.filters-open) #filters{display:none}
+}

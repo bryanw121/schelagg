@@ -1711,7 +1711,9 @@ test('site: on a phone the map takes the top of the screen with its places under
   assert.ok((await btn.evaluate((e) => e.getBoundingClientRect().height)) >= 40);
   await btn.click();
   const big = await box();
-  assert.ok(big.h > half.h + 100, `expanded: the map fills the screen (${big.h}px)`);
+  assert.equal(big.h, 760, 'expanded: the map is the whole screen, over the header too');
+  assert.equal(await page.evaluate(() => Math.round(document.getElementById('map').getBoundingClientRect().top)), 0);
+  assert.equal(await page.evaluate(() => { const b = document.getElementById('mapSize').getBoundingClientRect(); return document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2)?.closest('#mapSize') != null; }), true, 'Show places is on top and tappable');
   assert.match((await btn.textContent()).trim(), /^☰ Show places · \d+$/);
   await page.reload(); await page.locator('#map .pin').first().waitFor();
   assert.equal(await page.evaluate(() => document.body.classList.contains('map-big')), true, 'the choice is remembered');
@@ -1756,5 +1758,33 @@ test('site: links carry what is on screen: the view, the day, the open place and
   assert.equal(new URL(page.url()).searchParams.has('place'), false);
   await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: mapLink.pathname + mapLink.search, waitFor: '#placeSheet:not([hidden])' });
   assert.equal(await page.locator('#map .pin.sel').getAttribute('data-pin'), 'event:30.26720,-97.77290');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: on a phone the Sports map folds the day and filters into one line; a tap opens them', async () => {
+  const INDEX = { generatedAt: SCHEDULE.generatedAt, regions: [{ id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago', center: [30.27, -97.74], sports: ['volleyball'] }] };
+  const sched = structuredClone(SCHEDULE);
+  sched.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' };
+  sched.venues = [{ id: 'gym', name: 'Austin North Gym', short: 'North Gym', city: 'Austin', lat: 30.4, lng: -97.7, bookingLink: { sport: 'volleyball', url: 'https://club.podplay.app/book/main', price: '$30/hr' } }];
+  sched.sessions = [];
+  await open({ index: INDEX, regions: { austin: sched }, maps: { maps: [{ region: 'austin', bbox: [-98.05, 30.1, -97.47, 30.78] }] }, url: '/?view=booking&layout=map', waitFor: '#map .pin', touch: true });
+  await page.setViewportSize({ width: 390, height: 700 });
+  const sum = page.locator('#filtersSummary');
+  assert.equal((await sum.locator('.fs-t').textContent()).trim(), 'Today · Court bookings');
+  assert.equal(await page.locator('#days').isVisible(), false, 'the day strip is folded away');
+  const hdr = () => page.evaluate(() => document.querySelector('header').offsetHeight);
+  const folded = await hdr();
+  assert.ok(folded <= 170, `the header is short (${folded}px)`);
+  assert.ok((await page.evaluate(() => document.getElementById('map').getBoundingClientRect().top)) < 350, 'the map starts high on the screen');
+  await sum.click();
+  assert.equal(await sum.getAttribute('aria-expanded'), 'true');
+  await page.locator('#days [data-di="1"]').click();
+  assert.equal((await sum.locator('.fs-t').textContent()).trim(), 'Tomorrow · Court bookings');
+  await sum.click();
+  assert.equal(await hdr(), folded);
+  // The list view and a computer keep the day strip in view.
+  await page.locator('#layout [data-layout="list"]').click();
+  assert.equal(await page.locator('#days').isVisible(), true);
+  assert.equal(await sum.isVisible(), false);
   assert.deepEqual(pageErrors, []);
 });
