@@ -478,3 +478,5 @@ img.av{flex:none;border-radius:50%;object-fit:cover;background:var(--line)}
 .when-field:focus-within{outline:2px solid var(--accent);outline-offset:1px}
 .when-field input:focus{outline:0}
 .fit{font:600 12px var(--mono);color:var(--muted)}
+/* Small text links (Source ↗, Google Maps ↗, "8 sources") get a finger-sized tap area on touch screens without moving the layout. */
+@media (pointer:coarse){.src,.sources-link{display:inline-block;padding:13px 0;margin:-13px 0}}
