@@ -1309,7 +1309,7 @@ test('site: Events filters: the sheet picks a kind and tags, This weekend narrow
   await pill.click();
   const sheet = page.locator('#eventsSheet');
   assert.equal(await sheet.isVisible(), true);
-  assert.deepEqual(await sheet.locator('.tab.opt').evaluateAll((els) => els.map((e) => [e.querySelector('.lbl').firstChild.textContent, e.querySelector('.n').textContent, e.getAttribute('aria-pressed')])), [
+  assert.deepEqual(await sheet.locator('.tab.opt:not([data-evtopic])').evaluateAll((els) => els.map((e) => [e.querySelector('.lbl').firstChild.textContent, e.querySelector('.n').textContent, e.getAttribute('aria-pressed')])), [
     ['All events', '12', 'true'], ['Pop-ups', '3', 'false'], ['Seasonal', '6', 'false'], ['Asian-inspired', '3', 'false'],
   ]);
   await sheet.locator('[data-evkind="seasonal"]').click();
@@ -1432,7 +1432,7 @@ test('site: Events map: one pin per venue; a pin opens the place sheet (readable
   assert.equal(await sheet.locator('.v-name').evaluate((e) => e.firstChild.textContent), 'Zilker Park');
   assert.equal(await sheet.locator('.v-name small').textContent(), 'Austin · 2 events', 'no repeat of the name ("Zilker" is in it)');
   assert.deepEqual(await sheet.locator('.pop-item .pop-w b').allTextContents(), ['Autumn Market', 'Dia de los Muertos']);
-  assert.deepEqual(await sheet.locator('.pop-item .pop-t').allTextContents(), ['Thru Fri Oct 30', 'Sun Nov 1']);
+  assert.deepEqual(await sheet.locator('.pop-item .pop-t').allTextContents(), ['Thru Fri Oct 3010am–6pm', 'Sun Nov 1']);
   assert.equal(await sheet.locator('.pop-item a.src').first().getAttribute('href'), 'https://example.test/autumn');
   assert.match(await sheet.locator('.location .actions').textContent(), /Google Maps/);
   assert.equal(await page.locator('.maplibregl-popup').count(), 0, 'no MapLibre popup any more');
@@ -1892,4 +1892,32 @@ test('site: the Events map keeps the filter chips: When opens the same calendar 
   assert.match(await page.locator('#eventsCount').textContent(), /of \d+ events/);
   assert.ok(await page.locator('#map .pin').count() <= before);
   assert.match(page.url(), /on=\d{4}-\d\d-\d\d/);
+});
+
+test('site: the map\'s place sheet and rows show an event\'s hours, or say where they are; the Events sheet lists every tag', async () => {
+  const timed = { ...EVENTS_MAP, events: EVENTS_MAP.events.map((e, i) => (i === 0 ? { ...e, startTime: '11:00', endTime: '15:00' } : { ...e, startTime: undefined, endTime: undefined })) };
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: timed, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  await page.locator('#mapPanel .place-row').first().waitFor();
+  for (const row of await page.locator('#mapPanel .place-row').all()) {
+    await row.click();
+    await page.locator('#placeSheet .pop-item').first().waitFor();
+    for (const item of await page.locator('#placeSheet .pop-item').all()) {
+      const text = await item.textContent();
+      assert.match(text, /\d(:\d\d)?\s?(am|pm)|Hours on the (post|event page)|Hours not listed/i, `every event says when or where to find out: ${text}`);
+    }
+    await page.locator('#placeSheet .ps-x').click();
+  }
+  // The Events sheet: the search tags are there with counts; one tap filters, another clears.
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  await page.locator('#eventCats [data-sheet="eventsSheet"]').click();
+  const tags = page.locator('#eventsOpts [data-evtopic]');
+  assert.ok(await tags.count() >= 2, 'more than the one tag');
+  const first = tags.first(), id = await first.getAttribute('data-evtopic'), n = Number(await first.locator('.n').textContent());
+  await first.click();
+  assert.equal(await page.locator(`#eventsOpts [data-evtopic="${id}"]`).getAttribute('aria-pressed'), 'true');
+  assert.match(await page.locator('#eventsOpts .go-btn').textContent(), new RegExp(`^Show ${n} event`));
+  assert.match(page.url(), new RegExp(`topic=${id}`));
+  await page.locator(`#eventsOpts [data-evtopic="${id}"]`).click();
+  assert.equal(await page.locator(`#eventsOpts [data-evtopic="${id}"]`).getAttribute('aria-pressed'), 'false');
+  assert.deepEqual(pageErrors, []);
 });
