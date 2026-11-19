@@ -219,3 +219,5 @@ The site's own address is `skellyevents.com`; `schelagg.vercel.app` keeps workin
 Every event says when: its hours on the card, the map row and the place sheet, or "Hours on the post / event page" when its source gave none. Listing sites give a date only, so `scripts/events.mjs` reads each such event's own page once for its hours (`fillHours`, remembered in `public/data/event-hours.json`, at most 25 pages a run, only where robots.txt allows).
 
 The Events sheet lists every tag with its count (Asian-inspired plus the search tags: night market, vintage, food, free...); a search tag is one at a time and shows in the search box too.
+
+Loading is always shown with the same spinner: beside "Loading…" in a list, in a "Loading map…" chip over the map while its code or tiles download (after 250 ms, gone when the map is idle), and on 📍 / Near me while the phone is being located.

@@ -1450,6 +1450,17 @@ function followMap(e) {
 let shownPick = null; // the pick the place sheet was last drawn for (to move the map once per pick)
 const mapReady = () => webgl && !!region && !!maps?.maps?.some((m) => m.region === region.id);
 
+/**
+ * "Loading map…" over the map while its code or tiles download. It waits a moment before showing,
+ * so a quick load (tiles already on the phone) doesn't flash it.
+ */
+let mapBusyTimer = null;
+function mapBusy(on) {
+  const el = $('mapLoading');
+  if (!on) { clearTimeout(mapBusyTimer); mapBusyTimer = null; el.hidden = true; return; }
+  if (mapView?.loaded?.() && mapView.areTilesLoaded?.()) return;
+  if (!mapBusyTimer && el.hidden) mapBusyTimer = setTimeout(() => { mapBusyTimer = null; el.hidden = false; }, 250);
+}
 function loadMapLibs() {
   const add = (tag, attrs) => new Promise((ok, fail) => { const el = Object.assign(document.createElement(tag), attrs); el.onload = ok; el.onerror = () => fail(new Error(`${attrs.src || attrs.href} did not load`)); document.head.append(el); });
   mapLibs ??= Promise.all([
@@ -1715,7 +1726,8 @@ async function renderMap() {
   $('mapTitle').textContent = state.section === 'events' ? 'Events · upcoming' : `${state.view === 'booking' ? 'Court booking' : 'Open play'} · ${state.di === 0 ? 'Today' : fmtDate(iso)}`;
   $('mapPanel').innerHTML = mapPanelHtml(places, iso, null);
   renderPlaceSheet(places, iso);
-  try { await loadMapLibs(); } catch { $('mapPanel').insertAdjacentHTML('afterbegin', '<p class="note">The map could not load. Switch to List.</p>'); return; }
+  mapBusy(true); // the map's code, then its first tiles
+  try { await loadMapLibs(); } catch { mapBusy(false); $('mapPanel').insertAdjacentHTML('afterbegin', '<p class="note">The map could not load. Switch to List.</p>'); return; }
   const gl = window.maplibregl;
   if (!mapView) {
     const proto = new window.pmtiles.Protocol();
@@ -1744,6 +1756,8 @@ async function renderMap() {
     mapView.touchZoomRotate.disableRotation();
     mapView.addControl(new gl.NavigationControl({ showCompass: false }), 'top-right');
     mapView.on('zoomend', declutter); mapView.on('moveend', declutter);
+    // New tiles after a zoom or a pan: say so while they download ('idle' = everything asked for is drawn).
+    mapView.on('dataloading', () => mapBusy(true)); mapView.on('idle', () => mapBusy(false)); mapView.on('error', () => mapBusy(false));
     // While it zooms, a few times a second: a "+N more" pin opens up as soon as there is room.
     let lastFold = 0;
     mapView.on('zoom', () => { const t = performance.now(); if (t - lastFold > 90) { lastFold = t; declutter(); } });
@@ -1798,14 +1812,21 @@ async function renderMap() {
 $('regionPick').addEventListener('change', (e) => chooseRegion(e.target.value));
 $('nearest').addEventListener('click', () => {
   if (here) { setHere(null); render(); return; } // tapping again goes back to the usual order
+  locating(true); // finding a phone can take seconds: 📍 and Near me spin until it answers
   navigator.geolocation.getCurrentPosition((pos) => {
+    locating(false);
     setHere(pos.coords.latitude, pos.coords.longitude);
     const at = [here.lat, here.lng];
     const d = (c) => (c[0] - at[0]) ** 2 + ((c[1] - at[1]) * Math.cos((at[0] * Math.PI) / 180)) ** 2;
     const best = [...(index?.regions ?? [])].filter((r) => r.center).sort((a, b) => d(a.center) - d(b.center))[0];
     if (best && best.id !== region?.id && (index?.regions?.length ?? 0) > 1) chooseRegion(best.id); else render();
-  }, () => {}, { maximumAge: 3600e3, timeout: 10e3 });
+  }, () => locating(false), { maximumAge: 3600e3, timeout: 10e3 });
 });
+/** Mark the location buttons busy (a spinner, and said to screen readers) while the phone is being found. */
+function locating(on) {
+  document.body.classList.toggle('locating', on);
+  for (const b of [$('nearest'), document.querySelector('[data-evnear]')]) if (b) { if (on) b.setAttribute('aria-busy', 'true'); else b.removeAttribute('aria-busy'); }
+}
 
 // ---------- sheets ----------
 const sheets = () => document.querySelectorAll('dialog.sheet');
