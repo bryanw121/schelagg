@@ -1941,3 +1941,39 @@ test('site: loading is shown: a spinner on the map while tiles download (gone on
   assert.equal(await page.evaluate(() => document.body.classList.contains('locating')), false);
   assert.deepEqual(pageErrors, []);
 });
+
+test('site: Send feedback in the footer: sends a few words, says so, and offers GitHub when it cannot send from here', async () => {
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  const posts = [];
+  let answer = { status: 200, body: { ok: true } };
+  await page.route('**/api/feedback', async (route) => { posts.push(JSON.parse(route.request().postData())); await route.fulfill({ status: answer.status, contentType: 'application/json', body: JSON.stringify(answer.body) }); });
+  await page.locator('#feedbackBtn').click();
+  assert.equal(await page.locator('#feedbackSheet').isVisible(), true);
+  await page.locator('#feedbackSend').click();
+  assert.equal(await page.locator('#feedbackNote').textContent(), 'Write something first.');
+  assert.equal(posts.length, 0);
+  await page.locator('#feedbackText').fill('Add the Sunday market on South Congress.');
+  await page.locator('#feedbackSend').click();
+  await page.locator('#feedbackNote', { hasText: 'Sent. Thank you!' }).waitFor();
+  assert.equal(posts[0].message, 'Add the Sunday market on South Congress.');
+  assert.match(posts[0].page, /^http/);
+  await page.locator('#feedbackActs [data-close]').click();
+  assert.equal(await page.locator('#feedbackSheet').isHidden(), true);
+  // Not set up on this copy of the site: the words are kept and offered as a GitHub post, said to be public.
+  answer = { status: 501, body: { error: 'not-configured' } };
+  await page.locator('#feedbackBtn').click();
+  assert.equal(await page.locator('#feedbackText').isDisabled(), false);
+  await page.locator('#feedbackText').fill('Map is slow & laggy');
+  await page.locator('#feedbackSend').click();
+  const link = page.locator('#feedbackActs a.go-btn');
+  await link.waitFor();
+  assert.match(await page.locator('#feedbackNote').textContent(), /needs a GitHub account, and what you write is public/);
+  const u = new URL(await link.getAttribute('href'));
+  assert.equal(u.origin + u.pathname, 'https://github.com/bryanw121/schelagg/issues/new');
+  assert.equal(u.searchParams.get('body'), 'Map is slow & laggy');
+  // A refusal with a reason (too many at once) is shown as it is.
+  answer = { status: 429, body: { error: 'Too many at once. Try again in a minute.' } };
+  await page.locator('#feedbackSend').click();
+  await page.locator('#feedbackNote', { hasText: 'Too many at once' }).waitFor();
+  assert.deepEqual(pageErrors, []);
+});

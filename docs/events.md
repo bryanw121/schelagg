@@ -221,3 +221,7 @@ Every event says when: its hours on the card, the map row and the place sheet, o
 The Events sheet lists every tag with its count (Asian-inspired plus the search tags: night market, vintage, food, free...); a search tag is one at a time and shows in the search box too.
 
 Loading is always shown with the same spinner: beside "Loading…" in a list, in a "Loading map…" chip over the map while its code or tiles download (after 250 ms, gone when the map is idle), and on 📍 / Near me while the phone is being located.
+
+## Feedback
+
+"Send feedback" at the bottom of every page opens a short box (no account, no email). `api/feedback.js` files it as a GitHub issue labelled `feedback`, using the Vercel secret `GITHUB_FEEDBACK_TOKEN` (fine-grained token, Issues: read and write) on the repository in `FEEDBACK_REPO` (default this one; issues here are public, so point it at a private repository to keep feedback private). Without the token, or on the GitHub Pages copy, the sheet offers the same text as a new GitHub issue and says that route is public and needs an account.

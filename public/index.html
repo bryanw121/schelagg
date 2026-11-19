@@ -53,6 +53,16 @@
     <div class="opts" id="calOpts"></div>
   </div>
 </dialog>
+<dialog class="sheet" id="feedbackSheet" aria-labelledby="feedbackTitle">
+  <form class="sheet-in" id="feedbackForm" novalidate>
+    <div class="sheet-head"><h2 id="feedbackTitle">Send feedback</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
+    <label class="fb-field"><span class="note" style="margin:0">Something wrong, missing, or a place we should add? No account or email needed.</span>
+      <textarea id="feedbackText" rows="5" maxlength="2000" required placeholder="What should we know?"></textarea></label>
+    <input type="text" id="feedbackWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="fb-trap">
+    <p class="note" id="feedbackNote" role="status" style="margin:0"></p>
+    <div class="opts" id="feedbackActs"><button type="submit" class="go-btn" id="feedbackSend">Send</button></div>
+  </form>
+</dialog>
 <dialog class="sheet" id="whenSheet" aria-labelledby="whenSheetTitle">
   <div class="sheet-in">
     <div class="sheet-head"><h2 id="whenSheetTitle">When?</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
@@ -155,6 +165,7 @@
     </section>
 
     <footer id="footer"></footer>
+    <p class="foot-act"><button type="button" class="pill-btn" id="feedbackBtn" aria-haspopup="dialog">Send feedback</button></p>
   </div>
 </main>
 <script type="module" src="app.js"></script>

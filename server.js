@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import courts from './api/courts.js';
 import check from './api/check.js';
 import sessions from './api/sessions.js';
+import feedback from './api/feedback.js';
 import { loadEnv } from './lib/paths.js';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
@@ -13,7 +14,7 @@ const PUBLIC = join(ROOT, 'public');
 const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.pbf': 'application/x-protobuf' };
 // Handlers read DATABASE_URL_READONLY on first request, so a .env set here still applies.
 loadEnv();
-const API = { '/api/courts': courts, '/api/check': check, '/api/sessions': sessions };
+const API = { '/api/courts': courts, '/api/check': check, '/api/sessions': sessions, '/api/feedback': feedback };
 const PORT = process.env.PORT || 5173;
 
 createServer(async (req, res) => {

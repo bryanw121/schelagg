@@ -607,3 +607,12 @@ body.locating #nearest{position:relative}
 body.locating #nearest>*{opacity:.25}
 body.locating #nearest::after{position:absolute;inset:0;margin:auto;width:18px;height:18px}
 @media (prefers-reduced-motion:reduce){.spin,.loading::before,body.locating #nearest::after,body.locating [data-evnear]::after{animation-duration:2.4s}}
+
+/* Footer: send feedback. */
+.foot-act{margin:0}
+.fb-field{display:grid;gap:8px}
+.fb-field textarea{width:100%;min-height:120px;resize:vertical;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--bg);color:var(--ink);font:500 16px/1.4 var(--body)}
+.fb-field textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.fb-trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+a.go-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.go-btn .spin{margin-right:6px;vertical-align:-3px}
