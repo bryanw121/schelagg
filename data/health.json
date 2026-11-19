@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        270,
         265,
         258,
         258,
@@ -11,9 +10,10 @@
         268,
         268,
         268,
-        268
+        268,
+        269
       ],
-      "sessions": 268,
+      "sessions": 269,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -29,7 +29,7 @@
     },
     "austin-picklehaus": {
       "counts": [
-        160,
+        158,
         158,
         158,
         158,
@@ -75,7 +75,7 @@
         11,
         11,
         11,
-        11,
+        10,
         10,
         10,
         10,
@@ -155,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 859
+      "failStreak": 860
     },
     "atxbeach": {
       "counts": [
@@ -218,7 +218,7 @@
         7,
         7,
         7,
-        7,
+        6,
         6,
         6,
         6,
@@ -448,6 +448,8 @@
         "avatar.parentId",
         "avatar.previewId",
         "avatar.properties",
+        "avatar.properties.height",
+        "avatar.properties.width",
         "avatar.thumbhash",
         "avatar.variant",
         "avatarId",
@@ -691,7 +693,7 @@
         3,
         3,
         3,
-        3,
+        2,
         2,
         2,
         2,
@@ -744,7 +746,7 @@
         37,
         37,
         37,
-        37,
+        36,
         36,
         36,
         36,
@@ -914,13 +916,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 568
+      "failStreak": 569
     },
     "leander-pickleball": {
-      "failStreak": 568
+      "failStreak": 569
     },
     "dallas-reclub": {
-      "failStreak": 200
+      "failStreak": 201
     },
     "sportsgarden": {
       "counts": [
@@ -973,7 +975,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 64
+      "failStreak": 65
     },
     "dfw-city-active": {
       "counts": [
@@ -1058,13 +1060,13 @@
     },
     "houston-reclub": {
       "counts": [
+        22,
+        24,
+        24,
+        22,
+        22,
+        22,
         21,
-        22,
-        24,
-        24,
-        22,
-        22,
-        22,
         21,
         21,
         21
@@ -1205,6 +1207,7 @@
     },
     "houston-sweatpals": {
       "counts": [
+        0,
         0,
         0,
         0,

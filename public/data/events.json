@@ -1,6 +1,6 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-19T07:52:31.230Z",
+ "generatedAt": "2026-11-19T14:16:49.417Z",
  "events": [
   {
    "id": "evt-8c24fae8b082bf2b",
@@ -161,23 +161,6 @@
    "lat": 30.1856,
    "lng": -97.87059,
    "located": "address"
-  },
-  {
-   "id": "evt-ec63e2a48a08bb46",
-   "category": "popup",
-   "kind": "popup",
-   "tags": [],
-   "title": "Austin Flea at Zilker Brewing",
-   "venue": "Zilker Brewing Company and Taproom, 1701 East 6th Street",
-   "city": "Austin",
-   "startDate": "2026-11-21",
-   "sourceUrl": "https://allevents.in/austin/austin-flea-at-zilker-brewing/100002004035438945",
-   "source": "AllEvents",
-   "region": "austin",
-   "lat": 30.26214,
-   "lng": -97.72455,
-   "located": "source",
-   "sourceId": "allevents-austin"
   },
   {
    "id": "evt-caeab14e71cdd26b",
@@ -693,6 +676,23 @@
    "sourceId": "allevents-austin"
   },
   {
+   "id": "evt-eb1c9ec9737daf82",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "Cherrywood Cheer Holiday Market",
+   "venue": "1603 East 38th 1/2 Street",
+   "city": "Austin",
+   "startDate": "2026-12-05",
+   "sourceUrl": "https://allevents.in/austin/cherrywood-cheer-holiday-market/100002004922275497",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.29191,
+   "lng": -97.71439,
+   "located": "source",
+   "sourceId": "allevents-austin"
+  },
+  {
    "id": "evt-26c04f47e0a02fcd",
    "category": "seasonal",
    "kind": "seasonal",
@@ -899,23 +899,6 @@
    "sourceId": "allevents-austin"
   },
   {
-   "id": "evt-446defee8e86ab0b",
-   "category": "popup",
-   "kind": "popup",
-   "tags": [],
-   "title": "THE VIBE POP-UP MARKET",
-   "venue": "1906 E 1st St",
-   "city": "Austin",
-   "startDate": "2026-12-05",
-   "sourceUrl": "https://allevents.in/austin/the-vibe-pop-up-market/200030507603547",
-   "source": "AllEvents",
-   "region": "austin",
-   "lat": 30.25709,
-   "lng": -97.72373,
-   "located": "source",
-   "sourceId": "allevents-austin"
-  },
-  {
    "category": "seasonal",
    "title": "Tillery Street Plant Co. Holiday Vendor Market",
    "venue": "Tillery Street Plant Co., 914 Shady Ln",
@@ -947,23 +930,6 @@
    "region": "austin",
    "lat": 30.26176,
    "lng": -97.72816,
-   "located": "source",
-   "sourceId": "allevents-austin"
-  },
-  {
-   "id": "evt-91d705566a5db492",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "Vegan Holiday Market",
-   "venue": "2324 East Cesar Chavez Street",
-   "city": "Austin",
-   "startDate": "2026-12-06",
-   "sourceUrl": "https://allevents.in/austin/vegan-holiday-market/100002004963288167",
-   "source": "AllEvents",
-   "region": "austin",
-   "lat": 30.25512,
-   "lng": -97.71836,
    "located": "source",
    "sourceId": "allevents-austin"
   },
@@ -1188,6 +1154,23 @@
    "located": "manual"
   },
   {
+   "id": "evt-0559cc6c975a5564",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "Winter Fest 2026",
+   "venue": "St. Elmo Brewing Company - Springdale, 8110 Springdale Road",
+   "city": "Austin",
+   "startDate": "2026-12-13",
+   "sourceUrl": "https://allevents.in/austin/winter-fest-2026/100002005042213234",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.32598,
+   "lng": -97.6578,
+   "located": "source",
+   "sourceId": "allevents-austin"
+  },
+  {
    "id": "evt-5a224ff1f093db56",
    "category": "seasonal",
    "kind": "seasonal",
@@ -1206,12 +1189,12 @@
    "sourceId": "allevents-austin"
   }
  ],
- "listingsAt": "2026-11-19T07:52:31.230Z",
+ "listingsAt": "2026-11-19T14:16:49.417Z",
  "sources": [
   {
    "id": "allevents-austin",
    "ok": true,
-   "count": 33
+   "count": 32
   },
   {
    "id": "visit-austin",
