@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T01:54:56.135Z",
+  "generatedAt": "2026-11-19T01:57:47.377Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-19T01:51:22.864Z",
+      "checkedAt": "2026-11-19T01:57:42.734Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -263,7 +263,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-19T01:51:29.734Z",
+      "checkedAt": "2026-11-19T01:57:42.735Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -278,7 +278,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-19T01:51:29.918Z",
+      "checkedAt": "2026-11-19T01:57:42.735Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -11364,7 +11364,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-18",
       "venueId": "volleyworld-pflugerville",
-      "status": "scheduled",
       "alsoOn": [
         {
           "sourceId": "reclub",
@@ -11380,7 +11379,8 @@
       "price": "$20",
       "fieldSources": {
         "price": "reclub"
-      }
+      },
+      "status": "scheduled"
     },
     {
       "id": "volleyworld-2026-11-20-20:30-georgetown",
