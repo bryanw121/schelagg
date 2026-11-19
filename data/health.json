@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         258,
-        258,
         250,
         268,
         268,
@@ -11,9 +10,10 @@
         268,
         268,
         269,
-        268
+        268,
+        264
       ],
-      "sessions": 268,
+      "sessions": 264,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -73,7 +73,7 @@
     "volleyworld": {
       "counts": [
         11,
-        11,
+        10,
         10,
         10,
         10,
@@ -155,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 861
+      "failStreak": 862
     },
     "atxbeach": {
       "counts": [
@@ -216,7 +216,7 @@
     "reclub": {
       "counts": [
         7,
-        7,
+        6,
         6,
         6,
         6,
@@ -455,6 +455,7 @@
         "avatarId",
         "baseId",
         "calculated_is_serial",
+        "chatRoomId",
         "city",
         "city.agglomerationParentCityId",
         "city.countryId",
@@ -550,9 +551,23 @@
         "instructor",
         "instructorId",
         "intakeFormSettings",
+        "intakeFormSettings.emailReservedField",
+        "intakeFormSettings.emailReservedField.enabled",
+        "intakeFormSettings.emailReservedField.label",
+        "intakeFormSettings.emailReservedField.required",
+        "intakeFormSettings.fullNameReservedField",
+        "intakeFormSettings.fullNameReservedField.enabled",
+        "intakeFormSettings.fullNameReservedField.label",
+        "intakeFormSettings.fullNameReservedField.required",
+        "intakeFormSettings.phoneReservedField",
+        "intakeFormSettings.phoneReservedField.enabled",
+        "intakeFormSettings.phoneReservedField.label",
+        "intakeFormSettings.phoneReservedField.required",
         "intakeFormSettings.sections[]",
         "intakeFormSettings.sections[].fields[]",
         "intakeFormSettings.sections[].sectionName",
+        "intakeFormSettings.showSectionsOnceForMultipleTickets",
+        "intakeFormSettings.waiverHtml",
         "intakeFormSettings.waiverText",
         "isApprovalRequired",
         "isChatEnabled",
@@ -744,7 +759,7 @@
     "chaparral-ice": {
       "counts": [
         37,
-        37,
+        36,
         36,
         36,
         36,
@@ -916,13 +931,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 570
+      "failStreak": 571
     },
     "leander-pickleball": {
-      "failStreak": 570
+      "failStreak": 571
     },
     "dallas-reclub": {
-      "failStreak": 202
+      "failStreak": 203
     },
     "sportsgarden": {
       "counts": [
@@ -975,7 +990,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 66
+      "failStreak": 67
     },
     "dfw-city-active": {
       "counts": [
@@ -1061,14 +1076,14 @@
     "houston-reclub": {
       "counts": [
         24,
+        22,
+        22,
+        22,
+        21,
+        21,
+        21,
+        21,
         24,
-        22,
-        22,
-        22,
-        21,
-        21,
-        21,
-        21,
         24
       ],
       "sessions": 24,
@@ -1208,6 +1223,7 @@
     },
     "houston-sweatpals": {
       "counts": [
+        0,
         0,
         0,
         0,

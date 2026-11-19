@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T17:08:39.224Z",
+  "generatedAt": "2026-11-19T18:16:37.331Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -12,8 +12,8 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:17.120Z",
-      "count": 268
+      "checkedAt": "2026-11-19T18:13:18.570Z",
+      "count": 264
     },
     {
       "id": "austin-picklehaus",
@@ -25,7 +25,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:17.121Z",
+      "checkedAt": "2026-11-19T18:13:18.570Z",
       "count": 158
     },
     {
@@ -38,7 +38,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:17.121Z",
+      "checkedAt": "2026-11-19T18:13:18.570Z",
       "count": 0
     },
     {
@@ -51,7 +51,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:17.121Z",
+      "checkedAt": "2026-11-19T18:13:18.570Z",
       "count": 10
     },
     {
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-19T17:05:17.122Z",
+      "checkedAt": "2026-11-19T18:13:18.571Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -119,7 +119,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:17.506Z",
+      "checkedAt": "2026-11-19T18:13:18.572Z",
       "count": 6,
       "warnings": [
         "https://reclub.co/m/V4DO6Q: HTTP 403"
@@ -149,7 +149,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:18.227Z",
+      "checkedAt": "2026-11-19T18:13:18.617Z",
       "count": 3
     },
     {
@@ -219,7 +219,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:21.060Z",
+      "checkedAt": "2026-11-19T18:13:19.700Z",
       "count": 36
     },
     {
@@ -232,7 +232,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:21.803Z",
+      "checkedAt": "2026-11-19T18:13:21.309Z",
       "count": 24
     },
     {
@@ -258,7 +258,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-19T17:05:24.100Z",
+      "checkedAt": "2026-11-19T18:13:22.127Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -273,7 +273,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-19T17:05:24.284Z",
+      "checkedAt": "2026-11-19T18:13:22.188Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -298,7 +298,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-19T17:05:24.448Z",
+      "checkedAt": "2026-11-19T18:13:22.326Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -326,7 +326,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-19T17:05:26.074Z",
+      "checkedAt": "2026-11-19T18:13:24.328Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -447,7 +447,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:34.687Z",
+      "checkedAt": "2026-11-19T18:13:25.139Z",
       "count": 24,
       "warnings": [
         "reclub-8TBKMU: no surface",
@@ -499,7 +499,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:39.944Z",
+      "checkedAt": "2026-11-19T18:13:28.450Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -507,112 +507,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "openplay-eastside-paddle-club-01a18453-1288-7aae-b248-dfe4afde28dc",
-      "date": "2026-11-19",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "8:00am Early Bird (Intermediate Open Play)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "Intermediate",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 19, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a18453-1288-7aae-b248-dfe4afde28dc",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-eastside-paddle-club-01a178fd-4fa3-755d-959e-161bfe5995c2",
-      "date": "2026-11-19",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3 Intermediate (Recommended DUPR 3.0+)",
-      "venue": "Eastside Paddle Club",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "level": "3.0+",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 19, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://espc.podplay.app/community/events/01a178fd-4fa3-755d-959e-161bfe5995c2",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "austin-eastside-paddle",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17009-eb9d-7bbd-9713-90be06939936",
-      "date": "2026-11-19",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 1 / Level 2",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 19, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17009-eb9d-7bbd-9713-90be06939936",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
-    {
-      "id": "openplay-austin-pickle-ranch-01a17013-ab6e-7aad-9bd2-e87ab5102d57",
-      "date": "2026-11-19",
-      "start": "08:00",
-      "end": "10:00",
-      "sport": "pickleball",
-      "title": "Open Play: Level 3",
-      "venue": "Austin Pickle Ranch",
-      "city": "Austin",
-      "surface": "unspecified",
-      "type": "Open play",
-      "price": "$12 / person (listed)",
-      "scheduleBasis": "directory_listing",
-      "note": "Listed by OpenPlay, an independent directory, updated Nov 19, 6:00 AM Austin time. Confirm time, skill requirements, final price and availability with the venue. Membership discounts may apply.",
-      "source": "https://openplaymap.com/open-play/austin",
-      "signup": {
-        "url": "https://austinpickleranch.podplay.app/community/events/01a17013-ab6e-7aad-9bd2-e87ab5102d57",
-        "label": "Book with venue"
-      },
-      "sourceId": "austin-club-openplay",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "austin-pickle-ranch",
-      "status": "scheduled"
-    },
     {
       "id": "openplay-austin-pickle-ranch-01a1702b-d39d-7aad-9c57-3b5da6a18ee0",
       "date": "2026-11-19",
@@ -7941,6 +7835,33 @@
       "status": "scheduled"
     },
     {
+      "id": "opencourt-c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
+      "date": "2026-11-19",
+      "start": "18:00",
+      "end": "20:00",
+      "sport": "pickleball",
+      "title": "Austin PickleHaus · Level 2 Mittel Play",
+      "venue": "Austin PickleHaus",
+      "city": "Pflugerville",
+      "surface": "indoor",
+      "type": "Open play",
+      "price": "$15 / person (nonmember)",
+      "level": "2.5–3.59 recommended",
+      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
+      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
+      "signup": {
+        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
+        "label": "View event & book"
+      },
+      "sourceId": "austin-picklehaus",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-19",
+      "venueId": "austin-picklehaus",
+      "status": "rescheduled",
+      "previousStart": "2026-11-19 17:00"
+    },
+    {
       "id": "opencourt-7f6505c4-668d-425e-83a8-d6b8e84fc9bf",
       "date": "2026-11-19",
       "start": "19:00",
@@ -8096,33 +8017,6 @@
       "verifiedAt": "2026-11-19",
       "venueId": "austin-picklehaus",
       "status": "scheduled"
-    },
-    {
-      "id": "opencourt-c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
-      "date": "2026-11-19",
-      "start": "18:00",
-      "end": "20:00",
-      "sport": "pickleball",
-      "title": "Austin PickleHaus · Level 2 Mittel Play",
-      "venue": "Austin PickleHaus",
-      "city": "Pflugerville",
-      "surface": "indoor",
-      "type": "Open play",
-      "price": "$15 / person (nonmember)",
-      "level": "2.5–3.59 recommended",
-      "note": "Venue-published event. Reserve with the venue; confirm final charges and available spots before going.",
-      "source": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
-      "signup": {
-        "url": "https://app.getopencourt.com/club/austinpicklehaus/schedule/event/c5b6f06c-dd89-40aa-8a5c-646fcb377fb9",
-        "label": "View event & book"
-      },
-      "sourceId": "austin-picklehaus",
-      "region": "austin",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "austin-picklehaus",
-      "status": "rescheduled",
-      "previousStart": "2026-11-19 17:00"
     },
     {
       "id": "opencourt-c5149d79-368f-4bb5-bb4c-c4523779a829",
@@ -17421,78 +17315,6 @@
       "region": "dallas"
     },
     {
-      "id": "src-greenbriar-community-center",
-      "name": "Greenbriar Community Center",
-      "city": "Fort Worth",
-      "address": "5200 Hemphill Street, Fort Worth, TX, 76115",
-      "lat": 32.66901,
-      "lng": -97.33189,
-      "region": "dallas"
-    },
-    {
-      "id": "src-r-d-evans-community-center",
-      "name": "R.D. Evans Community Center",
-      "city": "Fort Worth",
-      "address": "3242 Lackland Road, Fort Worth, TX, 76116",
-      "lat": 32.72584,
-      "lng": -97.43475,
-      "region": "dallas"
-    },
-    {
-      "id": "src-southwest-community-center",
-      "name": "Southwest Community Center",
-      "city": "Fort Worth",
-      "address": "6300 Welch Avenue, Fort Worth, TX, 76133",
-      "lat": 32.6548,
-      "lng": -97.38199,
-      "region": "dallas"
-    },
-    {
-      "id": "src-northside-community-center",
-      "name": "Northside Community Center",
-      "city": "Fort Worth",
-      "address": "1100 NW 18th Street, Fort Worth, TX, 76164",
-      "lat": 32.77874,
-      "lng": -97.36285,
-      "region": "dallas"
-    },
-    {
-      "id": "src-victory-forest-community-center",
-      "name": "Victory Forest Community Center",
-      "city": "Fort Worth",
-      "address": "3427 Hemphill Street, Fort Worth, TX, 76110",
-      "lat": 32.70016,
-      "lng": -97.33161,
-      "region": "dallas"
-    },
-    {
-      "id": "src-martin-luther-king-community-center",
-      "name": "Martin Luther King Community Center",
-      "city": "Fort Worth",
-      "address": "5565 Truman Drive, Fort Worth, TX, 76112",
-      "lat": 32.72472,
-      "lng": -97.23534,
-      "region": "dallas"
-    },
-    {
-      "id": "src-handley-meadowbrook-community-center",
-      "name": "Handley Meadowbrook Community Center",
-      "city": "Fort Worth",
-      "address": "6201 Beaty Street, Fort Worth, TX, 76112",
-      "lat": 32.73961,
-      "lng": -97.22325,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
-      "region": "dallas"
-    },
-    {
       "id": "src-tellepsen-family-downtown-ymca",
       "name": "Tellepsen Family Downtown YMCA",
       "city": null,
@@ -17608,6 +17430,78 @@
       "lat": 30.011,
       "lng": -95.5077,
       "region": "houston"
+    },
+    {
+      "id": "src-greenbriar-community-center",
+      "name": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "address": "5200 Hemphill Street, Fort Worth, TX, 76115",
+      "lat": 32.66901,
+      "lng": -97.33189,
+      "region": "dallas"
+    },
+    {
+      "id": "src-r-d-evans-community-center",
+      "name": "R.D. Evans Community Center",
+      "city": "Fort Worth",
+      "address": "3242 Lackland Road, Fort Worth, TX, 76116",
+      "lat": 32.72584,
+      "lng": -97.43475,
+      "region": "dallas"
+    },
+    {
+      "id": "src-southwest-community-center",
+      "name": "Southwest Community Center",
+      "city": "Fort Worth",
+      "address": "6300 Welch Avenue, Fort Worth, TX, 76133",
+      "lat": 32.6548,
+      "lng": -97.38199,
+      "region": "dallas"
+    },
+    {
+      "id": "src-northside-community-center",
+      "name": "Northside Community Center",
+      "city": "Fort Worth",
+      "address": "1100 NW 18th Street, Fort Worth, TX, 76164",
+      "lat": 32.77874,
+      "lng": -97.36285,
+      "region": "dallas"
+    },
+    {
+      "id": "src-victory-forest-community-center",
+      "name": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "address": "3427 Hemphill Street, Fort Worth, TX, 76110",
+      "lat": 32.70016,
+      "lng": -97.33161,
+      "region": "dallas"
+    },
+    {
+      "id": "src-martin-luther-king-community-center",
+      "name": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "address": "5565 Truman Drive, Fort Worth, TX, 76112",
+      "lat": 32.72472,
+      "lng": -97.23534,
+      "region": "dallas"
+    },
+    {
+      "id": "src-handley-meadowbrook-community-center",
+      "name": "Handley Meadowbrook Community Center",
+      "city": "Fort Worth",
+      "address": "6201 Beaty Street, Fort Worth, TX, 76112",
+      "lat": 32.73961,
+      "lng": -97.22325,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
+      "region": "dallas"
     }
   ]
 }
