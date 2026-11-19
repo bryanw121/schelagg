@@ -417,6 +417,8 @@ header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
 .ev-away p{margin:0;color:var(--muted);font-size:14px;max-width:52ch}
 .ev-away .signup{border:0;cursor:pointer;min-height:44px}
 #eventsCount:empty{display:none}
+/* The chips, the count and the list read as one group above the list or the map. */
+#eventCats:not(:empty),#eventsCount:not(:empty){margin-top:-10px}
 .opts .opt-h{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:6px 0 0}
 #whenOpts .tab.opt[aria-pressed="true"] .lbl small,#eventsOpts .tab.opt[aria-pressed="true"] .lbl small,#eventsOpts .tab.opt[aria-pressed="true"] .n{color:inherit;opacity:.8}
 .go-btn{margin-top:6px;min-height:48px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font:700 15px var(--body);cursor:pointer;touch-action:manipulation}
@@ -516,6 +518,8 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
   body.map-big .map-size{bottom:70px;background:var(--ink);color:var(--bg);border-color:var(--ink)}
   /* The place sheet rises from the bottom of the screen, leaving some map above it. */
   body.layout-map:not(.map-big) .place-sheet{position:fixed;z-index:30;max-height:max(220px,calc(100dvh - var(--hdr,200px) - 290px));border-radius:18px 18px 0 0}
+  /* Events: the filter chips (and the count, when filtering) sit above the map, so the sheet stops lower. */
+  body.layout-map:not(.map-big):has(#eventCats:not(:empty)) .place-sheet{max-height:max(220px,calc(100dvh - var(--hdr,200px) - 400px))}
 }
 /* The event a shared link points at. */
 .ev-row.linked{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
