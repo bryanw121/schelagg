@@ -1,0 +1,652 @@
+{
+ "generatedAt": "2026-11-19T07:21:56.522Z",
+ "regions": [
+  {
+   "id": "austin",
+   "name": "Austin, TX",
+   "rows": [
+    {
+     "venue": "Montopolis Recreation and Community Center",
+     "city": "Austin",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-meetup"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Roots · Treehouse Gym",
+     "city": "N. Austin",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Mueller Lake Park",
+     "city": "Austin",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Austin PickleHaus",
+     "city": "Pflugerville",
+     "sport": "pickleball",
+     "sessions": 158,
+     "pinned": true,
+     "booking": true,
+     "via": [
+      "austin-picklehaus"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Pickle Pit Stop",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 101,
+     "pinned": true,
+     "booking": true,
+     "via": [
+      "austin-club-openplay"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Austin Pickle Ranch",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 86,
+     "pinned": true,
+     "booking": true,
+     "via": [
+      "austin-club-openplay"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Eastside Paddle Club",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 81,
+     "pinned": true,
+     "booking": true,
+     "via": [
+      "austin-club-openplay"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Chaparral Ice",
+     "city": "N. Austin (Northcross)",
+     "sport": "ice_skating",
+     "sessions": 36,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "chaparral-ice"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Ice & Field at The Crossover",
+     "city": "Cedar Park",
+     "sport": "ice_skating",
+     "sessions": 24,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "ice-and-field"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Pickleland",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 10,
+     "pinned": true,
+     "booking": true,
+     "via": [
+      "austin-pickleball-meetup"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Volleyworld (Pflugerville)",
+     "city": "Pflugerville",
+     "sport": "volleyball",
+     "sessions": 10,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "manual",
+      "reclub",
+      "volleyworld"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "ATX Beach",
+     "city": "North Austin",
+     "sport": "volleyball",
+     "sessions": 6,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "atxbeach",
+      "manual",
+      "sweatpals"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Volleyworld (Georgetown)",
+     "city": "Georgetown",
+     "sport": "volleyball",
+     "sessions": 6,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "volleyworld"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Bee Cave on Ice",
+     "city": "Bee Cave",
+     "sport": "ice_skating",
+     "sessions": 5,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "manual"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Gus Garcia Recreation Center",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 4,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-city-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "George Morales Dove Springs Recreation Center",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 3,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-city-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Austin Sports Center - Central",
+     "city": "Austin",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": false,
+     "booking": false,
+     "via": [
+      "volleyball-austin"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Montopolis Recreation and Community Center",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-city-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Northwest Recreation Center",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-city-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "The Crossover",
+     "city": "Cedar Park",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "manual",
+      "velocity"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Alamo Recreation Center",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-city-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Dottie Jordan Recreation Center",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-city-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Four Seasons Hotel",
+     "city": "Downtown",
+     "sport": "ice_skating",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "manual"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Hanovers Draught Haus",
+     "city": "Pflugerville",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "manual"
+     ],
+     "lead": false
+    }
+   ]
+  },
+  {
+   "id": "dallas",
+   "name": "Dallas–Fort Worth, TX",
+   "rows": [
+    {
+     "venue": "USSPT",
+     "city": "Lewisville",
+     "sport": "volleyball",
+     "sessions": 10,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dallas-meetup"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Sports Garden DFW",
+     "city": "Coppell",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dallas-meetup"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Intentional Sports",
+     "city": "Dallas",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": false,
+     "booking": false,
+     "via": [
+      "dallas-meetup"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "The Sports Garden",
+     "city": "Coppell",
+     "sport": "volleyball",
+     "sessions": 4,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "sportsgarden"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "FORO Sports Club",
+     "city": "Dallas",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "foro"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Victory Forest Community Center",
+     "city": "Fort Worth",
+     "sport": "pickleball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Greenbriar Community Center",
+     "city": "Fort Worth",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Handley Meadowbrook Community Center",
+     "city": "Fort Worth",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Martin Luther King Community Center",
+     "city": "Fort Worth",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Northside Community Center",
+     "city": "Fort Worth",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "R.D. Evans Community Center",
+     "city": "Fort Worth",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "R.D. Evans Community Center",
+     "city": "Fort Worth",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Riverside Community Center",
+     "city": "Fort Worth",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Riverside Community Center",
+     "city": "Fort Worth",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active-pickleball"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Southwest Community Center",
+     "city": "Fort Worth",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Worth Heights Community Center",
+     "city": "Fort Worth",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "dfw-city-active"
+     ],
+     "lead": false
+    }
+   ]
+  },
+  {
+   "id": "houston",
+   "name": "Houston, TX",
+   "rows": [
+    {
+     "venue": "Champion Forest Baptist Church - Champions Campus",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 3,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Collins Park",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 3,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Absolute Volleyball Academy and Absolute Beach",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Katy Sports Center",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "T4 Court Rentals",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Tellepsen Family Downtown YMCA",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Blastros",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Emancipation Park",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Harvest Time Church",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Houston Stars",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Skyline Volleyball Academy",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "The Zone",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    }
+   ]
+  }
+ ]
+}
