@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        258,
         250,
         268,
         268,
@@ -11,13 +10,14 @@
         268,
         269,
         268,
-        264
+        264,
+        276
       ],
-      "sessions": 264,
+      "sessions": 276,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.69,
+        "level": 0.67,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -65,14 +65,25 @@
         0,
         0,
         0,
-        0
+        1
       ],
-      "sessions": 0,
-      "coverage": {}
+      "sessions": 1,
+      "coverage": {
+        "end": 1,
+        "price": 1,
+        "level": 0,
+        "venue": 1,
+        "city": 1,
+        "surface": 1,
+        "type": 1,
+        "capacity": 0,
+        "spotsLeft": 0,
+        "signup": 1
+      }
     },
     "volleyworld": {
       "counts": [
-        11,
+        10,
         10,
         10,
         10,
@@ -155,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 862
+      "failStreak": 863
     },
     "atxbeach": {
       "counts": [
@@ -215,7 +226,7 @@
     },
     "reclub": {
       "counts": [
-        7,
+        6,
         6,
         6,
         6,
@@ -305,6 +316,7 @@
         "scheduleId",
         "scheduleReference",
         "slots",
+        "slots[]",
         "sport",
         "sport.avgGameDuration",
         "sport.competitionType",
@@ -706,7 +718,7 @@
       "counts": [
         3,
         3,
-        3,
+        2,
         2,
         2,
         2,
@@ -758,7 +770,7 @@
     },
     "chaparral-ice": {
       "counts": [
-        37,
+        36,
         36,
         36,
         36,
@@ -931,13 +943,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 571
+      "failStreak": 572
     },
     "leander-pickleball": {
-      "failStreak": 571
+      "failStreak": 572
     },
     "dallas-reclub": {
-      "failStreak": 203
+      "failStreak": 204
     },
     "sportsgarden": {
       "counts": [
@@ -990,7 +1002,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 67
+      "failStreak": 68
     },
     "dfw-city-active": {
       "counts": [
@@ -1075,7 +1087,6 @@
     },
     "houston-reclub": {
       "counts": [
-        24,
         22,
         22,
         22,
@@ -1084,12 +1095,13 @@
         21,
         21,
         24,
-        24
+        24,
+        23
       ],
-      "sessions": 24,
+      "sessions": 23,
       "coverage": {
         "end": 1,
-        "price": 0.63,
+        "price": 0.61,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1118,6 +1130,7 @@
         "feeType",
         "flags",
         "flags.GROUP_PROMOTED",
+        "flags.PROXIMITY_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -1216,6 +1229,7 @@
         0,
         0,
         0,
+        0,
         0
       ],
       "sessions": 0,
@@ -1223,6 +1237,7 @@
     },
     "houston-sweatpals": {
       "counts": [
+        0,
         0,
         0,
         0,
@@ -1290,7 +1305,6 @@
     "houston-reclub:warning:reclub-PY6UV1: no surface",
     "houston-reclub:warning:reclub-R9HE9A: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
-    "houston-reclub:warning:reclub-T3U8XJ: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
     "houston-reclub:warning:reclub-XD4JXT: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",

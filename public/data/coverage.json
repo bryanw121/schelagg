@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-19T18:16:40.255Z",
+ "generatedAt": "2026-11-19T20:08:48.711Z",
  "regions": [
   {
    "id": "austin",
@@ -57,7 +57,7 @@
      "venue": "Pickle Pit Stop",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 100,
+     "sessions": 99,
      "pinned": true,
      "booking": true,
      "via": [
@@ -69,7 +69,7 @@
      "venue": "Austin Pickle Ranch",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 85,
+     "sessions": 97,
      "pinned": true,
      "booking": true,
      "via": [
@@ -81,7 +81,7 @@
      "venue": "Eastside Paddle Club",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 79,
+     "sessions": 80,
      "pinned": true,
      "booking": true,
      "via": [
@@ -295,6 +295,18 @@
      "booking": false,
      "via": [
       "manual"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Holy Pickle",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": true,
+     "via": [
+      "holy-pickle"
      ],
      "lead": false
     }
@@ -527,10 +539,10 @@
      "lead": true
     },
     {
-     "venue": "Katy Sports Center",
+     "venue": "Absolute Volleyball Academy and Absolute Beach",
      "city": "",
      "sport": "volleyball",
-     "sessions": 3,
+     "sessions": 2,
      "pinned": true,
      "booking": false,
      "via": [
@@ -539,7 +551,7 @@
      "lead": true
     },
     {
-     "venue": "Absolute Volleyball Academy and Absolute Beach",
+     "venue": "Katy Sports Center",
      "city": "",
      "sport": "volleyball",
      "sessions": 2,

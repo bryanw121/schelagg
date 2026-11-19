@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T18:16:37.331Z",
+  "generatedAt": "2026-11-19T20:06:05.713Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,8 +67,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T18:13:25.139Z",
-      "count": 24,
+      "checkedAt": "2026-11-19T20:02:58.520Z",
+      "count": 23,
       "warnings": [
         "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
@@ -77,7 +77,6 @@
         "reclub-J533LP: no surface",
         "reclub-EEUP4M: no surface",
         "reclub-K9D10X: no surface",
-        "reclub-T3U8XJ: no surface",
         "reclub-MCRPQ4: no surface",
         "reclub-K9XO8G: no surface",
         "reclub-WQR08J: no surface",
@@ -106,7 +105,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/houston-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T17:05:39.615Z",
+      "checkedAt": "2026-11-19T20:02:58.643Z",
       "count": 0
     },
     {
@@ -119,7 +118,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-19T18:13:28.450Z",
+      "checkedAt": "2026-11-19T20:03:01.295Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -294,31 +293,6 @@
         "label": "Sign up on Reclub"
       },
       "source": "https://reclub.co/m/K9D10X",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "src-katy-sports-center",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-T3U8XJ",
-      "date": "2026-11-25",
-      "start": "14:00",
-      "end": "17:00",
-      "title": "Wednesday Intermediate Level + Up INDOOR Volleyball (2 Courts) ($10) @ Katy Sports (2 pm - 5 pm)",
-      "venue": "Katy Sports Center",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$10",
-      "note": "Hosted by Cultural Diversity Volleyball Social.",
-      "capacity": 40,
-      "signup": {
-        "url": "https://reclub.co/m/T3U8XJ",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/T3U8XJ",
       "sourceId": "houston-reclub",
       "sport": "volleyball",
       "region": "houston",

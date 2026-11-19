@@ -1,6 +1,6 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-19T17:10:42.234Z",
+ "generatedAt": "2026-11-19T20:08:03.460Z",
  "events": [
   {
    "id": "evt-8c24fae8b082bf2b",
@@ -193,6 +193,8 @@
    "lat": 30.24173,
    "lng": -97.7269,
    "located": "source",
+   "startTime": "18:00",
+   "endTime": "22:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -210,6 +212,8 @@
    "lat": 30.32592,
    "lng": -97.71683,
    "located": "source",
+   "startTime": "11:00",
+   "endTime": "16:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -298,6 +302,7 @@
    "lat": 30.27494,
    "lng": -97.73634,
    "located": "source",
+   "startTime": "11:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -347,6 +352,8 @@
    "lat": 30.17012,
    "lng": -97.82584,
    "located": "source",
+   "startTime": "12:00",
+   "endTime": "18:30",
    "sourceId": "allevents-austin"
   },
   {
@@ -364,6 +371,8 @@
    "lat": 30.17318,
    "lng": -97.81293,
    "located": "source",
+   "startTime": "14:00",
+   "endTime": "18:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -450,6 +459,8 @@
    "lat": 30.24968,
    "lng": -97.72482,
    "located": "source",
+   "startTime": "16:00",
+   "endTime": "20:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -517,6 +528,8 @@
    "lat": 30.27427,
    "lng": -97.72124,
    "located": "source",
+   "startTime": "18:00",
+   "endTime": "20:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -551,6 +564,8 @@
    "lat": 30.21749,
    "lng": -97.76121,
    "located": "source",
+   "startTime": "12:00",
+   "endTime": "18:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -656,6 +671,8 @@
    "lat": 30.25998,
    "lng": -97.75108,
    "located": "source",
+   "startTime": "09:30",
+   "endTime": "13:30",
    "sourceId": "allevents-austin"
   },
   {
@@ -690,6 +707,8 @@
    "lat": 30.2087,
    "lng": -97.72967,
    "located": "source",
+   "startTime": "12:00",
+   "endTime": "17:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -722,6 +741,8 @@
    "lat": 30.39343,
    "lng": -97.74808,
    "located": "source",
+   "startTime": "18:00",
+   "endTime": "22:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -739,6 +760,8 @@
    "lat": 30.23072,
    "lng": -97.99921,
    "located": "source",
+   "startTime": "11:00",
+   "endTime": "17:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -757,6 +780,8 @@
    "lat": 30.25944,
    "lng": -97.73193,
    "located": "source",
+   "startTime": "12:00",
+   "endTime": "20:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -791,6 +816,8 @@
    "lat": 30.27008,
    "lng": -97.73638,
    "located": "source",
+   "startTime": "10:00",
+   "endTime": "17:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -829,23 +856,6 @@
    "sourceId": "allevents-austin"
   },
   {
-   "id": "evt-ea5c15864ae07e9e",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "Holiday Art Festival",
-   "venue": "Wheatsville Food Co-op, 4001 South Lamar Boulevard",
-   "city": "Austin",
-   "startDate": "2026-12-05",
-   "sourceUrl": "https://allevents.in/austin/holiday-art-festival/100002003616620247",
-   "source": "AllEvents",
-   "region": "austin",
-   "lat": 30.23558,
-   "lng": -97.791,
-   "located": "source",
-   "sourceId": "allevents-austin"
-  },
-  {
    "id": "evt-0f35a0eed7bf7e51",
    "category": "seasonal",
    "kind": "seasonal",
@@ -860,6 +870,8 @@
    "lat": 30.26573,
    "lng": -97.74369,
    "located": "source",
+   "startTime": "17:00",
+   "endTime": "20:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -911,6 +923,8 @@
    "lat": 30.26418,
    "lng": -97.75821,
    "located": "source",
+   "startTime": "12:00",
+   "endTime": "15:30",
    "sourceId": "allevents-austin"
   },
   {
@@ -1015,6 +1029,7 @@
    "lat": 30.26176,
    "lng": -97.72816,
    "located": "source",
+   "startTime": "11:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -1066,6 +1081,7 @@
    "lat": 30.32634,
    "lng": -97.71684,
    "located": "source",
+   "startTime": "10:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -1085,6 +1101,27 @@
    "lat": 30.34008,
    "lng": -97.68107,
    "located": "source",
+   "startTime": "17:00",
+   "sourceId": "allevents-austin"
+  },
+  {
+   "id": "evt-897e72900690eae6",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "Christmas Movie Night at a Cat Cafe",
+   "venue": "Purrfecto Cat Lounge, 2300 South Lamar Boulevard",
+   "city": "Austin",
+   "startDate": "2026-12-11",
+   "price": "$53.98",
+   "sourceUrl": "https://allevents.in/austin/christmas-movie-night-at-a-cat-cafe/100002005086609023",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.2478,
+   "lng": -97.7746,
+   "located": "source",
+   "startTime": "19:30",
+   "endTime": "20:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -1103,8 +1140,7 @@
    "lat": 30.20788,
    "lng": -97.71546,
    "located": "source",
-   "sourceId": "allevents-austin",
-   "description": "Thundercat + Magdalena Bay."
+   "sourceId": "allevents-austin"
   },
   {
    "id": "evt-4339c3006c5c1bed",
@@ -1172,6 +1208,7 @@
    "lat": 30.26395,
    "lng": -97.7317,
    "located": "source",
+   "startTime": "11:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -1255,6 +1292,8 @@
    "lat": 30.32598,
    "lng": -97.6578,
    "located": "source",
+   "startTime": "11:00",
+   "endTime": "15:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -1273,6 +1312,7 @@
    "lat": 30.32653,
    "lng": -97.71687,
    "located": "source",
+   "startTime": "10:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -1294,7 +1334,7 @@
    "located": "address"
   }
  ],
- "listingsAt": "2026-11-19T17:10:42.234Z",
+ "listingsAt": "2026-11-19T20:08:03.460Z",
  "sources": [
   {
    "id": "allevents-austin",
