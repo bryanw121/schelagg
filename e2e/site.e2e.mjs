@@ -1626,3 +1626,14 @@ test('site: Events links never name a sport', async () => {
   assert.equal(new URL(page.url()).searchParams.has('sport'), false);
   assert.deepEqual(pageErrors, []);
 });
+
+test('site: coming to Sports from Events brings back the day strip and the Open play / Courts switch', async () => {
+  await open({ events: EVENTS, schedule: SCHEDULE, url: '/', waitFor: '#events .row' });
+  assert.equal(await page.locator('#filters').isHidden(), true, 'Events has its own filters');
+  await page.locator('#topTabs [data-section="sports"]').click();
+  await page.locator('#sportSheet [data-sport="volleyball"]').click();
+  assert.equal(await page.locator('#days .day').first().isVisible(), true);
+  await page.locator('#calendarModes [data-view="booking"]').click();
+  assert.equal(new URL(page.url()).searchParams.get('view'), 'booking');
+  assert.deepEqual(pageErrors, []);
+});

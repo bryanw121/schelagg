@@ -877,6 +877,7 @@ function render() {
   // Events: the feed is the source of truth, so the view works without the day's schedule.
   if (state.section === 'events') { $('timeBtn').hidden = true; renderEvents(); renderMap(); fitHeader(); return; }
   $('eventsPanel').hidden = true;
+  $('filters').hidden = false; // Events hides the day strip and the Open play / Courts switch; Sports brings them back
   // Without the day's schedule, Leagues and Tournaments (their own file) still work.
   if (!schedule) { if (programs || programsError) { renderCalendarModes(); renderSignups(); fitHeader(); } return; }
   if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay';
