@@ -955,16 +955,34 @@ function renderWhenSheet() {
   if (ev) { n = filterEvents((regionEvents() ?? []).filter((e) => (e.endDate ?? e.startDate) >= NOW.iso), evFilters(), NOW.iso).length; what = 'event'; }
   else { n = sessionsOn(WEEK[state.di]).filter((x) => !hidden(x.f)).length; what = 'session'; }
   $('whenSheetTitle').textContent = ev ? 'When?' : 'What time?';
-  $('whenOpts').innerHTML = `${days}<h3 class="opt-h">Time</h3><div class="when-grid">${opt('data-time', 'any', 'Any time', '', !state.win)}${TIME_PRESETS.map((p) => opt('data-time', p.id, p.label, p.hint, preset?.id === p.id)).join('')}</div>
+  const go = `Show ${n} ${what}${n === 1 ? '' : 's'}`;
+  // While the sheet is open it is patched, not rebuilt: a rebuild between a finger going down and
+  // coming up (leaving a time field fires its change first) would swallow the tap on Show.
+  const box = $('whenOpts');
+  if ($('whenSheet').open && box.dataset.for === state.section) {
+    const dayOn = { any: !state.evDay && !state.evWeekend, weekend: state.evWeekend, [NOW.iso]: state.evDay === NOW.iso, [tomorrow]: state.evDay === tomorrow };
+    for (const b of box.querySelectorAll('[data-evday]')) b.setAttribute('aria-pressed', String(!!dayOn[b.dataset.evday]));
+    for (const b of box.querySelectorAll('[data-time]')) b.setAttribute('aria-pressed', String(b.dataset.time === 'any' ? !state.win : preset?.id === b.dataset.time));
+    const set = (id, v) => { const el = $(id); if (el && document.activeElement !== el && el.value !== v) el.value = v; };
+    set('whenDate', other ? state.evDay : ''); set('whenFrom', own ? toHHMM(state.win.from) : ''); set('whenTo', own && state.win.to < 1440 ? toHHMM(state.win.to) : '');
+    $('whenDate')?.closest('.when-field').classList.toggle('on', !!other);
+    box.querySelector('.when-range').classList.toggle('on', !!own);
+    box.querySelector('.go-btn').textContent = go;
+    return;
+  }
+  box.dataset.for = state.section;
+  box.innerHTML = `${days}<h3 class="opt-h">Time</h3><div class="when-grid">${opt('data-time', 'any', 'Any time', '', !state.win)}${TIME_PRESETS.map((p) => opt('data-time', p.id, p.label, p.hint, preset?.id === p.id)).join('')}</div>
     <div class="when-range${own ? ' on' : ''}"><label class="when-field"><span>From</span><input type="time" id="whenFrom" step="900" value="${own ? toHHMM(state.win.from) : ''}"></label><label class="when-field"><span>To</span><input type="time" id="whenTo" step="900" value="${own && state.win.to < 1440 ? toHHMM(state.win.to) : ''}"></label></div>
-    <button type="button" class="go-btn" data-close>Show ${n} ${what}${n === 1 ? '' : 's'}</button>`;
+    <button type="button" class="go-btn" data-close>${go}</button>`;
 }
 /**
  * The search box: on Events (with tags to tap while the box is open) and on open play. It is
  * never redrawn while someone types; only its placeholder, clear button and tags change.
  */
 let searchOpen = false; // the box has focus: Events shows its tags
+let searchEvents = null; // the upcoming events the tags count, kept for opening the box without a redraw
 function renderSearch(upcoming = null) {
+  searchEvents = upcoming;
   const ev = state.section === 'events';
   const on = ev ? !!upcoming : state.view === 'openplay' && !!schedule;
   $('searchWrap').hidden = !on;
@@ -1747,9 +1765,11 @@ document.addEventListener('click', async (e) => {
 });
 $('showAll').checked = state.showAll;
 $('search').addEventListener('input', (e) => setQuery(e.target.value.slice(0, 80)));
-$('search').addEventListener('focus', () => { searchOpen = true; render(); });
+// Opening and leaving the box only shows and hides the tags: a full redraw here would rebuild the
+// button a finger is already on (the box loses focus as the finger goes down) and swallow the tap.
+$('search').addEventListener('focus', () => { searchOpen = true; renderSearch(searchEvents); });
 // Tags stay while focus is inside the search area (a tap on a tag moves focus to it), and go once it leaves.
-$('searchWrap').addEventListener('focusout', () => setTimeout(() => { if (searchOpen && !$('searchWrap').contains(document.activeElement)) { searchOpen = false; render(); } }, 0));
+$('searchWrap').addEventListener('focusout', () => setTimeout(() => { if (searchOpen && !$('searchWrap').contains(document.activeElement)) { searchOpen = false; $('searchTags').hidden = true; } }, 0));
 $('search').addEventListener('keydown', (e) => { if (e.key === 'Enter') e.target.blur(); else if (e.key === 'Escape' && e.target.value) { e.preventDefault(); setQuery('', { fill: true }); } });
 /** Events: pick a day ('any', 'weekend' or a date). A day within the week also moves the Sports day strip there. */
 function setEvDay(v) {
@@ -1760,12 +1780,12 @@ function setEvDay(v) {
 }
 $('whenOpts').addEventListener('change', (e) => {
   const id = e.target.id;
-  if (id === 'whenDate') { setEvDay(e.target.value || 'any'); $('whenDate')?.focus(); return; }
+  if (id === 'whenDate') { setEvDay(e.target.value || 'any'); return; }
   if (id !== 'whenFrom' && id !== 'whenTo') return;
   // A time of one's own: either side alone works (from 2pm on; until 6pm); a From at or after To is ignored.
   const win = parseWindow($('whenFrom').value, $('whenTo').value);
   if (!win && ($('whenFrom').value || $('whenTo').value)) return;
-  state.win = win; mapPick = null; render(); $(id)?.focus();
+  state.win = win; mapPick = null; render(); // the open sheet is patched in place, so focus stays wherever the tap put it
 });
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });
 
