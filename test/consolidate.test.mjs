@@ -142,3 +142,23 @@ test('sourceVenues: a venue a source placed last run keeps its pin while a kept 
   // Once the venue is in venues.json, the configured one is used.
   assert.deepEqual(sourceVenues(kept, [{ id: 't4', name: 'T4 Court Rentals', aliases: [] }], regions, previous).venues, []);
 });
+
+test('venueCoverage: venues seen only through groups that host there are leads', async () => {
+  const { venueCoverage, coverageMarkdown } = await import('../lib/coverage.js');
+  const sources = [{ id: 'reclub', adapter: 'reclub' }, { id: 'meetup', adapter: 'ical' }, { id: 'volleyworld', adapter: 'volleyworld' }];
+  const schedule = {
+    venues: [{ id: 'vw', name: 'Volleyworld', lat: 30.4, lng: -97.7 }, { id: 't4', name: 'T4 Court Rentals', lat: 29.7, lng: -95.7 }, { id: 'gym', name: 'Rental Gym', bookingLink: { url: 'https://x.example/book' } }],
+    sessions: [
+      { venue: 'Volleyworld', venueId: 'vw', sourceId: 'volleyworld', city: 'Austin' },
+      { venue: 'Volleyworld', venueId: 'vw', sourceId: 'reclub', city: 'Austin' }, // also hosted there: still read directly
+      { venue: 'T4 Court Rentals', venueId: 't4', sourceId: 'reclub', city: 'Katy' },
+      { venue: 'T4 Court Rentals', venueId: 't4', sourceId: 'meetup', city: 'Katy' },
+      { venue: 'Rental Gym', venueId: 'gym', sourceId: 'meetup' }, // hosted, but its courts are bookable through us
+      { venue: 'Somewhere Park', sourceId: 'reclub' },
+    ],
+  };
+  const rows = venueCoverage(schedule, sources);
+  assert.deepEqual(rows.filter((r) => r.lead).map((r) => [r.venue, r.sessions, r.via, r.pinned]), [['T4 Court Rentals', 2, ['meetup', 'reclub'], true], ['Somewhere Park', 1, ['reclub'], false]]);
+  assert.deepEqual(rows.filter((r) => !r.lead).map((r) => r.venue).sort(), ['Rental Gym', 'Volleyworld']);
+  assert.match(coverageMarkdown([{ name: 'Houston, TX', rows }]), /4 venues with sessions: 2 read directly or bookable, 2 second-hand only\./);
+});

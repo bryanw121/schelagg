@@ -1,0 +1,32 @@
+name: Try event pages
+
+# Manual: checks pages as possible Events sources (scripts/try-event-pages.mjs): does robots.txt
+# allow them, and how many events does the listing reader find? Writes nothing; the table is in
+# the run summary. With no input it tries config/event-candidates.json.
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Pages to try, separated by spaces (empty: config/event-candidates.json)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  try:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Try the pages
+        env:
+          URLS: ${{ inputs.urls }}
+          SCHELAGG_HOST_GAP_MS: 1000
+        run: node scripts/try-event-pages.mjs $URLS
