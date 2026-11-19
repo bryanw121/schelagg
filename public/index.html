@@ -62,6 +62,11 @@
 
 <main>
   <div class="wrap">
+    <!-- Search: narrows the Events list (with tags to tap once the box is open) or the day's open play. -->
+    <div class="search-wrap" id="searchWrap" hidden>
+      <div class="search-box"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="search" placeholder="Search events" aria-label="Search events" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><button type="button" id="searchClear" class="search-x" aria-label="Clear search" hidden>✕</button></div>
+      <div class="chips-row kinds" role="group" aria-label="Tags" id="searchTags" hidden></div>
+    </div>
     <section class="card map-card" id="mapCard" hidden>
       <div class="dayhead"><h3 id="mapTitle">Map</h3></div>
       <div class="map-wrap"><div class="map-box"><div id="map" class="map" role="region" aria-label="Map of the day's places"></div><div id="placeSheet" class="place-sheet" role="dialog" tabindex="-1" hidden></div></div><div id="mapPanel" class="map-panel" aria-live="polite"></div></div>

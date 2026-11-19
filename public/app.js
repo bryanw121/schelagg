@@ -10,6 +10,7 @@
 
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
 import { TIME_PRESETS, inWindow, parseWindow, presetOf, toHHMM, windowLabel, windowNote } from './when.js';
+import { highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
 import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
 
 // Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
@@ -214,7 +215,7 @@ const PROGRAM_VIEWS = { leagues: 'league', tournaments: 'tournament' };
 const viewFrom = (v, kind) => (v === 'signups' ? (kind === 'tournament' || kind === 'nagva' ? 'tournaments' : 'leagues') : VIEWS.includes(v) ? v : null);
 // The top level: Events (the default) or Sports. The events list pages 10 at a time (?page=),
 // filtered by category (?cat=); both are remembered and shareable.
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evKind: 'all', evTags: [], evWeekend: false, evDay: null, win: null };
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evKind: 'all', evTags: [], evWeekend: false, evDay: null, win: null, evQ: '', spQ: '' };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -254,6 +255,9 @@ if (params.get('weekend') === '1') state.evWeekend = true;
 // When: ?on=YYYY-MM-DD (Events: one day) and ?from=HH:MM&to=HH:MM (a time window, Events and open play).
 if (/^\d{4}-\d{2}-\d{2}$/.test(params.get('on') ?? '')) { state.evDay = params.get('on'); state.evWeekend = false; }
 state.win = parseWindow(params.get('from'), params.get('to'));
+// Search: ?q= belongs to the section the link opens (Events, or open play).
+const urlQ = (params.get('q') ?? '').slice(0, 80);
+if (urlQ) { if (state.section === 'events') state.evQ = urlQ; else state.spQ = urlQ; }
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
 const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, host: state.host, section: state.section, evKind: state.evKind, evTags: state.evTags })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
@@ -277,6 +281,7 @@ function syncUrl() {
     if (PROGRAM_VIEWS[state.view] && state.host !== 'all') u.searchParams.set('host', state.host); else u.searchParams.delete('host');
     for (const k of ['cat', 'page', 'type', 'tag', 'weekend', 'on']) u.searchParams.delete(k);
   }
+  if (activeQuery()) u.searchParams.set('q', activeQuery()); else u.searchParams.delete('q');
   const win = activeWindow();
   if (win) { u.searchParams.set('from', toHHMM(win.from)); u.searchParams.set('to', toHHMM(win.to)); } else { u.searchParams.delete('from'); u.searchParams.delete('to'); }
   if (state.layout === 'map' && mapReady()) u.searchParams.set('layout', 'map'); else u.searchParams.delete('layout');
@@ -309,11 +314,16 @@ const matchTab = (x) => {
 
 /** The time window in force: Events always; Sports only on open play (bookings, leagues and tournaments aren't about an hour). */
 const activeWindow = () => (state.section === 'events' || state.view === 'openplay' ? state.win : null);
+/** The search in force: Events' own, or open play's (other Sports views have no search box). */
+const activeQuery = () => (state.section === 'events' ? state.evQ : state.view === 'openplay' ? state.spQ : '').trim();
+/** Text with the searched words marked. */
+const hl = (text) => (activeQuery() ? highlightParts(text, activeQuery()).map(([t, on]) => (on ? `<mark>${esc(t)}</mark>` : esc(t))).join('') : esc(text));
 function sessionsOn(iso, { ignoreTab = false, ignoreWindow = false } = {}) {
   const dn = DAYS[dowOf(iso)];
   const win = ignoreWindow ? null : activeWindow();
+  const q = ignoreWindow || state.section === 'events' ? '' : activeQuery();
   return (schedule?.sessions || [])
-    .filter((x) => sportOf(x) === state.sport && (ignoreTab || matchTab(x)) && (x.date ? x.date === iso : (x.days || []).includes(dn)) && inWindow(x.start, x.end, win))
+    .filter((x) => sportOf(x) === state.sport && (ignoreTab || matchTab(x)) && (x.date ? x.date === iso : (x.days || []).includes(dn)) && inWindow(x.start, x.end, win) && (!q || matchesText(sessionText(x, [tabOf(x).label]), q)))
     .map((x) => ({ ...x, on: iso, f: freshness(x, iso) }));
 }
 
@@ -471,7 +481,7 @@ function renderList() {
     return `<div class="row ${['expired', 'unverified', 'canceled'].includes(x.f.k) ? 'dim' : ''} ${past ? 'past' : ''}">
       <div class="time">${fmtT(x.start)}<small>${x.end ? 'to ' + fmtT(x.end) : ''}</small></div>
       <div class="body">
-        <div class="t1"><span class="title">${esc(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? (x.scheduleBasis ? 'Scheduled now' : 'Happening now') : x.f.l}</span></div>
+        <div class="t1"><span class="title">${hl(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? (x.scheduleBasis ? 'Scheduled now' : 'Happening now') : x.f.l}</span></div>
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}${milesTo(x.venueId) != null ? ` · ${fmtMiles(milesTo(x.venueId))}` : ''}</div>
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
         ${movedHtml(x)}${fitHtml(x.start, x.end)}
@@ -875,13 +885,14 @@ const regionCourts = () => (courts?.venues || []).filter((v) => (v.sport || 'vol
 function render() {
   syncUrl(); renderRegion(); renderTopTabs(); renderSports();
   // Events: the feed is the source of truth, so the view works without the day's schedule.
-  if (state.section === 'events') { $('timeBtn').hidden = true; renderEvents(); renderMap(); fitHeader(); return; }
+  if (state.section === 'events') { $('timeBtn').hidden = true; $('searchWrap').hidden = true; renderEvents(); renderMap(); fitHeader(); return; }
   $('eventsPanel').hidden = true;
   $('filters').hidden = false; // Events hides the day strip and the Open play / Courts switch; Sports brings them back
+  $('searchWrap').hidden = true; // shown again by renderSearch on open play
   // Without the day's schedule, Leagues and Tournaments (their own file) still work.
   if (!schedule) { if (programs || programsError) { renderCalendarModes(); renderSignups(); fitHeader(); } return; }
   if (!['volleyball', 'pickleball'].includes(state.sport)) state.view = 'openplay';
-  renderTabs(); renderTimeBtn(); renderWhenSheet(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderSignups(); fitHeader();
+  renderTabs(); renderTimeBtn(); renderWhenSheet(); renderSearch(); renderDays(); renderCalendarModes(); renderGlance(); renderList(); renderVenueCalendars(); renderPublicCourts(); renderMeta(); renderMap(); renderSignups(); fitHeader();
 }
 
 
@@ -901,7 +912,7 @@ const safeUrl = (u) => /^https:\/\//i.test(u || '');
  *  Cards say "by @x" for an organizer's own post (read through the API) and "via @x" for a credited repost. */
 const avatarImg = (x, size) => (avatarPath(x) ? `<img class="av" src="${DATA}${esc(avatarPath(x))}" alt="" width="${size}" height="${size}" loading="lazy" decoding="async">` : '');
 /** The event's kind and tags as chips: kinds solid outline, tags dashed. */
-const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}`;
+const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}${searchTags(ev).map((g) => `<button type="button" class="chip tag chip-q" data-q="${esc(searchTagLabel(g))}" aria-label="Search ${esc(searchTagLabel(g))}">${esc(searchTagLabel(g))}</button>`).join('')}`;
 function eventCard(ev) {
   const parts = eventPlaceParts(ev);
   const on = isOn(ev, NOW.iso);
@@ -912,7 +923,7 @@ function eventCard(ev) {
   return `<article class="row ev-row">
     <div class="time">${w.range ? `${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : ''}</div>
     <div class="body">
-      <div class="t1"><span class="title">${esc(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
+      <div class="t1"><span class="title">${hl(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
       ${avatarPath(ev) && ev.account ? `<div class="ev-by">${avatarImg(ev, 26)}<span>${ev.sourceId === 'instagram' ? 'by' : 'via'} <b>@${esc(ev.account)}</b></span></div>` : ''}
       <div class="venue"><b>${esc(parts[0] ?? ev.venue)}</b>${parts.slice(1).map((p) => ` · ${esc(p)}`).join('')}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</div>
       <div class="meta">${eventChips(ev)}${ev.price ? `<span>${esc(ev.price)}</span>` : ''}</div>${fitHtml(ev.startTime, ev.endTime)}
@@ -924,7 +935,7 @@ function eventCard(ev) {
 const regionEvents = () => (events ? eventsForRegion(events, region?.id ?? 'austin') : null);
 /** The filters' label on the pill that opens the sheet. */
 const filterLabel = () => [state.evKind === 'all' ? 'All events' : EVENT_KINDS.find((k) => k.id === state.evKind)?.label, ...state.evTags.map(tagLabel)].join(' · ');
-const evFilters = () => ({ kind: state.evKind, tags: state.evTags, weekend: state.evWeekend, day: state.evDay, window: state.win });
+const evFilters = () => ({ kind: state.evKind, tags: state.evTags, weekend: state.evWeekend, day: state.evDay, window: state.win, q: state.evQ.trim() });
 /** The chosen day in words: "Today", "Tomorrow", "Sat, Nov 21", "This weekend", or '' for any day. */
 const evDayLabel = () => (state.evWeekend ? 'This weekend' : !state.evDay ? '' : state.evDay === NOW.iso ? 'Today' : state.evDay === addDays(NOW.iso, 1) ? 'Tomorrow' : fmtDate(state.evDay, { weekday: 'short', month: 'short', day: 'numeric' }));
 /** The When pill's words: the day and the time window, whichever are set. */
@@ -944,9 +955,52 @@ function renderWhenSheet() {
   if (ev) { n = filterEvents((regionEvents() ?? []).filter((e) => (e.endDate ?? e.startDate) >= NOW.iso), evFilters(), NOW.iso).length; what = 'event'; }
   else { n = sessionsOn(WEEK[state.di]).filter((x) => !hidden(x.f)).length; what = 'session'; }
   $('whenSheetTitle').textContent = ev ? 'When?' : 'What time?';
-  $('whenOpts').innerHTML = `${days}<h3 class="opt-h">Time</h3><div class="when-grid">${opt('data-time', 'any', 'Any time', '', !state.win)}${TIME_PRESETS.map((p) => opt('data-time', p.id, p.label, p.hint, preset?.id === p.id)).join('')}</div>
+  const go = `Show ${n} ${what}${n === 1 ? '' : 's'}`;
+  // While the sheet is open it is patched, not rebuilt: a rebuild between a finger going down and
+  // coming up (leaving a time field fires its change first) would swallow the tap on Show.
+  const box = $('whenOpts');
+  if ($('whenSheet').open && box.dataset.for === state.section) {
+    const dayOn = { any: !state.evDay && !state.evWeekend, weekend: state.evWeekend, [NOW.iso]: state.evDay === NOW.iso, [tomorrow]: state.evDay === tomorrow };
+    for (const b of box.querySelectorAll('[data-evday]')) b.setAttribute('aria-pressed', String(!!dayOn[b.dataset.evday]));
+    for (const b of box.querySelectorAll('[data-time]')) b.setAttribute('aria-pressed', String(b.dataset.time === 'any' ? !state.win : preset?.id === b.dataset.time));
+    const set = (id, v) => { const el = $(id); if (el && document.activeElement !== el && el.value !== v) el.value = v; };
+    set('whenDate', other ? state.evDay : ''); set('whenFrom', own ? toHHMM(state.win.from) : ''); set('whenTo', own && state.win.to < 1440 ? toHHMM(state.win.to) : '');
+    $('whenDate')?.closest('.when-field').classList.toggle('on', !!other);
+    box.querySelector('.when-range').classList.toggle('on', !!own);
+    box.querySelector('.go-btn').textContent = go;
+    return;
+  }
+  box.dataset.for = state.section;
+  box.innerHTML = `${days}<h3 class="opt-h">Time</h3><div class="when-grid">${opt('data-time', 'any', 'Any time', '', !state.win)}${TIME_PRESETS.map((p) => opt('data-time', p.id, p.label, p.hint, preset?.id === p.id)).join('')}</div>
     <div class="when-range${own ? ' on' : ''}"><label class="when-field"><span>From</span><input type="time" id="whenFrom" step="900" value="${own ? toHHMM(state.win.from) : ''}"></label><label class="when-field"><span>To</span><input type="time" id="whenTo" step="900" value="${own && state.win.to < 1440 ? toHHMM(state.win.to) : ''}"></label></div>
-    <button type="button" class="go-btn" data-close>Show ${n} ${what}${n === 1 ? '' : 's'}</button>`;
+    <button type="button" class="go-btn" data-close>${go}</button>`;
+}
+/**
+ * The search box: on Events (with tags to tap while the box is open) and on open play. It is
+ * never redrawn while someone types; only its placeholder, clear button and tags change.
+ */
+let searchOpen = false; // the box has focus: Events shows its tags
+let searchEvents = null; // the upcoming events the tags count, kept for opening the box without a redraw
+function renderSearch(upcoming = null) {
+  searchEvents = upcoming;
+  const ev = state.section === 'events';
+  const on = ev ? !!upcoming : state.view === 'openplay' && !!schedule;
+  $('searchWrap').hidden = !on;
+  if (!on) return;
+  const what = ev ? 'Search events' : `Search ${SPORTS[state.sport].label.toLowerCase()} open play`;
+  const box = $('search'), q = ev ? state.evQ : state.spQ;
+  box.placeholder = what; box.setAttribute('aria-label', what);
+  if (box.value !== q && document.activeElement !== box) box.value = q;
+  $('searchClear').hidden = !q;
+  const tags = ev && searchOpen ? tagCounts(upcoming) : [];
+  $('searchTags').hidden = !tags.length;
+  $('searchTags').innerHTML = tags.map((t) => `<button type="button" class="pill-btn chip-btn${matchesText(t.label, q) && q.trim() ? ' on' : ''}" data-q="${esc(t.label)}">${esc(t.label)} <span class="n">${t.n}</span></button>`).join('');
+}
+/** Set the active section's search and redraw (the box itself is left alone while it has focus). */
+function setQuery(q, { fill = false } = {}) {
+  if (state.section === 'events') state.evQ = q; else state.spQ = q;
+  if (fill) $('search').value = q;
+  mapPick = null; render();
 }
 /** Sports: the time pill beside the level filter (open play only). */
 function renderTimeBtn() {
@@ -999,12 +1053,15 @@ function renderEvents() {
   $('eventCats').innerHTML = `<button type="button" class="pill-btn chip-btn${filtering ? ' on' : ''}" data-sheet="eventsSheet" aria-haspopup="dialog">${esc(filterLabel())} <span class="caret" aria-hidden="true">▾</span></button>`
     + `<button type="button" class="pill-btn chip-btn${whenLabel() ? ' on' : ''}" data-sheet="whenSheet" aria-haspopup="dialog" id="whenBtn">${esc(whenLabel() || 'When')} <span class="caret" aria-hidden="true">▾</span></button>`
     + (navigator.geolocation ? `<button type="button" class="pill-btn chip-btn${here ? ' on' : ''}" data-evnear aria-pressed="${!!here}">Near me</button>` : '');
-  renderEventsSheet(upcoming); renderWhenSheet();
+  renderEventsSheet(upcoming); renderWhenSheet(); renderSearch(upcoming);
   const shown = filterEvents(upcoming, evFilters(), NOW.iso);
   const groups = eventGroups(shown, NOW.iso);
   // Near me: nearest first under each heading (On now keeps ending-soonest first).
   if (here) for (const g of groups) if (g.key !== 'now') g.events.sort((a, b) => (milesToCoords(a.lat, a.lng) ?? 1e9) - (milesToCoords(b.lat, b.lng) ?? 1e9));
-  $('eventsCount').innerHTML = filtering || whenLabel() ? `${shown.length} of ${upcoming.length} events${whenLabel() ? ` · ${esc(whenLabel())}` : ''} · <button type="button" class="linkish" data-evclear>Clear filters</button>` : '';
+  const q = state.evQ.trim();
+  // A search that the day or time hides matches for says so, and offers them in one tap.
+  const anyDay = q && whenLabel() ? filterEvents(upcoming, { ...evFilters(), weekend: false, day: null, window: null }, NOW.iso).length - shown.length : 0;
+  $('eventsCount').innerHTML = filtering || whenLabel() || q ? `${shown.length} of ${upcoming.length} events${q ? ` for “${esc(q)}”` : ''}${whenLabel() ? ` · ${esc(whenLabel())}` : ''}${anyDay > 0 ? ` · <button type="button" class="linkish" data-evanyday>${anyDay} more on other days</button>` : ''} · <button type="button" class="linkish" data-evclear>Clear filters</button>` : '';
   $('events').innerHTML = groups.length
     ? groups.map((g) => {
       const open = evOpen.has(g.key), rest = g.events.length - EVENTS_SHOWN;
@@ -1660,13 +1717,18 @@ document.addEventListener('click', async (e) => {
     $('eventsOpts').querySelector(evk.dataset.evkind ? `[data-evkind="${CSS.escape(evk.dataset.evkind)}"]` : `[data-evtag="${CSS.escape(evk.dataset.evtag)}"]`)?.focus();
     return;
   }
+  // Search: a tag (under the box, or on a card) searches for it; ✕ clears; "N more on other days" drops the day and time.
+  const tagBtn = e.target.closest('[data-q]');
+  if (tagBtn) { searchOpen = false; setQuery(tagBtn.dataset.q, { fill: true }); $('searchClear').focus(); return; }
+  if (e.target.closest('#searchClear')) { setQuery('', { fill: true }); $('search').focus(); return; }
+  if (e.target.closest('[data-evanyday]')) { state.evWeekend = false; state.evDay = null; state.win = null; render(); $('whenBtn')?.focus(); return; }
   // When: a day (Events) and a time of day apply at once; the sheet stays open until Show or ✕.
   const evd = e.target.closest('[data-evday]');
   if (evd) { setEvDay(evd.dataset.evday); $('whenOpts').querySelector(`[data-evday="${CSS.escape(evd.dataset.evday)}"]`)?.focus(); return; }
   const tm = e.target.closest('[data-time]');
   if (tm) { const p = TIME_PRESETS.find((x) => x.id === tm.dataset.time); state.win = p ? { from: p.from, to: p.to } : null; mapPick = null; render(); $('whenOpts').querySelector(`[data-time="${CSS.escape(tm.dataset.time)}"]`)?.focus(); return; }
   if (e.target.closest('[data-evnear]')) { $('nearest').click(); return; }
-  if (e.target.closest('[data-evclear]')) { state.evKind = 'all'; state.evTags = []; state.evWeekend = false; state.evDay = null; state.win = null; save(); render(); $('eventCats').querySelector('button')?.focus(); return; }
+  if (e.target.closest('[data-evclear]')) { state.evKind = 'all'; state.evTags = []; state.evWeekend = false; state.evDay = null; state.win = null; state.evQ = ''; $('search').value = ''; save(); render(); $('eventCats').querySelector('button')?.focus(); return; }
   const more = e.target.closest('[data-evmore]');
   if (more) { const k = more.dataset.evmore; evOpen.add(k); renderEvents(); document.querySelector(`.ev-group[data-group="${CSS.escape(k)}"] .ev-row:nth-of-type(${EVENTS_SHOWN + 1}) a, .ev-group[data-group="${CSS.escape(k)}"] .ev-row:nth-of-type(${EVENTS_SHOWN + 1}) summary`)?.focus(); return; }
   if (e.target.closest('[data-go-sports]')) { state.section = 'sports'; state.view = 'openplay'; mapPick = null; save(); render(); document.querySelector('#topTabs [data-section="sports"]').focus(); return; }
@@ -1702,6 +1764,13 @@ document.addEventListener('click', async (e) => {
   if (!inSheet) (t.dataset.layout ? $('layout').querySelector('.fab') : t.dataset.view ? document.querySelector(`#calendarModes [data-view="${t.dataset.view}"]`) : t.dataset.host ? document.querySelector(`#hosts [data-host="${CSS.escape(t.dataset.host)}"]`) : t.dataset.di ? document.querySelector(`#days [data-di="${t.dataset.di}"]`) : null)?.focus();
 });
 $('showAll').checked = state.showAll;
+$('search').addEventListener('input', (e) => setQuery(e.target.value.slice(0, 80)));
+// Opening and leaving the box only shows and hides the tags: a full redraw here would rebuild the
+// button a finger is already on (the box loses focus as the finger goes down) and swallow the tap.
+$('search').addEventListener('focus', () => { searchOpen = true; renderSearch(searchEvents); });
+// Tags stay while focus is inside the search area (a tap on a tag moves focus to it), and go once it leaves.
+$('searchWrap').addEventListener('focusout', () => setTimeout(() => { if (searchOpen && !$('searchWrap').contains(document.activeElement)) { searchOpen = false; $('searchTags').hidden = true; } }, 0));
+$('search').addEventListener('keydown', (e) => { if (e.key === 'Enter') e.target.blur(); else if (e.key === 'Escape' && e.target.value) { e.preventDefault(); setQuery('', { fill: true }); } });
 /** Events: pick a day ('any', 'weekend' or a date). A day within the week also moves the Sports day strip there. */
 function setEvDay(v) {
   state.evWeekend = v === 'weekend';
@@ -1711,12 +1780,12 @@ function setEvDay(v) {
 }
 $('whenOpts').addEventListener('change', (e) => {
   const id = e.target.id;
-  if (id === 'whenDate') { setEvDay(e.target.value || 'any'); $('whenDate')?.focus(); return; }
+  if (id === 'whenDate') { setEvDay(e.target.value || 'any'); return; }
   if (id !== 'whenFrom' && id !== 'whenTo') return;
   // A time of one's own: either side alone works (from 2pm on; until 6pm); a From at or after To is ignored.
   const win = parseWindow($('whenFrom').value, $('whenTo').value);
   if (!win && ($('whenFrom').value || $('whenTo').value)) return;
-  state.win = win; mapPick = null; render(); $(id)?.focus();
+  state.win = win; mapPick = null; render(); // the open sheet is patched in place, so focus stays wherever the tap put it
 });
 $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checked; save(); render(); });
 
