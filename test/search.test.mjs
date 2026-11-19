@@ -46,3 +46,14 @@ test('search: a tag filter is exactly the tagged events; typing its name is a wi
   assert.deepEqual(filterEvents(feed, { topic: 'food' }, '2026-11-18').map((e) => e.title), ['Taco Tasting']);
   assert.deepEqual(filterEvents(feed, { q: 'food' }, '2026-11-18').map((e) => e.title), ['Taco Tasting', 'Art Walk']);
 });
+
+test('eventIcon: the most specific tag decides the picture; no tag falls back to the kind', async () => {
+  const { eventIcon, EVENT_ICONS, SEARCH_TAGS } = await import('../public/search.js');
+  assert.equal(eventIcon({ title: 'Asian Night Market', description: 'Food trucks and vintage racks.' }), 'night-market');
+  assert.equal(eventIcon({ title: 'Matcha & Makers Market' }), 'matcha');
+  assert.equal(eventIcon({ title: 'Holiday Food Truck Rally' }), 'food');
+  assert.equal(eventIcon({ title: 'Trail of Lanterns' }, 'seasonal'), 'seasonal');
+  assert.equal(eventIcon({ title: 'Sneaker drop' }, 'popup'), 'popup');
+  assert.equal(eventIcon({ title: 'Free yoga', price: 'Free' }), 'popup', 'Free is a tag without a picture');
+  for (const t of SEARCH_TAGS) if (t.id !== 'free') assert.ok(EVENT_ICONS[t.id], `${t.id} has an icon`);
+});

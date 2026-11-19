@@ -64,3 +64,26 @@ export function highlightParts(text, q) {
   if (last < s.length) out.push([s.slice(last), false]);
   return out;
 }
+
+/**
+ * The picture an event leads with when there is no organizer photo: the icon of its most specific
+ * tag (a night market that also has food is a night market), else of its kind. Fixed order, so an
+ * event always shows the same picture. Returns an icon id from EVENT_ICONS.
+ */
+const ICON_ORDER = ['night-market', 'matcha', 'vintage', 'makers-market', 'food', 'holiday', 'music'];
+export function eventIcon(ev, kind = null) {
+  const tags = searchTags(ev);
+  return ICON_ORDER.find((t) => tags.includes(t)) ?? (kind === 'seasonal' ? 'seasonal' : 'popup');
+}
+/** Icon id -> the paths of a 24×24 line drawing (stroke, no fill). */
+export const EVENT_ICONS = {
+  'night-market': '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+  'makers-market': '<path d="M3 10l9-6 9 6M5 10v9h14v-9M9 19v-5h6v5"/>',
+  vintage: '<path d="M12 8a2 2 0 1 1 2-2M12 8v2M12 10l9 7H3l9-7z"/>',
+  matcha: '<path d="M5 10h12v3a6 6 0 0 1-12 0v-3zM17 11h1.500a2 2 0 0 1 0 4H16.600M9 6c0-1.200 1-1.200 1-2.400M13 6c0-1.200 1-1.200 1-2.400M4 21h14"/>',
+  food: '<path d="M7 3v18M4.500 3v4.500a2.500 2.500 0 0 0 5 0V3M16.500 3c-2.200 2-2.200 7 0 9v9"/>',
+  holiday: '<path d="M12 3l2.600 5.600 6.100.700-4.500 4.200 1.200 6-5.400-3-5.400 3 1.200-6L3.300 9.300l6.100-.700z"/>',
+  music: '<path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/>',
+  popup: '<path d="M12 21s7-6.200 7-11a7 7 0 0 0-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/>',
+  seasonal: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+};

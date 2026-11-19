@@ -1461,9 +1461,13 @@ test('site: an event with a saved organizer picture shows it on its card, its ma
   await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: feed, url: '/?view=events', waitFor: '#events .row' });
   const card = page.locator('#events .row', { hasText: feed.events[0].title });
   assert.equal(await card.locator('.ev-by').textContent(), 'by @examplemarket');
-  assert.equal(await card.locator('.ev-by img.av').getAttribute('src'), 'data/avatars/examplemarket.jpg');
-  assert.equal(await card.locator('.ev-by img.av').getAttribute('alt'), '', 'decorative: the account is named beside it');
+  assert.equal(await card.locator('> img.av').getAttribute('src'), 'data/avatars/examplemarket.jpg', 'the organizer\'s picture leads the card');
+  assert.equal(await card.locator('> img.av').getAttribute('alt'), '', 'decorative: the account is named beside it');
   assert.equal(await page.locator('#events img.av').count(), 1, 'only the event with a saved picture');
+  // Every other card leads with an icon for its tag or kind, so each event has exactly one picture.
+  const cards = await page.locator('#events .ev-row').count();
+  assert.equal(await page.locator('#events .ev-row > .ev-ic').count(), cards - 1);
+  assert.equal(await page.locator('#events .ev-row > .ev-ic svg[aria-hidden="true"]').count(), cards - 1, 'icons are decorative: the tag is named on its chip');
   assert.equal(await page.locator('#events .ev-by').count(), 1);
   await page.locator('#layout [data-layout="map"]').click();
   await page.locator('#map .pin').first().waitFor();

@@ -10,7 +10,7 @@
 
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
 import { TIME_PRESETS, inWindow, parseWindow, presetOf, toHHMM, windowLabel, windowNote } from './when.js';
-import { SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
+import { EVENT_ICONS, eventIcon, SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
 import { placeGroups } from './events-ui.js';
 import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
 
@@ -943,6 +943,13 @@ const eventDirections = (ev) => {
 const safeUrl = (u) => /^https:\/\//i.test(u || '');
 /** The crediting account's picture (a saved copy of its Instagram profile picture), when the event has one.
  *  Cards say "by @x" for an organizer's own post (read through the API) and "via @x" for a credited repost. */
+/** A tag's or kind's line icon in its colour (decorative: the tag's name is on a chip beside it). */
+const iconSvg = (id) => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.900" stroke-linecap="round" stroke-linejoin="round">${EVENT_ICONS[id] ?? EVENT_ICONS.popup}</svg>`;
+/**
+ * The picture an event (or a map place, through its lead event) leads with: the organizer's own
+ * photo when we have it, otherwise the icon of its most specific tag or of its kind.
+ */
+const eventVisual = (ev, size, holder = ev) => avatarImg(holder, size) || (ev ? `<span class="ev-ic ic-${eventIcon(ev, eventKind(ev))}" style="--s:${size}px">${iconSvg(eventIcon(ev, eventKind(ev)))}</span>` : '');
 const avatarImg = (x, size) => (avatarPath(x) ? `<img class="av" src="${DATA}${esc(avatarPath(x))}" alt="" width="${size}" height="${size}" loading="lazy" decoding="async">` : '');
 /** The event's kind and tags as chips: kinds solid outline, tags dashed. */
 const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}${searchTags(ev).map((g) => `<button type="button" class="chip tag chip-q" data-topic="${esc(g)}" aria-label="Show events tagged ${esc(searchTagLabel(g))}">${esc(searchTagLabel(g))}</button>`).join('')}`;
@@ -954,10 +961,11 @@ function eventCard(ev) {
   const times = ev.startTime ? `${fmtT(ev.startTime)}${ev.endTime ? `–${fmtT(ev.endTime)}` : ''}` : '';
   const via = ev.source ? `<span class="via">Found via ${esc(ev.source)}</span>` : '';
   return `<article class="row ev-row${evLink === ev.id ? ' linked' : ''}" data-ev="${esc(ev.id ?? '')}">
+    ${eventVisual(ev, 44)}
     <div class="time">${w.range ? `<small class="ev-top">${esc(w.dow)}</small>${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : ''}</div>
     <div class="body">
       <div class="t1"><span class="title">${hl(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
-      ${avatarPath(ev) && ev.account ? `<div class="ev-by">${avatarImg(ev, 26)}<span>${ev.sourceId === 'instagram' ? 'by' : 'via'} <b>@${esc(ev.account)}</b></span></div>` : ''}
+      ${avatarPath(ev) && ev.account ? `<div class="ev-by"><span>${ev.sourceId === 'instagram' ? 'by' : 'via'} <b>@${esc(ev.account)}</b></span></div>` : ''}
       <div class="venue"><b>${esc(parts[0] ?? ev.venue)}</b>${parts.slice(1).map((p) => ` · ${esc(p)}`).join('')}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</div>
       <div class="meta">${eventChips(ev)}${ev.price ? `<span>${esc(ev.price)}</span>` : ''}</div>${fitHtml(ev.startTime, ev.endTime)}
       ${safeUrl(ev.sourceUrl) ? `<a class="signup ev-go" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}
@@ -1050,7 +1058,7 @@ function renderSearch(upcoming = null) {
   $('searchClear').hidden = !q;
   const tags = ev && searchOpen ? tagCounts(upcoming) : [];
   $('searchTags').hidden = !tags.length;
-  $('searchTags').innerHTML = tags.map((t) => `<button type="button" class="pill-btn chip-btn${state.evTopic === t.id ? ' on' : ''}" data-topic="${esc(t.id)}" aria-pressed="${state.evTopic === t.id}">${esc(t.label)} <span class="n">${t.n}</span></button>`).join('');
+  $('searchTags').innerHTML = tags.map((t) => `<button type="button" class="pill-btn chip-btn${state.evTopic === t.id ? ' on' : ''}" data-topic="${esc(t.id)}" aria-pressed="${state.evTopic === t.id}">${EVENT_ICONS[t.id] ? `<span class="ev-ic ic-${t.id} chip-ic" style="--s:22px">${iconSvg(t.id)}</span>` : ''}${esc(t.label)} <span class="n">${t.n}</span></button>`).join('');
 }
 /** Set the active section's search and redraw (the box itself is left alone while it has focus). */
 function setQuery(q, { fill = false, topic = null } = {}) {
@@ -1455,7 +1463,7 @@ function eventsPanelHtml(places, pickId) {
     // when things are on rather than as one long run of places.
     const row = (x) => {
       const mi = placeMiles(x);
-      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}">${avatarImg(x, 40)}<span class="pr-name">${esc(x.title)}${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
+      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}">${eventVisual(x.lead, 40, x)}<span class="pr-name">${esc(x.title)}${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
     };
     const groups = placeGroups(places, NOW.iso).map((g) => `<section class="place-group" data-group="${esc(g.key)}"><h3 class="ev-day">${esc(g.label)}<small>${esc(g.sub)}</small></h3><ul class="place-list">${g.places.map(row).join('')}</ul></section>`).join('');
     return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> with events coming up. Tap one for its events.</p>${groups}`;
@@ -1692,8 +1700,8 @@ async function renderMap() {
     const el = document.createElement('button');
     Object.assign(el, { type: 'button', className: `pin${p.court ? ' free' : state.view === 'booking' ? ' book' : ''}${p.done || p.full ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}` });
     // Sports pins name the place; events pins name the event (and how many more are there).
-    if (p.avatar) el.classList.add('has-av');
-    el.innerHTML = p.title ? `${avatarImg(p, 24)}<span class="pin-t"><b>${esc(p.title)}</b>${p.more ? `<span>+${p.more} more here</span>` : ''}</span>` : `<b>${esc(p.short)}</b>`; // (.more is the declutter's "+N more" for hidden neighbours)
+    if (p.avatar || p.lead) el.classList.add('has-av'); // a picture leads the pin: the organizer's photo or the tag's icon
+    el.innerHTML = p.title ? `${eventVisual(p.lead, 24, p)}<span class="pin-t"><b>${esc(p.title)}</b>${p.more ? `<span>+${p.more} more here</span>` : ''}</span>` : `<b>${esc(p.short)}</b>`; // (.more is the declutter's "+N more" for hidden neighbours)
     el.dataset.pin = p.id; el.setAttribute('aria-label', p.aria); el.setAttribute('aria-pressed', String(p.id === mapPick));
     return { el, p, marker: new gl.Marker({ element: el, anchor: 'center' }).setLngLat([p.lng, p.lat]).addTo(mapView) };
   });
