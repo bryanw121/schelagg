@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T02:16:34.473Z",
+  "generatedAt": "2026-11-19T06:51:36.827Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-19T02:13:36.114Z",
+      "checkedAt": "2026-11-19T06:48:31.535Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -42,7 +42,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://sportsgardendfw.com/open-play/",
       "ok": true,
-      "checkedAt": "2026-11-19T01:51:33.328Z",
+      "checkedAt": "2026-11-19T06:48:33.135Z",
       "count": 4
     },
     {
@@ -55,7 +55,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-19T02:13:36.956Z",
+      "checkedAt": "2026-11-19T06:48:33.427Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -70,7 +70,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T01:51:34.021Z",
+      "checkedAt": "2026-11-19T06:48:34.169Z",
       "count": 5
     },
     {
@@ -83,7 +83,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T01:51:36.407Z",
+      "checkedAt": "2026-11-19T06:48:37.173Z",
       "count": 7
     },
     {
@@ -110,7 +110,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T01:51:38.291Z",
+      "checkedAt": "2026-11-19T06:48:37.692Z",
       "count": 13,
       "warnings": [
         "venue \"Intentional Sports\" isn't in its region's venues.json"
@@ -147,7 +147,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -176,7 +176,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -205,7 +205,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -238,7 +238,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -271,7 +271,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "foro",
-      "checkFailed": "2026-11-18",
+      "checkFailed": "2026-11-19",
       "status": "scheduled"
     },
     {
@@ -301,7 +301,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "foro",
-      "checkFailed": "2026-11-18",
+      "checkFailed": "2026-11-19",
       "status": "scheduled"
     },
     {
@@ -330,7 +330,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "fw-riverside",
       "status": "scheduled"
     },
@@ -360,7 +360,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "fw-worth-heights",
       "status": "scheduled"
     },
@@ -393,7 +393,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-greenbriar-community-center",
       "status": "scheduled"
     },
@@ -423,7 +423,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
@@ -453,7 +453,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-southwest-community-center",
       "status": "scheduled"
     },
@@ -487,7 +487,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-northside-community-center",
       "status": "scheduled"
     },
@@ -517,7 +517,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "fw-riverside",
       "status": "scheduled"
     },
@@ -550,7 +550,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
@@ -580,7 +580,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
@@ -612,7 +612,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-martin-luther-king-community-center",
       "status": "scheduled"
     },
@@ -642,7 +642,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
@@ -673,7 +673,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-handley-meadowbrook-community-center",
       "status": "scheduled"
     },
@@ -699,7 +699,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -725,60 +725,8 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "sports-garden",
-      "status": "scheduled"
-    },
-    {
-      "id": "meetup-ntav-event_317199325-2026-11-18",
-      "date": "2026-11-18",
-      "start": "19:00",
-      "end": "20:00",
-      "title": "Adult Volleyball Skills Clinic and Training",
-      "venue": "USSPT",
-      "city": "Lewisville",
-      "surface": "indoor",
-      "type": "Clinic",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
-      "signup": {
-        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317199325/",
-        "label": "Details and RSVP"
-      },
-      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317199325/",
-      "sourceId": "dallas-meetup",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
-      "status": "scheduled"
-    },
-    {
-      "id": "meetup-ntav-event_317200240-2026-11-18",
-      "date": "2026-11-18",
-      "start": "20:00",
-      "end": "22:00",
-      "title": "Adult Beginner Open Gym Volleyball Lewisville",
-      "venue": "USSPT",
-      "city": "Lewisville",
-      "surface": "indoor",
-      "type": "Open play",
-      "level": "Beginner",
-      "price": null,
-      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
-      "signup": {
-        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317200240/",
-        "label": "Details and RSVP"
-      },
-      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317200240/",
-      "sourceId": "dallas-meetup",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
-      "venueId": "src-usspt",
       "status": "scheduled"
     },
     {
@@ -803,7 +751,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -829,7 +777,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -855,7 +803,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -881,7 +829,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -907,7 +855,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -933,7 +881,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -959,7 +907,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -985,7 +933,59 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
+      "venueId": "src-usspt",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317405313-2026-12-02",
+      "date": "2026-12-02",
+      "start": "19:00",
+      "end": "20:00",
+      "title": "Adult Volleyball Skills Clinic and Training",
+      "venue": "USSPT",
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Clinic",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317405313/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317405313/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-19",
+      "venueId": "src-usspt",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-ntav-event_317406201-2026-12-02",
+      "date": "2026-12-02",
+      "start": "20:00",
+      "end": "22:00",
+      "title": "Adult Beginner Open Gym Volleyball Lewisville",
+      "venue": "USSPT",
+      "city": "Lewisville",
+      "surface": "indoor",
+      "type": "Open play",
+      "level": "Beginner",
+      "price": null,
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "signup": {
+        "url": "https://www.meetup.com/north-texas-adult-volleyball/events/317406201/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/north-texas-adult-volleyball/events/317406201/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-19",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -1011,7 +1011,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-18",
+      "verifiedAt": "2026-11-19",
       "status": "scheduled"
     }
   ],

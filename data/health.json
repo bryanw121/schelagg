@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        279,
         278,
         273,
         273,
@@ -11,13 +10,14 @@
         270,
         265,
         258,
-        258
+        258,
+        250
       ],
-      "sessions": 258,
+      "sessions": 250,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.7,
+        "level": 0.71,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -35,7 +35,7 @@
         160,
         160,
         160,
-        160,
+        158,
         158,
         158,
         158
@@ -81,9 +81,9 @@
         11,
         11,
         11,
-        11
+        10
       ],
-      "sessions": 11,
+      "sessions": 10,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -155,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 853
+      "failStreak": 854
     },
     "atxbeach": {
       "counts": [
@@ -215,7 +215,6 @@
     },
     "reclub": {
       "counts": [
-        6,
         7,
         7,
         7,
@@ -224,9 +223,10 @@
         7,
         7,
         7,
-        7
+        7,
+        6
       ],
-      "sessions": 7,
+      "sessions": 6,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -355,7 +355,7 @@
         2,
         2,
         2,
-        2,
+        3,
         3,
         3,
         3,
@@ -688,7 +688,6 @@
     "austin-meetup": {
       "counts": [
         2,
-        2,
         3,
         3,
         3,
@@ -696,9 +695,10 @@
         3,
         3,
         3,
-        3
+        3,
+        2
       ],
-      "sessions": 3,
+      "sessions": 2,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -750,9 +750,9 @@
         37,
         37,
         37,
-        37
+        36
       ],
-      "sessions": 37,
+      "sessions": 36,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -761,7 +761,7 @@
         "city": 1,
         "surface": 1,
         "type": 1,
-        "capacity": 0.14,
+        "capacity": 0.19,
         "spotsLeft": 0,
         "signup": 1
       },
@@ -914,13 +914,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 562
+      "failStreak": 563
     },
     "leander-pickleball": {
-      "failStreak": 562
+      "failStreak": 563
     },
     "dallas-reclub": {
-      "failStreak": 194
+      "failStreak": 195
     },
     "sportsgarden": {
       "counts": [
@@ -973,13 +973,13 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 58
+      "failStreak": 59
     },
     "dfw-city-active": {
       "counts": [
         6,
         6,
-        6,
+        5,
         5,
         5,
         5,
@@ -1058,7 +1058,6 @@
     },
     "houston-reclub": {
       "counts": [
-        23,
         20,
         21,
         21,
@@ -1067,12 +1066,13 @@
         21,
         22,
         24,
-        24
+        24,
+        22
       ],
-      "sessions": 24,
+      "sessions": 22,
       "coverage": {
         "end": 1,
-        "price": 0.58,
+        "price": 0.59,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1113,6 +1113,14 @@
         "isPast",
         "keywordSearch",
         "matchConfig",
+        "matchConfig.limitRounds",
+        "matchConfig.participantIds[]",
+        "matchConfig.prioritizeLeastMatches",
+        "matchConfig.rankingCriteria",
+        "matchConfig.scheme",
+        "matchConfig.sublocations[]",
+        "matchConfig.teamIds[]",
+        "matchConfig.totalSetPoints",
         "maxSportLevelValue",
         "minSportLevelId",
         "minSportLevelValue",
@@ -1232,7 +1240,6 @@
     "houston-reclub:warning:reclub-3YV72K: no surface",
     "houston-reclub:warning:reclub-40RJ8U: no surface",
     "houston-reclub:warning:reclub-5E0DAN: no surface",
-    "houston-reclub:warning:reclub-6AL5A9: no surface",
     "houston-reclub:warning:reclub-6TSHGM: no surface",
     "houston-reclub:warning:reclub-8SFAT2: no surface",
     "houston-reclub:warning:reclub-8TBKMU: no surface",
@@ -1249,7 +1256,6 @@
     "houston-reclub:warning:reclub-R9HE9A: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
-    "houston-reclub:warning:reclub-X8HWS8: no surface",
     "houston-reclub:warning:reclub-XD4JXT: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",
     "leander-pickleball:failing",
@@ -1266,7 +1272,7 @@
     "manual:four-seasons-ice-rodeo:changed:2026-11-18",
     "manual:hanovers-open:changed:2026-11-18",
     "manual:hanovers-open:unverified",
-    "manual:ssc-crossover-mon-sand:changed:2026-11-18",
+    "manual:ssc-crossover-mon-sand:changed:2026-11-19",
     "manual:ssc-crossover-mon-sand:unverified",
     "reclub:warning:https://reclub.co/m/V4DO6Q: HTTP 403"
   ]
