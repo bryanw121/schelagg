@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-19T01:57:47.377Z",
+  "generatedAt": "2026-11-19T02:16:34.473Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -1387,7 +1387,7 @@
       "venue": "Volleyworld (Pflugerville)",
       "city": "Pflugerville",
       "level": "Adults · Adan",
-      "price": "$20",
+      "price": null,
       "starts_at": "2026-11-19T03:00:00.000Z",
       "ends_at": "2026-11-19T04:30:00.000Z",
       "signup_url": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -1399,23 +1399,8 @@
         "surface": "indoor",
         "type": "Training",
         "capacity": 12,
-        "spotsLeft": 11,
-        "classId": "1ECrbBraMnBUFUSEQKWY",
-        "alsoOn": [
-          {
-            "sourceId": "reclub",
-            "id": "reclub-CZB0G3",
-            "title": "Adult training",
-            "signup": {
-              "url": "https://reclub.co/m/CZB0G3",
-              "label": "Sign up on Reclub"
-            },
-            "source": "https://reclub.co/m/CZB0G3"
-          }
-        ],
-        "fieldSources": {
-          "price": "reclub"
-        }
+        "spotsLeft": 10,
+        "classId": "1ECrbBraMnBUFUSEQKWY"
       },
       "venue_id": "volleyworld-pflugerville",
       "status": "scheduled",
