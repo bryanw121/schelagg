@@ -57,3 +57,16 @@ test('eventIcon: the most specific tag decides the picture; no tag falls back to
   assert.equal(eventIcon({ title: 'Free yoga', price: 'Free' }), 'popup', 'Free is a tag without a picture');
   for (const t of SEARCH_TAGS) if (t.id !== 'free') assert.ok(EVENT_ICONS[t.id], `${t.id} has an icon`);
 });
+
+test('search tags: Food and Music are incidental at a market; they need the title there, but not at a pop-up', () => {
+  // An art bazaar that mentions coffee and live music is neither a food nor a music event.
+  assert.deepEqual(searchTags({ title: 'Blue Genie Art Bazaar', description: 'Local art, with coffee and live music. Free admission.' }), ['free']);
+  assert.deepEqual(searchTags({ title: 'Winter Market', description: 'Food trucks on site.' }), ['holiday']);
+  // A market that is about food says so in its name.
+  assert.deepEqual(searchTags({ title: 'Taco Festival' }), ['food']);
+  // A pop-up or a cart: the description counts.
+  assert.deepEqual(searchTags({ title: 'Kyoto Koffie', description: 'A coffee cart this weekend.' }), ['food']);
+  assert.deepEqual(searchTags({ title: 'Tiny Loaf Asian Milk Bread' }), ['food']);
+  // Other tags are what a market is, so the description still counts for them.
+  assert.deepEqual(searchTags({ title: 'Saturday Market', description: 'Vintage racks and handmade goods.' }), ['makers-market', 'vintage']);
+});

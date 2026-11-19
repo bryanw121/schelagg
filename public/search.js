@@ -16,22 +16,28 @@ export function matchesText(text, q) {
 /**
  * Search tags. An event has a tag when its title or description has one of the tag's words (whole
  * words), or, for Free, when its price says so. Add a tag by adding a line here.
+ *
+ * `incidental` tags (Food, Music) name things most markets have on the side: an art bazaar whose
+ * description mentions coffee is not a food event. At a market, bazaar, fair, festival or expo
+ * they count only when the title says so; for anything else (a pop-up, a cart) the description counts too.
  */
+const MARKET_LIKE = / (market|markets|bazaar|bazaars|fair|fairs|festival|fest|fes|expo|show) /;
 export const SEARCH_TAGS = [
   { id: 'night-market', label: 'Night market', words: ['night market', 'night markets', 'night bazaar', 'moonlight market', 'market after dark'] },
   { id: 'makers-market', label: 'Makers market', words: ['makers market', 'maker s market', 'makers fair', 'artisan market', 'craft market', 'craft fair', 'handmade'] },
   { id: 'vintage', label: 'Vintage', words: ['vintage', 'thrift', 'flea market', 'flea'] },
   { id: 'matcha', label: 'Matcha', words: ['matcha'] },
-  { id: 'food', label: 'Food', words: ['food truck', 'food trucks', 'tasting', 'ramen', 'bbq', 'barbecue', 'tacos', 'bakery', 'bake sale', 'dumplings', 'boba', 'coffee', 'supper club', 'food festival'] },
+  { id: 'food', label: 'Food', incidental: true, words: ['food truck', 'food trucks', 'food pop up', 'food festival', 'tasting', 'ramen', 'bbq', 'barbecue', 'tacos', 'taco', 'bakery', 'bake sale', 'bread', 'loaf', 'dumplings', 'dumpling', 'boba', 'coffee', 'koffie', 'supper club', 'pizza', 'burgers', 'brunch', 'dessert', 'desserts', 'donuts', 'ice cream', 'noodles', 'sushi', 'omakase', 'chef', 'kitchen', 'eats', 'bites', 'bake'] },
   { id: 'holiday', label: 'Holiday', words: ['holiday', 'holidays', 'christmas', 'xmas', 'santa', 'hanukkah', 'thanksgiving', 'winter market', 'trail of lights'] },
-  { id: 'music', label: 'Music', words: ['live music', 'concert', 'dj set', 'live band', 'music festival'] },
+  { id: 'music', label: 'Music', incidental: true, words: ['live music', 'concert', 'dj set', 'live band', 'music festival'] },
   { id: 'free', label: 'Free', words: ['free admission', 'free entry', 'free to attend'] },
 ];
 const hasWords = (hay, words) => words.some((w) => hay.includes(` ${w} `));
 /** The search tags an event has, in SEARCH_TAGS order. */
 export function searchTags(ev) {
-  const hay = ` ${fold(`${ev?.title ?? ''} ${ev?.description ?? ''}`)} `;
-  return SEARCH_TAGS.filter((t) => hasWords(hay, t.words) || (t.id === 'free' && /^\s*free\b/i.test(ev?.price ?? ''))).map((t) => t.id);
+  const title = ` ${fold(ev?.title)} `, hay = ` ${fold(`${ev?.title ?? ''} ${ev?.description ?? ''}`)} `;
+  const market = MARKET_LIKE.test(title);
+  return SEARCH_TAGS.filter((t) => hasWords(t.incidental && market ? title : hay, t.words) || (t.id === 'free' && /^\s*free\b/i.test(ev?.price ?? ''))).map((t) => t.id);
 }
 export const searchTagLabel = (id) => SEARCH_TAGS.find((t) => t.id === id)?.label ?? id;
 /** Tags that have events, most first, as [{ id, label, n }]. */
