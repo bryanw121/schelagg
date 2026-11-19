@@ -1861,6 +1861,61 @@ $('feedbackForm').addEventListener('submit', async (e) => {
   $('feedbackActs').innerHTML = `<a class="go-btn" href="${esc(`${FEEDBACK_ISSUES}?${new URLSearchParams({ title: 'Feedback', body: message, labels: 'feedback' })}`)}" target="_blank" rel="noopener">Post on GitHub ↗</a><button type="submit" class="tab opt" id="feedbackSend">Try again</button>`;
 });
 
+// ---------- add a source ----------
+// The footer's "Add a source": a name or a link, what it is for and the city (both filled in from
+// the page). /api/add-source checks it while the person waits and answers one of three ways:
+// added (with how much it found), already there, or why not. See lib/add-source.js.
+let addFor = null; // 'events' or a sport id
+const addResult = (kind, title, detail) => { const el = $('addRes'); el.hidden = false; el.className = `add-res ${kind}`; el.innerHTML = `<b>${kind === 'busy' ? '<span class="spin" aria-hidden="true"></span> ' : ''}${esc(title)}</b>${detail ? `<span>${esc(detail)}</span>` : ''}`; };
+function renderAddFor() {
+  const sport = SPORTS[state.sport] ? state.sport : 'volleyball';
+  const opts = [['events', 'Events'], [sport, `Sports · ${SPORTS[sport].label}`]];
+  $('addFor').innerHTML = opts.map(([id, label]) => `<button type="button" class="tab opt" data-addfor="${esc(id)}" aria-pressed="${addFor === id}">${label}</button>`).join('');
+}
+$('addSourceBtn').addEventListener('click', (e) => {
+  addFor = state.section === 'events' ? 'events' : (SPORTS[state.sport] ? state.sport : 'volleyball');
+  renderAddFor();
+  const cities = index?.regions?.length ? index.regions : region?.id ? [region] : [{ id: 'austin', name: 'Austin, TX' }];
+  $('addRegion').innerHTML = cities.map((r) => `<option value="${esc(r.id)}" ${r.id === region?.id ? 'selected' : ''}>${esc(r.name)}</option>`).join('');
+  $('addRes').hidden = true; $('addInput').value = '';
+  $('addActs').innerHTML = '<button type="submit" class="go-btn" id="addSend">Check and add</button>';
+  openSheet('addSheet', e.currentTarget);
+  $('addInput').focus();
+});
+$('addFor').addEventListener('click', (e) => { const b = e.target.closest('[data-addfor]'); if (!b) return; addFor = b.dataset.addfor; renderAddFor(); $('addFor').querySelector(`[data-addfor="${CSS.escape(addFor)}"]`)?.focus(); });
+$('addForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const input = $('addInput').value.trim();
+  if (!input) { addResult('no', 'Type a name or paste a link first.'); $('addInput').focus(); return; }
+  const btn = $('addSend');
+  btn.disabled = true;
+  addResult('busy', `Checking ${input.length > 40 ? `${input.slice(0, 40)}…` : input}…`, 'Finding its page and looking for a schedule. This can take up to 20 seconds.');
+  let r = null, out = null;
+  try { r = await fetch('api/add-source', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ input, target: addFor, region: $('addRegion').value, website: $('addWebsite').value }) }); out = await r.json(); } catch { /* no API here */ }
+  btn.disabled = false;
+  const viaFeedback = () => { $('addActs').innerHTML = '<button type="button" class="go-btn" id="addToFeedback">Send it as feedback</button><button type="submit" class="tab opt" id="addSend">Check again</button>'; };
+  if (!r || !out || (!out.status && !out.error)) { addResult('no', "Couldn't check it from here.", 'Send it as feedback instead and it will be looked at.'); viaFeedback(); return; }
+  if (out.error) { addResult('no', "Couldn't check it.", out.error); return; }
+  if (out.status === 'ok' && out.saved) {
+    addResult('ok', out.title, out.detail);
+    $('addActs').innerHTML = '<button type="button" class="go-btn" data-close>Done</button><button type="button" class="tab opt" id="addAnother">Add another</button>';
+    $('addActs').querySelector('button').focus();
+    return;
+  }
+  if (out.status === 'ok') { addResult('have', out.title, out.detail); viaFeedback(); return; }
+  addResult(out.status === 'have' ? 'have' : 'no', out.title, out.detail);
+  if (out.needsLink) { $('addInput').focus(); $('addInput').select(); }
+});
+$('addActs').addEventListener('click', (e) => {
+  if (e.target.closest('#addAnother')) { $('addInput').value = ''; $('addRes').hidden = true; $('addActs').innerHTML = '<button type="submit" class="go-btn" id="addSend">Check and add</button>'; $('addInput').focus(); return; }
+  if (e.target.closest('#addToFeedback')) {
+    const text = `Please add this source: ${$('addInput').value.trim()} (for ${addFor === 'events' ? 'Events' : SPORTS[addFor]?.label ?? addFor}, ${$('addRegion').selectedOptions[0]?.textContent ?? ''})`;
+    $('addSheet').close();
+    $('feedbackBtn').click();
+    $('feedbackText').value = text;
+  }
+});
+
 // ---------- sheets ----------
 const sheets = () => document.querySelectorAll('dialog.sheet');
 function openSheet(id, opener) {

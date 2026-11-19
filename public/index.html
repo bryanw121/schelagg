@@ -53,6 +53,19 @@
     <div class="opts" id="calOpts"></div>
   </div>
 </dialog>
+<dialog class="sheet" id="addSheet" aria-labelledby="addTitle">
+  <form class="sheet-in" id="addForm" novalidate>
+    <div class="sheet-head"><h2 id="addTitle">Add a source</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
+    <label class="fb-field"><span class="opt-h" style="margin:0">Who or what is it?</span>
+      <input type="text" id="addInput" maxlength="200" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="A name, or a link to its schedule">
+      <span class="note" style="margin:0">A gym, a group, a market, an organizer. Skelly checks it right away.</span></label>
+    <div class="fb-field"><span class="opt-h" style="margin:0" id="addForLabel">It's for</span><div class="add-seg" role="group" aria-labelledby="addForLabel" id="addFor"></div></div>
+    <label class="fb-field"><span class="opt-h" style="margin:0">City</span><select id="addRegion"></select></label>
+    <input type="text" id="addWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="fb-trap">
+    <div class="add-res" id="addRes" role="status" hidden></div>
+    <div class="opts" id="addActs"><button type="submit" class="go-btn" id="addSend">Check and add</button></div>
+  </form>
+</dialog>
 <dialog class="sheet" id="feedbackSheet" aria-labelledby="feedbackTitle">
   <form class="sheet-in" id="feedbackForm" novalidate>
     <div class="sheet-head"><h2 id="feedbackTitle">Send feedback</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
@@ -165,7 +178,7 @@
     </section>
 
     <footer id="footer"></footer>
-    <p class="foot-act"><button type="button" class="pill-btn" id="feedbackBtn" aria-haspopup="dialog">Send feedback</button></p>
+    <p class="foot-act"><span class="foot-q">Know a place we're missing?</span><button type="button" class="pill-btn" id="addSourceBtn" aria-haspopup="dialog">Add a source</button><button type="button" class="pill-btn" id="feedbackBtn" aria-haspopup="dialog">Send feedback</button></p>
   </div>
 </main>
 <script type="module" src="app.js"></script>
