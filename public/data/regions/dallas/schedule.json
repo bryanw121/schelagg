@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T20:06:05.713Z",
+  "generatedAt": "2026-11-19T20:12:33.179Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-19T20:02:45.231Z",
+      "checkedAt": "2026-11-19T20:09:52.596Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -42,7 +42,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://sportsgardendfw.com/open-play/",
       "ok": true,
-      "checkedAt": "2026-11-19T20:02:47.230Z",
+      "checkedAt": "2026-11-19T20:09:56.908Z",
       "count": 4
     },
     {
@@ -55,7 +55,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-19T20:02:47.508Z",
+      "checkedAt": "2026-11-19T20:09:57.389Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -70,7 +70,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T20:02:47.893Z",
+      "checkedAt": "2026-11-19T20:09:57.911Z",
       "count": 5
     },
     {
@@ -83,7 +83,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T20:02:50.264Z",
+      "checkedAt": "2026-11-19T20:09:59.128Z",
       "count": 7
     },
     {
@@ -110,7 +110,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T20:02:52.888Z",
+      "checkedAt": "2026-11-19T20:10:02.551Z",
       "count": 13,
       "warnings": [
         "venue \"Intentional Sports\" isn't in its region's venues.json"

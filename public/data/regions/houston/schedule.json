@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T20:06:05.713Z",
+  "generatedAt": "2026-11-19T20:12:33.179Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,8 +67,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T20:02:58.520Z",
-      "count": 23,
+      "checkedAt": "2026-11-19T20:10:06.063Z",
+      "count": 19,
       "warnings": [
         "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
@@ -88,11 +88,7 @@
         "reclub-JK2478: no surface",
         "reclub-40RJ8U: no surface",
         "reclub-T02HQF: no surface",
-        "reclub-PY6UV1: no surface",
-        "reclub-XD4JXT: no surface",
-        "reclub-6TSHGM: no surface",
-        "reclub-5E0DAN: no surface",
-        "reclub-230JCQ: no surface"
+        "reclub-PY6UV1: no surface"
       ]
     },
     {
@@ -105,7 +101,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/houston-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T20:02:58.643Z",
+      "checkedAt": "2026-11-19T20:10:09.149Z",
       "count": 0
     },
     {
@@ -118,7 +114,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-19T20:03:01.295Z",
+      "checkedAt": "2026-11-19T20:10:12.964Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -575,106 +571,6 @@
       "verifiedAt": "2026-11-19",
       "venueId": "src-houston-stars",
       "status": "scheduled"
-    },
-    {
-      "id": "reclub-XD4JXT",
-      "date": "2026-11-20",
-      "start": "20:00",
-      "end": "23:00",
-      "title": "Volleyball Pickup with Kimberly",
-      "venue": "Harvest Time Church",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$10",
-      "note": "Hosted by The Volleyball Hangout.",
-      "capacity": 30,
-      "signup": {
-        "url": "https://reclub.co/m/XD4JXT",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/XD4JXT",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "src-harvest-time-church",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-6TSHGM",
-      "date": "2026-11-21",
-      "start": "17:00",
-      "end": "21:00",
-      "title": "The Volleyball Hangout",
-      "venue": "Collins Park",
-      "type": "Open play",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by The Volleyball Hangout, every Saturday.",
-      "capacity": 30,
-      "signup": {
-        "url": "https://reclub.co/m/6TSHGM",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/6TSHGM",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "src-collins-park",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-5E0DAN",
-      "date": "2026-11-21",
-      "start": "17:00",
-      "end": "21:00",
-      "title": "The Volleyball Hangout",
-      "venue": "Collins Park",
-      "type": "Open play",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by The Volleyball Hangout, every Saturday.",
-      "capacity": 30,
-      "signup": {
-        "url": "https://reclub.co/m/5E0DAN",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/5E0DAN",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "src-collins-park",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-230JCQ",
-      "date": "2026-11-23",
-      "start": "19:30",
-      "end": "22:00",
-      "title": "Volleyball Pickup with Kimberly",
-      "venue": "Collins Park",
-      "type": "Open play",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by The Volleyball Hangout, every Monday.",
-      "capacity": 30,
-      "signup": {
-        "url": "https://reclub.co/m/230JCQ",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/230JCQ",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "src-collins-park",
-      "status": "scheduled"
     }
   ],
   "publicCourts": null,
@@ -776,24 +672,6 @@
       "address": "6942 Cotton Drive, Houston, Tx",
       "lat": 29.836397,
       "lng": -95.49456,
-      "region": "houston"
-    },
-    {
-      "id": "src-harvest-time-church",
-      "name": "Harvest Time Church",
-      "city": null,
-      "address": "Imperial Valley Drive, Houston, TX",
-      "lat": 29.955013,
-      "lng": -95.39814,
-      "region": "houston"
-    },
-    {
-      "id": "src-collins-park",
-      "name": "Collins Park",
-      "city": null,
-      "address": "6727 Cypresswood Drive, Spring, TX",
-      "lat": 30.011,
-      "lng": -95.5077,
       "region": "houston"
     }
   ]

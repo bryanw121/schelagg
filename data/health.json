@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        250,
         268,
         268,
         268,
@@ -11,9 +10,10 @@
         269,
         268,
         264,
-        276
+        276,
+        273
       ],
-      "sessions": 276,
+      "sessions": 273,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -64,7 +64,7 @@
         0,
         0,
         0,
-        0,
+        1,
         1
       ],
       "sessions": 1,
@@ -166,7 +166,7 @@
       ]
     },
     "aces": {
-      "failStreak": 863
+      "failStreak": 864
     },
     "atxbeach": {
       "counts": [
@@ -717,7 +717,7 @@
     "austin-meetup": {
       "counts": [
         3,
-        3,
+        2,
         2,
         2,
         2,
@@ -943,13 +943,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 572
+      "failStreak": 573
     },
     "leander-pickleball": {
-      "failStreak": 572
+      "failStreak": 573
     },
     "dallas-reclub": {
-      "failStreak": 204
+      "failStreak": 205
     },
     "sportsgarden": {
       "counts": [
@@ -1002,7 +1002,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 68
+      "failStreak": 69
     },
     "dfw-city-active": {
       "counts": [
@@ -1089,19 +1089,19 @@
       "counts": [
         22,
         22,
-        22,
         21,
         21,
         21,
         21,
         24,
         24,
-        23
+        23,
+        19
       ],
-      "sessions": 23,
+      "sessions": 19,
       "coverage": {
         "end": 1,
-        "price": 0.61,
+        "price": 0.68,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1230,6 +1230,7 @@
         0,
         0,
         0,
+        0,
         0
       ],
       "sessions": 0,
@@ -1237,6 +1238,7 @@
     },
     "houston-sweatpals": {
       "counts": [
+        0,
         0,
         0,
         0,
@@ -1285,11 +1287,8 @@
     "dallas-reclub:failing",
     "foro:failing",
     "georgetown-pickleball:failing",
-    "houston-reclub:warning:reclub-230JCQ: no surface",
     "houston-reclub:warning:reclub-3YV72K: no surface",
     "houston-reclub:warning:reclub-40RJ8U: no surface",
-    "houston-reclub:warning:reclub-5E0DAN: no surface",
-    "houston-reclub:warning:reclub-6TSHGM: no surface",
     "houston-reclub:warning:reclub-8SFAT2: no surface",
     "houston-reclub:warning:reclub-8TBKMU: no surface",
     "houston-reclub:warning:reclub-EEUP4M: no surface",
@@ -1306,7 +1305,6 @@
     "houston-reclub:warning:reclub-R9HE9A: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
-    "houston-reclub:warning:reclub-XD4JXT: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",
     "houston-sweatpals:warning:no upcoming events matched on any host",
     "leander-pickleball:failing",
