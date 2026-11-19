@@ -220,9 +220,9 @@ test('scrape pipeline: every configured source runs on fixtures and schedule.jso
   // A place not in its region's venues.json is a warning (manual sessions report through the health check).
   assert.ok(r.logs.some((l) => /warn  manual: venue "Zilker Park" isn't in its region's venues\.json/.test(l)));
   // Calendar files per sport: every region next to the feed, and each region's own (what the site links).
-  assert.match(readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8'), /X-WR-CALNAME:Schelagg · public skating/);
+  assert.match(readFileSync(join(r.ws.dir, 'ice_skating.ics'), 'utf8'), /X-WR-CALNAME:Skelly · public skating/);
   const ics = readFileSync(join(r.ws.dir, 'regions/austin/ice_skating.ics'), 'utf8');
-  assert.match(ics, /X-WR-CALNAME:Schelagg · Austin public skating/);
+  assert.match(ics, /X-WR-CALNAME:Skelly · Austin public skating/);
   assert.match(ics, /UID:daysmart-chaparralice-345508@schelagg/);
   assert.match(readFileSync(join(r.ws.dir, 'volleyball.ics'), 'utf8'), /UID:reclub-VONMM8@schelagg/);
 

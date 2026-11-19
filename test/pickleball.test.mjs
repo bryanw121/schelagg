@@ -44,7 +44,7 @@ test('Austin pickleball source survives the pipeline, keeps addresses and emits 
     assert.ok(regional.venues.find((v) => v.id === 'austin-northwest-rec').address);
     const ics = await readFile(join(dir, 'regions/austin/pickleball.ics'), 'utf8');
     assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, 13);
-    assert.match(ics, /X-WR-CALNAME:Schelagg · Austin pickleball/);
+    assert.match(ics, /X-WR-CALNAME:Skelly · Austin pickleball/);
     assert.doesNotMatch(ics, /Ice Rodeo|Volleyball|ATX Sand Social/);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
