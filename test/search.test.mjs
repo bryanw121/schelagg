@@ -37,3 +37,12 @@ test('search: highlight marks the matched word starts', () => {
   assert.deepEqual(highlightParts('Asian Night Market', 'night mar'), [['Asian ', false], ['Night', true], [' ', false], ['Mar', true], ['ket', false]]);
   assert.deepEqual(highlightParts('Plain', ''), [['Plain', false]]);
 });
+
+test('search: a tag filter is exactly the tagged events; typing its name is a wider word search', () => {
+  const feed = [
+    { title: 'Taco Tasting', startDate: '2026-11-21' }, // tagged Food
+    { title: 'Art Walk', description: 'Local art, with food available nearby.', startDate: '2026-11-21' }, // mentions food, not tagged
+  ];
+  assert.deepEqual(filterEvents(feed, { topic: 'food' }, '2026-11-18').map((e) => e.title), ['Taco Tasting']);
+  assert.deepEqual(filterEvents(feed, { q: 'food' }, '2026-11-18').map((e) => e.title), ['Taco Tasting', 'Art Walk']);
+});

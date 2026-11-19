@@ -17,9 +17,9 @@ test('sortEvents: soonest first, ties by title', () => {
 
 test('eventDateRange: one day, same month, across months, across years', () => {
   assert.equal(eventDateRange(ev({ startDate: '2026-12-05' })), 'Sat, Dec 5');
-  assert.equal(eventDateRange(ev({ startDate: '2026-11-12', endDate: '2026-11-23' })), 'Nov 12 – 23');
-  assert.equal(eventDateRange(ev({ startDate: '2026-11-12', endDate: '2026-12-30' })), 'Nov 12 – Dec 30');
-  assert.equal(eventDateRange(ev({ startDate: '2026-11-21', endDate: '2027-01-03' })), 'Nov 21 – Jan 3');
+  assert.equal(eventDateRange(ev({ startDate: '2026-11-12', endDate: '2026-11-23' })), 'Thu, Nov 12 – Mon, Nov 23');
+  assert.equal(eventDateRange(ev({ startDate: '2026-11-12', endDate: '2026-12-30' })), 'Thu, Nov 12 – Wed, Dec 30');
+  assert.equal(eventDateRange(ev({ startDate: '2026-11-21', endDate: '2027-01-03' })), 'Sat, Nov 21 – Sun, Jan 3');
   assert.equal(eventDateRange(ev({ startDate: '2026-12-05', endDate: '2026-12-05' })), 'Sat, Dec 5', 'a one-day range is one day');
 });
 
@@ -50,14 +50,14 @@ test('eventPlaces: one pin per venue, grouped; the status shows the full date ra
   assert.equal(palmer.events.length, 2, 'both events at the same venue share the pin');
   assert.equal(palmer.short, 'Palmer Events Center');
   assert.equal(palmer.city, 'Zilker · Austin');
-  assert.equal(palmer.status, '2 events · Nov 19 – 22', 'the soonest event\'s full range, not just its start');
+  assert.equal(palmer.status, '2 events · Thu, Nov 19 – Sun, Nov 22', 'the soonest event\'s full range, not just its start');
   assert.deepEqual([palmer.title, palmer.more], ['A Christmas Affair', 1], 'named for the soonest event, and how many more');
-  assert.equal(palmer.aria, 'A Christmas Affair and 1 more at Palmer Events Center: 2 events · Nov 19 – 22');
+  assert.equal(palmer.aria, 'A Christmas Affair and 1 more at Palmer Events Center: 2 events · Thu, Nov 19 – Sun, Nov 22');
   assert.deepEqual(palmer.sessions, [], 'the shared map machinery reads .sessions');
   assert.equal(palmer.done, false);
   const flower = places.find((p) => p.name.startsWith('1209'));
   assert.equal(flower.events.length, 2);
-  assert.equal(flower.status, 'Happening now · Nov 16 – 18', 'Nov 12–23 and Nov 16–18 both cover Nov 17; the one ending soonest is shown');
+  assert.equal(flower.status, 'Happening now · Mon, Nov 16 – Wed, Nov 18', 'Nov 12–23 and Nov 16–18 both cover Nov 17; the one ending soonest is shown');
   assert.equal(flower.short, '1209 E Cesar Chavez St');
   assert.deepEqual([flower.title, flower.more], ['Flower Weekend', 1], 'the event on now that ends soonest names the pin, not the address');
 });
@@ -135,9 +135,9 @@ test('weekendRange and filterEvents: kind, tags, and on any day of this weekend'
 });
 
 test('eventWhen and isOn: the card\'s date column; eventCta: what the button says', () => {
-  assert.deepEqual(eventWhen(feed[0], TODAY), { top: 'Thru', main: 'Nov 23' });
+  assert.deepEqual(eventWhen(feed[0], TODAY), { top: 'Thru Mon', main: 'Nov 23' });
   assert.deepEqual(eventWhen(feed[4], TODAY), { top: 'Sat', main: 'Nov 21' });
-  assert.deepEqual(eventWhen(feed[3], TODAY), { top: 'Nov 19', main: 'to Nov 22', range: true });
+  assert.deepEqual(eventWhen(feed[3], TODAY), { top: 'Nov 19', main: 'to Sun Nov 22', range: true, dow: 'Thu' });
   assert.ok(isOn(feed[0], TODAY) && !isOn(feed[3], TODAY) && !isOn(feed[2], TODAY));
   assert.equal(eventCta({ sourceUrl: 'https://www.instagram.com/p/x/' }), 'See the post');
   assert.equal(eventCta({ sourceUrl: 'https://www.austintexas.org/events/' }), 'Event page');

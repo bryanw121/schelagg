@@ -10,7 +10,7 @@
 
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
 import { TIME_PRESETS, inWindow, parseWindow, presetOf, toHHMM, windowLabel, windowNote } from './when.js';
-import { highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
+import { SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
 import { placeGroups } from './events-ui.js';
 import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
 
@@ -147,7 +147,8 @@ function regionNow() {
 const addDays = (iso, n) => { const [y, m, d] = iso.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d + n)).toISOString().slice(0, 10); };
 const dowOf = (iso) => { const [y, m, d] = iso.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)).getUTCDay(); };
 const dateObj = (iso) => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d); };
-const fmtDate = (iso, opts = { month: 'short', day: 'numeric' }) => dateObj(iso).toLocaleDateString('en-US', opts);
+// A date always says its day of the week ("Fri, Nov 20"), unless the caller asks for another shape (a month, a year).
+const fmtDate = (iso, opts = { weekday: 'short', month: 'short', day: 'numeric' }) => dateObj(iso).toLocaleDateString('en-US', opts);
 const mins = (t) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
 const hhmm = (m) => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
 function fmtT(t) { if (!t) return 'TBD'; let [h, m] = t.split(':').map(Number); h %= 24; const ap = h >= 12 ? 'pm' : 'am'; return `${h % 12 || 12}${m ? ':' + pad(m) : ''}${ap}`; }
@@ -216,7 +217,7 @@ const PROGRAM_VIEWS = { leagues: 'league', tournaments: 'tournament' };
 const viewFrom = (v, kind) => (v === 'signups' ? (kind === 'tournament' || kind === 'nagva' ? 'tournaments' : 'leagues') : VIEWS.includes(v) ? v : null);
 // The top level: Events (the default) or Sports. The events list pages 10 at a time (?page=),
 // filtered by category (?cat=); both are remembered and shareable.
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evKind: 'all', evTags: [], evWeekend: false, evDay: null, win: null, evQ: '', spQ: '' };
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evKind: 'all', evTags: [], evWeekend: false, evDay: null, win: null, evQ: '', evTopic: null, spQ: '' };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -259,6 +260,8 @@ state.win = parseWindow(params.get('from'), params.get('to'));
 // Search: ?q= belongs to the section the link opens (Events, or open play).
 const urlQ = (params.get('q') ?? '').slice(0, 80);
 if (urlQ) { if (state.section === 'events') state.evQ = urlQ; else state.spQ = urlQ; }
+// ?topic= is a search tag (Food, Night market...): exactly the events that carry it.
+if (state.section === 'events' && SEARCH_TAGS.some((t) => t.id === params.get('topic'))) { state.evTopic = params.get('topic'); state.evQ = searchTagLabel(state.evTopic); }
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
 // What else a shared link carries, so the person opening it sees what the sender saw:
 // ?day=YYYY-MM-DD (Sports: a day this week), ?court= (the court-type filter), ?place= (the place
@@ -298,6 +301,7 @@ function syncUrl() {
     if (dayView && state.tab !== 'all') u.searchParams.set('court', state.tab); else u.searchParams.delete('court');
   }
   if (activeQuery()) u.searchParams.set('q', activeQuery()); else u.searchParams.delete('q');
+  if (state.section === 'events' && state.evTopic) u.searchParams.set('topic', state.evTopic); else u.searchParams.delete('topic');
   const win = activeWindow();
   if (win) { u.searchParams.set('from', toHHMM(win.from)); u.searchParams.set('to', toHHMM(win.to)); } else { u.searchParams.delete('from'); u.searchParams.delete('to'); }
   if (state.layout === 'map' && mapReady()) u.searchParams.set('layout', 'map'); else u.searchParams.delete('layout');
@@ -334,7 +338,7 @@ const matchTab = (x) => {
 /** The time window in force: Events always; Sports only on open play (bookings, leagues and tournaments aren't about an hour). */
 const activeWindow = () => (state.section === 'events' || state.view === 'openplay' ? state.win : null);
 /** The search in force: Events' own, or open play's (other Sports views have no search box). */
-const activeQuery = () => (state.section === 'events' ? state.evQ : state.view === 'openplay' ? state.spQ : '').trim();
+const activeQuery = () => (state.section === 'events' ? (state.evTopic ? '' : state.evQ) : state.view === 'openplay' ? state.spQ : '').trim();
 /** Text with the searched words marked. */
 const hl = (text) => (activeQuery() ? highlightParts(text, activeQuery()).map(([t, on]) => (on ? `<mark>${esc(t)}</mark>` : esc(t))).join('') : esc(text));
 function sessionsOn(iso, { ignoreTab = false, ignoreWindow = false } = {}) {
@@ -369,7 +373,7 @@ function locationHtml(x) {
 function movedHtml(x) {
   if (x.status !== 'rescheduled' || !x.previousStart) return '';
   const [d, t] = x.previousStart.split(' ');
-  const when = d === x.date ? fmtT(t) : `${DAYS[dowOf(d)]} ${fmtDate(d)}, ${fmtT(t)}`;
+  const when = d === x.date ? fmtT(t) : `${fmtDate(d)}, ${fmtT(t)}`;
   return `<div class="moved">Moved from ${esc(when)}</div>`;
 }
 // How full it is, only from what the source itself says (#21 busyness v1): spots left out of the
@@ -941,7 +945,7 @@ const safeUrl = (u) => /^https:\/\//i.test(u || '');
  *  Cards say "by @x" for an organizer's own post (read through the API) and "via @x" for a credited repost. */
 const avatarImg = (x, size) => (avatarPath(x) ? `<img class="av" src="${DATA}${esc(avatarPath(x))}" alt="" width="${size}" height="${size}" loading="lazy" decoding="async">` : '');
 /** The event's kind and tags as chips: kinds solid outline, tags dashed. */
-const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}${searchTags(ev).map((g) => `<button type="button" class="chip tag chip-q" data-q="${esc(searchTagLabel(g))}" aria-label="Search ${esc(searchTagLabel(g))}">${esc(searchTagLabel(g))}</button>`).join('')}`;
+const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}${searchTags(ev).map((g) => `<button type="button" class="chip tag chip-q" data-topic="${esc(g)}" aria-label="Show events tagged ${esc(searchTagLabel(g))}">${esc(searchTagLabel(g))}</button>`).join('')}`;
 function eventCard(ev) {
   const parts = eventPlaceParts(ev);
   const on = isOn(ev, NOW.iso);
@@ -950,7 +954,7 @@ function eventCard(ev) {
   const times = ev.startTime ? `${fmtT(ev.startTime)}${ev.endTime ? `–${fmtT(ev.endTime)}` : ''}` : '';
   const via = ev.source ? `<span class="via">Found via ${esc(ev.source)}</span>` : '';
   return `<article class="row ev-row${evLink === ev.id ? ' linked' : ''}" data-ev="${esc(ev.id ?? '')}">
-    <div class="time">${w.range ? `${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : ''}</div>
+    <div class="time">${w.range ? `<small class="ev-top">${esc(w.dow)}</small>${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : ''}</div>
     <div class="body">
       <div class="t1"><span class="title">${hl(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
       ${avatarPath(ev) && ev.account ? `<div class="ev-by">${avatarImg(ev, 26)}<span>${ev.sourceId === 'instagram' ? 'by' : 'via'} <b>@${esc(ev.account)}</b></span></div>` : ''}
@@ -964,7 +968,7 @@ function eventCard(ev) {
 const regionEvents = () => (events ? eventsForRegion(events, region?.id ?? 'austin') : null);
 /** The filters' label on the pill that opens the sheet. */
 const filterLabel = () => [state.evKind === 'all' ? 'All events' : EVENT_KINDS.find((k) => k.id === state.evKind)?.label, ...state.evTags.map(tagLabel)].join(' · ');
-const evFilters = () => ({ kind: state.evKind, tags: state.evTags, weekend: state.evWeekend, day: state.evDay, window: state.win, q: state.evQ.trim() });
+const evFilters = () => ({ kind: state.evKind, tags: state.evTags, weekend: state.evWeekend, day: state.evDay, window: state.win, q: state.evTopic ? '' : state.evQ.trim(), topic: state.evTopic });
 /** The chosen day in words: "Today", "Tomorrow", "Sat, Nov 21", "This weekend", or '' for any day. */
 const evDayLabel = () => (state.evWeekend ? 'This weekend' : !state.evDay ? '' : state.evDay === NOW.iso ? 'Today' : state.evDay === addDays(NOW.iso, 1) ? 'Tomorrow' : fmtDate(state.evDay, { weekday: 'short', month: 'short', day: 'numeric' }));
 /** The When pill's words: the day and the time window, whichever are set. */
@@ -973,12 +977,36 @@ const whenLabel = () => [evDayLabel(), state.win ? windowLabel(state.win) : ''].
  * The When sheet: on Events a day (any, today, tomorrow, this weekend, or a date) and a time of
  * day; on Sports just the time (the day strip picks the day). Every option applies at once.
  */
+let calMonth = null; // the month the When calendar shows ("2026-11")
+/** The days of a month with at least one event on, under every filter but the day itself. */
+function busyDays(month) {
+  const out = new Set();
+  const list = filterEvents((regionEvents() ?? []).filter((e) => (e.endDate ?? e.startDate) >= NOW.iso), { ...evFilters(), weekend: false, day: null }, NOW.iso);
+  const first = `${month}-01`, last = `${month}-31`;
+  for (const e of list) {
+    const to = e.endDate ?? e.startDate;
+    for (let d = e.startDate > first ? e.startDate : first, n = 0; d <= to && d <= last && n < 31; d = addDays(d, 1), n++) if (d >= NOW.iso) out.add(d);
+  }
+  return out;
+}
 function renderWhenSheet() {
   const ev = state.section === 'events';
   const opt = (attr, id, label, hint, on) => `<button type="button" class="tab opt" ${attr}="${id}" aria-pressed="${on}"><span class="lbl">${esc(label)}${hint ? `<small>${esc(hint)}</small>` : ''}</span></button>`;
-  const tomorrow = addDays(NOW.iso, 1), other = state.evDay && state.evDay !== NOW.iso && state.evDay !== tomorrow;
-  const days = ev ? `<h3 class="opt-h">Day</h3><div class="when-grid">${opt('data-evday', 'any', 'Any day', '', !state.evDay && !state.evWeekend)}${opt('data-evday', NOW.iso, 'Today', fmtDate(NOW.iso, { weekday: 'short', month: 'short', day: 'numeric' }), state.evDay === NOW.iso)}${opt('data-evday', tomorrow, 'Tomorrow', fmtDate(tomorrow, { weekday: 'short', month: 'short', day: 'numeric' }), state.evDay === tomorrow)}${opt('data-evday', 'weekend', 'This weekend', '', state.evWeekend)}</div>
-    <label class="when-field${other ? ' on' : ''}"><span>Another day</span><input type="date" id="whenDate" min="${NOW.iso}" value="${other ? state.evDay : ''}"></label>` : '';
+  // Events: a month calendar. Days with something on (under the other filters) carry a dot; a
+  // tap picks the day, a second tap or "Any day" clears it; ‹ › change the month.
+  if (ev && (!calMonth || calMonth < NOW.iso.slice(0, 7))) calMonth = (state.evDay ?? NOW.iso).slice(0, 7);
+  const busy = ev ? busyDays(calMonth) : new Set();
+  const calDays = () => {
+    const [y, m] = calMonth.split('-').map(Number), lead = new Date(Date.UTC(y, m - 1, 1)).getUTCDay(), len = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    return `${'<span></span>'.repeat(lead)}${Array.from({ length: len }, (_, k) => {
+      const iso = `${calMonth}-${String(k + 1).padStart(2, '0')}`, past = iso < NOW.iso;
+      return `<button type="button" class="cal-day${busy.has(iso) ? ' has' : ''}${iso === NOW.iso ? ' today' : ''}" data-evday="${iso}" aria-pressed="${state.evDay === iso}" aria-label="${esc(fmtDate(iso, { weekday: 'long', month: 'long', day: 'numeric' }))}${busy.has(iso) ? ', events on' : ''}"${past ? ' disabled' : ''}>${k + 1}</button>`;
+    }).join('')}`;
+  };
+  const days = ev ? `<div class="cal"><div class="cal-head"><button type="button" class="cal-nav" data-calnav="-1" aria-label="Previous month"${calMonth <= NOW.iso.slice(0, 7) ? ' disabled' : ''}>‹</button><b id="calMonthName">${esc(fmtDate(`${calMonth}-01`, { month: 'long', year: 'numeric' }))}</b><button type="button" class="cal-nav" data-calnav="1" aria-label="Next month">›</button></div>
+    <div class="cal-grid cal-dow" aria-hidden="true">${['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d) => `<span>${d}</span>`).join('')}</div>
+    <div class="cal-grid" id="calDays">${calDays()}</div>
+    <button type="button" class="linkish cal-any" data-evday="any"${state.evDay || state.evWeekend ? '' : ' hidden'}>Any day</button></div>` : '';
   const preset = presetOf(state.win), own = state.win && !preset;
   let n, what;
   if (ev) { n = filterEvents((regionEvents() ?? []).filter((e) => (e.endDate ?? e.startDate) >= NOW.iso), evFilters(), NOW.iso).length; what = 'event'; }
@@ -989,12 +1017,11 @@ function renderWhenSheet() {
   // coming up (leaving a time field fires its change first) would swallow the tap on Show.
   const box = $('whenOpts');
   if ($('whenSheet').open && box.dataset.for === state.section) {
-    const dayOn = { any: !state.evDay && !state.evWeekend, weekend: state.evWeekend, [NOW.iso]: state.evDay === NOW.iso, [tomorrow]: state.evDay === tomorrow };
-    for (const b of box.querySelectorAll('[data-evday]')) b.setAttribute('aria-pressed', String(!!dayOn[b.dataset.evday]));
+    for (const b of box.querySelectorAll('.cal-day')) { b.setAttribute('aria-pressed', String(b.dataset.evday === state.evDay)); b.classList.toggle('has', busy.has(b.dataset.evday)); }
+    const any = box.querySelector('.cal-any'); if (any) any.hidden = !(state.evDay || state.evWeekend);
     for (const b of box.querySelectorAll('[data-time]')) b.setAttribute('aria-pressed', String(b.dataset.time === 'any' ? !state.win : preset?.id === b.dataset.time));
     const set = (id, v) => { const el = $(id); if (el && document.activeElement !== el && el.value !== v) el.value = v; };
-    set('whenDate', other ? state.evDay : ''); set('whenFrom', own ? toHHMM(state.win.from) : ''); set('whenTo', own && state.win.to < 1440 ? toHHMM(state.win.to) : '');
-    $('whenDate')?.closest('.when-field').classList.toggle('on', !!other);
+    set('whenFrom', own ? toHHMM(state.win.from) : ''); set('whenTo', own && state.win.to < 1440 ? toHHMM(state.win.to) : '');
     box.querySelector('.when-range').classList.toggle('on', !!own);
     box.querySelector('.go-btn').textContent = go;
     return;
@@ -1023,11 +1050,11 @@ function renderSearch(upcoming = null) {
   $('searchClear').hidden = !q;
   const tags = ev && searchOpen ? tagCounts(upcoming) : [];
   $('searchTags').hidden = !tags.length;
-  $('searchTags').innerHTML = tags.map((t) => `<button type="button" class="pill-btn chip-btn${matchesText(t.label, q) && q.trim() ? ' on' : ''}" data-q="${esc(t.label)}">${esc(t.label)} <span class="n">${t.n}</span></button>`).join('');
+  $('searchTags').innerHTML = tags.map((t) => `<button type="button" class="pill-btn chip-btn${state.evTopic === t.id ? ' on' : ''}" data-topic="${esc(t.id)}" aria-pressed="${state.evTopic === t.id}">${esc(t.label)} <span class="n">${t.n}</span></button>`).join('');
 }
 /** Set the active section's search and redraw (the box itself is left alone while it has focus). */
-function setQuery(q, { fill = false } = {}) {
-  if (state.section === 'events') state.evQ = q; else state.spQ = q;
+function setQuery(q, { fill = false, topic = null } = {}) {
+  if (state.section === 'events') { state.evQ = q; state.evTopic = topic; } else state.spQ = q; // typing is a word search; a tag is exactly its events
   if (fill) $('search').value = q;
   mapPick = null; render();
 }
@@ -1075,7 +1102,7 @@ function renderEvents() {
     return;
   }
   const upcoming = list.filter((e) => (e.endDate ?? e.startDate) >= NOW.iso);
-  $('asof').textContent = `${upcoming.length} events · checked ${fmtDate(events.generatedAt.slice(0, 10), { month: 'short', day: 'numeric' })}`;
+  $('asof').textContent = `${upcoming.length} events · checked ${fmtDate(events.generatedAt.slice(0, 10))}`;
   $('asof').title = `Events checked ${clock(events.generatedAt)}`;
   $('footer').innerHTML = 'Each event links to its own page or post. Dates and prices change, so check it before you go.';
   const filtering = state.evKind !== 'all' || state.evTags.length > 0;
@@ -1091,10 +1118,10 @@ function renderEvents() {
   urlEvent = null;
   // Near me: nearest first under each heading (On now keeps ending-soonest first).
   if (here) for (const g of groups) if (g.key !== 'now') g.events.sort((a, b) => (milesToCoords(a.lat, a.lng) ?? 1e9) - (milesToCoords(b.lat, b.lng) ?? 1e9));
-  const q = state.evQ.trim();
+  const q = state.evTopic ? '' : state.evQ.trim(), topic = state.evTopic ? searchTagLabel(state.evTopic) : '';
   // A search that the day or time hides matches for says so, and offers them in one tap.
-  const anyDay = q && whenLabel() ? filterEvents(upcoming, { ...evFilters(), weekend: false, day: null, window: null }, NOW.iso).length - shown.length : 0;
-  $('eventsCount').innerHTML = filtering || whenLabel() || q ? `${shown.length} of ${upcoming.length} events${q ? ` for “${esc(q)}”` : ''}${whenLabel() ? ` · ${esc(whenLabel())}` : ''}${anyDay > 0 ? ` · <button type="button" class="linkish" data-evanyday>${anyDay} more on other days</button>` : ''} · <button type="button" class="linkish" data-evclear>Clear filters</button>` : '';
+  const anyDay = (q || topic) && whenLabel() ? filterEvents(upcoming, { ...evFilters(), weekend: false, day: null, window: null }, NOW.iso).length - shown.length : 0;
+  $('eventsCount').innerHTML = filtering || whenLabel() || q || topic ? `${shown.length} of ${upcoming.length} events${q ? ` for “${esc(q)}”` : topic ? ` tagged ${esc(topic)}` : ''}${whenLabel() ? ` · ${esc(whenLabel())}` : ''}${anyDay > 0 ? ` · <button type="button" class="linkish" data-evanyday>${anyDay} more on other days</button>` : ''} · <button type="button" class="linkish" data-evclear>Clear filters</button>` : '';
   $('events').innerHTML = groups.length
     ? groups.map((g) => {
       const open = evOpen.has(g.key), rest = g.events.length - EVENTS_SHOWN;
@@ -1439,7 +1466,7 @@ function eventsPanelHtml(places, pickId) {
   const addr = [rest, ...eventPlaceParts(p.events[0]).slice(1)].filter(Boolean);
   const rows = p.events.map((ev) => {
     const w = eventWhen(ev, NOW.iso);
-    return `<div class="pop-item"><span class="pop-t">${w.range ? `${esc(w.top)}<small>${esc(w.main)}</small>` : `${esc(w.top)} ${esc(w.main)}`}</span><span class="pop-w"><b>${esc(ev.title)}</b>${isOn(ev, NOW.iso) ? ' <span class="pill fresh">Happening now</span>' : ''}<small>${[ev.price, kindLabel(eventKind(ev))].filter(Boolean).map(esc).join(' · ')}</small></span><span class="pop-a">${safeUrl(ev.sourceUrl) ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}</span></div>`;
+    return `<div class="pop-item"><span class="pop-t">${w.range ? `${esc(w.dow)} ${esc(w.top)}<small>${esc(w.main)}</small>` : `${esc(w.top)} ${esc(w.main)}`}</span><span class="pop-w"><b>${esc(ev.title)}</b>${isOn(ev, NOW.iso) ? ' <span class="pill fresh">Happening now</span>' : ''}<small>${[ev.price, kindLabel(eventKind(ev))].filter(Boolean).map(esc).join(' · ')}</small></span><span class="pop-a">${safeUrl(ev.sourceUrl) ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}</span></div>`;
   }).join('');
   return `<div class="map-place"><div class="g-venue"><span class="v-name">${esc(p.short || p.name)}<small>${esc([...addr, `${n} event${n === 1 ? '' : 's'}`, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span></div>
     <div class="g-pop map-sessions">${rows}</div>
@@ -1798,17 +1825,19 @@ document.addEventListener('click', async (e) => {
     return;
   }
   // Search: a tag (under the box, or on a card) searches for it; ✕ clears; "N more on other days" drops the day and time.
-  const tagBtn = e.target.closest('[data-q]');
-  if (tagBtn) { searchOpen = false; setQuery(tagBtn.dataset.q, { fill: true }); $('searchClear').focus(); return; }
+  const tagBtn = e.target.closest('[data-topic]');
+  if (tagBtn) { searchOpen = false; setQuery(searchTagLabel(tagBtn.dataset.topic), { fill: true, topic: tagBtn.dataset.topic }); $('searchClear').focus(); return; }
   if (e.target.closest('#searchClear')) { setQuery('', { fill: true }); $('search').focus(); return; }
   if (e.target.closest('[data-evanyday]')) { state.evWeekend = false; state.evDay = null; state.win = null; render(); $('whenBtn')?.focus(); return; }
   // When: a day (Events) and a time of day apply at once; the sheet stays open until Show or ✕.
   const evd = e.target.closest('[data-evday]');
-  if (evd) { setEvDay(evd.dataset.evday); $('whenOpts').querySelector(`[data-evday="${CSS.escape(evd.dataset.evday)}"]`)?.focus(); return; }
+  if (evd) { setEvDay(evd.dataset.evday === state.evDay ? 'any' : evd.dataset.evday); ($('whenOpts').querySelector(`.cal-day[data-evday="${CSS.escape(evd.dataset.evday)}"]`) ?? $('whenOpts').querySelector('.cal-day:not([disabled])'))?.focus(); return; }
+  const nav = e.target.closest('[data-calnav]');
+  if (nav) { const [y, m] = calMonth.split('-').map(Number); calMonth = new Date(Date.UTC(y, m - 1 + +nav.dataset.calnav, 1)).toISOString().slice(0, 7); $('whenOpts').dataset.for = ''; renderWhenSheet(); ($('whenOpts').querySelector(`[data-calnav="${nav.dataset.calnav}"]:not([disabled])`) ?? $('whenOpts').querySelector('[data-calnav="1"]'))?.focus(); return; }
   const tm = e.target.closest('[data-time]');
   if (tm) { const p = TIME_PRESETS.find((x) => x.id === tm.dataset.time); state.win = p ? { from: p.from, to: p.to } : null; mapPick = null; render(); $('whenOpts').querySelector(`[data-time="${CSS.escape(tm.dataset.time)}"]`)?.focus(); return; }
   if (e.target.closest('[data-evnear]')) { $('nearest').click(); return; }
-  if (e.target.closest('[data-evclear]')) { state.evKind = 'all'; state.evTags = []; state.evWeekend = false; state.evDay = null; state.win = null; state.evQ = ''; $('search').value = ''; save(); render(); $('eventCats').querySelector('button')?.focus(); return; }
+  if (e.target.closest('[data-evclear]')) { state.evKind = 'all'; state.evTags = []; state.evWeekend = false; state.evDay = null; state.win = null; state.evQ = ''; state.evTopic = null; $('search').value = ''; save(); render(); $('eventCats').querySelector('button')?.focus(); return; }
   const more = e.target.closest('[data-evmore]');
   if (more) { const k = more.dataset.evmore; evOpen.add(k); renderEvents(); document.querySelector(`.ev-group[data-group="${CSS.escape(k)}"] .ev-row:nth-of-type(${EVENTS_SHOWN + 1}) a, .ev-group[data-group="${CSS.escape(k)}"] .ev-row:nth-of-type(${EVENTS_SHOWN + 1}) summary`)?.focus(); return; }
   if (e.target.closest('[data-go-sports]')) { state.section = 'sports'; state.view = 'openplay'; mapPick = null; save(); render(); document.querySelector('#topTabs [data-section="sports"]').focus(); return; }
@@ -1860,7 +1889,6 @@ function setEvDay(v) {
 }
 $('whenOpts').addEventListener('change', (e) => {
   const id = e.target.id;
-  if (id === 'whenDate') { setEvDay(e.target.value || 'any'); return; }
   if (id !== 'whenFrom' && id !== 'whenTo') return;
   // A time of one's own: either side alone works (from 2pm on; until 6pm); a From at or after To is ignored.
   const win = parseWindow($('whenFrom').value, $('whenTo').value);

@@ -167,7 +167,8 @@ node --test test/events.test.mjs test/event-venues.test.mjs
 
 ## When
 
-The When pill on Events opens a sheet: a day (any, today, tomorrow, this weekend, or a date) and a time of day
+The When pill on Events opens a sheet: a month calendar (a dot on days with events; tap a day, tap it again or
+"Any day" to clear) and a time of day
 (morning, afternoon, evening, or a From and To). Links carry it as `?on=YYYY-MM-DD&from=HH:MM&to=HH:MM`. An event
 that lists hours shows when they overlap the window; one that lists only dates shows on its days, marked "Hours
 not listed". The list and the map use the same filters. Sports has the same time pill on open play (the day strip
@@ -180,7 +181,11 @@ names). Each keystroke narrows the list; every word typed must start a word in t
 organizer, description, kind or tags. Links carry it as `?q=`. Tags come from a fixed word list
 (`SEARCH_TAGS` in `public/search.js`): an event has a tag when its title or description has one of the tag's
 words, so tags never change from run to run. An event can have several. The tags with events show under the box
-only while the box is open, each with its count; tapping one (there or on a card) searches for it.
+only while the box is open, each with its count. Tapping one (there or on a card) shows exactly the events that
+carry it (`?topic=`), which is why the count on the tag and the list always agree; typing the same word is a
+wider word search.
+
+Every date on the site says its day of the week ("Fri, Nov 20").
 
 ## Links
 

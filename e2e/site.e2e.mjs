@@ -1095,9 +1095,9 @@ test('site: Leagues and Tournaments are their own tabs, by deadline, filtered by
   assert.deepEqual(await progTitles(), ['Last Call Sand League', 'Sunday Indoor League', 'Winter League']);
   assert.equal(await card('Last Call Sand League').locator('.p-badge').textContent(), 'Last day to sign up');
   assert.match(await card('Sunday Indoor League').locator('.p-price').textContent(), /\$600 team · \$90 free agent/);
-  assert.match(await card('Sunday Indoor League').locator('.p-when').textContent(), /Sundays · Nov 15 – Jan 10/);
+  assert.match(await card('Sunday Indoor League').locator('.p-when').textContent(), /Sundays · Sun, Nov 15 – Sun, Jan 10/);
   assert.equal(await card('Sunday Indoor League').locator('.p-dl').textContent(), 'Sign up by Fri, Nov 13');
-  assert.equal(await card('Winter League').locator('.p-dl').textContent(), 'Opens Dec 1');
+  assert.equal(await card('Winter League').locator('.p-dl').textContent(), 'Opens Tue, Dec 1');
   assert.equal(await card('Sunday Indoor League').getByRole('link', { name: /Sign up for Sunday Indoor League/ }).getAttribute('href'), `${SIGNUP}/Sunday Indoor League`);
   assert.match(await page.locator('#programsNote').textContent(), /couldn't read y/);
   assert.match(await page.locator('#asof').textContent(), /twice a day/);
@@ -1285,7 +1285,7 @@ test('site: Events is the front page: On now, Next week and months, a few under 
   assert.equal(await page.locator('#events .ev-group[data-group="2026-11"] [data-evmore]').count(), 0);
   // A card: the date column, plain chips (a kind, a dashed tag), one main button, Details.
   const autumn = page.locator('#events .row', { hasText: 'Autumn Market' });
-  assert.match(await autumn.locator('.time').textContent(), /^ThruOct 30/);
+  assert.match(await autumn.locator('.time').textContent(), /^Thru FriOct 30/);
   assert.deepEqual(await autumn.locator('.chip').allTextContents(), ['Seasonal', 'Food'], 'its kind, then the search tag its description earns (food trucks)');
   assert.equal(await autumn.locator('.chip.surf').count(), 0, 'no court-surface colours on events');
   assert.equal(await autumn.locator('a.signup').textContent(), 'Event page ↗');
@@ -1298,7 +1298,7 @@ test('site: Events is the front page: On now, Next week and months, a few under 
   const matcha = page.locator('#events .row', { hasText: 'Matcha Cart' });
   assert.deepEqual(await matcha.locator('.chip').evaluateAll((els) => els.map((e) => [e.textContent, e.classList.contains('tag')])), [['Asian-inspired', true], ['Matcha', true]]);
   assert.equal(await page.locator('#eventsPager').count(), 0, 'no pager');
-  assert.equal(await page.locator('#asof').textContent(), '12 events · checked Oct 25');
+  assert.equal(await page.locator('#asof').textContent(), '12 events · checked Sun, Oct 25');
   assert.deepEqual(pageErrors, []);
 });
 
@@ -1329,16 +1329,33 @@ test('site: Events filters: the sheet picks a kind and tags, This weekend narrow
   await page.keyboard.press('Escape');
   assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Matcha Cart', 'Ramen Pop-up', 'Night Market Finale']);
   assert.deepEqual(new URL(page.url()).searchParams.getAll('tag'), ['asian-inspired']);
-  // Clear filters, then This weekend: on Sunday it's just today.
+  // Clear filters, then When: a month calendar. Today (a Sunday) is picked with one tap.
   await page.locator('#eventsCount [data-evclear]').click();
   assert.equal(await page.locator('#eventsCount').textContent(), '');
   await page.locator('#whenBtn').click();
-  await page.locator('#whenSheet [data-evday="weekend"]').click();
-  assert.equal(await page.locator('#whenSheet [data-evday="weekend"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(await page.locator('#calMonthName').textContent(), 'October 2026');
+  assert.equal(await page.locator('#whenSheet .cal-day').count(), 31);
+  assert.equal(await page.locator('#whenSheet .cal-day[data-evday="2026-10-24"]').isDisabled(), true, 'days gone by can\'t be picked');
+  assert.equal(await page.locator('#whenSheet .cal-day[data-evday="2026-10-28"]').evaluate((b) => b.classList.contains('has')), true, 'a dot on days with events');
+  assert.equal(await page.locator('#whenSheet [data-calnav="-1"]').isDisabled(), true);
+  const today = page.locator('#whenSheet .cal-day[data-evday="2026-10-25"]');
+  await today.click();
+  assert.equal(await today.getAttribute('aria-pressed'), 'true');
   await page.locator('#whenSheet .go-btn').click();
-  assert.equal(await page.locator('#whenBtn').textContent(), 'This weekend ▾');
+  assert.equal(await page.locator('#whenBtn').textContent(), 'Today ▾');
   assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Sunday Pop-up', 'Autumn Market', 'Matcha Cart']);
-  assert.equal(new URL(page.url()).searchParams.get('weekend'), '1');
+  assert.equal(new URL(page.url()).searchParams.get('on'), '2026-10-25');
+  // Next month, a day there, then "Any day" puts everything back. An old ?weekend=1 link still works.
+  await page.locator('#whenBtn').click();
+  await page.locator('#whenSheet [data-calnav="1"]').click();
+  assert.equal(await page.locator('#calMonthName').textContent(), 'November 2026');
+  await page.locator('#whenSheet .cal-day[data-evday="2026-11-01"]').click();
+  assert.equal(new URL(page.url()).searchParams.get('on'), '2026-11-01');
+  await page.locator('#whenSheet .cal-any').click();
+  assert.equal(new URL(page.url()).searchParams.has('on'), false);
+  await page.locator('#whenSheet .go-btn').click();
+  await open({ events: EVENTS, url: '/?view=events&weekend=1', waitFor: '#events .row' });
+  assert.equal(await page.locator('#whenBtn').textContent(), 'This weekend ▾');
   // Links open with their filters; an old ?cat= link still works (asian-inspired is a tag now).
   await open({ events: EVENTS, url: '/?view=events&type=popup', waitFor: '#events .row' });
   assert.deepEqual(await page.locator('#events .row .title').allTextContents(), ['Sunday Pop-up', 'Night Market', 'Vintage Market']);
@@ -1397,10 +1414,10 @@ test('site: Events map: one pin per venue; a pin opens the place sheet (readable
   // (not its address), with "+1 more" where there are several.
   assert.deepEqual((await pins.evaluateAll((els) => els.map((e) => [e.dataset.pin, e.textContent, e.getAttribute('aria-label')]))).sort(), [
     ['event:30.10485,-98.02175', 'Vintage Market', 'Vintage Market at Vista Brewing: 1 event · Sun, Nov 15'],
-    ['event:30.26720,-97.77290', 'Autumn Market+1 more here', 'Autumn Market and 1 more at Zilker Park: Happening now · Oct 20 – 30'],
+    ['event:30.26720,-97.77290', 'Autumn Market+1 more here', 'Autumn Market and 1 more at Zilker Park: Happening now · Tue, Oct 20 – Fri, Oct 30'],
     ['event:30.34000,-97.55000', 'Tree Lighting', 'Tree Lighting at Manor Market: 1 event · Sun, Nov 29'],
     ['event:30.44000,-97.62000', 'Night Market', 'Night Market at Pflugerville Plaza: 1 event · Wed, Oct 28'],
-    ['event:30.50500,-97.82000', 'Matcha Cart', 'Matcha Cart at Junbi: Happening now · Oct 25 – Nov 1'],
+    ['event:30.50500,-97.82000', 'Matcha Cart', 'Matcha Cart at Junbi: Happening now · Sun, Oct 25 – Sun, Nov 1'],
   ]);
   assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
   // The rows under the map read the same way: the event, then the place.
@@ -1415,7 +1432,7 @@ test('site: Events map: one pin per venue; a pin opens the place sheet (readable
   assert.equal(await sheet.locator('.v-name').evaluate((e) => e.firstChild.textContent), 'Zilker Park');
   assert.equal(await sheet.locator('.v-name small').textContent(), 'Austin · 2 events', 'no repeat of the name ("Zilker" is in it)');
   assert.deepEqual(await sheet.locator('.pop-item .pop-w b').allTextContents(), ['Autumn Market', 'Dia de los Muertos']);
-  assert.deepEqual(await sheet.locator('.pop-item .pop-t').allTextContents(), ['Thru Oct 30', 'Sun Nov 1']);
+  assert.deepEqual(await sheet.locator('.pop-item .pop-t').allTextContents(), ['Thru Fri Oct 30', 'Sun Nov 1']);
   assert.equal(await sheet.locator('.pop-item a.src').first().getAttribute('href'), 'https://example.test/autumn');
   assert.match(await sheet.locator('.location .actions').textContent(), /Google Maps/);
   assert.equal(await page.locator('.maplibregl-popup').count(), 0, 'no MapLibre popup any more');
@@ -1661,10 +1678,15 @@ test('site: search on Events: typing narrows the list, tags show once the box is
   // ✕ clears; a tag under the box is a one-tap search.
   await page.locator('#searchClear').click();
   assert.equal(await page.locator('#eventsCount').textContent(), '');
-  await tags.locator('button', { hasText: 'Night market' }).click();
-  assert.equal(await box.inputValue(), 'Night market');
+  // A tag is exactly its events (the count on the tag), not a word search for its name.
+  const n = +(await tags.locator('button', { hasText: 'Food' }).locator('.n').textContent());
+  await tags.locator('button', { hasText: 'Food' }).click();
+  assert.equal(await box.inputValue(), 'Food');
   assert.equal(await tags.isHidden(), true);
-  assert.ok((await page.locator('#events .row').count()) > 0);
+  assert.equal(new URL(page.url()).searchParams.get('topic'), 'food');
+  assert.equal(new URL(page.url()).searchParams.has('q'), false);
+  assert.match(await page.locator('#eventsCount').textContent(), new RegExp(`^${n} of 12 events tagged Food · Clear filters$`));
+  for (const row of await page.locator('#events .row').all()) assert.ok((await row.locator('.chip-q').allTextContents()).includes('Food'), 'every event shown carries the tag');
   // A tag on a card searches for it too.
   await page.locator('#eventsCount [data-evclear]').click();
   await page.locator('#events .row', { hasText: 'Autumn Market' }).locator('.chip-q', { hasText: 'Food' }).click();

@@ -1,5 +1,5 @@
 import { inWindow } from './when.js';
-import { eventText, matchesText } from './search.js';
+import { eventText, matchesText, searchTags } from './search.js';
 // The Events view's pure helpers (public/app.js imports these; node tests import them too,
 // so nothing here may touch the DOM or the network). The feed is public/data/events.json:
 // { feedVersion, generatedAt, events: [{ id, category, title, venue, area, city, startDate,
@@ -45,13 +45,13 @@ const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'O
 const MONTH_LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const parseDay = (iso) => { const [y, m, d] = (iso || '').split('-').map(Number); return new Date(Date.UTC(y || 1970, (m || 1) - 1, d || 1)); };
 const shortDay = (iso) => { const d = parseDay(iso); return `${MONTH[d.getUTCMonth()]} ${d.getUTCDate()}`; };
-/** "Sat, Dec 5" for one day; "Nov 12 – 23", "Nov 12 – Dec 30" or "Nov 21 – Jan 3" for a range. */
+/** A date always says its day of the week: "Sat, Dec 5". */
+const weekDay = (iso) => WEEKDAY[parseDay(iso).getUTCDay()];
+const fullDay = (iso) => `${weekDay(iso)}, ${shortDay(iso)}`;
+/** "Sat, Dec 5" for one day; "Thu, Nov 12 – Mon, Nov 23" for a range. */
 export function eventDateRange(ev) {
   const a = ev?.startDate, b = ev?.endDate;
-  if (!b || b === a) { const d = parseDay(a); return `${WEEKDAY[d.getUTCDay()]}, ${MONTH[d.getUTCMonth()]} ${d.getUTCDate()}`; }
-  const [ay, am] = a.split('-'), [by, bm] = b.split('-');
-  if (ay === by && am === bm) return `${shortDay(a)} – ${parseDay(b).getUTCDate()}`;
-  return `${shortDay(a)} – ${shortDay(b)}`;
+  return !b || b === a ? fullDay(a) : `${fullDay(a)} – ${fullDay(b)}`;
 }
 
 /**
@@ -195,22 +195,23 @@ export function weekendRange(today) {
  * day (on that day), a time window (hours overlap it; events that list no hours stay), and a
  * search (every word found in its title, place, organizer, description, kind or tags).
  */
-export function filterEvents(events, { kind = 'all', tags = [], weekend = false, day = null, window = null, q = '' } = {}, today) {
+export function filterEvents(events, { kind = 'all', tags = [], weekend = false, day = null, window = null, q = '', topic = null } = {}, today) {
   const wk = weekend ? weekendRange(today) : null;
   return (events ?? []).filter((e) => (kind === 'all' || eventKind(e) === kind)
     && tags.every((g) => eventTags(e).includes(g))
     && (!wk || (e.startDate <= wk.to && lastDay(e) >= wk.from))
     && (!day || (e.startDate <= day && lastDay(e) >= day))
     && inWindow(e.startTime, e.endTime, window)
+    && (!topic || searchTags(e).includes(topic))
     && (!q || matchesText(eventText(e, [kindLabel(eventKind(e)), ...eventTags(e).map(tagLabel)]), q)));
 }
 
 /** The left column of an event card: "Thru / Nov 23" when on now, "Sat / Nov 21", or "Nov 19 / to Nov 22". */
 export function eventWhen(ev, today) {
   const end = lastDay(ev);
-  if (isOn(ev, today) && end !== ev.startDate) return { top: 'Thru', main: shortDay(end) };
+  if (isOn(ev, today) && end !== ev.startDate) return { top: `Thru ${weekDay(end)}`, main: shortDay(end) };
   if (end === ev.startDate) { const d = parseDay(ev.startDate); return { top: WEEKDAY[d.getUTCDay()], main: `${MONTH[d.getUTCMonth()]} ${d.getUTCDate()}` }; }
-  return { top: shortDay(ev.startDate), main: `to ${shortDay(end)}`, range: true };
+  return { top: shortDay(ev.startDate), main: `to ${weekDay(end)} ${shortDay(end)}`, range: true, dow: weekDay(ev.startDate) };
 }
 
 /** The card's main button: Instagram posts read "See the post", anything else "Event page". */
