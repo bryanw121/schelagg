@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-18T22:13:28.112Z",
+  "generatedAt": "2026-11-19T01:48:37.821Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -26,7 +26,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -53,7 +53,7 @@
         "type": "Open play",
         "capacity": 60
       },
-      "venue_id": null,
+      "venue_id": "src-fitness-recreation-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -80,7 +80,7 @@
         "type": "Open play",
         "capacity": 120
       },
-      "venue_id": null,
+      "venue_id": "src-houston-stars",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -107,7 +107,7 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -134,7 +134,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -161,7 +161,7 @@
         "type": "Open play",
         "capacity": 18
       },
-      "venue_id": null,
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -188,7 +188,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-harvest-time-church",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -215,7 +215,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -242,7 +242,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -269,7 +269,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -296,7 +296,7 @@
         "type": "Open play",
         "capacity": 34
       },
-      "venue_id": null,
+      "venue_id": "src-the-zone",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -323,7 +323,34 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-JK2478",
+      "session_id": "reclub-JK2478",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "THE Blastros HTX VBALL",
+      "venue": "Blastros",
+      "city": null,
+      "level": "All levels",
+      "price": "$7",
+      "starts_at": "2026-11-23T00:30:00.000Z",
+      "ends_at": "2026-11-23T04:30:00.000Z",
+      "signup_url": "https://reclub.co/m/JK2478",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by HTX Volleyball, every Sunday.",
+      "canceled": false,
+      "verified_at": "2026-11-18",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 32
+      },
+      "venue_id": "src-blastros",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -350,7 +377,7 @@
         "type": "Open play",
         "capacity": 145
       },
-      "venue_id": null,
+      "venue_id": "src-absolute-volleyball-academy-and-absolute-beach",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -377,7 +404,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -404,7 +431,7 @@
         "type": "Open play",
         "capacity": 40
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -431,7 +458,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-collins-park",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -458,7 +485,34 @@
         "type": "Open play",
         "capacity": 10
       },
-      "venue_id": null,
+      "venue_id": "src-skyline-volleyball-academy",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-J533LP",
+      "session_id": "reclub-J533LP",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "YMCA Open Gym-1 court",
+      "venue": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-25T00:00:00.000Z",
+      "ends_at": "2026-11-25T02:30:00.000Z",
+      "signup_url": "https://reclub.co/m/J533LP",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Houston Vball, every Tuesday.",
+      "canceled": false,
+      "verified_at": "2026-11-18",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 10
+      },
+      "venue_id": "src-tellepsen-family-downtown-ymca",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -485,7 +539,7 @@
         "type": "Open play",
         "capacity": 20
       },
-      "venue_id": null,
+      "venue_id": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -512,7 +566,7 @@
         "type": "Open play",
         "capacity": 30
       },
-      "venue_id": null,
+      "venue_id": "src-t4-court-rentals",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -539,7 +593,7 @@
         "type": "Open play",
         "capacity": 45
       },
-      "venue_id": null,
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     }
