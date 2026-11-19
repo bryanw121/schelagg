@@ -1470,7 +1470,9 @@ test('site: one map for every city: the other cities are bubbles, tapping or mov
   const occ = (n) => ({ occurrences: Array.from({ length: n }, (_, i) => ({ id: `o${i}`, sport: 'volleyball', canceled: false, starts_at: `${TODAY}T18:00:00-06:00` })) });
   await open({ index: INDEX, regions: { austin, dallas }, occurrences: { dallas: occ(4), austin: occ(1) }, maps: MAPS, url: '/?view=openplay&layout=map', waitFor: '#map .pin' });
   // The map: a light file of the whole area, and the current city's detailed file from zoom 9.
-  const style = () => page.evaluate(() => { const s = window.__schelaggMap.getStyle(); return { sources: Object.fromEntries(Object.entries(s.sources).map(([k, v]) => [k, v.url.split('/').pop()])), detailMin: Math.min(...s.layers.filter((l) => l.source === 'osm').map((l) => l.minzoom)), backgrounds: s.layers.filter((l) => l.type === 'background').length }; });
+  // The style arrives a moment after the map object does: wait for it rather than race it.
+  const style = async () => { await page.waitForFunction(() => window.__schelaggMap?.getStyle?.()?.sources?.osm); return styleNow(); };
+  const styleNow = () => page.evaluate(() => { const s = window.__schelaggMap.getStyle(); return { sources: Object.fromEntries(Object.entries(s.sources).map(([k, v]) => [k, v.url.split('/').pop()])), detailMin: Math.min(...s.layers.filter((l) => l.source === 'osm').map((l) => l.minzoom)), backgrounds: s.layers.filter((l) => l.type === 'background').length }; });
   assert.deepEqual(await style(), { sources: { overview: 'overview.pmtiles', osm: 'austin.pmtiles' }, detailMin: 9, backgrounds: 1 });
   // Opens on its own city with that city's pins; the other city is a bubble that says how much is on.
   assert.equal(await page.locator('#regionPick').inputValue(), 'austin');
