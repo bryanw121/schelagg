@@ -144,3 +144,18 @@ test('eventWhen and isOn: the card\'s date column; eventCta: what the button say
   assert.equal(eventCta({ sourceUrl: 'https://notinstagram.com.evil.test/' }), 'Event page');
   assert.equal(eventCta({}), 'Event page');
 });
+
+test('placeGroups: the map\'s places sit under the list\'s headings, by the event each is named for', async () => {
+  const { eventPlaces, placeGroups } = await import('../public/events-ui.js');
+  const today = '2026-11-18'; // a Wednesday
+  const feed = [
+    { id: 'a', title: 'On now fair', venue: 'A Hall', startDate: '2026-11-10', endDate: '2026-11-22', lat: 30.1, lng: -97.1 },
+    { id: 'b', title: 'Saturday market', venue: 'B Yard', startDate: '2026-11-21', lat: 30.2, lng: -97.2 },
+    { id: 'c', title: 'Later at B', venue: 'B Yard', startDate: '2026-12-12', lat: 30.2, lng: -97.2 },
+    { id: 'd', title: 'December show', venue: 'D Club', startDate: '2026-12-05', lat: 30.3, lng: -97.3 },
+  ];
+  const groups = placeGroups(eventPlaces(feed, today), today);
+  assert.deepEqual(groups.map((g) => [g.label, g.places.map((p) => p.title)]), [['On now', ['On now fair']], ['This week', ['Saturday market']], ['December', ['December show']]]);
+  assert.match(groups[0].sub, /^1 place · /);
+  assert.equal(groups.flatMap((g) => g.places).length, 3, 'each place once, under its soonest event');
+});

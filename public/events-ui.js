@@ -119,6 +119,7 @@ export function eventPlaces(events, today) {
       sessions: [],
       booking: null,
       events: sortEvents(list),
+      lead: shown, // the event the place is named for: decides which heading its row sits under
       status,
       detail: status,
       label: status,
@@ -217,3 +218,12 @@ export const eventCta = (ev) => (/(^|\.)instagram\.com$/i.test((() => { try { re
 
 /** An event's saved organizer picture as a path under data/ ("avatars/<handle>.jpg"), or null. */
 export const avatarPath = (ev) => (/^avatars\/[a-z0-9._]{1,30}\.(jpg|png|webp)$/.test(ev?.avatar ?? '') && !ev.avatar.includes('..') ? ev.avatar : null);
+
+/**
+ * The map's places under the same headings as the list (On now, This week, Next week, months),
+ * each place under the heading of the event it is named for: [{ key, label, sub, places }].
+ */
+export function placeGroups(places, today) {
+  const byLead = new Map((places ?? []).filter((p) => p.lead).map((p) => [p.lead, p]));
+  return eventGroups([...byLead.keys()], today).map((g) => ({ key: g.key, label: g.label, sub: g.sub.replace(/(\d+) events?/, (_, n) => `${n} place${n === '1' ? '' : 's'}`), places: g.events.map((e) => byLead.get(e)) }));
+}
