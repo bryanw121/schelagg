@@ -159,3 +159,16 @@ test('placeGroups: the map\'s places sit under the list\'s headings, by the even
   assert.match(groups[0].sub, /^1 place · /);
   assert.equal(groups.flatMap((g) => g.places).length, 3, 'each place once, under its soonest event');
 });
+
+test('eventPlaces: listings of one street address pinned a few steps apart share a place; the same number elsewhere does not', async () => {
+  const { eventPlaces } = await import('../public/events-ui.js');
+  const ev = (title, venue, lat, lng) => ({ id: title, title, venue, city: 'Austin', startDate: '2026-12-11', lat, lng });
+  const places = eventPlaces([
+    ev('Bazaar', 'Blue Genie Art Bazaar, 6100 Airport Boulevard', 30.32634, -97.71684),
+    ev('Expo', '6100 Airport Blvd', 30.32699, -97.7162),
+    ev('Brewery market', 'The Brewtorium, 6015 Dillard Circle', 30.32592, -97.71683),
+    ev('Elsewhere', '6100 Airport Way', 30.2, -97.9),
+  ], '2026-11-19');
+  assert.equal(places.length, 3);
+  assert.deepEqual(places.find((p) => p.events.length === 2).events.map((e) => e.title).sort(), ['Bazaar', 'Expo']);
+});

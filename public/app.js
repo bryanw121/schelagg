@@ -1744,6 +1744,9 @@ async function renderMap() {
     mapView.touchZoomRotate.disableRotation();
     mapView.addControl(new gl.NavigationControl({ showCompass: false }), 'top-right');
     mapView.on('zoomend', declutter); mapView.on('moveend', declutter);
+    // While it zooms, a few times a second: a "+N more" pin opens up as soon as there is room.
+    let lastFold = 0;
+    mapView.on('zoom', () => { const t = performance.now(); if (t - lastFold > 90) { lastFold = t; declutter(); } });
     mapView.on('moveend', followMap); mapView.on('zoomend', renderCities);
     mapRegion = region.id;
     mapView.on('click', (e) => { if (!e.originalEvent?.target?.closest?.('.pin')) closePlace(); }); // a tap on the map itself closes the place sheet
@@ -1877,7 +1880,8 @@ document.addEventListener('click', async (e) => {
     if (pin.dataset.group && mapView && mapView.getZoom() < 14.5) {
       const ps = mapMarkers.filter((m) => pin.dataset.group.split(',').includes(m.p.id)).map((m) => m.p);
       const lngs = ps.map((p) => p.lng), lats = ps.map((p) => p.lat);
-      mapView.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: 80, maxZoom: 15 });
+      // Quick, and the pins come apart while it zooms (declutter on 'move' below), not once it has stopped.
+      mapView.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], { padding: 80, maxZoom: 15, duration: 220 });
       return;
     }
     mapPick = mapPick === pin.dataset.pin ? null : pin.dataset.pin;
