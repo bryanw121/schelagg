@@ -40,3 +40,12 @@ test('icsFile: one event a calendar app can open', () => {
   assert.equal(icsName('Night Market & Friends!'), 'night-market-friends.ics');
   assert.equal(icsName(''), 'event.ics');
 });
+
+test('visitItem: one day of a long run, two hours from the time picked, or until it closes', async () => {
+  const { visitItem, calendarSpan } = await import('../public/calendar.js');
+  const run = { title: 'Market', date: '2026-11-20', endDate: '2026-12-24', start: '10:00', end: '21:00', tz: 'America/Chicago' };
+  assert.deepEqual(calendarSpan(visitItem(run, '2026-11-28', '18:00')), { allDay: false, from: '20261128T180000', to: '20261128T200000' });
+  assert.equal(visitItem(run, '2026-11-28', '20:15').end, '21:00');
+  assert.equal(visitItem({ ...run, end: undefined }, '2026-11-28', '23:30').end, '23:59');
+  assert.deepEqual(calendarSpan(visitItem(run, '2026-11-28', '')), { allDay: true, from: '20261128', to: '20261129' });
+});

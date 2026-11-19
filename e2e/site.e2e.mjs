@@ -1854,3 +1854,42 @@ test('site: Add to calendar on an event and on a session: Google Calendar filled
   assert.equal(new URL(await page.locator('#calOpts a').first().getAttribute('href')).hostname, 'calendar.google.com');
   assert.deepEqual(pageErrors, []);
 });
+
+test('site: Add to calendar on something that runs for days asks which day and time, and adds only that visit', async () => {
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  await page.locator('#events .ev-row', { hasText: 'Autumn Market' }).first().locator('.cal-add').click();
+  assert.equal(await page.locator('#calDay').inputValue(), '2026-10-25', 'starts on today, not the first day of the run');
+  assert.equal(await page.locator('#calDay').getAttribute('max'), '2026-10-30');
+  assert.equal(await page.locator('#calTime').inputValue(), '10:00', 'starts on its opening time');
+  const dates = async () => new URL(await page.locator('#calGoogle').getAttribute('href')).searchParams.get('dates');
+  assert.equal(await dates(), '20261025T100000/20261025T120000');
+  await page.locator('#calDay').fill('2026-10-28');
+  await page.locator('#calTime').fill('17:00');
+  assert.equal(await dates(), '20261028T170000/20261028T180000', 'two hours, or until it closes');
+  assert.match(await page.locator('#calPickNote').textContent(), /^Adds Wed, Oct 28, 5(:00)? ?pm–6(:00)? ?pm\. It runs /i);
+  const ics = decodeURIComponent((await page.locator('#calApple').getAttribute('href')).replace(/^data:text\/calendar;charset=utf-8,/, ''));
+  assert.match(ics, /DTSTART;TZID=America\/Chicago:20261028T170000\r\n/);
+  await page.locator('#calTime').fill('');
+  assert.equal(await dates(), '20261028/20261029', 'no time: that one day');
+  await page.keyboard.press('Escape');
+  // A single-day event has nothing to ask.
+  await page.locator('#events .ev-row', { hasText: 'Night Market' }).first().locator('.cal-add').click();
+  assert.equal(await page.locator('#calPick').isHidden(), true);
+  await page.keyboard.press('Escape');
+});
+
+test('site: the Events map keeps the filter chips: When opens the same calendar and time, and the pins follow it', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  assert.equal(await page.locator('#whenBtn').isVisible(), true, 'When is on the map view');
+  assert.equal(await page.locator('#eventCats [data-sheet="eventsSheet"]').isVisible(), true);
+  const before = await page.locator('#map .pin').count();
+  await page.locator('#whenBtn').click();
+  await page.locator('#whenOpts .cal-day:not([disabled])').first().waitFor();
+  assert.ok(await page.locator('#whenOpts [data-time]').count() > 1, 'time of day is in the same sheet');
+  await page.locator('#whenOpts .cal-day.has').last().click();
+  await page.locator('#whenOpts .go-btn').click();
+  assert.match(await page.locator('#whenBtn').textContent(), /\w{3}, \w{3} \d+/);
+  assert.match(await page.locator('#eventsCount').textContent(), /of \d+ events/);
+  assert.ok(await page.locator('#map .pin').count() <= before);
+  assert.match(page.url(), /on=\d{4}-\d\d-\d\d/);
+});

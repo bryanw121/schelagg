@@ -10,10 +10,13 @@
 
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
 import { TIME_PRESETS, inWindow, parseWindow, presetOf, toHHMM, windowLabel, windowNote } from './when.js';
-import { googleCalendarUrl, icsFile, icsName } from './calendar.js';
+import { googleCalendarUrl, icsFile, icsName, visitItem } from './calendar.js';
 import { EVENT_ICONS, eventIcon, SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
 import { placeGroups } from './events-ui.js';
 import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
+// The site's own address (skellyevents.com, *.vercel.app) serves the pages; the data and map files
+// are published on GitHub Pages. Only Pages itself and a local copy have them next to the page.
+const OFF_PAGES = !/(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
 
 // Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
 // colors; none for a sport that doesn't need them), the glance chart's heading, and whether it has
@@ -354,6 +357,7 @@ function sessionsOn(iso, { ignoreTab = false, ignoreWindow = false } = {}) {
 // Add to calendar: each button names an item kept here (an event, or a session on its day); the
 // sheet it opens offers Google Calendar (a filled-in link) and Apple Calendar / other (an .ics file).
 const calItems = new Map();
+let calPick = null; // a run of days: the day and time someone plans to go ({ key, date, time })
 // An iPhone or iPad opens a calendar file straight into "Add to Calendar"; elsewhere it is saved as a file to open.
 const IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 function calButton(key, item) {
@@ -370,10 +374,38 @@ function openCalSheet(key, opener) {
   if (!item) return;
   const file = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsFile(item, { uid: key }))}`;
   $('calSheetWhat').textContent = item.title;
-  $('calOpts').innerHTML = `<a class="tab opt" href="${esc(googleCalendarUrl(item))}" target="_blank" rel="noopener" data-close><span class="lbl">Google Calendar<small>Opens with everything filled in</small></span><span aria-hidden="true">↗</span></a>
-    <a class="tab opt" href="${esc(file)}"${IOS ? '' : ` download="${esc(icsName(item.title))}"`} data-close data-ics><span class="lbl">Apple Calendar<small>Also Outlook and others (a calendar file)</small></span><span aria-hidden="true">↓</span></a>`;
+  // Something that runs for days: ask which day and what time they plan to go, so the calendar
+  // gets that visit and not a week-long block. Both fields start filled in; changing one only
+  // rewrites the two links.
+  const run = item.endDate && item.endDate !== item.date;
+  calPick = null;
+  if (run) {
+    const first = item.date > NOW.iso ? item.date : NOW.iso <= item.endDate ? NOW.iso : item.endDate;
+    const date = state.evDay && state.evDay >= first && state.evDay <= item.endDate ? state.evDay : first;
+    calPick = { key, date, time: item.start ?? '', min: first, max: item.endDate };
+  }
+  $('calPick').hidden = !run;
+  $('calPick').innerHTML = run ? `<h3 class="opt-h">When are you going?</h3><div class="when-range on"><label class="when-field"><span>Day</span><input type="date" id="calDay" min="${calPick.min}" max="${calPick.max}" value="${calPick.date}"></label><label class="when-field"><span>Time</span><input type="time" id="calTime" step="900" value="${esc(calPick.time)}"></label></div><p class="note" id="calPickNote" style="margin:0"></p>` : '';
+  $('calOpts').innerHTML = `<a class="tab opt" id="calGoogle" href="${esc(googleCalendarUrl(item))}" target="_blank" rel="noopener" data-close><span class="lbl">Google Calendar<small>Opens with everything filled in</small></span><span aria-hidden="true">↗</span></a>
+    <a class="tab opt" id="calApple" href="${esc(file)}"${IOS ? '' : ` download="${esc(icsName(item.title))}"`} data-close data-ics><span class="lbl">Apple Calendar<small>Also Outlook and others (a calendar file)</small></span><span aria-hidden="true">↓</span></a>`;
+  if (run) calLinks();
   openSheet('calSheet', opener);
 }
+/** Point the two calendar links at the picked visit, and say what will be added. */
+function calLinks() {
+  const item = calItems.get(calPick?.key);
+  if (!item) return;
+  const it = visitItem(item, calPick.date, calPick.time);
+  $('calGoogle').href = googleCalendarUrl(it);
+  $('calApple').href = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsFile(it, { uid: `${calPick.key}:${calPick.date}` }))}`;
+  $('calPickNote').textContent = `Adds ${fmtDate(calPick.date)}${it.start ? `, ${fmtT(it.start)}–${fmtT(it.end)}` : ', all day'}. It runs ${fmtDate(item.date)} to ${fmtDate(item.endDate)}.`;
+}
+$('calPick').addEventListener('input', (e) => {
+  if (!calPick) return;
+  if (e.target.id === 'calDay' && e.target.value >= calPick.min && e.target.value <= calPick.max) calPick.date = e.target.value;
+  if (e.target.id === 'calTime') calPick.time = e.target.value;
+  calLinks();
+});
 function signupHtml(x) {
   if (x.f.k === 'expired' || x.f.k === 'canceled') return '';
   const s = x.signup || {}, url = onDay(s.url, x.date || x.on); // a shared calendar link opens on this session's day
@@ -943,7 +975,7 @@ function render() {
   // Events: the feed is the source of truth, so the view works without the day's schedule.
   renderFiltersSummary();
   if (state.section === 'events') { $('timeBtn').hidden = true; $('searchWrap').hidden = true; renderEvents(); renderMap(); fitHeader(); return; }
-  $('eventsPanel').hidden = true;
+  $('eventsPanel').hidden = true; $('eventCats').innerHTML = ''; $('eventsCount').textContent = '';
   $('filters').hidden = false; // Events hides the day strip and the Open play / Courts switch; Sports brings them back
   $('searchWrap').hidden = true; // shown again by renderSearch on open play
   // Without the day's schedule, Leagues and Tournaments (their own file) still work.
@@ -1355,7 +1387,7 @@ const unfold = () => {
 // directions. The map (public/maps/<region>.pmtiles, cut by scripts/build-maps.mjs) and its libraries
 // (public/vendor/map) load only when someone opens Map. Without WebGL or a map for the region, the
 // Map button doesn't appear and the list stays.
-const MAPS = location.hostname.endsWith('.vercel.app') ? 'https://bryanw121.github.io/schelagg/maps/' : 'maps/';
+const MAPS = OFF_PAGES ? 'https://bryanw121.github.io/schelagg/maps/' : 'maps/';
 const webgl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
 let maps = null; // maps.json: which regions have a map
 let mapPick = null; // the venue whose day is shown under the map
@@ -1665,8 +1697,8 @@ async function renderMap() {
   $('mapCard').hidden = !on;
   document.body.classList.toggle('layout-map', on);
   document.body.classList.toggle('map-big', on && mapBig);
-  // In the events map the list (chips, cards, pager) steps aside for the map, as the sessions
-  // list does in the sports map.
+  // In the events map the list (cards, pager) steps aside for the map, as the sessions list does
+  // in the sports map. Its filter chips (kind, When, Near me) sit above the map and stay.
   if (state.section === 'events') $('eventsPanel').hidden = on;
   // The map replaces the day's chart and lists; the free-courts and sources cards stay.
   for (const id of ['glance', 'sessionsPanel', 'bookingCalendarsCard', 'venueCalendarsCard']) if (on) $(id).hidden = true;
@@ -1936,7 +1968,7 @@ $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checke
 // The scrape publishes data files to GitHub Pages only (the data branch); the copy Vercel
 // bundles from main goes stale. So the Vercel-hosted page reads them from Pages (which allows
 // cross-origin reads). Pages itself and local server.js use their own data/ folder.
-const DATA = location.hostname.endsWith('.vercel.app') ? 'https://bryanw121.github.io/schelagg/data/' : 'data/';
+const DATA = OFF_PAGES ? 'https://bryanw121.github.io/schelagg/data/' : 'data/';
 
 async function getJson(url) { const r = await fetch(url, { cache: 'no-cache' }); if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); }
 /** Where this region's files are; data/ itself when there's no index (data published before regions). */

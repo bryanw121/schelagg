@@ -49,6 +49,7 @@
   <div class="sheet-in">
     <div class="sheet-head"><h2 id="calSheetTitle">Add to calendar</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
     <p class="note" id="calSheetWhat" style="margin:0"></p>
+    <div class="opts" id="calPick" hidden></div>
     <div class="opts" id="calOpts"></div>
   </div>
 </dialog>
@@ -76,6 +77,9 @@
       <div class="search-box"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input type="search" id="search" placeholder="Search events" aria-label="Search events" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><button type="button" id="searchClear" class="search-x" aria-label="Clear search" hidden>✕</button></div>
       <div class="chips-row kinds" role="group" aria-label="Tags" id="searchTags" hidden></div>
     </div>
+    <!-- Events: the filter chips and what they leave, above the list and above the map alike. -->
+    <div class="chips-row kinds" role="group" aria-label="Filter events" id="eventCats"></div>
+    <p class="note" id="eventsCount" role="status"></p>
     <section class="card map-card" id="mapCard" hidden>
       <div class="dayhead"><h3 id="mapTitle">Map</h3></div>
       <div class="map-wrap"><div class="map-box"><div id="map" class="map" role="region" aria-label="Map of the day's places"></div><button type="button" id="mapSize" class="map-size" aria-pressed="false"></button><div id="placeSheet" class="place-sheet" role="dialog" tabindex="-1" hidden></div></div><div id="mapPanel" class="map-panel" aria-live="polite"></div></div>
@@ -99,8 +103,6 @@
     <!-- Events: pop-ups and seasonal events (data/events.json) under On now, This week(end),
          Next week and month headings; filters in the events sheet; the map pins them by venue. -->
     <div id="eventsPanel" hidden>
-      <div class="chips-row kinds" role="group" aria-label="Filter events" id="eventCats"></div>
-      <p class="note" id="eventsCount" role="status"></p>
       <div class="list" id="events"><p class="loading">Loading events…</p></div>
       <p class="note" id="eventsNote"></p>
     </div>

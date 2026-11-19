@@ -2,7 +2,7 @@
 // then leagues & tournaments, each with a link to the source, what kind of source it is, what it
 // gives this week, and whether it's working. Data: data/index.json, data/regions/<id>/schedule.json
 // (sources[], sessions[]), data/programs.json (sources[], programs[]).
-const DATA = typeof location !== 'undefined' && location.hostname.endsWith('.vercel.app') ? 'https://bryanw121.github.io/schelagg/data/' : 'data/';
+const DATA = typeof location !== 'undefined' && !/(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname) ? 'https://bryanw121.github.io/schelagg/data/' : 'data/';
 const SPORTS = { volleyball: ['Volleyball', 'open play'], pickleball: ['Pickleball', 'open play'], ice_skating: ['Ice skating', 'public skate'] };
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);

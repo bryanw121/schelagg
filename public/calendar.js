@@ -23,6 +23,17 @@ export function calendarSpan(item) {
   }
   return { allDay: true, from: ymd(item.date), to: ymd(nextDay(item.endDate ?? item.date)) };
 }
+const addMin = (t, n) => { const [h, m] = t.split(':').map(Number); const v = Math.min(h * 60 + m + n, 23 * 60 + 59); return `${String(Math.floor(v / 60)).padStart(2, '0')}:${String(v % 60).padStart(2, '0')}`; };
+/**
+ * One visit to something that runs for days: that day only, from the time given for two hours
+ * (or until it closes, when that is sooner); no time makes it that whole day.
+ */
+export function visitItem(item, date, time) {
+  const { endDate, ...rest } = item;
+  if (!time) return { ...rest, date, start: undefined, end: undefined };
+  const two = addMin(time, 120);
+  return { ...rest, date, start: time, end: item.end && item.end > time && item.end < two ? item.end : two };
+}
 /** Details as the calendar entry shows them: the item's own note, then where to find out more. */
 const detailsOf = (item) => [item.details, item.url ? `More: ${item.url}` : ''].filter(Boolean).join('\n\n');
 

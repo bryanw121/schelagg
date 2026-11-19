@@ -209,3 +209,9 @@ Google's new-event page, filled in, in the event's time zone) and Apple Calendar
 which Outlook and others open too). An event on one day with hours becomes a timed entry; one that runs several
 days, or lists no hours, becomes whole days with any hours in the note. A session is added for the day it is
 listed under. Pure in `public/calendar.js`.
+
+Something that runs for more than one day asks **which day and what time you're going** (both filled in: today or its first day, and its opening time) and adds only that visit: two hours from the time picked, or until it closes; no time adds that one whole day.
+
+The filter chips (kind, When, Near me) and the count sit above the list and above the map alike, so the map view has the same When sheet.
+
+The site's own address is `skellyevents.com`; `schelagg.vercel.app` keeps working (vteam calls it). Any address other than GitHub Pages or a local copy reads data and maps from GitHub Pages.
