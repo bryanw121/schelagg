@@ -515,7 +515,7 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
   .map-size{display:inline-flex;align-items:center;gap:6px;position:absolute;z-index:2;left:10px;bottom:10px;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:700 13px var(--body);box-shadow:0 2px 8px rgba(0,0,0,.22);cursor:pointer;touch-action:manipulation}
   body.map-big .map-size{bottom:70px;background:var(--ink);color:var(--bg);border-color:var(--ink)}
   /* The place sheet rises from the bottom of the screen, leaving some map above it. */
-  body.layout-map:not(.map-big) .place-sheet{position:fixed;z-index:30;max-height:max(220px,calc(100dvh - var(--hdr,200px) - 210px));border-radius:18px 18px 0 0}
+  body.layout-map:not(.map-big) .place-sheet{position:fixed;z-index:30;max-height:max(220px,calc(100dvh - var(--hdr,200px) - 290px));border-radius:18px 18px 0 0}
 }
 /* The event a shared link points at. */
 .ev-row.linked{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
