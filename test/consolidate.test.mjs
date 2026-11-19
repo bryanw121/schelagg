@@ -123,3 +123,22 @@ test('sourceVenues: a venue the source placed becomes a pinned venue; known name
   // An id already taken gets a suffix.
   assert.equal(sourceVenues([at('x', 'T4 Court Rentals', 'houston', 29.79, -95.74)], [{ id: 'src-t4-court-rentals', name: 'Other', aliases: [] }], regions).venues[0].id, 'src-t4-court-rentals-2');
 });
+
+test('sourceVenues: a venue a source placed last run keeps its pin while a kept session names it', () => {
+  const regions = { houston: { center: [29.76, -95.37], radiusKm: 60 } };
+  // This run didn't re-read the source: its kept sessions carry no coordinates any more.
+  const kept = [{ id: 'a', sourceId: 'reclub', venue: 'T4 Court Rentals', region: 'houston' }];
+  const previous = [
+    { id: 'src-t4-court-rentals', name: 'T4 Court Rentals', city: 'Katy', lat: 29.7893, lng: -95.7427, region: 'houston' },
+    { id: 'src-gone-gym', name: 'Gone Gym', lat: 29.7, lng: -95.4, region: 'houston' }, // no session names it now
+    { id: 'configured', name: 'T4 Court Rentals', lat: 1, lng: 1, region: 'houston' }, // not source-placed
+  ];
+  const { venues } = sourceVenues(kept, [], regions, previous);
+  assert.deepEqual(venues.map((v) => [v.id, v.lat, v.located]), [['src-t4-court-rentals', 29.7893, 'source']]);
+  assert.equal(resolveVenues(kept, venues).sessions[0].venueId, 'src-t4-court-rentals');
+  // Fresh coordinates from the source win over last run's.
+  const fresh = sourceVenues([{ ...kept[0], venueLat: 29.8, venueLng: -95.7 }], [], regions, previous).venues;
+  assert.deepEqual(fresh.map((v) => [v.id, v.lat]), [['src-t4-court-rentals', 29.8]]);
+  // Once the venue is in venues.json, the configured one is used.
+  assert.deepEqual(sourceVenues(kept, [{ id: 't4', name: 'T4 Court Rentals', aliases: [] }], regions, previous).venues, []);
+});
