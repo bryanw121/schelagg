@@ -172,3 +172,12 @@ The When pill on Events opens a sheet: a day (any, today, tomorrow, this weekend
 that lists hours shows when they overlap the window; one that lists only dates shows on its days, marked "Hours
 not listed". The list and the map use the same filters. Sports has the same time pill on open play (the day strip
 picks the day); the two tabs never mix. The rules are pure in `public/when.js`.
+
+## Search and tags
+
+The search box sits above the list and the map on Events (and on open play, where it reads session and venue
+names). Each keystroke narrows the list; every word typed must start a word in the event's title, place,
+organizer, description, kind or tags. Links carry it as `?q=`. Tags come from a fixed word list
+(`SEARCH_TAGS` in `public/search.js`): an event has a tag when its title or description has one of the tag's
+words, so tags never change from run to run. An event can have several. The tags with events show under the box
+only while the box is open, each with its count; tapping one (there or on a card) searches for it.

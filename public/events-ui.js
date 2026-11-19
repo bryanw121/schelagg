@@ -1,4 +1,5 @@
 import { inWindow } from './when.js';
+import { eventText, matchesText } from './search.js';
 // The Events view's pure helpers (public/app.js imports these; node tests import them too,
 // so nothing here may touch the DOM or the network). The feed is public/data/events.json:
 // { feedVersion, generatedAt, events: [{ id, category, title, venue, area, city, startDate,
@@ -190,15 +191,17 @@ export function weekendRange(today) {
 
 /**
  * The filters: a kind (or all), tags (all must match), "this weekend" (on any day of it), one
- * day (on that day), and a time window (hours overlap it; events that list no hours stay).
+ * day (on that day), a time window (hours overlap it; events that list no hours stay), and a
+ * search (every word found in its title, place, organizer, description, kind or tags).
  */
-export function filterEvents(events, { kind = 'all', tags = [], weekend = false, day = null, window = null } = {}, today) {
+export function filterEvents(events, { kind = 'all', tags = [], weekend = false, day = null, window = null, q = '' } = {}, today) {
   const wk = weekend ? weekendRange(today) : null;
   return (events ?? []).filter((e) => (kind === 'all' || eventKind(e) === kind)
     && tags.every((g) => eventTags(e).includes(g))
     && (!wk || (e.startDate <= wk.to && lastDay(e) >= wk.from))
     && (!day || (e.startDate <= day && lastDay(e) >= day))
-    && inWindow(e.startTime, e.endTime, window));
+    && inWindow(e.startTime, e.endTime, window)
+    && (!q || matchesText(eventText(e, [kindLabel(eventKind(e)), ...eventTags(e).map(tagLabel)]), q)));
 }
 
 /** The left column of an event card: "Thru / Nov 23" when on now, "Sat / Nov 21", or "Nov 19 / to Nov 22". */

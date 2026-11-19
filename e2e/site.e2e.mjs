@@ -1286,7 +1286,7 @@ test('site: Events is the front page: On now, Next week and months, a few under 
   // A card: the date column, plain chips (a kind, a dashed tag), one main button, Details.
   const autumn = page.locator('#events .row', { hasText: 'Autumn Market' });
   assert.match(await autumn.locator('.time').textContent(), /^ThruOct 30/);
-  assert.deepEqual(await autumn.locator('.chip').allTextContents(), ['Seasonal']);
+  assert.deepEqual(await autumn.locator('.chip').allTextContents(), ['Seasonal', 'Food'], 'its kind, then the search tag its description earns (food trucks)');
   assert.equal(await autumn.locator('.chip.surf').count(), 0, 'no court-surface colours on events');
   assert.equal(await autumn.locator('a.signup').textContent(), 'Event page ↗');
   assert.equal(await autumn.locator('a.signup').getAttribute('href'), 'https://example.test/autumn');
@@ -1296,7 +1296,7 @@ test('site: Events is the front page: On now, Next week and months, a few under 
   assert.match(await autumn.locator('details.more .actions').textContent(), /Google Maps/);
   assert.equal(await autumn.locator('.via').textContent(), 'Found via Example');
   const matcha = page.locator('#events .row', { hasText: 'Matcha Cart' });
-  assert.deepEqual(await matcha.locator('.chip').evaluateAll((els) => els.map((e) => [e.textContent, e.classList.contains('tag')])), [['Asian-inspired', true]]);
+  assert.deepEqual(await matcha.locator('.chip').evaluateAll((els) => els.map((e) => [e.textContent, e.classList.contains('tag')])), [['Asian-inspired', true], ['Matcha', true]]);
   assert.equal(await page.locator('#eventsPager').count(), 0, 'no pager');
   assert.equal(await page.locator('#asof').textContent(), '12 events · checked Oct 25');
   assert.deepEqual(pageErrors, []);
@@ -1635,5 +1635,63 @@ test('site: coming to Sports from Events brings back the day strip and the Open 
   assert.equal(await page.locator('#days .day').first().isVisible(), true);
   await page.locator('#calendarModes [data-view="booking"]').click();
   assert.equal(new URL(page.url()).searchParams.get('view'), 'booking');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: search on Events: typing narrows the list, tags show once the box is open, cards\' tags search, links carry it', async () => {
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  const box = page.locator('#search'), tags = page.locator('#searchTags');
+  assert.equal(await box.getAttribute('placeholder'), 'Search events');
+  assert.equal(await tags.isHidden(), true, 'a clean page: tags wait for a tap on the box');
+  await box.click();
+  assert.equal(await tags.isVisible(), true);
+  assert.ok((await tags.locator('button').allTextContents()).some((t) => /^Night market \d+$/.test(t)));
+  // Typing: every keystroke narrows, the match is marked, the count says what for.
+  await box.pressSequentially('night mar');
+  const titles = await page.locator('#events .row .title').allTextContents();
+  assert.ok(titles.length > 0 && titles.every((t) => /night market/i.test(t)), titles.join(' | '));
+  assert.equal(await page.locator('#events .row .title mark').first().textContent(), 'Night');
+  assert.match(await page.locator('#eventsCount').textContent(), /^\d+ of 12 events for “night mar” · Clear filters$/);
+  assert.equal(new URL(page.url()).searchParams.get('q'), 'night mar');
+  assert.equal(await box.evaluate((el) => document.activeElement === el), true, 'the box keeps focus while typing');
+  // ✕ clears; a tag under the box is a one-tap search.
+  await page.locator('#searchClear').click();
+  assert.equal(await page.locator('#eventsCount').textContent(), '');
+  await tags.locator('button', { hasText: 'Night market' }).click();
+  assert.equal(await box.inputValue(), 'Night market');
+  assert.equal(await tags.isHidden(), true);
+  assert.ok((await page.locator('#events .row').count()) > 0);
+  // A tag on a card searches for it too.
+  await page.locator('#eventsCount [data-evclear]').click();
+  await page.locator('#events .row', { hasText: 'Autumn Market' }).locator('.chip-q', { hasText: 'Food' }).click();
+  assert.equal(await box.inputValue(), 'Food');
+  assert.ok((await page.locator('#events .row .title').allTextContents()).includes('Autumn Market'));
+  // A link opens with its search; a day that hides matches offers them.
+  await open({ events: EVENTS, url: '/?view=events&q=night%20market&on=2026-10-25', waitFor: '#eventsCount' });
+  assert.equal(await page.locator('#search').inputValue(), 'night market');
+  assert.match(await page.locator('#eventsCount').textContent(), /^0 of 12 events for “night market” · Today · \d+ more on other days · Clear filters$/);
+  await page.locator('[data-evanyday]').click();
+  assert.ok((await page.locator('#events .row').count()) > 0);
+  assert.equal(new URL(page.url()).searchParams.has('on'), false);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: search on open play: venue and session names narrow the day; Events and Sports keep their own search', async () => {
+  const at = (id, title, venue) => ({ ...SESSIONS[0], id, title, venue, date: TODAY, days: undefined, start: '18:00', end: '20:00' });
+  await open({ events: EVENTS, schedule: { ...SCHEDULE, sessions: [at('a', 'Sunday 6v6', 'North Gym'), at('b', 'Coed 4s', 'Montopolis Rec'), at('c', 'Open gym', 'South Gym')] }, url: '/?view=openplay&q=monto', clock: new Date('2026-10-25T12:00:00Z') });
+  const box = page.locator('#search');
+  assert.equal(await box.getAttribute('placeholder'), 'Search volleyball open play');
+  assert.equal(await box.inputValue(), 'monto');
+  assert.deepEqual(await titles(), ['Coed 4s']);
+  await box.fill('gym');
+  assert.deepEqual((await titles()).sort(), ['Open gym', 'Sunday 6v6']);
+  assert.equal(await page.locator('#searchTags').isHidden(), true, 'tags are for Events');
+  // Leagues have no search box; Events starts with its own, empty search.
+  await page.locator('#calendarModes [data-view="leagues"]').click();
+  assert.equal(await page.locator('#searchWrap').isHidden(), true);
+  await page.locator('#topTabs [data-section="events"]').click();
+  await page.locator('#events .row').first().waitFor();
+  assert.equal(await box.inputValue(), '');
+  assert.equal(new URL(page.url()).searchParams.has('q'), false);
   assert.deepEqual(pageErrors, []);
 });
