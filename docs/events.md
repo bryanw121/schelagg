@@ -201,3 +201,11 @@ The map takes about the top 45% of the screen with its places under it, grouped 
 now, This week, Next week, months). "Expand map" makes the map the whole screen (over the header too); "Collapse
 map", at its top left, goes back; the choice is remembered on the device. The place sheet rises from the bottom of the screen.
 On the Sports map the day strip and filters fold into one line ("Today · Open play · Sand"); a tap opens them.
+
+## Add to calendar
+
+Every event card and open-play session has a "＋ Calendar" button. Its sheet offers Google Calendar (a link to
+Google's new-event page, filled in, in the event's time zone) and Apple Calendar (a one-event calendar file,
+which Outlook and others open too). An event on one day with hours becomes a timed entry; one that runs several
+days, or lists no hours, becomes whole days with any hours in the note. A session is added for the day it is
+listed under. Pure in `public/calendar.js`.

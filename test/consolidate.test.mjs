@@ -91,7 +91,7 @@ test('ics: one calendar per sport, cancellations kept as CANCELLED, text escaped
     { ...base, id: 'b', sourceId: 's', title: 'Gone', venue: 'ATX Beach', date: '2026-10-29', start: '19:00', canceled: true },
     { ...base, sport: 'ice_skating', id: 'c', sourceId: 'r', title: 'Public Skate', venue: 'Chaparral Ice', date: '2026-10-28', start: '10:00', end: '12:00' },
   ], { now: new Date('2026-10-27T12:00:00Z') });
-  const ics = toIcs(occ, { sport: 'volleyball', name: 'Schelagg · Austin volleyball', generatedAt: '2026-10-27T12:00:00.000Z' });
+  const ics = toIcs(occ, { sport: 'volleyball', name: 'Skelly · Austin volleyball', generatedAt: '2026-10-27T12:00:00.000Z' });
   assert.ok(ics.startsWith('BEGIN:VCALENDAR\r\nVERSION:2.0\r\n'));
   assert.ok(ics.endsWith('END:VCALENDAR\r\n'));
   assert.equal(ics.match(/BEGIN:VEVENT/g).length, 2); // skating is in its own file

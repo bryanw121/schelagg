@@ -10,6 +10,7 @@
 
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
 import { TIME_PRESETS, inWindow, parseWindow, presetOf, toHHMM, windowLabel, windowNote } from './when.js';
+import { googleCalendarUrl, icsFile, icsName } from './calendar.js';
 import { EVENT_ICONS, eventIcon, SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
 import { placeGroups } from './events-ui.js';
 import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
@@ -350,6 +351,29 @@ function sessionsOn(iso, { ignoreTab = false, ignoreWindow = false } = {}) {
     .map((x) => ({ ...x, on: iso, f: freshness(x, iso) }));
 }
 
+// Add to calendar: each button names an item kept here (an event, or a session on its day); the
+// sheet it opens offers Google Calendar (a filled-in link) and Apple Calendar / other (an .ics file).
+const calItems = new Map();
+// An iPhone or iPad opens a calendar file straight into "Add to Calendar"; elsewhere it is saved as a file to open.
+const IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+function calButton(key, item) {
+  calItems.set(key, item);
+  return `<button type="button" class="cal-add" data-cal="${esc(key)}" aria-haspopup="dialog" aria-label="Add ${esc(item.title)} to your calendar"><span aria-hidden="true">＋</span> Calendar</button>`;
+}
+/** A session on the day it is listed under. */
+const sessionCalItem = (x) => ({ title: x.title, date: x.date || x.on || WEEK[state.di], start: x.start, end: x.end, tz: TZ, location: [x.venue, x.city].filter(Boolean).join(', '), url: x.signup?.url || x.sourceUrl || '', details: [x.level, x.price].filter(Boolean).join(' · ') });
+/** An event: its hours when it is a single day, otherwise the whole days it runs (hours go in the note). */
+const eventCalItem = (ev) => ({ title: ev.title, date: ev.startDate, endDate: ev.endDate, start: ev.startTime, end: ev.endTime, tz: TZ, location: ev.venue ?? '', url: ev.sourceUrl ?? '',
+  details: [ev.endDate && ev.endDate !== ev.startDate && ev.startTime ? `${fmtT(ev.startTime)}${ev.endTime ? `–${fmtT(ev.endTime)}` : ''} each day` : '', ev.price ?? ''].filter(Boolean).join(' · ') });
+function openCalSheet(key, opener) {
+  const item = calItems.get(key);
+  if (!item) return;
+  const file = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsFile(item, { uid: key }))}`;
+  $('calSheetWhat').textContent = item.title;
+  $('calOpts').innerHTML = `<a class="tab opt" href="${esc(googleCalendarUrl(item))}" target="_blank" rel="noopener" data-close><span class="lbl">Google Calendar<small>Opens with everything filled in</small></span><span aria-hidden="true">↗</span></a>
+    <a class="tab opt" href="${esc(file)}"${IOS ? '' : ` download="${esc(icsName(item.title))}"`} data-close data-ics><span class="lbl">Apple Calendar<small>Also Outlook and others (a calendar file)</small></span><span aria-hidden="true">↓</span></a>`;
+  openSheet('calSheet', opener);
+}
 function signupHtml(x) {
   if (x.f.k === 'expired' || x.f.k === 'canceled') return '';
   const s = x.signup || {}, url = onDay(s.url, x.date || x.on); // a shared calendar link opens on this session's day
@@ -517,7 +541,7 @@ function renderList() {
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}${milesTo(x.venueId) != null ? ` · ${fmtMiles(milesTo(x.venueId))}` : ''}</div>
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
         ${movedHtml(x)}${fitHtml(x.start, x.end)}
-        <div class="actions">${signupHtml(x)}</div>
+        <div class="actions">${signupHtml(x)}${x.f.k === 'expired' || x.f.k === 'canceled' ? '' : calButton(`s:${x.id}:${x.date || x.on || WEEK[state.di]}`, sessionCalItem(x))}</div>
         ${detailsHtml(x)}
       </div></div>`;
   };
@@ -968,7 +992,9 @@ function eventCard(ev) {
       ${avatarPath(ev) && ev.account ? `<div class="ev-by"><span>${ev.sourceId === 'instagram' ? 'by' : 'via'} <b>@${esc(ev.account)}</b></span></div>` : ''}
       <div class="venue"><b>${esc(parts[0] ?? ev.venue)}</b>${parts.slice(1).map((p) => ` · ${esc(p)}`).join('')}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</div>
       <div class="meta">${eventChips(ev)}${ev.price ? `<span>${esc(ev.price)}</span>` : ''}</div>${fitHtml(ev.startTime, ev.endTime)}
-      ${safeUrl(ev.sourceUrl) ? `<a class="signup ev-go" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}
+    </div>
+    <div class="ev-foot">
+      <div class="actions">${safeUrl(ev.sourceUrl) ? `<a class="signup ev-go" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}${calButton(`ev:${ev.id}`, eventCalItem(ev))}</div>
       <details class="more"${evLink === ev.id ? ' open' : ''}><summary>Details</summary>${ev.description ? `<div class="note">${esc(ev.description)}</div>` : ''}<div class="location">${esc(parts.join(', '))}</div><div class="actions">${eventDirections(ev)}</div>${via}</details>
     </div></article>`;
 }
@@ -1278,7 +1304,7 @@ function signupsMeta() {
   renderSourcesLink();
   $('asof').title = `Leagues and tournaments checked ${clock(programs.generatedAt)}`;
   const orgs = [...new Set([...programsFor('league'), ...programsFor('tournament')].map((p) => p.org))];
-  $('footer').innerHTML = orgs.length ? `Sources: ${esc(list(orgs))}. Sign up on the organizer's site; Schelagg only links to it.` : '';
+  $('footer').innerHTML = orgs.length ? `Sources: ${esc(list(orgs))}. Sign up on the organizer's site; Skelly only links to it.` : '';
 }
 /** Today, in open play: a league or tournament whose sign-up (or early-bird price) ends today. */
 function headsUpHtml() {
@@ -1763,6 +1789,8 @@ for (const d of sheets()) {
   });
 }
 document.addEventListener('click', async (e) => {
+  const cal = e.target.closest('[data-cal]');
+  if (cal) { openCalSheet(cal.dataset.cal, cal); return; }
   const opener = e.target.closest('[data-sheet]');
   if (opener) { openSheet(opener.dataset.sheet, opener); return; }
   if (e.target.closest('[data-close]')) { e.target.closest('dialog')?.close(); return; }

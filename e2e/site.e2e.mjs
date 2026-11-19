@@ -274,7 +274,7 @@ test('site: pickleball level chips read words, DUPR numbers and "Level N", and s
 
 test('site: today\'s schedule renders in Austin time with freshness labels and sign-up links', async () => {
   await open();
-  assert.equal(await page.title(), 'Schelagg');
+  assert.equal(await page.title(), 'Skelly');
   assert.equal(await page.locator('#dayTitle').textContent(), 'Today · Sunday, Oct 25');
   // Older of the two refreshes (sessions 4:13pm, courts 4:55pm) against the 5pm clock.
   assert.equal(await page.locator('#asof').textContent(), 'Last updated 47 min ago');
@@ -1819,5 +1819,30 @@ test('site: on a phone the Sports map folds the day and filters into one line; a
   await page.locator('#layout [data-layout="list"]').click();
   assert.equal(await page.locator('#days').isVisible(), true);
   assert.equal(await sum.isVisible(), false);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: Add to calendar on an event and on a session: Google Calendar filled in, or a calendar file', async () => {
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  const card = page.locator('#events .ev-row', { hasText: 'Night Market' }).first();
+  await card.locator('.cal-add').click();
+  assert.equal(await page.locator('#calSheetTitle').textContent(), 'Add to calendar');
+  assert.equal(await page.locator('#calSheetWhat').textContent(), await card.locator('.title').textContent());
+  const g = new URL(await page.locator('#calOpts a').first().getAttribute('href'));
+  assert.equal(g.hostname, 'calendar.google.com');
+  assert.equal(g.searchParams.get('dates'), '20261028T170000/20261028T220000');
+  assert.equal(g.searchParams.get('ctz'), 'America/Chicago');
+  const file = page.locator('#calOpts a[data-ics]');
+  const ics = decodeURIComponent((await file.getAttribute('href')).replace(/^data:text\/calendar;charset=utf-8,/, ''));
+  assert.match(ics, /DTSTART;TZID=America\/Chicago:20261028T170000\r\n/);
+  assert.match(ics, /SUMMARY:Night Market/);
+  assert.match(await file.getAttribute('download'), /^night-market.*\.ics$/);
+  await page.keyboard.press('Escape');
+  // A session: the day it is listed under.
+  await open({ schedule: SCHEDULE, url: '/?view=openplay', clock: new Date('2026-10-25T12:00:00Z') });
+  await rows().first().locator('.cal-add').click();
+  const s = new URL(await page.locator('#calOpts a').first().getAttribute('href'));
+  assert.match(s.searchParams.get('dates'), /^20261025T\d{6}\/2026102[56]T\d{6}$/);
+  assert.ok(s.searchParams.get('text').length > 0);
   assert.deepEqual(pageErrors, []);
 });

@@ -122,7 +122,7 @@ async function main() {
     if (sport !== 'volleyball') back.searchParams.set('sport', sport);
     $('back').href = back.href;
     $('suggest').href = `https://github.com/bryanw121/schelagg/issues/new?title=${encodeURIComponent(`Source suggestion (${region.name}): `)}&body=${encodeURIComponent('Where it is posted (a link):\n\nWhat it lists (open play, leagues, tournaments):\n')}`;
-    document.title = `Schelagg · Sources · ${region.name}`;
+    document.title = `Skelly · Sources · ${region.name}`;
     const [schedule, programs] = await Promise.all([getJson(`${DATA}regions/${region.id}/schedule.json`), getJson(`${DATA}programs.json`).catch(() => null)]);
     $('groups').innerHTML = render({ region, schedule, programs, sport });
     $('details').hidden = false;

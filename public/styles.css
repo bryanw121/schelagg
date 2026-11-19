@@ -573,3 +573,13 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
    theme's dark blue), surface chips and chart bars use the panel colour on their tint, and the
    Expand / Collapse map button is the inverse of the page so it stands out on any map. */
 .map-size,body.map-big .map-size{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* Add to calendar: a quiet second button beside Sign up / Event page, and two choices in its sheet. */
+.cal-add{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:none;color:var(--ink);font:600 13px var(--body);cursor:pointer;touch-action:manipulation;white-space:nowrap}
+@media (hover:hover){.cal-add:hover{border-color:var(--accent);color:var(--accent)}}
+@media (pointer:coarse){.cal-add{min-height:44px}}
+.ev-row .actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
+#calOpts a.tab.opt{text-decoration:none;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+/* The buttons and Details sit under the card's text and date, the full width beside the picture, so Event page and Calendar share a row on a phone. */
+.ev-row > .ev-foot{grid-column:2 / -1;grid-row:2;min-width:0;display:grid;gap:4px}
+.ev-row .ev-foot .ev-go{margin-top:0}

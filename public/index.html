@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Schelagg</title>
+<title>Skelly</title>
 <meta name="description" content="Where to play today: volleyball, pickleball open play and public ice skating, with schedules, venue directions and sign-up links, plus leagues and tournaments open for sign-up — and Austin pop-ups, seasonal events and Asian-inspired things.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
@@ -14,7 +14,7 @@
   <div class="wrap">
     <!-- Brand row: Events or Sports (Sports opens the sport sheet) and 📍; under it the city and how fresh the data is. -->
     <div class="brand">
-      <h1>Schel<span>agg</span></h1>
+      <h1>Skel<span>ly</span></h1>
       <div class="seg" role="group" aria-label="Events or sports" id="topTabs"><button class="seg-btn" type="button" data-section="events" aria-pressed="true">Events</button><button class="seg-btn" type="button" data-section="sports" aria-pressed="false" aria-haspopup="dialog">Sports</button></div>
       <button type="button" id="nearest" class="nearest" title="Nearest city to me" aria-label="Nearest city to me" hidden><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></button>
     </div>
@@ -43,6 +43,13 @@
   <div class="sheet-in">
     <div class="sheet-head"><h2 id="eventsSheetTitle">Events</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
     <div class="opts" role="group" aria-label="Kind and tags" id="eventsOpts"></div>
+  </div>
+</dialog>
+<dialog class="sheet" id="calSheet" aria-labelledby="calSheetTitle">
+  <div class="sheet-in">
+    <div class="sheet-head"><h2 id="calSheetTitle">Add to calendar</h2><button type="button" class="sheet-x" data-close aria-label="Close">✕</button></div>
+    <p class="note" id="calSheetWhat" style="margin:0"></p>
+    <div class="opts" id="calOpts"></div>
   </div>
 </dialog>
 <dialog class="sheet" id="whenSheet" aria-labelledby="whenSheetTitle">

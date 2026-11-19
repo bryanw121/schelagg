@@ -120,7 +120,7 @@ test('runScrape: a source that isn\'t due keeps its sessions and status untouche
   assert.equal(readJson(join(dir, 'regions/denver/schedule.json')).publicCourts, null);
   assert.deepEqual(readJson(join(dir, 'regions/denver/occurrences.json')).occurrences.map((o) => o.region), ['denver']);
   const denverIcs = readFileSync(join(dir, 'regions/denver/ice_skating.ics'), 'utf8');
-  assert.match(denverIcs, /X-WR-CALNAME:Schelagg · Denver public skating\r\nX-WR-TIMEZONE:America\/Denver/);
+  assert.match(denverIcs, /X-WR-CALNAME:Skelly · Denver public skating\r\nX-WR-TIMEZONE:America\/Denver/);
   // The combined files still hold every region, for existing consumers.
   assert.deepEqual([...new Set(readJson(paths.feed).occurrences.map((o) => o.region))].sort(), ['austin', 'denver']);
 
