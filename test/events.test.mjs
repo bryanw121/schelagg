@@ -250,3 +250,17 @@ test('missingListings: listing events another writer dropped come back; past and
   assert.deepEqual(missingListings([...feed, cached[0]], cached, '2026-11-19'), [], 'nothing missing: nothing to do');
   assert.deepEqual(missingListings(feed, undefined, '2026-11-19'), [], 'no cache yet');
 });
+
+test('creditAccounts and promotedAccounts: an organizer the scout finds twice is read by rule from then on', async () => {
+  const { creditAccounts, promotedAccounts } = await import('../lib/event-sources.js');
+  const { handleOf } = await import('../lib/instagram.js');
+  const ev = (id, source) => ({ id, source, title: id, startDate: '2026-11-21' });
+  let ledger = creditAccounts({}, [ev('a', 'Instagram @tinyloaf'), ev('b', 'Instagram @roundup'), ev('c', 'AllEvents'), ev('d', 'Instagram')], '2026-11-18', handleOf);
+  assert.deepEqual(Object.keys(ledger).sort(), ['roundup', 'tinyloaf']);
+  assert.deepEqual(promotedAccounts(ledger, new Set()), [], 'once is not a pattern');
+  // The next day: the same event again (no new credit), and a second one from the same organizer.
+  ledger = creditAccounts(ledger, [ev('a', 'Instagram @tinyloaf'), ev('e', 'Instagram @tinyloaf'), ev('f', 'Instagram @roundup')], '2026-11-19', handleOf);
+  assert.deepEqual(ledger.tinyloaf, { events: ['a', 'e'], first: '2026-11-18', last: '2026-11-19' });
+  assert.deepEqual(promotedAccounts(ledger, new Set(['roundup'])), ['tinyloaf'], 'round-up accounts set aside in config stay out');
+  assert.deepEqual(promotedAccounts(ledger, new Set(['roundup', 'tinyloaf'])), [], 'already followed');
+});

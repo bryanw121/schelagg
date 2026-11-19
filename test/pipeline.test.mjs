@@ -525,7 +525,7 @@ test('config: the Dallas–Fort Worth region loads with its own sources, time zo
   const dallas = ALL_SOURCES.filter((s) => s.region === 'dallas');
   assert.deepEqual(dallas.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['dallas-reclub', 'reclub', 'America/Chicago', 'volleyball'], ['sportsgarden', 'sportsgarden', 'America/Chicago', 'volleyball'], ['foro', 'foro', 'America/Chicago', 'volleyball'], ['dfw-city-active', 'active', 'America/Chicago', 'volleyball'], ['dfw-city-active-pickleball', 'active', 'America/Chicago', 'pickleball'], ['dallas-meetup', 'ical', 'America/Chicago', 'volleyball']]);
   const houston = ALL_SOURCES.filter((s) => s.region === 'houston');
-  assert.deepEqual(houston.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['houston-reclub', 'reclub', 'America/Chicago', 'volleyball']]);
+  assert.deepEqual(houston.map((s) => [s.id, s.adapter.id, s.timezone, s.sport]), [['houston-reclub', 'reclub', 'America/Chicago', 'volleyball'], ['houston-city-active', 'active', 'America/Chicago', 'volleyball'], ['houston-sweatpals', 'sweatpals', 'America/Chicago', 'volleyball']]);
   const ids = ALL_SOURCES.map((s) => s.id);
   assert.equal(new Set(ids).size, ids.length, 'source ids are unique across regions');
 });

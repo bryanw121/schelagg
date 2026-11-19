@@ -66,6 +66,40 @@
           ]
         }
       }
+    },
+    {
+      "id": "houston-city-active",
+      "name": "City of Houston community centers",
+      "adapter": "active",
+      "cadence": "1d",
+      "options": {
+        "_doc": "The City of Houston's volleyball programs on www.active.com (found by the venue coverage report: Houston had no source of its own, only Reclub groups). Their programs become weekly sessions for each season, like Fort Worth's.",
+        "listings": [
+          "https://www.active.com/houston-tx/volleyball"
+        ]
+      }
+    },
+    {
+      "id": "houston-sweatpals",
+      "name": "Sweatpals · Houston",
+      "site": "https://sweatpals.com",
+      "adapter": "sweatpals",
+      "cadence": "1h",
+      "options": {
+        "_doc": "Sweatpals hosts that post Houston volleyball (scripts/adapters/sweatpals.mjs), like Austin's. Venues come from each event's own address.",
+        "hosts": [
+          {
+            "slug": "HoustonSandVolleyball",
+            "include": "."
+          }
+        ],
+        "include": "volley|🏐",
+        "venues": [],
+        "fallbackVenue": {
+          "city": "Houston",
+          "surface": "sand"
+        }
+      }
     }
   ],
   "manual": {
