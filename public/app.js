@@ -523,7 +523,7 @@ function renderVenueCalendars() {
 function renderCalendarModes() {
   const supportsBooking = ['volleyball', 'pickleball'].includes(state.sport);
   $('calendarModes').hidden = !supportsBooking;
-  $('calendarModes').innerHTML = supportsBooking ? [['openplay', 'Open play'], ['booking', 'Courts'], ['leagues', 'Leagues'], ['tournaments', 'Tournaments']]
+  $('calendarModes').innerHTML = supportsBooking ? [['openplay', 'Open play'], ['booking', 'Court bookings'], ['leagues', 'Leagues'], ['tournaments', 'Tournaments']]
     .map(([value, label]) => `<button class="seg-btn" type="button" data-view="${value}" aria-pressed="${state.view === value}">${label}</button>`).join('') : '';
   // Booking puts the live court chart first; open play puts the list first (styles.css orders them).
   document.body.classList.toggle('view-booking', state.view === 'booking');
