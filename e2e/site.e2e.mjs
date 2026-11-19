@@ -1502,6 +1502,7 @@ test('site: one map for every city: the other cities are bubbles, tapping or mov
 
 test('site: without the overview file the map is one city at a time, as before (no bubbles)', async () => {
   await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  await page.waitForFunction(() => window.__schelaggMap?.getStyle?.()?.sources?.osm); // the style arrives a moment after the map
   assert.deepEqual(await page.evaluate(() => Object.keys(window.__schelaggMap.getStyle().sources)), ['osm']);
   assert.equal(await page.locator('#map .pin.city').count(), 0);
   assert.deepEqual(pageErrors, []);
@@ -1713,8 +1714,13 @@ test('site: on a phone the map takes the top of the screen with its places under
   const big = await box();
   assert.equal(big.h, 760, 'expanded: the map is the whole screen, over the header too');
   assert.equal(await page.evaluate(() => Math.round(document.getElementById('map').getBoundingClientRect().top)), 0);
-  assert.equal(await page.evaluate(() => { const b = document.getElementById('mapSize').getBoundingClientRect(); return document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2)?.closest('#mapSize') != null; }), true, 'Show places is on top and tappable');
-  assert.match((await btn.textContent()).trim(), /^☰ Show places · \d+$/);
+  assert.equal(await page.evaluate(() => { const b = document.getElementById('mapSize').getBoundingClientRect(); return document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2)?.closest('#mapSize') != null; }), true, 'Collapse map is on top and tappable');
+  assert.equal((await btn.textContent()).trim(), '⤡ Collapse map');
+  // It stays reachable with a place open: the sheet rises from the bottom, the button is at the top.
+  await page.locator('#map .pin').first().click();
+  await page.locator('#placeSheet').waitFor();
+  assert.equal(await page.evaluate(() => { const b = document.getElementById('mapSize').getBoundingClientRect(); return document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2)?.closest('#mapSize') != null; }), true, 'Collapse map is tappable above an open place');
+  await page.locator('#placeSheet .ps-x').click();
   await page.reload(); await page.locator('#map .pin').first().waitFor();
   assert.equal(await page.evaluate(() => document.body.classList.contains('map-big')), true, 'the choice is remembered');
   await page.locator('#mapSize').click();

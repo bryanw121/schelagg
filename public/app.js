@@ -1581,7 +1581,7 @@ let mapBig = false;
 try { mapBig = localStorage.getItem('schelagg.mapBig') === '1'; } catch { /* private mode: half map */ }
 function renderMapSize(n) {
   const b = $('mapSize');
-  b.innerHTML = mapBig ? `<span aria-hidden="true">☰</span> Show places${n ? ` · ${n}` : ''}` : '<span aria-hidden="true">⤢</span> Expand map';
+  b.innerHTML = mapBig ? '<span aria-hidden="true">⤡</span> Collapse map' : '<span aria-hidden="true">⤢</span> Expand map';
   b.setAttribute('aria-pressed', String(mapBig));
 }
 $('mapSize').addEventListener('click', () => {

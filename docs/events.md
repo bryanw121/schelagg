@@ -193,6 +193,6 @@ above (`type`, `tag`, `on`, `weekend`, `from`, `to`, `q`).
 ## Map on a phone
 
 The map takes about the top 45% of the screen with its places under it, grouped under the list's headings (On
-now, This week, Next week, months). "Expand map" makes the map the whole screen (over the header too); "Show
-places" goes back; the choice is remembered on the device. The place sheet rises from the bottom of the screen.
+now, This week, Next week, months). "Expand map" makes the map the whole screen (over the header too); "Collapse
+map", at its top left, goes back; the choice is remembered on the device. The place sheet rises from the bottom of the screen.
 On the Sports map the day strip and filters fold into one line ("Today · Open play · Sand"); a tap opens them.

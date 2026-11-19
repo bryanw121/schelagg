@@ -503,7 +503,7 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
 @media (max-width:360px){#calendarModes .seg-btn{font-size:12.5px;padding:0 3px}}
 
 /* Phones: the map takes the top of the screen with its places under it, so the page scrolls from
-   anywhere below the map. "Expand map" fills the screen (as it used to); "Show places" goes back. */
+   anywhere below the map. "Expand map" fills the screen; "Collapse map" goes back. */
 .map-size{display:none}
 .place-group .ev-day{font-size:20px;margin-top:14px}
 .place-group:first-of-type .ev-day{margin-top:10px}
@@ -518,14 +518,15 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
 /* The event a shared link points at. */
 .ev-row.linked{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}
 
-/* Phones: "Expand map" is the whole screen (over the header too), with Show places at the bottom. */
+/* Phones: "Expand map" is the whole screen (over the header too), with Collapse map at its top left. */
 .filters-summary{display:none}
 @media (max-width:699px){
   body.map-big{overflow:hidden}
   body.layout-map.map-big .map-box{position:fixed;inset:0;z-index:20;background:var(--bg)}
   body.layout-map.map-big .map{height:100dvh;min-height:0;border-radius:0}
   body.layout-map.map-big .map .maplibregl-ctrl-top-right{margin-top:calc(10px + env(safe-area-inset-top,0px))}
-  body.layout-map.map-big .map-size{left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));height:48px;padding:0 20px;font-size:15px;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+  /* Collapse map sits at the top left, where the place sheet (which rises from the bottom) never covers it. */
+  body.layout-map.map-big .map-size{z-index:4;left:calc(10px + env(safe-area-inset-left,0px));top:calc(10px + env(safe-area-inset-top,0px));bottom:auto;height:44px;padding:0 16px;font-size:14px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
   body.layout-map.map-big .place-sheet{border-radius:18px 18px 0 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
   /* Sports map: the day and filters fold into one line until it is tapped. */
   body.layout-map .filters-summary:not([hidden]){display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:600 14px var(--body);text-align:left;cursor:pointer;touch-action:manipulation}
