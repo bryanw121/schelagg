@@ -1844,5 +1844,13 @@ test('site: Add to calendar on an event and on a session: Google Calendar filled
   const s = new URL(await page.locator('#calOpts a').first().getAttribute('href'));
   assert.match(s.searchParams.get('dates'), /^20261025T\d{6}\/2026102[56]T\d{6}$/);
   assert.ok(s.searchParams.get('text').length > 0);
+  await page.keyboard.press('Escape');
+  // The map's place sheet has the same button on each of its rows.
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
+  await page.locator('#placeSheet').waitFor();
+  assert.equal(await page.locator('#placeSheet .pop-item .cal-add').count(), await page.locator('#placeSheet .pop-item').count(), 'one per event in the sheet');
+  await page.locator('#placeSheet .pop-item .cal-add').first().click();
+  assert.equal(new URL(await page.locator('#calOpts a').first().getAttribute('href')).hostname, 'calendar.google.com');
   assert.deepEqual(pageErrors, []);
 });
