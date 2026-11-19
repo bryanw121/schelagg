@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-19T07:50:14.732Z",
+  "generatedAt": "2026-11-19T10:17:18.005Z",
   "sources": [
     {
       "id": "austin-club-openplay",
@@ -12,7 +12,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-19T07:46:56.965Z",
+      "checkedAt": "2026-11-19T10:14:21.995Z",
       "count": 268
     },
     {
@@ -25,7 +25,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-19T07:46:56.965Z",
+      "checkedAt": "2026-11-19T10:14:21.996Z",
       "count": 158
     },
     {
@@ -38,7 +38,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-19T07:46:56.966Z",
+      "checkedAt": "2026-11-19T10:14:21.996Z",
       "count": 0
     },
     {
@@ -51,7 +51,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-19T07:46:56.966Z",
+      "checkedAt": "2026-11-19T10:14:21.996Z",
       "count": 10
     },
     {
@@ -64,7 +64,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-19T07:46:56.967Z",
+      "checkedAt": "2026-11-19T10:14:21.997Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -119,7 +119,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T07:46:57.257Z",
+      "checkedAt": "2026-11-19T10:14:21.997Z",
       "count": 6,
       "warnings": [
         "https://reclub.co/m/V4DO6Q: HTTP 403"
@@ -149,7 +149,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T07:46:58.502Z",
+      "checkedAt": "2026-11-19T10:14:22.069Z",
       "count": 3
     },
     {
@@ -219,7 +219,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "ok": true,
-      "checkedAt": "2026-11-19T07:47:00.306Z",
+      "checkedAt": "2026-11-19T10:14:22.422Z",
       "count": 36
     },
     {
@@ -232,7 +232,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-19T07:47:00.434Z",
+      "checkedAt": "2026-11-19T10:14:23.903Z",
       "count": 24
     },
     {
@@ -258,7 +258,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-19T07:47:03.175Z",
+      "checkedAt": "2026-11-19T10:14:24.772Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -273,7 +273,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-19T07:47:03.377Z",
+      "checkedAt": "2026-11-19T10:14:24.918Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -298,7 +298,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-19T07:47:03.476Z",
+      "checkedAt": "2026-11-19T10:14:25.246Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -326,7 +326,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-19T07:47:05.028Z",
+      "checkedAt": "2026-11-19T10:14:26.494Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -447,7 +447,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-19T07:47:11.977Z",
+      "checkedAt": "2026-11-19T10:14:27.138Z",
       "count": 21,
       "warnings": [
         "reclub-8TBKMU: no surface",
@@ -496,7 +496,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-19T07:47:19.188Z",
+      "checkedAt": "2026-11-19T10:14:32.807Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -17345,78 +17345,6 @@
       "region": "dallas"
     },
     {
-      "id": "src-greenbriar-community-center",
-      "name": "Greenbriar Community Center",
-      "city": "Fort Worth",
-      "address": "5200 Hemphill Street, Fort Worth, TX, 76115",
-      "lat": 32.66901,
-      "lng": -97.33189,
-      "region": "dallas"
-    },
-    {
-      "id": "src-r-d-evans-community-center",
-      "name": "R.D. Evans Community Center",
-      "city": "Fort Worth",
-      "address": "3242 Lackland Road, Fort Worth, TX, 76116",
-      "lat": 32.72584,
-      "lng": -97.43475,
-      "region": "dallas"
-    },
-    {
-      "id": "src-southwest-community-center",
-      "name": "Southwest Community Center",
-      "city": "Fort Worth",
-      "address": "6300 Welch Avenue, Fort Worth, TX, 76133",
-      "lat": 32.6548,
-      "lng": -97.38199,
-      "region": "dallas"
-    },
-    {
-      "id": "src-northside-community-center",
-      "name": "Northside Community Center",
-      "city": "Fort Worth",
-      "address": "1100 NW 18th Street, Fort Worth, TX, 76164",
-      "lat": 32.77874,
-      "lng": -97.36285,
-      "region": "dallas"
-    },
-    {
-      "id": "src-victory-forest-community-center",
-      "name": "Victory Forest Community Center",
-      "city": "Fort Worth",
-      "address": "3427 Hemphill Street, Fort Worth, TX, 76110",
-      "lat": 32.70016,
-      "lng": -97.33161,
-      "region": "dallas"
-    },
-    {
-      "id": "src-martin-luther-king-community-center",
-      "name": "Martin Luther King Community Center",
-      "city": "Fort Worth",
-      "address": "5565 Truman Drive, Fort Worth, TX, 76112",
-      "lat": 32.72472,
-      "lng": -97.23534,
-      "region": "dallas"
-    },
-    {
-      "id": "src-handley-meadowbrook-community-center",
-      "name": "Handley Meadowbrook Community Center",
-      "city": "Fort Worth",
-      "address": "6201 Beaty Street, Fort Worth, TX, 76112",
-      "lat": 32.73961,
-      "lng": -97.22325,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
-      "region": "dallas"
-    },
-    {
       "id": "src-tellepsen-family-downtown-ymca",
       "name": "Tellepsen Family Downtown YMCA",
       "city": null,
@@ -17523,6 +17451,78 @@
       "lat": 30.011,
       "lng": -95.5077,
       "region": "houston"
+    },
+    {
+      "id": "src-greenbriar-community-center",
+      "name": "Greenbriar Community Center",
+      "city": "Fort Worth",
+      "address": "5200 Hemphill Street, Fort Worth, TX, 76115",
+      "lat": 32.66901,
+      "lng": -97.33189,
+      "region": "dallas"
+    },
+    {
+      "id": "src-r-d-evans-community-center",
+      "name": "R.D. Evans Community Center",
+      "city": "Fort Worth",
+      "address": "3242 Lackland Road, Fort Worth, TX, 76116",
+      "lat": 32.72584,
+      "lng": -97.43475,
+      "region": "dallas"
+    },
+    {
+      "id": "src-southwest-community-center",
+      "name": "Southwest Community Center",
+      "city": "Fort Worth",
+      "address": "6300 Welch Avenue, Fort Worth, TX, 76133",
+      "lat": 32.6548,
+      "lng": -97.38199,
+      "region": "dallas"
+    },
+    {
+      "id": "src-northside-community-center",
+      "name": "Northside Community Center",
+      "city": "Fort Worth",
+      "address": "1100 NW 18th Street, Fort Worth, TX, 76164",
+      "lat": 32.77874,
+      "lng": -97.36285,
+      "region": "dallas"
+    },
+    {
+      "id": "src-victory-forest-community-center",
+      "name": "Victory Forest Community Center",
+      "city": "Fort Worth",
+      "address": "3427 Hemphill Street, Fort Worth, TX, 76110",
+      "lat": 32.70016,
+      "lng": -97.33161,
+      "region": "dallas"
+    },
+    {
+      "id": "src-martin-luther-king-community-center",
+      "name": "Martin Luther King Community Center",
+      "city": "Fort Worth",
+      "address": "5565 Truman Drive, Fort Worth, TX, 76112",
+      "lat": 32.72472,
+      "lng": -97.23534,
+      "region": "dallas"
+    },
+    {
+      "id": "src-handley-meadowbrook-community-center",
+      "name": "Handley Meadowbrook Community Center",
+      "city": "Fort Worth",
+      "address": "6201 Beaty Street, Fort Worth, TX, 76112",
+      "lat": 32.73961,
+      "lng": -97.22325,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
+      "region": "dallas"
     }
   ]
 }
