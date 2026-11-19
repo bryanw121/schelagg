@@ -84,14 +84,19 @@ export function eventPinName(venue) {
  * label, aria, done, full }. `today` is the region's ISO date, for "Happening now".
  */
 export function eventPlaces(events, today) {
-  const byCoords = new Map();
+  // One place per spot: the same coordinates, or the same street address a few steps apart (two
+  // listings of "6100 Airport Blvd" are pinned some 50 m from each other, and as separate pins
+  // they would sit on top of one another at every zoom).
+  const street = (e) => { const m = /\b(\d{2,6})\s+(?:[NSEW]\.?\s+)?([A-Za-z]{3,})/.exec(e.venue ?? ''); return m ? `${m[1]} ${m[2].toLowerCase()}` : null; };
+  const near = (a, b) => Math.hypot((a.lat - b.lat) * 111, (a.lng - b.lng) * 96) < 0.25; // km
+  const groups = [];
   for (const e of events ?? []) {
     if (!Number.isFinite(e.lat) || !Number.isFinite(e.lng)) continue;
-    const key = `${e.lat.toFixed(5)},${e.lng.toFixed(5)}`;
-    if (!byCoords.has(key)) byCoords.set(key, []);
-    byCoords.get(key).push(e);
+    const key = `${e.lat.toFixed(5)},${e.lng.toFixed(5)}`, st = street(e);
+    const g = groups.find((x) => x.key === key || (st && x.streets.has(st) && near(x.list[0], e)));
+    if (g) { g.list.push(e); if (st) g.streets.add(st); } else groups.push({ key, streets: new Set(st ? [st] : []), list: [e] });
   }
-  return [...byCoords.values()].map((list) => {
+  return groups.map(({ list }) => {
     const first = list[0];
     const parts = eventPlaceParts(first);
     const happeningList = list.filter((e) => e.startDate <= today && today <= (e.endDate ?? e.startDate));
