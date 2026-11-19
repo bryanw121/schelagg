@@ -24,6 +24,10 @@
     "api/courts.js": {
       "maxDuration": 10,
       "includeFiles": "config/regions/**"
+    },
+    "api/add-source.js": {
+      "maxDuration": 30,
+      "includeFiles": "config/**"
     }
   },
   "headers": [
