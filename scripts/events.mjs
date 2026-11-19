@@ -13,7 +13,8 @@ import { get } from '../lib/http.js';
 import { repoPath } from '../lib/paths.js';
 import { loadRegions } from '../lib/regions.js';
 import { today as todayIn } from '../lib/time.js';
-import { creditAccounts, mergeEvents, missingListings, promotedAccounts, readEventSources } from '../lib/event-sources.js';
+import { creditAccounts, fillHours, mergeEvents, missingListings, promotedAccounts, readEventSources } from '../lib/event-sources.js';
+import { robotsAllows } from '../lib/robots.js';
 import { handleOf, readInstagram } from '../lib/instagram.js';
 import { saveAvatars, stampAvatars } from '../lib/avatars.js';
 
@@ -44,6 +45,18 @@ const config = JSON.parse(readFileSync(repoPath('config/events.json'), 'utf8'));
 const regions = loadRegions().map((r) => r.info);
 const today = todayIn(new Date(now));
 const results = await readEventSources(config, { get, today, regions });
+// Listing pages give a date and no hours: each event's own page has them. Read once, remembered.
+const HOURS = repoPath('public/data/event-hours.json');
+const hours = existsSync(HOURS) ? JSON.parse(readFileSync(HOURS, 'utf8')) : {};
+const robots = new Map();
+const allowed = async (url) => {
+  const u = new URL(url);
+  if (!robots.has(u.origin)) robots.set(u.origin, await get(`${u.origin}/robots.txt`).then((r) => (r.ok ? r.text : r.status === 404 ? '' : null)).catch(() => null));
+  const text = robots.get(u.origin);
+  return text != null && robotsAllows(text, u.pathname + u.search); // no answer about the rules: don't read
+};
+const hoursRead = await fillHours(results.flatMap((r) => r.events), hours, { get, allowed, now });
+console.log(`Hours: read ${hoursRead} event page(s); ${results.flatMap((r) => r.events).filter((e) => !e.startTime).length} listing event(s) still have none.`);
 // Instagram organizers through Meta's official API, when its two secrets exist (lib/instagram.js).
 // Besides the configured accounts' posts, it looks up the profile picture of any account the feed
 // already credits and has no fresh picture for.
@@ -77,6 +90,7 @@ saveLedger(creditAccounts(ledgerNow(), events, today, handleOf));
 // The listing readers' own events as merged into the feed (with their pins), for missingListings above.
 const listingIds = new Set(config.sources.map((x) => x.id));
 writeFileSync(CACHE, `${JSON.stringify({ listingsAt: new Date(now).toISOString(), events: events.filter((e) => listingIds.has(e.sourceId)) }, null, 1)}\n`);
+writeFileSync(HOURS, `${JSON.stringify(hours, null, 1)}\n`);
 writeFileSync(OUT, `${JSON.stringify(feed, null, 1)}\n`);
 mkdirSync(repoPath('scrape-failures'), { recursive: true });
 const failed = results.filter((r) => !r.ok);

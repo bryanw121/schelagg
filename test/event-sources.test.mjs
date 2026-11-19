@@ -105,3 +105,32 @@ test('isWanted: food gatherings (cook-offs, supper clubs, food trucks) are kept;
   assert.equal(isWanted("Jo's 20th Chili Cook-Off – Team Registration"), false, 'a sign-up page, not the event');
   assert.equal(isWanted('In-person class: Pasta Fresca'), false);
 });
+
+test('pageHours / fillHours: a listing event with no hours gets them from its own page, once', async () => {
+  const { pageHours, fillHours } = await import('../lib/event-sources.js');
+  const page = (start, end) => `<script type="application/ld+json">${JSON.stringify({ '@type': 'Event', name: 'Market', startDate: start, endDate: end })}</script>`;
+  assert.deepEqual(pageHours(page('2026-11-21T11:00:00-06:00', '2026-11-21T16:00:00-06:00'), '2026-11-21'), { startTime: '11:00', endTime: '16:00' });
+  assert.deepEqual(pageHours(page('2026-11-21T17:00:00Z'), '2026-11-21'), {}, 'a UTC time is not the local hour');
+  assert.deepEqual(pageHours(page('2026-11-21T00:00:00-06:00'), '2026-11-21'), {}, 'midnight is "no time given"');
+  assert.deepEqual(pageHours(page('2026-11-22T11:00:00-06:00'), '2026-11-21'), {}, 'another day\'s event');
+  const now = Date.parse('2026-11-19T12:00:00Z');
+  const events = [
+    { title: 'A', startDate: '2026-11-21', sourceUrl: 'https://x.test/a' },
+    { title: 'B', startDate: '2026-11-21', sourceUrl: 'https://x.test/b' },
+    { title: 'C', startDate: '2026-11-21', startTime: '09:00', sourceUrl: 'https://x.test/c' },
+    { title: 'D', startDate: '2026-11-21', sourceUrl: 'https://blocked.test/d' },
+  ];
+  const asked = [];
+  const get = async (url) => { asked.push(url); return { ok: true, text: url.endsWith('/a') ? page('2026-11-21T11:00:00-06:00') : '<p>nothing</p>' }; };
+  const allowed = async (url) => !url.includes('blocked');
+  const cache = {};
+  assert.equal(await fillHours(events, cache, { get, allowed, now }), 2);
+  assert.deepEqual(asked, ['https://x.test/a', 'https://x.test/b'], 'not the one with hours, not the one robots.txt closes');
+  assert.equal(events[0].startTime, '11:00');
+  assert.equal(events[1].startTime, undefined);
+  // The next run asks nothing again; three days on, the page without hours is asked once more.
+  const again = [{ title: 'A', startDate: '2026-11-21', sourceUrl: 'https://x.test/a' }, { title: 'B', startDate: '2026-11-21', sourceUrl: 'https://x.test/b' }];
+  assert.equal(await fillHours(again, cache, { get, allowed, now: now + 3600e3 }), 0);
+  assert.equal(again[0].startTime, '11:00', 'from the cache');
+  assert.equal(await fillHours(again, cache, { get, allowed, now: now + 4 * 864e5 }), 1);
+});

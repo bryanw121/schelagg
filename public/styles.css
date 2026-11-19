@@ -591,3 +591,6 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
 .place-sheet .pop-a{display:grid;gap:6px;justify-items:end}
 .pop-a .cal-add{min-height:36px;padding:0 10px;font-size:12px}
 @media (pointer:coarse){.pop-a .cal-add{min-height:44px}}
+/* An event with no hours from its source says where they are, quietly. */
+.time small.no-hrs{font-weight:500;font-size:11px;white-space:normal;max-width:9ch;margin-left:auto;text-align:right;line-height:1.25}
+.place-sheet .pop-t small.pop-hrs{color:var(--ink);font-weight:600;font-size:13px}
