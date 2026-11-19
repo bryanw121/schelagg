@@ -11,6 +11,7 @@
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
 import { TIME_PRESETS, inWindow, parseWindow, presetOf, toHHMM, windowLabel, windowNote } from './when.js';
 import { highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
+import { placeGroups } from './events-ui.js';
 import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
 
 // Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
@@ -259,6 +260,15 @@ state.win = parseWindow(params.get('from'), params.get('to'));
 const urlQ = (params.get('q') ?? '').slice(0, 80);
 if (urlQ) { if (state.section === 'events') state.evQ = urlQ; else state.spQ = urlQ; }
 if (SPORTS[urlSport] && urlSport !== state.sport) { state.sport = urlSport; state.tab = 'all'; }
+// What else a shared link carries, so the person opening it sees what the sender saw:
+// ?day=YYYY-MM-DD (Sports: a day this week), ?court= (the court-type filter), ?place= (the place
+// open on the map) and ?event= (one event in the Events list, scrolled to and opened).
+{ const i = WEEK.indexOf(params.get('day')); if (i > 0) state.di = i; }
+if (params.get('court') && tabsOf(state.sport)[params.get('court')]) state.tab = params.get('court');
+let urlPlace = params.get('layout') === 'map' ? params.get('place') : null;
+let urlEvent = state.section === 'events' ? params.get('event') : null;
+let evLink = null; // the event whose details are open: what ?event= says
+if (urlEvent && !params.has('type') && !params.has('tag')) { state.evKind = 'all'; state.evTags = []; } // remembered filters mustn't hide the linked event
 const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, host: state.host, section: state.section, evKind: state.evKind, evTags: state.evTags })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
@@ -276,15 +286,24 @@ function syncUrl() {
     if (state.evDay) u.searchParams.set('on', state.evDay); else u.searchParams.delete('on');
     u.searchParams.delete('cat'); u.searchParams.delete('page');
     u.searchParams.delete('host');
+    for (const k of ['day', 'court']) u.searchParams.delete(k);
+    if (evLink && state.layout !== 'map') u.searchParams.set('event', evLink); else u.searchParams.delete('event');
   } else {
-    if (state.view !== 'openplay') u.searchParams.set('view', state.view); else u.searchParams.delete('view');
+    // Always named, open play too: a bare link opens Events, so without it a shared open-play link would.
+    u.searchParams.set('view', state.view);
     if (PROGRAM_VIEWS[state.view] && state.host !== 'all') u.searchParams.set('host', state.host); else u.searchParams.delete('host');
-    for (const k of ['cat', 'page', 'type', 'tag', 'weekend', 'on']) u.searchParams.delete(k);
+    for (const k of ['cat', 'page', 'type', 'tag', 'weekend', 'on', 'event']) u.searchParams.delete(k);
+    const dayView = !PROGRAM_VIEWS[state.view]; // leagues and tournaments have no day or court filter
+    if (dayView && state.di > 0 && WEEK[state.di]) u.searchParams.set('day', WEEK[state.di]); else u.searchParams.delete('day');
+    if (dayView && state.tab !== 'all') u.searchParams.set('court', state.tab); else u.searchParams.delete('court');
   }
   if (activeQuery()) u.searchParams.set('q', activeQuery()); else u.searchParams.delete('q');
   const win = activeWindow();
   if (win) { u.searchParams.set('from', toHHMM(win.from)); u.searchParams.set('to', toHHMM(win.to)); } else { u.searchParams.delete('from'); u.searchParams.delete('to'); }
   if (state.layout === 'map' && mapReady()) u.searchParams.set('layout', 'map'); else u.searchParams.delete('layout');
+  // The place open on the map (until the map's data has loaded, a link's own ?place= stays).
+  const place = state.layout === 'map' ? (mapPick ?? urlPlace) : null;
+  if (place) u.searchParams.set('place', place); else u.searchParams.delete('place');
   if (u.href !== location.href) history.replaceState(null, '', u);
 }
 
@@ -465,7 +484,16 @@ function detailsHtml(x) {
 /** How a row sits in the chosen time window, when it sticks out of it ("Runs past 6pm", "Hours not listed"). */
 const fitHtml = (start, end) => { const n = windowNote(start, end, activeWindow()); return n ? `<div class="fit">${esc(n)}</div>` : ''; };
 let earlierOpen = false; // "N ended earlier today" stays open across redraws once opened
-document.addEventListener('toggle', (e) => { if (e.target.matches?.('details.earlier')) earlierOpen = e.target.open; }, true);
+document.addEventListener('toggle', (e) => {
+  if (e.target.matches?.('details.earlier')) earlierOpen = e.target.open;
+  // Opening an event's details puts it in the address, so the link shared from there opens on it.
+  const card = e.target.matches?.('.ev-row details.more') ? e.target.closest('.ev-row') : null;
+  if (card?.dataset.ev) {
+    if (e.target.open) evLink = card.dataset.ev; else if (evLink === card.dataset.ev) evLink = null;
+    for (const r of document.querySelectorAll('.ev-row.linked')) if (r !== card || !e.target.open) r.classList.remove('linked');
+    syncUrl();
+  }
+}, true);
 function renderList() {
   const iso = WEEK[state.di], isToday = state.di === 0;
   $('dayTitle').textContent = (isToday ? 'Today · ' : state.di === 1 ? 'Tomorrow · ' : '') + fmtDate(iso, { weekday: 'long', month: 'short', day: 'numeric' });
@@ -920,7 +948,7 @@ function eventCard(ev) {
   const w = eventWhen(ev, NOW.iso);
   const times = ev.startTime ? `${fmtT(ev.startTime)}${ev.endTime ? `–${fmtT(ev.endTime)}` : ''}` : '';
   const via = ev.source ? `<span class="via">Found via ${esc(ev.source)}</span>` : '';
-  return `<article class="row ev-row">
+  return `<article class="row ev-row${evLink === ev.id ? ' linked' : ''}" data-ev="${esc(ev.id ?? '')}">
     <div class="time">${w.range ? `${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : ''}</div>
     <div class="body">
       <div class="t1"><span class="title">${hl(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
@@ -928,7 +956,7 @@ function eventCard(ev) {
       <div class="venue"><b>${esc(parts[0] ?? ev.venue)}</b>${parts.slice(1).map((p) => ` · ${esc(p)}`).join('')}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</div>
       <div class="meta">${eventChips(ev)}${ev.price ? `<span>${esc(ev.price)}</span>` : ''}</div>${fitHtml(ev.startTime, ev.endTime)}
       ${safeUrl(ev.sourceUrl) ? `<a class="signup ev-go" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}
-      <details class="more"><summary>Details</summary>${ev.description ? `<div class="note">${esc(ev.description)}</div>` : ''}<div class="location">${esc(parts.join(', '))}</div><div class="actions">${eventDirections(ev)}</div>${via}</details>
+      <details class="more"${evLink === ev.id ? ' open' : ''}><summary>Details</summary>${ev.description ? `<div class="note">${esc(ev.description)}</div>` : ''}<div class="location">${esc(parts.join(', '))}</div><div class="actions">${eventDirections(ev)}</div>${via}</details>
     </div></article>`;
 }
 /** The events this region has, or null when it has no feed yet. */
@@ -1056,6 +1084,10 @@ function renderEvents() {
   renderEventsSheet(upcoming); renderWhenSheet(); renderSearch(upcoming);
   const shown = filterEvents(upcoming, evFilters(), NOW.iso);
   const groups = eventGroups(shown, NOW.iso);
+  // A link to one event: its heading opens far enough to show it, and (below) the page scrolls to it.
+  const linked = urlEvent && shown.some((e) => e.id === urlEvent) ? urlEvent : null;
+  if (linked) { evLink = linked; const g = groups.find((x) => x.events.some((e) => e.id === linked)); if (g) evOpen.add(g.key); }
+  urlEvent = null;
   // Near me: nearest first under each heading (On now keeps ending-soonest first).
   if (here) for (const g of groups) if (g.key !== 'now') g.events.sort((a, b) => (milesToCoords(a.lat, a.lng) ?? 1e9) - (milesToCoords(b.lat, b.lng) ?? 1e9));
   const q = state.evQ.trim();
@@ -1069,6 +1101,7 @@ function renderEvents() {
     }).join('')
     : `<div class="empty"><b>Nothing matches.</b> <button type="button" class="linkish" data-evclear>Clear filters</button></div>`;
   $('eventsNote').textContent = '';
+  if (linked) { syncUrl(); requestAnimationFrame(() => document.querySelector(`.ev-row[data-ev="${CSS.escape(linked)}"]`)?.scrollIntoView({ block: 'center' })); }
 }
 
 // ---------- leagues and tournaments ----------
@@ -1370,12 +1403,14 @@ function mapPlaces(iso) {
 function eventsPanelHtml(places, pickId) {
   const p = places.find((x) => x.id === pickId);
   if (!p) {
-    const order = [...places].sort((a, b) => (placeMiles(a) ?? 1e9) - (placeMiles(b) ?? 1e9) || a.name.localeCompare(b.name));
-    const rows = order.map((x) => {
+    // The same headings as the list (On now, This week, Next week, then months), so it reads by
+    // when things are on rather than as one long run of places.
+    const row = (x) => {
       const mi = placeMiles(x);
       return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}">${avatarImg(x, 40)}<span class="pr-name">${esc(x.title)}${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
-    }).join('');
-    return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> with events coming up. Tap one for its events.</p><ul class="place-list">${rows}</ul>`;
+    };
+    const groups = placeGroups(places, NOW.iso).map((g) => `<section class="place-group" data-group="${esc(g.key)}"><h3 class="ev-day">${esc(g.label)}<small>${esc(g.sub)}</small></h3><ul class="place-list">${g.places.map(row).join('')}</ul></section>`).join('');
+    return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> with events coming up. Tap one for its events.</p>${groups}`;
   }
   const mi = placeMiles(p), n = p.events.length;
   // Under the name: the rest of the venue string (its address) and the area, without repeating the name.
@@ -1514,9 +1549,28 @@ function showPick() {
   renderPlaceSheet(mapMarkers.map((m) => m.p), WEEK[state.di]);
   if (mapPick && shownPick !== mapPick) revealPick();
   shownPick = mapPick;
+  syncUrl(); // the address names the open place, so the link can be shared
   requestAnimationFrame(declutter); // the picked pin is never folded into a neighbour
 }
 
+// Phones: the map opens on the top half of the screen with its places under it, so the page
+// scrolls from anywhere below the map; one button makes the map fill the screen and back. The
+// choice is remembered on the device.
+let mapBig = false;
+try { mapBig = localStorage.getItem('schelagg.mapBig') === '1'; } catch { /* private mode: half map */ }
+function renderMapSize(n) {
+  const b = $('mapSize');
+  b.innerHTML = mapBig ? `<span aria-hidden="true">☰</span> Show places${n ? ` · ${n}` : ''}` : '<span aria-hidden="true">⤢</span> Expand map';
+  b.setAttribute('aria-pressed', String(mapBig));
+}
+$('mapSize').addEventListener('click', () => {
+  mapBig = !mapBig;
+  try { localStorage.setItem('schelagg.mapBig', mapBig ? '1' : '0'); } catch { /* not remembered */ }
+  document.body.classList.toggle('map-big', mapBig);
+  renderMapSize(mapMarkers.length);
+  mapView?.resize();
+  if (!mapBig) $('mapCard').scrollIntoView({ block: 'start' });
+});
 async function renderMap() {
   // Events with nothing to pin here (a region without a feed yet) have no map.
   const noEvents = state.section === 'events' && !(regionEvents() ?? []).some((e) => Number.isFinite(e.lat));
@@ -1528,6 +1582,7 @@ async function renderMap() {
   $('layout').innerHTML = mapReady() ? (on ? `<button class="fab" type="button" data-layout="list">${LIST_ICON}List</button>` : `<button class="fab" type="button" data-layout="map">${MAP_ICON}Map</button>`) : '';
   $('mapCard').hidden = !on;
   document.body.classList.toggle('layout-map', on);
+  document.body.classList.toggle('map-big', on && mapBig);
   // In the events map the list (chips, cards, pager) steps aside for the map, as the sessions
   // list does in the sports map.
   if (state.section === 'events') $('eventsPanel').hidden = on;
@@ -1536,6 +1591,8 @@ async function renderMap() {
   if (!on) return;
   const iso = WEEK[state.di];
   const places = state.section === 'events' ? eventPlaces(filterEvents((regionEvents() ?? []).filter((e) => (e.endDate ?? e.startDate) >= NOW.iso), evFilters(), NOW.iso), NOW.iso) : mapPlaces(iso);
+  // A link to a place on the map opens it once its data is here.
+  if (urlPlace && places.length) { if (places.some((p) => p.id === urlPlace)) mapPick = urlPlace; urlPlace = null; }
   if (mapPick && !places.some((p) => p.id === mapPick)) mapPick = null;
   $('mapTitle').textContent = state.section === 'events' ? 'Events · upcoming' : `${state.view === 'booking' ? 'Court booking' : 'Open play'} · ${state.di === 0 ? 'Today' : fmtDate(iso)}`;
   $('mapPanel').innerHTML = mapPanelHtml(places, iso, null);
@@ -1582,6 +1639,7 @@ async function renderMap() {
     if (!maps.overview) mapView.setMaxBounds(regionBounds(box));
   }
   for (const m of mapMarkers) m.marker.remove();
+  renderMapSize(places.length);
   mapMarkers = places.map((p) => {
     const el = document.createElement('button');
     Object.assign(el, { type: 'button', className: `pin${p.court ? ' free' : state.view === 'booking' ? ' book' : ''}${p.done || p.full ? ' done' : ''}${p.id === mapPick ? ' sel' : ''}` });
@@ -1611,6 +1669,7 @@ async function renderMap() {
   mapView.resize();
   if (mapPick && shownPick !== mapPick) revealPick();
   shownPick = mapPick;
+  syncUrl(); // the address names the open place, so the link can be shared
   renderCities();
   requestAnimationFrame(declutter);
 }

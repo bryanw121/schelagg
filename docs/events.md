@@ -181,3 +181,17 @@ organizer, description, kind or tags. Links carry it as `?q=`. Tags come from a 
 (`SEARCH_TAGS` in `public/search.js`): an event has a tag when its title or description has one of the tag's
 words, so tags never change from run to run. An event can have several. The tags with events show under the box
 only while the box is open, each with its count; tapping one (there or on a card) searches for it.
+
+## Links
+
+The address always describes what is on screen, so copying it shares it: `view` (events, openplay, booking,
+leagues, tournaments; always present on Sports, since a bare link opens Events), `region`, `sport`, `day`
+(Sports: a day this week), `court` (the court-type filter), `layout=map`, `place` (the place open on the map),
+`event` (the event whose details are open in the list: the link scrolls to it and opens it), plus the filters
+above (`type`, `tag`, `on`, `weekend`, `from`, `to`, `q`).
+
+## Map on a phone
+
+The map takes about the top 45% of the screen with its places under it, grouped under the list's headings (On
+now, This week, Next week, months). "Expand map" fills the screen; "Show places" goes back; the choice is
+remembered on the device. The place sheet rises from the bottom of the screen.

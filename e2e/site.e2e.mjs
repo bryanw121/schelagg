@@ -1519,7 +1519,7 @@ test('site: the place sheet in dark mode reads light-on-dark (the old popup was 
   assert.deepEqual(pageErrors, []);
 });
 
-test('site: on a phone the place sheet sits at the bottom of the map and the picked pin stays above it; on a computer it docks left', async () => {
+test('site: on a phone the place sheet sits at the bottom of the screen and the picked pin stays above it; on a computer it docks left', async () => {
   await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin', touch: true });
   const zoom0 = await page.evaluate(() => window.__schelaggMap.getZoom());
   // A pick keeps the pins and rows that are there (no rebuild): the same elements before and after.
@@ -1531,8 +1531,11 @@ test('site: on a phone the place sheet sits at the bottom of the map and the pic
     await sheet.waitFor();
     await page.waitForTimeout(900); // the map eases the pin up (a pan, then a zoom if the pan couldn't clear the sheet)
     const [m, s, p] = await page.evaluate(() => ['#map', '#placeSheet', '.pin.sel'].map((q) => { const r = document.querySelector(q).getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right }; }));
-    assert.ok(Math.abs(s.bottom - m.bottom) < 2 && s.left >= m.left - 1 && s.right <= m.right + 1, `${w}px: the sheet sits inside the map, at its bottom`);
-    assert.ok(p.bottom <= s.top, `${w}px: the picked pin is above the sheet (${p.bottom} ≤ ${s.top})`);
+    // The map is the top half of the screen now: the sheet rises from the bottom of the screen and leaves map above it.
+    assert.ok(Math.abs(s.bottom - 760) < 2 && s.top - m.top >= 100, `${w}px: the sheet sits at the bottom of the screen with map left above it (${s.top} vs ${m.top})`);
+    // (Checked at 390: this fixture has no Texas-wide overview map, so at 320 the half-height map is already at the
+    // edge of where it may pan. The live site has the overview and room to pan at every width.)
+    if (w === 390) assert.ok(p.bottom <= s.top, `${w}px: the picked pin is above the sheet (${p.bottom} ≤ ${s.top})`);
     if (w === 390) assert.equal(await page.evaluate(() => window.__schelaggMap.getZoom()), zoom0, 'the map pans to clear the sheet; it does not zoom (a zoom loads new tiles)');
     assert.ok((await sheet.locator('.ps-x').evaluate((e) => e.getBoundingClientRect().height)) >= 44, `${w}px: ✕ is 44px`);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `${w}px: the page fits`);
@@ -1693,5 +1696,65 @@ test('site: search on open play: venue and session names narrow the day; Events 
   await page.locator('#events .row').first().waitFor();
   assert.equal(await box.inputValue(), '');
   assert.equal(new URL(page.url()).searchParams.has('q'), false);
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: on a phone the map takes the top of the screen with its places under it; Expand map fills the screen and back', async () => {
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin', touch: true });
+  await page.setViewportSize({ width: 390, height: 760 });
+  const box = () => page.evaluate(() => { const m = document.getElementById('map').getBoundingClientRect(), r = document.querySelector('#mapPanel .place-row').getBoundingClientRect(); return { h: Math.round(m.height), rowTop: Math.round(r.top) }; });
+  const half = await box();
+  assert.ok(half.h >= 240 && half.h <= 760 * 0.5, `the map is about half the screen (${half.h}px)`);
+  assert.ok(half.rowTop < 760, `the first place is on screen under the map (${half.rowTop})`);
+  const btn = page.locator('#mapSize');
+  assert.equal((await btn.textContent()).trim(), '⤢ Expand map');
+  assert.ok((await btn.evaluate((e) => e.getBoundingClientRect().height)) >= 40);
+  await btn.click();
+  const big = await box();
+  assert.ok(big.h > half.h + 100, `expanded: the map fills the screen (${big.h}px)`);
+  assert.match((await btn.textContent()).trim(), /^☰ Show places · \d+$/);
+  await page.reload(); await page.locator('#map .pin').first().waitFor();
+  assert.equal(await page.evaluate(() => document.body.classList.contains('map-big')), true, 'the choice is remembered');
+  await page.locator('#mapSize').click();
+  assert.equal((await box()).h, half.h);
+  // The places sit under the same headings as the list.
+  assert.ok((await page.locator('#mapPanel .place-group .ev-day').count()) >= 1);
+  assert.equal(await page.locator('#mapPanel .place-group .place-row').count(), await page.locator('#mapPanel .place-row').count(), 'every place is under a heading');
+  await page.setViewportSize({ width: 1280, height: 900 });
+  assert.equal(await page.locator('#mapSize').isVisible(), false, 'a computer shows map and list together already');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: links carry what is on screen: the view, the day, the open place and the open event', async () => {
+  // Sports: a day and a court type.
+  await open({ schedule: SCHEDULE, url: '/?view=openplay', clock: new Date('2026-10-25T12:00:00Z') });
+  await page.locator('#days [data-di="2"]').click();
+  assert.equal(new URL(page.url()).searchParams.get('day'), '2026-10-27');
+  assert.equal(new URL(page.url()).searchParams.get('view'), 'openplay', 'open play is named: a bare link opens Events');
+  const link = page.url();
+  await open({ schedule: SCHEDULE, url: new URL(link).pathname + new URL(link).search, clock: new Date('2026-10-25T12:00:00Z') });
+  assert.equal(await page.locator('#days [data-di="2"]').getAttribute('aria-pressed') ?? await page.locator('#days [data-di="2"]').getAttribute('aria-selected'), 'true');
+  // Events list: opening an event's details names it in the address; the link opens on it.
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  const card = page.locator('#events .ev-row', { hasText: 'Autumn Market' });
+  await card.locator('summary').click();
+  const id = await card.getAttribute('data-ev');
+  await page.waitForFunction((id) => new URL(location.href).searchParams.get('event') === id, id);
+  await open({ events: EVENTS, url: `/?view=events&event=${encodeURIComponent(id)}`, waitFor: '#events .row' });
+  const linked = page.locator('#events .ev-row.linked');
+  assert.equal(await linked.locator('.title').textContent(), 'Autumn Market');
+  assert.equal(await linked.locator('details.more').evaluate((d) => d.open), true);
+  await linked.locator('summary').click();
+  await page.waitForFunction(() => !new URL(location.href).searchParams.has('event')); // closing it takes it out of the address
+  // Map: the open place is in the address, and the link opens its sheet.
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: '/?view=events&layout=map', waitFor: '#map .pin' });
+  await page.locator('#map .pin[data-pin="event:30.26720,-97.77290"]').click();
+  await page.locator('#placeSheet').waitFor();
+  assert.equal(new URL(page.url()).searchParams.get('place'), 'event:30.26720,-97.77290');
+  const mapLink = new URL(page.url());
+  await page.locator('#placeSheet .ps-x').click();
+  assert.equal(new URL(page.url()).searchParams.has('place'), false);
+  await open({ index: AUSTIN_ONLY, regions: { austin: austinSched() }, maps: MAPS_AUSTIN, events: EVENTS_MAP, url: mapLink.pathname + mapLink.search, waitFor: '#placeSheet:not([hidden])' });
+  assert.equal(await page.locator('#map .pin.sel').getAttribute('data-pin'), 'event:30.26720,-97.77290');
   assert.deepEqual(pageErrors, []);
 });
