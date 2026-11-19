@@ -13,7 +13,7 @@ import { get } from '../lib/http.js';
 import { repoPath } from '../lib/paths.js';
 import { loadRegions } from '../lib/regions.js';
 import { today as todayIn } from '../lib/time.js';
-import { mergeEvents, readEventSources } from '../lib/event-sources.js';
+import { mergeEvents, missingListings, readEventSources } from '../lib/event-sources.js';
 import { handleOf, readInstagram } from '../lib/instagram.js';
 import { saveAvatars, stampAvatars } from '../lib/avatars.js';
 
@@ -21,8 +21,17 @@ const args = new Set(process.argv.slice(2));
 const OUT = repoPath('public/data/events.json');
 const previous = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : null;
 const now = Date.now();
+// What the listing readers last found, kept beside the feed: the feed has other writers, and one
+// that rewrites the file must not cost the listing events until the next read (up to 5 hours).
+const CACHE = repoPath('public/data/event-listings.json');
 if (args.has('--if-due') && previous?.listingsAt && now - Date.parse(previous.listingsAt) < 5 * 3600e3) {
-  console.log(`Listing events were read at ${previous.listingsAt}; not due yet.`);
+  const cached = existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')).events : [];
+  const back = missingListings(previous.events, cached, todayIn(new Date(now)));
+  if (back.length && !args.has('--dry')) {
+    const events = [...previous.events, ...back].sort((a, b) => a.startDate.localeCompare(b.startDate) || a.title.localeCompare(b.title));
+    writeFileSync(OUT, `${JSON.stringify({ ...previous, generatedAt: new Date(now).toISOString(), events }, null, 1)}\n`);
+    console.log(`Put back ${back.length} listing event(s) another writer had dropped: ${back.map((e) => e.title).join('; ')}`);
+  } else console.log(`Listing events were read at ${previous.listingsAt}; not due yet.`);
   process.exit(0);
 }
 const config = JSON.parse(readFileSync(repoPath('config/events.json'), 'utf8'));
@@ -57,6 +66,9 @@ if (Object.keys(profiles).length) console.log(`Saved ${await saveAvatars(profile
 stampAvatars(events, AVATARS);
 const feed = { ...(previous ?? {}), feedVersion: 1, generatedAt: new Date(now).toISOString(), listingsAt: new Date(now).toISOString(), sources: results.map((r) => ({ id: r.id, ok: r.ok, count: r.events.length, ...(r.error ? { error: r.error } : {}) })), events };
 mkdirSync(repoPath('public/data'), { recursive: true });
+// The listing readers' own events as merged into the feed (with their pins), for missingListings above.
+const listingIds = new Set(config.sources.map((x) => x.id));
+writeFileSync(CACHE, `${JSON.stringify({ listingsAt: new Date(now).toISOString(), events: events.filter((e) => listingIds.has(e.sourceId)) }, null, 1)}\n`);
 writeFileSync(OUT, `${JSON.stringify(feed, null, 1)}\n`);
 mkdirSync(repoPath('scrape-failures'), { recursive: true });
 const failed = results.filter((r) => !r.ok);
