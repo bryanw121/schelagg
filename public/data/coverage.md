@@ -28,8 +28,8 @@ Venues the schedule sees only through groups that host there (Reclub, Sweatpals,
 
 | Venue | City | Sport | Sessions | Seen via | Pin |
 |---|---|---|---|---|---|
-| Champion Forest Baptist Church - Champions Campus |  | volleyball | 3 | houston-reclub | yes |
-| Collins Park |  | volleyball | 3 | houston-reclub | yes |
+| Champion Forest Baptist Church - Champions Campus |  | volleyball | 4 | houston-reclub | yes |
+| Collins Park |  | volleyball | 4 | houston-reclub | yes |
 | Absolute Volleyball Academy and Absolute Beach |  | volleyball | 2 | houston-reclub | yes |
 | Katy Sports Center |  | volleyball | 2 | houston-reclub | yes |
 | T4 Court Rentals |  | volleyball | 2 | houston-reclub | yes |
