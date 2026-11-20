@@ -92,7 +92,7 @@ let pageErrors = [];
 // The app defaults to Events; the sports tests open an explicit sports view (/?view=openplay
 // or a sport/region link, which the app also reads as sports). `waitFor` is what the page
 // shows when its data arrives (the events list in the Events view, the session list in Sports).
-async function open({ programs = null, schedule = SCHEDULE, courts = COURTS, events = null, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, occurrences = {}, maps = null, url = '/?view=openplay', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null, touch = false, waitFor = '#list .row, #list .error, #list .empty' } = {}) {
+async function open({ where = null, programs = null, schedule = SCHEDULE, courts = COURTS, events = null, apiCourts = { status: 500, body: '{"error":"down"}' }, index = null, regions = {}, occurrences = {}, maps = null, url = '/?view=openplay', timezoneId = 'America/Los_Angeles', clock = CLOCK, geolocation = null, touch = false, waitFor = '#list .row, #list .error, #list .empty' } = {}) {
   context = await browser.newContext({ timezoneId, locale: 'en-US', ...(geolocation ? { geolocation, permissions: ['geolocation'] } : {}), ...(touch ? { hasTouch: true } : {}) }); // viewer elsewhere: the page still shows Austin time
   page = await context.newPage();
   pageErrors = [];
@@ -106,6 +106,7 @@ async function open({ programs = null, schedule = SCHEDULE, courts = COURTS, eve
     if (u.pathname.startsWith('/api/')) {
       apiCalls.push(u.pathname + u.search);
       if (u.pathname === '/api/courts') return json(apiCourts.body, apiCourts.status);
+      if (u.pathname === '/api/where') return json({ region: where }); // the nearest covered city, as the site's server would say
       return json({ id: u.searchParams.get('session'), status: 'changed', changes: ['start'] }); // any live check
     }
     // Without `index` there's no data/index.json: the page uses the combined schedule (data from before regions).
@@ -1969,7 +1970,7 @@ test('site: Send feedback in the footer: sends a few words, says so, and offers 
   await link.waitFor();
   assert.match(await page.locator('#feedbackNote').textContent(), /needs a GitHub account, and what you write is public/);
   const u = new URL(await link.getAttribute('href'));
-  assert.equal(u.origin + u.pathname, 'https://github.com/bryanw121/schelagg/issues/new');
+  assert.equal(u.origin + u.pathname, 'https://github.com/bryanw121/skelly/issues/new');
   assert.equal(u.searchParams.get('body'), 'Map is slow & laggy');
   // A refusal with a reason (too many at once) is shown as it is.
   answer = { status: 429, body: { error: 'Too many at once. Try again in a minute.' } };
@@ -2018,5 +2019,24 @@ test('site: Add a source in the footer: checks a name or link while you wait and
   await page.locator('#addToFeedback').click();
   assert.equal(await page.locator('#feedbackSheet').isVisible(), true);
   assert.equal(await page.locator('#feedbackText').inputValue(), 'Please add this source: Some Gym (for Volleyball, Austin, TX)');
+  assert.deepEqual(pageErrors, []);
+});
+
+test('site: a first visit opens on the city nearest the visitor (asked of the site\'s own server); a saved or linked city wins', async () => {
+  const two = { ...AUSTIN_ONLY, regions: [...AUSTIN_ONLY.regions, { ...AUSTIN_ONLY.regions[0], id: 'dallas', name: 'Dallas, TX', center: [32.78, -96.8] }] };
+  const regions = { austin: austinSched(), dallas: austinSched() };
+  await open({ index: two, regions, events: EVENTS, url: '/', waitFor: '#regionPick option[value="dallas"]', where: 'dallas' });
+  await page.waitForFunction(() => document.getElementById('regionPick').value === 'dallas');
+  assert.equal(apiCalls.filter((c) => c.startsWith('/api/where')).length, 1);
+  assert.match(page.url(), /region=dallas/);
+  // A link that names a city is left alone, and nothing is asked.
+  await open({ index: two, regions, events: EVENTS, url: '/?region=austin', waitFor: '#regionPick option[value="dallas"]', where: 'dallas' });
+  await page.waitForTimeout(400);
+  assert.equal(await page.locator('#regionPick').inputValue(), 'austin');
+  assert.equal(apiCalls.filter((c) => c.startsWith('/api/where')).length, 0);
+  // Nowhere near a covered city: the default stays.
+  await open({ index: two, regions, events: EVENTS, url: '/', waitFor: '#regionPick option[value="dallas"]', where: null });
+  await page.waitForTimeout(400);
+  assert.equal(await page.locator('#regionPick').inputValue(), 'austin');
   assert.deepEqual(pageErrors, []);
 });

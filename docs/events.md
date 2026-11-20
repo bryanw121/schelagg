@@ -236,3 +236,7 @@ Loading is always shown with the same spinner: beside "Loading…" in a list, in
 4. Any other link: follows it to a platform page from step 2, or says why not (sign-in only platform, nothing readable, site closed to automated reading).
 
 "Added" means an issue labelled `add-source` was opened with `GITHUB_FEEDBACK_TOKEN`; the "Add a source" workflow (only for issues opened by the repository owner, which is who the token is) runs the same check again on GitHub's side, writes the change with `applyPlan` (`config/regions/<id>/sources.json` or `config/events.json`), runs the tests and pushes. Sources that would need a new reader are filed as `source-request`. Without the token nothing is saved and the sheet hands the request to feedback. By hand: `node scripts/add-source.mjs '<name or link>' <events|sport> <region> [--dry]`.
+
+## Which city a visitor sees
+
+A link or a saved choice wins. Otherwise a first visit opens on the nearest covered city: from the browser location if the visitor already shares it with the site (never prompted), else from `GET /api/where`, which answers only a region id worked out from the approximate location Vercel attaches to the request (nothing stored; within about 100 miles of a region, else the default, Austin). The city picker always changes it.

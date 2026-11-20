@@ -25,7 +25,7 @@ const regionsById = () => Object.fromEntries(loadRegions().map((r) => [r.info.id
 
 // Public Overpass instances, tried in order until one answers (the main one can refuse a client).
 export const OVERPASS = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
-const OVERPASS_UA = 'Schelagg/0.4 (schedule aggregator; +https://github.com/bryanw121/schelagg)';
+const OVERPASS_UA = 'Schelagg/0.4 (schedule aggregator; +https://github.com/bryanw121/skelly)';
 const PLACES = 'https://places.googleapis.com/v1/places:searchText';
 const SCHEDULE_WORDS = /schedule|calendar|open[- ]?play|public[- ]?skat|drop[- ]?in|book|reserve|sessions|hours/i;
 const norm = (s) => String(s ?? '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();

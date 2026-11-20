@@ -11,7 +11,7 @@ import { get } from '../lib/http.js';
 import { checkSource, MAX_INPUT } from '../lib/add-source.js';
 import { loadAddConfig } from '../lib/add-source-config.js';
 
-const REPO = 'bryanw121/schelagg';
+const REPO = 'bryanw121/skelly';
 const PER_MINUTE = 6;
 const readBody = async (req) => {
   if (req.body !== undefined) return typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body;

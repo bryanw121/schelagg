@@ -135,7 +135,7 @@ test('api/add-source: answers the check, saves through one issue only when it pa
   const h = createHandler({ token: 't', fetch, config: {}, check });
   const ok = await call(h, { input: 'good', target: 'volleyball', region: 'austin' });
   assert.deepEqual(ok.json, { status: 'ok', title: 'Added. Found 2 sessions coming up.', detail: 'Soon.', steps: [], found: 2, label: 'Reclub · @x', saved: true });
-  assert.equal(posted[0].url, 'https://api.github.com/repos/bryanw121/schelagg/issues');
+  assert.equal(posted[0].url, 'https://api.github.com/repos/bryanw121/skelly/issues');
   assert.deepEqual(posted[0].sent.labels, ['add-source']);
   assert.match(posted[0].sent.body, /```json\n\{"input":"good","target":"volleyball","region":"austin"\}\n```/);
   await call(h, { input: 'want', target: 'events', region: 'austin' });

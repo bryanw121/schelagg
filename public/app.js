@@ -1808,7 +1808,8 @@ async function renderMap() {
   requestAnimationFrame(declutter);
 }
 
-$('regionPick').addEventListener('change', (e) => chooseRegion(e.target.value));
+let userPickedRegion = false; // once someone picks a city, a late "nearest city" answer never overrides it
+$('regionPick').addEventListener('change', (e) => { userPickedRegion = true; chooseRegion(e.target.value); });
 $('nearest').addEventListener('click', () => {
   if (here) { setHere(null); render(); return; } // tapping again goes back to the usual order
   locating(true); // finding a phone can take seconds: 📍 and Near me spin until it answers
@@ -1831,7 +1832,7 @@ function locating(on) {
 // The footer's "Send feedback": a few words to /api/feedback, which files them for the maintainer.
 // Where that isn't set up (or on the GitHub Pages copy, which has no API), the same words open as
 // a new issue on GitHub instead, and the sheet says that route is public and needs an account.
-const FEEDBACK_ISSUES = 'https://github.com/bryanw121/schelagg/issues/new';
+const FEEDBACK_ISSUES = 'https://github.com/bryanw121/skelly/issues/new';
 $('feedbackBtn').addEventListener('click', (e) => {
   $('feedbackNote').textContent = ''; $('feedbackActs').innerHTML = '<button type="submit" class="go-btn" id="feedbackSend">Send</button>';
   $('feedbackText').disabled = false;
@@ -2129,16 +2130,22 @@ else {
 }
 // A first visit opens on the nearest city when the browser already shares its location with this
 // site (no prompt is ever raised here; 📍 is how someone chooses to share it).
+// Otherwise the site asks its own server which covered city the visitor's network is nearest to
+// (api/where.js: approximate, nothing stored, only a city id comes back). The picker still changes it.
+const whereAmI = () => fetch('api/where', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).then((w) => {
+  if (w?.region && w.region !== region?.id && !userPickedRegion && index.regions.some((r) => r.id === w.region)) chooseRegion(w.region);
+}).catch(() => {});
+if (!knewRegion && (index?.regions?.length ?? 0) > 1 && !(navigator.permissions?.query && navigator.geolocation)) whereAmI();
 if (!knewRegion && (index?.regions?.length ?? 0) > 1 && navigator.permissions?.query && navigator.geolocation) {
   navigator.permissions.query({ name: 'geolocation' }).then((p) => {
-    if (p.state !== 'granted') return;
+    if (p.state !== 'granted') { whereAmI(); return; }
     navigator.geolocation.getCurrentPosition((pos) => {
       const at = [pos.coords.latitude, pos.coords.longitude];
       const d = (c) => (c[0] - at[0]) ** 2 + ((c[1] - at[1]) * Math.cos((at[0] * Math.PI) / 180)) ** 2;
       const best = index.regions.filter((r) => r.center).sort((a, b) => d(a.center) - d(b.center))[0];
       if (best && best.id !== region?.id) chooseRegion(best.id);
     }, () => {}, { maximumAge: 3600e3, timeout: 10e3 });
-  }, () => {});
+  }, () => { whereAmI(); });
 }
 try { courts = await getJson(`${DATA}courts.json`); }
 catch { try { courts = await getJson('api/courts?days=7'); } catch (e) { courtsError = e.message; } }

@@ -307,7 +307,7 @@ contributors (ODbL).
 Schelagg owns its data and knows nothing about the apps that use it. It has no credentials to any consumer's
 database and never writes into one. Instead it publishes a feed, and consumers pull it:
 
-- **`public/data/occurrences.json`** (served at `https://bryanw121.github.io/schelagg/data/occurrences.json`):
+- **`public/data/occurrences.json`** (served at `https://bryanw121.github.io/skelly/data/occurrences.json`):
   every session for every sport and region, expanded into dated occurrences for the next 28 days with absolute
   `starts_at` / `ends_at` instants. Top-level fields are the same for every sport (`sport`, `region`, `timezone`,
   `title`, `venue`, `city`, `level`, `price`, `signup_url`, ...); sport-specific details are in `attributes`
@@ -319,7 +319,7 @@ database and never writes into one. Instead it publishes a feed, and consumers p
   `previous_starts_at` (where a rescheduled session was). `canceled` stays for existing consumers.
 - **`public/data/<sport>.ics`** (`volleyball.ics`, `ice_skating.ics`): the same occurrences as calendar subscriptions.
   Cancelled sessions stay in with `STATUS:CANCELLED` and every occurrence keeps its UID, so a move shows as a move.
-- **`public/data/programs.json`** (`https://bryanw121.github.io/schelagg/data/programs.json`): leagues and
+- **`public/data/programs.json`** (`https://bryanw121.github.io/skelly/data/programs.json`): leagues and
   tournaments open for sign-up, every sport and region, built twice a day by `scripts/programs.mjs` from the readers in
   `lib/programs/` (sources in `config/programs.json`: ACES's members site, LeagueLab for Austin Sports & Social Club
   and Meanwhile, NAGVA's Texas tournaments, Reclub competitions (from the Texas volleyball clubs listed in `config/programs.json` and Reclub's sitemap), Vex Volleyball's league and tournaments (vexvolleyball.com), the Texas Asian Olympics at texasao.org). `{ feedVersion, generatedAt, sources: [{ id, ok,
