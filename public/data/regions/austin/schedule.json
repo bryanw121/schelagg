@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T16:37:17.616Z",
+  "generatedAt": "2026-11-20T16:58:05.896Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:22.089Z",
+      "checkedAt": "2026-11-20T16:54:39.039Z",
       "count": 275
     },
     {
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:22.090Z",
+      "checkedAt": "2026-11-20T16:54:39.040Z",
       "count": 163
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:22.090Z",
+      "checkedAt": "2026-11-20T16:54:39.040Z",
       "count": 0
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:22.090Z",
+      "checkedAt": "2026-11-20T16:54:39.040Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-20T16:34:22.092Z",
+      "checkedAt": "2026-11-20T16:54:39.042Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -84,7 +84,7 @@
       "kind": "Venue's schedule page",
       "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:22.092Z",
+      "checkedAt": "2026-11-20T16:54:39.042Z",
       "count": 2
     },
     {
@@ -97,7 +97,7 @@
       "kind": "Venue's schedule page",
       "site": "https://www.austinvelocity.com",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:22.121Z",
+      "checkedAt": "2026-11-20T16:54:39.074Z",
       "count": 1
     },
     {
@@ -124,7 +124,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:23.170Z",
+      "checkedAt": "2026-11-20T16:54:39.408Z",
       "count": 5,
       "warnings": [
         "https://reclub.co/m/V4DO6Q: HTTP 403"
@@ -154,7 +154,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:23.282Z",
+      "checkedAt": "2026-11-20T16:54:40.561Z",
       "count": 4
     },
     {
@@ -173,7 +173,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:24.383Z",
+      "checkedAt": "2026-11-20T16:54:40.636Z",
       "count": 2
     },
     {
@@ -192,7 +192,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:25.009Z",
+      "checkedAt": "2026-11-20T16:54:41.505Z",
       "count": 2
     },
     {
@@ -211,7 +211,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:25.518Z",
+      "checkedAt": "2026-11-20T16:54:41.844Z",
       "count": 10
     },
     {
@@ -224,7 +224,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start={date}&end={date}&event_type={eventType}",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:26.277Z",
+      "checkedAt": "2026-11-20T16:54:42.265Z",
       "count": 37
     },
     {
@@ -237,7 +237,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:26.385Z",
+      "checkedAt": "2026-11-20T16:54:42.572Z",
       "count": 24
     },
     {
@@ -250,7 +250,7 @@
       "kind": "City parks schedule",
       "site": "https://www.austintexas.gov/parks/alamo-recreation-center",
       "ok": true,
-      "checkedAt": "2026-11-20T16:34:28.472Z",
+      "checkedAt": "2026-11-20T16:54:44.442Z",
       "count": 10
     },
     {
@@ -263,7 +263,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-20T16:34:30.503Z",
+      "checkedAt": "2026-11-20T16:54:45.047Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -278,7 +278,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-20T16:34:30.589Z",
+      "checkedAt": "2026-11-20T16:54:45.149Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
