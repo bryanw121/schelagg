@@ -47,6 +47,11 @@ export function eventsUrl(company, from, to, page = 1) {
   return `${API}?${q}`;
 }
 
+/** Fill {date} and {eventType} in a configured link, so it opens on that session's day. */
+export function fillLink(url, { date, eventType }) {
+  return String(url).replaceAll('{date}', encodeURIComponent(date)).replaceAll('{eventType}', encodeURIComponent(eventType));
+}
+
 /** JSON:API event records (one or more pages' `data`) -> { sessions, skipped } (skipped: public sessions on unlisted rinks). */
 export function parseEvents(records, options = {}) {
   const { company, eventTypes = {}, resources, venue, city, surface = 'indoor', price, signup, source, note } = options;
@@ -76,7 +81,8 @@ export function parseEvents(records, options = {}) {
       price: price ?? null,
       capacity,
       note: note ?? null,
-      signup: signup ?? (source ? { url: source, label: 'Check the rink calendar' } : undefined),
+      signup: signup ? { ...signup, url: fillLink(signup.url, { date: s[1], eventType: String(a.event_type_id) }) }
+        : (source ? { url: source, label: 'Check the rink calendar' } : undefined),
       source: source ?? `https://apps.daysmartrecreation.com/dash/x/#/online/${company}/calendar`,
     });
   }
