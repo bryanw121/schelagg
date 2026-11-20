@@ -1,0 +1,26 @@
+name: Diagnose sources
+# Run by hand with source ids: runs each adapter once on GitHub's runner and prints statuses,
+# network causes and what the adapter made of it (never page bodies). scripts/diagnose-sources.mjs
+on:
+  workflow_dispatch:
+    inputs:
+      sources:
+        description: Source ids, separated by spaces (e.g. foro dallas-reclub)
+        required: true
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Diagnose
+        env:
+          SOURCES: ${{ inputs.sources }}
+        run: node scripts/diagnose-sources.mjs $SOURCES
