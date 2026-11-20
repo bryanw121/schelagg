@@ -161,3 +161,8 @@ test('runScrape: when Chromium can\'t start, only the sources that need it fail'
   const r = await runScrape({ sources: [api, page], regions, paths, log: () => {}, launchBrowser: async () => { throw new Error('Executable doesn\'t exist'); } });
   assert.deepEqual(r.out.sources.map((s) => [s.id, s.ok, s.error]), [['api', true, undefined], ['page', false, "no browser: Executable doesn't exist"]]);
 });
+
+test('every canonical venue in every region has coordinates (#41): the map pins it and Near me can sort it', () => {
+  const missing = loadRegions().flatMap((r) => r.venues.filter((v) => !Number.isFinite(v.lat) || !Number.isFinite(v.lng)).map((v) => `${r.info.id}/${v.id}`));
+  assert.deepEqual(missing, [], 'look the address up (US Census geocoder, else OpenStreetMap) and add lat/lng');
+});

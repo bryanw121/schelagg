@@ -102,3 +102,14 @@ test('ACTIVE: each venue address is geocoded once, so new rec centers get a pin'
   assert.equal(asked.filter((u) => /census/.test(u)).length, 1, 'one request for the shared address');
   assert.match(new URL(asked.find((u) => /census/.test(u))).searchParams.get('address'), /^3551 New York Avenue, Fort Worth, TX/);
 });
+
+test('FORO: "Open Play: Coming soon" is no sessions with a warning, not a failure; an unknown page still fails', async () => {
+  const soon = '<html><body><h2>Active leagues and open play</h2><p>Open Play</p><p>Coming soon</p><p>Mon to Fri 10:00 AM to 11:30 PM</p></body></html>';
+  assert.deepEqual(foro.parse(soon), []);
+  assert.equal(foro.paused(soon), true);
+  const r = await foro.scrape({ fetch: async () => new Response(soon, { status: 200 }) });
+  assert.deepEqual(r.sessions, []);
+  assert.match(r.warnings[0], /coming soon/);
+  assert.equal(foro.paused(fx('foro-open-play.html')), false);
+  assert.throws(() => foro.parse('<html><body>Something else entirely</body></html>'), /page may have changed/);
+});

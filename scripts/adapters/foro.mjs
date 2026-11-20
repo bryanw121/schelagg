@@ -1,7 +1,9 @@
 // FORO Sports Club (North Dallas, 14719 Preston Rd): registered sand volleyball open play, from its
 // open-play page ("Volleyball Limited Space, Subject to Availability $10 registered Weekdays (M-Th):
 // 8:30am-12am Weekends (S,S) 10:00AM-8:00PM"). Weekly sessions; when the page's hours change the
-// sessions follow, and if the volleyball hours disappear the source fails (kept last good).
+// sessions follow. When the page says open play is "coming soon" (Nov 2026) there are no
+// sessions to show, and the source says so instead of failing; a page with neither the hours nor
+// that line still fails (kept last good), since that's a change we haven't seen.
 // robots.txt allows the page (it only disallows lightbox views).
 import { get } from '../../lib/http.js';
 import { to24 } from '../../lib/time.js';
@@ -44,16 +46,22 @@ export function parse(html, url = PAGE) {
       signup: { url, label: 'Register on FORO' }, source: url,
     });
   }
-  if (!out.length) throw new Error('FORO volleyball open-play hours not found — page may have changed');
+  if (!out.length && !PAUSED.test(t)) throw new Error('FORO volleyball open-play hours not found — page may have changed');
   return out;
 }
+
+/** The page's own word that open play isn't running: "Open Play … Coming soon". */
+const PAUSED = /Open\s+Play[\s\S]{0,80}?Coming\s+soon/i;
+export const paused = (html) => !/Volleyball\s+Limited Space/i.test(text(html)) && PAUSED.test(text(html));
 
 export const watchedText = (html) => text(html).match(/Volleyball\s+Limited Space[\s\S]*?(?=Interested in|$)/i)?.[0] ?? '';
 
 export async function scrape({ fetch }) {
   const res = await get(PAGE, { fetch });
   if (!res.ok) throw new Error(`${PAGE}: HTTP ${res.status}`);
-  return { sessions: parse(res.text), contentHash: contentHash(watchedText(res.text)) };
+  const sessions = parse(res.text);
+  const warnings = paused(res.text) ? ['FORO lists open play as "coming soon": no volleyball open play to show until it returns.'] : [];
+  return { sessions, warnings, contentHash: contentHash(paused(res.text) ? 'paused' : watchedText(res.text)) };
 }
 
 export async function check({ now = new Date() } = {}) {

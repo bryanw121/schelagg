@@ -113,6 +113,10 @@ export async function scrape({ options, timezone, fetch }) {
       } catch (e) { warnings.push(`${url}: ${e.message}`); }
     }
   }
+  // Every club page read and none has a meet coming up: a quiet stretch (clubs pause between
+  // seasons), not a breakage. Any club that couldn't be read keeps the old rule, so a site change
+  // still shows as a failure.
+  if (!sessions.length && !warnings.length) return { sessions: [], warnings: ['No upcoming Reclub meets on any club page'], shape: shapeUnion(meets) };
   if (!sessions.length) throw new Error(warnings.join('; ') || 'No Reclub meets found');
   return { sessions: [...new Map(sessions.map((s) => [s.id, s])).values()], warnings, shape: shapeUnion(meets) };
 }

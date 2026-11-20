@@ -168,3 +168,13 @@ test('Reclub: lawn club meet in a park is grass', () => {
 test('Reclub: a page without meet data is an error, not a session', () => {
   assert.throws(() => reclub.parseMeet('<html><body>Not found</body></html>', 'https://reclub.co/m/XXXXXX'), /no meet data/);
 });
+
+test('Reclub: every club page read and nothing coming up is an empty week with a warning; an unreadable club still fails', async () => {
+  const quiet = '<html><body><h1>A club</h1><p>No upcoming meets</p></body></html>';
+  const ok = async () => new Response(quiet, { status: 200 });
+  const r = await reclub.scrape({ options: { clubs: ['https://reclub.co/clubs/@a', 'https://reclub.co/clubs/@b'] }, timezone: 'America/Chicago', fetch: ok });
+  assert.deepEqual(r.sessions, []);
+  assert.deepEqual(r.warnings, ['No upcoming Reclub meets on any club page']);
+  const down = async (url) => (String(url).includes('@b') ? new Response('', { status: 503 }) : new Response(quiet, { status: 200 }));
+  await assert.rejects(reclub.scrape({ options: { clubs: ['https://reclub.co/clubs/@a', 'https://reclub.co/clubs/@b'] }, timezone: 'America/Chicago', fetch: down }), /HTTP 503/);
+});

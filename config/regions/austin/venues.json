@@ -460,8 +460,9 @@
       ],
       "osm": null,
       "googlePlaceId": null,
-      "lat": null,
-      "lng": null
+      "lat": 30.30249,
+      "lng": -97.74673,
+      "address": "1101 W 33rd St, Austin, TX 78705"
     },
     {
       "id": "hanovers",
@@ -578,13 +579,16 @@
       "id": "austin-sports-center-central",
       "name": "Austin Sports Center - Central",
       "short": "ASC Central",
-      "address": null,
+      "address": "425 Woodward St, Austin, TX 78704",
       "city": "Austin",
       "aliases": [
         "Austin Sports Center Central"
       ],
       "osm": null,
-      "googlePlaceId": null
+      "googlePlaceId": null,
+      "addressSource": "https://hotelguides.com/texas/austin-sports-center-central-hotels.html",
+      "lat": 30.22755,
+      "lng": -97.75593
     }
   ]
 }
