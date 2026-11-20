@@ -4,7 +4,7 @@ Venues the schedule sees only through groups that host there (Reclub, Sweatpals,
 
 ## Austin, TX
 
-22 venues with sessions: 19 read directly or bookable, 3 second-hand only.
+24 venues with sessions: 21 read directly or bookable, 3 second-hand only.
 
 | Venue | City | Sport | Sessions | Seen via | Pin |
 |---|---|---|---|---|---|

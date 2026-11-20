@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T16:58:05.896Z",
+  "generatedAt": "2026-11-20T17:17:17.431Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:39.039Z",
+      "checkedAt": "2026-11-20T17:14:11.113Z",
       "count": 275
     },
     {
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:39.040Z",
+      "checkedAt": "2026-11-20T17:14:11.115Z",
       "count": 163
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:39.040Z",
+      "checkedAt": "2026-11-20T17:14:11.116Z",
       "count": 0
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:39.040Z",
+      "checkedAt": "2026-11-20T17:14:11.117Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-20T16:54:39.042Z",
+      "checkedAt": "2026-11-20T17:14:11.118Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -84,7 +84,7 @@
       "kind": "Venue's schedule page",
       "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:39.042Z",
+      "checkedAt": "2026-11-20T17:14:11.118Z",
       "count": 2
     },
     {
@@ -97,7 +97,7 @@
       "kind": "Venue's schedule page",
       "site": "https://www.austinvelocity.com",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:39.074Z",
+      "checkedAt": "2026-11-20T17:14:11.144Z",
       "count": 1
     },
     {
@@ -124,7 +124,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:39.408Z",
+      "checkedAt": "2026-11-20T17:14:12.203Z",
       "count": 5,
       "warnings": [
         "https://reclub.co/m/V4DO6Q: HTTP 403"
@@ -154,7 +154,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:40.561Z",
+      "checkedAt": "2026-11-20T17:14:12.926Z",
       "count": 4
     },
     {
@@ -173,7 +173,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:40.636Z",
+      "checkedAt": "2026-11-20T17:14:13.860Z",
       "count": 2
     },
     {
@@ -192,7 +192,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:41.505Z",
+      "checkedAt": "2026-11-20T17:14:13.893Z",
       "count": 2
     },
     {
@@ -211,7 +211,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:41.844Z",
+      "checkedAt": "2026-11-20T17:14:14.460Z",
       "count": 10
     },
     {
@@ -224,7 +224,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start={date}&end={date}&event_type={eventType}",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:42.265Z",
+      "checkedAt": "2026-11-20T17:14:15.217Z",
       "count": 37
     },
     {
@@ -237,7 +237,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:42.572Z",
+      "checkedAt": "2026-11-20T17:14:15.227Z",
       "count": 24
     },
     {
@@ -250,7 +250,7 @@
       "kind": "City parks schedule",
       "site": "https://www.austintexas.gov/parks/alamo-recreation-center",
       "ok": true,
-      "checkedAt": "2026-11-20T16:54:44.442Z",
+      "checkedAt": "2026-11-20T17:14:17.889Z",
       "count": 10
     },
     {
@@ -263,7 +263,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-20T16:54:45.047Z",
+      "checkedAt": "2026-11-20T17:14:19.347Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -278,7 +278,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-20T16:54:45.149Z",
+      "checkedAt": "2026-11-20T17:14:19.399Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -15149,6 +15149,104 @@
       "sourceChanged": "2026-11-20",
       "venueId": "four-seasons-austin",
       "status": "scheduled"
+    },
+    {
+      "id": "long-center-ice-weekdays",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "start": "15:00",
+      "end": "22:00",
+      "title": "Ice Rink at the Long Center",
+      "venue": "Long Center",
+      "city": "Downtown",
+      "price": "$25–$33 · skates incl.",
+      "startsOn": "2026-11-21",
+      "validUntil": "2027-01-04",
+      "note": "Seasonal outdoor rink on the Long Center terrace. Holidays open 10am–10pm. Riverside Dr is closed for construction: park in the PEC garage off Barton Springs Rd.",
+      "signup": {
+        "url": "https://my.thelongcenter.org/4480",
+        "label": "Tickets"
+      },
+      "source": "https://thelongcenter.org/icerink/",
+      "sport": "ice_skating",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "verifiedAt": "2026-11-20",
+      "sourceId": "manual",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "venueId": "long-center",
+      "status": "scheduled"
+    },
+    {
+      "id": "long-center-ice-weekends",
+      "days": [
+        "Sat",
+        "Sun"
+      ],
+      "start": "10:00",
+      "end": "22:00",
+      "title": "Ice Rink at the Long Center",
+      "venue": "Long Center",
+      "city": "Downtown",
+      "price": "$25–$33 · skates incl.",
+      "startsOn": "2026-11-21",
+      "validUntil": "2027-01-04",
+      "note": "Seasonal outdoor rink on the Long Center terrace. Holidays open 10am–10pm. Riverside Dr is closed for construction: park in the PEC garage off Barton Springs Rd.",
+      "signup": {
+        "url": "https://my.thelongcenter.org/4480",
+        "label": "Tickets"
+      },
+      "source": "https://thelongcenter.org/icerink/",
+      "sport": "ice_skating",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "verifiedAt": "2026-11-20",
+      "sourceId": "manual",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "venueId": "long-center",
+      "status": "scheduled"
+    },
+    {
+      "id": "western-wonderland-ice",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "start": "11:00",
+      "end": "21:00",
+      "title": "Western Wonderland ice rink",
+      "venue": "Western Wonderland",
+      "city": "Dripping Springs",
+      "price": "$16 · skates incl.",
+      "startsOn": "2026-11-28",
+      "validUntil": "2027-01-04",
+      "note": "Seasonal outdoor rink at Dripping Springs Ranch Park. Closed Christmas Day; closes at 6pm Christmas Eve, New Year’s Eve and New Year’s Day. Spectators free.",
+      "signup": {
+        "url": "https://www.drippingspringsranchpark.com/510/Ice-Skating",
+        "label": "Tickets & hours"
+      },
+      "source": "https://www.drippingspringsranchpark.com/510/Ice-Skating",
+      "sport": "ice_skating",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "verifiedAt": "2026-11-20",
+      "sourceId": "manual",
+      "region": "austin",
+      "timezone": "America/Chicago",
+      "venueId": "dripping-springs-ranch-park",
+      "status": "scheduled"
     }
   ],
   "publicCourts": {
@@ -15955,6 +16053,24 @@
       "address": "425 Woodward St, Austin, TX 78704",
       "lat": 30.22755,
       "lng": -97.75593,
+      "region": "austin"
+    },
+    {
+      "id": "long-center",
+      "name": "Long Center",
+      "city": "Downtown",
+      "address": "701 W Riverside Dr, Austin, TX 78704",
+      "lat": 30.2609,
+      "lng": -97.75025,
+      "region": "austin"
+    },
+    {
+      "id": "dripping-springs-ranch-park",
+      "name": "Western Wonderland",
+      "city": "Dripping Springs",
+      "address": "1042 Event Center Dr, Dripping Springs, TX 78620",
+      "lat": 30.21889,
+      "lng": -98.08786,
       "region": "austin"
     }
   ]
