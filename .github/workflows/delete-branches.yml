@@ -1,0 +1,33 @@
+name: Delete branches
+# Run by hand with a list of branch names (spaces or new lines). Deletes each one, except the
+# branches the workflows keep state on (main, data, discover-state, fixtures) and any branch with
+# an open pull request. Prints what it deleted and what it skipped.
+on:
+  workflow_dispatch:
+    inputs:
+      branches:
+        description: Branch names to delete, separated by spaces or new lines
+        required: true
+permissions:
+  contents: write
+  pull-requests: read
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Delete
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LIST: ${{ inputs.branches }}
+        run: |
+          set -u
+          keep=" main data discover-state fixtures "
+          open=" $(gh api "repos/$GITHUB_REPOSITORY/pulls?state=open&per_page=100" --jq '[.[].head.ref] | join(" ")') "
+          deleted=0; skipped=0; failed=0
+          for b in $LIST; do
+            case "$b" in *[!A-Za-z0-9._/-]*) echo "skip (odd name): $b"; skipped=$((skipped+1)); continue;; esac
+            if [[ "$keep" == *" $b "* || "$open" == *" $b "* ]]; then echo "keep: $b"; skipped=$((skipped+1)); continue; fi
+            if gh api -X DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$b" >/dev/null 2>&1; then deleted=$((deleted+1)); else echo "could not delete: $b"; failed=$((failed+1)); fi
+          done
+          echo "Deleted $deleted, kept $skipped, failed $failed." | tee -a "$GITHUB_STEP_SUMMARY"
