@@ -7,7 +7,7 @@ import { repoPath } from '../lib/paths.js';
 import { sanitizeAll } from './sanitize-fixtures.mjs';
 
 const OUT = repoPath('test/fixtures/sources');
-const UA = 'Mozilla/5.0 (compatible; Schelagg/0.4; +https://github.com/bryanw121/schelagg)';
+const UA = 'Mozilla/5.0 (compatible; Schelagg/0.4; +https://github.com/bryanw121/skelly)';
 await mkdir(OUT, { recursive: true });
 
 async function grab(name, url, init = {}) {

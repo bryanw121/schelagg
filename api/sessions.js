@@ -10,7 +10,7 @@ import { FEED_VERSION, filterOccurrences } from '../lib/occurrences.js';
 import { lazyDb, queryOccurrences, redact } from '../lib/db.js';
 
 /** The published feed on GitHub Pages (the fallback). */
-export const FEED_URL = 'https://bryanw121.github.io/schelagg/data/occurrences.json';
+export const FEED_URL = 'https://bryanw121.github.io/skelly/data/occurrences.json';
 /** Longest window one request may ask for, in days (from and to inclusive). */
 export const MAX_DAYS = 60;
 /** Window when `to` is left out: today plus the feed's horizon. */

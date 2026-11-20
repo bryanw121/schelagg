@@ -4,14 +4,14 @@
 // the region has sessions at venues with coordinates, some day this week shows pins.
 //
 // Runs after each deploy (pages.yml, "Check the live map") against the published site, and on
-// demand: SITE_URL=https://bryanw121.github.io/schelagg/ npm run test:live-map
+// demand: SITE_URL=https://bryanw121.github.io/skelly/ npm run test:live-map
 // The site e2e (site.e2e.mjs) covers behavior with mocked data; this covers what only the real
 // deployment can break: map builds, missing regions, file paths, and today's data.
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 
-const SITE = (process.env.SITE_URL || 'https://bryanw121.github.io/schelagg/').replace(/\/?$/, '/');
+const SITE = (process.env.SITE_URL || 'https://bryanw121.github.io/skelly/').replace(/\/?$/, '/');
 let browser, index, maps;
 
 const getJson = async (path) => {

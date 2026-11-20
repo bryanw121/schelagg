@@ -1,8 +1,9 @@
 // Where the published data and map files are. The site's own addresses (skellyevents.com,
 // *.vercel.app) serve only the pages; data/ and maps/ are on GitHub Pages, whose address follows
-// the repository's name. Renaming the repository moves it with no redirect (that took the site
-// down on Nov 19, 2026), so both names are tried and the one that answers is remembered for the visit.
-const BASES = ['https://bryanw121.github.io/schelagg/', 'https://bryanw121.github.io/skelly/'];
+// the repository's name. The repository was renamed schelagg -> skelly on Nov 19, 2026, which moved
+// it with no redirect and took the site down; both names are tried (the current one first) and
+// the one that answers is remembered for the visit.
+const BASES = ['https://bryanw121.github.io/skelly/', 'https://bryanw121.github.io/schelagg/'];
 const here = typeof location !== 'undefined' ? location.hostname : 'localhost';
 export const OFF_PAGES = !/(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(here);
 

@@ -12,7 +12,7 @@ const readBody = async (req) => {
   return JSON.parse(raw || '{}');
 };
 
-export function createHandler({ token = process.env.GITHUB_FEEDBACK_TOKEN, repo = process.env.FEEDBACK_REPO || 'bryanw121/schelagg', fetch = globalThis.fetch, now = Date.now, log = console.warn } = {}) {
+export function createHandler({ token = process.env.GITHUB_FEEDBACK_TOKEN, repo = process.env.FEEDBACK_REPO || 'bryanw121/skelly', fetch = globalThis.fetch, now = Date.now, log = console.warn } = {}) {
   let recent = [];
   return async function handler(req, res) {
     const send = (status, body) => { res.statusCode = status; res.setHeader('content-type', 'application/json; charset=utf-8'); res.setHeader('cache-control', 'no-store'); res.end(JSON.stringify(body)); };

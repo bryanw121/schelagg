@@ -122,7 +122,7 @@ async function main() {
     if (regions.length > 1) back.searchParams.set('region', region.id);
     if (sport !== 'volleyball') back.searchParams.set('sport', sport);
     $('back').href = back.href;
-    $('suggest').href = `https://github.com/bryanw121/schelagg/issues/new?title=${encodeURIComponent(`Source suggestion (${region.name}): `)}&body=${encodeURIComponent('Where it is posted (a link):\n\nWhat it lists (open play, leagues, tournaments):\n')}`;
+    $('suggest').href = `https://github.com/bryanw121/skelly/issues/new?title=${encodeURIComponent(`Source suggestion (${region.name}): `)}&body=${encodeURIComponent('Where it is posted (a link):\n\nWhat it lists (open play, leagues, tournaments):\n')}`;
     document.title = `Skelly · Sources · ${region.name}`;
     const [schedule, programs] = await Promise.all([getJson(`${DATA}regions/${region.id}/schedule.json`), getJson(`${DATA}programs.json`).catch(() => null)]);
     $('groups').innerHTML = render({ region, schedule, programs, sport });
