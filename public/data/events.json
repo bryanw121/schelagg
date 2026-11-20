@@ -1,6 +1,6 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-19T23:37:08.099Z",
+ "generatedAt": "2026-11-20T04:08:53.860Z",
  "events": [
   {
    "id": "evt-8c24fae8b082bf2b",
@@ -643,6 +643,26 @@
    "located": "address"
   },
   {
+   "id": "evt-7452e515c6cb59b8",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "Huge Holiday Market",
+   "venue": "Palmer Events Center, 900 Barton Springs Rd",
+   "city": "Austin",
+   "startDate": "2026-11-28",
+   "endDate": "2026-11-29",
+   "price": "$10–$15",
+   "sourceUrl": "https://allevents.in/austin/huge-holiday-market-meet-the-grinch-shop-small-tickets/80003283463164",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.26046,
+   "lng": -97.75315,
+   "located": "source",
+   "startTime": "12:00",
+   "sourceId": "allevents-austin"
+  },
+  {
    "id": "evt-e13d8252c8de92d6",
    "category": "asian-inspired",
    "title": "Kyoto Koffie",
@@ -695,25 +715,6 @@
    "located": "address"
   },
   {
-   "id": "evt-250064ed7260999e",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "A VERY ALLMODERN HOLIDAY: The Year’s Biggest In-Store Event",
-   "venue": "AllModern, 9722 Great Hills Trail",
-   "city": "Austin",
-   "startDate": "2026-11-29",
-   "sourceUrl": "https://allevents.in/austin/a-very-allmodern-holiday-the-years-biggest-in-store-event/100002004779317907",
-   "source": "AllEvents",
-   "region": "austin",
-   "lat": 30.3953,
-   "lng": -97.75138,
-   "located": "source",
-   "startTime": "13:00",
-   "endTime": "16:00",
-   "sourceId": "allevents-austin"
-  },
-  {
    "id": "evt-2f63bb3624f3e8c0",
    "category": "seasonal",
    "kind": "seasonal",
@@ -746,6 +747,25 @@
    "lat": 30.2672,
    "lng": -97.7713,
    "located": "manual"
+  },
+  {
+   "id": "evt-5ef40260a93dbfb9",
+   "category": "popup",
+   "kind": "popup",
+   "tags": [],
+   "title": "Kids-Only Market! New Haven, CT",
+   "venue": "New Haven, CT, 5507 New Haven Ct",
+   "city": "Austin",
+   "startDate": "2026-12-04",
+   "sourceUrl": "https://allevents.in/austin/kids-only-market-new-haven-ct/200030757600428",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.33129,
+   "lng": -97.74542,
+   "located": "source",
+   "startTime": "08:00",
+   "endTime": "20:00",
+   "sourceId": "allevents-austin"
   },
   {
    "id": "evt-41d53b8f2c63c727",
@@ -1306,25 +1326,6 @@
    "sourceId": "allevents-austin"
   },
   {
-   "id": "evt-5a224ff1f093db56",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "Austin Holiday Handmade Expo",
-   "venue": "6100 Airport Boulevard",
-   "city": "Austin",
-   "startDate": "2026-12-18",
-   "endDate": "2026-12-20",
-   "sourceUrl": "https://allevents.in/austin/austin-holiday-handmade-expo/100002004529559874",
-   "source": "AllEvents",
-   "region": "austin",
-   "lat": 30.32653,
-   "lng": -97.71687,
-   "located": "source",
-   "startTime": "10:00",
-   "sourceId": "allevents-austin"
-  },
-  {
    "id": "evt-4499b6aa137b818e",
    "category": "popup",
    "title": "From My Kitchen ATX free holiday treats",
@@ -1343,7 +1344,7 @@
    "located": "address"
   }
  ],
- "listingsAt": "2026-11-19T23:37:08.099Z",
+ "listingsAt": "2026-11-20T04:08:53.860Z",
  "sources": [
   {
    "id": "allevents-austin",
@@ -1354,6 +1355,11 @@
    "id": "visit-austin",
    "ok": true,
    "count": 3
+  },
+  {
+   "id": "added-allevents-in-austin",
+   "ok": true,
+   "count": 2
   }
  ]
 }

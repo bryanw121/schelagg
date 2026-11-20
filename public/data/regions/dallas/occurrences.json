@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-20T02:16:20.932Z",
+  "generatedAt": "2026-11-20T04:06:33.507Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -162,33 +162,6 @@
         "type": "Open play"
       },
       "venue_id": "sports-garden",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "meetup-ntav-event_317214652-2026-11-19",
-      "session_id": "meetup-ntav-event_317214652-2026-11-19",
-      "source_id": "dallas-meetup",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "title": "Adult Open Gym Volleyball Lewisville",
-      "venue": "USSPT",
-      "city": "Lewisville",
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-20T02:00:00.000Z",
-      "ends_at": "2026-11-20T04:00:00.000Z",
-      "signup_url": "https://www.meetup.com/north-texas-adult-volleyball/events/317214652/",
-      "signup_label": "Details and RSVP",
-      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },
@@ -1647,6 +1620,33 @@
         "type": "Open play"
       },
       "venue_id": "sports-garden",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-ntav-event_317424166-2026-12-03",
+      "session_id": "meetup-ntav-event_317424166-2026-12-03",
+      "source_id": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Adult Open Gym Volleyball Lewisville",
+      "venue": "USSPT",
+      "city": "Lewisville",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-12-04T02:00:00.000Z",
+      "ends_at": "2026-12-04T04:00:00.000Z",
+      "signup_url": "https://www.meetup.com/north-texas-adult-volleyball/events/317424166/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
+      "canceled": false,
+      "verified_at": "2026-11-19",
+      "attributes": {
+        "surface": "indoor",
+        "type": "Open play"
+      },
+      "venue_id": "src-usspt",
       "status": "scheduled",
       "previous_starts_at": null
     },

@@ -28,6 +28,10 @@
     "api/add-source.js": {
       "maxDuration": 30,
       "includeFiles": "config/**"
+    },
+    "api/where.js": {
+      "maxDuration": 5,
+      "includeFiles": "config/regions/**"
     }
   },
   "headers": [

@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-20T02:16:26.030Z",
+ "generatedAt": "2026-11-20T04:09:16.521Z",
  "regions": [
   {
    "id": "austin",
@@ -45,7 +45,7 @@
      "venue": "Austin PickleHaus",
      "city": "Pflugerville",
      "sport": "pickleball",
-     "sessions": 158,
+     "sessions": 157,
      "pinned": true,
      "booking": true,
      "via": [
@@ -57,7 +57,7 @@
      "venue": "Pickle Pit Stop",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 97,
+     "sessions": 95,
      "pinned": true,
      "booking": true,
      "via": [
@@ -69,7 +69,7 @@
      "venue": "Austin Pickle Ranch",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 92,
+     "sessions": 90,
      "pinned": true,
      "booking": true,
      "via": [
@@ -81,7 +81,7 @@
      "venue": "Eastside Paddle Club",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 78,
+     "sessions": 79,
      "pinned": true,
      "booking": true,
      "via": [
@@ -515,7 +515,7 @@
    "name": "Houston, TX",
    "rows": [
     {
-     "venue": "Champion Forest Baptist Church - Champions Campus",
+     "venue": "Collins Park",
      "city": "",
      "sport": "volleyball",
      "sessions": 4,
@@ -527,10 +527,22 @@
      "lead": true
     },
     {
-     "venue": "Collins Park",
+     "venue": "Champion Forest Baptist Church - Champions Campus",
      "city": "",
      "sport": "volleyball",
-     "sessions": 4,
+     "sessions": 3,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Katy Sports Center",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 3,
      "pinned": true,
      "booking": false,
      "via": [
@@ -551,31 +563,7 @@
      "lead": true
     },
     {
-     "venue": "Katy Sports Center",
-     "city": "",
-     "sport": "volleyball",
-     "sessions": 2,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "houston-reclub"
-     ],
-     "lead": true
-    },
-    {
      "venue": "T4 Court Rentals",
-     "city": "",
-     "sport": "volleyball",
-     "sessions": 2,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "houston-reclub"
-     ],
-     "lead": true
-    },
-    {
-     "venue": "Tellepsen Family Downtown YMCA",
      "city": "",
      "sport": "volleyball",
      "sessions": 2,
@@ -648,6 +636,18 @@
     },
     {
      "venue": "Skyline Volleyball Academy",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "Tellepsen Family Downtown YMCA",
      "city": "",
      "sport": "volleyball",
      "sessions": 1,

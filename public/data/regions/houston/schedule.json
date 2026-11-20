@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T02:16:20.932Z",
+  "generatedAt": "2026-11-20T04:06:33.507Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,22 +67,21 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T02:13:23.114Z",
-      "count": 25,
+      "checkedAt": "2026-11-20T04:03:27.412Z",
+      "count": 24,
       "warnings": [
-        "reclub-8TBKMU: no surface",
         "reclub-3YV72K: no surface",
         "reclub-NJKPQA: no surface",
         "reclub-OKAE7P: no surface",
         "reclub-J533LP: no surface",
         "reclub-EEUP4M: no surface",
         "reclub-K9D10X: no surface",
+        "reclub-AZNLRX: no surface",
         "reclub-MCRPQ4: no surface",
         "reclub-K9XO8G: no surface",
         "reclub-WQR08J: no surface",
         "reclub-Y2CRUB: no surface",
         "reclub-R9HE9A: no surface",
-        "reclub-OS2O5W: no surface",
         "reclub-8SFAT2: no surface",
         "reclub-JMV5QT: no surface",
         "reclub-Y1ZF0D: no surface",
@@ -107,7 +106,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/houston-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-19T23:31:13.426Z",
+      "checkedAt": "2026-11-20T04:03:31.045Z",
       "count": 0
     },
     {
@@ -120,7 +119,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-20T02:13:29.895Z",
+      "checkedAt": "2026-11-20T04:03:31.918Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -128,31 +127,6 @@
     }
   ],
   "sessions": [
-    {
-      "id": "reclub-8TBKMU",
-      "date": "2026-11-19",
-      "start": "18:00",
-      "end": "20:30",
-      "title": "YMCA Open Gym-1 court",
-      "venue": "Tellepsen Family Downtown YMCA",
-      "type": "Open play",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by Houston Vball, every Thursday.",
-      "capacity": 10,
-      "signup": {
-        "url": "https://reclub.co/m/8TBKMU",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/8TBKMU",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "src-tellepsen-family-downtown-ymca",
-      "status": "scheduled"
-    },
     {
       "id": "reclub-3YV72K",
       "date": "2026-11-21",
@@ -304,6 +278,31 @@
       "status": "scheduled"
     },
     {
+      "id": "reclub-AZNLRX",
+      "date": "2026-11-25",
+      "start": "14:00",
+      "end": "17:00",
+      "title": "Wednesday Intermediate Level + Up INDOOR Volleyball (2 Courts) ($10) @ Katy Sports (2 pm - 5 pm)",
+      "venue": "Katy Sports Center",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "capacity": 40,
+      "signup": {
+        "url": "https://reclub.co/m/AZNLRX",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/AZNLRX",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-19",
+      "venueId": "src-katy-sports-center",
+      "status": "scheduled"
+    },
+    {
       "id": "reclub-MCRPQ4",
       "date": "2026-11-27",
       "start": "19:30",
@@ -401,31 +400,6 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-19",
       "venueId": "src-emancipation-park",
-      "status": "scheduled"
-    },
-    {
-      "id": "reclub-OS2O5W",
-      "date": "2026-11-19",
-      "start": "18:45",
-      "end": "21:45",
-      "title": "Sand Volleyball 🏐 @Champions",
-      "venue": "Champion Forest Baptist Church - Champions Campus",
-      "type": "Open play",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by HTX - Social, every Thursday.",
-      "capacity": 20,
-      "signup": {
-        "url": "https://reclub.co/m/OS2O5W",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/OS2O5W",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
-      "venueId": "src-champion-forest-baptist-church-champions-campus",
       "status": "scheduled"
     },
     {
@@ -732,15 +706,6 @@
   "publicCourts": null,
   "venues": [
     {
-      "id": "src-tellepsen-family-downtown-ymca",
-      "name": "Tellepsen Family Downtown YMCA",
-      "city": null,
-      "address": "808 Pease St, Houston, TX",
-      "lat": 29.7521,
-      "lng": -95.3703,
-      "region": "houston"
-    },
-    {
       "id": "src-absolute-volleyball-academy-and-absolute-beach",
       "name": "Absolute Volleyball Academy and Absolute Beach",
       "city": null,
@@ -756,6 +721,15 @@
       "address": "23363 Clay Road, Katy, Tx",
       "lat": 29.82756,
       "lng": -95.77629,
+      "region": "houston"
+    },
+    {
+      "id": "src-tellepsen-family-downtown-ymca",
+      "name": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "address": "808 Pease St, Houston, TX",
+      "lat": 29.7521,
+      "lng": -95.3703,
       "region": "houston"
     },
     {

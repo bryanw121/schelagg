@@ -1,62 +1,8 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-20T02:16:20.932Z",
+  "generatedAt": "2026-11-20T04:06:33.507Z",
   "horizonDays": 28,
   "occurrences": [
-    {
-      "id": "reclub-8TBKMU",
-      "session_id": "reclub-8TBKMU",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "YMCA Open Gym-1 court",
-      "venue": "Tellepsen Family Downtown YMCA",
-      "city": null,
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-20T00:00:00.000Z",
-      "ends_at": "2026-11-20T02:30:00.000Z",
-      "signup_url": "https://reclub.co/m/8TBKMU",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by Houston Vball, every Thursday.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 10
-      },
-      "venue_id": "src-tellepsen-family-downtown-ymca",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "reclub-OS2O5W",
-      "session_id": "reclub-OS2O5W",
-      "source_id": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "title": "Sand Volleyball 🏐 @Champions",
-      "venue": "Champion Forest Baptist Church - Champions Campus",
-      "city": null,
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-20T00:45:00.000Z",
-      "ends_at": "2026-11-20T03:45:00.000Z",
-      "signup_url": "https://reclub.co/m/OS2O5W",
-      "signup_label": "Sign up on Reclub",
-      "note": "Hosted by HTX - Social, every Thursday.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "type": "Open play",
-        "capacity": 20
-      },
-      "venue_id": "src-champion-forest-baptist-church-champions-campus",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
     {
       "id": "reclub-R9HE9A",
       "session_id": "reclub-R9HE9A",
@@ -459,6 +405,33 @@
         "capacity": 20
       },
       "venue_id": "src-champion-forest-baptist-church-champions-campus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-AZNLRX",
+      "session_id": "reclub-AZNLRX",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Wednesday Intermediate Level + Up INDOOR Volleyball (2 Courts) ($10) @ Katy Sports (2 pm - 5 pm)",
+      "venue": "Katy Sports Center",
+      "city": null,
+      "level": "All levels",
+      "price": "$10",
+      "starts_at": "2026-11-25T20:00:00.000Z",
+      "ends_at": "2026-11-25T23:00:00.000Z",
+      "signup_url": "https://reclub.co/m/AZNLRX",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "canceled": false,
+      "verified_at": "2026-11-19",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 40
+      },
+      "venue_id": "src-katy-sports-center",
       "status": "scheduled",
       "previous_starts_at": null
     },
