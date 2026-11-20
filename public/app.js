@@ -320,7 +320,7 @@ function freshness(x, iso) {
   if (x.startsOn && iso < x.startsOn) return { k: 'unverified', l: `Starts ${fmtDate(x.startsOn)}` };
   if (x.canceled) return { k: 'canceled', l: 'Canceled' };
   if (!x.verifiedAt || !x.start) return { k: 'unverified', l: 'Unconfirmed' };
-  if (x.checkFailed) return { k: 'changed', l: "Couldn't recheck" };
+  if (x.checkFailed) return { k: 'recheck', l: "Couldn't recheck" };
   if (x.sourceChanged) return { k: 'changed', l: 'Source changed' };
   const age = Math.max(0, Math.round((dateObj(NOW.iso) - dateObj(x.verifiedAt)) / 864e5));
   if (x.scheduleBasis === 'directory_listing') return { k: age <= 7 ? 'fresh' : age <= 21 ? 'aging' : 'stale', l: age === 0 ? 'Listed today' : `Listed ${age}d ago` };
@@ -425,6 +425,14 @@ function locationHtml(x) {
 }
 
 // A rescheduled session says where it was ("Moved from Fri 7pm"); see lib/consolidate.js.
+// A source that failed keeps its last good sessions (#46): say so on the card, with when it was
+// last confirmed and a link to the source, so nobody drives to a session that may be cancelled.
+function recheckHtml(x) {
+  if (x.f.k !== 'recheck') return '';
+  const last = x.verifiedAt === NOW.iso ? 'earlier today' : fmtDate(x.verifiedAt);
+  const src = x.source ? ` <a class="src" href="${esc(x.source)}" target="_blank" rel="noopener">Check the source ↗</a>` : '';
+  return `<div class="recheck-note">Its source couldn't be read just now. Last confirmed ${esc(last)}.${src}</div>`;
+}
 function movedHtml(x) {
   if (x.status !== 'rescheduled' || !x.previousStart) return '';
   const [d, t] = x.previousStart.split(' ');
@@ -565,13 +573,13 @@ function renderList() {
   const card = (x) => {
     const past = ended(x);
     const live = isToday && x.start && x.end && mins(x.start) <= NOW.minutes && NOW.minutes < mins(x.end) && x.f.k !== 'canceled';
-    return `<div class="row ${['expired', 'unverified', 'canceled'].includes(x.f.k) ? 'dim' : ''} ${past ? 'past' : ''}">
+    return `<div class="row ${['expired', 'unverified', 'canceled'].includes(x.f.k) ? 'dim' : ''} ${x.f.k === 'recheck' ? 'unsure' : ''} ${past ? 'past' : ''}">
       <div class="time">${fmtT(x.start)}<small>${x.end ? 'to ' + fmtT(x.end) : ''}</small></div>
       <div class="body">
         <div class="t1"><span class="title">${hl(x.title)}</span><span class="pill ${live ? 'fresh' : x.f.k}">${live ? (x.scheduleBasis ? 'Scheduled now' : 'Happening now') : x.f.l}</span></div>
         <div class="venue"><b>${esc(x.venue)}</b> · ${esc(x.city)}${milesTo(x.venueId) != null ? ` · ${fmtMiles(milesTo(x.venueId))}` : ''}</div>
         <div class="meta"><span class="chip surf" style="--c:${tabOf(x).c}">${esc(tabOf(x).label)}</span>${byOf(x) === 'surface' ? `<span class="chip">${esc(x.type)}</span>` : x.surface && x.surface !== 'indoor' ? `<span class="chip">${esc(cap(x.surface))}</span>` : ''}${x.rink ? `<span>${esc(x.rink)}</span>` : ''}${x.level ? `<span>${esc(x.level)}</span>` : ''}${x.price ? `<span>· ${esc(x.price)}</span>` : ''}${capacityHtml(x)}</div>
-        ${movedHtml(x)}${fitHtml(x.start, x.end)}
+        ${recheckHtml(x)}${movedHtml(x)}${fitHtml(x.start, x.end)}
         <div class="actions">${signupHtml(x)}${x.f.k === 'expired' || x.f.k === 'canceled' ? '' : calButton(`s:${x.id}:${x.date || x.on || WEEK[state.di]}`, sessionCalItem(x))}</div>
         ${detailsHtml(x)}
       </div></div>`;
@@ -716,7 +724,7 @@ const placeMiles = (p) => (p.events ? milesToCoords(p.lat, p.lng) : milesTo(p.id
 // How far a venue "feels" when ordering: its distance, plus a little when every listing there is
 // unconfirmed or couldn't be rechecked, so a sure thing nearby comes before a maybe slightly closer.
 const UNSURE_MILES = 2;
-const feltMiles = (list, mi) => mi + (list.every((x) => ['unverified', 'changed', 'stale'].includes(x.f?.k)) ? UNSURE_MILES : 0);
+const feltMiles = (list, mi) => mi + (list.every((x) => ['unverified', 'changed', 'recheck', 'stale'].includes(x.f?.k)) ? UNSURE_MILES : 0);
 const fmtMiles = (mi) => (mi < 0.95 ? '<1 mi' : `${mi < 9.95 ? mi.toFixed(1) : Math.round(mi)} mi`);
 
 /**

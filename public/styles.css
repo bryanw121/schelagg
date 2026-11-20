@@ -80,7 +80,7 @@ h2{font:700 22px/1.1 var(--display);text-transform:uppercase;letter-spacing:.03e
 .chip{border:1px solid var(--line);border-radius:4px;padding:1px 6px;font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
 .chip.surf{border-color:transparent;color:var(--panel);background:var(--c)}
 .pill{white-space:nowrap;font:600 11px var(--mono);padding:2px 7px;border-radius:999px;border:1px solid currentColor}
-.fresh{color:var(--ok)}.aging{color:var(--warn)}.stale{color:var(--bad)}.changed{color:var(--changed)}.unverified,.expired{color:var(--dim)}
+.fresh{color:var(--ok)}.aging{color:var(--warn)}.stale{color:var(--bad)}.changed{color:var(--changed)}.recheck{color:var(--warn)}.unverified,.expired{color:var(--dim)}
 .pill.canceled{color:var(--bad);text-decoration:line-through}
 .note{font-size:12.5px;color:var(--muted);max-width:62ch}
 .src{font-size:12px;color:var(--accent);text-decoration:none}
@@ -160,6 +160,10 @@ a.g-bar:hover{filter:brightness(1.12)}
 .srcs li span{color:var(--muted);font:500 12px var(--mono);text-align:right}
 .srcs li.bad span{color:var(--bad)}
 .moved{font:600 12px var(--mono);color:var(--changed);margin-top:2px}
+/* Kept from a source that couldn't be read (#46): a warning edge and a note with the source link. */
+.row.unsure{box-shadow:inset 3px 0 0 var(--warn)}
+.recheck-note{font-size:13px;color:var(--warn);margin-top:4px}
+.recheck-note .src{font-weight:700;color:inherit;text-decoration:underline}
 a.src.also{color:var(--muted)}
 #subscribe a{color:var(--accent);font-weight:600}
 .cap{color:var(--muted)}.cap.full{color:var(--bad);font-weight:600}
