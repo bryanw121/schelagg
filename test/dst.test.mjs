@@ -101,3 +101,8 @@ test('Feed dates and calendar files: the occurrence\'s local date, and DTSTART i
   assert.match(ics, /DTSTART:20261102T053000Z/);
   assert.match(ics, /DTEND:20261102T060000Z/);
 });
+
+test('a clock time skipped by spring-forward moves later, in Austin as in Sydney', () => {
+  assert.equal(localToIso('2026-03-08', '02:30', 'America/Chicago'), '2026-03-08T08:30:00.000Z'); // 3:30am CDT
+  assert.equal(localToIso('2026-10-04', '02:30', 'Australia/Sydney'), '2026-10-03T16:30:00.000Z'); // 3:30am AEDT
+});
