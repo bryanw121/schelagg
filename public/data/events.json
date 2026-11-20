@@ -1,6 +1,6 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-20T04:08:53.860Z",
+ "generatedAt": "2026-11-20T10:01:06.265Z",
  "events": [
   {
    "id": "evt-8c24fae8b082bf2b",
@@ -113,19 +113,6 @@
    "lat": 30.25966,
    "lng": -97.75352,
    "located": "address"
-  },
-  {
-   "id": "evt-6e4ad74906acd3fe",
-   "category": "asian-inspired",
-   "title": "Wokstars x SASEgiving",
-   "venue": "UTC 2.112A, UT Austin",
-   "area": "Central Austin",
-   "city": "Austin",
-   "startDate": "2026-11-19",
-   "startTime": "19:00",
-   "sourceUrl": "https://www.instagram.com/p/DfvpfNItfz8/",
-   "source": "Instagram @sasetexas",
-   "description": "Wokstars x SASE Texas Thanksgiving pop-up — maple hojicha, gingerbread matcha, and latte einspanner."
   },
   {
    "id": "evt-e6029ff44d957a47",
@@ -749,6 +736,24 @@
    "located": "manual"
   },
   {
+   "id": "evt-773d94d491cb5a81",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "Cactus Cafe's Holiday Pop-Up Bar",
+   "venue": "2308 Whitis Ave",
+   "city": "Austin",
+   "startDate": "2026-12-01",
+   "sourceUrl": "https://allevents.in/austin/cactus-cafes-holiday-pop-up-bar-prickly-and-bright/200031055712154",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.28615,
+   "lng": -97.74116,
+   "located": "source",
+   "startTime": "14:00",
+   "sourceId": "allevents-austin"
+  },
+  {
    "id": "evt-5ef40260a93dbfb9",
    "category": "popup",
    "kind": "popup",
@@ -1344,12 +1349,12 @@
    "located": "address"
   }
  ],
- "listingsAt": "2026-11-20T04:08:53.860Z",
+ "listingsAt": "2026-11-20T10:01:06.265Z",
  "sources": [
   {
    "id": "allevents-austin",
    "ok": true,
-   "count": 33
+   "count": 34
   },
   {
    "id": "visit-austin",

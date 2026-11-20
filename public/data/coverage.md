@@ -4,7 +4,7 @@ Venues the schedule sees only through groups that host there (Reclub, Sweatpals,
 
 ## Austin, TX
 
-25 venues with sessions: 22 read directly or bookable, 3 second-hand only.
+22 venues with sessions: 19 read directly or bookable, 3 second-hand only.
 
 | Venue | City | Sport | Sessions | Seen via | Pin |
 |---|---|---|---|---|---|
@@ -19,7 +19,7 @@ Venues the schedule sees only through groups that host there (Reclub, Sweatpals,
 | Venue | City | Sport | Sessions | Seen via | Pin |
 |---|---|---|---|---|---|
 | USSPT | Lewisville | volleyball | 10 | dallas-meetup | yes |
-| Sports Garden DFW | Coppell | volleyball | 2 | dallas-meetup | yes |
+| Sports Garden DFW | Coppell | volleyball | 3 | dallas-meetup | yes |
 | Intentional Sports | Dallas | volleyball | 1 | dallas-meetup | no |
 
 ## Houston, TX

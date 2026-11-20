@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T04:06:33.507Z",
+  "generatedAt": "2026-11-20T10:01:03.414Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -27,7 +27,7 @@
         }
       ],
       "ok": false,
-      "checkedAt": "2026-11-20T04:03:14.915Z",
+      "checkedAt": "2026-11-20T09:57:47.855Z",
       "failingSince": "2026-11-15T16:13:18.552Z",
       "error": "No Reclub meets found",
       "kept": 0
@@ -55,7 +55,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
       "ok": false,
-      "checkedAt": "2026-11-20T04:03:17.012Z",
+      "checkedAt": "2026-11-20T09:57:50.198Z",
       "failingSince": "2026-11-16T21:43:44.266Z",
       "error": "FORO volleyball open-play hours not found — page may have changed",
       "kept": 2
@@ -110,8 +110,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T04:03:22.497Z",
-      "count": 13,
+      "checkedAt": "2026-11-20T09:57:51.024Z",
+      "count": 14,
       "warnings": [
         "venue \"Intentional Sports\" isn't in its region's venues.json"
       ]
@@ -271,7 +271,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "foro",
-      "checkFailed": "2026-11-19",
+      "checkFailed": "2026-11-20",
       "status": "scheduled"
     },
     {
@@ -301,7 +301,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-15",
       "venueId": "foro",
-      "checkFailed": "2026-11-19",
+      "checkFailed": "2026-11-20",
       "status": "scheduled"
     },
     {
@@ -699,7 +699,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -725,7 +725,33 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
+      "venueId": "sports-garden",
+      "status": "scheduled"
+    },
+    {
+      "id": "meetup-dfwvb-event_316813552-2026-12-04",
+      "date": "2026-12-04",
+      "start": "18:30",
+      "end": "21:30",
+      "title": "Friday - Sand Volleyball (South Location)",
+      "venue": "Sports Garden DFW",
+      "city": "Coppell",
+      "surface": "sand",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by DFW Volleyball (Dallas Region).",
+      "signup": {
+        "url": "https://www.meetup.com/dfwvolleyballdallas/events/316813552/",
+        "label": "Details and RSVP"
+      },
+      "source": "https://www.meetup.com/dfwvolleyballdallas/events/316813552/",
+      "sourceId": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-20",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -751,7 +777,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -777,7 +803,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -803,7 +829,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -829,7 +855,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -855,7 +881,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -881,7 +907,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -907,7 +933,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -933,7 +959,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -959,7 +985,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -985,7 +1011,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-usspt",
       "status": "scheduled"
     },
@@ -1011,7 +1037,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "status": "scheduled"
     }
   ],
@@ -1080,6 +1106,15 @@
       "region": "dallas"
     },
     {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
+      "region": "dallas"
+    },
+    {
       "id": "src-greenbriar-community-center",
       "name": "Greenbriar Community Center",
       "city": "Fort Worth",
@@ -1140,15 +1175,6 @@
       "address": "6201 Beaty Street, Fort Worth, TX, 76112",
       "lat": 32.73961,
       "lng": -97.22325,
-      "region": "dallas"
-    },
-    {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
       "region": "dallas"
     }
   ]

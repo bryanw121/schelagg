@@ -2,7 +2,6 @@
   "sources": {
     "austin-club-openplay": {
       "counts": [
-        268,
         269,
         268,
         264,
@@ -11,13 +10,14 @@
         273,
         267,
         267,
-        264
+        264,
+        278
       ],
-      "sessions": 264,
+      "sessions": 278,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.67,
+        "level": 0.68,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -37,10 +37,10 @@
         158,
         158,
         158,
-        158,
-        157
+        157,
+        163
       ],
-      "sessions": 157,
+      "sessions": 163,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -59,27 +59,16 @@
         0,
         0,
         0,
-        0,
         1,
         1,
         1,
         1,
         1,
-        1
+        1,
+        0
       ],
-      "sessions": 1,
-      "coverage": {
-        "end": 1,
-        "price": 1,
-        "level": 0,
-        "venue": 1,
-        "city": 1,
-        "surface": 1,
-        "type": 1,
-        "capacity": 0,
-        "spotsLeft": 0,
-        "signup": 1
-      }
+      "sessions": 0,
+      "coverage": {}
     },
     "volleyworld": {
       "counts": [
@@ -92,9 +81,9 @@
         10,
         10,
         10,
-        10
+        11
       ],
-      "sessions": 10,
+      "sessions": 11,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -166,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 868
+      "failStreak": 869
     },
     "atxbeach": {
       "counts": [
@@ -235,9 +224,9 @@
         6,
         6,
         6,
-        6
+        5
       ],
-      "sessions": 6,
+      "sessions": 5,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -371,9 +360,9 @@
         3,
         3,
         3,
-        3
+        4
       ],
-      "sessions": 3,
+      "sessions": 4,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -779,9 +768,9 @@
         36,
         36,
         36,
-        36
+        37
       ],
-      "sessions": 36,
+      "sessions": 37,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -790,7 +779,7 @@
         "city": 1,
         "surface": 1,
         "type": 1,
-        "capacity": 0.19,
+        "capacity": 0.27,
         "spotsLeft": 0,
         "signup": 1
       },
@@ -943,13 +932,13 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 577
+      "failStreak": 578
     },
     "leander-pickleball": {
-      "failStreak": 577
+      "failStreak": 578
     },
     "dallas-reclub": {
-      "failStreak": 209
+      "failStreak": 210
     },
     "sportsgarden": {
       "counts": [
@@ -1002,7 +991,7 @@
         "signup": 1
       },
       "contentHash": "dcabe29b882b9fa5",
-      "failStreak": 73
+      "failStreak": 74
     },
     "dfw-city-active": {
       "counts": [
@@ -1069,9 +1058,9 @@
         13,
         13,
         13,
-        13
+        14
       ],
-      "sessions": 13,
+      "sessions": 14,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -1088,7 +1077,6 @@
     "houston-reclub": {
       "counts": [
         21,
-        21,
         24,
         24,
         23,
@@ -1096,6 +1084,7 @@
         23,
         23,
         25,
+        24,
         24
       ],
       "sessions": 24,

@@ -1,170 +1,8 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-20T04:06:33.507Z",
+  "generatedAt": "2026-11-20T10:01:03.414Z",
   "horizonDays": 28,
   "occurrences": [
-    {
-      "id": "active-110202485-2026-11-19",
-      "session_id": "active-110202485",
-      "source_id": "dfw-city-active-pickleball",
-      "sport": "pickleball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Pickleball",
-      "venue": "Victory Forest Community Center",
-      "city": "Fort Worth",
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-19T12:00:00.000Z",
-      "ends_at": "2026-11-19T18:00:00.000Z",
-      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110202485",
-      "signup_label": "Details on ACTIVE",
-      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "src-victory-forest-community-center",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "active-110185888-2026-11-19",
-      "session_id": "active-110185888",
-      "source_id": "dfw-city-active-pickleball",
-      "sport": "pickleball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Pickle Ball",
-      "venue": "Handley Meadowbrook Community Center",
-      "city": "Fort Worth",
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-19T16:00:00.000Z",
-      "ends_at": "2026-11-19T18:00:00.000Z",
-      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickle-ball-2026-110185888",
-      "signup_label": "Details on ACTIVE",
-      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "src-handley-meadowbrook-community-center",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "active-110034404-2026-11-19",
-      "session_id": "active-110034404",
-      "source_id": "dfw-city-active-pickleball",
-      "sport": "pickleball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Pickleball",
-      "venue": "Northside Community Center",
-      "city": "Fort Worth",
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-19T16:30:00.000Z",
-      "ends_at": "2026-11-19T20:00:00.000Z",
-      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-pickleball-2026-110034404",
-      "signup_label": "Details on ACTIVE",
-      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "src-northside-community-center",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "active-109915599-2026-11-19",
-      "session_id": "active-109915599",
-      "source_id": "dfw-city-active",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Legends Volleyball",
-      "venue": "Riverside Community Center",
-      "city": "Fort Worth",
-      "level": "Ages 45+",
-      "price": null,
-      "starts_at": "2026-11-19T17:00:00.000Z",
-      "ends_at": "2026-11-19T20:00:00.000Z",
-      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-legends-volleyball-2026-109915599",
-      "signup_label": "Details on ACTIVE",
-      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "fw-riverside",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "active-110264694-2026-11-19",
-      "session_id": "active-110264694",
-      "source_id": "dfw-city-active",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "title": "Open Play: Volleyball",
-      "venue": "Greenbriar Community Center",
-      "city": "Fort Worth",
-      "level": "All levels",
-      "price": null,
-      "starts_at": "2026-11-20T00:00:00.000Z",
-      "ends_at": "2026-11-20T02:00:00.000Z",
-      "signup_url": "https://www.active.com/fort-worth-tx/volleyball/volleyball-classes/open-play-volleyball-2026-110264694",
-      "signup_label": "Details on ACTIVE",
-      "note": "Run by the City of Fort Worth. Check the city page for fees and any skipped dates.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "indoor",
-        "type": "Open play"
-      },
-      "venue_id": "src-greenbriar-community-center",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
-    {
-      "id": "sportsgarden-south-1800-2400-2026-11-19",
-      "session_id": "sportsgarden-south-1800-2400",
-      "source_id": "sportsgarden",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "title": "Sand open play (South Side)",
-      "venue": "The Sports Garden",
-      "city": "Coppell",
-      "level": "All levels",
-      "price": "$5 before 5 PM · $10 after",
-      "starts_at": "2026-11-20T00:00:00.000Z",
-      "ends_at": "2026-11-20T06:00:00.000Z",
-      "signup_url": "https://sportsgardendfw.com/open-play/",
-      "signup_label": "Drop in · court calendar",
-      "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
-      "canceled": false,
-      "verified_at": "2026-11-19",
-      "attributes": {
-        "surface": "sand",
-        "type": "Open play"
-      },
-      "venue_id": "sports-garden",
-      "status": "scheduled",
-      "previous_starts_at": null
-    },
     {
       "id": "active-110189828-2026-11-20",
       "session_id": "active-110189828",
@@ -264,7 +102,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by DFW Volleyball (Dallas Region).",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -345,7 +183,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by The Program.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -561,7 +399,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -723,7 +561,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Clinic"
@@ -912,7 +750,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Clinic"
@@ -939,7 +777,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -1128,7 +966,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -1236,7 +1074,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by DFW Volleyball (Dallas Region).",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -1452,7 +1290,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -1506,7 +1344,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Clinic"
@@ -1560,7 +1398,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Clinic"
@@ -1587,7 +1425,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -1641,7 +1479,7 @@
       "signup_label": "Details and RSVP",
       "note": "Hosted by North Texas Adult Volleyball. Register and pay in the group's own app (usspt.com); the Meetup RSVP alone doesn't get you in.",
       "canceled": false,
-      "verified_at": "2026-11-19",
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "indoor",
         "type": "Open play"
@@ -1669,6 +1507,33 @@
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
       "canceled": false,
       "verified_at": "2026-11-19",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "sports-garden",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "meetup-dfwvb-event_316813552-2026-12-04",
+      "session_id": "meetup-dfwvb-event_316813552-2026-12-04",
+      "source_id": "dallas-meetup",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Friday - Sand Volleyball (South Location)",
+      "venue": "Sports Garden DFW",
+      "city": "Coppell",
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-12-05T00:30:00.000Z",
+      "ends_at": "2026-12-05T03:30:00.000Z",
+      "signup_url": "https://www.meetup.com/dfwvolleyballdallas/events/316813552/",
+      "signup_label": "Details and RSVP",
+      "note": "Hosted by DFW Volleyball (Dallas Region).",
+      "canceled": false,
+      "verified_at": "2026-11-20",
       "attributes": {
         "surface": "sand",
         "type": "Open play"
@@ -1907,6 +1772,33 @@
       "price": "$5 before 5 PM · $10 after",
       "starts_at": "2026-12-18T00:00:00.000Z",
       "ends_at": "2026-12-18T06:00:00.000Z",
+      "signup_url": "https://sportsgardendfw.com/open-play/",
+      "signup_label": "Drop in · court calendar",
+      "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
+      "canceled": false,
+      "verified_at": "2026-11-19",
+      "attributes": {
+        "surface": "sand",
+        "type": "Open play"
+      },
+      "venue_id": "sports-garden",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "sportsgarden-south-1800-2400-2026-12-18",
+      "session_id": "sportsgarden-south-1800-2400",
+      "source_id": "sportsgarden",
+      "sport": "volleyball",
+      "region": "dallas",
+      "timezone": "America/Chicago",
+      "title": "Sand open play (South Side)",
+      "venue": "The Sports Garden",
+      "city": "Coppell",
+      "level": "All levels",
+      "price": "$5 before 5 PM · $10 after",
+      "starts_at": "2026-12-19T00:00:00.000Z",
+      "ends_at": "2026-12-19T06:00:00.000Z",
       "signup_url": "https://sportsgardendfw.com/open-play/",
       "signup_label": "Drop in · court calendar",
       "note": "First come, first served; courts not guaranteed. Check the court calendar before you go.",
