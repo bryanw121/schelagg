@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T16:23:37.313Z",
+  "generatedAt": "2026-11-20T16:37:17.616Z",
   "region": {
     "id": "austin",
     "name": "Austin, TX",
@@ -17,7 +17,7 @@
       "kind": "OpenPlay club directory",
       "site": "https://openplaymap.com/open-play/austin",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:17.639Z",
+      "checkedAt": "2026-11-20T16:34:22.089Z",
       "count": 275
     },
     {
@@ -30,7 +30,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/austinpicklehaus",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:17.639Z",
+      "checkedAt": "2026-11-20T16:34:22.090Z",
       "count": 163
     },
     {
@@ -43,7 +43,7 @@
       "kind": "OpenCourt booking calendar",
       "site": "https://app.getopencourt.com/club/holy-pickle",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:17.642Z",
+      "checkedAt": "2026-11-20T16:34:22.090Z",
       "count": 0
     },
     {
@@ -56,7 +56,7 @@
       "kind": "Venue's schedule page",
       "site": "https://app.arketa.co/iframe/volleyworld/schedule",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:17.642Z",
+      "checkedAt": "2026-11-20T16:34:22.090Z",
       "count": 11
     },
     {
@@ -69,7 +69,7 @@
       "kind": null,
       "site": "https://acesintexas.com",
       "ok": false,
-      "checkedAt": "2026-11-20T16:20:17.644Z",
+      "checkedAt": "2026-11-20T16:34:22.092Z",
       "failingSince": "2026-11-15T16:13:17.929Z",
       "error": "the home runner has not reported yet (data/offsite is empty)",
       "kept": 0
@@ -84,7 +84,7 @@
       "kind": "Venue's schedule page",
       "site": "https://goteamup.com/w9142954/p/9142954-atx-beach/memberships/223927/",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:17.644Z",
+      "checkedAt": "2026-11-20T16:34:22.092Z",
       "count": 2
     },
     {
@@ -97,7 +97,7 @@
       "kind": "Venue's schedule page",
       "site": "https://www.austinvelocity.com",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:17.688Z",
+      "checkedAt": "2026-11-20T16:34:22.121Z",
       "count": 1
     },
     {
@@ -124,7 +124,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:18.038Z",
+      "checkedAt": "2026-11-20T16:34:23.170Z",
       "count": 5,
       "warnings": [
         "https://reclub.co/m/V4DO6Q: HTTP 403"
@@ -154,7 +154,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:19.190Z",
+      "checkedAt": "2026-11-20T16:34:23.282Z",
       "count": 4
     },
     {
@@ -173,7 +173,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:19.377Z",
+      "checkedAt": "2026-11-20T16:34:24.383Z",
       "count": 2
     },
     {
@@ -192,7 +192,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:20.482Z",
+      "checkedAt": "2026-11-20T16:34:25.009Z",
       "count": 2
     },
     {
@@ -211,7 +211,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:20.842Z",
+      "checkedAt": "2026-11-20T16:34:25.518Z",
       "count": 10
     },
     {
@@ -222,9 +222,9 @@
       "cadence": "30m",
       "adapter": "daysmart",
       "kind": "Rink schedule (DaySmart)",
-      "site": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
+      "site": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start={date}&end={date}&event_type={eventType}",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:20.995Z",
+      "checkedAt": "2026-11-20T16:34:26.277Z",
       "count": 37
     },
     {
@@ -237,7 +237,7 @@
       "kind": "Rink schedule (DaySmart)",
       "site": "https://iceandfield.com/public-skating/",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:21.761Z",
+      "checkedAt": "2026-11-20T16:34:26.385Z",
       "count": 24
     },
     {
@@ -250,7 +250,7 @@
       "kind": "City parks schedule",
       "site": "https://www.austintexas.gov/parks/alamo-recreation-center",
       "ok": true,
-      "checkedAt": "2026-11-20T16:20:23.279Z",
+      "checkedAt": "2026-11-20T16:34:28.472Z",
       "count": 10
     },
     {
@@ -263,7 +263,7 @@
       "kind": "City parks schedule",
       "site": "https://parks.georgetown.org/?p=18244",
       "ok": false,
-      "checkedAt": "2026-11-20T16:20:23.659Z",
+      "checkedAt": "2026-11-20T16:34:30.503Z",
       "failingSince": "2026-11-15T16:13:18.374Z",
       "error": "fetch failed",
       "kept": 0
@@ -278,7 +278,7 @@
       "kind": "City parks schedule",
       "site": "https://www.leandertx.gov/981/Leander-Activity-Center",
       "ok": false,
-      "checkedAt": "2026-11-20T16:20:23.722Z",
+      "checkedAt": "2026-11-20T16:34:30.589Z",
       "failingSince": "2026-11-15T16:13:18.419Z",
       "error": "Official pickleball page: HTTP 403",
       "kept": 0
@@ -11922,7 +11922,7 @@
       "spotsLeft": 10,
       "classId": "YOJLXlWMpErFyjeBDCRC",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/YOJLXlWMpErFyjeBDCRC",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -11949,7 +11949,7 @@
       "spotsLeft": 11,
       "classId": "W6xDL2JDLao1KpCmYtR4",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/W6xDL2JDLao1KpCmYtR4",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -11976,7 +11976,7 @@
       "spotsLeft": 12,
       "classId": "X8uBzX7ugoqaMpEhkln1",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/X8uBzX7ugoqaMpEhkln1",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12003,7 +12003,7 @@
       "spotsLeft": 48,
       "classId": "jwsIOTSUhPNCVbVn9W1t",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/jwsIOTSUhPNCVbVn9W1t",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12030,7 +12030,7 @@
       "spotsLeft": 12,
       "classId": "yBZ0ECI6hTdMdNNvuJK8",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/yBZ0ECI6hTdMdNNvuJK8",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12057,7 +12057,7 @@
       "spotsLeft": 12,
       "classId": "0zD6ABd2zL9E99328O1e",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/0zD6ABd2zL9E99328O1e",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12084,7 +12084,7 @@
       "spotsLeft": 12,
       "classId": "7QVJQsJxRhFELnph4mQ0",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/7QVJQsJxRhFELnph4mQ0",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12111,7 +12111,7 @@
       "spotsLeft": 12,
       "classId": "HsC3YVePlHnhiYQOtlZa",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/HsC3YVePlHnhiYQOtlZa",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12138,7 +12138,7 @@
       "spotsLeft": 12,
       "classId": "b9lCm7R2yCbxFZWkEfYx",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/b9lCm7R2yCbxFZWkEfYx",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12165,7 +12165,7 @@
       "spotsLeft": 12,
       "classId": "Vx1ti2xx9Ns2emFR66rY",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/Vx1ti2xx9Ns2emFR66rY",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12192,7 +12192,7 @@
       "spotsLeft": 48,
       "classId": "OcjuQbW49GBdsCWr2dxU",
       "signup": {
-        "url": "https://app.arketa.co/iframe/volleyworld/schedule",
+        "url": "https://app.arketa.co/volleyworld/checkout/OcjuQbW49GBdsCWr2dxU",
         "label": "Book on Volleyworld"
       },
       "source": "https://app.arketa.co/iframe/volleyworld/schedule",
@@ -12911,8 +12911,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-20&end=2026-11-20&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -12937,8 +12937,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-20&end=2026-11-20&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -12963,8 +12963,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-20&end=2026-11-20&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -12989,8 +12989,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-21&end=2026-11-21&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13015,8 +13015,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-22&end=2026-11-22&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13041,8 +13041,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-23&end=2026-11-23&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13067,8 +13067,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-23&end=2026-11-23&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13093,8 +13093,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-23&end=2026-11-23&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13119,8 +13119,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-24&end=2026-11-24&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13145,8 +13145,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-24&end=2026-11-24&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13171,8 +13171,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-24&end=2026-11-24&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13197,8 +13197,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-24&end=2026-11-24&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13223,8 +13223,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-25&end=2026-11-25&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13249,8 +13249,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-25&end=2026-11-25&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13275,8 +13275,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-25&end=2026-11-25&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13301,8 +13301,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-27&end=2026-11-27&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13327,8 +13327,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-27&end=2026-11-27&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13353,8 +13353,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-27&end=2026-11-27&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13379,8 +13379,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-27&end=2026-11-27&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13405,8 +13405,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-28&end=2026-11-28&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13431,8 +13431,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-28&end=2026-11-28&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13457,8 +13457,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-29&end=2026-11-29&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13483,8 +13483,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-29&end=2026-11-29&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13509,8 +13509,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-30&end=2026-11-30&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13535,8 +13535,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-30&end=2026-11-30&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13561,8 +13561,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-30&end=2026-11-30&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13587,8 +13587,8 @@
       "price": null,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-30&end=2026-11-30&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13614,8 +13614,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-01&end=2026-12-01&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13641,8 +13641,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-01&end=2026-12-01&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13668,8 +13668,8 @@
       "capacity": 100,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-02&end=2026-12-02&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13695,8 +13695,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-02&end=2026-12-02&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13722,8 +13722,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-02&end=2026-12-02&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13749,8 +13749,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-03&end=2026-12-03&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13776,8 +13776,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-03&end=2026-12-03&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13803,8 +13803,8 @@
       "capacity": 100,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-04&end=2026-12-04&event_type=13",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13830,8 +13830,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-04&end=2026-12-04&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
@@ -13857,8 +13857,8 @@
       "capacity": 200,
       "note": "No reservation needed. Skate rental at the rink.",
       "signup": {
-        "url": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
-        "label": "Rink calendar"
+        "url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-12-04&end=2026-12-04&event_type=6",
+        "label": "Rink calendar for this day"
       },
       "source": "https://apps.daysmartrecreation.com/dash/x/#/online/chaparralice/calendar?location=1",
       "sourceId": "chaparral-ice",
