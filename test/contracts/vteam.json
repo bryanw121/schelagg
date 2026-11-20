@@ -1,0 +1,30 @@
+{
+  "_doc": "What vteam's imports read from our public feeds (public.ingest_schelagg_feed() and public.ingest_schelagg_programs() in vteam's database; keys read from their live definitions on Nov 20, 2026). test/contract.test.mjs checks every feed row against it. Adding keys to a feed is always fine. Removing or renaming a key listed here, or changing its type, breaks vteam: bump that feed's FEED_VERSION, change 'feedVersion' here with it, and tell vteam first. Types: string, number, boolean, object, array; a trailing ? also allows null or a missing key; 'date' is YYYY-MM-DD, 'instant' an ISO time with a zone.",
+  "occurrences": {
+    "file": "public/data/occurrences.json",
+    "feedVersion": 1,
+    "top": { "feedVersion": "number", "generatedAt": "instant", "occurrences": "array" },
+    "row": {
+      "id": "string", "source_id": "string", "sport": "string", "region": "string", "title": "string", "venue": "string",
+      "city": "string?", "level": "string?", "price": "string?",
+      "starts_at": "instant", "ends_at": "instant?",
+      "signup_url": "string?", "signup_label": "string?", "note": "string?",
+      "canceled": "boolean", "verified_at": "date?", "attributes": "object"
+    },
+    "attributes": { "surface": "string?", "type": "string?" }
+  },
+  "programs": {
+    "file": "public/data/programs.json",
+    "feedVersion": 1,
+    "top": { "feedVersion": "number", "generatedAt": "instant", "programs": "array" },
+    "row": {
+      "id": "string", "kind": "string", "sport": "string", "org": "string", "title": "string", "source_id": "string",
+      "region": "string?", "state": "string?", "city": "string?", "venue": "string?", "address": "string?",
+      "lat": "number?", "lng": "number?", "surface": "string?", "format": "string?", "series": "string?", "status": "string?",
+      "starts_on": "date?", "ends_on": "date?", "registration_opens": "date?", "registration_deadline": "date?", "waitlist_on": "date?",
+      "price_changes_on": "date?", "price_note": "string?", "team_price": "string?", "individual_price": "string?",
+      "weekdays": "array?", "divisions": "array?",
+      "signup_url": "string?", "source_url": "string?", "checked_at": "instant?"
+    }
+  }
+}
