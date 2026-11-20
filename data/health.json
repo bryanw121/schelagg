@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         267,
-        267,
         264,
         278,
         278,
@@ -11,13 +10,14 @@
         275,
         275,
         275,
-        275
+        275,
+        270
       ],
-      "sessions": 275,
+      "sessions": 270,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.68,
+        "level": 0.67,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -30,8 +30,8 @@
     "austin-picklehaus": {
       "counts": [
         158,
-        158,
         157,
+        163,
         163,
         163,
         163,
@@ -58,7 +58,7 @@
       "counts": [
         1,
         1,
-        1,
+        0,
         0,
         0,
         0,
@@ -74,7 +74,7 @@
       "counts": [
         10,
         10,
-        10,
+        11,
         11,
         11,
         11,
@@ -155,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 875
+      "failStreak": 876
     },
     "atxbeach": {
       "counts": [
@@ -217,7 +217,7 @@
       "counts": [
         6,
         6,
-        6,
+        5,
         5,
         5,
         5,
@@ -257,6 +257,7 @@
         "feeCurrency",
         "feeType",
         "flags",
+        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -353,16 +354,16 @@
       "counts": [
         3,
         3,
-        3,
         4,
         4,
         4,
         4,
         4,
         4,
-        4
+        4,
+        3
       ],
-      "sessions": 4,
+      "sessions": 3,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -761,7 +762,7 @@
       "counts": [
         36,
         36,
-        36,
+        37,
         37,
         37,
         37,
@@ -932,13 +933,14 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 584
+      "failStreak": 585
     },
     "leander-pickleball": {
-      "failStreak": 584
+      "failStreak": 585
     },
     "dallas-reclub": {
       "counts": [
+        0,
         0,
         0,
         0,
@@ -1077,11 +1079,11 @@
     },
     "houston-reclub": {
       "counts": [
-        23,
         25,
         24,
         24,
         24,
+        23,
         23,
         23,
         23,
@@ -1253,7 +1255,7 @@
         12,
         12,
         12,
-        12,
+        15,
         15,
         15
       ],

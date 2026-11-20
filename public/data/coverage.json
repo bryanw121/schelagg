@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-20T18:16:34.849Z",
+ "generatedAt": "2026-11-20T21:50:41.629Z",
  "regions": [
   {
    "id": "austin",
@@ -57,7 +57,7 @@
      "venue": "Pickle Pit Stop",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 99,
+     "sessions": 97,
      "pinned": true,
      "booking": true,
      "via": [
@@ -69,7 +69,7 @@
      "venue": "Austin Pickle Ranch",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 92,
+     "sessions": 90,
      "pinned": true,
      "booking": true,
      "via": [
@@ -81,7 +81,7 @@
      "venue": "Eastside Paddle Club",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 84,
+     "sessions": 83,
      "pinned": true,
      "booking": true,
      "via": [
@@ -140,20 +140,6 @@
      "lead": false
     },
     {
-     "venue": "ATX Beach",
-     "city": "North Austin",
-     "sport": "volleyball",
-     "sessions": 7,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "atxbeach",
-      "manual",
-      "sweatpals"
-     ],
-     "lead": false
-    },
-    {
      "venue": "Volleyworld (Georgetown)",
      "city": "Georgetown",
      "sport": "volleyball",
@@ -162,6 +148,20 @@
      "booking": false,
      "via": [
       "volleyworld"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "ATX Beach",
+     "city": "North Austin",
+     "sport": "volleyball",
+     "sessions": 6,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "atxbeach",
+      "manual",
+      "sweatpals"
      ],
      "lead": false
     },
