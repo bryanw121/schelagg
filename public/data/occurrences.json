@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-20T17:17:17.431Z",
+  "generatedAt": "2026-11-20T18:16:33.006Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -15502,7 +15502,7 @@
       "city": "N. Austin (Northcross)",
       "level": null,
       "price": null,
-      "starts_at": "2026-11-29T20:30:00.000Z",
+      "starts_at": "2026-11-29T20:45:00.000Z",
       "ends_at": "2026-11-29T23:30:00.000Z",
       "signup_url": "https://apps.daysmartrecreation.com/dash/x/chaparralice/calendar?location=1&start=2026-11-29&end=2026-11-29&event_type=6",
       "signup_label": "Rink calendar for this day",
@@ -15515,8 +15515,8 @@
         "rink": "Northcross Rink"
       },
       "venue_id": "chaparral-northcross",
-      "status": "scheduled",
-      "previous_starts_at": null
+      "status": "rescheduled",
+      "previous_starts_at": "2026-11-29T20:30:00.000Z"
     },
     {
       "id": "four-seasons-ice-rodeo-2026-11-29",
