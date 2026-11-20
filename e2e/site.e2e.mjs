@@ -289,6 +289,13 @@ test('site: today\'s schedule renders in Austin time with freshness labels and s
   assert.equal(await pill('Morning Adult Training'), 'Verified today');
   assert.equal(await pill('Afternoon Sand Open Play'), 'Happening now');
   assert.equal(await pill('Sunday Coed Net Volleyball'), "Couldn't recheck"); // source failed: kept from last run
+  // …and the card says so, with when it was last confirmed and the source one tap away (#46).
+  const unsure = row('Sunday Coed Net Volleyball');
+  assert.match(await unsure.getAttribute('class'), /\bunsure\b/);
+  assert.equal(await unsure.locator('.recheck-note').textContent(), "Its source couldn't be read just now. Last confirmed earlier today. Check the source ↗");
+  assert.equal(await unsure.locator('.recheck-note a').getAttribute('href'), `${SIGNUP}/reclub`);
+  assert.doesNotMatch(await row('Evening Indoor Open Gym').getAttribute('class'), /\bunsure\b/);
+  assert.equal(await row('Evening Indoor Open Gym').locator('.recheck-note').count(), 0);
   assert.equal(await pill('Sunday Sand Social'), 'Source changed'); // hand-checked page changed
   assert.match(await row('Morning Adult Training').getAttribute('class'), /\bpast\b/);
 
