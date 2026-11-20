@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T14:16:31.930Z",
+  "generatedAt": "2026-11-20T16:23:37.313Z",
   "region": {
     "id": "dallas",
     "name": "Dallas–Fort Worth, TX",
@@ -26,11 +26,12 @@
           "url": "https://reclub.co/clubs/@recreational-dfw-dallas-texas-usa-18"
         }
       ],
-      "ok": false,
-      "checkedAt": "2026-11-20T14:13:35.856Z",
-      "failingSince": "2026-11-15T16:13:18.552Z",
-      "error": "No Reclub meets found",
-      "kept": 0
+      "ok": true,
+      "checkedAt": "2026-11-20T16:20:23.823Z",
+      "count": 0,
+      "warnings": [
+        "No upcoming Reclub meets on any club page"
+      ]
     },
     {
       "id": "sportsgarden",
@@ -42,7 +43,7 @@
       "kind": "Venue's open-play hours page",
       "site": "https://sportsgardendfw.com/open-play/",
       "ok": true,
-      "checkedAt": "2026-11-20T04:03:16.681Z",
+      "checkedAt": "2026-11-20T16:20:25.525Z",
       "count": 4
     },
     {
@@ -54,11 +55,12 @@
       "adapter": "foro",
       "kind": "Venue's open-play hours page",
       "site": "https://www.forosportsclub.com/fridayopenplay",
-      "ok": false,
-      "checkedAt": "2026-11-20T14:13:36.420Z",
-      "failingSince": "2026-11-16T21:43:44.266Z",
-      "error": "FORO volleyball open-play hours not found — page may have changed",
-      "kept": 2
+      "ok": true,
+      "checkedAt": "2026-11-20T16:20:25.766Z",
+      "count": 0,
+      "warnings": [
+        "FORO lists open play as \"coming soon\": no volleyball open play to show until it returns."
+      ]
     },
     {
       "id": "dfw-city-active",
@@ -70,7 +72,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-20T04:03:17.809Z",
+      "checkedAt": "2026-11-20T16:20:26.160Z",
       "count": 5
     },
     {
@@ -83,7 +85,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/fort-worth-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-20T04:03:20.276Z",
+      "checkedAt": "2026-11-20T16:20:30.126Z",
       "count": 7
     },
     {
@@ -110,7 +112,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T09:57:51.024Z",
+      "checkedAt": "2026-11-20T16:20:32.674Z",
       "count": 14,
       "warnings": [
         "venue \"Intentional Sports\" isn't in its region's venues.json"
@@ -147,7 +149,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -176,7 +178,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -205,7 +207,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "sports-garden",
       "status": "scheduled"
     },
@@ -238,70 +240,8 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "sports-garden",
-      "status": "scheduled"
-    },
-    {
-      "id": "foro-mon-0830",
-      "days": [
-        "Mon",
-        "Tue",
-        "Wed",
-        "Thu"
-      ],
-      "start": "08:30",
-      "end": "24:00",
-      "title": "Sand volleyball open play",
-      "venue": "FORO Sports Club",
-      "city": "Dallas",
-      "surface": "sand",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$10",
-      "note": "Register ahead; limited space, subject to availability.",
-      "signup": {
-        "url": "https://www.forosportsclub.com/fridayopenplay",
-        "label": "Register on FORO"
-      },
-      "source": "https://www.forosportsclub.com/fridayopenplay",
-      "sourceId": "foro",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "foro",
-      "checkFailed": "2026-11-20",
-      "status": "scheduled"
-    },
-    {
-      "id": "foro-sat-1000",
-      "days": [
-        "Sat",
-        "Sun"
-      ],
-      "start": "10:00",
-      "end": "20:00",
-      "title": "Sand volleyball open play",
-      "venue": "FORO Sports Club",
-      "city": "Dallas",
-      "surface": "sand",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$10",
-      "note": "Register ahead; limited space, subject to availability.",
-      "signup": {
-        "url": "https://www.forosportsclub.com/fridayopenplay",
-        "label": "Register on FORO"
-      },
-      "source": "https://www.forosportsclub.com/fridayopenplay",
-      "sourceId": "foro",
-      "sport": "volleyball",
-      "region": "dallas",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-15",
-      "venueId": "foro",
-      "checkFailed": "2026-11-20",
       "status": "scheduled"
     },
     {
@@ -330,7 +270,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "fw-riverside",
       "status": "scheduled"
     },
@@ -360,7 +300,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "fw-worth-heights",
       "status": "scheduled"
     },
@@ -393,7 +333,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-greenbriar-community-center",
       "status": "scheduled"
     },
@@ -423,7 +363,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
@@ -453,7 +393,7 @@
       "sport": "volleyball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-southwest-community-center",
       "status": "scheduled"
     },
@@ -487,7 +427,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-northside-community-center",
       "status": "scheduled"
     },
@@ -517,7 +457,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "fw-riverside",
       "status": "scheduled"
     },
@@ -550,7 +490,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
@@ -580,7 +520,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-victory-forest-community-center",
       "status": "scheduled"
     },
@@ -612,7 +552,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-martin-luther-king-community-center",
       "status": "scheduled"
     },
@@ -642,7 +582,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-r-d-evans-community-center",
       "status": "scheduled"
     },
@@ -673,7 +613,7 @@
       "sport": "pickleball",
       "region": "dallas",
       "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-19",
+      "verifiedAt": "2026-11-20",
       "venueId": "src-handley-meadowbrook-community-center",
       "status": "scheduled"
     },
@@ -1106,15 +1046,6 @@
       "region": "dallas"
     },
     {
-      "id": "src-usspt",
-      "name": "USSPT",
-      "city": "Lewisville",
-      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
-      "lat": 33.06454,
-      "lng": -97.005745,
-      "region": "dallas"
-    },
-    {
       "id": "src-greenbriar-community-center",
       "name": "Greenbriar Community Center",
       "city": "Fort Worth",
@@ -1175,6 +1106,15 @@
       "address": "6201 Beaty Street, Fort Worth, TX, 76112",
       "lat": 32.73961,
       "lng": -97.22325,
+      "region": "dallas"
+    },
+    {
+      "id": "src-usspt",
+      "name": "USSPT",
+      "city": "Lewisville",
+      "address": "1501 Fairway Dr suite 200, Lewisville, TX",
+      "lat": 33.06454,
+      "lng": -97.005745,
       "region": "dallas"
     }
   ]
