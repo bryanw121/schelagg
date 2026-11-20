@@ -22,7 +22,7 @@ concurrency:
 jobs:
   scrape:
     # Only this repo's own schedule/dispatch can land here; fork PRs never run on the home runner.
-    if: github.repository == 'bryanw121/schelagg'
+    if: github.repository_owner == 'bryanw121'
     runs-on: [self-hosted, schelagg-home]
     timeout-minutes: 15
     steps:

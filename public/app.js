@@ -14,9 +14,8 @@ import { googleCalendarUrl, icsFile, icsName, visitItem } from './calendar.js';
 import { EVENT_ICONS, eventIcon, SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
 import { placeGroups } from './events-ui.js';
 import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
-// The site's own address (skellyevents.com, *.vercel.app) serves the pages; the data and map files
-// are published on GitHub Pages. Only Pages itself and a local copy have them next to the page.
-const OFF_PAGES = !/(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+import { pagesBase } from './pages.js';
+const PAGES = await pagesBase(); // '' next to the page, or the GitHub Pages address that answers (public/pages.js)
 
 // Each sport's filter tabs (`by`: the session field they filter on, `tabs`: its values, labels and
 // colors; none for a sport that doesn't need them), the glance chart's heading, and whether it has
@@ -1391,7 +1390,7 @@ const unfold = () => {
 // directions. The map (public/maps/<region>.pmtiles, cut by scripts/build-maps.mjs) and its libraries
 // (public/vendor/map) load only when someone opens Map. Without WebGL or a map for the region, the
 // Map button doesn't appear and the list stays.
-const MAPS = OFF_PAGES ? 'https://bryanw121.github.io/schelagg/maps/' : 'maps/';
+const MAPS = `${PAGES}maps/`;
 const webgl = (() => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; } })();
 let maps = null; // maps.json: which regions have a map
 let mapPick = null; // the venue whose day is shown under the map
@@ -2088,7 +2087,7 @@ $('showAll').addEventListener('change', (e) => { state.showAll = e.target.checke
 // The scrape publishes data files to GitHub Pages only (the data branch); the copy Vercel
 // bundles from main goes stale. So the Vercel-hosted page reads them from Pages (which allows
 // cross-origin reads). Pages itself and local server.js use their own data/ folder.
-const DATA = OFF_PAGES ? 'https://bryanw121.github.io/schelagg/data/' : 'data/';
+const DATA = `${PAGES}data/`;
 
 async function getJson(url) { const r = await fetch(url, { cache: 'no-cache' }); if (!r.ok) throw new Error(`${url}: HTTP ${r.status}`); return r.json(); }
 /** Where this region's files are; data/ itself when there's no index (data published before regions). */
