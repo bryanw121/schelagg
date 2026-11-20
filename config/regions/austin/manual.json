@@ -285,6 +285,89 @@
         "label": "Timed tickets"
       },
       "source": "https://www.fourseasons.com/austin/seasonal/winter/"
+    },
+    {
+      "id": "long-center-ice-weekdays",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri"
+      ],
+      "start": "15:00",
+      "end": "22:00",
+      "title": "Ice Rink at the Long Center",
+      "venue": "Long Center",
+      "city": "Downtown",
+      "price": "$25–$33 · skates incl.",
+      "startsOn": "2026-11-21",
+      "validUntil": "2027-01-04",
+      "note": "Seasonal outdoor rink on the Long Center terrace. Holidays open 10am–10pm. Riverside Dr is closed for construction: park in the PEC garage off Barton Springs Rd.",
+      "signup": {
+        "url": "https://my.thelongcenter.org/4480",
+        "label": "Tickets"
+      },
+      "source": "https://thelongcenter.org/icerink/",
+      "sport": "ice_skating",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "long-center-ice-weekends",
+      "days": [
+        "Sat",
+        "Sun"
+      ],
+      "start": "10:00",
+      "end": "22:00",
+      "title": "Ice Rink at the Long Center",
+      "venue": "Long Center",
+      "city": "Downtown",
+      "price": "$25–$33 · skates incl.",
+      "startsOn": "2026-11-21",
+      "validUntil": "2027-01-04",
+      "note": "Seasonal outdoor rink on the Long Center terrace. Holidays open 10am–10pm. Riverside Dr is closed for construction: park in the PEC garage off Barton Springs Rd.",
+      "signup": {
+        "url": "https://my.thelongcenter.org/4480",
+        "label": "Tickets"
+      },
+      "source": "https://thelongcenter.org/icerink/",
+      "sport": "ice_skating",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "verifiedAt": "2026-11-20"
+    },
+    {
+      "id": "western-wonderland-ice",
+      "days": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "start": "11:00",
+      "end": "21:00",
+      "title": "Western Wonderland ice rink",
+      "venue": "Western Wonderland",
+      "city": "Dripping Springs",
+      "price": "$16 · skates incl.",
+      "startsOn": "2026-11-28",
+      "validUntil": "2027-01-04",
+      "note": "Seasonal outdoor rink at Dripping Springs Ranch Park. Closed Christmas Day; closes at 6pm Christmas Eve, New Year’s Eve and New Year’s Day. Spectators free.",
+      "signup": {
+        "url": "https://www.drippingspringsranchpark.com/510/Ice-Skating",
+        "label": "Tickets & hours"
+      },
+      "source": "https://www.drippingspringsranchpark.com/510/Ice-Skating",
+      "sport": "ice_skating",
+      "surface": "outdoor",
+      "type": "Public skate",
+      "verifiedAt": "2026-11-20"
     }
   ]
 }
