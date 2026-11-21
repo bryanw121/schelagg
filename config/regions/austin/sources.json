@@ -541,6 +541,8 @@
       "id": "leander-pickleball",
       "name": "Leander Parks pickleball",
       "adapter": "official-schedule",
+      "runsAt": "home",
+      "_runsAt": "Leander's site (Cloudflare) answers GitHub's servers with 403, so the home runner scrapes it (#53)",
       "sport": "pickleball",
       "cadence": "1d",
       "options": {
