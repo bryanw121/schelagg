@@ -25,11 +25,11 @@ jobs:
     if: github.repository_owner == 'bryanw121'
     runs-on: [self-hosted, schelagg-home]
     timeout-minutes: 15
-    # The home runner is Windows, where PowerShell's default script policy blocks npm.ps1:
-    # run every step in cmd (bash on macOS/Linux runners) instead.
+    # The home runner is a Windows laptop, where PowerShell's default script policy blocks
+    # npm.ps1: run every step in cmd instead. (A macOS/Linux home runner would need bash here.)
     defaults:
       run:
-        shell: ${{ runner.os == 'Windows' && 'cmd' || 'bash' }}
+        shell: cmd
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
