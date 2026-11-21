@@ -4,12 +4,12 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { loadEnv } from '../lib/paths.js';
-import { loadSources } from '../lib/registry.js';
+import { activeSources, loadSources } from '../lib/registry.js';
 import { HOME, offsiteFile } from '../lib/offsite.js';
 import { today } from '../lib/time.js';
 
 loadEnv();
-const home = loadSources().sources.filter((s) => s.runsAt === HOME);
+const home = activeSources(loadSources().sources).filter((s) => s.runsAt === HOME);
 if (!home.length) { console.log('No sources run at home.'); process.exit(0); }
 
 const browser = home.some((s) => s.adapter.needsBrowser !== false)
