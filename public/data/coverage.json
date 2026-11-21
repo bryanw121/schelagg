@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-21T05:28:46.010Z",
+ "generatedAt": "2026-11-21T09:44:22.082Z",
  "regions": [
   {
    "id": "austin",
@@ -33,7 +33,7 @@
      "venue": "Austin PickleHaus",
      "city": "Pflugerville",
      "sport": "pickleball",
-     "sessions": 161,
+     "sessions": 153,
      "pinned": true,
      "booking": true,
      "via": [
@@ -45,7 +45,7 @@
      "venue": "Pickle Pit Stop",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 92,
+     "sessions": 99,
      "pinned": true,
      "booking": true,
      "via": [
@@ -57,7 +57,7 @@
      "venue": "Eastside Paddle Club",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 80,
+     "sessions": 84,
      "pinned": true,
      "booking": true,
      "via": [
@@ -69,7 +69,7 @@
      "venue": "Austin Pickle Ranch",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 74,
+     "sessions": 79,
      "pinned": true,
      "booking": true,
      "via": [
@@ -81,7 +81,7 @@
      "venue": "Chaparral Ice",
      "city": "N. Austin (Northcross)",
      "sport": "ice_skating",
-     "sessions": 37,
+     "sessions": 35,
      "pinned": true,
      "booking": false,
      "via": [
@@ -128,18 +128,6 @@
      "lead": false
     },
     {
-     "venue": "Volleyworld (Georgetown)",
-     "city": "Georgetown",
-     "sport": "volleyball",
-     "sessions": 7,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "volleyworld"
-     ],
-     "lead": false
-    },
-    {
      "venue": "ATX Beach",
      "city": "North Austin",
      "sport": "volleyball",
@@ -154,6 +142,18 @@
      "lead": false
     },
     {
+     "venue": "Volleyworld (Georgetown)",
+     "city": "Georgetown",
+     "sport": "volleyball",
+     "sessions": 6,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "volleyworld"
+     ],
+     "lead": false
+    },
+    {
      "venue": "Bee Cave on Ice",
      "city": "Bee Cave",
      "sport": "ice_skating",
@@ -162,18 +162,6 @@
      "booking": false,
      "via": [
       "manual"
-     ],
-     "lead": false
-    },
-    {
-     "venue": "George Morales Dove Springs Recreation Center",
-     "city": "Austin",
-     "sport": "pickleball",
-     "sessions": 3,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "austin-city-pickleball"
      ],
      "lead": false
     },
@@ -198,6 +186,18 @@
      "booking": false,
      "via": [
       "volleyball-austin"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "George Morales Dove Springs Recreation Center",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 2,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "austin-city-pickleball"
      ],
      "lead": false
     },
@@ -527,18 +527,6 @@
      "lead": true
     },
     {
-     "venue": "T4 Court Rentals",
-     "city": "",
-     "sport": "volleyball",
-     "sessions": 2,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "houston-reclub"
-     ],
-     "lead": true
-    },
-    {
      "venue": "Tellepsen Family Downtown YMCA",
      "city": "",
      "sport": "volleyball",
@@ -600,6 +588,18 @@
     },
     {
      "venue": "Skyline Volleyball Academy",
+     "city": "",
+     "sport": "volleyball",
+     "sessions": 1,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "houston-reclub"
+     ],
+     "lead": true
+    },
+    {
+     "venue": "T4 Court Rentals",
      "city": "",
      "sport": "volleyball",
      "sessions": 1,

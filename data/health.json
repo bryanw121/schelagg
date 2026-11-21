@@ -6,14 +6,14 @@
         275,
         275,
         275,
-        275,
         270,
         266,
         265,
         250,
-        246
+        246,
+        262
       ],
-      "sessions": 246,
+      "sessions": 262,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -35,16 +35,16 @@
         163,
         163,
         163,
-        163,
         161,
         161,
-        161
+        161,
+        153
       ],
-      "sessions": 161,
+      "sessions": 153,
       "coverage": {
         "end": 1,
         "price": 1,
-        "level": 0.87,
+        "level": 0.88,
         "venue": 1,
         "city": 1,
         "surface": 1,
@@ -218,12 +218,12 @@
         5,
         5,
         5,
-        5,
         6,
         6,
-        6
+        6,
+        5
       ],
-      "sessions": 6,
+      "sessions": 5,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -350,7 +350,7 @@
         4,
         4,
         4,
-        4,
+        3,
         3,
         3,
         3,
@@ -762,9 +762,9 @@
         37,
         37,
         37,
-        37
+        35
       ],
-      "sessions": 37,
+      "sessions": 35,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -773,7 +773,7 @@
         "city": 1,
         "surface": 1,
         "type": 1,
-        "capacity": 0.27,
+        "capacity": 0.31,
         "spotsLeft": 0,
         "signup": 1
       },
@@ -926,10 +926,11 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 589
+      "failStreak": 590
     },
     "dallas-reclub": {
       "counts": [
+        0,
         0,
         0,
         0,
@@ -1072,7 +1073,6 @@
     },
     "houston-reclub": {
       "counts": [
-        24,
         23,
         23,
         23,
@@ -1081,12 +1081,13 @@
         23,
         25,
         23,
-        23
+        23,
+        22
       ],
-      "sessions": 23,
+      "sessions": 22,
       "coverage": {
         "end": 1,
-        "price": 0.61,
+        "price": 0.59,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1127,14 +1128,6 @@
         "isPast",
         "keywordSearch",
         "matchConfig",
-        "matchConfig.limitRounds",
-        "matchConfig.participantIds[]",
-        "matchConfig.prioritizeLeastMatches",
-        "matchConfig.rankingCriteria",
-        "matchConfig.scheme",
-        "matchConfig.sublocations[]",
-        "matchConfig.teamIds[]",
-        "matchConfig.totalSetPoints",
         "maxSportLevelValue",
         "minSportLevelId",
         "minSportLevelValue",
@@ -1145,7 +1138,6 @@
         "participants[]",
         "participants[].createdAt",
         "participants[].externalReference",
-        "participants[].externalReference.age",
         "participants[].externalReference.level",
         "participants[].externalReference.name",
         "participants[].id",
@@ -1251,7 +1243,7 @@
       "counts": [
         12,
         12,
-        12,
+        15,
         15,
         15,
         15,
@@ -1284,7 +1276,6 @@
     "houston-reclub:warning:reclub-230JCQ: no surface",
     "houston-reclub:warning:reclub-2BBFXM: no surface",
     "houston-reclub:warning:reclub-3YV72K: no surface",
-    "houston-reclub:warning:reclub-40RJ8U: no surface",
     "houston-reclub:warning:reclub-5E0DAN: no surface",
     "houston-reclub:warning:reclub-6TSHGM: no surface",
     "houston-reclub:warning:reclub-8SFAT2: no surface",
