@@ -4,13 +4,13 @@
       "counts": [
         275,
         275,
-        275,
         270,
         266,
         265,
         250,
         246,
         262,
+        264,
         264
       ],
       "sessions": 264,
@@ -33,10 +33,10 @@
         163,
         163,
         163,
-        163,
         161,
         161,
         161,
+        153,
         153,
         153
       ],
@@ -216,10 +216,10 @@
         5,
         5,
         5,
+        6,
+        6,
+        6,
         5,
-        6,
-        6,
-        6,
         5,
         5
       ],
@@ -348,7 +348,7 @@
         4,
         4,
         4,
-        4,
+        3,
         3,
         3,
         3,
@@ -760,7 +760,7 @@
         37,
         37,
         37,
-        37,
+        35,
         35,
         35
       ],
@@ -902,15 +902,15 @@
         13,
         13,
         13,
-        13,
         10,
         10,
         10,
         10,
         10,
-        10
+        10,
+        9
       ],
-      "sessions": 10,
+      "sessions": 9,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -926,7 +926,7 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 591
+      "failStreak": 592
     },
     "dallas-reclub": {
       "counts": [
@@ -978,7 +978,7 @@
         2,
         2,
         2,
-        2,
+        0,
         0,
         0,
         0,
@@ -1046,13 +1046,13 @@
     },
     "dallas-meetup": {
       "counts": [
+        14,
+        14,
+        14,
+        14,
+        14,
+        14,
         13,
-        14,
-        14,
-        14,
-        14,
-        14,
-        14,
         13,
         13,
         13
@@ -1077,10 +1077,10 @@
         23,
         23,
         23,
-        23,
         25,
         23,
         23,
+        22,
         22,
         22
       ],
@@ -1116,6 +1116,7 @@
         "feeType",
         "flags",
         "flags.GROUP_PROMOTED",
+        "flags.PROXIMITY_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -1241,7 +1242,7 @@
     },
     "manual": {
       "counts": [
-        12,
+        15,
         15,
         15,
         15,
@@ -1306,10 +1307,10 @@
     "manual:beecave-on-ice-sat:changed:2026-11-20",
     "manual:beecave-on-ice-sun:changed:2026-11-20",
     "manual:beecave-on-ice-tue:changed:2026-11-20",
-    "manual:four-seasons-ice-rodeo:changed:2026-11-20",
+    "manual:four-seasons-ice-rodeo:changed:2026-11-21",
     "manual:hanovers-open:changed:2026-11-18",
     "manual:hanovers-open:unverified",
-    "manual:ssc-crossover-mon-sand:changed:2026-11-20",
+    "manual:ssc-crossover-mon-sand:changed:2026-11-21",
     "manual:ssc-crossover-mon-sand:unverified",
     "reclub:warning:https://reclub.co/m/V4DO6Q: HTTP 403"
   ]
