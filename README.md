@@ -140,6 +140,12 @@ ran `npm test` and the site e2e.
 
 ### Home runner (sites that block cloud servers)
 
+> **Not in use (Nov 20, 2026).** A home runner was set up and tried: ACES and Leander answered 403
+> from a home connection too, so they block automated visitors, not just cloud servers. Both are
+> `"paused"` in `sources.json` (kept for their parsers and fixtures, never fetched; `activeSources`
+> in `lib/registry.js`), ACES's open plays are entered by hand, and `scrape-home.yml` has no
+> schedule. Skelly doesn't try to look like a person to get past a block.
+
 Some sites refuse every cloud provider's servers. ACES sits behind Cloudflare, which returns
 403 to GitHub's runners and to Vercel alike (#53). A source with `"runsAt": "home"` in its
 region's `sources.json` is scraped by `scrape-home.yml` on a self-hosted runner on a home

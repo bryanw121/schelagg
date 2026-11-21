@@ -8,8 +8,10 @@ name: Refresh home-only sources
 # If the computer is off, at most one run waits (the concurrency group drops older pending
 # runs) and the main refresh marks the source "Couldn't recheck" once the result is 3h old.
 on:
-  # Hourly, ahead of the :43 refresh. If the home computer is off, one run waits in the queue.
-  schedule: [{ cron: '23 * * * *' }]
+  # No schedule: no source runs at home today. ACES and Leander answered 403 from a home
+  # connection too (Nov 20, 2026), so they block automated visitors, not just cloud servers, and
+  # Skelly respects that. Add a schedule back only for a source that allows a home fetch:
+  #   schedule: [{ cron: '23 * * * *' }]   (hourly, ahead of the :43 refresh)
   workflow_dispatch:
 
 permissions:

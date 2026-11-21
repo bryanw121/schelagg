@@ -166,3 +166,14 @@ test('every canonical venue in every region has coordinates (#41): the map pins 
   const missing = loadRegions().flatMap((r) => r.venues.filter((v) => !Number.isFinite(v.lat) || !Number.isFinite(v.lng)).map((v) => `${r.info.id}/${v.id}`));
   assert.deepEqual(missing, [], 'look the address up (US Census geocoder, else OpenStreetMap) and add lat/lng');
 });
+
+test('paused sources keep their config but are not scraped', async () => {
+  const { activeSources, loadSources } = await import('../lib/registry.js');
+  const all = loadSources().sources;
+  const active = activeSources(all).map((s) => s.id);
+  for (const id of ['aces', 'leander-pickleball']) {
+    assert.ok(all.some((s) => s.id === id), `${id} is still configured`);
+    assert.ok(!active.includes(id), `${id} is paused`);
+  }
+  assert.equal(active.length, all.filter((s) => !s.paused).length);
+});
