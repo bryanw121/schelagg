@@ -1,6 +1,6 @@
 {
   "feedVersion": 1,
-  "generatedAt": "2026-11-20T22:16:51.807Z",
+  "generatedAt": "2026-11-21T02:16:45.941Z",
   "horizonDays": 28,
   "occurrences": [
     {
@@ -436,6 +436,33 @@
       "previous_starts_at": null
     },
     {
+      "id": "reclub-TCHJ1D",
+      "session_id": "reclub-TCHJ1D",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "YMCA Open Gym-1 court",
+      "venue": "Tellepsen Family Downtown YMCA",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-27T00:00:00.000Z",
+      "ends_at": "2026-11-27T02:30:00.000Z",
+      "signup_url": "https://reclub.co/m/TCHJ1D",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Houston Vball, every Thursday.",
+      "canceled": false,
+      "verified_at": "2026-11-20",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 10
+      },
+      "venue_id": "src-tellepsen-family-downtown-ymca",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
       "id": "reclub-Y1ZF0D",
       "session_id": "reclub-Y1ZF0D",
       "source_id": "houston-reclub",
@@ -459,6 +486,33 @@
         "capacity": 20
       },
       "venue_id": "src-champion-forest-baptist-church-champions-campus",
+      "status": "scheduled",
+      "previous_starts_at": null
+    },
+    {
+      "id": "reclub-VGIK6U",
+      "session_id": "reclub-VGIK6U",
+      "source_id": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "title": "Emancipation meet",
+      "venue": "Emancipation Park",
+      "city": null,
+      "level": "All levels",
+      "price": null,
+      "starts_at": "2026-11-28T00:00:00.000Z",
+      "ends_at": "2026-11-28T03:00:00.000Z",
+      "signup_url": "https://reclub.co/m/VGIK6U",
+      "signup_label": "Sign up on Reclub",
+      "note": "Hosted by Emancipation Park Indoor Volleyball, every Friday.",
+      "canceled": false,
+      "verified_at": "2026-11-20",
+      "attributes": {
+        "type": "Open play",
+        "capacity": 18
+      },
+      "venue_id": "src-emancipation-park",
       "status": "scheduled",
       "previous_starts_at": null
     },

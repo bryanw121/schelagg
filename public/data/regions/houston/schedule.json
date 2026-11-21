@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-20T22:16:51.807Z",
+  "generatedAt": "2026-11-21T02:16:45.941Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,13 +67,14 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-20T21:47:26.881Z",
-      "count": 23,
+      "checkedAt": "2026-11-21T02:13:40.309Z",
+      "count": 25,
       "warnings": [
         "reclub-3YV72K: no surface",
         "reclub-NJKPQA: no surface",
         "reclub-OKAE7P: no surface",
         "reclub-J533LP: no surface",
+        "reclub-TCHJ1D: no surface",
         "reclub-EEUP4M: no surface",
         "reclub-K9D10X: no surface",
         "reclub-MCRPQ4: no surface",
@@ -81,6 +82,7 @@
         "reclub-WQR08J: no surface",
         "reclub-Y2CRUB: no surface",
         "reclub-R9HE9A: no surface",
+        "reclub-VGIK6U: no surface",
         "reclub-8SFAT2: no surface",
         "reclub-JMV5QT: no surface",
         "reclub-Y1ZF0D: no surface",
@@ -118,7 +120,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-20T21:47:32.349Z",
+      "checkedAt": "2026-11-21T02:13:42.725Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -218,6 +220,31 @@
         "label": "Sign up on Reclub"
       },
       "source": "https://reclub.co/m/J533LP",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-20",
+      "venueId": "src-tellepsen-family-downtown-ymca",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-TCHJ1D",
+      "date": "2026-11-26",
+      "start": "18:00",
+      "end": "20:30",
+      "title": "YMCA Open Gym-1 court",
+      "venue": "Tellepsen Family Downtown YMCA",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by Houston Vball, every Thursday.",
+      "capacity": 10,
+      "signup": {
+        "url": "https://reclub.co/m/TCHJ1D",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/TCHJ1D",
       "sourceId": "houston-reclub",
       "sport": "volleyball",
       "region": "houston",
@@ -368,6 +395,31 @@
         "label": "Sign up on Reclub"
       },
       "source": "https://reclub.co/m/R9HE9A",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-20",
+      "venueId": "src-emancipation-park",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-VGIK6U",
+      "date": "2026-11-27",
+      "start": "18:00",
+      "end": "21:00",
+      "title": "Emancipation meet",
+      "venue": "Emancipation Park",
+      "type": "Open play",
+      "level": "All levels",
+      "price": null,
+      "note": "Hosted by Emancipation Park Indoor Volleyball, every Friday.",
+      "capacity": 18,
+      "signup": {
+        "url": "https://reclub.co/m/VGIK6U",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/VGIK6U",
       "sourceId": "houston-reclub",
       "sport": "volleyball",
       "region": "houston",
@@ -529,8 +581,8 @@
     {
       "id": "reclub-PY6UV1",
       "date": "2026-11-21",
-      "start": "16:00",
-      "end": "24:00",
+      "start": "14:30",
+      "end": "22:30",
       "title": "Saturday Open Play 4x4",
       "venue": "Houston Stars",
       "type": "Open play",
@@ -549,7 +601,8 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-20",
       "venueId": "src-houston-stars",
-      "status": "scheduled"
+      "status": "rescheduled",
+      "previousStart": "2026-11-21 16:00"
     },
     {
       "id": "reclub-XD4JXT",
