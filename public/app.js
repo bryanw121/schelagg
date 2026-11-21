@@ -1024,9 +1024,14 @@ const avatarImg = (x, size) => (avatarPath(x) ? `<img class="av" src="${DATA}${e
  * leads, one more may follow, each one tap from showing only that topic; an event with no topic
  * says its kind (Pop-up, Seasonal). Theme tags (Asian-inspired) close the line.
  */
-function eventKicker(ev) {
+/** An event's fact pills: a last chance ("Ends tomorrow"), Free, and its price (`price: false` leaves the price out). */
+function eventFacts(ev, { price = true } = {}) {
+  const last = lastChance(ev, NOW.iso), free = searchTags(ev).includes('free');
+  return [last ? `<span class="fact last">${esc(last)}</span>` : '', free ? '<span class="fact free">Free</span>' : '', price && ev.price && !(free && /^\s*free\s*$/i.test(ev.price)) ? `<span class="fact">${esc(ev.price)}</span>` : ''].join('');
+}
+function eventKicker(ev, { plain = false } = {}) {
   const topics = eventTopics(ev).slice(0, 2);
-  const btn = (t, i) => `<button type="button" class="kick${i ? ' more' : ''}" data-topic="${esc(t)}" aria-label="Show events tagged ${esc(searchTagLabel(t))}">${esc(searchTagLabel(t))}</button>`;
+  const btn = (t, i) => (plain ? `<span class="kick${i ? ' more' : ''}">${esc(searchTagLabel(t))}</span>` : `<button type="button" class="kick${i ? ' more' : ''}" data-topic="${esc(t)}" aria-label="Show events tagged ${esc(searchTagLabel(t))}">${esc(searchTagLabel(t))}</button>`);
   const parts = topics.length ? topics.map(btn) : eventKind(ev) ? [`<span class="kick">${esc(kindLabel(eventKind(ev)))}</span>`] : [];
   for (const g of eventTags(ev)) parts.push(`<span class="kick more">${esc(tagLabel(g))}</span>`);
   return parts.length ? `<div class="ev-kick ic-${eventIcon(ev, eventKind(ev))}">${parts.join('<span class="kick-dot" aria-hidden="true">·</span>')}</div>` : '';
@@ -1043,8 +1048,7 @@ function eventCard(ev) {
   const times = eventHours(ev);
   const via = ev.source ? `<span class="via">Found via ${esc(ev.source)}</span>` : '';
   const summary = eventSummary(ev);
-  const last = lastChance(ev, NOW.iso), free = searchTags(ev).includes('free');
-  const facts = [last ? `<span class="fact last">${esc(last)}</span>` : '', free ? '<span class="fact free">Free</span>' : '', ev.price && !(free && /^\s*free\s*$/i.test(ev.price)) ? `<span class="fact">${esc(ev.price)}</span>` : ''].join('');
+  const facts = eventFacts(ev);
   return `<article class="row ev-row${evLink === ev.id ? ' linked' : ''}" data-ev="${esc(ev.id ?? '')}">
     ${eventVisual(ev, 56)}
     <div class="time">${w.range ? `<small class="ev-top">${esc(w.dow)}</small>${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : `<small class="no-hrs">${esc(noHours(ev))}</small>`}</div>
@@ -1222,8 +1226,7 @@ function renderEvents() {
   $('footer').innerHTML = 'Each event links to its own page or post. Dates and prices change, so check it before you go.';
   const filtering = state.evKind !== 'all' || state.evTags.length > 0;
   const sortLabel = EVENT_SORTS.find((x) => x.id === state.evSort)?.label ?? 'Soonest';
-  // The map orders its places itself, so Sort shows with the list only.
-  $('eventCats').innerHTML = (state.layout === 'map' ? '' : `<button type="button" class="pill-btn chip-btn${state.evSort !== 'soonest' ? ' on' : ''}" data-sheet="sortSheet" aria-haspopup="dialog" aria-label="Sort: ${esc(sortLabel)}. Change">Sort: ${esc(sortLabel)} <span class="caret" aria-hidden="true">▾</span></button>`)
+  $('eventCats').innerHTML = (`<button type="button" class="pill-btn chip-btn${state.evSort !== 'soonest' ? ' on' : ''}" data-sheet="sortSheet" aria-haspopup="dialog" aria-label="Sort: ${esc(sortLabel)}. Change">Sort: ${esc(sortLabel)} <span class="caret" aria-hidden="true">▾</span></button>`)
     + `<button type="button" class="pill-btn chip-btn${filtering ? ' on' : ''}" data-sheet="eventsSheet" aria-haspopup="dialog">${esc(filterLabel())} <span class="caret" aria-hidden="true">▾</span></button>`
     + `<button type="button" class="pill-btn chip-btn${whenLabel() ? ' on' : ''}" data-sheet="whenSheet" aria-haspopup="dialog" id="whenBtn">${esc(whenLabel() || 'When')} <span class="caret" aria-hidden="true">▾</span></button>`
     + (navigator.geolocation ? `<button type="button" class="pill-btn chip-btn${here ? ' on' : ''}" data-evnear aria-pressed="${!!here}">Near me</button>` : '');
@@ -1588,9 +1591,16 @@ function eventsPanelHtml(places, pickId) {
     // when things are on rather than as one long run of places.
     const row = (x) => {
       const mi = placeMiles(x);
-      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}">${eventVisual(x.lead, 40, x)}<span class="pr-name">${esc(x.title)}${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}${!x.more && x.lead && eventHours(x.lead) ? ` · ${esc(eventHours(x.lead))}` : ''}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
+      const facts = x.lead ? eventFacts(x.lead, { price: false }) : '';
+      return `<li><button type="button" class="place-row${x.id === mapPick ? ' on' : ''}" data-pin="${esc(x.id)}" aria-pressed="${x.id === mapPick}">${eventVisual(x.lead, 40, x)}<span class="pr-name">${x.lead ? eventKicker(x.lead, { plain: true }) : ''}<span class="pr-title">${esc(x.title)}</span>${x.more ? ` <span class="pr-more">+${x.more} more</span>` : ''}<small class="pr-at">${esc([x.short || x.name, x.city, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span><span class="pr-status">${esc(x.status)}${!x.more && x.lead && eventHours(x.lead) ? ` · ${esc(eventHours(x.lead))}` : ''}${facts ? ` <span class="pr-facts">${facts}</span>` : ''}</span><span class="pr-go" aria-hidden="true">›</span></button></li>`;
     };
-    const groups = placeGroups(places, NOW.iso).map((g) => `<section class="place-group" data-group="${esc(g.key)}"><h3 class="ev-day">${esc(g.label)}<small>${esc(g.sub)}</small></h3><ul class="place-list">${g.places.map(row).join('')}</ul></section>`).join('');
+    // The Sort pill orders places too, by the event each is named for (Soonest keeps the map's order).
+    const pg = placeGroups(places, NOW.iso);
+    if (state.evSort !== 'soonest') {
+      const milesOf = (e) => { const x = places.find((q) => q.lead === e); return x ? placeMiles(x) : null; };
+      for (const g of pg) { const order = sortGroup(g.places.map((x) => x.lead), { sort: state.evSort, likes: state.evLikes, today: NOW.iso, milesOf }); g.places = order.map((e) => g.places.find((x) => x.lead === e)); g.sub = g.sub.replace(' · ending soonest first', ''); }
+    }
+    const groups = pg.map((g) => `<section class="place-group" data-group="${esc(g.key)}"><h3 class="ev-day">${esc(g.label)}<small>${esc(g.sub)}</small></h3><ul class="place-list">${g.places.map(row).join('')}</ul></section>`).join('');
     return `<p class="map-hint"><b>${places.length} place${places.length === 1 ? '' : 's'}</b> with events coming up. Tap one for its events.</p>${groups}`;
   }
   const mi = placeMiles(p), n = p.events.length;
@@ -1599,7 +1609,7 @@ function eventsPanelHtml(places, pickId) {
   const addr = [rest, ...eventPlaceParts(p.events[0]).slice(1)].filter(Boolean);
   const rows = p.events.map((ev) => {
     const w = eventWhen(ev, NOW.iso);
-    return `<div class="pop-item"><span class="pop-t">${w.range ? `${esc(w.dow)} ${esc(w.top)}<small>${esc(w.main)}</small>` : `${esc(w.top)} ${esc(w.main)}`}${eventHours(ev) ? `<small class="pop-hrs">${esc(eventHours(ev))}</small>` : ''}</span><span class="pop-w"><b>${esc(ev.title)}</b>${isOn(ev, NOW.iso) ? ' <span class="pill fresh">Happening now</span>' : ''}<small>${[eventHours(ev) ? '' : noHours(ev), ev.price, kindLabel(eventKind(ev))].filter(Boolean).map(esc).join(' · ')}</small></span><span class="pop-a">${safeUrl(ev.sourceUrl) ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}${calButton(`ev:${ev.id}`, eventCalItem(ev))}</span></div>`;
+    return `<div class="pop-item"><span class="pop-t">${w.range ? `${esc(w.dow)} ${esc(w.top)}<small>${esc(w.main)}</small>` : `${esc(w.top)} ${esc(w.main)}`}${eventHours(ev) ? `<small class="pop-hrs">${esc(eventHours(ev))}</small>` : ''}</span><span class="pop-w">${eventKicker(ev)}<b>${esc(ev.title)}</b>${isOn(ev, NOW.iso) ? ' <span class="pill fresh">Happening now</span>' : ''}${eventSummary(ev) ? `<span class="ev-what">${esc(eventSummary(ev))}</span>` : ''}${eventHours(ev) ? '' : `<small>${esc(noHours(ev))}</small>`}${eventFacts(ev) ? `<span class="meta ev-facts">${eventFacts(ev)}</span>` : ''}</span><span class="pop-a">${safeUrl(ev.sourceUrl) ? `<a class="src" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}${calButton(`ev:${ev.id}`, eventCalItem(ev))}</span></div>`;
   }).join('');
   return `<div class="map-place"><div class="g-venue"><span class="v-name">${esc(p.short || p.name)}<small>${esc([...addr, `${n} event${n === 1 ? '' : 's'}`, mi != null ? fmtMiles(mi) : ''].filter(Boolean).join(' · '))}</small></span></div>
     <div class="g-pop map-sessions">${rows}</div>
