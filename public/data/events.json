@@ -1,6 +1,6 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-21T05:19:18.859Z",
+ "generatedAt": "2026-11-21T05:28:20.693Z",
  "events": [
   {
    "id": "evt-b08715cc63748015",
@@ -3412,7 +3412,7 @@
    "sourceId": "allevents-austin"
   }
  ],
- "listingsAt": "2026-11-21T05:19:18.859Z",
+ "listingsAt": "2026-11-21T05:28:20.693Z",
  "sources": [
   {
    "id": "allevents-austin",
@@ -3421,9 +3421,8 @@
   },
   {
    "id": "visit-austin",
-   "ok": false,
-   "count": 0,
-   "error": "https://www.austintexas.org/events/december-and-january/: 403"
+   "ok": true,
+   "count": 3
   },
   {
    "id": "added-allevents-in-austin",

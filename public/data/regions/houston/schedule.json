@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-21T05:17:18.599Z",
+  "generatedAt": "2026-11-21T05:26:21.909Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,7 +67,7 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-21T05:14:15.355Z",
+      "checkedAt": "2026-11-21T05:23:34.901Z",
       "count": 23,
       "warnings": [
         "reclub-3YV72K: no surface",
@@ -105,7 +105,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/houston-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-21T05:14:15.995Z",
+      "checkedAt": "2026-11-21T05:23:41.584Z",
       "count": 0
     },
     {
@@ -118,7 +118,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-21T05:14:18.098Z",
+      "checkedAt": "2026-11-21T05:23:42.009Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -387,6 +387,7 @@
       "level": "All levels",
       "price": null,
       "note": "Hosted by Emancipation Park Indoor Volleyball, every Friday.",
+      "canceled": true,
       "capacity": 18,
       "signup": {
         "url": "https://reclub.co/m/VGIK6U",
@@ -399,7 +400,7 @@
       "timezone": "America/Chicago",
       "verifiedAt": "2026-11-20",
       "venueId": "src-emancipation-park",
-      "status": "scheduled"
+      "status": "cancelled"
     },
     {
       "id": "reclub-8SFAT2",
