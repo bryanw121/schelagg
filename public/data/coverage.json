@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-21T14:48:23.802Z",
+ "generatedAt": "2026-11-21T18:16:51.931Z",
  "regions": [
   {
    "id": "austin",
@@ -45,7 +45,7 @@
      "venue": "Pickle Pit Stop",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 99,
+     "sessions": 97,
      "pinned": true,
      "booking": true,
      "via": [
@@ -57,7 +57,7 @@
      "venue": "Eastside Paddle Club",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 84,
+     "sessions": 83,
      "pinned": true,
      "booking": true,
      "via": [
@@ -69,7 +69,7 @@
      "venue": "Austin Pickle Ranch",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 81,
+     "sessions": 76,
      "pinned": true,
      "booking": true,
      "via": [
@@ -142,18 +142,6 @@
      "lead": false
     },
     {
-     "venue": "Volleyworld (Georgetown)",
-     "city": "Georgetown",
-     "sport": "volleyball",
-     "sessions": 6,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "volleyworld"
-     ],
-     "lead": false
-    },
-    {
      "venue": "Bee Cave on Ice",
      "city": "Bee Cave",
      "sport": "ice_skating",
@@ -162,6 +150,18 @@
      "booking": false,
      "via": [
       "manual"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Volleyworld (Georgetown)",
+     "city": "Georgetown",
+     "sport": "volleyball",
+     "sessions": 5,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "volleyworld"
      ],
      "lead": false
     },
