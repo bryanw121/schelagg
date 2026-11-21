@@ -1,6 +1,6 @@
 {
  "feedVersion": 1,
- "generatedAt": "2026-11-21T05:28:20.693Z",
+ "generatedAt": "2026-11-21T14:16:17.493Z",
  "events": [
   {
    "id": "evt-b08715cc63748015",
@@ -205,23 +205,6 @@
    "id": "evt-c5f11a36e6720435",
    "lat": 30.1856,
    "lng": -97.87059,
-   "located": "address"
-  },
-  {
-   "id": "evt-e219f8410b29cbb7",
-   "category": "seasonal",
-   "title": "Plant Loteria",
-   "venue": "Birdies Social Club, 2735 W 5th St",
-   "city": "Fort Worth",
-   "startDate": "2026-11-20",
-   "startTime": "18:00",
-   "endTime": "21:00",
-   "sourceUrl": "https://www.instagram.com/reel/Df2hnBGBGKc/",
-   "source": "Instagram @prettylittlethingsmarketntx",
-   "description": "Part of Pretty Little Things' free holiday pop-up series.",
-   "region": "dallas",
-   "lat": 32.75294,
-   "lng": -97.3553,
    "located": "address"
   },
   {
@@ -956,27 +939,6 @@
    "sourceId": "allevents-austin"
   },
   {
-   "id": "evt-d3df12f44065898f",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "Goats and A Brew: Baby Goat Yoga",
-   "venue": "Duett's Texas Club, 420 Main St.",
-   "city": "Martindale",
-   "startDate": "2026-11-25",
-   "startTime": "17:00",
-   "endTime": "18:00",
-   "price": "$37.89–$48.71",
-   "sourceUrl": "https://allevents.in/martindale/goats-and-a-brew-baby-goat-yoga/100002004831199085",
-   "source": "AllEvents",
-   "description": "Join us for Goat Yoga featuring baby goats dressed in Christmas outfits!",
-   "region": "austin",
-   "lat": 29.83925,
-   "lng": -97.8438,
-   "located": "source",
-   "sourceId": "allevents-austin"
-  },
-  {
    "id": "evt-17d040e2459185e0",
    "category": "seasonal",
    "kind": "seasonal",
@@ -993,6 +955,25 @@
    "located": "source",
    "startTime": "18:00",
    "endTime": "20:00",
+   "sourceId": "allevents-austin"
+  },
+  {
+   "id": "evt-709023761dafc67b",
+   "category": "popup",
+   "kind": "popup",
+   "tags": [],
+   "title": "2026 Austin Summer Pop Up Vendors Market",
+   "venue": "4550 Mueller Boulevard",
+   "city": "Austin",
+   "startDate": "2026-11-27",
+   "endDate": "2026-11-29",
+   "sourceUrl": "https://allevents.in/austin/2026-austin-summer-pop-up-vendors-market/100002005151204229",
+   "source": "AllEvents",
+   "region": "austin",
+   "lat": 30.29717,
+   "lng": -97.70728,
+   "located": "source",
+   "startTime": "10:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -1073,26 +1054,6 @@
    "region": "austin",
    "lat": 30.63733,
    "lng": -97.67682,
-   "located": "source",
-   "sourceId": "allevents-austin"
-  },
-  {
-   "id": "evt-03fc98133c0ad00a",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "LIGHTING OF THE SQUARE AT THE SADDLE SHOP SALOON",
-   "venue": "711 S Main St",
-   "city": "Georgetown",
-   "startDate": "2026-11-27",
-   "startTime": "14:00",
-   "endTime": "23:00",
-   "sourceUrl": "https://allevents.in/georgetown/lighting-of-the-square-at-the-saddle-shop-saloon/200031087502736",
-   "source": "AllEvents",
-   "description": "The town square is about to shine bright — and so are your holiday spirits!",
-   "region": "austin",
-   "lat": 30.637,
-   "lng": -97.67686,
    "located": "source",
    "sourceId": "allevents-austin"
   },
@@ -1306,27 +1267,6 @@
    "sourceId": "allevents-austin"
   },
   {
-   "id": "evt-0dbf93a202f8336f",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "Make & Take: A Holiday Cookie Exchange",
-   "venue": "Central Market Austin North Lamar, 4001 North Lamar Boulevard",
-   "city": "Austin",
-   "startDate": "2026-11-28",
-   "startTime": "13:00",
-   "endTime": "15:30",
-   "price": "$89.63",
-   "sourceUrl": "https://allevents.in/austin/make-and-take-a-holiday-cookie-exchange/100002001026955490",
-   "source": "AllEvents",
-   "description": "Hands on. You will be cooking with a small team in this class. About this Event Age Restrictions For ages 18 & up Description Sharing cookies with friends, family, and co-worker",
-   "region": "austin",
-   "lat": 30.30761,
-   "lng": -97.73988,
-   "located": "source",
-   "sourceId": "allevents-austin"
-  },
-  {
    "id": "evt-4fc77e09e9a3372b",
    "category": "seasonal",
    "kind": "seasonal",
@@ -1400,27 +1340,6 @@
    "located": "source",
    "startTime": "13:00",
    "endTime": "16:00",
-   "sourceId": "allevents-austin"
-  },
-  {
-   "id": "evt-baeaa7117273194f",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "Deck the Balls: A Holiday Variety Show",
-   "venue": "Fallout Theater, 616 Lavaca St",
-   "city": "Austin",
-   "startDate": "2026-11-29",
-   "startTime": "18:00",
-   "endTime": "19:00",
-   "price": "$15.85",
-   "sourceUrl": "https://allevents.in/austin/deck-the-balls-a-holiday-variety-show/100002004333536563",
-   "source": "AllEvents",
-   "description": "Magician/Clown duo Deck & Balls is back! About this Event This time they've assembled a gaggle of performers for a holiday variety show sure to knock your stockings off!",
-   "region": "austin",
-   "lat": 30.26954,
-   "lng": -97.74523,
-   "located": "source",
    "sourceId": "allevents-austin"
   },
   {
@@ -1720,6 +1639,27 @@
    "sourceId": "allevents-austin"
   },
   {
+   "id": "evt-9a57a5eba7ab9a90",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "First Friday: Ugly Christmas Sweater Party",
+   "venue": "Spinners, 14106 N Interstate 35 Frontage Rd,Austin,TX",
+   "city": "Wells Branch",
+   "startDate": "2026-12-04",
+   "endDate": "2026-12-05",
+   "startTime": "22:00",
+   "endTime": "02:00",
+   "sourceUrl": "https://allevents.in/wells-branch/first-friday-ugly-christmas-sweater-party/200031091657757",
+   "source": "AllEvents",
+   "description": "🎄🔥 UGLY SWEATERS, GOOD MUSIC & CHRISTMAS PARTY VIBES! 🔥🎄 🎅🏽 @IAMDJDK & ISISENT PRESENT: FIRST FRIDAY UGLY CHRISTMAS SWEATER PARTY!",
+   "region": "austin",
+   "lat": 30.43106,
+   "lng": -97.67136,
+   "located": "source",
+   "sourceId": "allevents-austin"
+  },
+  {
    "id": "evt-08af773c5c4c6e8b",
    "category": "seasonal",
    "kind": "seasonal",
@@ -2005,28 +1945,6 @@
    "lat": 32.63477,
    "lng": -97.3674,
    "located": "address"
-  },
-  {
-   "id": "evt-8bf0195a3589f3da",
-   "category": "seasonal",
-   "kind": "seasonal",
-   "tags": [],
-   "title": "Frost & Flight",
-   "venue": "The Jungle Movement Academy, 2701 Gattis School Road",
-   "city": "Round Rock",
-   "startDate": "2026-12-05",
-   "endDate": "2026-12-06",
-   "startTime": "19:00",
-   "endTime": "16:00",
-   "price": "$25",
-   "sourceUrl": "https://allevents.in/round-rock/frost-and-flight-aerial-showcase/100002003866274971",
-   "source": "AllEvents",
-   "description": "A breathtaking winter aerial showcase where strength, grace, creativity, and a little holiday magic come together!",
-   "region": "austin",
-   "lat": 30.49525,
-   "lng": -97.6443,
-   "located": "source",
-   "sourceId": "allevents-austin"
   },
   {
    "id": "evt-26c04f47e0a02fcd",
@@ -2393,6 +2311,28 @@
    "sourceId": "allevents-austin"
   },
   {
+   "id": "evt-5ce5988b8bdb4a95",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "The Mr. Walter Holiday Show",
+   "venue": "Armstrong Community Music School, 404 Camp Craft Road",
+   "city": "West Lake Hills",
+   "startDate": "2026-12-05",
+   "endDate": "2026-12-19",
+   "startTime": "13:00",
+   "endTime": "13:45",
+   "price": "$12.51–$60.54",
+   "sourceUrl": "https://allevents.in/west-lake-hills/the-mr-walter-holiday-show/100002003827013539",
+   "source": "AllEvents",
+   "description": "Join us for this family sing along and holiday series with \"Mr. Walter.\" About this Event Experience holiday music, singing, and movement with a legend!",
+   "region": "austin",
+   "lat": 30.27924,
+   "lng": -97.81332,
+   "located": "source",
+   "sourceId": "allevents-austin"
+  },
+  {
    "category": "seasonal",
    "title": "Tillery Street Plant Co. Holiday Vendor Market",
    "venue": "Tillery Street Plant Co., 914 Shady Ln",
@@ -2479,6 +2419,27 @@
    "region": "austin",
    "lat": 30.24426,
    "lng": -97.77969,
+   "located": "source",
+   "sourceId": "allevents-austin"
+  },
+  {
+   "id": "evt-75be83c7ea8d4289",
+   "category": "seasonal",
+   "kind": "seasonal",
+   "tags": [],
+   "title": "Photos with Santa at Vista Brewing",
+   "venue": "Vista Brewing, 13551 FM 150 W",
+   "city": "Driftwood",
+   "startDate": "2026-12-06",
+   "startTime": "13:00",
+   "endTime": "16:00",
+   "price": "Free",
+   "sourceUrl": "https://allevents.in/driftwood/photos-with-santa-at-vista-brewing/100002005164244232",
+   "source": "AllEvents",
+   "description": "Bring the kids, the pups and the whole family for photos with Vista's own Santa Fitz! Donations benefit Divine Canines.",
+   "region": "austin",
+   "lat": 30.10496,
+   "lng": -98.02183,
    "located": "source",
    "sourceId": "allevents-austin"
   },
@@ -2695,22 +2656,24 @@
    "located": "manual"
   },
   {
-   "id": "evt-6a46409f41e40767",
-   "category": "popup",
-   "kind": "popup",
+   "id": "evt-4cc0df1667cf54f9",
+   "category": "seasonal",
+   "kind": "seasonal",
    "tags": [],
-   "title": "Austin Art & Craft Marketplace",
-   "venue": "Blue Genie Art Bazaar, 6100 Airport Boulevard",
-   "city": "Austin",
+   "title": "5th annual Holidays with the Horses",
+   "venue": "Open My World Therapeutic, 5300 County Rd 279",
+   "city": "Leander",
    "startDate": "2026-12-11",
-   "endDate": "2026-12-13",
-   "sourceUrl": "https://allevents.in/austin/austin-art-and-craft-marketplace/100002004476063866",
+   "endDate": "2026-12-12",
+   "endTime": "18:00",
+   "price": "$0–$5",
+   "sourceUrl": "https://allevents.in/leander/5th-annual-holidays-with-the-horses-tickets/80002773211001",
    "source": "AllEvents",
+   "description": "Join Open My World Therapeutic Riding Center for two festive evenings of holiday fun at the ranch!",
    "region": "austin",
-   "lat": 30.32634,
-   "lng": -97.71684,
+   "lat": 30.59391,
+   "lng": -97.88434,
    "located": "source",
-   "startTime": "10:00",
    "sourceId": "allevents-austin"
   },
   {
@@ -3057,6 +3020,26 @@
    "lat": 30.25091,
    "lng": -97.74925,
    "located": "address"
+  },
+  {
+   "id": "evt-06ebe4bf1232801a",
+   "category": "popup",
+   "kind": "popup",
+   "tags": [],
+   "title": "Luminary Festival: Night Two",
+   "venue": "Katherine Fleischer Park, 14601 Alpha Collier Dr",
+   "city": "Wells Branch",
+   "startDate": "2026-12-12",
+   "startTime": "18:00",
+   "endTime": "20:00",
+   "sourceUrl": "https://allevents.in/wells-branch/luminary-festival-night-two/200030997940725",
+   "source": "AllEvents",
+   "description": "Stroll through the magical glow of KF Park at day two of the Luminary Festival!",
+   "region": "austin",
+   "lat": 30.44262,
+   "lng": -97.67886,
+   "located": "source",
+   "sourceId": "allevents-austin"
   },
   {
    "id": "evt-305948e3cfcf35be",
@@ -3412,7 +3395,7 @@
    "sourceId": "allevents-austin"
   }
  ],
- "listingsAt": "2026-11-21T05:28:20.693Z",
+ "listingsAt": "2026-11-21T14:16:17.493Z",
  "sources": [
   {
    "id": "allevents-austin",
@@ -3427,7 +3410,7 @@
   {
    "id": "added-allevents-in-austin",
    "ok": true,
-   "count": 2
+   "count": 1
   }
  ]
 }
