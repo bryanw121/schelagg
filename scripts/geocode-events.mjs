@@ -19,8 +19,11 @@ const CACHE = repoPath('public/data/event-venues.json');
 
 const feed = JSON.parse(readFileSync(FEED, 'utf8'));
 const cache = existsSync(CACHE) ? JSON.parse(readFileSync(CACHE, 'utf8')) : {};
-// The events are Austin's; the guard is its center and radius from region.json.
-const region = loadRegions().find((r) => r.info.id === 'austin')?.info ?? null;
+// The guard is the center and radius of each event's own region (its `region` field,
+// default Austin's — the feed's original region, and the UI's default too); an unknown
+// region id falls back to Austin's rather than dropping the guard.
+const regions = new Map(loadRegions().map((r) => [r.info.id, r.info]));
+const regionFor = (e) => regions.get(e.region ?? 'austin') ?? regions.get('austin') ?? null;
 
 let placed = 0, kept = 0, missed = 0;
 let cacheChanged = false, feedChanged = false;
@@ -38,7 +41,7 @@ for (const e of feed.events ?? []) {
     continue;
   }
   const before = cache[normalizeVenue(e.venue)];
-  const hit = await resolveEventVenue(e.venue, e.city, cache, { region });
+  const hit = await resolveEventVenue(e.venue, e.city, cache, { region: regionFor(e) });
   if (hit) {
     e.lat = hit.lat; e.lng = hit.lng; e.located = hit.located;
     feedChanged = true; placed++;

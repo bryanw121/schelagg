@@ -75,6 +75,19 @@ test('resolveEventVenue: the address portion goes to the Census geocoder', async
   assert.equal(await resolveEventVenue('The Eleanor, 307 W 5th St', 'Austin', {}, { get: stubGet({ '307 W 5th St': FAR }), region: REGION }), null);
 });
 
+test('resolveEventVenue: the guard is the event\'s own region (a Dallas match places under Dallas, is refused under Austin)', async () => {
+  const DALLAS = { center: [32.8, -96.95], radiusKm: 60 };
+  const DFW_HIT = { lat: 32.7767, lng: -96.797, matched: '1500 MAIN ST, DALLAS, TX, 75201' };
+  const get = stubGet({ '1500 Main St': DFW_HIT });
+  assert.deepEqual(
+    await resolveEventVenue('Some Market, 1500 Main St', 'Dallas', {}, { get, region: DALLAS }),
+    { lat: 32.7767, lng: -96.797, located: 'address', matched: '1500 MAIN ST, DALLAS, TX, 75201' },
+  );
+  // The same match under Austin's guard is refused (~290 km out) — the pre-fix behavior
+  // that left every DFW venue unplaced and marked unresolved in the cache.
+  assert.equal(await resolveEventVenue('Some Market, 1500 Main St', 'Dallas', {}, { get, region: REGION }), null);
+});
+
 test('eventPoints: only the located events, as points', () => {
   assert.deepEqual(eventPoints({ events: [
     { title: 'A', lat: 30.1, lng: -97.7 },
