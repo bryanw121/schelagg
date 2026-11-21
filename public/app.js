@@ -11,9 +11,9 @@
 // The Events view's pure helpers (pagination, date ranges, map places, the dropdown's state).
 import { TIME_PRESETS, inWindow, parseWindow, presetOf, toHHMM, windowLabel, windowNote } from './when.js';
 import { googleCalendarUrl, icsFile, icsName, visitItem } from './calendar.js';
-import { EVENT_ICONS, eventIcon, SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
+import { EVENT_ICONS, eventIcon, eventTopics, SEARCH_TAGS, highlightParts, matchesText, searchTagLabel, searchTags, sessionText, tagCounts } from './search.js';
 import { placeGroups } from './events-ui.js';
-import { EVENT_KINDS, EVENT_TAGS, countEvents, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
+import { EVENT_KINDS, EVENT_SORTS, EVENT_TAGS, countEvents, eventSummary, isEventSort, lastChance, sortGroup, eventCta, eventDateRange, eventGroups, eventKind, eventPlaceParts, eventPlaces, eventTags, avatarPath, eventWhen, eventsForRegion, filterEvents, isEventKind, isEventTag, isOn, kindLabel, sortEvents, tagLabel } from './events-ui.js';
 import { pagesBase } from './pages.js';
 const PAGES = await pagesBase(); // '' next to the page, or the GitHub Pages address that answers (public/pages.js)
 
@@ -220,7 +220,7 @@ const PROGRAM_VIEWS = { leagues: 'league', tournaments: 'tournament' };
 const viewFrom = (v, kind) => (v === 'signups' ? (kind === 'tournament' || kind === 'nagva' ? 'tournaments' : 'leagues') : VIEWS.includes(v) ? v : null);
 // The top level: Events (the default) or Sports. The events list pages 10 at a time (?page=),
 // filtered by category (?cat=); both are remembered and shareable.
-let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evKind: 'all', evTags: [], evWeekend: false, evDay: null, win: null, evQ: '', evTopic: null, spQ: '' };
+let state = { region: null, sport: 'volleyball', tab: 'all', di: 0, showAll: false, view: 'openplay', layout: 'list', host: 'all', section: 'events', evKind: 'all', evTags: [], evSort: 'soonest', evLikes: [], evWeekend: false, evDay: null, win: null, evQ: '', evTopic: null, spQ: '' };
 try {
   const s = JSON.parse(localStorage.getItem('vatx') || '{}');
   if (typeof s.region === 'string') state.region = s.region;
@@ -234,6 +234,8 @@ try {
   if (s.section === 'events' || s.section === 'sports') state.section = s.section;
   if (isEventKind(s.evKind)) state.evKind = s.evKind;
   if (Array.isArray(s.evTags)) state.evTags = s.evTags.filter(isEventTag);
+  if (isEventSort(s.evSort)) state.evSort = s.evSort;
+  if (Array.isArray(s.evLikes)) state.evLikes = s.evLikes.filter((t) => SEARCH_TAGS.some((x) => x.id === t));
 } catch {}
 // A shared link (?region=austin&sport=ice_skating) wins over what was remembered.
 const params = new URLSearchParams(location.search);
@@ -256,6 +258,8 @@ if (params.has('layout')) state.layout = params.get('layout') === 'map' ? 'map' 
 for (const v of [params.get('type'), params.get('cat')]) if (v && v !== 'all' && isEventKind(v)) state.evKind = v;
 const urlTags = [...params.getAll('tag'), params.get('cat')].filter(isEventTag);
 if (urlTags.length) state.evTags = [...new Set(urlTags)];
+// A shared link carries the sender's sort, never what they're into (that stays on their device).
+if (isEventSort(params.get('sort'))) state.evSort = params.get('sort');
 if (params.get('weekend') === '1') state.evWeekend = true;
 // When: ?on=YYYY-MM-DD (Events: one day) and ?from=HH:MM&to=HH:MM (a time window, Events and open play).
 if (/^\d{4}-\d{2}-\d{2}$/.test(params.get('on') ?? '')) { state.evDay = params.get('on'); state.evWeekend = false; }
@@ -275,7 +279,7 @@ let urlPlace = params.get('layout') === 'map' ? params.get('place') : null;
 let urlEvent = state.section === 'events' ? params.get('event') : null;
 let evLink = null; // the event whose details are open: what ?event= says
 if (urlEvent && !params.has('type') && !params.has('tag')) { state.evKind = 'all'; state.evTags = []; } // remembered filters mustn't hide the linked event
-const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, host: state.host, section: state.section, evKind: state.evKind, evTags: state.evTags })); } catch {} };
+const save = () => { try { localStorage.setItem('vatx', JSON.stringify({ region: state.region, sport: state.sport, tab: state.tab, showAll: state.showAll, view: state.view, layout: state.layout, host: state.host, section: state.section, evKind: state.evKind, evTags: state.evTags, evSort: state.evSort, evLikes: state.evLikes })); } catch {} };
 /** Keep ?region= and ?sport= in the address bar so the view can be shared (the defaults are left out). */
 function syncUrl() {
   const u = new URL(location.href);
@@ -290,6 +294,7 @@ function syncUrl() {
     u.searchParams.delete('tag'); for (const g of state.evTags) u.searchParams.append('tag', g);
     if (state.evWeekend) u.searchParams.set('weekend', '1'); else u.searchParams.delete('weekend');
     if (state.evDay) u.searchParams.set('on', state.evDay); else u.searchParams.delete('on');
+    if (state.evSort !== 'soonest') u.searchParams.set('sort', state.evSort); else u.searchParams.delete('sort');
     u.searchParams.delete('cat'); u.searchParams.delete('page');
     u.searchParams.delete('host');
     for (const k of ['day', 'court']) u.searchParams.delete(k);
@@ -1014,8 +1019,18 @@ const iconSvg = (id) => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none"
  */
 const eventVisual = (ev, size, holder = ev) => avatarImg(holder, size) || (ev ? `<span class="ev-ic ic-${eventIcon(ev, eventKind(ev))}" style="--s:${size}px">${iconSvg(eventIcon(ev, eventKind(ev)))}</span>` : '');
 const avatarImg = (x, size) => (avatarPath(x) ? `<img class="av" src="${DATA}${esc(avatarPath(x))}" alt="" width="${size}" height="${size}" loading="lazy" decoding="async">` : '');
-/** The event's kind and tags as chips: kinds solid outline, tags dashed. */
-const eventChips = (ev) => `${eventKind(ev) ? `<span class="chip">${esc(kindLabel(eventKind(ev)))}</span>` : ''}${eventTags(ev).map((g) => `<span class="chip tag">${esc(tagLabel(g))}</span>`).join('')}${searchTags(ev).map((g) => `<button type="button" class="chip tag chip-q" data-topic="${esc(g)}" aria-label="Show events tagged ${esc(searchTagLabel(g))}">${esc(searchTagLabel(g))}</button>`).join('')}`;
+/**
+ * The line above an event's title: what kind of thing it is, in its topic's colour. The main topic
+ * leads, one more may follow, each one tap from showing only that topic; an event with no topic
+ * says its kind (Pop-up, Seasonal). Theme tags (Asian-inspired) close the line.
+ */
+function eventKicker(ev) {
+  const topics = eventTopics(ev).slice(0, 2);
+  const btn = (t, i) => `<button type="button" class="kick${i ? ' more' : ''}" data-topic="${esc(t)}" aria-label="Show events tagged ${esc(searchTagLabel(t))}">${esc(searchTagLabel(t))}</button>`;
+  const parts = topics.length ? topics.map(btn) : eventKind(ev) ? [`<span class="kick">${esc(kindLabel(eventKind(ev)))}</span>`] : [];
+  for (const g of eventTags(ev)) parts.push(`<span class="kick more">${esc(tagLabel(g))}</span>`);
+  return parts.length ? `<div class="ev-kick ic-${eventIcon(ev, eventKind(ev))}">${parts.join('<span class="kick-dot" aria-hidden="true">·</span>')}</div>` : '';
+}
 /** An event's hours ("11am", "5pm–10pm"), or '' when its source gave none. */
 const eventHours = (ev) => (ev.startTime ? `${fmtT(ev.startTime)}${ev.endTime ? `–${fmtT(ev.endTime)}` : ''}` : '');
 /** What to say in their place: where the hours are. */
@@ -1027,14 +1042,19 @@ function eventCard(ev) {
   const w = eventWhen(ev, NOW.iso);
   const times = eventHours(ev);
   const via = ev.source ? `<span class="via">Found via ${esc(ev.source)}</span>` : '';
+  const summary = eventSummary(ev);
+  const last = lastChance(ev, NOW.iso), free = searchTags(ev).includes('free');
+  const facts = [last ? `<span class="fact last">${esc(last)}</span>` : '', free ? '<span class="fact free">Free</span>' : '', ev.price && !(free && /^\s*free\s*$/i.test(ev.price)) ? `<span class="fact">${esc(ev.price)}</span>` : ''].join('');
   return `<article class="row ev-row${evLink === ev.id ? ' linked' : ''}" data-ev="${esc(ev.id ?? '')}">
-    ${eventVisual(ev, 44)}
+    ${eventVisual(ev, 56)}
     <div class="time">${w.range ? `<small class="ev-top">${esc(w.dow)}</small>${esc(w.top)}<small>${esc(w.main)}</small>` : `<small class="ev-top">${esc(w.top)}</small>${esc(w.main)}`}${times ? `<small>${esc(times)}</small>` : `<small class="no-hrs">${esc(noHours(ev))}</small>`}</div>
     <div class="body">
+      ${eventKicker(ev)}
       <div class="t1"><span class="title">${hl(ev.title)}</span>${on ? '<span class="pill fresh">Happening now</span>' : ''}</div>
       ${avatarPath(ev) && ev.account ? `<div class="ev-by"><span>${ev.sourceId === 'instagram' ? 'by' : 'via'} <b>@${esc(ev.account)}</b></span></div>` : ''}
+      ${summary ? `<div class="ev-what">${hl(summary)}</div>` : ''}
       <div class="venue"><b>${esc(parts[0] ?? ev.venue)}</b>${parts.slice(1).map((p) => ` · ${esc(p)}`).join('')}${mi != null ? ` · ${fmtMiles(mi)}` : ''}</div>
-      <div class="meta">${eventChips(ev)}${ev.price ? `<span>${esc(ev.price)}</span>` : ''}</div>${fitHtml(ev.startTime, ev.endTime)}
+      ${facts ? `<div class="meta ev-facts">${facts}</div>` : ''}${fitHtml(ev.startTime, ev.endTime)}
     </div>
     <div class="ev-foot">
       <div class="actions">${safeUrl(ev.sourceUrl) ? `<a class="signup ev-go" href="${esc(ev.sourceUrl)}" target="_blank" rel="noopener">${eventCta(ev)} ↗</a>` : ''}${calButton(`ev:${ev.id}`, eventCalItem(ev))}</div>
@@ -1152,6 +1172,24 @@ function renderEventsSheet(list) {
     <h3 class="opt-h">Tags</h3>${EVENT_TAGS.map((g) => opt('data-evtag', g.id, g.label, '', counts[g.id], state.evTags.includes(g.id))).join('')}${tagCounts(list).map((t) => opt('data-evtopic', t.id, t.label, '', t.n, state.evTopic === t.id)).join('')}
     <button type="button" class="go-btn" data-close>Show ${shown} event${shown === 1 ? '' : 's'}</button>`;
 }
+/**
+ * The Sort sheet: the orders, then (under Advanced) the topics someone is into, which For you puts
+ * first. Picking the first topic switches to For you; the picks stay on this device.
+ */
+let sortAdvOpen = false;
+function renderSortSheet(list) {
+  const shown = filterEvents(list, evFilters(), NOW.iso).length;
+  const topics = tagCounts(list).filter((t) => t.id !== 'free');
+  const likes = [...topics, ...SEARCH_TAGS.filter((t) => t.id === 'free')];
+  $('sortOpts').innerHTML = EVENT_SORTS.map((x) => `<button type="button" class="tab opt" data-evsort="${x.id}" aria-pressed="${state.evSort === x.id}"><span class="lbl">${esc(x.label)}<small>${esc(x.hint)}</small></span></button>`).join('')
+    + `<details class="adv" id="sortAdv"${sortAdvOpen || state.evLikes.length ? ' open' : ''}><summary>Advanced</summary>
+      <h3 class="opt-h" id="likesH">What you’re into</h3>
+      <div class="likes" role="group" aria-labelledby="likesH">${likes.map((t) => `<button type="button" class="like ic-${EVENT_ICONS[t.id] ? t.id : 'popup'}" data-evlike="${esc(t.id)}" aria-pressed="${state.evLikes.includes(t.id)}">${esc(t.label)}</button>`).join('')}</div>
+      <p class="note">For you puts these first. They stay on this device.</p>
+    </details>
+    <button type="button" class="go-btn" data-close>Show ${shown} event${shown === 1 ? '' : 's'}</button>`;
+}
+document.addEventListener('toggle', (e) => { if (e.target.id === 'sortAdv') sortAdvOpen = e.target.open; }, true);
 function renderEvents() {
   // Events aren't about a day or a sport: the day strip, the level filter, the charts and the
   // sports lists step aside (the map, when open, is handled by renderMap).
@@ -1183,10 +1221,13 @@ function renderEvents() {
   $('asof').title = `Events checked ${clock(events.generatedAt)}`;
   $('footer').innerHTML = 'Each event links to its own page or post. Dates and prices change, so check it before you go.';
   const filtering = state.evKind !== 'all' || state.evTags.length > 0;
-  $('eventCats').innerHTML = `<button type="button" class="pill-btn chip-btn${filtering ? ' on' : ''}" data-sheet="eventsSheet" aria-haspopup="dialog">${esc(filterLabel())} <span class="caret" aria-hidden="true">▾</span></button>`
+  const sortLabel = EVENT_SORTS.find((x) => x.id === state.evSort)?.label ?? 'Soonest';
+  // The map orders its places itself, so Sort shows with the list only.
+  $('eventCats').innerHTML = (state.layout === 'map' ? '' : `<button type="button" class="pill-btn chip-btn${state.evSort !== 'soonest' ? ' on' : ''}" data-sheet="sortSheet" aria-haspopup="dialog" aria-label="Sort: ${esc(sortLabel)}. Change">Sort: ${esc(sortLabel)} <span class="caret" aria-hidden="true">▾</span></button>`)
+    + `<button type="button" class="pill-btn chip-btn${filtering ? ' on' : ''}" data-sheet="eventsSheet" aria-haspopup="dialog">${esc(filterLabel())} <span class="caret" aria-hidden="true">▾</span></button>`
     + `<button type="button" class="pill-btn chip-btn${whenLabel() ? ' on' : ''}" data-sheet="whenSheet" aria-haspopup="dialog" id="whenBtn">${esc(whenLabel() || 'When')} <span class="caret" aria-hidden="true">▾</span></button>`
     + (navigator.geolocation ? `<button type="button" class="pill-btn chip-btn${here ? ' on' : ''}" data-evnear aria-pressed="${!!here}">Near me</button>` : '');
-  renderEventsSheet(upcoming); renderWhenSheet(); renderSearch(upcoming);
+  renderEventsSheet(upcoming); renderSortSheet(upcoming); renderWhenSheet(); renderSearch(upcoming);
   const shown = filterEvents(upcoming, evFilters(), NOW.iso);
   const groups = eventGroups(shown, NOW.iso);
   // A link to one event: its heading opens far enough to show it, and (below) the page scrolls to it.
@@ -1194,7 +1235,11 @@ function renderEvents() {
   if (linked) { evLink = linked; const g = groups.find((x) => x.events.some((e) => e.id === linked)); if (g) evOpen.add(g.key); }
   urlEvent = null;
   // Near me: nearest first under each heading (On now keeps ending-soonest first).
-  if (here) for (const g of groups) if (g.key !== 'now') g.events.sort((a, b) => (milesToCoords(a.lat, a.lng) ?? 1e9) - (milesToCoords(b.lat, b.lng) ?? 1e9));
+  // Soonest with Near me: nearest first under each heading (On now keeps ending-soonest first).
+  // For you and Ending soon reorder inside each heading; For you counts distance when Near me is on.
+  const milesOf = (e) => (here && Number.isFinite(e.lat) && Number.isFinite(e.lng) ? milesToCoords(e.lat, e.lng) : null);
+  if (state.evSort !== 'soonest') for (const g of groups) { g.events = sortGroup(g.events, { sort: state.evSort, likes: state.evLikes, today: NOW.iso, milesOf }); g.sub = g.sub.replace(' · ending soonest first', ''); }
+  else if (here) for (const g of groups) if (g.key !== 'now') g.events.sort((a, b) => (milesToCoords(a.lat, a.lng) ?? 1e9) - (milesToCoords(b.lat, b.lng) ?? 1e9));
   const q = state.evTopic ? '' : state.evQ.trim(), topic = state.evTopic ? searchTagLabel(state.evTopic) : '';
   // A search that the day or time hides matches for says so, and offers them in one tap.
   const anyDay = (q || topic) && whenLabel() ? filterEvents(upcoming, { ...evFilters(), weekend: false, day: null, window: null }, NOW.iso).length - shown.length : 0;
@@ -2012,6 +2057,16 @@ document.addEventListener('click', async (e) => {
   // The search tags sit in the same sheet: one at a time, tap again to clear (the search box shows it too).
   const evt = e.target.closest('[data-evtopic]');
   if (evt) { const id = evt.dataset.evtopic; if (state.evTopic === id) setQuery('', { fill: true }); else setQuery(searchTagLabel(id), { fill: true, topic: id }); $('eventsOpts').querySelector(`[data-evtopic="${CSS.escape(id)}"]`)?.focus(); return; }
+  // Sort: an order applies at once; a topic under Advanced toggles, and the first one picked turns For you on.
+  const srt = e.target.closest('[data-evsort]');
+  if (srt) { state.evSort = srt.dataset.evsort; save(); render(); syncUrl(); $('sortOpts').querySelector(`[data-evsort="${CSS.escape(state.evSort)}"]`)?.focus(); return; }
+  const lk = e.target.closest('[data-evlike]');
+  if (lk) {
+    const id = lk.dataset.evlike, had = state.evLikes.length;
+    state.evLikes = state.evLikes.includes(id) ? state.evLikes.filter((x) => x !== id) : [...state.evLikes, id];
+    if (!had && state.evLikes.length && state.evSort === 'soonest') state.evSort = 'foryou';
+    save(); render(); syncUrl(); $('sortOpts').querySelector(`[data-evlike="${CSS.escape(id)}"]`)?.focus(); return;
+  }
   const evk = e.target.closest('[data-evkind],[data-evtag]');
   if (evk) {
     if (evk.dataset.evkind) state.evKind = evk.dataset.evkind;

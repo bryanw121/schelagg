@@ -1272,6 +1272,44 @@ const MAPS_AUSTIN = { source: '20261107.pmtiles', maps: [{ region: 'austin', bbo
 const austinSched = () => { const s = structuredClone(SCHEDULE); s.region = { id: 'austin', name: 'Austin, TX', timezone: 'America/Chicago' }; return s; };
 const headings = () => page.locator('#events .ev-day').evaluateAll((els) => els.map((e) => [e.firstChild.textContent, e.querySelector('small').textContent]));
 
+test('site: Events cards lead with their topic; Sort orders the list, For you puts picked topics first', async () => {
+  // Sun Oct 25 again. On now: Sunday Pop-up, Autumn Market, Matcha Cart (ending soonest first).
+  await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
+  const matcha = page.locator('#events .row', { hasText: 'Matcha Cart' });
+  assert.equal(await matcha.locator('.ev-what').textContent(), 'Iced matcha and hojicha, poured to order.');
+  assert.equal(await matcha.locator('.ev-ic.ic-matcha').count(), 1, 'the tile is the topic\'s');
+  // Facts: a free event says Free once, not "Free" twice.
+  const night = page.locator('#events .row', { hasText: 'Night Market' }).first();
+  assert.deepEqual(await night.locator('.ev-facts .fact').allTextContents(), ['Free']);
+  // Sort: Ending soon reorders inside each heading; the link carries it.
+  const sortBtn = page.locator('#eventCats [data-sheet="sortSheet"]');
+  assert.equal(await sortBtn.textContent(), 'Sort: Soonest ▾');
+  await sortBtn.click();
+  assert.equal(await page.locator('#sortSheet').getAttribute('open'), '');
+  assert.equal(await page.locator('#sortAdv').getAttribute('open'), null, 'Advanced starts closed');
+  await page.locator('#sortOpts [data-evsort="ending"]').click();
+  assert.equal(new URL(page.url()).searchParams.get('sort'), 'ending');
+  assert.deepEqual(await page.locator('#events .ev-group[data-group="2026-11"] .title').allTextContents(), ['Ramen Pop-up', 'Vintage Market', 'Front Market', 'Flower Shop'], 'ending first');
+  // Back to Soonest, then pick a topic under Advanced: For you turns on and Matcha leads On now.
+  await page.locator('#sortOpts [data-evsort="soonest"]').click();
+  assert.equal(new URL(page.url()).searchParams.has('sort'), false, 'Soonest is the default and stays out of links');
+  await page.locator('#sortAdv summary').click();
+  await page.locator('#sortOpts [data-evlike="matcha"]').click();
+  assert.equal(await page.locator('#sortOpts [data-evlike="matcha"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(await page.locator('#sortOpts [data-evsort="foryou"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(new URL(page.url()).searchParams.get('sort'), 'foryou');
+  assert.ok(!/matcha/.test(new URL(page.url()).search), 'what someone is into never goes in a link');
+  assert.equal(await page.locator('#events .ev-group[data-group="now"] .title').first().textContent(), 'Matcha Cart');
+  assert.deepEqual(await headings().then((h) => h[0]), ['On now', '3 events'], 'no "ending soonest first" when another sort is on');
+  await page.locator('#sortSheet [data-close]').first().click();
+  assert.equal(await sortBtn.textContent(), 'Sort: For you ▾');
+  // Remembered on this device.
+  await page.reload(); await page.waitForSelector('#events .row');
+  assert.equal(await page.locator('#eventCats [data-sheet="sortSheet"]').textContent(), 'Sort: For you ▾');
+  assert.equal(await page.locator('#events .ev-group[data-group="now"] .title').first().textContent(), 'Matcha Cart');
+  assert.deepEqual(pageErrors, []);
+});
+
 test('site: Events is the front page: On now, Next week and months, a few under each, Show more', async () => {
   // Sun Oct 25: three events are on now; Night Market and Dia de los Muertos are next week.
   await open({ events: EVENTS, url: '/', waitFor: '#events .row' });
@@ -1294,7 +1332,7 @@ test('site: Events is the front page: On now, Next week and months, a few under 
   // A card: the date column, plain chips (a kind, a dashed tag), one main button, Details.
   const autumn = page.locator('#events .row', { hasText: 'Autumn Market' });
   assert.match(await autumn.locator('.time').textContent(), /^Thru FriOct 30/);
-  assert.deepEqual(await autumn.locator('.chip').allTextContents(), ['Seasonal'], 'a market whose description mentions food trucks is not a food event');
+  assert.deepEqual(await autumn.locator('.ev-kick .kick').allTextContents(), ['Seasonal'], 'a market whose description mentions food trucks is not a food event: it shows its kind');
   assert.equal(await autumn.locator('.chip.surf').count(), 0, 'no court-surface colours on events');
   assert.equal(await autumn.locator('a.signup').textContent(), 'Event page ↗');
   assert.equal(await autumn.locator('a.signup').getAttribute('href'), 'https://example.test/autumn');
@@ -1304,7 +1342,7 @@ test('site: Events is the front page: On now, Next week and months, a few under 
   assert.match(await autumn.locator('details.more .actions').textContent(), /Google Maps/);
   assert.equal(await autumn.locator('.via').textContent(), 'Found via Example');
   const matcha = page.locator('#events .row', { hasText: 'Matcha Cart' });
-  assert.deepEqual(await matcha.locator('.chip').evaluateAll((els) => els.map((e) => [e.textContent, e.classList.contains('tag')])), [['Asian-inspired', true], ['Matcha', true]]);
+  assert.deepEqual(await matcha.locator('.ev-kick .kick').allTextContents(), ['Matcha', 'Asian-inspired'], 'the topic leads, the theme follows');
   assert.equal(await page.locator('#eventsPager').count(), 0, 'no pager');
   assert.equal(await page.locator('#asof').textContent(), '12 events · checked Sun, Oct 25');
   assert.deepEqual(pageErrors, []);
@@ -1698,10 +1736,10 @@ test('site: search on Events: typing narrows the list, tags show once the box is
   assert.equal(new URL(page.url()).searchParams.get('topic'), 'food');
   assert.equal(new URL(page.url()).searchParams.has('q'), false);
   assert.match(await page.locator('#eventsCount').textContent(), new RegExp(`^${n} of 12 events tagged Food · Clear filters$`));
-  for (const row of await page.locator('#events .row').all()) assert.ok((await row.locator('.chip-q').allTextContents()).includes('Food'), 'every event shown carries the tag');
+  for (const row of await page.locator('#events .row').all()) assert.ok((await row.locator('.ev-kick [data-topic]').allTextContents()).includes('Food'), 'every event shown carries the tag');
   // A tag on a card searches for it too.
   await page.locator('#eventsCount [data-evclear]').click();
-  await page.locator('#events .row', { hasText: 'Ramen Pop-up' }).locator('.chip-q', { hasText: 'Food' }).click();
+  await page.locator('#events .row', { hasText: 'Ramen Pop-up' }).locator('.ev-kick [data-topic]', { hasText: 'Food' }).click();
   assert.equal(await box.inputValue(), 'Food');
   const food = await page.locator('#events .row .title').allTextContents();
   assert.ok(food.includes('Ramen Pop-up') && !food.includes('Autumn Market'), 'a market that merely has food trucks is not tagged Food');

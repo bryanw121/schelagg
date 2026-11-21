@@ -1,5 +1,5 @@
 import { inWindow } from './when.js';
-import { eventText, matchesText, searchTags } from './search.js';
+import { eventText, eventTopics, matchesText, searchTags } from './search.js';
 // The Events view's pure helpers (public/app.js imports these; node tests import them too,
 // so nothing here may touch the DOM or the network). The feed is public/data/events.json:
 // { feedVersion, generatedAt, events: [{ id, category, title, venue, area, city, startDate,
@@ -233,3 +233,59 @@ export function placeGroups(places, today) {
   const byLead = new Map((places ?? []).filter((p) => p.lead).map((p) => [p.lead, p]));
   return eventGroups([...byLead.keys()], today).map((g) => ({ key: g.key, label: g.label, sub: g.sub.replace(/(\d+) events?/, (_, n) => `${n} place${n === '1' ? '' : 's'}`), places: g.events.map((e) => byLead.get(e)) }));
 }
+
+/**
+ * Sorting (the Sort pill). Soonest is the feed's order. For you puts events matching the topics
+ * someone picked first, then last chances, new finds and (with Near me on) nearer ones; the
+ * reasons stay behind the scenes. Ending soon puts runs that end first, first. Every sort works
+ * inside each heading (On now, This weekend…), so the headings keep their order, and ties keep
+ * the order the heading already had.
+ */
+export const EVENT_SORTS = [
+  { id: 'soonest', label: 'Soonest', hint: 'By date' },
+  { id: 'foryou', label: 'For you', hint: 'What you’re into first' },
+  { id: 'ending', label: 'Ending soon', hint: 'Last chances first' },
+];
+export const isEventSort = (s) => EVENT_SORTS.some((x) => x.id === s);
+const daysBetween = (a, b) => Math.round((parseDay(b) - parseDay(a)) / 864e5);
+/** A run (several days) that ends within two days: "Last day", "Ends tomorrow", "Ends Sun". Else null. */
+export function lastChance(ev, today) {
+  const end = lastDay(ev);
+  if (end === ev.startDate || ev.startDate > today) return null;
+  const left = daysBetween(today, end);
+  return left === 0 ? 'Last day' : left === 1 ? 'Ends tomorrow' : left === 2 ? `Ends ${weekDay(end)}` : null;
+}
+/** Skelly first listed it within the last week (`firstSeen` on the feed). */
+export const isNewFind = (ev, today) => !!ev.firstSeen && daysBetween(ev.firstSeen, today) <= 7;
+/** For you's points: topics picked (up to two count), a last chance, a new find, and distance. */
+export function forYouScore(ev, { likes = [], today, miles = null } = {}) {
+  const matched = eventTopics(ev).filter((t) => likes.includes(t)).length + (likes.includes('free') && searchTags(ev).includes('free') ? 1 : 0);
+  return 3 * Math.min(2, matched) + (lastChance(ev, today) ? 2 : 0) + (isNewFind(ev, today) ? 1 : 0) - (Number.isFinite(miles) ? miles / 5 : 0);
+}
+/** One heading's events in the chosen order (a new array). `milesOf(ev)` gives distance or null. */
+export function sortGroup(events, { sort = 'soonest', likes = [], today, milesOf = () => null } = {}) {
+  const list = (events ?? []).map((e, i) => ({ e, i }));
+  if (sort === 'foryou') {
+    const score = new Map(list.map(({ e }) => [e, forYouScore(e, { likes, today, miles: milesOf(e) })]));
+    list.sort((a, b) => score.get(b.e) - score.get(a.e) || a.i - b.i);
+  } else if (sort === 'ending') {
+    list.sort((a, b) => lastDay(a.e).localeCompare(lastDay(b.e)) || a.i - b.i);
+  }
+  return list.map((x) => x.e);
+}
+
+/**
+ * One line on what an event is, from its listing's description: the first sentence, up to about
+ * 110 characters (cut at a word, with "…"). Boilerplate openers listing sites add ("About this
+ * Event", "Nearby Attractions…") don't count; an event without a usable description gets null.
+ */
+export function eventSummary(ev) {
+  let d = String(ev?.description ?? '').replace(/\s+/g, ' ').trim().replace(/^about this event\s*/i, '');
+  if (!d || /^nearby attractions\b/i.test(d)) return null;
+  const m = d.match(/^(.{30,}?[.!?])(\s|$)/);
+  if (m && m[1].length <= 110) d = m[1];
+  else if (d.length > 110) d = `${d.slice(0, 110).replace(/\s+\S*$/, '').replace(/[,;:–—-]\s*$/, '')}…`;
+  const fold = (x) => x.toLowerCase().replace(/[^a-z0-9]+/g, '');
+  return fold(d) === fold(ev?.title ?? '') ? null : d;
+}
+

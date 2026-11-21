@@ -502,6 +502,7 @@ img.av{flex:none;border-radius:50%;object-fit:cover;background:var(--line)}
 .search-x{flex:none;width:36px;height:36px;border:0;border-radius:999px;background:none;color:var(--muted);font-size:14px;cursor:pointer;touch-action:manipulation}
 mark{background:color-mix(in srgb,#f5c400 38%,transparent);color:inherit;border-radius:3px;padding:0 1px}
 button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-action:manipulation}
+@media (pointer:coarse){.ev-kick button.kick{min-height:32px}}
 @media (hover:hover){button.chip-q:hover{border-color:var(--accent);color:var(--accent)}}
 @media (pointer:coarse){button.chip-q{padding:6px 8px}}
 #searchTags{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
@@ -563,19 +564,40 @@ button.chip-q{background:none;cursor:pointer;font:600 11px var(--mono);touch-act
 
 /* A picture for every event: the organizer's photo, or an icon tile in its tag's colour. The
    picture leads the card; the date sits at the right edge. */
-:root{--ic-night-market:#4b3fa8;--ic-makers-market:#b8641c;--ic-vintage:#8a4f7d;--ic-matcha:#2f7d4a;--ic-food:#b3261e;--ic-holiday:#1f6fa8;--ic-music:#6b3fb5;--ic-popup:#5d6b78;--ic-seasonal:#5d6b78}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ic-night-market:#a79cf5;--ic-makers-market:#e39a55;--ic-vintage:#d49ac6;--ic-matcha:#5cbf80;--ic-food:#ff9a8f;--ic-holiday:#6fb6ea;--ic-music:#b294f0;--ic-popup:#93a1ae;--ic-seasonal:#93a1ae}}
-:root[data-theme="dark"]{--ic-night-market:#a79cf5;--ic-makers-market:#e39a55;--ic-vintage:#d49ac6;--ic-matcha:#5cbf80;--ic-food:#ff9a8f;--ic-holiday:#6fb6ea;--ic-music:#b294f0;--ic-popup:#93a1ae;--ic-seasonal:#93a1ae}
+:root{--ic-art-lights:#9a3f8f;--ic-farmers-market:#3f7a2a;--ic-culture:#a8471c;--ic-kids-family:#c0396b;--ic-drinks:#7a3e2a;--ic-wellness:#2a7a72;--ic-free:#1a7743;--ic-night-market:#4b3fa8;--ic-makers-market:#b8641c;--ic-vintage:#8a4f7d;--ic-matcha:#2f7d4a;--ic-food:#b3261e;--ic-holiday:#1f6fa8;--ic-music:#6b3fb5;--ic-popup:#5d6b78;--ic-seasonal:#5d6b78}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ic-art-lights:#e79be0;--ic-farmers-market:#9fd27f;--ic-culture:#f0a070;--ic-kids-family:#f29bbb;--ic-drinks:#e0a58c;--ic-wellness:#6fd0c4;--ic-free:#4cc483;--ic-night-market:#a79cf5;--ic-makers-market:#e39a55;--ic-vintage:#d49ac6;--ic-matcha:#5cbf80;--ic-food:#ff9a8f;--ic-holiday:#6fb6ea;--ic-music:#b294f0;--ic-popup:#93a1ae;--ic-seasonal:#93a1ae}}
+:root[data-theme="dark"]{--ic-art-lights:#e79be0;--ic-farmers-market:#9fd27f;--ic-culture:#f0a070;--ic-kids-family:#f29bbb;--ic-drinks:#e0a58c;--ic-wellness:#6fd0c4;--ic-free:#4cc483;--ic-night-market:#a79cf5;--ic-makers-market:#e39a55;--ic-vintage:#d49ac6;--ic-matcha:#5cbf80;--ic-food:#ff9a8f;--ic-holiday:#6fb6ea;--ic-music:#b294f0;--ic-popup:#93a1ae;--ic-seasonal:#93a1ae}
 .ev-ic{--c:var(--ic-popup);flex:none;width:var(--s,44px);height:var(--s,44px);border-radius:calc(var(--s,44px) * .27);display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--panel));border:1px solid color-mix(in srgb,var(--c) 30%,transparent)}
 .ev-ic svg{width:55%;height:55%}
-.ic-night-market{--c:var(--ic-night-market)}.ic-makers-market{--c:var(--ic-makers-market)}.ic-vintage{--c:var(--ic-vintage)}.ic-matcha{--c:var(--ic-matcha)}.ic-food{--c:var(--ic-food)}.ic-holiday{--c:var(--ic-holiday)}.ic-music{--c:var(--ic-music)}.ic-seasonal{--c:var(--ic-seasonal)}
-.ev-row{grid-template-columns:44px 1fr auto;column-gap:10px}
+.ic-night-market{--c:var(--ic-night-market)}.ic-makers-market{--c:var(--ic-makers-market)}.ic-vintage{--c:var(--ic-vintage)}.ic-matcha{--c:var(--ic-matcha)}.ic-food{--c:var(--ic-food)}.ic-holiday{--c:var(--ic-holiday)}.ic-music{--c:var(--ic-music)}.ic-seasonal{--c:var(--ic-seasonal)}.ic-art-lights{--c:var(--ic-art-lights)}.ic-farmers-market{--c:var(--ic-farmers-market)}.ic-culture{--c:var(--ic-culture)}.ic-kids-family{--c:var(--ic-kids-family)}.ic-drinks{--c:var(--ic-drinks)}.ic-wellness{--c:var(--ic-wellness)}.ic-free{--c:var(--ic-free)}.ic-popup{--c:var(--ic-popup)}
+.ev-row{grid-template-columns:56px 1fr auto;column-gap:12px}
+/* Event cards: the topic tile, the topic line above the title, a one-line summary, and fact pills. */
+.ev-row > .ev-ic{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 26%,var(--panel)),color-mix(in srgb,var(--c) 9%,var(--panel)));border-color:color-mix(in srgb,var(--c) 34%,transparent)}
+.ev-kick{display:flex;flex-wrap:wrap;align-items:center;gap:0 6px;margin-bottom:2px}
+.ev-kick .kick{all:unset;font:700 11px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--c,var(--muted));cursor:default}
+.ev-kick button.kick{cursor:pointer;min-height:24px}
+.ev-kick button.kick:hover{text-decoration:underline}
+.ev-kick button.kick:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.ev-kick .kick.more{color:var(--muted)}
+.ev-kick .kick-dot{color:var(--line)}
+.ev-what{font-size:13px;color:var(--muted);line-height:1.4;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;margin:1px 0 2px}
+.ev-facts{margin-top:4px}
+.fact{font:600 11.5px var(--body);border-radius:6px;padding:1px 7px;background:color-mix(in srgb,var(--muted) 12%,var(--panel));color:var(--ink)}
+.fact.last{background:color-mix(in srgb,var(--bad) 13%,var(--panel));color:var(--bad)}
+.fact.free{background:color-mix(in srgb,var(--ok) 14%,var(--panel));color:var(--ok)}
+/* Sort sheet: Advanced holds the topics For you leans on. */
+.adv{border-top:1px solid var(--line);padding-top:8px;margin-top:4px}
+.adv summary{cursor:pointer;font:600 14px var(--body);min-height:40px;display:flex;align-items:center}
+.adv .likes{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.like{font:600 13px var(--body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 12px;min-height:36px;cursor:pointer}
+.like[aria-pressed="true"]{background:color-mix(in srgb,var(--c,var(--accent)) 18%,var(--panel));border-color:var(--c,var(--accent));box-shadow:inset 0 0 0 1px var(--c,var(--accent))}
+.like:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .ev-row > img.av,.ev-row > .ev-ic{grid-column:1;grid-row:1;align-self:start}
 .ev-row > .body{grid-column:2;grid-row:1;min-width:0}
 .ev-row > .time{grid-column:3;grid-row:1;text-align:right;white-space:nowrap}
 .pin .ev-ic{border-radius:50%;background:var(--panel);border:1.5px solid var(--panel)}
 .chip-ic{border:0;background:none;margin-right:2px}
-@media (max-width:440px){.ev-row{grid-template-columns:40px 1fr auto}.ev-row > img.av,.ev-row > .ev-ic{width:40px;height:40px}}
+@media (max-width:440px){.ev-row{grid-template-columns:48px 1fr auto;column-gap:10px}.ev-row > img.av,.ev-row > .ev-ic{width:48px;height:48px}}
 
 /* Readable in both modes: pin text follows the accent's own ink (it was near-black on the light
    theme's dark blue), surface chips and chart bars use the panel colour on their tint, and the
