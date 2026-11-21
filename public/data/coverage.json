@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-21T02:17:14.591Z",
+ "generatedAt": "2026-11-21T05:19:43.816Z",
  "regions": [
   {
    "id": "austin",
@@ -14,18 +14,6 @@
      "booking": false,
      "via": [
       "austin-meetup"
-     ],
-     "lead": true
-    },
-    {
-     "venue": "Roots · Treehouse Gym",
-     "city": "N. Austin",
-     "sport": "volleyball",
-     "sessions": 2,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "reclub"
      ],
      "lead": true
     },
@@ -57,19 +45,7 @@
      "venue": "Pickle Pit Stop",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 94,
-     "pinned": true,
-     "booking": true,
-     "via": [
-      "austin-club-openplay"
-     ],
-     "lead": false
-    },
-    {
-     "venue": "Austin Pickle Ranch",
-     "city": "Austin",
-     "sport": "pickleball",
-     "sessions": 88,
+     "sessions": 93,
      "pinned": true,
      "booking": true,
      "via": [
@@ -81,7 +57,19 @@
      "venue": "Eastside Paddle Club",
      "city": "Austin",
      "sport": "pickleball",
-     "sessions": 83,
+     "sessions": 80,
+     "pinned": true,
+     "booking": true,
+     "via": [
+      "austin-club-openplay"
+     ],
+     "lead": false
+    },
+    {
+     "venue": "Austin Pickle Ranch",
+     "city": "Austin",
+     "sport": "pickleball",
+     "sessions": 77,
      "pinned": true,
      "booking": true,
      "via": [
@@ -114,6 +102,20 @@
      "lead": false
     },
     {
+     "venue": "Volleyworld (Pflugerville)",
+     "city": "Pflugerville",
+     "sport": "volleyball",
+     "sessions": 12,
+     "pinned": true,
+     "booking": false,
+     "via": [
+      "manual",
+      "reclub",
+      "volleyworld"
+     ],
+     "lead": false
+    },
+    {
      "venue": "Pickleland",
      "city": "Austin",
      "sport": "pickleball",
@@ -122,20 +124,6 @@
      "booking": true,
      "via": [
       "austin-pickleball-meetup"
-     ],
-     "lead": false
-    },
-    {
-     "venue": "Volleyworld (Pflugerville)",
-     "city": "Pflugerville",
-     "sport": "volleyball",
-     "sessions": 10,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "manual",
-      "reclub",
-      "volleyworld"
      ],
      "lead": false
     },
@@ -320,7 +308,7 @@
      "venue": "Sports Garden DFW",
      "city": "Coppell",
      "sport": "volleyball",
-     "sessions": 3,
+     "sessions": 2,
      "pinned": true,
      "booking": false,
      "via": [
@@ -527,18 +515,6 @@
      "lead": true
     },
     {
-     "venue": "Emancipation Park",
-     "city": "",
-     "sport": "volleyball",
-     "sessions": 2,
-     "pinned": true,
-     "booking": false,
-     "via": [
-      "houston-reclub"
-     ],
-     "lead": true
-    },
-    {
      "venue": "Katy Sports Center",
      "city": "",
      "sport": "volleyball",
@@ -599,7 +575,7 @@
      "lead": true
     },
     {
-     "venue": "Harvest Time Church",
+     "venue": "Emancipation Park",
      "city": "",
      "sport": "volleyball",
      "sessions": 1,

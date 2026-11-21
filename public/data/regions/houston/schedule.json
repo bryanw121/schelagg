@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-21T02:16:45.941Z",
+  "generatedAt": "2026-11-21T05:17:18.599Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,8 +67,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-21T02:13:40.309Z",
-      "count": 25,
+      "checkedAt": "2026-11-21T05:14:15.355Z",
+      "count": 23,
       "warnings": [
         "reclub-3YV72K: no surface",
         "reclub-NJKPQA: no surface",
@@ -81,7 +81,6 @@
         "reclub-K9XO8G: no surface",
         "reclub-WQR08J: no surface",
         "reclub-Y2CRUB: no surface",
-        "reclub-R9HE9A: no surface",
         "reclub-VGIK6U: no surface",
         "reclub-8SFAT2: no surface",
         "reclub-JMV5QT: no surface",
@@ -90,7 +89,6 @@
         "reclub-40RJ8U: no surface",
         "reclub-T02HQF: no surface",
         "reclub-PY6UV1: no surface",
-        "reclub-XD4JXT: no surface",
         "reclub-6TSHGM: no surface",
         "reclub-5E0DAN: no surface",
         "reclub-230JCQ: no surface",
@@ -107,7 +105,7 @@
       "kind": "City recreation programs (ACTIVE)",
       "site": "https://www.active.com/houston-tx/volleyball",
       "ok": true,
-      "checkedAt": "2026-11-20T17:14:30.272Z",
+      "checkedAt": "2026-11-21T05:14:15.995Z",
       "count": 0
     },
     {
@@ -120,7 +118,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-21T02:13:42.725Z",
+      "checkedAt": "2026-11-21T05:14:18.098Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -379,31 +377,6 @@
       "status": "scheduled"
     },
     {
-      "id": "reclub-R9HE9A",
-      "date": "2026-11-20",
-      "start": "18:00",
-      "end": "21:00",
-      "title": "Emancipation meet",
-      "venue": "Emancipation Park",
-      "type": "Open play",
-      "level": "All levels",
-      "price": null,
-      "note": "Hosted by Emancipation Park Indoor Volleyball, every Friday.",
-      "capacity": 18,
-      "signup": {
-        "url": "https://reclub.co/m/R9HE9A",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/R9HE9A",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-20",
-      "venueId": "src-emancipation-park",
-      "status": "scheduled"
-    },
-    {
       "id": "reclub-VGIK6U",
       "date": "2026-11-27",
       "start": "18:00",
@@ -605,31 +578,6 @@
       "previousStart": "2026-11-21 16:00"
     },
     {
-      "id": "reclub-XD4JXT",
-      "date": "2026-11-20",
-      "start": "20:00",
-      "end": "23:00",
-      "title": "Volleyball Pickup with Kimberly",
-      "venue": "Harvest Time Church",
-      "type": "Open play",
-      "level": "All levels",
-      "price": "$10",
-      "note": "Hosted by The Volleyball Hangout.",
-      "capacity": 30,
-      "signup": {
-        "url": "https://reclub.co/m/XD4JXT",
-        "label": "Sign up on Reclub"
-      },
-      "source": "https://reclub.co/m/XD4JXT",
-      "sourceId": "houston-reclub",
-      "sport": "volleyball",
-      "region": "houston",
-      "timezone": "America/Chicago",
-      "verifiedAt": "2026-11-20",
-      "venueId": "src-harvest-time-church",
-      "status": "scheduled"
-    },
-    {
       "id": "reclub-6TSHGM",
       "date": "2026-11-21",
       "start": "17:00",
@@ -829,15 +777,6 @@
       "address": "6942 Cotton Drive, Houston, Tx",
       "lat": 29.836397,
       "lng": -95.49456,
-      "region": "houston"
-    },
-    {
-      "id": "src-harvest-time-church",
-      "name": "Harvest Time Church",
-      "city": null,
-      "address": "Imperial Valley Drive, Houston, TX",
-      "lat": 29.955013,
-      "lng": -95.39814,
       "region": "houston"
     },
     {

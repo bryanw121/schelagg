@@ -3,7 +3,6 @@
     "austin-club-openplay": {
       "counts": [
         278,
-        278,
         275,
         275,
         275,
@@ -11,9 +10,10 @@
         275,
         270,
         266,
-        265
+        265,
+        250
       ],
-      "sessions": 265,
+      "sessions": 250,
       "coverage": {
         "end": 1,
         "price": 1,
@@ -37,7 +37,7 @@
         163,
         163,
         163,
-        163,
+        161,
         161
       ],
       "sessions": 161,
@@ -155,7 +155,7 @@
       ]
     },
     "aces": {
-      "failStreak": 878
+      "failStreak": 879
     },
     "atxbeach": {
       "counts": [
@@ -215,15 +215,15 @@
     },
     "reclub": {
       "counts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
         6,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
-        5,
         6
       ],
       "sessions": 6,
@@ -257,7 +257,6 @@
         "feeCurrency",
         "feeType",
         "flags",
-        "flags.GROUP_PROMOTED",
         "gender",
         "groupReference",
         "groups[]",
@@ -280,9 +279,6 @@
         "participants[]",
         "participants[].createdAt",
         "participants[].externalReference",
-        "participants[].externalReference.gender",
-        "participants[].externalReference.level",
-        "participants[].externalReference.name",
         "participants[].id",
         "participants[].isCoach",
         "participants[].isHost",
@@ -352,14 +348,14 @@
     },
     "sweatpals": {
       "counts": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
         3,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
         3,
         3
       ],
@@ -911,7 +907,7 @@
         13,
         13,
         13,
-        13,
+        10,
         10,
         10,
         10,
@@ -933,13 +929,14 @@
       "contentHash": "1a56c3b727a58c8f"
     },
     "georgetown-pickleball": {
-      "failStreak": 587
+      "failStreak": 588
     },
     "leander-pickleball": {
-      "failStreak": 587
+      "failStreak": 588
     },
     "dallas-reclub": {
       "counts": [
+        0,
         0,
         0,
         0,
@@ -987,7 +984,7 @@
         2,
         2,
         2,
-        2,
+        0,
         0,
         0,
         0,
@@ -1056,15 +1053,15 @@
         13,
         13,
         13,
-        13,
         14,
         14,
         14,
         14,
         14,
-        14
+        14,
+        13
       ],
-      "sessions": 14,
+      "sessions": 13,
       "coverage": {
         "end": 1,
         "price": 0,
@@ -1082,19 +1079,19 @@
       "counts": [
         24,
         24,
-        24,
         23,
         23,
         23,
         23,
         23,
         23,
-        25
+        25,
+        23
       ],
-      "sessions": 25,
+      "sessions": 23,
       "coverage": {
         "end": 1,
-        "price": 0.6,
+        "price": 0.61,
         "level": 1,
         "venue": 1,
         "city": 0,
@@ -1253,7 +1250,7 @@
         12,
         12,
         12,
-        12,
+        15,
         15,
         15,
         15,
@@ -1299,12 +1296,10 @@
     "houston-reclub:warning:reclub-NJKPQA: no surface",
     "houston-reclub:warning:reclub-OKAE7P: no surface",
     "houston-reclub:warning:reclub-PY6UV1: no surface",
-    "houston-reclub:warning:reclub-R9HE9A: no surface",
     "houston-reclub:warning:reclub-T02HQF: no surface",
     "houston-reclub:warning:reclub-TCHJ1D: no surface",
     "houston-reclub:warning:reclub-VGIK6U: no surface",
     "houston-reclub:warning:reclub-WQR08J: no surface",
-    "houston-reclub:warning:reclub-XD4JXT: no surface",
     "houston-reclub:warning:reclub-Y1ZF0D: no surface",
     "houston-reclub:warning:reclub-Y2CRUB: no surface",
     "houston-sweatpals:warning:no upcoming events matched on any host",
@@ -1320,8 +1315,8 @@
     "manual:beecave-on-ice-sun:changed:2026-11-20",
     "manual:beecave-on-ice-tue:changed:2026-11-20",
     "manual:four-seasons-ice-rodeo:changed:2026-11-20",
-    "manual:hanovers-open:changed:2026-11-18",
     "manual:hanovers-open:unverified",
+    "manual:hanovers-open:watch",
     "manual:ssc-crossover-mon-sand:changed:2026-11-20",
     "manual:ssc-crossover-mon-sand:unverified",
     "reclub:warning:https://reclub.co/m/V4DO6Q: HTTP 403"
