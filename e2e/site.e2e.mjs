@@ -1468,7 +1468,8 @@ test('site: Events map: one pin per venue; a pin opens the place sheet (readable
   assert.equal(await page.locator('#mapPanel .place-row').count(), 5);
   // The rows under the map read the same way: the event, then the place.
   const zilker = page.locator('#mapPanel .place-row[data-pin="event:30.26720,-97.77290"]');
-  assert.equal(await zilker.locator('.pr-name').evaluate((e) => e.firstChild.textContent.trim()), 'Autumn Market');
+  assert.equal(await zilker.locator('.pr-title').textContent(), 'Autumn Market');
+  assert.equal(await zilker.locator('.ev-kick').textContent(), 'Seasonal', 'the row says what kind of thing it is, as the list does');
   assert.equal(await zilker.locator('.pr-more').textContent(), '+1 more');
   assert.equal(await zilker.locator('.pr-at').textContent(), 'Zilker Park · Austin');
   const sheet = page.locator('#placeSheet');
@@ -1478,6 +1479,8 @@ test('site: Events map: one pin per venue; a pin opens the place sheet (readable
   assert.equal(await sheet.locator('.v-name').evaluate((e) => e.firstChild.textContent), 'Zilker Park');
   assert.equal(await sheet.locator('.v-name small').textContent(), 'Austin · 2 events', 'no repeat of the name ("Zilker" is in it)');
   assert.deepEqual(await sheet.locator('.pop-item .pop-w b').allTextContents(), ['Autumn Market', 'Dia de los Muertos']);
+  assert.deepEqual(await sheet.locator('.pop-item .ev-kick').allTextContents(), ['Seasonal', 'Culture'], 'each event leads with its topic');
+  assert.equal(await sheet.locator('.pop-item .ev-what').first().textContent(), 'Local makers and food trucks under the oaks.');
   assert.deepEqual(await sheet.locator('.pop-item .pop-t').allTextContents(), ['Thru Fri Oct 3010am–6pm', 'Sun Nov 1']);
   assert.equal(await sheet.locator('.pop-item a.src').first().getAttribute('href'), 'https://example.test/autumn');
   assert.match(await sheet.locator('.location .actions').textContent(), /Google Maps/);

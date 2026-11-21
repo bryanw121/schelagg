@@ -458,6 +458,14 @@ header .wrap>*,.filters,.chips-row{min-width:0}.chips-row>.seg{max-width:100%}
 
 /* Events map rows: the event's name, how many more are at that place, then the place under it. */
 .pr-more{font:600 11px var(--mono);color:var(--muted);white-space:nowrap}
+/* Map: the place rows and the place sheet carry the same topic line and fact pills as the list. */
+.pr-name .ev-kick{margin-bottom:1px}
+.pr-facts{display:inline-flex;gap:4px;vertical-align:1px}
+.pop-w .ev-kick{margin-bottom:0}
+.pop-w .ev-what{display:block;-webkit-line-clamp:2}
+.pop-w .ev-facts{display:flex;margin-top:3px}
+/* The filter pills stay on one line on phones and scroll sideways, so the map keeps its room. */
+@media (max-width:600px){#eventCats{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}#eventCats::-webkit-scrollbar{display:none}#eventCats > *{flex:none}}
 .pr-name small.pr-at{display:block;margin:2px 0 0}
 
 /* Organizer pictures (avatarImg): on an event card's by-line, a map row and a pin. */
