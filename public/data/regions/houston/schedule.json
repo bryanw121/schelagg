@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-21T18:16:35.029Z",
+  "generatedAt": "2026-11-21T20:33:20.101Z",
   "region": {
     "id": "houston",
     "name": "Houston, TX",
@@ -67,8 +67,8 @@
         }
       ],
       "ok": true,
-      "checkedAt": "2026-11-21T18:13:19.841Z",
-      "count": 22,
+      "checkedAt": "2026-11-21T20:30:08.001Z",
+      "count": 23,
       "warnings": [
         "reclub-3YV72K: no surface",
         "reclub-NJKPQA: no surface",
@@ -77,6 +77,7 @@
         "reclub-TCHJ1D: no surface",
         "reclub-EEUP4M: no surface",
         "reclub-K9D10X: no surface",
+        "reclub-1GOBAB: no surface",
         "reclub-MCRPQ4: no surface",
         "reclub-K9XO8G: no surface",
         "reclub-WQR08J: no surface",
@@ -117,7 +118,7 @@
       "kind": "Sweatpals host pages",
       "site": "https://sweatpals.com",
       "ok": true,
-      "checkedAt": "2026-11-21T18:13:22.272Z",
+      "checkedAt": "2026-11-21T20:30:10.369Z",
       "count": 0,
       "warnings": [
         "no upcoming events matched on any host"
@@ -292,6 +293,31 @@
         "label": "Sign up on Reclub"
       },
       "source": "https://reclub.co/m/K9D10X",
+      "sourceId": "houston-reclub",
+      "sport": "volleyball",
+      "region": "houston",
+      "timezone": "America/Chicago",
+      "verifiedAt": "2026-11-21",
+      "venueId": "src-katy-sports-center",
+      "status": "scheduled"
+    },
+    {
+      "id": "reclub-1GOBAB",
+      "date": "2026-11-25",
+      "start": "14:00",
+      "end": "17:00",
+      "title": "Wednesday, Teens INDOOR Volleyball ($10) @ Katy Sports (2 pm - 5 pm)",
+      "venue": "Katy Sports Center",
+      "type": "Open play",
+      "level": "All levels",
+      "price": "$10",
+      "note": "Hosted by Cultural Diversity Volleyball Social.",
+      "capacity": 30,
+      "signup": {
+        "url": "https://reclub.co/m/1GOBAB",
+        "label": "Sign up on Reclub"
+      },
+      "source": "https://reclub.co/m/1GOBAB",
       "sourceId": "houston-reclub",
       "sport": "volleyball",
       "region": "houston",
